@@ -1,0 +1,14 @@
+.container {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  background: #08f;
+  color: white;
+  border-radius: 12px;
+  width: 200px;
+  gap: 12px;
+
+  label {
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,18 @@
+@use "/src/styles/mixins" as *;
+
+.container {
+  width: 100%;
+  height: calc(var(--viewport-height) - 105px);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 16px;
+
+  @include for-mobile-only {
+    height: calc(var(--viewport-height) - 190px);
+    border-radius: 0;
+    margin: 0;
+  }
+}

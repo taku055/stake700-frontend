@@ -1,0 +1,46 @@
+@use "/src/styles/mixins" as *;
+
+.card {
+  position: relative;
+  border-radius: "5px";
+  overflow: hidden;
+  background: #111;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  aspect-ratio: 2.4;
+  display: flex;
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  height: fit-content;
+  padding: 1rem;
+  background-color: #57003Ba0;
+  z-index: 10;
+  width: 100%;
+
+  @include for-mobile-only {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  @include for-mobile-only {
+    font-size: 1rem;
+  }
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #ccc;
+  flex: 1;
+
+  @include for-mobile-only {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,9 @@
+.selectedTab {
+  z-index: 1;
+  border-color: #d6b33e !important;
+  background: linear-gradient(90deg, #d5b23d 0%, #a0852a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: unset;
+  font-weight: bold;
+}

@@ -1,0 +1,81 @@
+@use "./mixins" as *;
+
+button {
+  cursor: pointer;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 8px;
+  border-radius: 7px;
+  border: 1px solid;
+  border-color: var(--primary-color);
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-align: left;
+  color: #fff;
+  transition: all 0.2s;
+  background: transparent;
+  cursor: pointer;
+
+  @include for-mobile-only {
+    padding: 0 12px;
+    font-size: 12px;
+    min-height: 16px;
+  }
+
+  @include for-not-mobile {
+    &:hover:not(:active) {
+      color: #fff;
+    }
+  }
+
+  &:disabled {
+    color: #d2d2d2 !important;
+    background: #7e7e7e !important;
+  }
+
+  &.btn-primary {
+    color: #fff;
+    background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-hover-color) 100%);
+
+    &:hover {
+      background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-hover-color) 100%);
+    }
+
+    @include for-not-mobile {
+      &:hover:not(:active) {
+        color: #fff;
+      }
+    }
+  }
+
+  &.btn-passive {
+    color: white;
+    background: #d6c4af;
+    border: 0px;
+
+    @include for-not-mobile {
+      &:hover:not(:active) {
+        color: #1f1f1f;
+        background: linear-gradient(104.35deg, #f3bc6c 3%, #c58e4e 87.19%);
+      }
+    }
+  }
+  &.btn-primary-black {
+    color: #000;
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+
+    @include for-not-mobile {
+      &:hover:not(:active) {
+        color: #fff;
+        background: #0003;
+      }
+    }
+  }
+}

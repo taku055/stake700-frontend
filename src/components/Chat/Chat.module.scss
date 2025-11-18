@@ -1,0 +1,53 @@
+.container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 600px;
+  max-height: 80vh;
+  background: #161616;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    width: calc(100vw - 40px);
+    max-width: 600px;
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+  }
+}
+
+.expandButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #109121;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(16, 145, 33, 0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+
+  &:hover {
+    background: #0d7a1b;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(16, 145, 33, 0.6);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+  }
+}
+

@@ -1,0 +1,39 @@
+:root {
+  --foreground: #FFFFFF;
+  --highlight-background: #4D4D4D;
+
+  --primary-color: #8CC4DF;
+  --primary-hover-color: #dc2590;
+  --primary-bg-transparent-color: #37c9961d;
+  --sidebar-background: #151D24;
+  --toastify-font-family: "Roboto";
+  --toastify-font-size: 12px;
+  --nextui-font-size-small: 16px;
+  --heroui-font-size-small: 16px;
+  --gradient-start: #412F07;
+  --gradient-end: #8B670F;
+  
+  --primary-font: "Roboto";
+  
+  
+  --background: #0B1629;
+  --header-background: #0B1629;
+  --footer-background: #000C24;
+  --bar-background-color: #122543;
+  --bar-background-color-hover: #3b4b5c;
+  --bar-background-color-active: #3B4B5C;
+  --background-color-active: #a5b5c8;
+  --pink-color: #D80D83;
+  --green-color: #2A8038;
+  --blue-color: #0088CC;
+  --fire-color: #FF3449;
+  --yellow-color: #CC8B00;
+
+  --text-footer-title-color: #FFFCF8;
+  --text-transparent-color: #FFFFFF99;
+}
+
+.dark {
+  --nextui-font-size-small: 16px;
+  --heroui-font-size-small: 16px;
+}

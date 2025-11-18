@@ -1,0 +1,36 @@
+@use "/src/styles/mixins" as *;
+
+.container {
+  position: relative;
+  background: linear-gradient(180deg, #2b3344 20%, #222834 100%);
+  border-radius: 18px;
+  box-shadow: 0px 0px 3px #0e0606;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .promotionImage {
+    position: absolute;
+    bottom: 0;
+    right: 0px;
+    height: 100%;
+
+    img {
+      height: 100%;
+    }
+
+    [dir="ltr"] & {
+      left: 0px;
+      right: auto;
+      transform: scaleX(-1);
+    }
+
+    @include for-mobile-only {
+      display: none;
+    }
+  }
+
+  @include for-mobile-only {
+    height: unset;
+  }
+}
