@@ -3,10 +3,13 @@ import { Search } from "lucide-preact";
 import { navigationSidebarOpenState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
 import CategoryItems from "./CategoryItems";
-import { useState, useMemo } from "preact/hooks";
+import { useState, useMemo, useEffect } from "preact/hooks";
 import { Input } from "@/components/common";
 import LocaleSelection from "@/components/LocaleSelection";
-import { getNavIcon, processCategories } from "./categoryData";
+import { getNavIcon, processCategories, initializeCategoryCounts, getCachedCategoryCount } from "./categoryData";
+import { localeState } from "@/state/localeState";
+
+const RTL_LANGUAGES = ["ar", "he", "fa"];
 
 interface MobileDrawerProps {
   mainNavItems: Array<{
@@ -32,7 +35,14 @@ export default function MobileDrawer({
 }: MobileDrawerProps) {
   const t = useTranslations("Header");
   const [searchQuery, setSearchQuery] = useState("");
+  const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
+    name: string;
+    path: string;
+    icon: string;
+    count?: number;
+  }>>([]);
   const { modifyHref } = useAffiliateNavigation();
+  const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = useMemo(() => {
@@ -41,9 +51,21 @@ export default function MobileDrawer({
     );
   }, [mainNavItems]);
 
-  // Process categories with icons
-  const categoriesWithIcons = useMemo(() => {
-    return processCategories(categories);
+  // Initialize category counts once and use cached values
+  useEffect(() => {
+    const loadCategoryCounts = async () => {
+      // Initialize counts if not already loaded
+      await initializeCategoryCounts(categories);
+      
+      // Use cached values
+      const categoriesWithIcons = processCategories(categories);
+      const categoriesWithCountsData = categoriesWithIcons.map((cat) => ({
+        ...cat,
+        count: getCachedCategoryCount(cat.path),
+      }));
+      setCategoriesWithCounts(categoriesWithCountsData);
+    };
+    loadCategoryCounts();
   }, [categories]);
 
   return (
@@ -60,24 +82,25 @@ export default function MobileDrawer({
 
       {/* Panel */}
       <div
-        className="absolute inset-y-0 left-0 bg-[var(--bar-background-color)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform w-80"
+        className={`absolute inset-y-0 ${isRTL ? 'right-0' : 'left-0'} bg-[var(--bar-background-color)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform w-80`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search and Locale Selection Row */}
-        <div className="bg-[var(--background-secondary)] flex flex-row items-center gap-2 p-3 pr-10 relative">
+        <div className={`bg-[var(--background-secondary)] flex flex-row items-center gap-2 p-3 ${isRTL ? 'pl-10' : 'pr-10'} relative`}>
           <div className="flex-1">
             <Input
+              label={"Search"}
               type="text"
-              label={t("Search") || "Search"}
+              placeholder="Search"
               value={searchQuery}
               onChange={(e: any) => setSearchQuery(e.target.value)}
               variant="bordered"
-              startContent={<Search size={16} color="#FFFFFF7D" />}
+              endContent={<Search size={16} color="var(--text-transparent-color)" />}
               classNames={{
                 inputWrapper:
-                  "bg-[#fff1] border-none rounded-sm! hover:bg-[#fff2] focus-within:hover:bg-[#fff2]",
+                  "bg-[var(--background)] border-none rounded-sm!",
                 input: "text-white text-[14px]",
-                label: "text-[#FFFFFF80]",
+                label: "text-[#FFFFFF]",
               }}
             />
           </div>
@@ -85,17 +108,17 @@ export default function MobileDrawer({
             <LocaleSelection headerMode={false} />
           </div>
           <button
-            className="absolute border-none right-0 top-1/2 rotate-180 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full bg-[var(--background)] p-2 ratio-1/1 flex items-center justify-center"
+            className={`absolute border-none ${isRTL ? 'left-0 translate-x-[-50%]' : 'right-0 translate-x-1/2'} top-1/2 rotate-180 -translate-y-1/2 w-10 h-10 rounded-full bg-[var(--background)] p-2 ratio-1/1 flex items-center justify-center`}
             onClick={() => {
               navigationSidebarOpenState.value = false;
             }}
           >
-            <img src="/images/sidebar/expand.svg" alt="sidebararrow" className="rotate-180" />
+            <img src="/images/sidebar/expand.svg" alt="sidebararrow" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto sidebar-scrollbar">
           {/* Top Navigation Items (Casino, Live Casino, Sportsbook) */}
           <div className="p-4 border-b border-gray-700">
             <div className="flex flex-col gap-2">
@@ -105,7 +128,7 @@ export default function MobileDrawer({
                   href={modifyHref(item.href)}
                   className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
                     selectedMainNavKey === item.key
-                      ? "bg-[var(--pink-color)] text-white"
+                      ? "bg-[#134077] text-white"
                       : "text-gray-300 hover:bg-gray-700"
                   }`}
                 >
@@ -123,13 +146,14 @@ export default function MobileDrawer({
           {/* Divider */}
           <div className="border-b border-gray-700" />
 
-          {/* Categories Section */}
-          {categoriesWithIcons.length > 0 && (
-            <CategoryItems
-              categories={categoriesWithIcons}
-              title={selectedMainNavTitle || t("Categories")}
-            />
-          )}
+          {/* Categories Section - Always shown */}
+          <CategoryItems
+            categories={categoriesWithCounts}
+            title={selectedMainNavTitle || t("Categories")}
+            onCategoryClick={() => {
+              navigationSidebarOpenState.value = false;
+            }}
+          />
         </div>
       </div>
     </div>

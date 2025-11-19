@@ -1,5 +1,167 @@
-import Sportsbook from "@/components/Sportsbook";
+import { useState, useCallback, useEffect, useMemo } from "preact/hooks";
+import { PromotionSection } from "../casino/PromotionSection";
+import { SelectionLinkGroup } from "./components/SelectionLinkGroup";
+import { GameSearchPanel } from "./components/GameSearchPanel";
+import { ProviderSelectionCard } from "./components/ProviderSelectionCard";
+import { GameGridView } from "./components/GameGridView";
+import { apiGetGames } from "@/api/common/apiGetGames";
+import { apiGetProviders } from "@/api/common/apiGetProviders";
+import { tGame } from "@/types/tGame";
+import { tProvider } from "@/types/tProvider";
+import { tPaginationResult } from "@/types/tPaginationResult";
+
+const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
+const GAME_LOAD_COUNT = 24;
 
 export default function Live() {
-  return <Sportsbook />;
+  const [searchQuery, setSearchQuery] = useState("");
+  const [providerSearch, setProviderSearch] = useState("");
+  const [selectedProviders, setSelectedProviders] = useState<string[]>([ALL_PROVIDERS_ID]);
+  const [providers, setProviders] = useState<tProvider[]>([]);
+  const [games, setGames] = useState<tGame[]>([]);
+  const [offset, setOffset] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [total, setTotal] = useState(0);
+
+  // Load providers for live casino
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await apiGetProviders("live-casino");
+        setProviders(res);
+      } catch (error) {
+        console.error("Error loading providers:", error);
+      }
+    })();
+  }, []);
+
+  // Check if "All Providers" is selected
+  const isAllProvidersSelected = useMemo(() => {
+    return selectedProviders.includes(ALL_PROVIDERS_ID);
+  }, [selectedProviders]);
+
+  // Get individual providers (excluding ALL_PROVIDERS_ID)
+  const individualProviders = useMemo(() => {
+    return selectedProviders.filter(id => id !== ALL_PROVIDERS_ID);
+  }, [selectedProviders]);
+
+  // Toggle provider selection
+  const toggleProvider = useCallback((providerId: string) => {
+    if (providerId === ALL_PROVIDERS_ID) {
+      // Toggle "All Providers"
+      if (isAllProvidersSelected) {
+        setSelectedProviders([]);
+      } else {
+        setSelectedProviders([ALL_PROVIDERS_ID]);
+      }
+    } else {
+      // Toggle individual provider
+      if (isAllProvidersSelected) {
+        // If "All Providers" is selected, replace it with this provider
+        setSelectedProviders([providerId]);
+      } else {
+        // Toggle individual provider
+        const newProviders = individualProviders.includes(providerId)
+          ? individualProviders.filter((id) => id !== providerId)
+          : [...individualProviders, providerId];
+        
+        // If no providers selected, default to "All Providers"
+        if (newProviders.length === 0) {
+          setSelectedProviders([ALL_PROVIDERS_ID]);
+        } else {
+          setSelectedProviders(newProviders);
+        }
+      }
+    }
+  }, [isAllProvidersSelected, individualProviders]);
+
+  // Reset provider selection
+  const resetProviders = useCallback(() => {
+    setSelectedProviders([ALL_PROVIDERS_ID]);
+    setProviderSearch("");
+  }, []);
+
+  // Load games based on filters
+  const loadMore = useCallback(
+    async (offset1: number) => {
+      setLoading(true);
+      try {
+        const requestParams: any = {
+          offset: offset1,
+          limit: GAME_LOAD_COUNT,
+          category: "live-casino",
+          keyword: searchQuery || undefined,
+        };
+
+        // Add provider filter if individual providers are selected
+        if (!isAllProvidersSelected && individualProviders.length > 0) {
+          requestParams.provider = individualProviders.join(",");
+        }
+
+        const res: tPaginationResult<tGame> = await apiGetGames(requestParams);
+
+        if (offset1 === 0) {
+          setGames(res.data);
+        } else {
+          setGames((p) => [...p, ...res.data]);
+        }
+        setOffset(offset1 + GAME_LOAD_COUNT);
+        setTotal(res.total);
+      } catch (error) {
+        console.error("Error loading games:", error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [searchQuery, isAllProvidersSelected, individualProviders]
+  );
+
+  // Load games when filters change
+  useEffect(() => {
+    setOffset(0);
+    loadMore(0);
+  }, [searchQuery, selectedProviders, loadMore]);
+
+  // Handle search button click
+  const handleSearchClick = useCallback(() => {
+    setOffset(0);
+    loadMore(0);
+  }, [loadMore]);
+
+  return (
+    <div className="w-full flex flex-col gap-6">
+      {/* Banner on top */}
+      <PromotionSection showAppleImage={false} category="live-casino" />
+
+      {/* Selection link group */}
+      <SelectionLinkGroup />
+
+      {/* Search game input panel */}
+      <GameSearchPanel
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onSearchClick={handleSearchClick}
+      />
+
+      {/* Provider selection card */}
+      <ProviderSelectionCard
+        providers={providers}
+        selectedProviders={selectedProviders}
+        providerSearch={providerSearch}
+        allProvidersId={ALL_PROVIDERS_ID}
+        isAllProvidersSelected={isAllProvidersSelected}
+        onProviderSearchChange={setProviderSearch}
+        onToggleProvider={toggleProvider}
+        onResetProviders={resetProviders}
+      />
+
+      {/* Filtered game view panel */}
+      <GameGridView
+        games={games}
+        total={total}
+        loading={loading}
+        onLoadMore={() => loadMore(offset)}
+      />
+    </div>
+  );
 }

@@ -2,6 +2,9 @@ import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { ChevronRight } from "lucide-preact";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { getNavIcon, processCategories } from "./categoryData";
+import { localeState } from "@/state/localeState";
+
+const RTL_LANGUAGES = ["ar", "he", "fa"];
 
 interface CollapsedSidebarProps {
   mainNavItems: Array<{
@@ -24,6 +27,7 @@ export default function CollapsedSidebar({
   categories,
 }: CollapsedSidebarProps) {
   const { modifyHref } = useAffiliateNavigation();
+  const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = mainNavItems.filter((item) =>
@@ -34,7 +38,7 @@ export default function CollapsedSidebar({
   const categoriesWithIcons = processCategories(categories);
 
   return (
-    <div className="md:flex w-[64px] bg-[var(--bar-background-color)] border-r border-gray-700 flex-col h-screen sticky top-0">
+    <div className={`md:flex w-[64px] bg-[var(--bar-background-color)] ${isRTL ? 'border-l' : 'border-r'} border-gray-700 flex-col h-screen sticky top-0`}>
       {/* Expand Button */}
       <div className="flex items-center justify-center p-2 border-b border-gray-700 flex-shrink-0">
         <button
@@ -49,7 +53,7 @@ export default function CollapsedSidebar({
       </div>
 
       {/* Scrollable Content Area */}
-      <div className="flex-1 flex flex-col overflow-y-auto min-h-0">
+      <div className="flex-1 flex flex-col overflow-y-auto min-h-0 sidebar-scrollbar">
         {/* Navigation Icons */}
         <div className="flex flex-col items-center py-4 gap-2 flex-shrink-0">
           {topNavItems.map((item) => (
@@ -58,7 +62,7 @@ export default function CollapsedSidebar({
               href={modifyHref(item.href)}
               className={`flex items-center justify-center w-12 h-12 rounded-lg transition-colors ${
                 selectedMainNavKey === item.key
-                  ? "bg-[var(--pink-color)] text-white"
+                  ? "bg-[#134077] text-white"
                   : "text-gray-300 hover:bg-gray-700"
               }`}
               title={item.title}

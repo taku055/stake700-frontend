@@ -18,6 +18,7 @@ export default function AppRoute() {
       <Route path="/" component={HomePage} />
 
       <Route path="/live" component={LivePage} />
+      <Route path="/live-casino" component={LivePage} />
       <Route path="/sport" component={SportPage} />
 
       <Route path="/casino/:pageType" component={CasinoLayout} />
@@ -41,3 +42,4 @@ export default function AppRoute() {
     </Router>
   );
 }
+

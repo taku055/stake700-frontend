@@ -1,94 +1,80 @@
-import GameGroup from "@/components/GameGroup";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
-import CategoryImageGroup from "./CategoryImageGroup";
 import { PromotionSection } from "../casino/PromotionSection";
-import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
-import { useState } from "preact/hooks";
-import GameFilterSidebar from "@/components/GameFilterSidebar";
-import { useMediaQuery } from "usehooks-ts";
-import { mobileMediaQuery } from "@/config/constants";
+import { WinnersTabGroup } from "./components/WinnersTabGroup";
+import { BetPromotionCard } from "./components/BetPromotionCard";
+import { PromotionInfoCard } from "./components/PromotionInfoCard";
+import { getBetPromotionCards, getPromotionInfoCards } from "./data";
+import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 
 export default function PageComponent() {
   const location = useLocation();
   if (userState.value?.isSuperAgent) {
     location.route("/superagent");
-    return;
+    return null;
   }
 
   if (userState.value?.isAgent) {
     location.route("/agent");
-    return;
+    return null;
   }
 
   const t = useTranslations("HomePage");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
-  const isMobile = useMediaQuery(mobileMediaQuery);
+  const { handleNavigate } = useAffiliateNavigation();
+  
+  const betPromotionCards = getBetPromotionCards(t);
+  const promotionInfoCards = getPromotionInfoCards(t);
 
   return (
-    <div className="w-full flex flex-col gap-3">
+    <div className="w-full flex flex-col gap-6">
+      {/* Banner on top */}
       <PromotionSection showAppleImage={false} />
 
-      <div className={`w-full flex ${isMobile ? 'flex-col' : 'flex-row'} gap-6 mt-[20px]`}>
-        {/* Left Sidebar */}
-        <GameFilterSidebar
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          selectedProviders={selectedProviders}
-          onProvidersChange={setSelectedProviders}
-        />
+      {/* Winners Tab Group */}
+      <div className="w-full">
+        <WinnersTabGroup />
+      </div>
 
-        {/* Right Side - Game Groups */}
-        <div className="flex-1 flex flex-col gap-[20px] min-w-0">
-          <GameGroup
-            title={t("casino-games")}
-            viewallLink="/casino/slots"
-            category="home-casino-games"
-            isCustom={true}
-            template={1}
-          />
+      {/* First Promotion Card Area - with background */}
+      <div className="w-full bg-[var(--bar-background-color)] p-6 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {betPromotionCards.map((card, index) => (
+            <BetPromotionCard
+              key={index}
+              image={card.image}
+              content={card.content}
+              buttonText={card.buttonText}
+              onButtonClick={() => handleNavigate(card.link)}
+            />
+          ))}
+        </div>
+      </div>
 
-          <GameGroup
-            title={t("live-casino")}
-            viewallLink="/casino/live-casino"
-            category="home-live-casino"
-            isCustom={true}
-            template={1}
-          />
+      {/* Deposit List Area */}
+      <div className="w-full">
+        <h2 className="text-white text-xl font-semibold mb-4">
+          {t("Deposit Methods") || "Deposit Methods"}
+        </h2>
+        <div className="bg-[var(--bar-background-color)] p-6 rounded-lg">
+          <p className="text-gray-300 text-sm">
+            {t("deposit_info") || "Available deposit methods will be displayed here"}
+          </p>
+          {/* Add deposit list component here */}
+        </div>
+      </div>
 
-          <GameGroup
-            title={t("Hacksaw")}
-            viewallLink="/casino/slots?custom=1&category=hacksaw"
-            category="hacksaw"
-            isCustom={true}
-            template={1}
-          />
-
-          <GameGroup
-            title={t("No Limit")}
-            viewallLink="/casino/slots?custom=1&category=nolimit"
-            category="nolimit"
-            isCustom={true}
-            template={1}
-          />
-
-          <GameGroup
-            title="EGT"
-            viewallLink="/casino/slots?provider=de1c5e79910db4b04ef2fa4823b8f02ba7790c08"
-            provider="de1c5e79910db4b04ef2fa4823b8f02ba7790c08"
-            isCustom={false}
-            template={1}
-          />
-
-          <GameGroup
-            title="Amusnet"
-            viewallLink="/casino/slots?provider=6342a9dcae1a956649e65fc5afa3ffc120917c72"
-            provider="6342a9dcae1a956649e65fc5afa3ffc120917c72"
-            isCustom={false}
-            template={1}
-          />
+      {/* Second Promotion Card Area - no background on area, cards have background */}
+      <div className="w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {promotionInfoCards.map((card, index) => (
+            <PromotionInfoCard
+              key={index}
+              title={card.title}
+              image={card.image}
+              context={card.context}
+            />
+          ))}
         </div>
       </div>
     </div>

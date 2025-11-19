@@ -78,27 +78,11 @@ export default function NavigationSidebar() {
     });
   }, [mainNavItems, location.path]);
 
-  // Always show categories - use static categories or categories from selected nav
+  // Always show static categories - don't change based on selected nav
   const categories = useMemo(() => {
-    // If there's a selected nav with pageType, try to get categories from it
-    if (selectedMainNav?.pageType) {
-      const categoryData = CATEGORY_DATA[selectedMainNav.pageType];
-      if (categoryData) {
-        const allSubItems: Array<{ name: string; path: string; icon?: string }> = [];
-        categoryData.navItems.forEach((navItem) => {
-          if (navItem.subItems) {
-            allSubItems.push(...navItem.subItems);
-          }
-        });
-        // Return categories from selected nav if available
-        if (allSubItems.length > 0) {
-          return allSubItems;
-        }
-      }
-    }
-    // Otherwise, always return static categories
+    // Always return static categories for consistent sidebar icons
     return STATIC_CATEGORIES;
-  }, [selectedMainNav]);
+  }, []); // Empty dependency array - categories never change
 
   // Mobile: Show drawer when open
   if (isMobile) {

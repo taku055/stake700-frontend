@@ -30,10 +30,10 @@ export default function LocaleSelection({
   headerMode = true,
 }: LocaleSelectionProps) {
   return (
-    <Dropdown backdrop="blur" className="bg-[var(--bar-background-color)]">
+    <Dropdown backdrop="blur" className="bg-[var(--background)] h-full">
       <DropdownTrigger>
         <div
-          className={`flex items-center gap-1 bg-[var(--bar-background-color)] rounded-sm p-2 ${
+          className={`flex items-center gap-1 bg-[var(--background)] h-full rounded-sm p-2 ${
             !headerMode ? "" : "bg-[var(--footer-background)]"
           }`}
         >

@@ -6,12 +6,21 @@ interface CategoryItemsProps {
     name: string;
     path: string;
     icon?: string;
+    count?: number;
   }>;
   title: string;
+  onCategoryClick?: () => void;
 }
 
-export default function CategoryItems({ categories, title }: CategoryItemsProps) {
-  const { modifyHref } = useAffiliateNavigation();
+export default function CategoryItems({ categories, title, onCategoryClick }: CategoryItemsProps) {
+  const { handleNavigate } = useAffiliateNavigation();
+
+  const handleCategoryClick = (path: string) => {
+    handleNavigate(path);
+    if (onCategoryClick) {
+      onCategoryClick();
+    }
+  };
 
   return (
     <div className="p-4">
@@ -20,10 +29,10 @@ export default function CategoryItems({ categories, title }: CategoryItemsProps)
       </h3>
       <div className="flex flex-col gap-2">
         {categories.map((category, index) => (
-          <a
+          <button
             key={index}
-            href={modifyHref(category.path)}
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-700 transition-colors"
+            onClick={() => handleCategoryClick(category.path)}
+            className="flex items-center bg-[var(--background-secondary)] gap-3 px-4 py-4 rounded-lg text-gray-300 hover:bg-gray-700 transition-colors text-left w-full"
           >
             {category.icon && (
               <img
@@ -33,8 +42,12 @@ export default function CategoryItems({ categories, title }: CategoryItemsProps)
               />
             )}
             <span className="flex-1">{category.name}</span>
-            <ChevronRight size={16} className="text-gray-500" />
-          </a>
+            {category.count !== undefined && (
+              <span className="bg-[var(--background)] text-white text-xs px-2 py-0.5 rounded-full">
+                {category.count}
+              </span>
+            )}
+          </button>
         ))}
       </div>
     </div>

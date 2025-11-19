@@ -1,4 +1,4 @@
-import { useState, useMemo } from "preact/hooks";
+import { useState, useMemo, useEffect } from "preact/hooks";
 import { Input } from "@heroui/react";
 import { Search, ChevronDown, X } from "lucide-preact";
 import { providerState } from "@/state/providerState";
@@ -7,16 +7,19 @@ import { useTranslations } from "@/context/I18nContext";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
-import { STATIC_CATEGORIES, processCategories } from "@/components/NavigationSidebar/categoryData";
+import { STATIC_CATEGORIES, processCategories, initializeCategoryCounts, getCachedCategoryCount } from "@/components/NavigationSidebar/categoryData";
+
+const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
 
 interface GameFilterSidebarProps {
   searchQuery?: string;
   onSearchChange?: (query: string) => void;
   selectedProviders?: string[];
   onProvidersChange?: (providers: string[]) => void;
+  selectedCategory?: string | null;
+  onCategoryChange?: (category: string | null) => void;
 }
 
-// Custom DropdownItem that doesn't close the dropdown
 function ProviderDropdownItem({
   provider,
   isSelected,
@@ -30,7 +33,6 @@ function ProviderDropdownItem({
     e.preventDefault();
     e.stopPropagation();
     onToggle();
-    // Don't close the dropdown - comment out or remove the close() call
   };
 
   return (
@@ -66,12 +68,30 @@ export default function GameFilterSidebar({
   onSearchChange,
   selectedProviders = [],
   onProvidersChange,
+  selectedCategory = null,
+  onCategoryChange,
 }: GameFilterSidebarProps) {
   const t = useTranslations("HomePage");
   const [providerSearch, setProviderSearch] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { modifyHref } = useAffiliateNavigation();
   const isMobile = useMediaQuery(mobileMediaQuery);
+  const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
+    name: string;
+    path: string;
+    icon: string;
+    count?: number;
+  }>>([]);
+
+  // Check if "All Providers" is selected
+  const isAllProvidersSelected = useMemo(() => {
+    return selectedProviders.length === 0 || selectedProviders.includes(ALL_PROVIDERS_ID);
+  }, [selectedProviders]);
+
+  // Get individual providers (excluding ALL_PROVIDERS_ID)
+  const individualProviders = useMemo(() => {
+    return selectedProviders.filter(id => id !== ALL_PROVIDERS_ID);
+  }, [selectedProviders]);
 
   // Get available providers
   const availableProviders = useMemo(() => {
@@ -86,58 +106,155 @@ export default function GameFilterSidebar({
   }, [availableProviders, providerSearch]);
 
   const toggleProvider = (providerId: string) => {
-    const newProviders = selectedProviders.includes(providerId)
-      ? selectedProviders.filter((id) => id !== providerId)
-      : [...selectedProviders, providerId];
-    onProvidersChange?.(newProviders);
-    // Keep dropdown open - don't close it
+    if (providerId === ALL_PROVIDERS_ID) {
+      // Toggle "All Providers"
+      if (isAllProvidersSelected) {
+        // Deselect "All Providers" - clear all selections
+        onProvidersChange?.([]);
+      } else {
+        // Select "All Providers" - clear individual selections
+        onProvidersChange?.([ALL_PROVIDERS_ID]);
+      }
+    } else {
+      // Toggle individual provider
+      if (isAllProvidersSelected) {
+        // If "All Providers" is selected, replace it with this provider
+        onProvidersChange?.([providerId]);
+      } else {
+        // Toggle individual provider
+        const newProviders = individualProviders.includes(providerId)
+          ? individualProviders.filter((id) => id !== providerId)
+          : [...individualProviders, providerId];
+        
+        // If no providers selected, default to "All Providers"
+        if (newProviders.length === 0) {
+          onProvidersChange?.([]);
+        } else {
+          onProvidersChange?.(newProviders);
+        }
+      }
+    }
   };
 
   const removeProvider = (providerId: string) => {
-    const newProviders = selectedProviders.filter((id) => id !== providerId);
-    onProvidersChange?.(newProviders);
+    const newProviders = individualProviders.filter((id) => id !== providerId);
+    
+    // If no providers selected, default to "All Providers"
+    if (newProviders.length === 0) {
+      onProvidersChange?.([]);
+    } else {
+      onProvidersChange?.(newProviders);
+    }
   };
 
-  // Limit display of selected providers
-  const displayedProviders = useMemo(() => {
-    if (selectedProviders.length <= 3) {
-      return selectedProviders;
+  // Get display content for dropdown trigger
+  const getProviderDisplayContent = useMemo(() => {
+    if (isAllProvidersSelected) {
+      return <div className="text-[#FFFFFF] text-[14px]">All Providers</div>;
     }
-    return selectedProviders.slice(0, 2);
-  }, [selectedProviders]);
+    
+    if (individualProviders.length === 1) {
+      const provider = availableProviders.find((p) => p.id === individualProviders[0]);
+      return (
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 bg-[var(--background-secondary)] px-2 py-1 rounded-md">
+            <span className="text-[#FFFFFF] text-[14px]">{provider?.name || ""}</span>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                removeProvider(individualProviders[0]);
+              }}
+              className="ml-1 hover:opacity-70 transition-opacity"
+            >
+              <X size={14} color="#FFFFFF" />
+            </button>
+          </div>
+        </div>
+      );
+    }
+    
+    // More than 1 selection: show first provider with X + "+X more" badge
+    const firstProvider = availableProviders.find((p) => p.id === individualProviders[0]);
+    const remainingCount = individualProviders.length - 1;
+    
+    return (
+      <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex items-center gap-1 bg-[var(--background-secondary)] px-2 py-1 rounded-md">
+          <span className="text-[#FFFFFF] text-[14px]">{firstProvider?.name || ""}</span>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              removeProvider(individualProviders[0]);
+            }}
+            className="ml-1 hover:opacity-70 transition-opacity"
+          >
+            <X size={14} color="#FFFFFF" />
+          </button>
+        </div>
+        {remainingCount > 0 && (
+          <div className="bg-[var(--background-secondary)] px-2 py-1 rounded-md">
+            <span className="text-[#FFFFFF] text-[14px]">+{remainingCount}</span>
+          </div>
+        )}
+      </div>
+    );
+  }, [isAllProvidersSelected, individualProviders, availableProviders]);
 
-  const remainingCount = selectedProviders.length - displayedProviders.length;
-
-  // Process categories with icons from navigation sidebar
-  const categoriesWithIcons = useMemo(() => {
-    return processCategories(STATIC_CATEGORIES);
+  // Load category counts once and use cached values
+  useEffect(() => {
+    const loadCategoryCounts = async () => {
+      // Initialize counts if not already loaded
+      await initializeCategoryCounts(STATIC_CATEGORIES);
+      
+      // Use cached values
+      const categoriesWithIcons = processCategories(STATIC_CATEGORIES);
+      const categoriesWithCountsData = categoriesWithIcons.map((cat) => ({
+        ...cat,
+        count: getCachedCategoryCount(cat.path),
+      }));
+      setCategoriesWithCounts(categoriesWithCountsData);
+    };
+    loadCategoryCounts();
   }, []);
 
   // Categories section - displayed in a row
   const categoriesSection = (
-    <div className="flex flex-col gap-2">
-      <label className="text-[#FFFFFF7D] text-[12px] uppercase font-medium">
-        {t("Categories") || "Categories"}
-      </label>
+    <div className="flex flex-col gap-2 bg-[var(--bar-background-color)] rounded-sm p-2 text-white">
       <div className={`flex ${isMobile ? 'flex-row overflow-x-auto gap-2 pb-2' : 'flex-col gap-2'}`}>
-        {categoriesWithIcons.map((category, index) => (
-          <a
-            key={index}
-            href={modifyHref(category.path)}
-            className={`flex items-center gap-2 px-3 py-2 rounded-sm text-[#FFFFFF7D] hover:bg-[#fff2] transition-colors whitespace-nowrap ${
-              isMobile ? 'flex-shrink-0' : ''
-            }`}
-          >
-            {category.icon && (
-              <img
-                src={category.icon}
-                alt={category.name}
-                className="w-5 h-5 flex-shrink-0 object-contain"
-              />
-            )}
-            <span className="text-[14px]">{category.name}</span>
-          </a>
-        ))}
+        {categoriesWithCounts.map((category, index) => {
+          const isSelected = selectedCategory === category.path;
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                if (onCategoryChange) {
+                  onCategoryChange(isSelected ? null : category.path);
+                }
+              }}
+              className={`flex items-center gap-2 px-2 py-4 rounded-sm text-[#FFFFFF] hover:bg-[#fff2] transition-colors whitespace-nowrap ${
+                isMobile ? 'flex-shrink-0' : ''
+              } ${
+                isSelected ? 'bg-[var(--background-secondary)]' : ''
+              }`}
+            >
+              {category.icon && (
+                <img
+                  src={category.icon}
+                  alt={category.name}
+                  className="w-6 h-6 flex-shrink-0 object-contain"
+                />
+              )}
+              <span className="text-[14px]">{category.name}</span>
+              {category.count !== undefined && (
+                <span className="bg-[var(--background-secondary)] text-[#FFFFFF7D] text-xs px-1.5 py-0.5 rounded-full ml-auto">
+                  {category.count}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -147,14 +264,14 @@ export default function GameFilterSidebar({
     <div className="flex flex-col gap-2">
       <Input
         size="sm"
-        startContent={<Search size={16} color="#FFFFFF7D" />}
-        placeholder={t("Search Games") || "Search Games"}
+        endContent={<Search size={16} color="var(--text-transparent-color)" />}
+        placeholder={"Search Games"}
         value={searchQuery}
         variant="bordered"
         classNames={{
           inputWrapper:
-            "bg-[#fff1] border-none rounded-sm! hover:bg-[#fff2] focus-within:hover:bg-[#fff2]",
-          input: "text-[#FFFFFF7D] text-[16px]",
+            "bg-[#122543] border-none rounded-sm! hover:bg-[#fff2] focus-within:hover:bg-[#fff2]",
+          input: "text-[#ffffff] text-[14px]",
         }}
         onChange={(e) => {
           const target = e.target as HTMLInputElement | null;
@@ -167,18 +284,13 @@ export default function GameFilterSidebar({
   // Providers section
   const providersSection = (
     <div className="flex flex-col gap-2">
-      <label className="text-[#FFFFFF7D] text-[12px] uppercase font-medium">
-        {t("Providers") || "Providers"}
-      </label>
       <Dropdown open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
         <DropdownTrigger>
-          <button className="w-full bg-[#fff1] border-none rounded-sm hover:bg-[#fff2] px-3 py-2 flex items-center justify-between text-left text-[#FFFFFF7D] text-[14px]">
-            <span className="truncate">
-              {selectedProviders.length === 0
-                ? t("Select Providers") || "Select Providers"
-                : `${selectedProviders.length} ${t("Selected") || "Selected"}`}
+          <button className="w-full bg-[var(--bar-background-color)] border-none rounded-sm hover:bg-[var(--background-secondary)] px-3 py-2 flex items-center justify-between text-left text-[#ffffff] text-[14px]">
+            <span className="truncate flex items-center gap-2">
+              {getProviderDisplayContent}
             </span>
-            <ChevronDown size={16} color="#FFFFFF7D" />
+            <ChevronDown size={16} color="var(--text-transparent-color)" />
           </button>
         </DropdownTrigger>
         <DropdownMenu
@@ -189,13 +301,13 @@ export default function GameFilterSidebar({
           <div className="p-2 sticky top-0 bg-[var(--bar-background-color)] z-10">
             <Input
               size="sm"
-              placeholder={t("Search Providers") || "Search Providers"}
+              placeholder={"Search Providers"}
               value={providerSearch}
               variant="bordered"
               classNames={{
                 inputWrapper:
-                  "bg-[#fff1] border-none rounded-sm! hover:bg-[#fff2]",
-                input: "text-[#FFFFFF7D] text-[14px]",
+                  "bg-[var(--bar-background-color)] border-none rounded-sm! hover:bg-[var(--background-secondary)]",
+                input: "text-[#ffffff] text-[14px]",
               }}
               onChange={(e) => {
                 const target = e.target as HTMLInputElement | null;
@@ -203,50 +315,33 @@ export default function GameFilterSidebar({
               }}
             />
           </div>
+          
+          {/* All Providers Option */}
+          <ProviderDropdownItem
+            provider={{ id: ALL_PROVIDERS_ID, name: t("All Providers") || "All Providers" }}
+            isSelected={isAllProvidersSelected}
+            onToggle={() => toggleProvider(ALL_PROVIDERS_ID)}
+          />
+          
+          {/* Divider */}
+          <div className="h-px bg-[#FFFFFF1A] my-1" />
+          
+          {/* Individual Providers */}
           {filteredProviders.map((provider) => (
             <ProviderDropdownItem
               key={provider.id}
               provider={provider}
-              isSelected={selectedProviders.includes(provider.id)}
+              isSelected={individualProviders.includes(provider.id)}
               onToggle={() => toggleProvider(provider.id)}
             />
           ))}
         </DropdownMenu>
       </Dropdown>
-
-      {/* Selected Providers Tags - Limited Display */}
-      {selectedProviders.length > 0 && (
-        <div className="flex flex-wrap gap-2 mt-2">
-          {displayedProviders.map((providerId) => {
-            const provider = availableProviders.find((p) => p.id === providerId);
-            if (!provider) return null;
-            return (
-              <div
-                key={providerId}
-                className="flex items-center gap-1 bg-[var(--background-color-active)] px-2 py-1 rounded text-[12px] text-[#FFFFFF7D]"
-              >
-                <span>{provider.name}</span>
-                <button
-                  onClick={() => removeProvider(providerId)}
-                  className="hover:text-white"
-                >
-                  <X size={14} />
-                </button>
-              </div>
-            );
-          })}
-          {remainingCount > 0 && (
-            <div className="flex items-center gap-1 bg-[var(--background-color-active)] px-2 py-1 rounded text-[12px] text-[#FFFFFF7D]">
-              <span>+{remainingCount} more</span>
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 
   return (
-    <div className={`${isMobile ? 'w-full' : 'w-[280px]'} ${isMobile ? '' : 'flex-shrink-0'} flex flex-col gap-4`}>
+    <div className={`${isMobile ? 'w-full' : 'w-[16%]'} ${isMobile ? '' : 'flex-shrink-0'} flex flex-col gap-4`}>
       {/* Mobile: Categories → Search → Providers */}
       {/* Desktop: Search → Providers → Categories */}
       {isMobile ? (

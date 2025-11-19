@@ -64,6 +64,7 @@ import { globalLoadingState } from "@/state/globalLoadingState";
 import Loading from "@/components/Loading";
 import Support from "@/components/Chat/Support";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
+import { useRTL } from "@/hooks/useRTL";
 
 const i18nDefinitions = {
   tr: trDefinition,
@@ -90,6 +91,7 @@ export default function GlobalServiceProvider({
 }: GlobalServiceProviderProps) {
   const socket = useSocket();
   const socketConnected = useSocketStatus();
+  useRTL(); // Enable RTL support
 
   useEffect(() => {
     const getPayments = async () => {

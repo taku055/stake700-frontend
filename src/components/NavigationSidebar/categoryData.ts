@@ -1,7 +1,12 @@
+import { customGamesState } from "@/state/customGamesState";
+import { apiGetGames } from "@/api/common/apiGetGames";
+import { categoryCountsCache, categoryCountsLoaded } from "@/state/categoryCountsState";
+
 export interface CategoryItem {
   name: string;
   path: string;
   icon: string;
+  count?: number;
 }
 
 // Static categories list - always shown
@@ -148,6 +153,97 @@ const getCategoryIcon = (categoryName: string, path: string): string => {
   return "/images/sidebar/all-games.svg";
 };
 
+// Get game count for a category based on its path (with caching)
+export const getCategoryGameCount = async (path: string): Promise<number> => {
+  // Check cache first
+  if (categoryCountsCache.value[path] !== undefined) {
+    return categoryCountsCache.value[path];
+  }
+
+  try {
+    // Extract category and custom params from path
+    const url = new URL(path, window.location.origin);
+    const custom = url.searchParams.get("custom");
+    const category = url.searchParams.get("category");
+    const provider = url.searchParams.get("provider");
+
+    let count = 0;
+
+    if (custom === "1" && category) {
+      // Custom category - count from customGamesState
+      count = customGamesState.value.filter((c) => c.category === category).length;
+    } else if (category) {
+      // Regular category - fetch count from API
+      const result = await apiGetGames({
+        category: category,
+        limit: 1,
+        provider: provider || undefined,
+      });
+      count = result.total || 0;
+    } else if (path.includes("/casino/slots")) {
+      // All Games - fetch total count from API with category="slots"
+      const result = await apiGetGames({
+        category: "slots",
+        limit: 1,
+        provider: provider || undefined,
+      });
+      count = result.total || 0;
+    } else if (path.includes("/casino/games")) {
+      // All games in /casino/games - fetch total count from API
+      const result = await apiGetGames({
+        category: category || undefined,
+        limit: 1,
+        provider: provider || undefined,
+      });
+      count = result.total || 0;
+    }
+
+    // Cache the result
+    categoryCountsCache.value = {
+      ...categoryCountsCache.value,
+      [path]: count,
+    };
+
+    return count;
+  } catch (error) {
+    console.error("Error getting category count:", error);
+    return 0;
+  }
+};
+
+// Initialize and load all category counts once
+export const initializeCategoryCounts = async (
+  categories: Array<{ name: string; path: string; icon?: string }>
+): Promise<void> => {
+  if (categoryCountsLoaded.value) {
+    return; // Already loaded
+  }
+
+  try {
+    const categoriesWithIcons = processCategories(categories);
+    const counts: Record<string, number> = {};
+
+    // Load all counts in parallel
+    await Promise.all(
+      categoriesWithIcons.map(async (cat) => {
+        const count = await getCategoryGameCount(cat.path);
+        counts[cat.path] = count;
+      })
+    );
+
+    // Update cache
+    categoryCountsCache.value = counts;
+    categoryCountsLoaded.value = true;
+  } catch (error) {
+    console.error("Error initializing category counts:", error);
+  }
+};
+
+// Get cached count (synchronous, returns undefined if not cached)
+export const getCachedCategoryCount = (path: string): number | undefined => {
+  return categoryCountsCache.value[path];
+};
+
 // Process categories and add icons
 export const processCategories = (
   categories: Array<{ name: string; path: string; icon?: string }>
@@ -165,6 +261,7 @@ export const getNavIcon = (key: string): string => {
     slots: "/images/sidebar/casino.svg",
     "live-casino": "/images/sidebar/live-casino.svg",
     sport: "/images/sidebar/sportsbook.svg",
+    promotions: "/images/sidebar/promotions.svg",
   };
   return iconMap[key] || "/images/sidebar/casino.svg";
 };
