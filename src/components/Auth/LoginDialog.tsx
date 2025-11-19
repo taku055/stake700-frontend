@@ -192,7 +192,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
               >
                 {t("forgot_password")}
               </button>
-              <img
+              {/* <img
                 src="/images/login_ad.png"
                 alt="login_ad"
                 className="w-full"
@@ -206,7 +206,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                 <span className="text-[14px] text-[#FFFFFFB2]">
                   {t("contact_support")}
                 </span>
-              </div>
+              </div> */}
             </div>
           </form>
         </ModalBody>

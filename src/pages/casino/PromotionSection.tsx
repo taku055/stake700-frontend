@@ -24,13 +24,24 @@ export const PromotionSection: FunctionalComponent<{
     [bannerState.value, isMobile]
   );
 
-  if (banners.length === 0 && !showAppleImage) {
-    return null;
-  }
+  // if (banners.length === 0 && !showAppleImage) {
+  //   return null;
+  // }
+  
+  const bannerTemp = [
+    "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-cashback.webp",
+    "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-loyalty.webp",
+  ];
+
+  const bannerTempMobile = [
+    "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/promotion-cashback-mobile.webp",
+    "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/promotion-loyalty-mobile.webp",
+  ];
+
+  const tempBanners = isMobile ? bannerTempMobile : bannerTemp;
 
   return (
     <div className="flex flex-col gap-3 w-full">
-      {banners.length > 0 && (
         <TekioSwiper
           modules={[Mousewheel, Navigation, Autoplay]}
           spaceBetween={16}
@@ -42,19 +53,19 @@ export const PromotionSection: FunctionalComponent<{
             disableOnInteraction: false,
           }}
         >
-          {banners.map((item, index) => (
-            <SwiperSlide key={item + "_" + index} className="flex">
+          {tempBanners.map((item, index) => (
+            <SwiperSlide key={index} className="flex">
               <div className="w-full h-full flex">
                 <img
                   className={"w-full h-full object-cover rounded-lg"}
-                  src={getImageUrl(item)}
+                  //src={getImageUrl(item)}
+                  src={item}
                   alt={item}
                 />
               </div>
             </SwiperSlide>
           ))}
         </TekioSwiper>
-      )}
     </div>
   );
 };

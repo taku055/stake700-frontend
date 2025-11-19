@@ -260,7 +260,7 @@ const ProfileComponent = ({
     >
       <ModalContent className="max-w-[90vw]! w-full flex flex-col md:flex-row bg-[var(--background)] min-h-[90vh]!">
         {(!isMobile || (isMobile && !selectedTab)) && (
-          <div className="w-full flex flex-col overflow-y-auto md:max-w-[320px] gap-3 scrollbar-hide p-4 bg-[#FFFFFF1A]">
+          <div className="w-full flex flex-col overflow-y-auto md:max-w-[320px] gap-3 scrollbar-hide p-4 bg-[var(--background)]">
             <div className="flex flex-col gap-3">
               <UserComponent />
               <UserVerifyBox

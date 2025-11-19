@@ -33,7 +33,7 @@ const ExpandableCard = ({
   };
 
   return (
-    <div className={`w-full bg-[var(--background)] border border-[var(--highlight-background)] rounded-sm overflow-hidden ${className}`}>
+    <div className={`w-full bg-[var(--background-secondary)] border border-[var(--highlight-background)] rounded-sm overflow-hidden ${className}`}>
       {/* Header */}
       <button
         onClick={handleToggle}

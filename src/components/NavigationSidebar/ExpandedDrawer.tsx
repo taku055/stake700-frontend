@@ -1,9 +1,13 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { ChevronLeft, ChevronRight, Search } from "lucide-preact";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
 import NavigationItems from "./NavigationItems";
 import CategoryItems from "./CategoryItems";
+import { useState, useMemo } from "preact/hooks";
+import { Input } from "@/components/common";
+import LocaleSelection from "@/components/LocaleSelection";
+import { getNavIcon, processCategories } from "./categoryData";
 
 interface ExpandedDrawerProps {
   mainNavItems: Array<{
@@ -28,6 +32,20 @@ export default function ExpandedDrawer({
   selectedMainNavTitle,
 }: ExpandedDrawerProps) {
   const t = useTranslations("Header");
+  const [searchQuery, setSearchQuery] = useState("");
+  const { modifyHref } = useAffiliateNavigation();
+
+  // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
+  const topNavItems = useMemo(() => {
+    return mainNavItems.filter((item) =>
+      ["slots", "live-casino", "sport"].includes(item.key)
+    );
+  }, [mainNavItems]);
+
+  // Process categories with icons
+  const categoriesWithIcons = useMemo(() => {
+    return processCategories(categories);
+  }, [categories]);
 
   return (
     <div className="fixed inset-0 z-50">
@@ -46,38 +64,73 @@ export default function ExpandedDrawer({
         className="absolute inset-y-0 left-0 bg-[var(--bar-background-color)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform w-80"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <h2 className="text-white text-lg font-semibold">{t("Menu")}</h2>
+        {/* Search and Locale Selection Row */}
+        <div className="bg-[var(--background-secondary)] flex flex-row items-center gap-2 p-3 pr-10 relative">
+          <div className="flex-1">
+            <Input
+              type="text"
+              label={t("Search") || "Search"}
+              value={searchQuery}
+              onChange={(e: any) => setSearchQuery(e.target.value)}
+              variant="bordered"
+              startContent={<Search size={16} color="#FFFFFF7D" />}
+              classNames={{
+                inputWrapper:
+                  "bg-[#fff1] border-none rounded-sm! hover:bg-[#fff2] focus-within:hover:bg-[#fff2]",
+                input: "text-white text-[14px]",
+                label: "text-[#FFFFFF80]",
+              }}
+            />
+          </div>
+          <div className="flex-shrink-0">
+            <LocaleSelection headerMode={false} />
+          </div>
           <button
+            className="absolute border-none right-0 top-1/2 rotate-180 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full bg-[var(--background)] p-2 ratio-1/1 flex items-center justify-center"
             onClick={() => {
               navigationSidebarExpandedState.value = false;
             }}
-            className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-700 transition-colors text-white"
-            aria-label="Collapse sidebar"
           >
-            <ChevronLeft size={20} />
+            <img src="/images/sidebar/expand.svg" alt="sidebararrow" />
           </button>
         </div>
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto">
-          {/* Main Navigation Part */}
-          <NavigationItems
-            items={mainNavItems}
-            selectedKey={selectedMainNavKey}
-          />
+          {/* Top Navigation Items (Casino, Live Casino, Sportsbook) */}
+          <div className="p-4 border-b border-gray-700">
+            <div className="flex flex-col gap-2">
+              {topNavItems.map((item) => (
+                <a
+                  key={item.key}
+                  href={modifyHref(item.href)}
+                  className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+                    selectedMainNavKey === item.key
+                      ? "bg-[var(--pink-color)] text-white"
+                      : "text-gray-300 hover:bg-gray-700"
+                  }`}
+                >
+                  <img
+                    src={getNavIcon(item.key)}
+                    alt={item.title}
+                    className="w-6 h-6 flex-shrink-0 object-contain"
+                  />
+                  <span className="flex-1">{item.title}</span>
+                </a>
+              ))}
+            </div>
+          </div>
 
-          {/* Categories Part */}
-          {categories.length > 0 && (
-            <CategoryItems
-              categories={categories}
-              title={selectedMainNavTitle || t("Categories")}
-            />
-          )}
+          {/* Divider */}
+          <div className="border-b border-gray-700" />
+
+          {/* Categories Section - Always shown */}
+          <CategoryItems
+            categories={categoriesWithIcons}
+            title={selectedMainNavTitle || t("Categories")}
+          />
         </div>
       </div>
     </div>
   );
 }
-

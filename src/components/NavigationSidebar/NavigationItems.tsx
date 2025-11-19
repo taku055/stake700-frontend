@@ -20,9 +20,6 @@ export default function NavigationItems({
 
   return (
     <div className="p-4 border-b border-gray-700">
-      <h3 className="text-gray-400 text-sm font-medium mb-3 uppercase">
-        {t("Menu")}
-      </h3>
       <div className="flex flex-col gap-2">
         {items.map((item) => (
           <a

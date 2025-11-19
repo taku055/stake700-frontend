@@ -8,6 +8,7 @@ import { CATEGORY_DATA, tPageType } from "@/pages/casino/data";
 import CollapsedSidebar from "./CollapsedSidebar";
 import ExpandedDrawer from "./ExpandedDrawer";
 import MobileDrawer from "./MobileDrawer";
+import { STATIC_CATEGORIES } from "./categoryData";
 
 interface NavigationItem {
   title: string;
@@ -77,21 +78,26 @@ export default function NavigationSidebar() {
     });
   }, [mainNavItems, location.path]);
 
-  // Get categories for selected main nav
+  // Always show categories - use static categories or categories from selected nav
   const categories = useMemo(() => {
-    if (!selectedMainNav?.pageType) return [];
-    const categoryData = CATEGORY_DATA[selectedMainNav.pageType];
-    if (!categoryData) return [];
-    
-    // Get all subItems from navItems
-    const allSubItems: Array<{ name: string; path: string; icon?: string }> = [];
-    categoryData.navItems.forEach((navItem) => {
-      if (navItem.subItems) {
-        allSubItems.push(...navItem.subItems);
+    // If there's a selected nav with pageType, try to get categories from it
+    if (selectedMainNav?.pageType) {
+      const categoryData = CATEGORY_DATA[selectedMainNav.pageType];
+      if (categoryData) {
+        const allSubItems: Array<{ name: string; path: string; icon?: string }> = [];
+        categoryData.navItems.forEach((navItem) => {
+          if (navItem.subItems) {
+            allSubItems.push(...navItem.subItems);
+          }
+        });
+        // Return categories from selected nav if available
+        if (allSubItems.length > 0) {
+          return allSubItems;
+        }
       }
-    });
-    
-    return allSubItems;
+    }
+    // Otherwise, always return static categories
+    return STATIC_CATEGORIES;
   }, [selectedMainNav]);
 
   // Mobile: Show drawer when open
@@ -104,7 +110,7 @@ export default function NavigationSidebar() {
         mainNavItems={mainNavItems}
         selectedMainNavKey={selectedMainNav?.key}
         categories={categories}
-        selectedMainNavTitle={selectedMainNav?.title}
+        selectedMainNavTitle={selectedMainNav?.title || "Categories"}
       />
     );
   }
@@ -116,6 +122,7 @@ export default function NavigationSidebar() {
       <CollapsedSidebar
         mainNavItems={mainNavItems}
         selectedMainNavKey={selectedMainNav?.key}
+        categories={categories}
       />
 
       {/* Expanded Drawer - Overlays when expanded */}
@@ -124,7 +131,7 @@ export default function NavigationSidebar() {
           mainNavItems={mainNavItems}
           selectedMainNavKey={selectedMainNav?.key}
           categories={categories}
-          selectedMainNavTitle={selectedMainNav?.title}
+          selectedMainNavTitle={selectedMainNav?.title || "Categories"}
         />
       )}
     </>

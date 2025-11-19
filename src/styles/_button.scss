@@ -10,7 +10,7 @@ button {
   justify-content: center;
   padding: 7px 8px;
   border-radius: 7px;
-  border: 1px solid;
+  border: 2px solid;
   border-color: var(--primary-color);
   font-size: 12px;
   line-height: 14px;
@@ -41,7 +41,7 @@ button {
 
   &.btn-primary {
     color: #fff;
-    background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-hover-color) 100%);
+    background: var(--primary-color);
 
     &:hover {
       background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-hover-color) 100%);
