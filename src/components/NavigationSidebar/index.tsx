@@ -44,7 +44,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) => 
-        ["slots", "live-casino", "sport", "live"].includes(item.key)
+        ["slots", "live-casino", "sport", "promotions", "live"].includes(item.key)
       )
       .map((item) => {
         let pageType: tPageType | undefined;
@@ -68,10 +68,13 @@ export default function NavigationSidebar() {
       if (item.key === "slots") {
         return path.startsWith("/casino/slots");
       } else if (item.key === "live-casino") {
-        return path.startsWith("/casino/live-casino");
+        return path.startsWith("/live-casino");
       } else if (item.key === "sport") {
         return path.startsWith("/sport");
-      } else if (item.key === "live") {
+      } else if (item.key === "promotions") {
+        return path.startsWith("/promotions");
+      }
+      else if (item.key === "live") {
         return path.startsWith("/live");
       }
       return false;

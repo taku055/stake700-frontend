@@ -121,10 +121,19 @@ const getCategoryIcon = (categoryName: string, path: string): string => {
   if (name.includes("drop wins") || pathLower.includes("drop-wins")) {
     return "/images/sidebar/drop-wins.svg";
   }
-  if (name.includes("table games") || pathLower.includes("table")) {
+  if (name.includes("table games") || pathLower.includes("table") || pathLower.includes("tablegames")) {
     return "/images/sidebar/table-games.svg";
   }
-  if (name.includes("video poker") || pathLower.includes("video-poker")) {
+  if (name.includes("roulette") || pathLower.includes("roulette")) {
+    return "/images/sidebar/roulette.svg";
+  }
+  if (name.includes("blackjack") || pathLower.includes("blackjack") || pathLower.includes("blackjacks")) {
+    return "/images/sidebar/blackjack.svg";
+  }
+  if (name.includes("baccarat") || pathLower.includes("baccarat")) {
+    return "/images/sidebar/baccarat.svg";
+  }
+  if (name.includes("video poker") || pathLower.includes("video-poker") || pathLower.includes("videopoker")) {
     return "/images/sidebar/video-poker.svg";
   }
   if (name.includes("video bingo") || pathLower.includes("video-bingo")) {
@@ -261,7 +270,7 @@ export const getNavIcon = (key: string): string => {
     slots: "/images/sidebar/casino.svg",
     "live-casino": "/images/sidebar/live-casino.svg",
     sport: "/images/sidebar/sportsbook.svg",
-    promotions: "/images/sidebar/promotions.svg",
+    promotions: "/images/sidebar/promotions.png",
   };
   return iconMap[key] || "/images/sidebar/casino.svg";
 };

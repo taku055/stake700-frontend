@@ -12,14 +12,14 @@ export const PromotionInfoCard: FunctionalComponent<PromotionInfoCardProps> = ({
   context,
 }) => {
   return (
-    <div className="flex flex-col gap-3 bg-[var(--bar-background-color)] rounded-lg p-4">
-      <h3 className="text-white text-lg font-semibold">{title}</h3>
+    <div className="flex flex-col gap-4 bg-[var(--bar-background-color)] rounded-lg p-12 items-center">
+      <h3 className="text-[var(--primary-color)] text-2xl font-bold text-center uppercase">{title}</h3>
       <img
         src={image}
         alt={title}
-        className="w-full h-auto object-cover rounded-lg"
+        className="w-full h-auto object-fit rounded-lg hover:scale-105 transition-all duration-300"
       />
-      <p className="text-gray-300 text-sm">{context}</p>
+      <p className="text-[var(--primary-color)] text-md">{context}</p>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { BetPromotionCard } from "./components/BetPromotionCard";
 import { PromotionInfoCard } from "./components/PromotionInfoCard";
 import { getBetPromotionCards, getPromotionInfoCards } from "./data";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
+import { Button } from "@heroui/react";
 
 export default function PageComponent() {
   const location = useLocation();
@@ -42,6 +43,7 @@ export default function PageComponent() {
           {betPromotionCards.map((card, index) => (
             <BetPromotionCard
               key={index}
+              title={card.title}
               image={card.image}
               content={card.content}
               buttonText={card.buttonText}
@@ -52,16 +54,12 @@ export default function PageComponent() {
       </div>
 
       {/* Deposit List Area */}
-      <div className="w-full">
-        <h2 className="text-white text-xl font-semibold mb-4">
-          {t("Deposit Methods") || "Deposit Methods"}
+      <div className="flex flex-col md:flex-row bg-[var(--bar-background-color)] p-6 rounded-md w-full items-center justify-between gap-4">
+        <h2 className="text-[var(--primary-color)] text-xl font-semibold">
+          <b>Get</b> crypto in seconds 
         </h2>
-        <div className="bg-[var(--bar-background-color)] p-6 rounded-lg">
-          <p className="text-gray-300 text-sm">
-            {t("deposit_info") || "Available deposit methods will be displayed here"}
-          </p>
-          {/* Add deposit list component here */}
-        </div>
+        <img src="https://tekio.s3.eu-north-1.amazonaws.com/ichancy/others/deposit.svg" alt="Deposit Methods" className="object-fit rounded-md" />
+        <Button className="btn !text-[var(--primary-color)]">Buy Crypto</Button>
       </div>
 
       {/* Second Promotion Card Area - no background on area, cards have background */}

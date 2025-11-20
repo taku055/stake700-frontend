@@ -37,10 +37,18 @@ export const useTablist = () => {
         },
         {
           title: t("Live Casino"),
-          href: "/casino/live-casino",
+          href: "/live-casino",
           key: "live-casino",
           icon: (
             <img src="/images/icons/livecasino-icon.svg" alt="Live Casino" />
+          ),
+        },
+        {
+          title: t("Promotions"),
+          href: "/promotions",
+          key: "promotions",
+          icon: (
+            <img src="/images/icons/promotions-icon.svg" alt="Promotions" />
           ),
         },
         {
@@ -71,14 +79,6 @@ export const useTablist = () => {
           href: "/casino/jackpot",
           key: "jackpot",
           icon: <img src="/images/icons/jackpot-icon.svg" alt="Jackpot" />,
-        },
-        {
-          title: t("Promotions"),
-          href: "/promotions",
-          key: "promotions",
-          icon: (
-            <img src="/images/icons/promotions-icon.svg" alt="Promotions" />
-          ),
         },
         {
           title: t("TV Games"),

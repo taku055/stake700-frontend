@@ -7,8 +7,9 @@ import CategoryItems from "./CategoryItems";
 import { useState, useMemo, useEffect } from "preact/hooks";
 import { Input } from "@/components/common";
 import LocaleSelection from "@/components/LocaleSelection";
-import { getNavIcon, processCategories, initializeCategoryCounts, getCachedCategoryCount } from "./categoryData";
+import { getNavIcon, processCategories, initializeCategoryCounts, getCachedCategoryCount, getCategoryGameCount, STATIC_CATEGORIES } from "./categoryData";
 import { localeState } from "@/state/localeState";
+import { LIVE_CASINO_CATEGORIES } from "./liveCasinoCategories";
 
 const RTL_LANGUAGES = ["ar", "he", "fa"];
 
@@ -36,6 +37,7 @@ export default function ExpandedDrawer({
 }: ExpandedDrawerProps) {
   const t = useTranslations("Header");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTab, setSelectedTab] = useState<"casino" | "live-casino">("casino");
   const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
     name: string;
     path: string;
@@ -45,29 +47,42 @@ export default function ExpandedDrawer({
   const { modifyHref } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
+  // Get categories based on selected tab
+  const currentCategories = useMemo(() => {
+    return selectedTab === "casino" ? STATIC_CATEGORIES : LIVE_CASINO_CATEGORIES;
+  }, [selectedTab]);
+
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = useMemo(() => {
     return mainNavItems.filter((item) =>
-      ["slots", "live-casino", "sport"].includes(item.key)
+      ["slots", "live-casino", "sport", "promotions"].includes(item.key)
     );
   }, [mainNavItems]);
 
-  // Initialize category counts once and use cached values
+  // Show categories immediately (without waiting for counts)
   useEffect(() => {
-    const loadCategoryCounts = async () => {
-      // Initialize counts if not already loaded
-      await initializeCategoryCounts(categories);
-      
-      // Use cached values
-      const categoriesWithIcons = processCategories(categories);
-      const categoriesWithCountsData = categoriesWithIcons.map((cat) => ({
-        ...cat,
-        count: getCachedCategoryCount(cat.path),
-      }));
-      setCategoriesWithCounts(categoriesWithCountsData);
-    };
-    loadCategoryCounts();
-  }, [categories]);
+    const categoriesWithIcons = processCategories(currentCategories);
+    setCategoriesWithCounts(categoriesWithIcons.map((cat) => ({
+      ...cat,
+      count: getCachedCategoryCount(cat.path),
+    })));
+  }, [currentCategories]);
+
+  // Load counts asynchronously and update as they become available
+  useEffect(() => {
+    const categoriesWithIcons = processCategories(currentCategories);
+    
+    // Load counts for each category in parallel and update state as each completes
+    categoriesWithIcons.forEach((cat) => {
+      getCategoryGameCount(cat.path).then((count) => {
+        setCategoriesWithCounts((prev) => {
+          return prev.map((c) => (c.path === cat.path ? { ...c, count } : c));
+        });
+      }).catch((error) => {
+        console.error(`Error loading count for ${cat.path}:`, error);
+      });
+    });
+  }, [currentCategories]);
 
   return (
     <div className="fixed inset-0 z-50">
@@ -120,6 +135,32 @@ export default function ExpandedDrawer({
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto sidebar-scrollbar">
+          {/* Tab Selector (Casino / Live Casino) */}
+          <div className="p-4 border-b border-gray-700">
+            <div className="flex flex-row gap-2">
+              <button
+                onClick={() => setSelectedTab("casino")}
+                className={`flex-1 px-4 py-2 rounded-lg transition-colors ${
+                  selectedTab === "casino"
+                    ? "bg-[#134077] text-white"
+                    : "bg-[var(--background-secondary)] text-gray-300 hover:bg-gray-700"
+                }`}
+              >
+                {t("Casino") || "Casino"}
+              </button>
+              <button
+                onClick={() => setSelectedTab("live-casino")}
+                className={`flex-1 px-4 py-2 rounded-lg transition-colors ${
+                  selectedTab === "live-casino"
+                    ? "bg-[#134077] text-white"
+                    : "bg-[var(--background-secondary)] text-gray-300 hover:bg-gray-700"
+                }`}
+              >
+                {t("Live Casino") || "Live Casino"}
+              </button>
+            </div>
+          </div>
+
           {/* Top Navigation Items (Casino, Live Casino, Sportsbook) */}
           <div className="p-4 border-b border-gray-700">
             <div className="flex flex-col gap-2">
@@ -136,7 +177,7 @@ export default function ExpandedDrawer({
                   <img
                     src={getNavIcon(item.key)}
                     alt={item.title}
-                    className="w-6 h-6 flex-shrink-0 object-contain"
+                    className="w-10 h-10 flex-shrink-0 object-contain"
                   />
                   <span className="flex-1">{item.title}</span>
                 </a>

@@ -1,6 +1,6 @@
 import { FunctionalComponent } from "preact";
 import TekioSwiper from "@/components/TekioSwiper";
-import { Autoplay, Mousewheel, Navigation } from "swiper/modules";
+import { Autoplay, Mousewheel, Navigation, EffectFade } from "swiper/modules";
 import { SwiperSlide } from "swiper/react";
 import { bannerState } from "@/state/bannerState";
 import { mobileMediaQuery } from "@/config/constants";
@@ -53,11 +53,16 @@ export const PromotionSection: FunctionalComponent<{
     <div className="flex flex-col gap-3 w-full">
       {banners.length > 0 && (
         <TekioSwiper
-          modules={[Mousewheel, Navigation, Autoplay]}
-          spaceBetween={16}
+          modules={[Mousewheel, Navigation, Autoplay, EffectFade]}
+          effect="fade"
+          fadeEffect={{
+            crossFade: true,
+          }}
+          spaceBetween={0}
           loop={true}
           slidesPerView={1}
           className="w-full"
+          speed={1000}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,

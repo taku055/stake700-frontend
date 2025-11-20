@@ -3,20 +3,23 @@ import { useTranslations } from "@/context/I18nContext";
 // Helper function to get translated promotion cards
 export const getBetPromotionCards = (t: (key: string) => string) => [
   {
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-cashback.webp",
-    content: t("slots_content") || "Experience the thrill of slots with amazing bonuses and jackpots!",
+    title: "Casino",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/cards/casino.webp",
+    content: "Top-rated Casino Games from renowned providers in the world!\n venture into the world of unique live casino show games. ",
     buttonText: t("Bet on Slots") || "Bet on Slots",
     link: "/casino/slots",
   },
   {
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-loyalty.webp",
-    content: t("sports_content") || "Place your bets on sports and enjoy competitive odds!",
+    title: "Sports Bets",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/cards/sports.webp",
+    content: " ultimate coverage and unbeatable odds on your matchups!\nExperience sports betting with the best offers and bonuses.",
     buttonText: t("Bet on Sports") || "Bet on Sports",
     link: "/sport",
   },
   {
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-cashback.webp",
-    content: t("games_content") || "Discover exciting games and win big prizes!",
+    title: "Fast Games",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/cards/games.webp",
+    content: "Challenges from waiting until the last possible moment to claim your winnings to guessing the next number displayed .",
     buttonText: t("Bet on Games") || "Bet on Games",
     link: "/casino/games",
   },
@@ -25,19 +28,19 @@ export const getBetPromotionCards = (t: (key: string) => string) => [
 // Helper function to get translated promotion info cards
 export const getPromotionInfoCards = (t: (key: string) => string) => [
   {
-    title: t("Welcome Bonus") || "Welcome Bonus",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Welcome bonus.png",
-    context: t("welcome_bonus_content") || "Get started with our amazing welcome bonus and boost your gaming experience!",
+    title: "Sports Bonus",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/cards/multibet.png",
+    context: "Maximize your bets with our sports bonus!\nEven when luck isn't on your side we can turn it into a victory with our innovative rewards system",
   },
   {
-    title: t("Loyalty Program") || "Loyalty Program",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Loyalty Program.png",
-    context: t("loyalty_program_content") || "Join our loyalty program and earn rewards with every bet you place!",
+    title: "Casino Bonus",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/cards/weekly.png",
+    context: " Unlock Big bonuses that enhance your gaming journey. Boost your chances of winning big and indulge in a world of rewards with our generous bonus offers.",
   },
   {
-    title: t("Cashback Offer") || "Cashback Offer",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/10% Cashback.png",
-    context: t("cashback_content") || "Get cashback on your losses and keep playing with extra credits!",
+    title: "Community",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/cards/community.png",
+    context: "A place to share experiences and ideas, we enhance your journey with diverse insights, be a part of this welcoming community. Your presence can make a real difference.",
   },
 ];
 
