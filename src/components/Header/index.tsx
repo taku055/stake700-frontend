@@ -1,10 +1,11 @@
 import { userState } from "@/state/userState";
 import { useMediaQuery } from "usehooks-ts";
-import { mobileMediaQuery, OFFICIAL_LINKS } from "@/config/constants";
+import { mobileMediaQuery, OFFICIAL_LINKS, RTL_LANGUAGES } from "@/config/constants";
 import { Button } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { registerOpenedState } from "@/state/registerOpenedState";
 import WalletBox from "./WalletBox";
+import ProfileButton from "./ProfileButton";
 import { useTranslations } from "@/context/I18nContext";
 import {
   XIcon,
@@ -18,7 +19,6 @@ import { navigationSidebarOpenState } from "@/state/navigationSidebarState";
 import { Menu } from "lucide-preact";
 
 export default function Header() {
-  const RTL_LANGUAGES = ["ar", "he", "fa"];
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const isMobile = useMediaQuery(mobileMediaQuery);
   const t = useTranslations("Header");
@@ -94,7 +94,10 @@ export default function Header() {
                 </Button>
               </>
             ) : (
-              <WalletBox />
+              <>
+                <WalletBox />
+                <ProfileButton />
+              </>
             )}
             
           </div>

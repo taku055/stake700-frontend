@@ -1,8 +1,7 @@
 import { useState } from "preact/hooks";
 import { ChevronDown, ChevronUp } from "lucide-preact";
 import { localeState } from "@/state/localeState";
-
-const RTL_LANGUAGES = ["ar", "he", "fa"];
+import { RTL_LANGUAGES } from "@/config/constants";
 
 interface ExpandableCardProps {
   title: string;

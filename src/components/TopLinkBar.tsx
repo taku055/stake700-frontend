@@ -2,10 +2,12 @@ import { mobileMediaQuery } from "@/config/constants";
 import { useMediaQuery } from "usehooks-ts";
 import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
+import { useTranslations } from "@/context/I18nContext";
 
 export default function TopLinkBar() {
   const isMobile = useMediaQuery(mobileMediaQuery);
   const location = useLocation();
+  const t = useTranslations("Header");
   
   // Determine active link based on current path
   const activeLink = useMemo(() => {
@@ -33,13 +35,13 @@ export default function TopLinkBar() {
       {!isMobile && <img src="https://tekio.s3.eu-north-1.amazonaws.com/ichancy/others/bar-bg1.png" alt="Top Link Bar" className="absolute inset-0 w-full h-full object-cover z-0" />}
       <div className="relative z-10 flex w-full justify-center px-4 md:px-12 items-center gap-4 md:gap-22">
         <a href="/casino/slots">
-          <p className={getLinkClasses("casino")}>Casino</p>
+          <p className={getLinkClasses("casino")}>{t("Casino")}</p>
         </a>
         <a href="/live-casino">
-          <p className={getLinkClasses("live-casino")}>Live Casino</p>
+          <p className={getLinkClasses("live-casino")}>{t("Live Casino")}</p>
         </a>
         <a href="/sport">
-          <p className={getLinkClasses("sport")}>Sports</p>
+          <p className={getLinkClasses("sport")}>{t("Sports")}</p>
         </a>
       </div>
     </div>

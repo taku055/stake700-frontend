@@ -1,7 +1,7 @@
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
-import { useEffect, useMemo } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import {
   Home,
   ChartArea,
@@ -15,12 +15,23 @@ import {
 
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
-import { moreModalState } from "@/state/moreModalState";
+import { navigationSidebarOpenState } from "@/state/navigationSidebarState";
 
 export default function FooterNav() {
   const isMobile = useMediaQuery(mobileMediaQuery);
   const pathname = useLocation();
   const t = useTranslations("Header");
+  const [isMenuOpen, setIsMenuOpen] = useState(navigationSidebarOpenState.value);
+
+  // Sync with signal state
+  useEffect(() => {
+    const unsubscribe = navigationSidebarOpenState.subscribe((value) => {
+      setIsMenuOpen(value);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const tabList = useMemo(() => {
     if (!userState.value?.isAgent) {
@@ -51,7 +62,7 @@ export default function FooterNav() {
         },
         {
           title: t("Live Casino"),
-          href: "/casino/live-casino",
+          href: "/live-casino",
           key: "live-casino",
           icon: <LiveCasino />,
         },
@@ -123,16 +134,16 @@ export default function FooterNav() {
         <a
           key="more"
           href="#"
-          onClick={() => {
-            moreModalState.value = true;
-            console.log(moreModalState.value);
+          onClick={(e) => {
+            e.preventDefault();
+            navigationSidebarOpenState.value = true;
           }}
-          className={`flex flex-col items-center justify-between py-2 min-w-0 h-full ${moreModalState.value
+          className={`flex flex-col items-center justify-between py-2 min-w-0 h-full ${isMenuOpen
             ? "text-[var(--primary-color)]"
             : "text-white"
             } bg-transparent`}
         >
-          <span className={`text-sm h-full flex flex-1 flex-col justify-center items-center ${moreModalState.value
+          <span className={`text-sm h-full flex flex-1 flex-col justify-center items-center ${isMenuOpen
             ? "text-[var(--primary-color)]"
             : "text-white"
             } bg-transparent`}>

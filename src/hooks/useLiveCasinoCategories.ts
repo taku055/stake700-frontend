@@ -2,6 +2,7 @@ import { useMemo } from "preact/hooks";
 import { customGamesState } from "@/state/customGamesState";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { categoryCountsCache } from "@/state/categoryCountsState";
+import { useTranslations } from "@/context/I18nContext";
 
 export interface CategoryItem {
   name: string;
@@ -121,21 +122,24 @@ const getCachedCategoryCount = (path: string): number | undefined => {
   return categoryCountsCache.value[path];
 };
 
-// Process categories and add icons
+// Process categories and add icons with translations
 const processCategories = (
-  categories: Array<{ name: string; path: string; icon?: string }>
+  categories: Array<{ name: string; path: string; icon?: string }>,
+  t: (key: string) => string
 ): CategoryItem[] => {
   return categories.map((cat) => ({
-    name: cat.name,
+    name: t(cat.name) || cat.name, // Translate category name, fallback to original if translation not found
     path: cat.path,
     icon: cat.icon || getCategoryIcon(cat.name, cat.path),
   }));
 };
 
 export const useLiveCasinoCategories = () => {
+  const t = useTranslations("Header");
+  
   const categories = useMemo(() => {
-    return processCategories(LIVE_CASINO_CATEGORIES);
-  }, []);
+    return processCategories(LIVE_CASINO_CATEGORIES, t);
+  }, [t]);
 
   return {
     categories,

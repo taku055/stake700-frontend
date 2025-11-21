@@ -10,8 +10,7 @@ import { DatePicker, Select, SelectItem } from "@heroui/react";
 import { parseDate } from "@internationalized/date";
 import * as countryCodes from "country-codes-list";
 import { localeState } from "@/state/localeState";
-
-const RTL_LANGUAGES = ["ar", "he", "fa"];
+import { RTL_LANGUAGES } from "@/config/constants";
 
 const myCountryCodesObject = countryCodes.customList(
   "countryCode",
@@ -60,9 +59,9 @@ const PersonalDetailsPage = () => {
         gender: userGender || "",
         dateOfBirth: birthDay.toString() || "2000-01-01",
       });
-      toast.success("User details updated successfully");
+      toast.success(t("User details updated successfully"));
     } catch (error) {
-      toast.error("Failed to update user details");
+      toast.error(t("Failed to update user details"));
     } finally {
       setIsLoading(false);
     }
@@ -71,7 +70,7 @@ const PersonalDetailsPage = () => {
   return (
     <div className={`flex flex-col h-full ${isRTL ? 'text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
       <div className={`w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A] ${isRTL ? 'text-right' : 'text-left'}`}>
-        Personal Details
+        {t("Personal Details")}
       </div>
       <div className={`w-full p-5 flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
         <div className="grid grid-cols-2 gap-2">
@@ -107,7 +106,7 @@ const PersonalDetailsPage = () => {
           />
           <DatePicker
             className="bg-[#fff1] border-none rounded-sm!"
-            label="Date of Birth"
+            label={t("Date of Birth")}
             value={birthDay}
             size="sm"
             onChange={(e: any) => setBirthDay(e)}
@@ -115,8 +114,8 @@ const PersonalDetailsPage = () => {
           />
           <Select
             className="bg-[#fff1] border-none rounded-sm!"
-            label="Gender"
-            placeholder="Select a gender"
+            label={t("Gender")}
+            placeholder={t("Select a gender")}
             selectedKeys={userGender ? [userGender] : []}
             variant="bordered"
             onSelectionChange={(keys) =>
@@ -126,13 +125,13 @@ const PersonalDetailsPage = () => {
             dir={isRTL ? "rtl" : "ltr"}
           >
             {genders.map((gender) => (
-              <SelectItem key={gender.value}>{gender.label}</SelectItem>
+              <SelectItem key={gender.value}>{t(gender.label)}</SelectItem>
             ))}
           </Select>
           <Select
             className="bg-[#fff1] border-none rounded-sm!"
-            label="Country"
-            placeholder="Select a country"
+            label={t("Country")}
+            placeholder={t("Select Country")}
             selectedKeys={country ? [country] : []}
             variant="bordered"
             onSelectionChange={(keys) =>

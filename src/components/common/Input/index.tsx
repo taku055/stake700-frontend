@@ -3,8 +3,7 @@ import { useId } from "preact/hooks";
 import { clsx } from "clsx";
 import { forwardRef } from "preact/compat";
 import { localeState } from "@/state/localeState";
-
-const RTL_LANGUAGES = ["ar", "he", "fa"];
+import { RTL_LANGUAGES } from "@/config/constants";
 
 type ClassNames = {
   inputWrapper?: string;

@@ -3,6 +3,7 @@ import { customGamesState } from "@/state/customGamesState";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { categoryCountsCache } from "@/state/categoryCountsState";
 import { effect } from "@preact/signals";
+import { useTranslations } from "@/context/I18nContext";
 
 export interface CategoryItem {
   name: string;
@@ -55,35 +56,35 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
   },
   {
     name: "Table Games",
-    path: "/casino/games?category=table-games",
+    path: "/casino/slots?custom=0&category=tablegames",
   },
   {
     name: "Video Poker",
-    path: "/casino/games?category=video-poker",
+    path: "/casino/slots?custom=0&category=videopoker",
   },
   {
     name: "Video Bingo",
-    path: "/casino/games?category=video-bingo",
+    path: "/casino/slots?custom=0&category=bingogame",
   },
   {
     name: "Scratch Games",
-    path: "/casino/games?category=scratch-games",
+    path: "/casino/slots?custom=0&category=scratchcards",
   },
   {
     name: "Instant Game",
-    path: "/casino/games?category=instant-game",
+    path: "/casino/slots?custom=1&category=instant-game",
   },
   {
     name: "Fishing & Hunting",
-    path: "/casino/games?category=fishing-hunting",
+    path: "/casino/slots?custom=1&category=fishing-hunting",
   },
   {
     name: "Casual Games",
-    path: "/casino/games?category=casual-games",
+    path: "/casino/slots?custom=1&category=casual-games",
   },
   {
     name: "Other Games",
-    path: "/casino/games?category=other-games",
+    path: "/casino/slots?custom=0&category=other",
   },
 ];
 
@@ -253,21 +254,24 @@ const getCachedCategoryCount = (path: string): number | undefined => {
   return categoryCountsCache.value[path];
 };
 
-// Process categories and add icons
+// Process categories and add icons with translations
 const processCategories = (
-  categories: Array<{ name: string; path: string; icon?: string }>
+  categories: Array<{ name: string; path: string; icon?: string }>,
+  t: (key: string) => string
 ): CategoryItem[] => {
   return categories.map((cat) => ({
-    name: cat.name,
+    name: t(cat.name) || cat.name, // Translate category name, fallback to original if translation not found
     path: cat.path,
     icon: cat.icon || getCategoryIcon(cat.name, cat.path),
   }));
 };
 
 export const useCasinoCategories = () => {
+  const t = useTranslations("Header");
+  
   const categories = useMemo(() => {
-    return processCategories(STATIC_CATEGORIES);
-  }, []);
+    return processCategories(STATIC_CATEGORIES, t);
+  }, [t]);
 
   // Watch for customGamesState changes and invalidate cache for custom categories when it loads
   useEffect(() => {

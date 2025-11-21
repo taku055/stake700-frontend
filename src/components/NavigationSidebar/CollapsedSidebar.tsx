@@ -12,8 +12,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@heroui/react";
-
-const RTL_LANGUAGES = ["ar", "he", "fa"];
+import { RTL_LANGUAGES } from "@/config/constants";
 
 const localeOptions = [
   { label: "Türkçe", value: "tr", flag: "tr" },
@@ -80,12 +79,18 @@ export default function CollapsedSidebar({
           className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-700 transition-colors text-white"
           aria-label="Expand sidebar"
         >
-          <img src="/images/sidebar/expand.svg" alt="sidebararrow" className="w-6 h-6" />
+          <img 
+            src="/images/sidebar/expand.svg" 
+            alt="sidebararrow" 
+            className={`w-6 h-6 transition-transform duration-300 ${
+              isRTL ? 'scale-x-[-1]' : ''
+            }`}
+          />
         </button>
       </div>
 
       {/* Tab Selector (Casino / Live Casino) */}
-      <div className="flex flex-col items-center gap-1 p-2 border-b border-gray-700 flex-shrink-0">
+      {/* <div className="flex flex-col items-center gap-1 p-2 border-b border-gray-700 flex-shrink-0">
         <button
           onClick={() => setSelectedTab("casino")}
           className={`w-10 h-8 rounded text-xs transition-colors ${
@@ -108,7 +113,7 @@ export default function CollapsedSidebar({
         >
           L
         </button>
-      </div>
+      </div> */}
 
       {/* Scrollable Content Area */}
       <div className="flex-1 flex flex-col overflow-y-auto min-h-0 sidebar-scrollbar">

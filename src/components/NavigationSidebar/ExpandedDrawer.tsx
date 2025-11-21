@@ -10,8 +10,7 @@ import LocaleSelection from "@/components/LocaleSelection";
 import { localeState } from "@/state/localeState";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
-
-const RTL_LANGUAGES = ["ar", "he", "fa"];
+import { RTL_LANGUAGES } from "@/config/constants";
 
 interface ExpandedDrawerProps {
   mainNavItems: Array<{
@@ -124,19 +123,25 @@ export default function ExpandedDrawer({
             <LocaleSelection headerMode={false} />
           </div>
           <button
-            className={`absolute border-none ${isRTL ? 'left-0 translate-x-[-50%]' : 'right-0 translate-x-1/2'} top-1/2 rotate-180 -translate-y-1/2 w-10 h-10 rounded-full bg-[var(--background)] p-2 ratio-1/1 flex items-center justify-center`}
+            className={`absolute border-none ${isRTL ? 'left-0 translate-x-[-50%]' : 'right-0 translate-x-1/2'} top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[var(--background)] p-2 ratio-1/1 flex items-center justify-center`}
             onClick={() => {
               navigationSidebarExpandedState.value = false;
             }}
           >
-            <img src="/images/sidebar/expand.svg" alt="sidebararrow" />
+            <img 
+              src="/images/sidebar/expand.svg" 
+              alt="sidebararrow" 
+              className={`transition-transform duration-300 rotate-180 ${
+                isRTL ? 'scale-x-[-1]' : ''
+              }`}
+            />
           </button>
         </div>
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto sidebar-scrollbar">
           {/* Tab Selector (Casino / Live Casino) */}
-          <div className="p-4 border-b border-gray-700">
+          {/* <div className="p-4 border-b border-gray-700">
             <div className="flex flex-row gap-2">
               <button
                 onClick={() => setSelectedTab("casino")}
@@ -159,7 +164,7 @@ export default function ExpandedDrawer({
                 {t("Live Casino") || "Live Casino"}
               </button>
             </div>
-          </div>
+          </div> */}
 
           {/* Top Navigation Items (Casino, Live Casino, Sportsbook) */}
           <div className="p-4 border-b border-gray-700">

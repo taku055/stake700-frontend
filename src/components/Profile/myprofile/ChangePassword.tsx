@@ -6,8 +6,7 @@ import { apiChangePassword } from "@/api/account/apiChangePassword";
 import { toast } from "@/helpers/toast";
 import { Loader } from "lucide-preact";
 import { localeState } from "@/state/localeState";
-
-const RTL_LANGUAGES = ["ar", "he", "fa"];
+import { RTL_LANGUAGES } from "@/config/constants";
 
 const ChangePasswordPage = () => {
   const t = useTranslations("PersonalDetails");
@@ -23,10 +22,10 @@ const ChangePasswordPage = () => {
     try {
       setLoading(true);
       const res = await apiChangePassword(oldPassword, newPassword);
-      toast.success("Password changed successfully");
+      toast.success(t("Password changed successfully"));
     } catch (error) {
       console.error(error);
-      toast.error("Password changed failed");
+      toast.error(t("Password change failed"));
     } finally {
       setLoading(false);
     }
@@ -34,7 +33,7 @@ const ChangePasswordPage = () => {
 
   return (
     <div className={`flex flex-col h-full ${isRTL ? 'text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-      <div className={`w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A] ${isRTL ? 'text-right' : 'text-left'}`}>Change Password</div>
+      <div className={`w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A] ${isRTL ? 'text-right' : 'text-left'}`}>{t("Change Password")}</div>
       <div className={`w-full p-5 flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
         <div className="grid grid-cols-2 gap-2">
           <Input

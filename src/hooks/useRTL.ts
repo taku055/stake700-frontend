@@ -1,8 +1,7 @@
 import { useEffect } from "preact/hooks";
 import { localeState } from "@/state/localeState";
 import { effect } from "@preact/signals";
-
-const RTL_LANGUAGES = ["ar", "he", "fa"];
+import { RTL_LANGUAGES } from "@/config/constants";
 
 export function useRTL() {
   useEffect(() => {

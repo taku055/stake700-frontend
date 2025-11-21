@@ -33,7 +33,7 @@ import { scrollToTop } from "@/helpers/scrollToTop";
 import { BonusPage } from "./userbalance/BonusPage";
 import { localeState } from "@/state/localeState";
 
-const RTL_LANGUAGES = ["ar", "he", "fa"];
+import { RTL_LANGUAGES } from "@/config/constants";
 
 interface IProfileComponentProps {
   isOpen: boolean;
@@ -264,7 +264,7 @@ const ProfileComponent = ({
     >
       <ModalContent className={`max-w-[90vw]! w-full flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} bg-[var(--background)] min-h-[90vh]!`}>
         {(!isMobile || (isMobile && !selectedTab)) && (
-          <div className={`w-full flex flex-col overflow-y-auto md:max-w-[320px] gap-3 scrollbar-hide p-4 bg-[var(--background)] ${isRTL ? 'md:border-l md:border-gray-700' : 'md:border-r md:border-gray-700'}`}>
+          <div className={`w-full flex flex-col overflow-y-auto md:max-w-[320px] gap-3 scrollbar-hide p-4 bg-[var(--bar-background-color)] ${isRTL ? 'md:border-l md:border-gray-700' : 'md:border-r md:border-gray-700'}`}>
             <div className="flex flex-col gap-3">
               <UserComponent />
               <UserVerifyBox

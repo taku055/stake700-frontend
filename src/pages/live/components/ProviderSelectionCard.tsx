@@ -46,7 +46,7 @@ export const ProviderSelectionCard: FunctionalComponent<ProviderSelectionCardPro
             onPress={onResetProviders}
             className="text-white"
           >
-            Reset
+            {t("Reset") || "Reset"}
           </Button>
           <Input
             size="sm"

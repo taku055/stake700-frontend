@@ -42,7 +42,7 @@ export const useTablist = () => {
           navIcon: getNavIcon("sport"),
         },
         {
-          title: t("Slot"),
+          title: t("Casino"),
           href: "/casino/slots?custom=1&category=top-slots",
           key: "slots",
           extra: ["/casino/tournaments"],

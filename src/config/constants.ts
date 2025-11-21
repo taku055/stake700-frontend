@@ -2,6 +2,8 @@ export const SOLANA_CHAIN_ID = 900;
 export const BITCOIN_CHAIN_ID = 8086;
 export const TRON_CHAIN_ID = 728126428;
 
+export const RTL_LANGUAGES = ["ar", "he", "fa"];
+
 export const mobileMediaQuery =
   "screen and ((max-width: 599px) or ((max-width: 1023px) and (orientation: landscape)))";
 

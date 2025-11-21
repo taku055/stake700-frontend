@@ -6,8 +6,9 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, useDropdown } fr
 import { useTranslations } from "@/context/I18nContext";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { useMediaQuery } from "usehooks-ts";
-import { mobileMediaQuery } from "@/config/constants";
+import { mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
+import { localeState } from "@/state/localeState";
 
 const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
 
@@ -83,7 +84,7 @@ export default function GameFilterSidebar({
     count?: number;
   }>>([]);
   const { categories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
-
+  const isRTL = RTL_LANGUAGES.includes(localeState.value);
   // Check if "All Providers" is selected
   const isAllProvidersSelected = useMemo(() => {
     return selectedProviders.length === 0 || selectedProviders.includes(ALL_PROVIDERS_ID);
@@ -151,7 +152,7 @@ export default function GameFilterSidebar({
   // Get display content for dropdown trigger
   const getProviderDisplayContent = useMemo(() => {
     if (isAllProvidersSelected) {
-      return <div className="text-[#FFFFFF] text-[14px]">All Providers</div>;
+      return <div className="text-[#FFFFFF] text-[14px]">{t("All Providers") || "All Providers"}</div>;
     }
     
     if (individualProviders.length === 1) {
@@ -241,7 +242,7 @@ export default function GameFilterSidebar({
                   onCategoryChange(isSelected ? null : category.path);
                 }
               }}
-              className={`flex items-center gap-2 px-2 py-4 text-xl font-semibold rounded-lg text-[#FFFFFF] hover:bg-[#fff2] transition-colors whitespace-nowrap ${
+              className={`flex items-center gap-2 px-2 py-2 rounded-lg text-[#FFFFFF] hover:bg-[#fff2] transition-colors whitespace-nowrap ${
                 isMobile ? 'flex-shrink-0' : ''
               } ${
                 isSelected ? 'bg-[var(--background-secondary)]' : ''
@@ -254,9 +255,9 @@ export default function GameFilterSidebar({
                   className="w-6 h-6 flex-shrink-0 object-contain"
                 />
               )}
-              <span className="text-[14px]">{category.name}</span>
+              <span className="text-[18px] text-ellipsis overflow-hidden whitespace-nowrap">{category.name}</span>
               {category.count !== undefined && (
-                <span className="bg-[var(--background-secondary)] text-[#FFFFFF7D] text-xs px-1.5 py-0.5 rounded-full ml-auto">
+                <span className={`bg-[var(--background-secondary)] text-[#FFFFFF] text-xs px-1.5 py-0.5 rounded-full ${isRTL ? 'mr-auto' : 'ml-auto'}`}>
                   {category.count}
                 </span>
               )}
@@ -271,15 +272,15 @@ export default function GameFilterSidebar({
   const searchSection = (
     <div className="flex flex-col gap-2">
       <Input
-        size="sm"
         endContent={<Search size={16} color="var(--text-transparent-color)" />}
-        placeholder={"Search Games"}
+        placeholder={t("Search Games") || "Search Games"}
         value={searchQuery}
         variant="bordered"
+        className="mb-4"
         classNames={{
           inputWrapper:
             "bg-[#122543] border-none rounded-sm! hover:bg-[#fff2] focus-within:hover:bg-[#fff2]",
-          input: "text-[#ffffff] text-[14px]",
+          input: "text-[#ffffff] text-[16px]",
         }}
         onChange={(e) => {
           const target = e.target as HTMLInputElement | null;
@@ -294,7 +295,7 @@ export default function GameFilterSidebar({
     <div className="flex flex-col gap-2">
       <Dropdown open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
         <DropdownTrigger>
-          <button className="w-full bg-[var(--bar-background-color)] border-none rounded-sm hover:bg-[var(--background-secondary)] px-3 py-2 flex items-center justify-between text-left text-[#ffffff] text-[14px]">
+          <button className="w-full bg-[var(--bar-background-color)] border-none rounded-sm hover:bg-[var(--background-secondary)] px-3 py-3 flex items-center justify-between text-left text-[#ffffff] text-[16px]">
             <span className="truncate flex items-center gap-2">
               {getProviderDisplayContent}
             </span>
@@ -309,13 +310,13 @@ export default function GameFilterSidebar({
           <div className="p-2 sticky top-0 bg-[var(--bar-background-color)] z-10">
             <Input
               size="sm"
-              placeholder={"Search Providers"}
+              placeholder={t("Search Providers") || "Search Providers"}
               value={providerSearch}
               variant="bordered"
               classNames={{
                 inputWrapper:
                   "bg-[var(--bar-background-color)] border-none rounded-sm! hover:bg-[var(--background-secondary)]",
-                input: "text-[#ffffff] text-[14px]",
+                input: "text-[#ffffff] text-[14px] px-2 py-4",
               }}
               onChange={(e) => {
                 const target = e.target as HTMLInputElement | null;

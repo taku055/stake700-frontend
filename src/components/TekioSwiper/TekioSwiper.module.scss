@@ -1,6 +1,30 @@
 @use "/src/styles/mixins" as *;
 
 .tekio_swiper {
+  // Ensure proper display in RTL
+  &[dir="rtl"] {
+    direction: rtl;
+    
+    .swiper-wrapper {
+      direction: rtl;
+      transform: translate3d(0px, 0, 0) !important;
+    }
+    
+    .swiper-slide {
+      direction: rtl;
+      width: 100% !important;
+    }
+  }
+
+  .swiper-wrapper {
+    display: flex;
+  }
+
+  .swiper-slide {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
   .prev,
   .next {
     position: absolute;
@@ -8,7 +32,7 @@
     width: 44px;
     height: 64px;
     background: #0006;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
@@ -35,6 +59,46 @@
 
   .next {
     right: 12px;
+  }
+
+  &.rtl {
+    // For fade effect, keep LTR direction for wrapper and slides
+    // to ensure fade transitions work properly
+    &:not(.fade_effect) {
+      direction: rtl;
+      
+      .swiper-wrapper {
+        direction: rtl;
+        transform: translate3d(0px, 0, 0) !important;
+      }
+      
+      .swiper-slide {
+        direction: rtl;
+        width: 100% !important;
+      }
+    }
+
+    // For fade effect with RTL, keep wrapper in LTR but swap navigation
+    &.fade_effect {
+      .swiper-wrapper {
+        direction: ltr !important;
+      }
+      
+      .swiper-slide {
+        direction: ltr !important;
+      }
+    }
+
+    // Swap navigation buttons for RTL (works for both fade and slide effects)
+    .prev {
+      left: auto;
+      right: 12px;
+    }
+
+    .next {
+      right: auto;
+      left: 12px;
+    }
   }
 
   .swiper-button-disabled {

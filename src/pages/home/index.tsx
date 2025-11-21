@@ -56,10 +56,10 @@ export default function PageComponent() {
       {/* Deposit List Area */}
       <div className="flex flex-col md:flex-row bg-[var(--bar-background-color)] p-6 rounded-md w-full items-center justify-between gap-4">
         <h2 className="text-[var(--primary-color)] text-xl font-semibold">
-          <b>Get</b> crypto in seconds 
+          <b>{t("Get")}</b> {t("crypto in seconds")}
         </h2>
-        <img src="https://tekio.s3.eu-north-1.amazonaws.com/ichancy/others/deposit.svg" alt="Deposit Methods" className="object-fit rounded-md" />
-        <Button className="btn !text-[var(--primary-color)]">Buy Crypto</Button>
+        <img src="https://tekio.s3.eu-north-1.amazonaws.com/ichancy/others/deposit.svg" alt={t("Deposit Methods")} className="object-fit rounded-md" />
+        <Button className="btn !text-[var(--primary-color)]">{t("Buy Crypto")}</Button>
       </div>
 
       {/* Second Promotion Card Area - no background on area, cards have background */}

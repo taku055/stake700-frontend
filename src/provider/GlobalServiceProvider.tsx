@@ -369,7 +369,7 @@ export default function GlobalServiceProvider({
             />
 
             <Sidebar />
-            <Support />
+            {/* <Support /> */}
           </div>
 
           <ToastProvider

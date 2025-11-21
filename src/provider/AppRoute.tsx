@@ -11,6 +11,11 @@ import AgentPage from "@/pages/agent";
 import SuperAgentPage from "@/pages/superagent";
 import TombalaPage from "@/pages/tombala";
 import AffiliatesLayout from "@/pages/affiliates";
+import AboutUs from "@/pages/about-us";
+import ContactUs from "@/pages/contact-us";
+import OtherRules from "@/pages/other-rules";
+import PrivacyPolicy from "@/pages/privacy-policy";
+import FAQ from "@/pages/faq";
 
 export default function AppRoute() {
   return (
@@ -28,6 +33,12 @@ export default function AppRoute() {
       <Route path="/promotions" component={PromotionsPage} />
       <Route path="/trebuchet" component={TrebuchetPage} />
       <Route path="/tombala" component={TombalaPage} />
+      <Route path="/about-us" component={AboutUs} />
+      <Route path="/about-us/*" component={AboutUs} />
+      <Route path="/contact-us" component={ContactUs} />
+      <Route path="/other-rules" component={OtherRules} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/faq" component={FAQ} />
 
       <Route path="/agent" component={AgentPage} />
       <Route path="/agent/*" component={AgentPage} />

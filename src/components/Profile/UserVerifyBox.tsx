@@ -7,7 +7,7 @@ interface UserVerifyBoxProps {
 const UserVerifyBox = ({ onClick }: UserVerifyBoxProps) => {
   const t = useTranslations("Profile");
   return (
-    <div className="w-full flex flex-col p-3">
+    <div className="w-full flex flex-col p-3 bg-[var(--primary-color)] rounded-md">
       {
         userState.value?.emailVerified ? (
           <div className="w-full h-full flex flex-col text-[var(--green-color)]">

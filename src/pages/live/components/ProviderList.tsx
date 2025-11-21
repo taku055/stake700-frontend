@@ -1,5 +1,6 @@
 import { FunctionalComponent } from "preact";
 import { tProvider } from "@/types/tProvider";
+import { useTranslations } from "@/context/I18nContext";
 
 interface ProviderListProps {
   providers: tProvider[];
@@ -16,6 +17,7 @@ export const ProviderList: FunctionalComponent<ProviderListProps> = ({
   isAllProvidersSelected,
   onToggleProvider,
 }) => {
+  const t = useTranslations("CasinoDetailPage");
   const individualProviders = selectedProviders.filter(id => id !== allProvidersId);
 
   return (
@@ -30,7 +32,7 @@ export const ProviderList: FunctionalComponent<ProviderListProps> = ({
               : "bg-[var(--background-secondary)] text-gray-300 hover:bg-[var(--background)]"
           }`}
         >
-          All Providers
+          {t("All Providers") || "All Providers"}
         </button>
 
         {/* Individual providers */}

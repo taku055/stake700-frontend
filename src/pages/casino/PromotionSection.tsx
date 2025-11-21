@@ -7,6 +7,7 @@ import { mobileMediaQuery } from "@/config/constants";
 import { useMediaQuery } from "usehooks-ts";
 import { useMemo } from "preact/hooks";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
+import { useLocation } from "preact-iso";
 
 export const PromotionSection: FunctionalComponent<{
   showAppleImage: boolean;
@@ -14,17 +15,64 @@ export const PromotionSection: FunctionalComponent<{
 }> = ({ showAppleImage, category = "all" }) => {
   const getImageUrl = (originalUrl: string) => gameCategoryImagesState.value[originalUrl] || originalUrl;
   const isMobile = useMediaQuery(mobileMediaQuery);
+  const location = useLocation();
+  const currentPath = location.path;
   
-  // Temporary banner images as fallback
-  const bannerTemp = [
-    "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-cashback.webp",
-    "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-loyalty.webp",
-  ];
+  // Determine which banner set to use based on path
+  const getBannerTemp = () => {
+    if (currentPath === "/") {
+      // Home page banners
+      return {
+        desktop: [
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/power-chance.jpg",
+        ],
+        mobile: [
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/power-chance-mobile.jpg",
+        ],
+      };
+    } else if (currentPath.startsWith("/casino")) {
+      // Casino page banners
+      return {
+        desktop: [
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-cashback.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-loyalty.webp",
+        ],
+        mobile: [
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/promotion-cashback-mobile.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/promotion-loyalty-mobile.webp",
+        ],
+      };
 
-  const bannerTempMobile = [
-    "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/promotion-cashback-mobile.webp",
-    "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/promotion-loyalty-mobile.webp",
-  ];
+    } else if (currentPath.startsWith("/live-casino")) {
+      // Live casino page banners
+      return {
+        desktop: [
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/cashback.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/personal-offer.webp",
+        ],
+        mobile: [
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/cashback-mobile.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/personal-offer-mobile.webp",
+        ],
+      };
+    } else {
+      // Default banners
+      return {
+        desktop: [
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-cashback.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/promotion-loyalty.webp",
+        ],
+        mobile: [
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/promotion-cashback-mobile.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/promotion-loyalty-mobile.webp",
+        ],
+      };
+    }
+  };
+
+  const bannerTempData = getBannerTemp();
+  const bannerTemp = bannerTempData.desktop;
+  const bannerTempMobile = bannerTempData.mobile;
 
   const banners = useMemo(
     () => {
@@ -52,35 +100,38 @@ export const PromotionSection: FunctionalComponent<{
   return (
     <div className="flex flex-col gap-3 w-full">
       {banners.length > 0 && (
-        <TekioSwiper
-          modules={[Mousewheel, Navigation, Autoplay, EffectFade]}
-          effect="fade"
-          fadeEffect={{
-            crossFade: true,
-          }}
-          spaceBetween={0}
-          loop={true}
-          slidesPerView={1}
-          className="w-full"
-          speed={1000}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-        >
-          {banners.map((item, index) => (
-            <SwiperSlide key={item + "_" + index} className="flex">
-              <div className="w-full h-full flex">
-                <img
-                  className={"w-full h-full object-cover rounded-lg"}
-                  src={getImageUrl(item)}
-                  alt={item}
-                  loading="lazy"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </TekioSwiper>
+        <div className="w-full" style={{ minHeight: "200px" }}>
+          <TekioSwiper
+            modules={[Mousewheel, Navigation, Autoplay, EffectFade]}
+            effect="fade"
+            fadeEffect={{
+              crossFade: true,
+            }}
+            spaceBetween={0}
+            loop={true}
+            slidesPerView={1}
+            className="w-full"
+            speed={1000}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+          >
+            {banners.map((item, index) => (
+              <SwiperSlide key={item + "_" + index} className="flex !w-full">
+                <div className="w-full h-full flex" style={{ width: "100%", minHeight: "200px" }}>
+                  <img
+                    className={"w-full h-full object-cover rounded-lg"}
+                    src={getImageUrl(item)}
+                    alt={item}
+                    loading="lazy"
+                    style={{ display: "block", width: "100%", height: "auto" }}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </TekioSwiper>
+        </div>
       )}
     </div>
   );
