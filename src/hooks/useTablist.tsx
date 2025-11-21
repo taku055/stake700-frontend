@@ -4,6 +4,17 @@ import { Users, Crown, ChartArea } from "lucide-preact";
 import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
 
+// Map navigation keys to sidebar SVG icons
+const getNavIcon = (key: string): string => {
+  const iconMap: Record<string, string> = {
+    slots: "/images/sidebar/casino.svg",
+    "live-casino": "/images/sidebar/live-casino.svg",
+    sport: "/images/sidebar/sportsbook.svg",
+    promotions: "/images/sidebar/promotions.png",
+  };
+  return iconMap[key] || "/images/sidebar/casino.svg";
+};
+
 export const useTablist = () => {
   const t = useTranslations("Header");
   const pathname = useLocation();
@@ -21,19 +32,22 @@ export const useTablist = () => {
               className="w-[24px] h-[24px]"
             />
           ),
+          navIcon: getNavIcon("live"),
         },
         {
           title: t("Sports"),
           href: "/sport",
           key: "sport",
           icon: <img src="/images/icons/sport-icon.svg" alt="Sport" />,
+          navIcon: getNavIcon("sport"),
         },
         {
           title: t("Slot"),
-          href: "/casino/slots?custom=1&category=slot-top-slots",
+          href: "/casino/slots?custom=1&category=top-slots",
           key: "slots",
           extra: ["/casino/tournaments"],
           icon: <img src="/images/icons/slot-icon.svg" alt="Slot" />,
+          navIcon: getNavIcon("slots"),
         },
         {
           title: t("Live Casino"),
@@ -42,6 +56,7 @@ export const useTablist = () => {
           icon: (
             <img src="/images/icons/livecasino-icon.svg" alt="Live Casino" />
           ),
+          navIcon: getNavIcon("live-casino"),
         },
         {
           title: t("Promotions"),
@@ -50,18 +65,21 @@ export const useTablist = () => {
           icon: (
             <img src="/images/icons/promotions-icon.svg" alt="Promotions" />
           ),
+          navIcon: getNavIcon("promotions"),
         },
         {
           title: t("Games"),
           href: "/casino/games",
           key: "games",
           icon: <img src="/images/icons/games-icon.svg" alt="Games" />,
+          navIcon: getNavIcon("games"),
         },
         {
           title: t("Live Racing"),
           href: "/casino/live-racing?sportsBookPath=/horse-racing",
           key: "live-racing",
           icon: <img src="/images/icons/live-racing.svg" alt="Live Racing" />,
+          navIcon: getNavIcon("live-racing"),
         },
         {
           title: t("Virtual Sports"),
@@ -73,22 +91,26 @@ export const useTablist = () => {
               alt="Virtual Sports"
             />
           ),
+          navIcon: getNavIcon("virtual-sports"),
         },
         {
           title: t("Jackpot"),
           href: "/casino/jackpot",
           key: "jackpot",
           icon: <img src="/images/icons/jackpot-icon.svg" alt="Jackpot" />,
+          navIcon: getNavIcon("jackpot"),
         },
         {
           title: t("TV Games"),
           href: "/casino/tv-games",
           key: "tv-games",
+          navIcon: getNavIcon("tv-games"),
         },
         {
           title: t("Trebuchet"),
           href: "/trebuchet",
           key: "trebuchet",
+          navIcon: getNavIcon("trebuchet"),
         },
       ];
     } else {
@@ -99,6 +121,7 @@ export const useTablist = () => {
             href: "/superagent",
             key: "superagent",
             icon: <Crown />,
+            navIcon: getNavIcon("superagent"),
           },
         ];
       } else {
@@ -108,12 +131,14 @@ export const useTablist = () => {
             href: "/agent",
             key: "agent",
             icon: <ChartArea />,
+            navIcon: getNavIcon("agent"),
           },
           {
             title: t("Users"),
             href: "/agent/users",
             key: "users",
             icon: <Users />,
+            navIcon: getNavIcon("users"),
           },
         ];
       }

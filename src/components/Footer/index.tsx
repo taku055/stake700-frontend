@@ -67,7 +67,7 @@ export const Footer = () => {
           </span>
         </div>
         <div className="flex flex-row items-center gap-2 text-[var(--text-transparent-color)]">
-          2003 - 2025 betinbet.com
+          2003 - 2025 ichancy.com
         </div>
       </div>
     </footer>

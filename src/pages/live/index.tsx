@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from "preact/hooks";
 import { PromotionSection } from "../casino/PromotionSection";
-import { SelectionLinkGroup } from "./components/SelectionLinkGroup";
 import { GameSearchPanel } from "./components/GameSearchPanel";
 import { ProviderSelectionCard } from "./components/ProviderSelectionCard";
 import { GameGridView } from "./components/GameGridView";
@@ -9,6 +8,7 @@ import { apiGetProviders } from "@/api/common/apiGetProviders";
 import { tGame } from "@/types/tGame";
 import { tProvider } from "@/types/tProvider";
 import { tPaginationResult } from "@/types/tPaginationResult";
+import TopLinkBar from "@/components/TopLinkBar";
 
 const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
 const GAME_LOAD_COUNT = 24;
@@ -27,7 +27,7 @@ export default function Live() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await apiGetProviders("live-casino");
+        const res = await apiGetProviders("livecasino");
         setProviders(res);
       } catch (error) {
         console.error("Error loading providers:", error);
@@ -89,7 +89,7 @@ export default function Live() {
         const requestParams: any = {
           offset: offset1,
           limit: GAME_LOAD_COUNT,
-          category: "live-casino",
+          category: "livecasino",
           keyword: searchQuery || undefined,
         };
 
@@ -133,8 +133,7 @@ export default function Live() {
       {/* Banner on top */}
       <PromotionSection showAppleImage={false} category="live-casino" />
 
-      {/* Selection link group */}
-      <SelectionLinkGroup />
+      <TopLinkBar />
 
       {/* Search game input panel */}
       <GameSearchPanel

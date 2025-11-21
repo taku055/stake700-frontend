@@ -8,7 +8,7 @@ import { CATEGORY_DATA, tPageType } from "@/pages/casino/data";
 import CollapsedSidebar from "./CollapsedSidebar";
 import ExpandedDrawer from "./ExpandedDrawer";
 import MobileDrawer from "./MobileDrawer";
-import { STATIC_CATEGORIES } from "./categoryData";
+import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 
 interface NavigationItem {
   title: string;
@@ -16,6 +16,7 @@ interface NavigationItem {
   key: string;
   icon: any;
   pageType?: tPageType;
+  navIcon?: string;
 }
 
 export default function NavigationSidebar() {
@@ -44,7 +45,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) => 
-        ["slots", "live-casino", "sport", "promotions", "live"].includes(item.key)
+        ["slots", "live-casino", "sport", "promotions"].includes(item.key)
       )
       .map((item) => {
         let pageType: tPageType | undefined;
@@ -56,6 +57,7 @@ export default function NavigationSidebar() {
           href: item.href,
           key: item.key,
           icon: item.icon,
+          navIcon: item.navIcon,
           pageType,
         };
       });
@@ -82,10 +84,7 @@ export default function NavigationSidebar() {
   }, [mainNavItems, location.path]);
 
   // Always show static categories - don't change based on selected nav
-  const categories = useMemo(() => {
-    // Always return static categories for consistent sidebar icons
-    return STATIC_CATEGORIES;
-  }, []); // Empty dependency array - categories never change
+  const { categories } = useCasinoCategories();
 
   // Mobile: Show drawer when open
   if (isMobile) {

@@ -6,9 +6,9 @@ import CategoryItems from "./CategoryItems";
 import { useState, useMemo, useEffect } from "preact/hooks";
 import { Input } from "@/components/common";
 import LocaleSelection from "@/components/LocaleSelection";
-import { getNavIcon, processCategories, initializeCategoryCounts, getCachedCategoryCount, getCategoryGameCount, STATIC_CATEGORIES } from "./categoryData";
 import { localeState } from "@/state/localeState";
-import { LIVE_CASINO_CATEGORIES } from "./liveCasinoCategories";
+import { useCasinoCategories } from "@/hooks/useCasinoCategories";
+import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
 
 const RTL_LANGUAGES = ["ar", "he", "fa"];
 
@@ -18,6 +18,7 @@ interface MobileDrawerProps {
     href: string;
     key: string;
     icon: any;
+    navIcon?: string;
   }>;
   selectedMainNavKey?: string;
   categories: Array<{
@@ -45,11 +46,13 @@ export default function MobileDrawer({
   }>>([]);
   const { modifyHref } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
+  const { categories: casinoCategories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
+  const { categories: liveCasinoCategories } = useLiveCasinoCategories();
 
   // Get categories based on selected tab
   const currentCategories = useMemo(() => {
-    return selectedTab === "casino" ? STATIC_CATEGORIES : LIVE_CASINO_CATEGORIES;
-  }, [selectedTab]);
+    return selectedTab === "casino" ? casinoCategories : liveCasinoCategories;
+  }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = useMemo(() => {
@@ -60,19 +63,16 @@ export default function MobileDrawer({
 
   // Show categories immediately (without waiting for counts)
   useEffect(() => {
-    const categoriesWithIcons = processCategories(currentCategories);
-    setCategoriesWithCounts(categoriesWithIcons.map((cat) => ({
+    setCategoriesWithCounts(currentCategories.map((cat) => ({
       ...cat,
       count: getCachedCategoryCount(cat.path),
     })));
-  }, [currentCategories]);
+  }, [currentCategories, getCachedCategoryCount]);
 
   // Load counts asynchronously and update as they become available
   useEffect(() => {
-    const categoriesWithIcons = processCategories(currentCategories);
-    
     // Load counts for each category in parallel and update state as each completes
-    categoriesWithIcons.forEach((cat) => {
+    currentCategories.forEach((cat) => {
       getCategoryGameCount(cat.path).then((count) => {
         setCategoriesWithCounts((prev) => {
           return prev.map((c) => (c.path === cat.path ? { ...c, count } : c));
@@ -81,7 +81,7 @@ export default function MobileDrawer({
         console.error(`Error loading count for ${cat.path}:`, error);
       });
     });
-  }, [currentCategories]);
+  }, [currentCategories, getCategoryGameCount]);
 
   return (
     <div className="fixed inset-0 z-50">
@@ -174,7 +174,7 @@ export default function MobileDrawer({
                   }`}
                 >
                   <img
-                    src={getNavIcon(item.key)}
+                    src={item.navIcon || "/images/sidebar/casino.svg"}
                     alt={item.title}
                     className="w-6 h-6 flex-shrink-0 object-contain"
                   />

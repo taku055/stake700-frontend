@@ -1,9 +1,10 @@
-import { useState, useCallback, useEffect, useMemo } from "preact/hooks";
+import { useState, useCallback, useEffect, useMemo, useRef } from "preact/hooks";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { tGame } from "@/types/tGame";
 import { tPaginationResult } from "@/types/tPaginationResult";
 import { customGamesState } from "@/state/customGamesState";
-import { useCategoryParams, CategoryParams } from "./useCategoryParams";
+import { useCategoryParams, CategoryParams } from "@/hooks/useCategoryParams";
+import { effect } from "@preact/signals";
 
 const GAME_LOAD_COUNT = 24;
 const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
@@ -43,6 +44,16 @@ export function useCasinoGames({
         // Get category params
         const categoryParams = selectedCategory ? getCategoryParams(selectedCategory) : { custom: false, category: null, provider: null };
         
+        // For custom categories, wait for customGamesState to be loaded
+        if (categoryParams.custom && categoryParams.category) {
+          // Wait for customGamesState to be populated (max 5 seconds)
+          let attempts = 0;
+          while (customGamesState.value.length === 0 && attempts < 50) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+          }
+        }
+        
         // Determine provider filter
         let providerFilter: string | undefined = undefined;
         if (!isAllProvidersSelected && individualProviders.length > 0) {
@@ -79,6 +90,7 @@ export function useCasinoGames({
           };
         } else {
           // Regular category - fetch from API
+          
           const requestParams: any = {
             offset: offset1,
             limit: GAME_LOAD_COUNT,
@@ -115,6 +127,11 @@ export function useCasinoGames({
     [selectedCategory, searchQuery, isAllProvidersSelected, individualProviders, getCategoryParams]
   );
 
+  // Get category params to check if it's a custom category
+  const categoryParams = useMemo(() => {
+    return selectedCategory ? getCategoryParams(selectedCategory) : { custom: false, category: null, provider: null };
+  }, [selectedCategory, getCategoryParams]);
+
   // Load games when filters change
   useEffect(() => {
     if (selectedCategory) {
@@ -122,6 +139,42 @@ export function useCasinoGames({
       loadMore(0);
     }
   }, [selectedCategory, searchQuery, selectedProviders, loadMore]);
+
+  // Track the last category we reloaded for to avoid infinite loops
+  const lastReloadedCategoryRef = useRef<string | null>(null);
+
+  // Watch for customGamesState changes and reload games for custom categories
+  useEffect(() => {
+    if (!categoryParams.custom || !categoryParams.category) {
+      lastReloadedCategoryRef.current = null; // Reset when not viewing custom category
+      return; // Not a custom category, no need to watch
+    }
+
+    // Watch for customGamesState to become populated
+    const dispose = effect(() => {
+      const customGames = customGamesState.value;
+      
+      // When customGamesState becomes populated and we have a custom category selected
+      if (customGames.length > 0 && selectedCategory) {
+        // Check if we have games for this specific category
+        const categoryGames = customGames.filter(
+          (c) => c.category === categoryParams.category
+        );
+        
+        // If we have games for this category and haven't reloaded for this category yet
+        if (categoryGames.length > 0 && lastReloadedCategoryRef.current !== selectedCategory) {
+          lastReloadedCategoryRef.current = selectedCategory;
+          // Reload games
+          setOffset(0);
+          loadMore(0);
+        }
+      }
+    });
+
+    return () => {
+      dispose();
+    };
+  }, [categoryParams.custom, categoryParams.category, selectedCategory, loadMore]);
 
   return {
     games,

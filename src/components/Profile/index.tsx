@@ -31,6 +31,9 @@ import { useTranslations } from "@/context/I18nContext";
 import { HiSpeakerphone } from "react-icons/hi";
 import { scrollToTop } from "@/helpers/scrollToTop";
 import { BonusPage } from "./userbalance/BonusPage";
+import { localeState } from "@/state/localeState";
+
+const RTL_LANGUAGES = ["ar", "he", "fa"];
 
 interface IProfileComponentProps {
   isOpen: boolean;
@@ -48,6 +51,7 @@ const ProfileComponent = ({
   const isMobile = useMediaQuery(mobileMediaQuery);
   const [selectedTab, setSelectedTab] = useState(defaultTab || "");
   const location = useLocation();
+  const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
   useEffect(() => {
     if (isOpen && defaultTab) {
@@ -258,9 +262,9 @@ const ProfileComponent = ({
         wrapper: "z-[10000000]",
       }}
     >
-      <ModalContent className="max-w-[90vw]! w-full flex flex-col md:flex-row bg-[var(--background)] min-h-[90vh]!">
+      <ModalContent className={`max-w-[90vw]! w-full flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} bg-[var(--background)] min-h-[90vh]!`}>
         {(!isMobile || (isMobile && !selectedTab)) && (
-          <div className="w-full flex flex-col overflow-y-auto md:max-w-[320px] gap-3 scrollbar-hide p-4 bg-[var(--background)]">
+          <div className={`w-full flex flex-col overflow-y-auto md:max-w-[320px] gap-3 scrollbar-hide p-4 bg-[var(--background)] ${isRTL ? 'md:border-l md:border-gray-700' : 'md:border-r md:border-gray-700'}`}>
             <div className="flex flex-col gap-3">
               <UserComponent />
               <UserVerifyBox
@@ -379,7 +383,7 @@ const ProfileComponent = ({
         )}
 
         {((isMobile && selectedTab) || !isMobile) && (
-          <div className="w-full flex flex-col overflow-y-auto gap-3 scrollbar-hide">
+          <div className={`w-full flex flex-col overflow-y-auto gap-3 scrollbar-hide ${isRTL ? 'text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
             {
               tabList.find(
                 (tab) =>

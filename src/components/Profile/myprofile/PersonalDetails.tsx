@@ -9,6 +9,9 @@ import { LoaderCircle } from "lucide-preact";
 import { DatePicker, Select, SelectItem } from "@heroui/react";
 import { parseDate } from "@internationalized/date";
 import * as countryCodes from "country-codes-list";
+import { localeState } from "@/state/localeState";
+
+const RTL_LANGUAGES = ["ar", "he", "fa"];
 
 const myCountryCodesObject = countryCodes.customList(
   "countryCode",
@@ -27,6 +30,7 @@ const genders = [
 
 const PersonalDetailsPage = () => {
   const t = useTranslations("PersonalDetails");
+  const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
   const [firstName, setFirstName] = useState(userState.value?.firstName);
   const [lastName, setLastName] = useState(userState.value?.lastName);
@@ -65,11 +69,11 @@ const PersonalDetailsPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">
+    <div className={`flex flex-col h-full ${isRTL ? 'text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className={`w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A] ${isRTL ? 'text-right' : 'text-left'}`}>
         Personal Details
       </div>
-      <div className="w-full p-5 flex-1">
+      <div className={`w-full p-5 flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
         <div className="grid grid-cols-2 gap-2">
           <Input
             type="text"
@@ -107,6 +111,7 @@ const PersonalDetailsPage = () => {
             value={birthDay}
             size="sm"
             onChange={(e: any) => setBirthDay(e)}
+            dir={isRTL ? "rtl" : "ltr"}
           />
           <Select
             className="bg-[#fff1] border-none rounded-sm!"
@@ -118,6 +123,7 @@ const PersonalDetailsPage = () => {
               setUserGender(Array.from(keys as Set<string>)[0])
             }
             size="sm"
+            dir={isRTL ? "rtl" : "ltr"}
           >
             {genders.map((gender) => (
               <SelectItem key={gender.value}>{gender.label}</SelectItem>
@@ -133,6 +139,7 @@ const PersonalDetailsPage = () => {
               setCountry(Array.from(keys as Set<string>)[0])
             }
             size="sm"
+            dir={isRTL ? "rtl" : "ltr"}
           >
             {countries.map((country) => (
               <SelectItem key={country.value}>{country.label}</SelectItem>

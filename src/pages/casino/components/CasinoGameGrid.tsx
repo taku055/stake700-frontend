@@ -23,7 +23,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
 
   return (
     <div className="flex-1 flex flex-col gap-4 min-w-0">
-      <div className="grid md:grid-cols-6 grid-cols-2 gap-2 flex-1">
+      <div className="grid md:grid-cols-6 grid-cols-2 gap-2">
         {games.map((game) => (
           <GameCard key={game.id} data={game} />
         ))}

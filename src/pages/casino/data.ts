@@ -206,7 +206,7 @@ export const CATEGORY_DATA: Record<tPageType, tCategoryData> = {
     ],
     category: "slots,crashgame,mines",
     banners: [
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
     ],
     showAppleImage: true,
   },
@@ -214,7 +214,7 @@ export const CATEGORY_DATA: Record<tPageType, tCategoryData> = {
     navItems: [
       {
         name: "Live Casino",
-        path: "/casino/live-casino",
+        path: "/live-casino",
         subItems: [
           {
             name: "All Games",
@@ -252,7 +252,7 @@ export const CATEGORY_DATA: Record<tPageType, tCategoryData> = {
     category:
       "tablegames,videopoker,scratchcards,livecasino,blackjacks,baccaratglobal,rouletteglobal,pokerglobal",
     banners: [
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
     ],
     showAppleImage: true,
   },
@@ -272,13 +272,13 @@ export const CATEGORY_DATA: Record<tPageType, tCategoryData> = {
     ],
     category: "",
     banners: [
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
     ],
     showAppleImage: false,
   },
@@ -298,7 +298,7 @@ export const CATEGORY_DATA: Record<tPageType, tCategoryData> = {
     ],
     category: "virtualsports",
     banners: [
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
     ],
     showAppleImage: false,
   },
@@ -318,7 +318,7 @@ export const CATEGORY_DATA: Record<tPageType, tCategoryData> = {
     ],
     category: "jackpots",
     banners: [
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
     ],
     showAppleImage: true,
   },
@@ -338,7 +338,7 @@ export const CATEGORY_DATA: Record<tPageType, tCategoryData> = {
     ],
     category: "tvgames",
     banners: [
-      "https://tekio.s3.eu-north-1.amazonaws.com/betinbet/promotions/slots.png",
+      "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/slots.png",
     ],
     showAppleImage: true,
   },

@@ -5,8 +5,13 @@ import { useTranslations } from "@/context/I18nContext";
 import { apiChangePassword } from "@/api/account/apiChangePassword";
 import { toast } from "@/helpers/toast";
 import { Loader } from "lucide-preact";
+import { localeState } from "@/state/localeState";
+
+const RTL_LANGUAGES = ["ar", "he", "fa"];
+
 const ChangePasswordPage = () => {
   const t = useTranslations("PersonalDetails");
+  const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -28,9 +33,9 @@ const ChangePasswordPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">Change Password</div>
-      <div className="w-full p-5 flex-1">
+    <div className={`flex flex-col h-full ${isRTL ? 'text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className={`w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A] ${isRTL ? 'text-right' : 'text-left'}`}>Change Password</div>
+      <div className={`w-full p-5 flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
         <div className="grid grid-cols-2 gap-2">
           <Input
             type="password"

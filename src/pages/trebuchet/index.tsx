@@ -6,7 +6,7 @@ export default function PageComponent() {
       productName="Trebuchet"
       launchDate={new Date("2025-11-01T09:00:00")}
       onNotify={() => {}}
-      heroUrl="https://tekio.s3.eu-north-1.amazonaws.com/betinbet/logo.png"
+      heroUrl="https://tekio.s3.eu-north-1.amazonaws.com/ichancy/logo.png"
     />
   );
 }

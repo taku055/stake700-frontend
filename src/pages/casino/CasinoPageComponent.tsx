@@ -1,13 +1,14 @@
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
-import { useCategoryFromUrl } from "./hooks/useCategoryFromUrl";
-import { useUrlSync } from "./hooks/useUrlSync";
-import { useCasinoGames } from "./hooks/useCasinoGames";
+import { useCategoryFromUrl } from "@/hooks/useCategoryFromUrl";
+import { useUrlSync } from "@/hooks/useUrlSync";
+import { useCasinoGames } from "@/hooks/useCasinoGames";
 import { CasinoLayout } from "./components/CasinoLayout";
-import { STATIC_CATEGORIES } from "@/components/NavigationSidebar/categoryData";
+import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 
 export default function CasinoPageComponent() {
   const location = useLocation();
+  const { categories } = useCasinoCategories();
   
   if (userState.value?.isSuperAgent) {
     location.route("/superagent");
@@ -49,7 +50,7 @@ export default function CasinoPageComponent() {
       location.route(categoryPath);
     } else {
       // If null, navigate to default "All Games"
-      const allGamesCategory = STATIC_CATEGORIES.find(cat => cat.name === "All Games");
+      const allGamesCategory = categories.find(cat => cat.name === "All Games");
       if (allGamesCategory) {
         location.route(allGamesCategory.path);
       }

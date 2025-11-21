@@ -49,7 +49,7 @@ export const FOOTER_LINK_DATA = [
     title: "Promotions",
     links: [
       {
-        title: "Unlimited 15% Betinbet Bonus",
+        title: "Unlimited 15% ichancy Bonus",
         href: "/promotion",
       },
       {
@@ -99,7 +99,7 @@ export const FOOTER_LINK_DATA = [
     title: "Easy Access",
     links: [
       {
-        title: "Betinbet Entrance",
+        title: "ichancy Entrance",
         href: "/promotion",
       },
     ],

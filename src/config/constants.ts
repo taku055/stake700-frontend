@@ -14,17 +14,17 @@ export const mobilePortraitMediaQuery =
 export const placeholderGameImage = "/images/placeholder-gamecard.png";
 
 export const OFFICIAL_LINKS = {
-  telegram: "https://t.me/betinbetofc",
+  telegram: "https://t.me/ichancyofc",
   whatsapp: "#",
-  instagram: "https://www.instagram.com/betinbetofc",
-  facebook: "https://www.facebook.com/betinbetofc",
-  twitter: "https://x.com/betinbetofc",
-  youtube: "https://www.youtube.com/betinbetofc",
-  tiktok: "https://www.tiktok.com/@betinbetofc",
-  twitch: "https://www.twitch.tv/betinbetofc",
-  discord: "https://discord.gg/betinbetofc",
-  officialWebsite: "https://www.betinbet.com",
-  supportEmail: "support@betinbet.com",
+  instagram: "https://www.instagram.com/ichancyofc",
+  facebook: "https://www.facebook.com/ichancyofc",
+  twitter: "https://x.com/ichancyofc",
+  youtube: "https://www.youtube.com/ichancyofc",
+  tiktok: "https://www.tiktok.com/@ichancyofc",
+  twitch: "https://www.twitch.tv/ichancyofc",
+  discord: "https://discord.gg/ichancyofc",
+  officialWebsite: "https://www.ichancy.com",
+  supportEmail: "support@ichancy.com",
 };
 
 export const PAYMENT_METHOD_LIST = [

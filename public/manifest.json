@@ -1,9 +1,9 @@
 {
   "background_color": "#1A1D26",
   "categories": [
-    "Betinbet, Casino, Slots, Crypto"
+    "ichancy, Casino, Slots, Crypto"
   ],
-  "description": "Betinbet is operated by Aries Processing Ltd (Registered address, Thiseos, 7, Flat/Office 001 Strovolos 2042, Lefkosia, Cyprus).",
+  "description": "ichancy is operated by Aries Processing Ltd (Registered address, Thiseos, 7, Flat/Office 001 Strovolos 2042, Lefkosia, Cyprus).",
   "dir": "ltr",
   "display": "browser",
   "display_override": [
@@ -15,14 +15,14 @@
     }
   ],
   "lang": "en",
-  "name": "Betinbet",
+  "name": "ichancy",
   "orientation": "any",
   "screenshots": [
     {
       "src": "/screenshot.png"
     }
   ],
-  "short_name": "Betinbet",
+  "short_name": "ichancy",
   "start_url": "/",
   "theme_color": "#1A1D26"
 }

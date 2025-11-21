@@ -2,6 +2,9 @@ import { JSX } from "preact/jsx-runtime";
 import { useId } from "preact/hooks";
 import { clsx } from "clsx";
 import { forwardRef } from "preact/compat";
+import { localeState } from "@/state/localeState";
+
+const RTL_LANGUAGES = ["ar", "he", "fa"];
 
 type ClassNames = {
   inputWrapper?: string;
@@ -46,6 +49,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
     const autoId = useId();
     const inputId = id ?? `fi-${autoId}`;
     const describedBy = helperText ? `${inputId}-help` : undefined;
+    const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
     const borderBase =
       variant === "bordered"
@@ -57,7 +61,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
       : "";
 
     return (
-      <div class={clsx("w-full", classNames?.container)}>
+      <div class={clsx("w-full", classNames?.container)} dir={isRTL ? "rtl" : "ltr"}>
         <label htmlFor={inputId} class="block">
           <div
             class={clsx(
@@ -71,7 +75,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           >
             {/* Left slot (icon) */}
             {startContent && (
-              <div class="pl-3 pr-1 shrink-0 pointer-events-none">
+              <div class={clsx("shrink-0 pointer-events-none", isRTL ? "pr-3 pl-1" : "pl-3 pr-1")}>
                 {startContent}
               </div>
             )}
@@ -87,10 +91,12 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               placeholder=" " /* single space is required for :placeholder-shown */
               aria-invalid={!!error || undefined}
               aria-describedby={describedBy}
+              dir={isRTL ? "rtl" : "ltr"}
               class={clsx(
                 "peer w-full bg-transparent outline-none",
                 "px-3 pt-5 pb-1",
                 "text-white placeholder-transparent",
+                isRTL ? "text-right" : "text-left",
                 errorRing,
                 classNames?.input
               )}
@@ -100,7 +106,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             {/* The floating label */}
             <span
               class={clsx(
-                "pointer-events-none absolute left-3",
+                "pointer-events-none absolute",
+                isRTL ? "right-3" : "left-3",
                 // Base state = floated (top, small). When input is empty, the
                 // peer-placeholder-shown rules below move it to the center.
                 "top-2 text-xs leading-none",
@@ -120,7 +127,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               <button
                 type="button"
                 tabIndex={-1}
-                class="pr-3 pl-1 shrink-0"
+                class={clsx("shrink-0", isRTL ? "pl-3 pr-1" : "pr-3 pl-1")}
                 onMouseDown={(e) => e.preventDefault()}
               >
                 {endContent}

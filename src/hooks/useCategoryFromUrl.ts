@@ -1,9 +1,10 @@
 import { useMemo } from "preact/hooks";
 import { useLocation } from "preact-iso";
-import { STATIC_CATEGORIES } from "@/components/NavigationSidebar/categoryData";
+import { useCasinoCategories } from "./useCasinoCategories";
 
 export function useCategoryFromUrl() {
   const location = useLocation();
+  const { categories } = useCasinoCategories();
 
   // Calculate selected category from URL query parameters
   const selectedCategory = useMemo(() => {
@@ -24,12 +25,12 @@ export function useCategoryFromUrl() {
     
     // If no query params, default to "All Games"
     if (!location.query.custom && !location.query.category && !location.query.provider) {
-      const allGamesCategory = STATIC_CATEGORIES.find(cat => cat.name === "All Games");
+      const allGamesCategory = categories.find(cat => cat.name === "All Games");
       return allGamesCategory?.path || categoryPath;
     }
     
     return categoryPath;
-  }, [location.query, location.path]);
+  }, [location.query, location.path, categories]);
 
   return { selectedCategory };
 }

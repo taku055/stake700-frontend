@@ -12,24 +12,24 @@ export interface CategoryItem {
 // Static categories list - always shown
 export const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = [
   {
-    name: "Top Slots",
-    path: "/casino/slots?custom=1&category=slot-top-slots",
-  },
-  {
     name: "All Games",
     path: "/casino/slots",
   },
   {
+    name: "Top Slots",
+    path: "/casino/slots?custom=1&category=top-slots",
+  },
+  {
     name: "Popular Games",
-    path: "/casino/slots?custom=1&category=slot-popular",
+    path: "/casino/slots?custom=1&category=popular-games",
   },
   {
     name: "New",
-    path: "/casino/slots?custom=1&category=slot-new",
+    path: "/casino/slots?custom=0&category=new",
   },
   {
     name: "Jackpots",
-    path: "/casino/slots?custom=1&category=slot-jackpots",
+    path: "/casino/slots?custom=0&category=jackpots",
   },
   {
     name: "Buy Bonus",

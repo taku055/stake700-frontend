@@ -4,6 +4,7 @@ import { mobileMediaQuery } from "@/config/constants";
 import GameFilterSidebar from "@/components/GameFilterSidebar";
 import { PromotionSection } from "../PromotionSection";
 import { CasinoGameGrid } from "./CasinoGameGrid";
+import TopLinkBar from "@/components/TopLinkBar";
 
 interface CasinoLayoutProps {
   searchQuery: string;
@@ -37,7 +38,7 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
   return (
     <div className="w-full flex flex-col gap-3">
       <PromotionSection showAppleImage={false} />
-
+      <TopLinkBar />
       <div className={`w-full flex ${isMobile ? 'flex-col' : 'flex-row'} gap-6 mt-[20px]`}>
         {/* Left Sidebar */}
         <GameFilterSidebar

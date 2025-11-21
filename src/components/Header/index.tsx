@@ -4,32 +4,22 @@ import { mobileMediaQuery, OFFICIAL_LINKS } from "@/config/constants";
 import { Button } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { registerOpenedState } from "@/state/registerOpenedState";
-import SearchWidget from "./SearchWidget";
 import WalletBox from "./WalletBox";
 import { useTranslations } from "@/context/I18nContext";
 import {
-  BellRing,
-  Headset,
-  HeartIcon,
-  NotepadText,
-  Settings,
   XIcon,
 } from "lucide-preact";
-import { FaTelegramPlane } from "react-icons/fa";
+import {localeState} from "@/state/localeState";
 import { maintenanceState } from "@/state/maintenanceState";
 import { useEffect, useState } from "preact/hooks";
-import LocaleSelection from "../LocaleSelection";
-import { moreModalState } from "@/state/moreModalState";
-import MoreToolDialog from "../MoreToolDialog";
-
-import ToolDropDown from "../ToolDropDown";
-import { HeaderPhoneVideo } from "./HeaderPhoneVideo";
 import { useTablist } from "@/hooks/useTablist";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { navigationSidebarOpenState } from "@/state/navigationSidebarState";
 import { Menu } from "lucide-preact";
 
 export default function Header() {
+  const RTL_LANGUAGES = ["ar", "he", "fa"];
+  const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const isMobile = useMediaQuery(mobileMediaQuery);
   const t = useTranslations("Header");
   const [alertVisible, setAlertVisible] = useState(!!maintenanceState.value);
@@ -84,7 +74,7 @@ export default function Header() {
           {/* <div className="ml-auto hidden md:block!">
             <HeaderPhoneVideo />
           </div> */}
-          <div className="ml-auto flex flex-row items-center gap-1 md:gap-2">
+          <div className={`${isRTL ? 'mr-auto' : 'ml-auto'} flex flex-row items-center gap-1 md:gap-2`}>
             {!userState.value?.id ? (
               <>
                 <Button

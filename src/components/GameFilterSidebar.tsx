@@ -7,7 +7,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
-import { STATIC_CATEGORIES, processCategories, initializeCategoryCounts, getCachedCategoryCount } from "@/components/NavigationSidebar/categoryData";
+import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 
 const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
 
@@ -82,6 +82,7 @@ export default function GameFilterSidebar({
     icon: string;
     count?: number;
   }>>([]);
+  const { categories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
 
   // Check if "All Providers" is selected
   const isAllProvidersSelected = useMemo(() => {
@@ -205,19 +206,26 @@ export default function GameFilterSidebar({
   // Load category counts once and use cached values
   useEffect(() => {
     const loadCategoryCounts = async () => {
-      // Initialize counts if not already loaded
-      await initializeCategoryCounts(STATIC_CATEGORIES);
-      
-      // Use cached values
-      const categoriesWithIcons = processCategories(STATIC_CATEGORIES);
-      const categoriesWithCountsData = categoriesWithIcons.map((cat) => ({
+      // Use cached values initially
+      const categoriesWithCountsData = categories.map((cat) => ({
         ...cat,
         count: getCachedCategoryCount(cat.path),
       }));
       setCategoriesWithCounts(categoriesWithCountsData);
+      
+      // Load counts asynchronously
+      categories.forEach((cat) => {
+        getCategoryGameCount(cat.path).then((count) => {
+          setCategoriesWithCounts((prev) => {
+            return prev.map((c) => (c.path === cat.path ? { ...c, count } : c));
+          });
+        }).catch((error) => {
+          console.error(`Error loading count for ${cat.path}:`, error);
+        });
+      });
     };
     loadCategoryCounts();
-  }, []);
+  }, [categories, getCachedCategoryCount, getCategoryGameCount]);
 
   // Categories section - displayed in a row
   const categoriesSection = (
@@ -233,7 +241,7 @@ export default function GameFilterSidebar({
                   onCategoryChange(isSelected ? null : category.path);
                 }
               }}
-              className={`flex items-center gap-2 px-2 py-4 rounded-sm text-[#FFFFFF] hover:bg-[#fff2] transition-colors whitespace-nowrap ${
+              className={`flex items-center gap-2 px-2 py-4 text-xl font-semibold rounded-lg text-[#FFFFFF] hover:bg-[#fff2] transition-colors whitespace-nowrap ${
                 isMobile ? 'flex-shrink-0' : ''
               } ${
                 isSelected ? 'bg-[var(--background-secondary)]' : ''

@@ -16,9 +16,10 @@ export default function WalletBox() {
           )
         ).toFixed(2)}
       </span>
-      <span className="w-[32px] h-[32px] rounded-full bg-[#FFFFFF66] text-white flex flex-row font-bold text-center items-center justify-center">
+      <img src={userState.value?.avatar ? userState.value?.avatar : "/images/user-default.png"} alt="avatar" className="w-[32px] h-[32px] rounded-full" />
+      {/* <span className="w-[32px] h-[32px] rounded-full bg-[#FFFFFF66] text-white flex flex-row font-bold text-center items-center justify-center">
         {userState.value?.userName.at(0)?.toUpperCase()}
-      </span>
+      </span> */}
     </div>
   );
 }

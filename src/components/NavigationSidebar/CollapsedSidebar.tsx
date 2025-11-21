@@ -1,11 +1,11 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { ChevronRight } from "lucide-preact";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
-import { getNavIcon, processCategories, STATIC_CATEGORIES } from "./categoryData";
 import { localeState } from "@/state/localeState";
-import { LIVE_CASINO_CATEGORIES } from "./liveCasinoCategories";
 import { useState, useMemo } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
+import { useCasinoCategories } from "@/hooks/useCasinoCategories";
+import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
 import {
   Dropdown,
   DropdownItem,
@@ -37,6 +37,7 @@ interface CollapsedSidebarProps {
     href: string;
     key: string;
     icon: any;
+    navIcon?: string;
   }>;
   selectedMainNavKey?: string;
   categories: Array<{
@@ -55,6 +56,8 @@ export default function CollapsedSidebar({
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("Header");
   const [selectedTab, setSelectedTab] = useState<"casino" | "live-casino">("casino");
+  const { categories: casinoCategories } = useCasinoCategories();
+  const { categories: liveCasinoCategories } = useLiveCasinoCategories();
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = mainNavItems.filter((item) =>
@@ -62,12 +65,9 @@ export default function CollapsedSidebar({
   );
 
   // Get categories based on selected tab
-  const currentCategories = useMemo(() => {
-    return selectedTab === "casino" ? STATIC_CATEGORIES : LIVE_CASINO_CATEGORIES;
-  }, [selectedTab]);
-
-  // Process categories with icons
-  const categoriesWithIcons = processCategories(currentCategories);
+  const categoriesWithIcons = useMemo(() => {
+    return selectedTab === "casino" ? casinoCategories : liveCasinoCategories;
+  }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   return (
     <div className={`md:flex w-[64px] bg-[var(--bar-background-color)] ${isRTL ? 'border-l' : 'border-r'} border-gray-700 flex-col h-screen sticky top-0`}>
@@ -126,7 +126,7 @@ export default function CollapsedSidebar({
               title={item.title}
             >
               <img
-                src={getNavIcon(item.key)}
+                src={item.navIcon || "/images/sidebar/casino.svg"}
                 alt={item.title}
                 className="w-10 h-10 object-contain"
               />
