@@ -25,7 +25,7 @@ const localeOptions = [
   { label: "Italiano", value: "it", flag: "it" },
   { label: "Deutsch", value: "de", flag: "de" },
   { label: "Français", value: "fr", flag: "fr" },
-  { label: "עברית", value: "he", flag: "il", dir: "rtl" },
+  // { label: "עברית", value: "he", flag: "il", dir: "rtl" },
   { label: "فارسی", value: "fa", flag: "ir", dir: "rtl" },
   { label: "العربية", value: "ar", flag: "sa", dir: "rtl" },
 ];
