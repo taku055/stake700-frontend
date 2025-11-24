@@ -2,7 +2,7 @@
 
 .container {
   width: 100%;
-  height: calc(var(--viewport-height) - 105px);
+  height: calc(var(--viewport-height) - 64px);
   position: relative;
   display: flex;
   justify-content: center;
@@ -11,7 +11,7 @@
   border-radius: 16px;
 
   @include for-mobile-only {
-    height: calc(var(--viewport-height) - 190px);
+    height: calc(var(--viewport-height) - 128px);
     border-radius: 0;
     margin: 0;
   }
