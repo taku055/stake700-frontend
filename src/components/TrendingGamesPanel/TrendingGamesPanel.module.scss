@@ -5,9 +5,11 @@
   flex-direction: column;
   width: 100%;
   margin: 16px 0;
+  padding: 0 64px;
 
   @include for-mobile-only {
     margin: 12px 0;
+    padding: 0 8px;
   }
 
   .titleBar {
