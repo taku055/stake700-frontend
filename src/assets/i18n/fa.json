@@ -234,7 +234,9 @@
   "GameGroup": {
     "More": "بیشتر",
     "Casino Games": "بازی‌های کازینو",
-    "Live Casino": "کازینوی زنده"
+    "Live Casino": "کازینوی زنده",
+    "View All": "مشاهده همه",
+    "Trending": "محبوب"
   },
   "UserBalancePage": {
     "Deposit": "واریز",

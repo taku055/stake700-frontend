@@ -234,7 +234,9 @@
   "GameGroup": {
     "More": "المزيد",
     "Casino Games": "ألعاب الكازينو",
-    "Live Casino": "كازينو مباشر"
+    "Live Casino": "كازينو مباشر",
+    "View All": "عرض الكل",
+    "Trending": "رائج"
   },
   "UserBalancePage": {
     "Deposit": "إيداع",

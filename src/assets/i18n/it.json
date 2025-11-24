@@ -234,7 +234,9 @@
   "GameGroup": {
     "More": "Altro",
     "Casino Games": "Giochi da Casinò",
-    "Live Casino": "Casino Live"
+    "Live Casino": "Casino Live",
+    "View All": "Vedi tutto",
+    "Trending": "Di tendenza"
   },
   "UserBalancePage": {
     "Deposit": "Deposito",

@@ -234,7 +234,9 @@
   "GameGroup": {
     "More": "Περισσότερα",
     "Casino Games": "Παιχνίδια Καζίνο",
-    "Live Casino": "Ζωντανό Καζίνο"
+    "Live Casino": "Ζωντανό Καζίνο",
+    "View All": "Προβολή όλων",
+    "Trending": "Τάσεις"
   },
   "UserBalancePage": {
     "Deposit": "Κατάθεση",

@@ -33,7 +33,7 @@ export default function TrendingGamesPanel() {
     <div className={styles.trendingPanel}>
       <div className={styles.titleBar}>
         <div className={styles.title}>
-          <div className={styles.text}>{t("Trending Games") || "Trending Games"}</div>
+          <div className={styles.text}>{t("Trending") || "Trending"}</div>
         </div>
       </div>
       <Swiper

@@ -234,7 +234,9 @@
   "GameGroup": {
     "More": "עוד",
     "Casino Games": "משחקי קזינו",
-    "Live Casino": "קזינו חי"
+    "Live Casino": "קזינו חי",
+    "View All": "הצג הכל",
+    "Trending": "פופולרי"
   },
   "UserBalancePage": {
     "Deposit": "הפקדה",
