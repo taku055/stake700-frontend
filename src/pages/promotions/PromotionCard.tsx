@@ -1,6 +1,9 @@
+import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
+
 interface PromotionCardProps {
   title: string;
   description?: string | null;
+  promotionId?: number;
   image: string;
   onClick?: () => void;
 }
@@ -8,13 +11,24 @@ interface PromotionCardProps {
 export default function PromotionCard({
   title,
   description,
+  promotionId,
   image,
   onClick,
 }: PromotionCardProps) {
+  const { handleNavigate } = useAffiliateNavigation();
+  
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else if (promotionId) {
+      // Navigate to article page with promotion ID
+      handleNavigate(`/promotions/${promotionId}`);
+    }
+  };
   return (
     <div
       className="flex flex-col overflow-hidden rounded-sm cursor-pointer"
-      onClick={onClick}
+      onClick={handleClick}
     >
       <img
         src={image}

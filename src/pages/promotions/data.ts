@@ -7,7 +7,7 @@ export const promotionData = [
   // { id: 4, title: "Accumulator Bonus 100%", image: `${baseUrl}Accumulator Bonus 100%.png` },
   { id: 5, title: "Bet Builder", image: `${baseUrl}Bet Builder.png` },
   { id: 6, title: "Boosted odds", image: `${baseUrl}Boosted odds.png` },
-  { id: 7, title: "Buy Credit Gift", image: `${baseUrl}Buy Credit Gift.png` },
+  // { id: 7, title: "Buy Credit Gift", image: `${baseUrl}Buy Credit Gift.png` },
   { id: 8, title: "Cashout", image: `${baseUrl}Cashout.png` },
   { id: 9, title: "Early Payout Offer from ICHANCY", image: `${baseUrl}Early Payout Offer from ICHANCY.png` },
   { id: 10, title: "Edit Bet", image: `${baseUrl}Edit Bet.png` },

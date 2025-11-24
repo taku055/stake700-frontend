@@ -3,6 +3,7 @@ import LivePage from "@/pages/live";
 import SportPage from "@/pages/sport";
 import CasinoLayout from "@/pages/casino";
 import PromotionsPage from "@/pages/promotions";
+import ArticlePage from "@/pages/promotions/ArticlePage";
 import TrebuchetPage from "@/pages/trebuchet";
 import HomePage from "@/pages/home";
 import NotFound404 from "@/pages/not-found";
@@ -31,6 +32,7 @@ export default function AppRoute() {
       <Route path="/game/:gameId" component={GamePageComponent} />
 
       <Route path="/promotions" component={PromotionsPage} />
+      <Route path="/promotions/:articleId" component={ArticlePage} />
       <Route path="/trebuchet" component={TrebuchetPage} />
       <Route path="/tombala" component={TombalaPage} />
       <Route path="/about-us" component={AboutUs} />

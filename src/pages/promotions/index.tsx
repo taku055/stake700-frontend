@@ -32,6 +32,7 @@ export default function PromotionPage() {
               title={promotion.title} 
               description={null}
               image={promotion.image}
+              promotionId={promotion.id}
             />
           ))}
         </div>
