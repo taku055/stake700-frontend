@@ -43,7 +43,7 @@ export const useTablist = () => {
         },
         {
           title: t("Casino"),
-          href: "/casino/slots?custom=1&category=top-slots",
+          href: "/casino/slots?custom=1&category=slot-top-slots",
           key: "slots",
           extra: ["/casino/tournaments"],
           icon: <img src="/images/icons/slot-icon.svg" alt="Slot" />,

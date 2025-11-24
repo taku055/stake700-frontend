@@ -17,7 +17,7 @@ export const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: strin
   },
   {
     name: "Top Slots",
-    path: "/casino/slots?custom=1&category=top-slots",
+    path: "/casino/slots?custom=1&category=slot-top-slots",
   },
   {
     name: "Popular Games",
@@ -91,7 +91,7 @@ const getCategoryIcon = (categoryName: string, path: string): string => {
   const pathLower = path.toLowerCase();
   
   // Map based on category name or path
-  if (name.includes("top slots") || pathLower.includes("top-slots")) {
+  if (name.includes("top slots") || pathLower.includes("slot-top-slots")) {
     return "/images/sidebar/top-slots.svg";
   }
   if (name.includes("all games") || pathLower.includes("all-games")) {
