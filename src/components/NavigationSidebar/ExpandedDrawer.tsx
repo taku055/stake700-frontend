@@ -1,5 +1,6 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { ChevronLeft, ChevronRight, Search } from "lucide-preact";
+import { Link } from "../common";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
 import NavigationItems from "./NavigationItems";
@@ -170,7 +171,7 @@ export default function ExpandedDrawer({
           <div className="p-4 border-b border-gray-700">
             <div className="flex flex-col gap-2">
               {topNavItems.map((item) => (
-                <a
+                <Link
                   key={item.key}
                   href={modifyHref(item.href)}
                   className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
@@ -185,7 +186,7 @@ export default function ExpandedDrawer({
                     className="w-10 h-10 flex-shrink-0 object-contain"
                   />
                   <span className="flex-1">{item.title}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

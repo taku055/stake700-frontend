@@ -10,6 +10,7 @@ import { localeState } from "@/state/localeState";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
 import { RTL_LANGUAGES } from "@/config/constants";
+import { Link } from "../common";
 
 interface MobileDrawerProps {
   mainNavItems: Array<{
@@ -169,7 +170,7 @@ export default function MobileDrawer({
           <div className="p-4 border-b border-gray-700">
             <div className="flex flex-col gap-2">
               {topNavItems.map((item) => (
-                <a
+                <Link
                   key={item.key}
                   href={modifyHref(item.href)}
                   className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
@@ -184,7 +185,7 @@ export default function MobileDrawer({
                     className="w-6 h-6 flex-shrink-0 object-contain"
                   />
                   <span className="flex-1">{item.title}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

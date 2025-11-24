@@ -13,6 +13,7 @@ import {
   DropdownTrigger,
 } from "@heroui/react";
 import { RTL_LANGUAGES } from "@/config/constants";
+import { Link } from "../common";
 
 const localeOptions = [
   { label: "Türkçe", value: "tr", flag: "tr" },
@@ -120,7 +121,7 @@ export default function CollapsedSidebar({
         {/* Navigation Icons */}
         <div className="flex flex-col items-center py-4 gap-2 flex-shrink-0">
           {topNavItems.map((item) => (
-            <a
+            <Link
               key={item.key}
               href={modifyHref(item.href)}
               className={`flex items-center justify-center w-12 h-12 rounded-lg transition-colors ${
@@ -135,7 +136,7 @@ export default function CollapsedSidebar({
                 alt={item.title}
                 className="w-10 h-10 object-contain"
               />
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -145,7 +146,7 @@ export default function CollapsedSidebar({
         {/* Category Icons */}
         <div className="flex flex-col items-center py-4 gap-2">
           {categoriesWithIcons.map((category, index) => (
-            <a
+            <Link
               key={index}
               href={modifyHref(category.path)}
               className="flex items-center justify-center w-10 h-10 rounded-lg transition-colors text-gray-300 hover:bg-gray-700 flex-shrink-0"
@@ -156,7 +157,7 @@ export default function CollapsedSidebar({
                 alt={category.name}
                 className="w-8 h-8 object-contain"
               />
-            </a>
+            </Link>
           ))}
         </div>
       </div>
