@@ -24,7 +24,7 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
   },
   {
     name: "Popular Games",
-    path: "/casino/slots?custom=1&category=popular-games",
+    path: "/casino/slots?custom=1&category=slot-popular",
   },
   {
     name: "New",
