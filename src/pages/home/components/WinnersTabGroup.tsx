@@ -5,6 +5,8 @@ import { tGame } from "@/types/tGame";
 import { useTranslations } from "@/context/I18nContext";
 import { DEFAULT_CURRENCY_SYMBOL, placeholderGameImage } from "@/config/constants";
 import { customGamesState } from "@/state/customGamesState";
+import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
+import { scrollToTop } from "@/helpers/scrollToTop";
 
 interface WinnerData {
   game: tGame;
@@ -18,6 +20,8 @@ interface WinnerCardProps {
 }
 
 const WinnerCard: FunctionalComponent<WinnerCardProps> = ({ winner, isLast = false }) => {
+  const { handleNavigate } = useAffiliateNavigation();
+
   // Abbreviate user ID (e.g., "user123456789" -> "user1...789")
   const abbreviateUserId = (userId: string): string => {
     if (userId.length <= 10) return userId;
@@ -29,9 +33,17 @@ const WinnerCard: FunctionalComponent<WinnerCardProps> = ({ winner, isLast = fal
     return `${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} NSP`;
   };
 
+  const handleCardClick = () => {
+    scrollToTop();
+    handleNavigate(`/game/${winner.game.id}`);
+  };
+
   return (
     <>
-      <div className="flex flex-row gap-3 py-3 hover:bg-gray-700/30 transition-colors rounded-lg px-2">
+      <div 
+        className="flex flex-row gap-3 py-3 hover:bg-gray-700/30 transition-colors rounded-lg px-2 cursor-pointer"
+        onClick={handleCardClick}
+      >
         {/* Game Image */}
         <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
           <Image
