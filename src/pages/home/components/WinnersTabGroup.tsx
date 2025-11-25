@@ -25,12 +25,12 @@ const WinnerCard: FunctionalComponent<WinnerCardProps> = ({ winner, isLast = fal
   // Abbreviate user ID (e.g., "user123456789" -> "user1...789")
   const abbreviateUserId = (userId: string): string => {
     if (userId.length <= 10) return userId;
-    return `${userId.substring(0, 3)}...${userId.substring(userId.length - 4)}`;
+    return `${userId.substring(0, 3)}****${userId.substring(userId.length - 4)}`;
   };
 
   // Format earning amount
   const formatEarning = (amount: number): string => {
-    return `${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} NSP`;
+    return `${amount} NSP`;
   };
 
   const handleCardClick = () => {
