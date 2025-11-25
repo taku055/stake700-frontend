@@ -28,7 +28,7 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
   },
   {
     name: "New",
-    path: "/casino/slots?custom=0&category=new",
+    path: "/casino/slots?custom=1&category=slot-new",
   },
   {
     name: "Jackpots",
