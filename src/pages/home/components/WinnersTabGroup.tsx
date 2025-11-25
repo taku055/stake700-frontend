@@ -2,10 +2,9 @@ import { FunctionalComponent } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import { Tabs, Tab, Image } from "@heroui/react";
 import { tGame } from "@/types/tGame";
-import { apiGetGames } from "@/api/common/apiGetGames";
 import { useTranslations } from "@/context/I18nContext";
-import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
-import { placeholderGameImage } from "@/config/constants";
+import { DEFAULT_CURRENCY_SYMBOL, placeholderGameImage } from "@/config/constants";
+import { customGamesState } from "@/state/customGamesState";
 
 interface WinnerData {
   game: tGame;
@@ -15,46 +14,52 @@ interface WinnerData {
 
 interface WinnerCardProps {
   winner: WinnerData;
+  isLast?: boolean;
 }
 
-const WinnerCard: FunctionalComponent<WinnerCardProps> = ({ winner }) => {
+const WinnerCard: FunctionalComponent<WinnerCardProps> = ({ winner, isLast = false }) => {
   // Abbreviate user ID (e.g., "user123456789" -> "user1...789")
   const abbreviateUserId = (userId: string): string => {
     if (userId.length <= 10) return userId;
-    return `${userId.substring(0, 4)}...${userId.substring(userId.length - 3)}`;
+    return `${userId.substring(0, 3)}...${userId.substring(userId.length - 4)}`;
   };
 
   // Format earning amount
   const formatEarning = (amount: number): string => {
-    return `${DEFAULT_CURRENCY_SYMBOL}${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    return `${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} NSP`;
   };
 
   return (
-    <div className="flex flex-row items-center gap-3 bg-[var(--background-secondary)] rounded-lg p-3 hover:bg-gray-700 transition-colors">
-      {/* Game Image */}
-      <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
-        <Image
-          src={winner.game.img_custom || winner.game.img || placeholderGameImage}
-          fallbackSrc={placeholderGameImage}
-          alt={winner.game.name}
-          className="w-full h-full object-cover"
-          radius="lg"
-        />
-      </div>
+    <>
+      <div className="flex flex-row gap-3 py-3 hover:bg-gray-700/30 transition-colors rounded-lg px-2">
+        {/* Game Image */}
+        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+          <Image
+            src={winner.game.img_custom || winner.game.img || placeholderGameImage}
+            fallbackSrc={placeholderGameImage}
+            alt={winner.game.name}
+            className="w-16 h-16 object-cover"
+            radius="lg"
+          />
+        </div>
 
-      {/* Game Name, User ID, and Earning */}
-      <div className="flex-1 flex flex-row items-center gap-3 min-w-0 overflow-hidden">
-        <span className="text-white text-sm font-medium truncate flex-1 min-w-0">
-          {winner.game.name}
-        </span>
-        <span className="text-gray-400 text-xs flex-shrink-0 whitespace-nowrap">
-          {abbreviateUserId(winner.userId)}
-        </span>
-        <span className="text-[var(--primary-color)] text-sm font-semibold flex-shrink-0 whitespace-nowrap">
-          {formatEarning(winner.earning)}
-        </span>
+        {/* Game Name, User ID, and Earning */}
+        <div className="flex flex-col gap-1.5 min-w-0">
+          <span className="text-white text-sm font-medium truncate">
+            {winner.game.name}
+          </span>
+          <span className="text-gray-400 text-xs">
+            {abbreviateUserId(winner.userId)}
+          </span>
+          <span className="text-[var(--primary-color)] text-sm font-semibold">
+            {formatEarning(winner.earning)}
+          </span>
+        </div>
       </div>
-    </div>
+      {!isLast && (
+        <div className="h-px bg-gray-700/50 w-full" />
+      )}
+    </>
   );
 };
 
@@ -64,24 +69,24 @@ export const WinnersTabGroup: FunctionalComponent = () => {
   const [recentWinners, setRecentWinners] = useState<WinnerData[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Mock data generator
-  const generateMockWinners = (games: tGame[]): WinnerData[] => {
+  // Mock data generator for top winners
+  const generateTopWinnersMock = (games: tGame[]): WinnerData[] => {
     const userIds = [
-      "user123456789",
-      "player987654321",
-      "gamer456789123",
-      "winner789123456",
-      "champion123789456",
-      "proplayer456123789",
-      "master789456123",
-      "legend123456987",
-      "hero456789321",
-      "star789123654",
+      "350****6663",
+      "348****8636",
+      "350****6663",
+      "350****6663",
+      "350****6663",
+      "350****6663",
+      "232****8354",
+      "350****6663",
+      "341****6024",
+      "341****3024",
     ];
 
     const earnings = [
-      12500.50, 8750.25, 15200.75, 9800.00, 11250.30,
-      13400.60, 7650.40, 18900.90, 10200.15, 15600.80
+      140300000, 127440000, 126500000, 115000000, 115000000,
+      115000000, 114300228.6, 106950000, 103500000, 103500000,
     ];
 
     return games.slice(0, 10).map((game, index) => ({
@@ -91,25 +96,46 @@ export const WinnersTabGroup: FunctionalComponent = () => {
     }));
   };
 
+  // Mock data generator for recent winners
+  const generateRecentWinnersMock = (games: tGame[]): WinnerData[] => {
+    const userIds = [
+      "351***5726",
+      "317***9133",
+      "351***5726",
+      "270***2696",
+      "305***4161",
+      "317***9133",
+    ];
+
+    const earnings = [
+      177520.95, 600000, 304800.6, 162000, 144000,
+      400000, 4200.40, 5100.90, 3400.15, 4600.80
+    ];
+
+    return games.slice(0, 6).map((game, index) => ({
+      game,
+      userId: userIds[index] || `user${Math.random().toString(36).substring(7)}`,
+      earning: earnings[index] || Math.random() * 10000,
+    }));
+  };
+
   useEffect(() => {
-    const loadGames = async () => {
+    const loadGames = () => {
       setLoading(true);
       try {
-        // Load top winners - you may need to adjust the API call based on your backend
-        const topWinnersData = await apiGetGames({
-          limit: 10,
-          // Add any specific params for top winners
-        });
-        const games = topWinnersData.data || [];
-        setTopWinners(generateMockWinners(games));
+        // Load top winners from custom games with "slot-popular" category
+        const topWinnersGames = customGamesState.value
+          .filter((c) => c.category === "slot-popular")
+          .slice(0, 10)
+          .map((e) => e.Game as tGame);
+        setTopWinners(generateTopWinnersMock(topWinnersGames));
 
-        // Load recent winners - you may need to adjust the API call based on your backend
-        const recentWinnersData = await apiGetGames({
-          limit: 10,
-          // Add any specific params for recent winners
-        });
-        const recentGames = recentWinnersData.data || [];
-        setRecentWinners(generateMockWinners(recentGames));
+        // Load recent winners from custom games with "slot-new" category
+        const recentWinnersGames = customGamesState.value
+          .filter((c) => c.category === "slot-new")
+          .slice(0, 10)
+          .map((e) => e.Game as tGame);
+        setRecentWinners(generateRecentWinnersMock(recentWinnersGames));
       } catch (error) {
         console.error("Error loading winners:", error);
         // Use empty mock data on error
@@ -121,10 +147,10 @@ export const WinnersTabGroup: FunctionalComponent = () => {
     };
 
     loadGames();
-  }, []);
+  }, [customGamesState.value]);
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-[var(--bar-background-color)] rounded-lg">
       <Tabs
         aria-label="Winners tabs"
         fullWidth
@@ -137,15 +163,19 @@ export const WinnersTabGroup: FunctionalComponent = () => {
         }}
       >
         <Tab key="top-winners" title={<div className="flex flex-row items-center gap-2 justify-center"> <img src="/images/icons/topwinners.svg" alt="Top Winners" className="w-[24px] h-[24px]" /> <span> {t("Top Winners") || "Top Winners"} </span> </div>}>
-          <div className="h-[300px] overflow-y-auto p-4">
-            <div className="flex flex-col gap-2">
+          <div className="h-[300px] overflow-y-auto">
+            <div className="flex flex-col">
               {loading ? (
                 <div className="text-center text-gray-400 py-8">
                   {t("Loading") || "Loading..."}
                 </div>
               ) : topWinners.length > 0 ? (
                 topWinners.map((winner, index) => (
-                  <WinnerCard key={`${winner.game.id}-${index}`} winner={winner} />
+                  <WinnerCard 
+                    key={`${winner.game.id}-${index}`} 
+                    winner={winner} 
+                    isLast={index === topWinners.length - 1}
+                  />
                 ))
               ) : (
                 <div className="text-center text-gray-400 py-8">
@@ -159,15 +189,19 @@ export const WinnersTabGroup: FunctionalComponent = () => {
           key="recent-winners"
           title={<div className="flex flex-row items-center gap-2 justify-center"> <img src="/images/icons/recentwinners.svg" alt="Recent Winners" className="w-[24px] h-[24px]" /> <span> {t("Recent Winners") || "Recent Winners"} </span> </div>}
         >
-          <div className="h-[300px] overflow-y-auto p-4">
-            <div className="flex flex-col gap-2">
+          <div className="h-[300px] overflow-y-auto">
+            <div className="flex flex-col">
               {loading ? (
                 <div className="text-center text-gray-400 py-8">
                   {t("Loading") || "Loading..."}
                 </div>
               ) : recentWinners.length > 0 ? (
                 recentWinners.map((winner, index) => (
-                  <WinnerCard key={`${winner.game.id}-${index}`} winner={winner} />
+                  <WinnerCard 
+                    key={`${winner.game.id}-${index}`} 
+                    winner={winner} 
+                    isLast={index === recentWinners.length - 1}
+                  />
                 ))
               ) : (
                 <div className="text-center text-gray-400 py-8">
