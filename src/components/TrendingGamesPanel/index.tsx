@@ -17,7 +17,7 @@ export default function TrendingGamesPanel() {
   useEffect(() => {
     // Fetch custom games with "trending" category
     const trendingGames = customGamesState.value
-      .filter((c) => c.category === "slot-top-slots")
+      .filter((c) => c.category === "trending")
       .slice(0, 20)
       .map((e) => e.Game as tGame);
     
