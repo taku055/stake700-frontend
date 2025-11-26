@@ -1,5 +1,6 @@
 import { useLocation } from "preact-iso";
 import { useMemo, useCallback } from "preact/hooks";
+import { scrollToTop } from "@/helpers/scrollToTop";
 
 export const REF_STORAGE_KEY = "ref";
 
@@ -34,8 +35,13 @@ export function useAffiliateNavigation() {
 
   const handleNavigate = useCallback(
     (path: string) => {
+      scrollToTop();
       const urlWithRef = addRefToPath(path, refCode);
       route(urlWithRef, true);
+      // Ensure scroll happens after navigation completes
+      setTimeout(() => {
+        scrollToTop();
+      }, 100);
     },
     [refCode, route]
   );

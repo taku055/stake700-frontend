@@ -25,7 +25,7 @@ export function useCategoryFromUrl() {
     
     // If no query params, default to "All Games"
     if (!location.query.custom && !location.query.category && !location.query.provider) {
-      const allGamesCategory = categories.find(cat => cat.name === "All Games");
+      const allGamesCategory = categories.find(cat => cat.name === "Top Slots");
       return allGamesCategory?.path || categoryPath;
     }
     
