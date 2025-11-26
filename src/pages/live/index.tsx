@@ -27,7 +27,7 @@ export default function Live() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await apiGetProviders("livecasino");
+        const res = await apiGetProviders("LIVECASINO");
         setProviders(res);
       } catch (error) {
         console.error("Error loading providers:", error);
