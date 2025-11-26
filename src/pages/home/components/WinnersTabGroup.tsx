@@ -6,6 +6,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { DEFAULT_CURRENCY_SYMBOL, placeholderGameImage } from "@/config/constants";
 import { customGamesState } from "@/state/customGamesState";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
+import { scrollToTop } from "@/helpers/scrollToTop";
 
 interface WinnerData {
   game: tGame;
@@ -33,6 +34,7 @@ const WinnerCard: FunctionalComponent<WinnerCardProps> = ({ winner, isLast = fal
   };
 
   const handleCardClick = () => {
+    scrollToTop();
     handleNavigate(`/game/${winner.game.id}`);
   };
 

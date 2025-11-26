@@ -7,7 +7,7 @@ export const getBetPromotionCards = (t: (key: string) => string) => [
     image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/cards/casino.webp",
     content: t("bet_promotion_casino_content") || "Top-rated Casino Games from renowned providers in the world!\n venture into the world of unique live casino show games.",
     buttonText: t("Bet on Slots") || "Bet on Slots",
-    link: "/casino/slots",
+    link: "/casino/slots?custom=1&category=slot-top-slots",
   },
   {
     title: t("bet_promotion_sports_title") || "Sports Bets",
