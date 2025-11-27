@@ -40,6 +40,7 @@ export type tUser = {
   smUserCursor: number; //Last support message id seen by user
   profitPercent?: number;
   isCallGroup: boolean;
+  cash_details: number[];
 
   promotionInstanceId?: bigint | null;
   PromotionInstance?: tPromotionInstance | null;

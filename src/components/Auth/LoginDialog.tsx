@@ -15,8 +15,8 @@ import {
   ModalHeader,
   Input,
   Checkbox,
-  Switch,
 } from "@/components/common";
+import { Select, SelectItem } from "@heroui/react";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
 import { registerOpenedState } from "@/state/registerOpenedState";
 
@@ -26,7 +26,7 @@ interface ILoginComponentProps {
 }
 export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
   const [email, setEmail] = useState("");
-  const [isAgent, setIsAgent] = useState(false);
+  const [userType, setUserType] = useState<string>("NORMAL");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [remember, setRemember] = useState(false);
@@ -39,7 +39,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
     setEmail("");
     setPassword("");
     setRemember(false);
-    setIsAgent(false);
+    setUserType("NORMAL");
 
     if (isOpen) {
       setTimeout(() => {
@@ -66,7 +66,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
         const res = await apiLogin(
           email,
           password,
-          isAgent ? "AGENT" : "NORMAL"
+          userType || "NORMAL"
         );
         userState.value = res.user;
         accessTokenState.value = res.accessToken;
@@ -93,7 +93,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
         setLoading(false);
       }
     },
-    [remember, email, password, isAgent, t]
+    [remember, email, password, userType, t]
   );
 
   return (
@@ -161,12 +161,23 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   input: "text-white",
                 }}
               />
-              <div className="flex flex-row text-[14px] items-center px-[8px] justify-between text-[#FFFFFFB2]">
-                <div>
-                  <span> {t("are_you_an_agent")} </span>
-                </div>
-                <Switch isSelected={isAgent} onValueChange={setIsAgent} />
-              </div>
+              <Select
+                label={t("are_you_an_agent")}
+                placeholder={t("select_user_type")}
+                selectedKeys={userType ? [userType] : []}
+                onSelectionChange={(keys) =>
+                  setUserType(Array.from(keys as Set<string>)[0] || "NORMAL")
+                }
+                classNames={{
+                  trigger: "bg-[#fff1] border-none rounded-sm!",
+                  value: "text-white",
+                }}
+              >
+                <SelectItem key="NORMAL">User</SelectItem>
+                <SelectItem key="AGENT">Agent</SelectItem>
+                <SelectItem key="SUPERAGENT">Super Agent</SelectItem>
+                <SelectItem key="AREA_MANAGER">Area Manager</SelectItem>
+              </Select>
               <div className="flex flex-row px-[8px]">
                 <Checkbox isSelected={remember} onValueChange={setRemember}>
                   <span className="text-[14px] text-[#FFFFFFB2]">
@@ -192,21 +203,6 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
               >
                 {t("forgot_password")}
               </button>
-              {/* <img
-                src="/images/login_ad.png"
-                alt="login_ad"
-                className="w-full"
-              />
-              <div className="flex items-center justify-center gap-[12px] mt-[20px]">
-                <img
-                  src="/images/icons/login_contact_support.png"
-                  alt="contact_support"
-                  className="w-[16px] h-[16px]"
-                />
-                <span className="text-[14px] text-[#FFFFFFB2]">
-                  {t("contact_support")}
-                </span>
-              </div> */}
             </div>
           </form>
         </ModalBody>

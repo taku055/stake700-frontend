@@ -12,4 +12,5 @@ export type tAgent = {
   totalWithdraw?: number;
   password1?: string | null;
   profitPercentage: number;
+  cash_details: number[];
 };
