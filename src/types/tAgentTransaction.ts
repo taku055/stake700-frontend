@@ -7,4 +7,5 @@ export type tAgentTransaction = {
   cash: number;
   createdAt: Date;
   note?: string | null;
+  cash_details: number[];
 };

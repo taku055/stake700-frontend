@@ -68,6 +68,7 @@ export type tTransaction = {
   tokenName?: string;
   providerId?: string;
   provider?: string;
+  cash_details: number[];
 };
 
 
@@ -83,4 +84,5 @@ export type tMergedTransaction = {
   providerId: string;
   win_amount: number;
   eventType?: string;
+  cash_details: number[];
 };

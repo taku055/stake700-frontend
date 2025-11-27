@@ -7,4 +7,5 @@ export type tProvider = {
   added_slot: boolean;
   count: number;
   gameSource: "IGP" | "SOFT";
+  gameType: string[];
 };
