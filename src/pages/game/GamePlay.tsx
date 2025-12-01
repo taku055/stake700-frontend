@@ -13,6 +13,7 @@ import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
 import { useState, useRef, useCallback } from "preact/hooks";
 import { localeState } from "@/state/localeState";
+import { currencyState } from "@/state/currencyState";
 
 interface IGamePlayProps {
   game?: tGame;
@@ -56,6 +57,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
             gameId: game?.id || "",
             isMobile,
             language: localeState.value || "en",
+            currency: currencyState.value.unit,
           });
 
           if (typeof session === "string") {
@@ -113,7 +115,15 @@ export default function GamePlay({ game }: IGamePlayProps) {
       }
       setLoading(false);
     },
-    [game?.id, isMobile, userState.value?.id, t, containerRef.current, localeState.value]
+    [
+      game?.id,
+      isMobile,
+      userState.value?.id,
+      t,
+      containerRef.current,
+      localeState.value,
+      currencyState.value.unit,
+    ]
   );
 
   return (
@@ -122,14 +132,14 @@ export default function GamePlay({ game }: IGamePlayProps) {
       style={
         fullscreen
           ? {
-            position: "fixed",
-            left: "0px",
-            top: "0px",
-            width: "100%",
-            height: "100%",
-            zIndex: 101,
-            borderRadius: "0px",
-          }
+              position: "fixed",
+              left: "0px",
+              top: "0px",
+              width: "100%",
+              height: "100%",
+              zIndex: 101,
+              borderRadius: "0px",
+            }
           : {}
       }
     >

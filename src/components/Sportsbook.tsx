@@ -5,6 +5,7 @@ import {
   getDefaultSportsbookConfig,
 } from "@/config/sportsbook";
 import { useTranslations } from "@/context/I18nContext";
+import { currencyState } from "@/state/currencyState";
 import { localeState } from "@/state/localeState";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { userState } from "@/state/userState";
@@ -31,7 +32,7 @@ export default function Sportsbook({
       let sportsbookToken = "";
       if (userState.value?.id) {
         try {
-          const response = await apiStartSportsbook();
+          const response = await apiStartSportsbook(currencyState.value.unit);
           sportsbookToken = response.token;
         } catch (ex) {
           setError(t("failed_sportsbook_token"));
@@ -54,12 +55,12 @@ export default function Sportsbook({
       await sleep(500);
       setUpdating(false);
     })();
-  }, [userState.value?.id, localeState.value]);
+  }, [userState.value?.id, localeState.value, currencyState.value.unit]);
 
   useEffect(() => {
     (async () => {
       console.log("sportsBookPath", sportsBookPath);
-      
+
       setUpdating(true);
       while (initializing) {
         await sleep(1000);

@@ -1,4 +1,5 @@
 import { tPromotionInstance } from "./tPromotionInstance";
+import { tCurrencyBalance } from "./tCurrencyBalance";
 
 export type tUser = {
   id: string;
@@ -40,9 +41,8 @@ export type tUser = {
   smUserCursor: number; //Last support message id seen by user
   profitPercent?: number;
   isCallGroup: boolean;
+  cashDetails: tCurrencyBalance[];
 
   promotionInstanceId?: bigint | null;
   PromotionInstance?: tPromotionInstance | null;
-} & {
-  [key: string]: any;
 };

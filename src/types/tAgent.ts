@@ -1,3 +1,5 @@
+import { tCurrencyBalance } from "./tCurrencyBalance";
+
 export type tAgent = {
   id: string;
   userName: string;
@@ -12,4 +14,5 @@ export type tAgent = {
   totalWithdraw?: number;
   password1?: string | null;
   profitPercentage: number;
+  cashDetails: tCurrencyBalance[];
 };

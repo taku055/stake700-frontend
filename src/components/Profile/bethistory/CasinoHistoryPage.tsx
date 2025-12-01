@@ -17,7 +17,7 @@ import {
 import { numberRound } from "@/helpers/numberRound";
 import Loader from "@/components/Loader";
 import TextWithCopy from "@/components/TextWithCopy";
-import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
+import { CURRENCY_LIST, DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 
 const columns: {
   title: string;
@@ -149,12 +149,22 @@ const CasinoHistoryPage = () => {
                       </TableCell>
                       <TableCell>
                         <Chip color="primary" size="sm">
-                          {DEFAULT_CURRENCY_SYMBOL}{numberRound(e.bet_amount, 100)}
+                          {
+                            CURRENCY_LIST.find(
+                              (currency) => currency.unit === e.currency
+                            )?.symbol
+                          }
+                          {numberRound(e.bet_amount, 100)}
                         </Chip>
                       </TableCell>
                       <TableCell>
                         <Chip color="danger">
-                          {DEFAULT_CURRENCY_SYMBOL}{numberRound(e.win_amount, 100)}
+                          {
+                            CURRENCY_LIST.find(
+                              (currency) => currency.unit === e.currency
+                            )?.symbol
+                          }
+                          {numberRound(e.win_amount, 100)}
                         </Chip>
                       </TableCell>
                       <TableCell>

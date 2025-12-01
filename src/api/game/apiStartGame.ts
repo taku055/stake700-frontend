@@ -1,9 +1,11 @@
 import { instance } from "../instance";
+import { eTransactionCurrency } from "@/types/tTransaction";
 
 export type tStartGameDto = {
   gameId: string;
   isMobile: boolean;
   language?: string;
+  currency: eTransactionCurrency;
 };
 
 export type tIGPGameResponse = {

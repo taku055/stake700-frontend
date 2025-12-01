@@ -1,3 +1,5 @@
+import { eTransactionCurrency } from "@/types/tTransaction";
+
 export const SOLANA_CHAIN_ID = 900;
 export const BITCOIN_CHAIN_ID = 8086;
 export const TRON_CHAIN_ID = 728126428;
@@ -164,46 +166,25 @@ export const PAYMENT_METHOD_LIST = [
   { key: "jeton", title: "Jeton", logo: "/images/payments/jeton.svg" },
 ];
 
-const currencies: {
+export const CURRENCY_LIST: {
   symbol: string;
   name: string;
-  unit: string;
+  unit: eTransactionCurrency;
 }[] = [
   {
-    symbol: "₺",
-    name: "Turkish Lira",
-    unit: "TRY",
-  },
-  { symbol: "$", name: "US Dollar", unit: "USD" },
-  { symbol: "€", name: "Euro", unit: "EUR" },
-  {
     symbol: "£",
-    name: "British Pound",
-    unit: "GBP",
+    name: "Syrian Pound",
+    unit: eTransactionCurrency.SYP,
   },
-  {
-    symbol: "¥",
-    name: "Japanese Yen",
-    unit: "JPY",
-  },
-  {
-    symbol: "₹",
-    name: "Indian Rupee",
-    unit: "INR",
-  },
-  {
-    symbol: "₦",
-    name: "Nigerian Naira",
-    unit: "NGN",
-  },
+  { symbol: "$", name: "US Dollar", unit: eTransactionCurrency.USD },
 ];
 
 export const DEFAULT_CURRENCY_SYMBOL =
-  currencies.find(
+  CURRENCY_LIST.find(
     (currency) => currency.unit === import.meta.env.VITE_DEFAULT_CURRENCY
   )?.symbol || "$";
 
-export const AFFILIATE_COMMISSION_PERCENTAGE = import.meta.env.VITE_AFFILIATE_COMMISSION_PERCENTAGE;
+export const AFFILIATE_COMMISSION_PERCENTAGE = import.meta.env
+  .VITE_AFFILIATE_COMMISSION_PERCENTAGE;
 
-export const PRELOAD_IMAGE_URLS = [
-];
+export const PRELOAD_IMAGE_URLS = [];
