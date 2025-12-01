@@ -5,8 +5,6 @@ export type tBalance = {
   bonus: number;
   locked: number;
 
-  cash_details: number[];
-
   promotionInstanceId?: bigint | null;
   PromotionInstance?: tPromotionInstance | null;
 };
