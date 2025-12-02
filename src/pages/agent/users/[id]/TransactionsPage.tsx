@@ -85,6 +85,7 @@ export default function TransactionsPage({
             <TableHeader>
               <TableColumn>{t("Id")}</TableColumn>
               <TableColumn>{t("Type")}</TableColumn>
+              <TableColumn>{t("Currency")}</TableColumn>
               <TableColumn>{t("Amount")}</TableColumn>
               <TableColumn>{t("Created At")}</TableColumn>
               <TableColumn>{t("Note")}</TableColumn>
@@ -106,6 +107,7 @@ export default function TransactionsPage({
                       </span>
                     )}
                   </TableCell>
+                  <TableCell>{e.currency}</TableCell>
                   <TableCell>{e.cash}</TableCell>
                   <TableCell>
                     {moment(e.createdAt).format("YYYY-MM-DD hh:mm A")}

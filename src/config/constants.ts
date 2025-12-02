@@ -177,6 +177,8 @@ export const CURRENCY_LIST: {
     unit: eTransactionCurrency.SYP,
   },
   { symbol: "$", name: "US Dollar", unit: eTransactionCurrency.USD },
+  { symbol: "€", name: "Euro", unit: eTransactionCurrency.EUR },
+  { symbol: "₺", name: "Turkish Lira", unit: eTransactionCurrency.TRY },
 ];
 
 export const DEFAULT_CURRENCY_SYMBOL =

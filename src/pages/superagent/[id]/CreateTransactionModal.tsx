@@ -17,16 +17,19 @@ import { toast } from "@/helpers/toast";
 
 import { useTranslations } from "@/context/I18nContext";
 import { Button } from "@heroui/react";
+import { eTransactionCurrency } from "@/types/tTransaction";
+import CurrencySelector from "@/components/CurrencySelector";
+import { tCurrencyBalance } from "@/types/tCurrencyBalance";
 
 interface CreateTransactionModalProps {
   agentId: string;
   isDeposit: boolean;
   isOpen: boolean;
-  balance: number;
+  agentBalance: tCurrencyBalance[];
   onClose: () => void;
   onCreated: (
-    newAgent: tAgent,
-    newSuperagent: tAgent,
+    newAgent: tCurrencyBalance,
+    newSuperagent: tCurrencyBalance,
     statistics: tTransactionStatistics
   ) => void;
 }
@@ -35,7 +38,7 @@ export default function CreateTransactionModal({
   agentId,
   isDeposit,
   isOpen,
-  balance,
+  agentBalance,
   onClose,
   onCreated,
 }: CreateTransactionModalProps) {
@@ -43,6 +46,9 @@ export default function CreateTransactionModal({
   const [cash, setCash] = useState("");
   const [note, setNote] = useState("");
   const toastT = useTranslations("ToastMessages");
+  const [currency, setCurrency] = useState<eTransactionCurrency>(
+    eTransactionCurrency.USD
+  );
 
   useEffect(() => {
     setCash("");
@@ -60,7 +66,17 @@ export default function CreateTransactionModal({
       return;
     }
 
-    if (!isDeposit && balance < +cash) {
+    const superagentCurrencyBalance =
+      userState.value.cashDetails.find((b) => b.currency === currency)?.amount || 0;
+    const agentCurrencyBalance =
+      agentBalance.find((b) => b.currency === currency)?.amount || 0;
+
+    if (!isDeposit && agentCurrencyBalance < +cash) {
+      toast.error(toastT("validation.balance_low"));
+      return;
+    }
+
+    if (isDeposit && superagentCurrencyBalance < +cash) {
       toast.error(toastT("validation.balance_low"));
       return;
     }
@@ -69,6 +85,7 @@ export default function CreateTransactionModal({
       setLoading(true);
       const res = await apiAdminCreateSuperTransaction(
         agentId,
+        currency,
         +cash,
         isDeposit,
         note,
@@ -86,25 +103,30 @@ export default function CreateTransactionModal({
       }
     }
     setLoading(false);
-  }, [agentId, cash, note]);
+  }, [agentId, cash, note, currency]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalContent  className="bg-[var(--background)]">
+      <ModalContent className="bg-[var(--background)]">
         <ModalHeader className="flex flex-col gap-1">
           {isDeposit ? "Deposit" : "Withdraw"}
         </ModalHeader>
         <ModalBody className="flex flex-col gap-2">
-          <Input
-            autoFocus
-            endContent={<FaDollarSign size={16} />}
-            label="Amount"
-            placeholder="Enter the amount"
-            variant="bordered"
-            disabled={loading}
-            value={cash}
-            onChange={(e) => setCash((e.target as HTMLInputElement).value)}
-          />
+          <div className="flex items-center gap-2">
+            <CurrencySelector
+              value={currency}
+              onChange={(currency) => setCurrency(currency)}
+            />
+            <Input
+              autoFocus
+              label="Amount"
+              placeholder="Enter the amount"
+              variant="bordered"
+              disabled={loading}
+              value={cash}
+              onChange={(e) => setCash((e.target as HTMLInputElement).value)}
+            />
+          </div>
           <Input
             endContent={<FaComment size={16} />}
             label="Note"

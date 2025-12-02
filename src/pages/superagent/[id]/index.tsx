@@ -14,6 +14,8 @@ import AgentTransactionsPage from "./AgentTransactionsPage";
 import { useTranslations } from "@/context/I18nContext";
 import { useLocation } from "preact-iso";
 import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
+import { tCurrencyBalance } from "@/types/tCurrencyBalance";
+import { multipleBalance } from "@/helpers/multipleBalance";
 
 interface IAgentDetailPageProps {
   agentId: string;
@@ -66,20 +68,42 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
   };
 
   const onCreatedTransaction = (
-    newAgent: tAgent,
-    newSuperagent: tAgent,
+    newAgent: tCurrencyBalance,
+    newSuperagent: tCurrencyBalance,
     statistics: tTransactionStatistics
   ) => {
-    setAgent((prev) =>
-      prev ? { ...prev, cash: newAgent.cash, ...statistics } : undefined
-    );
+    setAgent((prev) => {
+      if (!prev) return prev;
+      const newCashDetails = [...prev.cashDetails];
+      const i = newCashDetails.findIndex(
+        (c) => c.currency === newAgent.currency
+      );
+      if (i !== -1) {
+        newCashDetails[i] = newAgent;
+      } else {
+        newCashDetails.push(newAgent);
+      }
+      return { ...prev, cashDetails: newCashDetails };
+    });
+
     if (userState.value?.isSuperAgent) {
+      const newCashDetails = [...userState.value.cashDetails];
+      const i = newCashDetails.findIndex(
+        (c) => c.currency === newSuperagent.currency
+      );
+      if (i !== -1) {
+        newCashDetails[i] = newSuperagent;
+      } else {
+        newCashDetails.push(newSuperagent);
+      }
+
       userState.value = {
         ...userState.value,
-        cash: newSuperagent.cash,
+        cashDetails: newCashDetails,
         ...statistics,
       };
     }
+
     setOpenModal(false);
   };
 
@@ -112,8 +136,7 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
         <div className="flex">
           <label className="mr-1">Balance</label>
           <span className="text-white">
-            {DEFAULT_CURRENCY_SYMBOL}
-            {agent?.cash || 0}
+            {multipleBalance(agent?.cashDetails || [])}
           </span>
         </div>
         <div className="flex">
@@ -175,7 +198,7 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
       </Tabs>
 
       <CreateTransactionModal
-        balance={agent?.cash || 0}
+        agentBalance={agent?.cashDetails || []}
         agentId={agentId}
         isDeposit={isDeposit}
         isOpen={openModal}

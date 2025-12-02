@@ -20,6 +20,8 @@ import TextWithCopy from "@/components/TextWithCopy";
 import { numberRound } from "@/helpers/numberRound";
 import { userState } from "@/state/userState";
 import { useTranslations } from "@/context/I18nContext";
+import { multipleBalance } from "@/helpers/multipleBalance";
+import BackButton from "@/components/BackButton";
 
 export default function UsersPage() {
   const [data, setData] = useState<tUser[]>([]);
@@ -57,6 +59,7 @@ export default function UsersPage() {
     <div>
       <div>
         <div className="flex items-center p-3 justify-between">
+        <BackButton href="/agent" />
           <h1 className="page-title">{t("Users")}</h1>
           <div className="flex items-center">
             <Button
@@ -115,7 +118,7 @@ export default function UsersPage() {
                       {e.userName}
                     </a>
                   </TableCell>
-                  <TableCell>{numberRound(e.cash, 1000)}</TableCell>
+                  <TableCell>{multipleBalance(e.cashDetails)}</TableCell>
                   <TableCell>
                     {moment(e.createdAt).format("YYYY-MM-DD HH:mm")}
                   </TableCell>

@@ -1,6 +1,7 @@
 import { tTransactionStatistics } from "@/types/tTransactionStatistics";
 import { instance } from "../instance";
 import { tBalance } from "@/types/tBalance";
+import { eTransactionCurrency } from "@/types/tTransaction";
 
 export type tSubuserCreateTxRes = {
   agent: tBalance;
@@ -10,6 +11,7 @@ export type tSubuserCreateTxRes = {
 
 export const apiAgentCreateUserTransaction = async (
   userId: string,
+  currency: eTransactionCurrency,
   cash: number,
   isDeposit: boolean,
   note: string
@@ -20,6 +22,7 @@ export const apiAgentCreateUserTransaction = async (
       cash,
       isDeposit,
       note,
+      currency,
     }
   );
   return res.data;

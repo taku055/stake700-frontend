@@ -6,6 +6,7 @@ import { userState } from "@/state/userState";
 import { apiAgentGetSubuserCount } from "@/api/agent/apiAgentGetSubuserCount";
 import PlatformAnalysis from "./PlatformAnalysis";
 import { useTranslations } from "@/context/I18nContext";
+import { Link } from "@/components/common";
 
 export default function Dashboard() {
   const [userCount, setUserCount] = useState(0);
@@ -27,7 +28,9 @@ export default function Dashboard() {
   return (
     <div className={styles.page}>
       <div className="flex gap-4">
-        <DashboardCard icon={<User />} title={t("Users")} value={userCount} />
+        <Link href="/agent/users">
+          <DashboardCard icon={<User />} title={t("Users")} value={userCount} />
+        </Link>
       </div>
       <PlatformAnalysis />
     </div>

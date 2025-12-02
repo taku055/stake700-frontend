@@ -1,9 +1,11 @@
+import { eTransactionCurrency } from "@/types/tTransaction";
 import { instance } from "../instance";
 import queryString from "query-string";
 
 export type tSubuserTransactionParams = {
   startDate?: number;
   endDate?: number;
+  currency: eTransactionCurrency;
 };
 
 export const apiAgentGetSubuserTransactionSum = async (
