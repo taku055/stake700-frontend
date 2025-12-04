@@ -62,9 +62,9 @@ import ruDefinition from "@/assets/i18n/ru.json";
 import trDefinition from "@/assets/i18n/tr.json";
 import { globalLoadingState } from "@/state/globalLoadingState";
 import Loading from "@/components/Loading";
-import Support from "@/components/Chat/Support";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
 import { useRTL } from "@/hooks/useRTL";
+import Maintenance from "@/components/Maintenance";
 
 const i18nDefinitions = {
   tr: trDefinition,
@@ -391,6 +391,8 @@ export default function GlobalServiceProvider({
               },
             }}
           />
+
+          <Maintenance />
         </I18nProvider>
       </LocationProvider>
     </HeroUIProvider>
