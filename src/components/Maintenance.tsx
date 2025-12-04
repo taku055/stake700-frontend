@@ -16,7 +16,7 @@ export default function Maintenance() {
 
   return (
     <div>
-      <div className="flex flex-row items-center justify-between w-full p-5 border-t border-[var(--pink-color)] rounded-sm bg-danger fixed top-0 left-0">
+      <div className="flex flex-row items-center justify-between w-full p-5 border-t border-[var(--pink-color)] rounded-sm bg-danger fixed top-0 left-0 z-[10]">
         <span>{maintenanceState.value}</span>
         <MdClose
           size={24}
