@@ -334,7 +334,7 @@ function MenuContent({
     if (widthMatchTrigger) {
       next.minWidth = rect.width;
     }
-    console.log(next);
+    //console.log(next);
 
     styleRef.current = next;
 
