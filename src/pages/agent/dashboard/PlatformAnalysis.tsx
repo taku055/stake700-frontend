@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 
 import { userState } from "@/state/userState";
 import { useTranslations } from "@/context/I18nContext";
@@ -17,16 +17,15 @@ import { CalendarDate } from "@internationalized/date";
 import { tProviderAnalysis } from "@/types/tProviderAnalysis";
 import { apiAgentGetProviderAnalysis } from "@/api/agent/apiAgentGetProviderAnalysis";
 import { useMediaQuery } from "usehooks-ts";
-import { DEFAULT_CURRENCY_SYMBOL, mobileMediaQuery } from "@/config/constants";
+import {
+  DEFAULT_CURRENCY_SYMBOL,
+  mobileMediaQuery,
+  CURRENCY_LIST,
+} from "@/config/constants";
+import { eTransactionCurrency } from "@/types/tTransaction";
+import CurrencySelector from "@/components/CurrencySelector";
 
 const today = new Date();
-const platformList = [
-  "igp.casino",
-  "soft.casino",
-  "sloter.casino",
-  "gss.casino",
-  "sport",
-];
 
 type tTotal = {
   bet: number;
@@ -51,6 +50,14 @@ export default function PlatformAnalysis() {
   const [loading, setLoading] = useState(false);
   const isMobile = useMediaQuery(mobileMediaQuery);
 
+  const [currency, setCurrency] = useState<eTransactionCurrency>(
+    eTransactionCurrency.USD
+  );
+  const currencySymbol = useMemo(
+    () => CURRENCY_LIST.find((c) => c.unit === currency)?.symbol,
+    [currency]
+  );
+
   useEffect(() => {
     if (!userState.value?.isAgent) {
       return;
@@ -62,8 +69,17 @@ export default function PlatformAnalysis() {
         const data = await apiAgentGetProviderAnalysis({
           startDate: period?.start.toDate("UTC").getTime(),
           endDate: period ? period.end.toDate("UTC").getTime() + 86399999 : 0,
+          currency,
         });
         // setProviders(data.sort((a, b) => b.bet - b.paid - (a.bet - a.paid)));
+
+        let platformList: string[] = [];
+        data.forEach((e) => {
+          if (!platformList.includes(e.platform)) {
+            platformList.push(e.platform);
+          }
+        });
+        platformList = platformList.sort();
 
         const platforms1: tProviderAnalysis[] = platformList.map((p, i) => ({
           id: i.toString(),
@@ -93,7 +109,7 @@ export default function PlatformAnalysis() {
     };
 
     load();
-  }, [period!.start, period!.end, userState.value?.id]);
+  }, [period!.start, period!.end, userState.value?.id, currency]);
 
   return (
     <div className="flex flex-col gap-4 bg-gray-800 p-4 rounded-md">
@@ -103,21 +119,21 @@ export default function PlatformAnalysis() {
           <div className="flex">
             <label className="mr-1">{t("total_bet")}</label>
             <span className="text-white">
-              {DEFAULT_CURRENCY_SYMBOL}
+              {currencySymbol}
               {numberRound(total.bet, 100).toLocaleString()}
             </span>
           </div>
           <div className="flex">
             <label className="mr-1">{t("paid")}</label>
             <span className="text-white">
-              {DEFAULT_CURRENCY_SYMBOL}
+              {currencySymbol}
               {numberRound(total.paid, 100).toLocaleString()}
             </span>
           </div>
           <div className="flex">
             <label className="mr-1">GGR</label>
             <span className="text-white">
-              {DEFAULT_CURRENCY_SYMBOL}
+              {currencySymbol}
               {numberRound(total.bet - total.paid, 100).toLocaleString()}
             </span>
           </div>
@@ -130,7 +146,7 @@ export default function PlatformAnalysis() {
           <div className="flex">
             <label className="mr-1">{t("profit")}</label>
             <span className="text-white">
-              {DEFAULT_CURRENCY_SYMBOL}
+              {currencySymbol}
               {numberRound(
                 ((total.bet - total.paid) *
                   (userState.value?.profitPercent || 0)) /
@@ -146,6 +162,10 @@ export default function PlatformAnalysis() {
           value={period}
           onChange={setPeriod}
           visibleMonths={isMobile ? 1 : 3}
+        />
+        <CurrencySelector
+          value={currency}
+          onChange={(currency) => setCurrency(currency)}
         />
       </div>
       <Table

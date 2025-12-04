@@ -93,6 +93,7 @@ export default function CasinoHistoryPage({
               <TableColumn>{t("Id")}</TableColumn>
               <TableColumn>{t("Game")}</TableColumn>
               <TableColumn>{t("Type")}</TableColumn>
+              <TableColumn>{t("Currency")}</TableColumn>
               <TableColumn>{t("Amount")}</TableColumn>
               <TableColumn>{t("Date")}</TableColumn>
             </TableHeader>
@@ -115,6 +116,7 @@ export default function CasinoHistoryPage({
                       {t(e.eventType || "")}
                     </Chip>
                   </TableCell>
+                  <TableCell>{e.currency}</TableCell>
                   <TableCell>{e.cash}</TableCell>
                   <TableCell>
                     {moment(e.createdAt).format("YYYY-MM-DD hh:mm A")}

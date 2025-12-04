@@ -16,10 +16,13 @@ import { useCallback, useEffect, useState } from "preact/hooks";
 import { FaComment, FaDollarSign } from "react-icons/fa";
 import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
+import CurrencySelector from "@/components/CurrencySelector";
+import { eTransactionCurrency } from "@/types/tTransaction";
+import { tCurrencyBalance } from "@/types/tCurrencyBalance";
 
 interface CreateTransactionModalProps {
-  userBalance: number;
-  agentBalance: number;
+  userBalance: tCurrencyBalance[];
+  agentBalance: tCurrencyBalance[];
   userId: string;
   isDeposit: boolean;
   isOpen: boolean;
@@ -41,6 +44,9 @@ export default function CreateTransactionModal({
   const [note, setNote] = useState("");
   const t = useTranslations("Agent");
   const toastT = useTranslations("ToastMessages");
+  const [currency, setCurrency] = useState<eTransactionCurrency>(
+    eTransactionCurrency.USD
+  );
 
   useEffect(() => {
     setCash("");
@@ -52,9 +58,15 @@ export default function CreateTransactionModal({
       toast.error(t("Please enter a valid amount"));
       return;
     }
+
+    const agentCurrencyBalance =
+      agentBalance.find((b) => b.currency === currency)?.amount || 0;
+    const userCurrencyBalance =
+      userBalance.find((b) => b.currency === currency)?.amount || 0;
+
     if (
-      (isDeposit && agentBalance < +cash) ||
-      (!isDeposit && userBalance < +cash)
+      (isDeposit && agentCurrencyBalance < +cash) ||
+      (!isDeposit && userCurrencyBalance < +cash)
     ) {
       toast.error(toastT("validation.balance_low"));
       return;
@@ -64,6 +76,7 @@ export default function CreateTransactionModal({
       setLoading(true);
       const balance = await apiAgentCreateUserTransaction(
         userId,
+        currency,
         +cash,
         isDeposit,
         note
@@ -80,7 +93,16 @@ export default function CreateTransactionModal({
       }
     }
     setLoading(false);
-  }, [userId, cash, note, agentBalance, isDeposit, onCreated, userBalance]);
+  }, [
+    userId,
+    cash,
+    note,
+    agentBalance,
+    isDeposit,
+    onCreated,
+    userBalance,
+    currency,
+  ]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} placement="bottom-center">
@@ -91,16 +113,26 @@ export default function CreateTransactionModal({
               {isDeposit ? t("Deposit") : t("Withdraw")}
             </ModalHeader>
             <ModalBody className="flex flex-col">
-              <Input
-                autoFocus
-                endContent={<FaDollarSign size={20} />}
-                label={t("Amount")}
-                placeholder={t("Enter the amount")}
-                variant="bordered"
-                disabled={loading}
-                value={cash}
-                onChange={(e) => setCash((e.target as HTMLInputElement).value)}
-              />
+              <div className="flex items-center gap-2">
+                <CurrencySelector
+                  value={currency}
+                  onChange={(currency) => setCurrency(currency)}
+                />
+                <Input
+                  autoFocus
+                  label={t("Amount")}
+                  placeholder={t("Enter the amount")}
+                  variant="bordered"
+                  disabled={loading}
+                  value={cash}
+                  onChange={(e) =>
+                    setCash((e.target as HTMLInputElement).value)
+                  }
+                  classNames={{
+                    input: "text-[16px]",
+                  }}
+                />
+              </div>
               <Input
                 endContent={<FaComment size={20} />}
                 label={t("Note")}
@@ -109,6 +141,9 @@ export default function CreateTransactionModal({
                 disabled={loading}
                 value={note}
                 onChange={(e) => setNote((e.target as HTMLInputElement).value)}
+                classNames={{
+                  input: "text-[16px]",
+                }}
               />
             </ModalBody>
             <ModalFooter>

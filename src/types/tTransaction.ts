@@ -40,8 +40,10 @@ export enum eTransactionPlatform {
 }
 
 export enum eTransactionCurrency {
-  EUR = "EUR",
+  SYP = "SYP",
   USD = "USD",
+  EUR = "EUR",
+  TRY = "TRY",
 }
 
 export type tTransaction = {
@@ -81,4 +83,5 @@ export type tMergedTransaction = {
   providerId: string;
   win_amount: number;
   eventType?: string;
+  currency: eTransactionCurrency;
 };

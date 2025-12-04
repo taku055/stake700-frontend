@@ -285,9 +285,16 @@ export default function GlobalServiceProvider({
 
   useSocketEvent("balance.updated", (data: tBalance) => {
     if (userState.value) {
+      const cashDetails = [...userState.value.cashDetails];
+      const i = cashDetails.findIndex(c => c.currency === data.currency);
+      if (i !== -1) {
+        cashDetails[i] = data;
+      } else {
+        cashDetails.push(data);
+      }
       userState.value = {
         ...userState.value,
-        ...data,
+        cashDetails,
       };
     }
   });

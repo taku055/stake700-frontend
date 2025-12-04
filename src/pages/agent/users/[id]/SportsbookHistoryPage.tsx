@@ -85,6 +85,7 @@ export default function SportsbookHistoryPage({
             <TableHeader>
               <TableColumn>{t("Id")}</TableColumn>
               <TableColumn>{t("Type")}</TableColumn>
+              <TableColumn>{t("Currency")}</TableColumn>
               <TableColumn>{t("Amount")}</TableColumn>
               <TableColumn>{t("Date")}</TableColumn>
             </TableHeader>
@@ -109,6 +110,7 @@ export default function SportsbookHistoryPage({
                       </span>
                     )}
                   </TableCell>
+                  <TableCell>{e.currency}</TableCell>
                   <TableCell>{e.cash}</TableCell>
                   <TableCell>
                     {moment(e.createdAt).format("YYYY-MM-DD hh:mm A")}

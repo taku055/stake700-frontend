@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { Tabs, Tab, Button, DateRangePicker } from "@heroui/react";
 import { tUser } from "@/types/tUser";
 import { toast } from "@/helpers/toast";
@@ -11,12 +11,21 @@ import TransactionsPage from "./TransactionsPage";
 import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
 import { apiAgentGetSubuserTransactionSum } from "@/api/agent/apiAgentGetSubuserTransactionSum";
 import { useMediaQuery } from "usehooks-ts";
-import { DEFAULT_CURRENCY_SYMBOL, mobileMediaQuery } from "@/config/constants";
+import {
+  CURRENCY_LIST,
+  DEFAULT_CURRENCY_SYMBOL,
+  mobileMediaQuery,
+} from "@/config/constants";
 import CasinoHistoryPage from "./CasinoHistoryPage";
 import { numberRound } from "@/helpers/numberRound";
 import { useTranslations } from "@/context/I18nContext";
 import { useLocation } from "preact-iso";
 import SportsbookHistoryPage from "./SportsbookHistoryPage";
+import { eTransactionCurrency } from "@/types/tTransaction";
+import CurrencySelector from "@/components/CurrencySelector";
+import { tCurrencyBalance } from "@/types/tCurrencyBalance";
+import BackButton from "@/components/BackButton";
+import { multipleBalance } from "@/helpers/multipleBalance";
 
 const today = new Date();
 
@@ -43,6 +52,13 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
   const isMobile = useMediaQuery(mobileMediaQuery);
   const t = useTranslations("Agent");
   const toastT = useTranslations("ToastMessages");
+  const [currency, setCurrency] = useState<eTransactionCurrency>(
+    eTransactionCurrency.USD
+  );
+  const currencySymbol = useMemo(
+    () => CURRENCY_LIST.find((c) => c.unit === currency)?.symbol,
+    [currency]
+  );
 
   useEffect(() => {
     if (userState.value?.id) {
@@ -66,6 +82,7 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
             startDate: period.start.toDate(getLocalTimeZone()).getTime(),
             endDate:
               period.end.toDate(getLocalTimeZone()).getTime() + 86400000 - 1,
+            currency,
           });
           setTotalDeposit(res.totalDeposit);
           setTotalWithdraw(res.totalWithdraw);
@@ -75,7 +92,7 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
         }
       })();
     }
-  }, [userId, period.start, period.end, userState.value?.id]);
+  }, [userId, period.start, period.end, userState.value?.id, currency]);
 
   const onDelete = useCallback(async () => {
     if (!window.confirm("Are you sure to delete?")) {
@@ -100,28 +117,51 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
   };
 
   const onCreatedTransaction = (balance: tSubuserCreateTxRes) => {
-    setSubuser((prev) =>
-      prev
-        ? {
-            ...prev,
-            cash: balance.user.cash,
-            totalDeposit: balance.userStatistics.totalDeposit,
-            totalWithdraw: balance.userStatistics.totalWithdraw,
-          }
-        : undefined
-    );
+    setSubuser((prev) => {
+      if (!prev) return prev;
+
+      const newCashDetails = [...prev.cashDetails];
+      const i = newCashDetails.findIndex(
+        (c) => c.currency === balance.user.currency
+      );
+
+      if (i !== -1) {
+        newCashDetails[i] = balance.user;
+      } else {
+        newCashDetails.push(balance.user);
+      }
+
+      return {
+        ...prev,
+        cashDetails: newCashDetails,
+      };
+    });
+
     if (userState.value?.id) {
+      const newCashDetails = [...userState.value.cashDetails];
+      const i = newCashDetails.findIndex(
+        (c) => c.currency === balance.agent.currency
+      );
+
+      if (i !== -1) {
+        newCashDetails[i] = balance.user;
+      } else {
+        newCashDetails.push(balance.user);
+      }
+
       userState.value = {
         ...userState.value,
-        cash: balance.agent.cash,
+        cashDetails: newCashDetails,
       };
     }
+
     setOpenModal(false);
   };
 
   return (
     <div className="flex w-full flex-col p-2 md:p-4">
       <div className="flex gap-4 mb-4 ml-2 items-center flex-wrap text-[12px] md:text-[14px]">
+        <BackButton href="/agent/users" />
         <div className="flex">
           <label className="mr-1">{t("Id")}</label>
           <span className="text-white">{subuser?.id}</span>
@@ -133,8 +173,7 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
         <div className="flex">
           <label className="mr-1">{t("Balance")}</label>
           <span className="text-white">
-            {DEFAULT_CURRENCY_SYMBOL}
-            {numberRound(subuser?.cash || 0, 1000)}
+            {multipleBalance(subuser?.cashDetails ?? [])}
           </span>
         </div>
         <DateRangePicker
@@ -147,17 +186,21 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
           }}
           visibleMonths={isMobile ? 1 : 3}
         />
+        <CurrencySelector
+          value={currency}
+          onChange={(currency) => setCurrency(currency)}
+        />
         <div className="flex">
           <label className="mr-1">{t("Total Deposit")}</label>
           <span className="text-white">
-            {DEFAULT_CURRENCY_SYMBOL}
+            {currencySymbol}
             {totalDeposit || 0}
           </span>
         </div>
         <div className="flex">
           <label className="mr-1">{t("Total Withdraw")}</label>
           <span className="text-white">
-            {DEFAULT_CURRENCY_SYMBOL}
+            {currencySymbol}
             {totalWithdraw || 0}
           </span>
         </div>
@@ -207,8 +250,8 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
       </Tabs>
 
       <CreateTransactionModal
-        userBalance={subuser?.cash ?? 0}
-        agentBalance={userState.value?.cash ?? 0}
+        userBalance={subuser?.cashDetails ?? []}
+        agentBalance={userState.value?.cashDetails ?? []}
         userId={userId}
         isDeposit={isDeposit}
         isOpen={openModal}

@@ -1,10 +1,3 @@
-import { tPromotionInstance } from "./tPromotionInstance";
+import { tCurrencyBalance } from "./tCurrencyBalance";
 
-export type tBalance = {
-  cash: number;
-  bonus: number;
-  locked: number;
-
-  promotionInstanceId?: bigint | null;
-  PromotionInstance?: tPromotionInstance | null;
-};
+export type tBalance = tCurrencyBalance;

@@ -50,11 +50,17 @@ const WithdrawStatusPage = () => {
         try {
           const balance = await apiCancelLazyWithdraw(requestId);
           if (userState.value) {
+            const cashDetails = [...userState.value.cashDetails];
+            const i = cashDetails.findIndex(c => c.currency === balance.currency);
+            if (i !== -1) {
+              cashDetails[i] = balance;
+            } else {
+              cashDetails.push(balance);
+            }
+
             userState.value = {
               ...userState.value,
-              cash: balance.cash,
-              bonus: balance.bonus,
-              locked: balance.locked,
+              cashDetails,
             };
           }
 
