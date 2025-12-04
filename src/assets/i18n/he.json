@@ -344,7 +344,11 @@
   },
   "GamePlay": {
     "play": "שחק",
-    "fun-play": "משחק הדגמה"
+    "fun-play": "משחק הדגמה",
+    "confirm-currency-change": "אישור שינוי מטבע",
+    "stay-here": "הישאר כאן",
+    "reload-with-current-currency": "טען מחדש עם {currency_symbol}",
+    "currency-change-message": "האם אתה בטוח שברצונך לשנות את המטבע?"
   },
   "MoreGameWrapper": {
     "More from": "עוד מ־"

@@ -344,7 +344,11 @@
   },
   "GamePlay": {
     "play": "Παίξε",
-    "fun-play": "Δοκιμαστικό παιχνίδι"
+    "fun-play": "Δοκιμαστικό παιχνίδι",
+    "confirm-currency-change": "Επιβεβαίωση Αλλαγής Νομίσματος",
+    "stay-here": "Μείνε εδώ",
+    "reload-with-current-currency": "Επαναφόρτωση με {currency_symbol}",
+    "currency-change-message": "Είστε σίγουροι ότι θέλετε να αλλάξετε το νόμισμα;"
   },
   "MoreGameWrapper": {
     "More from": "Περισσότερα από"

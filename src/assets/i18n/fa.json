@@ -344,7 +344,11 @@
   },
   "GamePlay": {
     "play": "بازی کن",
-    "fun-play": "بازی آزمایشی"
+    "fun-play": "بازی آزمایشی",
+    "confirm-currency-change": "تأیید تغییر ارز",
+    "stay-here": "اینجا بمان",
+    "reload-with-current-currency": "بارگذاری مجدد با {currency_symbol}",
+    "currency-change-message": "آیا مطمئن هستید که می‌خواهید ارز را تغییر دهید؟"
   },
   "MoreGameWrapper": {
     "More from": "بیشتر از"

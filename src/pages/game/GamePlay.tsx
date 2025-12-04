@@ -11,9 +11,11 @@ import { apiStartGameDemo } from "@/api/game/apiStartGameDemo";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
-import { useState, useRef, useCallback } from "preact/hooks";
+import { useState, useRef, useCallback, useEffect } from "preact/hooks";
 import { localeState } from "@/state/localeState";
 import { currencyState } from "@/state/currencyState";
+import { eTransactionCurrency } from "@/types/tTransaction";
+import ConfirmModal from "./ConfirmModal";
 
 interface IGamePlayProps {
   game?: tGame;
@@ -27,6 +29,15 @@ export default function GamePlay({ game }: IGamePlayProps) {
   const t = useTranslations("GamePlay");
   const [htmlCode, setHtmlCode] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
+  const [currency, setCurrency] = useState<eTransactionCurrency>(currencyState.value.unit);
+  const [showReloadModal, setShowReloadModal] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (currencyState.value.unit !== currency && isPlaying) {
+      setShowReloadModal(true);
+    }
+  }, [currencyState.value.unit, isPlaying]);
 
   const onPlay = useCallback(
     async (demo: boolean) => {
@@ -36,6 +47,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
         return;
       }
 
+      setCurrency(currencyState.value.unit);
       setLoading(true);
       let iframeSrc1 = "";
 
@@ -49,6 +61,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
             });
 
             iframeSrc1 = session.url;
+            setIsPlaying(true);
           } catch (ex) {
             console.error(ex);
           }
@@ -86,6 +99,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
                     containerRef.current?.appendChild(node);
                   }
                 });
+                setIsPlaying(true);
               } else {
                 const temp = session.split(",");
                 throw new Error(temp[temp.length - 1]);
@@ -97,10 +111,12 @@ export default function GamePlay({ game }: IGamePlayProps) {
               Array.from(temp.childNodes).forEach((node) => {
                 containerRef.current?.appendChild(node);
               });
+              setIsPlaying(true);
             }
           } else {
             //
             iframeSrc1 = session.url;
+            setIsPlaying(true);
           }
         }
 
@@ -205,6 +221,14 @@ export default function GamePlay({ game }: IGamePlayProps) {
       >
         <MdFullscreen size={24} />
       </button>
+
+      <ConfirmModal
+        isOpen={showReloadModal}
+        onClose={() => setShowReloadModal(false)}
+        onConfirm={() => onPlay(false)}
+        currentCurrency={currency}
+        newCurrency={currencyState.value.unit}
+      />
     </div>
   );
 }

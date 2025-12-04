@@ -345,7 +345,11 @@
   },
   "GamePlay": {
     "play": "Oyna",
-    "fun-play": "Eğlenceli Oyun"
+    "fun-play": "Eğlenceli Oyun",
+    "confirm-currency-change": "Para Birimi Değişikliğini Onayla",
+    "stay-here": "Burada kal",
+    "reload-with-current-currency": "{currency_symbol} ile yeniden yükle",
+    "currency-change-message": "Para birimini değiştirmek istediğinizden emin misiniz?"
   },
   "MoreGameWrapper": {
     "More from": "Daha fazlası:"

@@ -345,7 +345,11 @@
   },
   "GamePlay": {
     "play": "Oyna",
-    "fun-play": "Demo oyna"
+    "fun-play": "Demo oyna",
+    "confirm-currency-change": "Valyuta Dəyişikliyini Təsdiqlə",
+    "stay-here": "Burada qal",
+    "reload-with-current-currency": "{currency_symbol} ilə yenidən yüklə",
+    "currency-change-message": "Valyutanı dəyişdirmək istədiyinizə əminsiniz?"
   },
   "MoreGameWrapper": {
     "More from": "Daha çox -"

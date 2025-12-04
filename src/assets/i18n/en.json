@@ -345,7 +345,11 @@
   },
   "GamePlay": {
     "play": "Play",
-    "fun-play": "Fun Play"
+    "fun-play": "Fun Play",
+    "confirm-currency-change": "Confirm Currency Change",
+    "stay-here": "Stay here",
+    "reload-with-current-currency": "Reload with {currency_symbol}",
+    "currency-change-message": "Are you sure you want to change the currency?"
   },
   "MoreGameWrapper": {
     "More from": "More from"

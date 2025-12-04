@@ -344,7 +344,11 @@
   },
   "GamePlay": {
     "play": "Jugar",
-    "fun-play": "Juego de prueba"
+    "fun-play": "Juego de prueba",
+    "confirm-currency-change": "Confirmar Cambio de Moneda",
+    "stay-here": "Quedarse aquí",
+    "reload-with-current-currency": "Recargar con {currency_symbol}",
+    "currency-change-message": "¿Está seguro de que desea cambiar la moneda?"
   },
   "MoreGameWrapper": {
     "More from": "Más de"

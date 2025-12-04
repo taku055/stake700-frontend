@@ -344,7 +344,11 @@
   },
   "GamePlay": {
     "play": "Jouer",
-    "fun-play": "Jeu démo"
+    "fun-play": "Jeu démo",
+    "confirm-currency-change": "Confirmer le changement de devise",
+    "stay-here": "Rester ici",
+    "reload-with-current-currency": "Recharger avec {currency_symbol}",
+    "currency-change-message": "Êtes-vous sûr de vouloir changer la devise ?"
   },
   "MoreGameWrapper": {
     "More from": "Plus de"
