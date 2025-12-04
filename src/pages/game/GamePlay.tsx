@@ -29,7 +29,9 @@ export default function GamePlay({ game }: IGamePlayProps) {
   const t = useTranslations("GamePlay");
   const [htmlCode, setHtmlCode] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currency, setCurrency] = useState<eTransactionCurrency>(currencyState.value.unit);
+  const [currency, setCurrency] = useState<eTransactionCurrency>(
+    currencyState.value.unit
+  );
   const [showReloadModal, setShowReloadModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -75,6 +77,17 @@ export default function GamePlay({ game }: IGamePlayProps) {
 
           if (typeof session === "string") {
             console.log({ game });
+            // cleanup old html nodes and script
+            if (containerRef.current) {
+              containerRef.current
+                .querySelectorAll('[data-game-injected="true"]')
+                .forEach((el) => el.remove());
+            }
+
+            document
+              .querySelectorAll('script[data-game-injected="true"]')
+              .forEach((script) => script.remove());
+              
             if (game?.gameSource === "SOFT") {
               if (session.startsWith("1,")) {
                 const html = session.substring(2);
@@ -88,6 +101,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
                 Array.from(temp.childNodes).forEach((node) => {
                   if (node.nodeName.toLowerCase() === "script") {
                     const scriptTag = document.createElement("script");
+                    scriptTag.setAttribute("data-game-injected", "true");
                     // Copy attributes (optional)
                     for (const attr of (node as any).attributes ?? []) {
                       scriptTag.setAttribute(attr.name, attr.value);
@@ -96,6 +110,12 @@ export default function GamePlay({ game }: IGamePlayProps) {
                     scriptTag.text = node.textContent ?? "";
                     document.body.appendChild(scriptTag); // Script now runs
                   } else {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                      (node as HTMLElement).setAttribute(
+                        "data-game-injected",
+                        "true"
+                      );
+                    }
                     containerRef.current?.appendChild(node);
                   }
                 });
@@ -109,6 +129,12 @@ export default function GamePlay({ game }: IGamePlayProps) {
               const temp = document.createElement("div");
               temp.innerHTML = session;
               Array.from(temp.childNodes).forEach((node) => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                  (node as HTMLElement).setAttribute(
+                    "data-game-injected",
+                    "true"
+                  );
+                }
                 containerRef.current?.appendChild(node);
               });
               setIsPlaying(true);
