@@ -20,7 +20,7 @@ const MainBalanceCard = ({
           <span className="text-white text-[14px] leading-[20px]">
             {t("Main Balance")}
           </span>
-          <span className="text-white text-[20px] leading-[110%] flex gap-2">
+          <div className="text-white text-[20px] leading-[110%] flex flex-col gap-2">
             {userState.value?.cashDetails?.map((c) => (
               <span key={c.currency}>
                 {
@@ -30,7 +30,7 @@ const MainBalanceCard = ({
                 {(c.amount || 0).toFixed(2)}
               </span>
             ))}
-          </span>
+          </div>
         </div>
         <button className="flex flex-row items-center rounded-sm p-3 bg-[#FFFFFF40] hover:bg-[#FFFFFF60] transition-all duration-300">
           {true ? (
