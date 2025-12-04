@@ -44,7 +44,7 @@ export default function MobileDrawer({
     icon: string;
     count?: number;
   }>>([]);
-  const { modifyHref } = useAffiliateNavigation();
+  const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const { categories: casinoCategories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
   const { categories: liveCasinoCategories } = useLiveCasinoCategories();
@@ -173,6 +173,12 @@ export default function MobileDrawer({
                 <Link
                   key={item.key}
                   href={modifyHref(item.href)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleNavigate(modifyHref(item.href));
+                    navigationSidebarOpenState.value = false;
+                  }}
                   className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
                     selectedMainNavKey === item.key
                       ? "bg-[#134077] text-white"

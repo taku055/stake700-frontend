@@ -52,7 +52,7 @@ export default function CollapsedSidebar({
   selectedMainNavKey,
   categories,
 }: CollapsedSidebarProps) {
-  const { modifyHref } = useAffiliateNavigation();
+  const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("Header");
   const [selectedTab, setSelectedTab] = useState<"casino" | "live-casino">("casino");
@@ -124,6 +124,11 @@ export default function CollapsedSidebar({
             <Link
               key={item.key}
               href={modifyHref(item.href)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleNavigate(modifyHref(item.href));
+              }}
               className={`flex items-center justify-center w-12 h-12 rounded-lg transition-colors ${
                 selectedMainNavKey === item.key
                   ? "bg-[#134077] text-white"
