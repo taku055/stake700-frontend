@@ -30,6 +30,7 @@ export type tUser = {
   btcAddress: string;
   ethAddress: string;
   solanaAddress: string;
+  tronAddress: string;
   createdAt: Date;
   updatedAt: Date;
   isAgent?: boolean;
