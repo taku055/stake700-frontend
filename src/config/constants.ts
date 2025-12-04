@@ -171,13 +171,12 @@ export const CURRENCY_LIST: {
   name: string;
   unit: eTransactionCurrency;
 }[] = [
+  { symbol: "$", name: "US Dollar", unit: eTransactionCurrency.USD },
   {
     symbol: "£",
     name: "Syrian Pound",
     unit: eTransactionCurrency.SYP,
   },
-  { symbol: "$", name: "US Dollar", unit: eTransactionCurrency.USD },
-  { symbol: "€", name: "Euro", unit: eTransactionCurrency.EUR },
   { symbol: "₺", name: "Turkish Lira", unit: eTransactionCurrency.TRY },
 ];
 
