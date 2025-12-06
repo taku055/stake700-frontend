@@ -139,20 +139,6 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
             {multipleBalance(agent?.cashDetails || [])}
           </span>
         </div>
-        <div className="flex">
-          <label className="mr-1">Total Deposit</label>
-          <span className="text-white">
-            {DEFAULT_CURRENCY_SYMBOL}
-            {agent?.totalDeposit || 0}
-          </span>
-        </div>
-        <div className="flex">
-          <label className="mr-1">Total Withdraw</label>
-          <span className="text-white">
-            {DEFAULT_CURRENCY_SYMBOL}
-            {agent?.totalWithdraw || 0}
-          </span>
-        </div>
         <div className="flex items-center">
           <label className="mr-1">Password</label>
           <span className="text-white mr-1">{agent?.password1 || ""}</span>

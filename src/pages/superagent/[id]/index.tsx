@@ -86,7 +86,7 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
       return { ...prev, cashDetails: newCashDetails };
     });
 
-    if (userState.value?.isSuperAgent) {
+    if (userState.value?.id) {
       const newCashDetails = [...userState.value.cashDetails];
       const i = newCashDetails.findIndex(
         (c) => c.currency === newSuperagent.currency
