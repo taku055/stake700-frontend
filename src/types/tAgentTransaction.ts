@@ -1,4 +1,4 @@
-import { eTransactionType } from "./tTransaction";
+import { eTransactionCurrency, eTransactionType } from "./tTransaction";
 
 export type tAgentTransaction = {
   id: string;
@@ -7,4 +7,5 @@ export type tAgentTransaction = {
   cash: number;
   createdAt: Date;
   note?: string | null;
+  currency: eTransactionCurrency;
 };

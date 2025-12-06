@@ -11,12 +11,17 @@ import { Button } from "@heroui/react";
 
 export default function PageComponent() {
   const location = useLocation();
-  if (userState.value?.isSuperAgent) {
+  if (userState.value?.role === "SUPERAGENT") {
     location.route("/superagent");
     return null;
   }
+  
+  if (userState.value?.role === "AREA_MANAGER") {
+    location.route("/area_manager");
+    return null;
+  }
 
-  if (userState.value?.isAgent) {
+  if (userState.value?.role === "AGENT") {
     location.route("/agent");
     return null;
   }

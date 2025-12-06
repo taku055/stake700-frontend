@@ -74,10 +74,12 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
         toast.success(t("successfully_logged_in"));
         onClose();
         setLoading(false);
-        if (res.user.isSuperAgent) {
+        if (res.user.role === "SUPERAGENT") {
           location.route("/superagent");
-        } else if (res.user.isAgent) {
+        } else if (res.user.role === "AGENT") {
           location.route("/agent");
+        } else if (res.user.role === "AREA_MANAGER") {
+          location.route("/area_manager");
         }
       } catch (ex) {
         if (axios.isAxiosError(ex)) {

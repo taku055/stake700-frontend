@@ -6,7 +6,7 @@ import Users from "./users";
 import UserDetail from "./users/[id]";
 
 export default function AgentPage() {
-  if (!userState.value?.isAgent) {
+  if (userState.value?.role !== "AGENT") {
     return <NotFound404 />;
   }
 

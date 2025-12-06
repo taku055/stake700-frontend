@@ -5,7 +5,7 @@ import { Router, Route } from "preact-iso";
 import AgentDetailPage from "./[id]";
 
 export default function SuperAgentPage() {
-  if (!userState.value?.isSuperAgent) {
+  if (userState.value?.role !== "SUPERAGENT") {
     return <NotFound404 />;
   }
 

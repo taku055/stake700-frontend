@@ -10,6 +10,7 @@ import NotFound404 from "@/pages/not-found";
 import GamePageComponent from "@/pages/game";
 import AgentPage from "@/pages/agent";
 import SuperAgentPage from "@/pages/superagent";
+import AreaManagerPage from "@/pages/area_manager";
 import TombalaPage from "@/pages/tombala";
 import AffiliatesLayout from "@/pages/affiliates";
 import AboutUs from "@/pages/about-us";
@@ -47,6 +48,9 @@ export default function AppRoute() {
 
       <Route path="/superagent" component={SuperAgentPage} />
       <Route path="/superagent/*" component={SuperAgentPage} />
+
+      <Route path="/area_manager" component={AreaManagerPage} />
+      <Route path="/area_manager/*" component={AreaManagerPage} />
 
       <Route path="/affiliates" component={AffiliatesLayout} />
       <Route path="/affiliates/*" component={AffiliatesLayout} />
