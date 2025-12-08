@@ -20,6 +20,7 @@ import { apiAdminGetSubagents } from "@/api/agent/apiAdminGetSubagents";
 import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 import PlatformAnalysis from "@/components/PlatformAnalysis/PlatformAnalysis";
 import { apiAgentGetProviderAnalysis } from "@/api/agent/apiAgentGetProviderAnalysis";
+import { multipleBalance } from "@/helpers/multipleBalance";
 
 export default function AgentsPage() {
   const [data, setData] = useState<tAgent[]>([]);
@@ -108,10 +109,7 @@ export default function AgentsPage() {
                 >
                   <TableCell>{abbr(e.id, isMobile ? 2 : 5)}</TableCell>
                   <TableCell>{e.userName}</TableCell>
-                  <TableCell>
-                    {DEFAULT_CURRENCY_SYMBOL}
-                    {e.cash}
-                  </TableCell>
+                  <TableCell>{multipleBalance(e.cashDetails)}</TableCell>
                   <TableCell>
                     {moment(e.createdAt).format("YYYY-MM-DD HH:mm")}
                   </TableCell>
