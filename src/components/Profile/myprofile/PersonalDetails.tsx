@@ -31,16 +31,16 @@ const PersonalDetailsPage = () => {
   const t = useTranslations("PersonalDetails");
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
-  const [firstName, setFirstName] = useState(userState.value?.firstName);
-  const [lastName, setLastName] = useState(userState.value?.lastName);
-  const [middleName, setMiddleName] = useState(userState.value?.middleName);
-  const [userCity, setUserCity] = useState(userState.value?.city);
-  const [userAddress, setUserAddress] = useState(userState.value?.address);
+  const [firstName, setFirstName] = useState(userState.value?.firstName || "");
+  const [lastName, setLastName] = useState(userState.value?.lastName || "");
+  const [middleName, setMiddleName] = useState(userState.value?.middleName || "");
+  const [userCity, setUserCity] = useState(userState.value?.city || "");
+  const [userAddress, setUserAddress] = useState(userState.value?.address || "");
   const [birthDay, setBirthDay] = useState(
     parseDate(userState.value?.birthDay || "2000-01-01")
   );
   const [userGender, setUserGender] = useState(
-    userState.value?.gender || "male"
+    userState.value?.gender === 0 ? "male" : "female"
   );
   const [country, setCountry] = useState(userState.value?.country || "en");
 
@@ -56,7 +56,7 @@ const PersonalDetailsPage = () => {
         country: country || "",
         city: userCity || "",
         address: userAddress || "",
-        gender: userGender || "",
+        gender: userGender || "male",
         dateOfBirth: birthDay.toString() || "2000-01-01",
       });
       toast.success(t("User details updated successfully"));
@@ -68,11 +68,20 @@ const PersonalDetailsPage = () => {
   };
 
   return (
-    <div className={`flex flex-col h-full ${isRTL ? 'text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-      <div className={`w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A] ${isRTL ? 'text-right' : 'text-left'}`}>
+    <div
+      className={`flex flex-col h-full ${isRTL ? "text-right" : "text-left"}`}
+      dir={isRTL ? "rtl" : "ltr"}
+    >
+      <div
+        className={`w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A] ${
+          isRTL ? "text-right" : "text-left"
+        }`}
+      >
         {t("Personal Details")}
       </div>
-      <div className={`w-full p-5 flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
+      <div
+        className={`w-full p-5 flex-1 ${isRTL ? "text-right" : "text-left"}`}
+      >
         <div className="grid grid-cols-2 gap-2">
           <Input
             type="text"

@@ -114,10 +114,20 @@ export const useTablist = () => {
         },
       ];
     } else {
-      if (userState.value?.isSuperAgent) {
+      if (userState.value?.role === "AREA_MANAGER") {
         return [
           {
-            title: t("Dashboard"),
+            title: "Area Manager",
+            href: "/area_manager",
+            key: "superagent",
+            icon: <Crown />,
+            navIcon: getNavIcon("superagent"),
+          },
+        ];
+      } else if (userState.value?.role === "SUPERAGENT") {
+        return [
+          {
+            title: "Superagent",
             href: "/superagent",
             key: "superagent",
             icon: <Crown />,

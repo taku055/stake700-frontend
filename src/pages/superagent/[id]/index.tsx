@@ -16,6 +16,9 @@ import { useLocation } from "preact-iso";
 import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 import { tCurrencyBalance } from "@/types/tCurrencyBalance";
 import { multipleBalance } from "@/helpers/multipleBalance";
+import BackButton from "@/components/BackButton";
+import PlatformAnalysis from "@/components/PlatformAnalysis/PlatformAnalysis";
+import { apiSuperagentGetProviderAnalysis } from "@/api/agent/apiSuperagentGetProviderAnalysis";
 
 interface IAgentDetailPageProps {
   agentId: string;
@@ -129,6 +132,7 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
   return (
     <div className="flex w-full flex-col p-4">
       <div className="flex md:gap-4 gap-2 mb-4 ml-2 items-center flex-wrap text-[12px] md:text-[14px]">
+        <BackButton href="/superagent" />
         <div className="flex">
           <label className="mr-1">Name</label>
           <span className="text-white">{agent?.userName}</span>
@@ -194,6 +198,9 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
         </Tab>
         <Tab key="agenttransactions" title="Agent Transactions">
           <AgentTransactionsPage agentId={agentId} />
+        </Tab>
+        <Tab key="analysis" title="Agent Analysis">
+          <PlatformAnalysis agentId={agentId} fetchData={apiSuperagentGetProviderAnalysis}/>
         </Tab>
       </Tabs>
 

@@ -13,7 +13,6 @@ import {
 import {localeState} from "@/state/localeState";
 import { maintenanceState } from "@/state/maintenanceState";
 import { useEffect, useState } from "preact/hooks";
-import { useTablist } from "@/hooks/useTablist";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { navigationSidebarOpenState } from "@/state/navigationSidebarState";
 import { Menu } from "lucide-preact";
@@ -24,7 +23,6 @@ export default function Header() {
   const t = useTranslations("Header");
   const [alertVisible, setAlertVisible] = useState(!!maintenanceState.value);
   const [time, setTime] = useState(new Date());
-  const { tabList, selectedKey } = useTablist();
   const { modifyHref } = useAffiliateNavigation();
 
   useEffect(() => {

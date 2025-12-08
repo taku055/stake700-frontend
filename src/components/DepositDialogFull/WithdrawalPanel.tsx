@@ -1,6 +1,11 @@
-
 import { Button, Input, Card, CardBody } from "@heroui/react";
-import { useEffect, useRef, useState, useMemo, useCallback } from "preact/hooks";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+  useCallback,
+} from "preact/hooks";
 import { ChevronDown } from "lucide-preact";
 import { userState } from "@/state/userState";
 import { toast } from "@/helpers/toast";
@@ -48,7 +53,7 @@ export default function WithdrawalPanel() {
             setLoadingInfo(true);
             const finance = await apiProfileFinancialActivity({});
             setFinanceSum(finance);
-          } catch (ex) { }
+          } catch (ex) {}
           setLoadingInfo(false);
         })();
       }
@@ -74,7 +79,6 @@ export default function WithdrawalPanel() {
     };
   }, [showBlockchainSelector]);
 
-
   const [isWithdrawable, bonusPassed, wagerPassed, monthlyLimit, weeklyLimit] =
     useMemo(() => {
       if (!financeSum || !userState.value?.id) {
@@ -85,10 +89,7 @@ export default function WithdrawalPanel() {
       if (userState.value?.wantBonus && !userState.value?.bonusWithdrawPassed) {
         bonusPassed =
           (financeSum.totalResult.casinoBet || 0) >=
-          financeSum.bonusDepositMoney * 40 ||
-          (financeSum.totalResult.sportBet || 0) -
-          (financeSum.totalResult.sportRollback || 0) >=
-          userState.value?.tekioBonus * 8;
+          financeSum.bonusDepositMoney * 40;
       }
 
       const wagerPassed = true;
@@ -104,11 +105,11 @@ export default function WithdrawalPanel() {
         //     (financeSum.totalResult.depositManual || 0);
         weekly =
           (financeSum.weeklyResult.withdrawCrypto || 0) +
-          (financeSum.weeklyResult.withdrawRequested || 0) <
+            (financeSum.weeklyResult.withdrawRequested || 0) <
           25000;
         monthly =
           (financeSum.monthlyResult.withdrawCrypto || 0) +
-          (financeSum.monthlyResult.withdrawRequested || 0) <
+            (financeSum.monthlyResult.withdrawRequested || 0) <
           100000;
       }
 
@@ -165,13 +166,13 @@ export default function WithdrawalPanel() {
     if (userState.value?.vipLevel < 6) {
       const weekly =
         (financeSum.weeklyResult.withdrawCrypto || 0) +
-        (financeSum.weeklyResult.withdrawRequested || 0) +
-        Number(amount) <
+          (financeSum.weeklyResult.withdrawRequested || 0) +
+          Number(amount) <
         25000;
       const monthly =
         (financeSum.monthlyResult.withdrawCrypto || 0) +
-        (financeSum.monthlyResult.withdrawRequested || 0) +
-        Number(amount) <
+          (financeSum.monthlyResult.withdrawRequested || 0) +
+          Number(amount) <
         100000;
       if (!weekly || !monthly) {
         toast.error(
@@ -239,10 +240,11 @@ export default function WithdrawalPanel() {
                 <div key={tokenSymbol} className="relative">
                   <Card
                     isPressable
-                    className={`p-0 flex items-center justify-between md:h-[59px] h-[56px] md:w-[150px] w-[120px]  bg-[#21211C] hover:bg-[#2d324a] ${selectedCryptoType === tokenSymbol
-                      ? "border border-[#D6B33E]"
-                      : "border border-transparent"
-                      }`}
+                    className={`p-0 flex items-center justify-between md:h-[59px] h-[56px] md:w-[150px] w-[120px]  bg-[#21211C] hover:bg-[#2d324a] ${
+                      selectedCryptoType === tokenSymbol
+                        ? "border border-[#D6B33E]"
+                        : "border border-transparent"
+                    }`}
                     onPress={() => {
                       if (
                         selectedCryptoType === tokenSymbol &&
@@ -288,10 +290,11 @@ export default function WithdrawalPanel() {
                           {tokenGroup.map((token) => (
                             <div
                               key={token.id}
-                              className={`px-2.5 py-1 rounded-lg cursor-pointer text-xs font-medium ${selectedBlockchain === token.chainId
-                                ? "bg-teal-500 text-white"
-                                : "bg-[#2d324a] text-gray-300"
-                                }`}
+                              className={`px-2.5 py-1 rounded-lg cursor-pointer text-xs font-medium ${
+                                selectedBlockchain === token.chainId
+                                  ? "bg-teal-500 text-white"
+                                  : "bg-[#2d324a] text-gray-300"
+                              }`}
                               onClick={() => {
                                 setSelectedBlockchain(token.chainId);
                                 setSelectedCryptoId(token.id || 0);
@@ -321,7 +324,11 @@ export default function WithdrawalPanel() {
                   input: "text-white",
                 }}
                 className="mt-[4px]"
-                startContent={<span className="text-gray-400">{DEFAULT_CURRENCY_SYMBOL}</span>}
+                startContent={
+                  <span className="text-gray-400">
+                    {DEFAULT_CURRENCY_SYMBOL}
+                  </span>
+                }
               />
               <p className="text-xs text-gray-400 mt-1">
                 {t("Withdraw Amount")}:{" "}

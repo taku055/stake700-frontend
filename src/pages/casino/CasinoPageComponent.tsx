@@ -10,12 +10,13 @@ export default function CasinoPageComponent() {
   const location = useLocation();
   const { categories } = useCasinoCategories();
   
-  if (userState.value?.isSuperAgent) {
+  if (userState.value?.role === "SUPERAGENT") {
     location.route("/superagent");
     return null;
-  }
-
-  if (userState.value?.isAgent) {
+  } else if (userState.value?.role === "AREA_MANAGER") {
+    location.route("/area_manager");
+    return null;
+  } else if (userState.value?.role === "AGENT") {
     location.route("/agent");
     return null;
   }

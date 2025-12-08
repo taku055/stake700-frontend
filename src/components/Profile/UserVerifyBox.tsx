@@ -9,7 +9,7 @@ const UserVerifyBox = ({ onClick }: UserVerifyBoxProps) => {
   return (
     <div className="w-full flex flex-col p-3 bg-[var(--primary-color)] rounded-md">
       {
-        userState.value?.emailVerified ? (
+        userState.value?.verifiedAt ? (
           <div className="w-full h-full flex flex-col text-[var(--green-color)]">
             <h1>{t("Account verified")}</h1>
           </div>

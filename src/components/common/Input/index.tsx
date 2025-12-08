@@ -15,7 +15,7 @@ type ClassNames = {
 
 type Props = Omit<JSX.IntrinsicElements["input"], "class" | "onChange"> & {
   label: string;
-  value?: string;
+  value?: string | null;
   defaultValue?: string;
   onChange?: (e: JSX.TargetedEvent<HTMLInputElement, Event>) => void;
   helperText?: string;

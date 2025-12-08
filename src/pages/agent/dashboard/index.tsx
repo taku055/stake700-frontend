@@ -4,9 +4,10 @@ import DashboardCard from "./DashboardCard";
 import { useEffect, useState } from "preact/hooks";
 import { userState } from "@/state/userState";
 import { apiAgentGetSubuserCount } from "@/api/agent/apiAgentGetSubuserCount";
-import PlatformAnalysis from "./PlatformAnalysis";
 import { useTranslations } from "@/context/I18nContext";
 import { Link } from "@/components/common";
+import { apiAgentGetProviderAnalysis } from "@/api/agent/apiAgentGetProviderAnalysis";
+import PlatformAnalysis from "@/components/PlatformAnalysis/PlatformAnalysis";
 
 export default function Dashboard() {
   const [userCount, setUserCount] = useState(0);
@@ -32,7 +33,10 @@ export default function Dashboard() {
           <DashboardCard icon={<User />} title={t("Users")} value={userCount} />
         </Link>
       </div>
-      <PlatformAnalysis />
+      <PlatformAnalysis
+        agentId={userState.value?.id!}
+        fetchData={apiAgentGetProviderAnalysis}
+      />
     </div>
   );
 }

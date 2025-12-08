@@ -5,17 +5,17 @@ import TransactionsPage from "./TransactionsPage";
 import { toast } from "@/helpers/toast";
 import { apiAdminDeleteAgent } from "@/api/agent/apiAdminDeleteAgent";
 import CreateTransactionModal from "./CreateTransactionModal";
-import { tTransactionStatistics } from "@/types/tTransactionStatistics";
 import { userState } from "@/state/userState";
 import { apiAdminChangePasswordAgent } from "@/api/agent/apiAdminChangePasswordAgent";
 import { apiAdminGetSubAgent } from "@/api/agent/area_manager/apiAdminGetSubAgent";
 import { useTranslations } from "@/context/I18nContext";
 import { useLocation } from "preact-iso";
-import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 import { tCurrencyBalance } from "@/types/tCurrencyBalance";
 import { multipleBalance } from "@/helpers/multipleBalance";
 import BackButton from "@/components/BackButton";
 import { tSuperAgentTransaction } from "@/types/tSuperAgentTransaction";
+import PlatformAnalysis from "@/components/PlatformAnalysis/PlatformAnalysis";
+import { apiSuperagentGetProviderAnalysis } from "@/api/agent/apiSuperagentGetProviderAnalysis";
 
 interface IAgentDetailPageProps {
   agentId: string;
@@ -174,6 +174,12 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
       <Tabs aria-label="Options">
         <Tab key="transactions" title="Transactions">
           <TransactionsPage agentId={agentId} />
+        </Tab>
+        <Tab key="analysis" title="Analysis">
+          <PlatformAnalysis
+            agentId={agentId}
+            fetchData={apiSuperagentGetProviderAnalysis}
+          />
         </Tab>
       </Tabs>
 
