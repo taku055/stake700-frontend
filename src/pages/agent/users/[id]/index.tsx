@@ -144,9 +144,9 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
       );
 
       if (i !== -1) {
-        newCashDetails[i] = balance.user;
+        newCashDetails[i] = balance.agent;
       } else {
-        newCashDetails.push(balance.user);
+        newCashDetails.push(balance.agent);
       }
 
       userState.value = {
