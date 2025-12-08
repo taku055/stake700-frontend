@@ -60,7 +60,7 @@ export default function AgentsPage() {
   };
 
   return (
-    <div className="p-2 md:p-4 flex flex-col gap-2 md:w-full w-screen justify-center">
+    <div className="p-2 md:p-4 flex flex-col gap-2 w-full justify-center">
       <div className="flex flex-col w-full gap-2">
         <div className="flex items-center justify-between">
           <h1 className="page-title">Sub-Agents</h1>

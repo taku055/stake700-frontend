@@ -11,7 +11,7 @@ export default function UserDetailPage({ userId }: { userId: string }) {
   }
 
   return (
-    <div className="p-2 md:p-4 flex flex-col md:w-full w-screen justify-center gap-2">
+    <div className="p-2 md:p-4 flex flex-col w-full justify-center gap-2">
       <BackButton href="/area_manager" />
       <Tabs aria-label="Options" classNames={{ base: "w-full" }}>
         <Tab key="info" title="Basic Information">

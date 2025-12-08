@@ -12,7 +12,7 @@ export default function AgentsPage() {
   }
 
   return (
-    <div className="p-2 md:p-4 flex flex-col md:w-full w-screen justify-center">
+    <div className="p-2 md:p-4 flex flex-col w-full justify-center">
       <Tabs aria-label="Options" classNames={{ base: "w-full" }}>
         <Tab key="subagents" title="SubAgents">
           <Subusers />

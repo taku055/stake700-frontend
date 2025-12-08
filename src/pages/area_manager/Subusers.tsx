@@ -63,7 +63,7 @@ export default function Subusers() {
   };
 
   return (
-    <div className="flex md:w-full w-screen justify-center">
+    <div className="flex w-full justify-center">
       {initialLoaded === 1 ? (
         <Loader />
       ) : (

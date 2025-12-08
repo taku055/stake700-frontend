@@ -63,7 +63,7 @@ export default function Transactions() {
   }, [currentPage, period?.start, period?.end]);
 
   return (
-    <div className="flex md:w-full flex-col w-screen justify-center gap-2">
+    <div className="flex w-full flex-col justify-center gap-2">
       <div className="flex items-center justify-between">
         <h1 className="page-title">Area Manager&apos;s Transactions</h1>
       </div>

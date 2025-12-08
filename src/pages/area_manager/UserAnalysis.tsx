@@ -73,7 +73,7 @@ export default function UserAnalysisPage() {
   }, [period, userState.value, selectedCurrency]);
 
   return (
-    <div className="card p-4 flex flex-col gap-4 md:w-full w-screen">
+    <div className="card p-4 flex flex-col gap-4 w-full">
       <div className="flex flex-col md:flex-row gap-2">
         <div className="flex flex-1 gap-4 items-center text-[14px] md:text-[18px]">
           User Report
