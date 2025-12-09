@@ -21,7 +21,7 @@ export const GameGridView: FunctionalComponent<GameGridViewProps> = ({
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-8 gap-2">
         {games.map((game) => (
           <GameCard key={game.id} data={game} />
         ))}

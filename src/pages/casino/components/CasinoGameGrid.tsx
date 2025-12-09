@@ -54,7 +54,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
       >
         {tHeader("All Games")}
       </div>
-      <div className="grid md:grid-cols-6 grid-cols-2 gap-2">
+      <div className="grid md:grid-cols-8 grid-cols-2 gap-2">
         {games.map((game) => (
           <GameCard key={game.id} data={game} />
         ))}
