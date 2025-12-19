@@ -4,7 +4,7 @@ import LocaleSelection from "../LocaleSelection";
 import { userState } from "@/state/userState";
 import { OfficialLinkGroup } from "./OfficialLinkGroup";
 import { PaymentMethodSwiper } from "./PaymentMethodSwiper";
-import { FOOTER_LINK_DATA } from "./data";
+import { FOOTER_LINK_DATA, FOOTER_SOCIAL_DATA } from "./data";
 import { Link } from "../common";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
@@ -22,7 +22,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="flex flex-col items-center justify-center mt-10 md:px-10 py-5 gap-5 bg-[var(--footer-background)]">
+    <footer className="flex flex-col  items-center font-['Proxima Nova'] justify-center mt-10  py-5 gap-5 bg-[var(--footer-background)]">
       {/* <div className="w-full flex flex-row justify-between items-center py-5 border-b border-[var(--bar-background-color)]">
         <OfficialLinkGroup />
         <div className="flex flex-row items-center gap-2">
@@ -63,8 +63,8 @@ export const Footer = () => {
         </a>
       </div>
       <PaymentMethodSwiper /> */}
-      <div className={`flex flex-col md:flex-row gap-10`}>
-        <div className={`flex flex-col gap-4 flex-1 ${
+      <div className={`max-w-[1200px] w-full  gap-[32px] flex flex-col items-center${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>
+        {/* <div className={`flex flex-col gap-4 flex-1 ${
           isRTL ? "text-right" : "text-left"
         }`} dir={isRTL ? "rtl" : "ltr"}>
           <img
@@ -77,33 +77,69 @@ export const Footer = () => {
           <p className="text-[12px] text-[var(--passive-color)]">
             {t("legal_text")}
           </p>
-        </div>
-        <div className={`flex gap-12 justify-center flex-1 ${
-          isRTL ? "text-right" : "text-left"
-        }`} dir={isRTL ? "rtl" : "ltr"}>
+        </div> */}
+        <div className={`flex gap-[16px] justify-between w-full ${isRTL ? "text-right" : "text-left"
+          }`} dir={isRTL ? "rtl" : "ltr"}>
           {FOOTER_LINK_DATA.map((item) => (
-            <div className="flex flex-col gap-[9px]">
-              {item.links.map((link) => (
-                <Link
-                  scrollToTop={true}
-                  href={link.href}
-                  className="text-[var(--passive-color)] text-[16px] font-semibold"
-                >
-                  {t(link.title)}
-                </Link>
-              ))}
+            <div className="flex flex-col gap-[8px] max-w-[187px]">
+              <h2 className="text-[16px] font-semibold uppercase text-[var(--text-footer-title-color)]">
+                {t(item.title)}
+              </h2>
+              <div className="flex flex-col gap-[6px]">
+                {item.links.map((link) => (
+                  <Link
+                    scrollToTop={true}
+                    href={link.href}
+                    className="text-[var(--passive-color)] text-[14px] font-semibold"
+                  >
+                    {t(link.title)}
+                  </Link>
+                ))}
+              </div>
             </div>
           ))}
         </div>
-      </div>
-      <div className="w-full flex flex-row justify-between items-center pt-[32px] pb-[48px]">
-        <div className="w-[42px] h-[42px] rounded-[9999px] border-[var(--pink-color)] border-2 text-center items-center flex justify-center">
-          <span className="text-[18px] font-semibold text-[var(--pink-color)] align-middle text-center">
-            18+
-          </span>
+        <div className="w-full flex justify-center">
+          <div className="flex w-[202px] h-[24px] justify-between">
+            {FOOTER_SOCIAL_DATA.map((item) => (
+              <Link href={item.href} className="w-[16px] h-[16px] rounded-[4px]">
+                <img src={item.icon} alt={item.title} className="w-full h-full" />
+              </Link>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-row items-center gap-2 text-[var(--text-transparent-color)]">
-          2003 - 2025 ichancy.com
+
+        <div className="w-full h-[2px] bg-[var(--background)]" />
+
+        <div className={`flex flex-col gap-[16px] w-full h-[120px] ${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>
+          <h2 className="text-[14px] font-weight-400 leading-[20px] text-[var(--passive-color)]">
+            © 2025 Betalarab.com | All Rights Reserved
+          </h2>
+          <p className="text-[14px] font-weight-400 leading-[20px] text-[var(--passive-color)]">
+            Betalarab is owned and operated by Betalarab N.V., registration number: 145353, registered address: Seru Loraweg 17 B, Curaçao.
+            Payment agent companies are Medium Rare Limited and MRS Tech Limited. Contact us at support@betalarab.com.
+          </p>
+          <h2 className="text-[14px] font-weight-400 leading-[20px] text-[var(--passive-color)]">
+            Betalarab is committed to responsible gambling, for more information visit <Link href="/responsible-gambling" className="text-[var(--passive-color)] text-[14px] font-semibold">Responsible Gambling</Link>
+          </h2>
+        </div>
+
+        <div className={`flex w-full justify-center items-center ${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>
+          <h2 className="text-[14px] font-weight-400 leading-[20px] text-[var(--passive-color)]">1 BTC = $93,023.26</h2>
+        </div>
+
+        <div className={`flex justify-center items-center w-full h-[44px] ${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>
+          <div className="w-[112px] h-[44px]">
+            <LocaleSelection headerMode={false} />
+          </div>
+        </div>
+        <div className="w-full h-[36px] flex justify-center items-center">
+          <img src="/images/icons/icons/logo.svg" alt="Betalarab" className="w-full h-full" />
+        </div>
+        <div className="w-full h-[64px] flex justify-center items-center">
+          <Link href="/" className="p-[2px]">
+            <img src="/images/icons/icons/seal.svg" alt="Betalarab" className="w-full h-full object-contain" />
+          </Link>
         </div>
       </div>
     </footer>

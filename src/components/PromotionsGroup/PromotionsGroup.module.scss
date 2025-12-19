@@ -42,7 +42,7 @@
       flex-direction: row;
       align-items: center;
       gap: 4px;
-      height: 40px;
+      height: 42px;
 
       @include for-mobile-only {
         height: 32px;
@@ -52,17 +52,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 8px;
-        background: #333333;
+        border-width: 1px;
+        color: var(--text-transparent-color);
+        background: (var(--bar-background-secondary));
         height: 100%;
-        width: 40px;
+        width: 58px;
         min-width: 0;
-        padding: 0;
+        padding: 11px 19px;
 
         @include for-mobile-only {
           width: 32px;
         }
       }
+    
 
       .view {
         display: flex;

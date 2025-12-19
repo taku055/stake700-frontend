@@ -66,7 +66,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             class={clsx(
               "relative flex items-center",
               borderBase,
-              "bg-[#fff1] border-none rounded-sm! hover:bg-[#fff2] focus-within:hover:bg-[#fff2]",
+              "bg-[#fff1] border-none rounded-sm!",
               "transition-colors",
               classNames?.inputWrapper,
               error && "border-red-500"

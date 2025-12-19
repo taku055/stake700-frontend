@@ -20,6 +20,13 @@ interface MobileDrawerProps {
     icon: any;
     navIcon?: string;
   }>;
+  ExtraNavItems: Array<{
+    title: string;
+    href: string;
+    key: string;
+    icon: any;
+    navIcon?: string;
+  }>;
   selectedMainNavKey?: string;
   categories: Array<{
     name: string;
@@ -31,6 +38,7 @@ interface MobileDrawerProps {
 
 export default function MobileDrawer({
   mainNavItems,
+  ExtraNavItems,
   selectedMainNavKey,
   categories,
   selectedMainNavTitle,
@@ -181,7 +189,7 @@ export default function MobileDrawer({
                   }}
                   className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
                     selectedMainNavKey === item.key
-                      ? "bg-[#134077] text-white"
+                      ? "bg-[var(--background-btn-hover)] text-white"
                       : "text-gray-300 hover:bg-gray-700"
                   }`}
                 >

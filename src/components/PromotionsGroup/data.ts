@@ -2,22 +2,51 @@ export interface tPromotionInformation {
   title: string;
   description: string;
   image: string;
+  label?: string;
+  readMoreLink?: string;
 };
 
 export const promotionsData : Array<tPromotionInformation> = [
   {
     title: "Blackjack Boost",
-    description: "Get a 10% bonus on your Blackjack winnings every day!",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/winbet/promos/Blackjack.jpg",
+    description: "Get a 10% bonus",
+    image: "buffer/promotion1.png",
+    label: "Only on Stake",
+    readMoreLink: "#",
   },
   {
     title: "Roulette Wheel Rush",
-    description: "Spin the wheel and enjoy a daily bonus on your Roulette wins!",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/winbet/promos/Roulette.jpg",
+    description: "enjoy a daily bonus",
+    image: "buffer/promotion2.png",
+    label: "Promotion",
+    readMoreLink: "#",
   },
   {
     title: "Non-Stop Drops",
-    description: "Random rewards drop 24/7 while you play - no opt-in required!",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/winbet/promos/Non-stop.jpg",
+    description: " no opt-in required!",
+    image: "buffer/promotion3.png",
+    label: "Streaming",
+    readMoreLink: "#",
+  },
+  {
+    title: "Non-Stop Drops",
+    description: "no opt-in required!",
+    image: "buffer/promotion4.png",
+    label: "Streaming",
+    readMoreLink: "#",
+  },
+  {
+    title: "Non-Stop Drops",
+    description: "No opt-in required!",
+    image: "buffer/promotion5.png",
+    label: "Streaming",
+    readMoreLink: "#",
+  },
+  {
+    title: "Non-Stop Drops",
+    description: "No opt-in required!",
+    image: "buffer/promotion6.png",
+    label: "Streaming",
+    readMoreLink: "#",
   },
 ];

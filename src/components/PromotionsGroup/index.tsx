@@ -14,6 +14,7 @@ export default function PromotionsGroup() {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
   const t = useTranslations("GameGroup");
   const [swiper, setSwiper] = useState<any>(null);
+  const [activeAction, setActiveAction] = useState<"left" | "right" | null>("right");
 
   const goToNextSlide = () => {
     swiper?.slideNext();
@@ -21,6 +22,20 @@ export default function PromotionsGroup() {
 
   const goToPrevSlide = () => {
     swiper?.slidePrev();
+  };
+
+  const goToStart = () => {
+    if (swiper) {
+      swiper?.slideTo(0);
+      setActiveAction("right");
+    }
+  };
+
+  const goToEnd = () => {
+    if (swiper && swiper.slides) {
+      swiper?.slideTo(swiper.slides.length - 1);
+      setActiveAction("left");
+    }
   };
 
   return (
@@ -31,11 +46,11 @@ export default function PromotionsGroup() {
         </div>
 
         <div className={styles.action}>
-          <Button onPress={goToPrevSlide} className={styles.moveButton}>
-            <ChevronLeft size={10} color="#CFD4D8" />
+          <Button onPress={goToStart} className={`${styles.moveButton} rounded-l-full ${activeAction === "left" ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>
+            <ChevronLeft size={18}  />
           </Button>
-          <Button onPress={goToNextSlide} className={styles.moveButton}>
-            <ChevronRight size={10} color="#CFD4D8" />
+          <Button onPress={goToEnd} className={`${styles.moveButton} rounded-r-full ${activeAction === "right" ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>
+            <ChevronRight size={18}  />
           </Button>
         </div>
       </div>
@@ -55,6 +70,8 @@ export default function PromotionsGroup() {
               title={e.title}
               description={e.description}
               image={e.image}
+              label={e.label}
+              readMoreLink={e.readMoreLink}
             />
           </SwiperSlide>
         ))}

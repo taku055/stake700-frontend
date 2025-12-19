@@ -1,6 +1,6 @@
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
-import { Users, Crown, ChartArea } from "lucide-preact";
+import { Users, Crown, ChartArea, Shield, Globe, Headphones, Handshake, MessageSquare, FileText, Trophy } from "lucide-preact";
 import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
 
@@ -11,6 +11,19 @@ const getNavIcon = (key: string): string => {
     "live-casino": "/images/sidebar/live-casino.svg",
     sport: "/images/sidebar/sportsbook.svg",
     promotions: "/images/sidebar/promotions.png",
+    blog: "/images/sidebar/blog.svg",
+    forum: "/images/sidebar/forum.svg",
+    sponsorships: "/images/sidebar/sponsorships.svg",
+    "responsible-gambling": "/images/sidebar/responsible-gambling.svg",
+    "live-support": "/images/sidebar/live-support.svg",
+    language: "/images/sidebar/language.svg",
+    "vip-club": "/images/sidebar/vip-club.svg",
+    affiliate: "/images/sidebar/affiliate.svg",
+    "superagent": "/images/sidebar/superagent.svg",
+    "agent": "/images/sidebar/agent.svg",
+    "users": "/images/sidebar/users.svg",
+    "area-manager": "/images/sidebar/area-manager.svg",
+    "dashboard": "/images/sidebar/dashboard.svg",
   };
   return iconMap[key] || "/images/sidebar/casino.svg";
 };
@@ -63,9 +76,27 @@ export const useTablist = () => {
           href: "/promotions",
           key: "promotions",
           icon: (
-            <img src="/images/icons/promotions-icon.svg" alt="Promotions" />
+            <img src="/images/icons/icons/promotions-icon.svg" alt="Promotions" />
           ),
           navIcon: getNavIcon("promotions"),
+          expandable: true,
+          expandableItems: [
+            {
+              title: "Sorteo Semanal d...",
+              href: "/promotions/15",
+              icon: "/images/icons/reward.svg",
+            },
+            {
+              title: "Carrera de $100k",
+              href: "/promotions/12",
+              icon: "/images/icons/live-icon.svg",
+            },
+            {
+              title: "Pragmatic Drops ...",
+              href: "/promotions/13",
+              icon: "/images/icons/promotions-icon.svg",
+            },
+          ],
         },
         {
           title: t("Games"),
@@ -111,6 +142,67 @@ export const useTablist = () => {
           href: "/trebuchet",
           key: "trebuchet",
           navIcon: getNavIcon("trebuchet"),
+        },
+        {
+          title: t("Affiliate") || "Affiliate",
+          href: "/affiliates",
+          key: "affiliate",
+          icon: <img src={'images/icons/icons/affiliate.svg'} alt="Affiliate"/>,
+          navIcon: getNavIcon("affiliate"),
+        },
+        {
+          title: t("VIP Club") || "VIP Club",
+          href: "/vip-club",
+          key: "vip-club",
+          icon: <img src={'images/icons/icons/vip-club.svg'} alt="VIP-Club"/>,
+          navIcon: getNavIcon("vip-club"),
+        },
+        {
+          title: t("Blog") || "Blog",
+          href: "/blog",
+          key: "blog",
+          icon: <img src={'images/icons/icons/blog.svg'} alt="Blog"/>,
+          navIcon: getNavIcon("blog"),
+        },
+        {
+          title: t("Forum") || "Forum",
+          href: "/forum",
+          key: "forum",
+          icon: <img src={'images/icons/icons/forum.svg'} alt="Forum"/>,
+          navIcon: getNavIcon("forum"),
+        },
+        {
+          title: t("Sponsorships") || "Sponsorships",
+          href: "/sponsorships",
+          key: "sponsorships",
+          icon: <img src={'images/icons/icons/sponsorships.svg'} alt="sponsorships"/>,
+          navIcon: getNavIcon("sponsorships"),
+          expandable: true,
+          expandableItems: [
+            
+          ],
+        },
+        {
+          title: t("Responsible Gambling") || "Responsible Gambling",
+          href: "/responsible-gambling",
+          key: "responsible-gambling",
+          icon: <img src={'images/icons/icons/responsible-gambling.svg'} alt="Responsible-gambling"/>,
+          navIcon: getNavIcon("responsible-gambling"),
+        },
+        {
+          title: t("Live Support") || "Live Support",
+          href: "/live-support",
+          key: "live-support",
+          icon: <img src={'images/icons/icons/live-support.svg'} alt="Live Support"/>,
+          navIcon: getNavIcon("live-support"),
+        },
+        {
+          title: t("Language") || "Language",
+          href: "#",
+          key: "language",
+          icon: <img src={'images/icons/icons/language.svg'} alt="Language"/>,
+          navIcon: getNavIcon("language"),
+          expandable: true,
         },
       ];
     } else {

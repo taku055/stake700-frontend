@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 16px 0;
-  padding: 0px 64px;
+  // margin: 16px 0;
+  padding: 10px 0px;
 
   @include for-mobile-only {
     margin: 12px 0;
@@ -36,10 +36,40 @@
         }
       }
     }
+    .action {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+      height: 42px;
+
+      @include for-mobile-only {
+        height: 32px;
+      }
+
+      .moveButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-width: 1px;
+        // color: var(--text-transparent-color);
+        background: (var(--bar-background-secondary));
+        height: 100%;
+        width: 58px;
+        min-width: 0;
+        padding: 11px 19px;
+
+        @include for-mobile-only {
+          width: 32px;
+        }
+      }
+    }
   }
 
   .games {
     width: 100%;
+
+    
     
     .game {
 

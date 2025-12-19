@@ -23,7 +23,7 @@ export default function CategoryItems({ categories, title, onCategoryClick }: Ca
   };
 
   return (
-    <div className="p-4">
+    <div className="py-4">
       <h3 className="text-gray-400 text-sm font-medium mb-3 uppercase">
         {title}
       </h3>
@@ -32,13 +32,13 @@ export default function CategoryItems({ categories, title, onCategoryClick }: Ca
           <button
             key={index}
             onClick={() => handleCategoryClick(category.path)}
-            className="flex items-center bg-[var(--background-secondary)] gap-2 p-2 rounded-lg text-gray-300 hover:bg-gray-700 transition-colors text-left w-full"
+            className="flex items-center bg-[var(--background-secondary)] gap-2 p-2 px-4 text-gray-300 hover:bg-gray-700 transition-colors text-left w-full"
           >
             {category.icon && (
               <img
                 src={category.icon}
                 alt={category.name}
-                className="w-8 h-8 flex-shrink-0 object-contain"
+                className="w-6 h-6 flex-shrink-0 object-contain"
               />
             )}
             <span className="flex-1">{category.name}</span>

@@ -2,7 +2,7 @@ import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { ChevronRight } from "lucide-preact";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { localeState } from "@/state/localeState";
-import { useState, useMemo } from "preact/hooks";
+import { useState, useMemo, useEffect } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
@@ -14,6 +14,7 @@ import {
 } from "@heroui/react";
 import { RTL_LANGUAGES } from "@/config/constants";
 import { Link } from "../common";
+import LocaleSelection from "@/components/LocaleSelection";
 
 const localeOptions = [
   { label: "Türkçe", value: "tr", flag: "tr" },
@@ -39,6 +40,13 @@ interface CollapsedSidebarProps {
     icon: any;
     navIcon?: string;
   }>;
+  ExtraNavItems: Array<{
+    title: string;
+    href: string;
+    key: string;
+    icon: any;
+    navIcon?: string;
+  }>;
   selectedMainNavKey?: string;
   categories: Array<{
     name: string;
@@ -49,6 +57,7 @@ interface CollapsedSidebarProps {
 
 export default function CollapsedSidebar({
   mainNavItems,
+  ExtraNavItems,
   selectedMainNavKey,
   categories,
 }: CollapsedSidebarProps) {
@@ -60,9 +69,12 @@ export default function CollapsedSidebar({
   const { categories: liveCasinoCategories } = useLiveCasinoCategories();
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
-  const topNavItems = mainNavItems.filter((item) =>
-    ["slots", "live-casino", "sport", "promotions"].includes(item.key)
-  );
+  // const topNavItems = mainNavItems.filter((item) =>
+  //   ["slots", "live-casino", "sport", "promotions"].includes(item.key)
+  // );
+  const topNavItems = useMemo(() => {
+    return mainNavItems;
+  }, [mainNavItems]);
 
   // Get categories based on selected tab
   const categoriesWithIcons = useMemo(() => {
@@ -70,54 +82,28 @@ export default function CollapsedSidebar({
   }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   return (
-    <div className={`md:flex w-[64px] bg-[var(--bar-background-color)] ${isRTL ? 'border-l' : 'border-r'} border-gray-700 flex-col h-screen sticky top-0`}>
+    <div className={`sticky top-0 md:flex w-[64px] bg-[var(--bar-background-color)] flex-col h-screen`}>
       {/* Expand Button */}
-      <div className="flex items-center justify-center p-2 border-b border-gray-700 flex-shrink-0">
+      <div className="flex items-center justify-center p-2 flex-shrink-0 h-[60px]">
         <button
+          className={`rounded-full h-full p-2 ratio-1/1 flex items-center justify-center`}
           onClick={() => {
             navigationSidebarExpandedState.value = true;
           }}
-          className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-700 transition-colors text-white"
-          aria-label="Expand sidebar"
         >
-          <img 
-            src="/images/sidebar/expand.svg" 
-            alt="sidebararrow" 
-            className={`w-6 h-6 transition-transform duration-300 ${
-              isRTL ? 'scale-x-[-1]' : ''
-            }`}
+          <img
+            src="/images/icons/menu.png"
+            alt="sidebararrow"
+            className={`w-[13px] h-[13px] duration-300 brightness-0 invert transition-transform ${isRTL ? 'scale-x-[-1]' : ''
+              }`}
           />
         </button>
+     
       </div>
 
-      {/* Tab Selector (Casino / Live Casino) */}
-      {/* <div className="flex flex-col items-center gap-1 p-2 border-b border-gray-700 flex-shrink-0">
-        <button
-          onClick={() => setSelectedTab("casino")}
-          className={`w-10 h-8 rounded text-xs transition-colors ${
-            selectedTab === "casino"
-              ? "bg-[#134077] text-white"
-              : "bg-[var(--background-secondary)] text-gray-300 hover:bg-gray-700"
-          }`}
-          title={t("Casino") || "Casino"}
-        >
-          C
-        </button>
-        <button
-          onClick={() => setSelectedTab("live-casino")}
-          className={`w-10 h-8 rounded text-xs transition-colors ${
-            selectedTab === "live-casino"
-              ? "bg-[#134077] text-white"
-              : "bg-[var(--background-secondary)] text-gray-300 hover:bg-gray-700"
-          }`}
-          title={t("Live Casino") || "Live Casino"}
-        >
-          L
-        </button>
-      </div> */}
-
+      
       {/* Scrollable Content Area */}
-      <div className="flex-1 flex flex-col overflow-y-auto min-h-0 sidebar-scrollbar">
+      <div className="flex-1 flex flex-col overflow-y-auto min-h-0 scrollbar-hide">
         {/* Navigation Icons */}
         <div className="flex flex-col items-center py-4 gap-2 flex-shrink-0">
           {topNavItems.map((item) => (
@@ -129,27 +115,51 @@ export default function CollapsedSidebar({
                 e.stopPropagation();
                 handleNavigate(modifyHref(item.href));
               }}
-              className={`flex items-center justify-center w-12 h-12 rounded-lg transition-colors ${
-                selectedMainNavKey === item.key
-                  ? "bg-[#134077] text-white"
-                  : "text-gray-300 hover:bg-gray-700"
-              }`}
+              className={`flex items-center justify-center w-6 h-6 py-4 rounded-lg transition-colors ${selectedMainNavKey === item.key
+                ? "bg-[var(--bar-background-color-hover)] text-white"
+                : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
+                }`}
               title={item.title}
             >
-              <img
+              {item.icon ? (item.icon) : (<img
                 src={item.navIcon || "/images/sidebar/casino.svg"}
                 alt={item.title}
-                className="w-10 h-10 object-contain"
-              />
+                className="w-6 h-6 flex-shrink-0 object-contain"
+              />)}
             </Link>
           ))}
         </div>
 
         {/* Divider */}
-        <div className="border-b border-gray-700 mx-2 flex-shrink-0" />
+        <div className="border-b-2 border-[var(--bar-background-color)] flex-shrink-0" />
+
+        <div className="flex flex-col items-center py-4 gap-2 flex-shrink-0">
+          {ExtraNavItems.map((item) => (
+            <Link
+              key={item.key}
+              href={modifyHref(item.href)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleNavigate(modifyHref(item.href));
+              }}
+              className={`flex items-center justify-center w-6 h-6 py-4 rounded-lg transition-colors ${selectedMainNavKey === item.key
+                ? "bg-[var(--bar-background-color-hover)] text-white"
+                : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
+                }`}
+              title={item.title}
+            >
+              {item.icon ? (item.icon) : (<img
+                src={item.navIcon || "/images/sidebar/casino.svg"}
+                alt={item.title}
+                className="w-6 h-6 flex-shrink-0 object-contain"
+              />)}
+            </Link>
+          ))}
+        </div>
 
         {/* Category Icons */}
-        <div className="flex flex-col items-center py-4 gap-2">
+        {/* <div className="flex flex-col items-center py-4 gap-2">
           {categoriesWithIcons.map((category, index) => (
             <Link
               key={index}
@@ -160,15 +170,15 @@ export default function CollapsedSidebar({
               <img
                 src={category.icon}
                 alt={category.name}
-                className="w-8 h-8 object-contain"
+                className="w-6 h-6 object-contain"
               />
             </Link>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Locale Selection Button - Bottom */}
-      <div className="flex items-center justify-center p-2 border-t border-gray-700 flex-shrink-0">
+      {/* <div className="flex items-center justify-center p-2 border-t border-gray-700 flex-shrink-0">
         <Dropdown backdrop="blur" className="bg-[var(--background)]">
           <DropdownTrigger>
             <button
@@ -200,7 +210,7 @@ export default function CollapsedSidebar({
             ))}
           </DropdownMenu>
         </Dropdown>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -2,11 +2,13 @@
   --foreground: #FFFFFF;
   --highlight-background: #4D4D4D;
 
+  --passive-color: #FFFFFF;
+
+
   --primary-color: #8CC4DF;
-  --passive-color: #6C829D;
   --primary-hover-color: #64a8c9;
   --primary-bg-transparent-color: #37c9961d;
-  --sidebar-background: #151D24;
+  --sidebar-background: #171717;
   --toastify-font-family: "Cairo";
   --toastify-font-size: 12px;
   --nextui-font-size-small: 16px;
@@ -17,11 +19,15 @@
   --primary-font: "Cairo";
   
   
-  --background: #0B1629;
-  --background-secondary: #233D66;
+  --bar-background-color: #171717;
+  --background: #232323;
+  --background-secondary: #323232;
+  --background-tertiary: #767676;
+  --background-btn-hover: #3B4B5C;
+  --footer-background: #323232;
+
+
   --header-background: #0B1629;
-  --footer-background: #0B1629;
-  --bar-background-color: #122543;
   --bar-background-color-hover: #3b4b5c;
   --bar-background-color-active: #3B4B5C;
   --background-color-active: #a5b5c8;

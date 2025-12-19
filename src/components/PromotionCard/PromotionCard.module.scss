@@ -2,45 +2,111 @@
 
 .card {
   position: relative;
-  border-radius: "5px";
+  border-radius: 10px;
   overflow: hidden;
-  background: #111;
+  background: #323232;
   color: #fff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-  aspect-ratio: 2.4;
+  width: 400px;
+  height: 170px;
   display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+
+  @include for-mobile-only {
+    width: 100%;
+    max-width: 340px;
+  }
 }
 
 .content {
-  position: absolute;
-  bottom: 0;
-  height: fit-content;
-  padding: 1rem;
-  background-color: #57003Ba0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  justify-content: flex-start;
+  gap: 8px;
   z-index: 10;
-  width: 100%;
+  position: relative;
+  width: 215px;
+  height: 100%;
 
   @include for-mobile-only {
-    font-size: 1rem;
-    padding: 0.5rem;
+    padding: 12px 16px;
+    gap: 6px;
+  }
+}
+
+.label {
+  display: inline-block;
+  background: white;
+  color: black;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  @include for-mobile-only {
+    font-size: 10px;
+    padding: 3px 10px;
   }
 }
 
 .title {
-  font-size: 1.25rem;
+  font-size: 20px;
   font-weight: 700;
+  color: white;
+  margin: 0;
+  line-height: 1.2;
 
   @include for-mobile-only {
-    font-size: 1rem;
+    font-size: 18px;
   }
 }
 
 .description {
-  font-size: 0.95rem;
-  color: #ccc;
+  font-size: 14px;
+  color: white;
+  margin: 0;
+  line-height: 1.4;
   flex: 1;
 
   @include for-mobile-only {
-    font-size: 0.8rem;
+    font-size: 12px;
+  }
+}
+
+.readMore {
+  color: white;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: auto;
+
+  @include for-mobile-only {
+    font-size: 12px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.imageWrapper {
+  width: 157px;
+  height: 170px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  // min-width: 220px;
+  // min-height: 220px;
+  object-fit: contain;
+
+  @include for-mobile-only {
+    width: 140px;
+    height: 170px;
   }
 }

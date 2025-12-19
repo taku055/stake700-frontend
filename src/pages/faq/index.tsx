@@ -11,16 +11,16 @@ export default function FAQ() {
 
   return (
     <div
-      className={`w-full px-4 py-8 md:px-24 md:py-12 max-w-4xl mx-auto ${
+      className={`w-full font-["Proxima Nova"] py-8 md:py-12 mx-auto ${
         isRTL ? "text-right" : "text-left"
       }`}
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <h1 className="text-[var(--primary-color)] text-3xl md:text-4xl font-bold mb-8">
-        {t("title") || "Frequently Asked Questions"}
+      <h1 className="text-[#ffffff] text-[20px] font-weight-600 leading-[24px] mb-8 flex items-center gap-2 h-[28px]">
+        {<img src={'images/icons/icons/info-icon.svg'} className="w-8 h-8" alt="FAQ"/>}{t("title") || "Still Have Questions?"}
       </h1>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-[8px]">
         {faqData.map((faq, index) => (
           <FAQAccordion
             key={index}

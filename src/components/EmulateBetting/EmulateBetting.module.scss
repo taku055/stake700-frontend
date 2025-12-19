@@ -1,0 +1,70 @@
+// @import "/src/styles/mixins";
+
+.container {
+  display: flex;  
+  flex-direction: column;
+  background: var(--secondary-background);
+  border-left: 1px solid #ffffff0a;
+  transition: all 0.2s;
+  z-index: 37;
+  overflow-x:auto;
+
+  // @include for-mobile-only {
+  //   // width: 100vw !important;
+  //   bottom: 0;
+  //   margin-left: 0;
+  // }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-between;
+  padding: 14px 0px;
+  background: (var(--secondary-background));
+  border-bottom: 1px solid #ffffff0a;
+  overflow: hidden;
+}
+
+.tabList {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex: 1;
+  border-radius: 25px;
+  padding: 7px;
+  background: var(--bar-background-color);
+  width: fit-content;
+  z-index: 100;
+}
+
+.tab {
+
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  // background: #213746;
+  // border: 1px solid #ffffff44;
+  border-radius: 25px;
+  color: #bfc0c3;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  // border: none;
+
+
+  &:hover:not(.activeTab) {
+    background: var(--background-secondary);
+  }
+
+  &.activeTab {
+    background: var(--background-secondary);
+    // border: 1px solid #ffffff44;
+    color: #ffffff;
+  }
+
+ 
+  
+}

@@ -17,6 +17,12 @@ interface NavigationItem {
   icon: any;
   pageType?: tPageType;
   navIcon?: string;
+  expandable?: boolean;
+  expandableItems?: Array<{
+    title: string;
+    href: string;
+    icon: string;
+  }>;
 }
 
 export default function NavigationSidebar() {
@@ -34,7 +40,7 @@ export default function NavigationSidebar() {
     const unsubscribeOpen = navigationSidebarOpenState.subscribe((value) => {
       setIsOpen(value);
     });
-    
+
     return () => {
       unsubscribeExpanded();
       unsubscribeOpen();
@@ -44,14 +50,16 @@ export default function NavigationSidebar() {
   // Filter main navigation items (Casino, Live Casino, Sports, etc.)
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
-      .filter((item) => 
-        ["slots", "live-casino", "sport", "promotions"].includes(item.key)
+      .filter((item) =>
+        ["promotions", "affilate","vip-club", "blog", "forum"].includes(item.key)
       )
       .map((item) => {
         let pageType: tPageType | undefined;
         if (item.key === "slots") pageType = "slots";
         else if (item.key === "live-casino") pageType = "live-casino";
-        
+        // else if (item.key === "sport") pageType = "sportbook";
+        console.log("item", item);
+
         return {
           title: item.title,
           href: item.href,
@@ -59,8 +67,38 @@ export default function NavigationSidebar() {
           icon: item.icon,
           navIcon: item.navIcon,
           pageType,
+          expandable: item.expandable,
+          expandableItems: item.expandableItems,
         };
       });
+  }, [tabList]);
+
+  const ExtraNavItems: Array<{
+    title: string;
+    href: string;
+    key: string;
+    icon: any;
+    navIcon?: string;
+    pageType?: tPageType;
+    expandable?: boolean;
+    expandableItems?: Array<{
+      title: string;
+      href: string;
+      icon: string;
+    }>;
+  }> = useMemo(() => {
+    return tabList.filter((item) =>
+      ["sponsorships", "responsible-gambling", "live-support", "language"].includes(item.key)
+    ).map((item) => ({
+      title: item.title,
+      href: item.href,
+      key: item.key,
+      icon: item.icon,
+      navIcon: item.navIcon,
+      pageType: undefined,
+      expandable: item.expandable,
+      expandableItems: item.expandableItems,
+    }));
   }, [tabList]);
 
   // Determine selected main nav item
@@ -94,6 +132,7 @@ export default function NavigationSidebar() {
     return (
       <MobileDrawer
         mainNavItems={mainNavItems}
+        ExtraNavItems={ExtraNavItems}
         selectedMainNavKey={selectedMainNav?.key}
         categories={categories}
         selectedMainNavTitle={selectedMainNav?.title || "Categories"}
@@ -104,22 +143,25 @@ export default function NavigationSidebar() {
   // Desktop: Show collapsed sidebar (always visible) and expanded drawer (when expanded)
   return (
     <>
-      {/* Collapsed Sidebar - Always visible on desktop */}
-      <CollapsedSidebar
-        mainNavItems={mainNavItems}
-        selectedMainNavKey={selectedMainNav?.key}
-        categories={categories}
-      />
-
-      {/* Expanded Drawer - Overlays when expanded */}
-      {isExpanded && (
-        <ExpandedDrawer
-          mainNavItems={mainNavItems}
-          selectedMainNavKey={selectedMainNav?.key}
-          categories={categories}
-          selectedMainNavTitle={selectedMainNav?.title || "Categories"}
-        />
-      )}
+      <div className="bg-[var(--bar-background-color)] relative top-0 p-0 m-0">
+        {console.log('mainNavItems', mainNavItems)}
+        {navigationSidebarExpandedState.value ? (
+          <ExpandedDrawer
+            mainNavItems={mainNavItems}
+            ExtraNavItems={ExtraNavItems}
+            selectedMainNavKey={selectedMainNav?.key}
+            categories={categories}
+            selectedMainNavTitle={selectedMainNav?.title || "Categories"}
+          />
+        ) : (
+          <CollapsedSidebar
+            mainNavItems={mainNavItems}
+            ExtraNavItems={ExtraNavItems}
+            selectedMainNavKey={selectedMainNav?.key}
+            categories={categories}
+          />
+        )}
+      </div>
     </>
   );
 }

@@ -10,7 +10,7 @@ import { useTranslations } from "@/context/I18nContext";
 import {
   XIcon,
 } from "lucide-preact";
-import {localeState} from "@/state/localeState";
+import { localeState } from "@/state/localeState";
 import { maintenanceState } from "@/state/maintenanceState";
 import { useEffect, useState } from "preact/hooks";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
@@ -33,8 +33,8 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full">
-      <div className="flex flex-col items-center w-full px-2 py-1">
+    <header className="w-full flex items-center justify-center">
+      <div className="flex flex-col items-center w-full px-2 py-1 max-w-[1200px]">
         {alertVisible && (
           <div className="flex flex-row items-center justify-center w-full p-5 border-t border-[var(--pink-color)] rounded-sm bg-[var(--bar-background-color)] relative">
             <div className="flex flex-row items-center gap-3 text-[12px] leading-[150%] text-[var()]">
@@ -60,13 +60,15 @@ export default function Header() {
               <Menu size={24} />
             </button>
             <a href={modifyHref("/")}>
-              <img
+
+              {/* <img
                 src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
                   import.meta.env.VITE_SITE_NAME as string
                 ).toLowerCase()}/logo.png`}
                 className="h-[24px] md:h-[36px] object-contain md:max-w-[200px]"
                 alt={import.meta.env.VITE_SITE_NAME as string}
-              />
+              /> */}
+              <img src="/buffer/logo.PNG" alt="Logo" className="h-[24px] md:h-[36px] object-contain md:max-w-[200px]" />
             </a>
           </div>
           {/* <div className="ml-auto hidden md:block!">
@@ -77,15 +79,17 @@ export default function Header() {
               <>
                 <Button
                   variant="light"
-                  className="btn text-white rounded-sm min-w-[unset]"
+                  className="btn"
                   size="sm"
+                  style={{ background: '#ffffff', color: '#232323' }}
                   onPress={() => (loginOpenedState.value = true)}
                 >
                   {t("login")}
                 </Button>
                 <Button
-                  className="btn btn-primary text-white rounded-sm"
+                  className="btn"
                   size="sm"
+                  style={{background: '#01A825', color: '#ffffff'}}
                   onPress={() => (registerOpenedState.value = true)}
                 >
                   {t("register")}
@@ -97,7 +101,7 @@ export default function Header() {
                 <ProfileButton />
               </>
             )}
-            
+
           </div>
         </div>
       </div>
