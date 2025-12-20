@@ -19,6 +19,8 @@ import {
 import { Select, SelectItem } from "@heroui/react";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
 import { registerOpenedState } from "@/state/registerOpenedState";
+import { Eye, EyeOff } from "lucide-preact";
+
 
 interface ILoginComponentProps {
   isOpen: boolean;
@@ -34,6 +36,8 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
   const tToast = useTranslations("ToastMessages");
   const location = useLocation();
   const emailRef = useRef<HTMLInputElement>(null);
+  const [showPassword, setShowPassword] = useState(false);
+
 
   useEffect(() => {
     setEmail("");
@@ -111,100 +115,147 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
       }}
     >
       <ModalContent
-        className="bg-[var(--background)] max-h-[calc(var(--viewport-height) * 80)] overflow-y-auto"
+        className="bg-[var(--background)] w-[630px] h-[716px] max-w-[630px] max-h-[716px] rounded-[8px] overflow-y-auto"
       >
-        <ModalHeader className="flex justify-between">
+        <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
           <img
-            src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
-              import.meta.env.VITE_SITE_NAME as string
-            ).toLowerCase()}/logo.png`}
-            className="h-[36px] md:h-[40px] md:max-w-[200px]"
+            // src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
+            //   import.meta.env.VITE_SITE_NAME as string
+            // ).toLowerCase()}/logo.png`}
+            src="/images/icons/icons/logo.svg"
+            className="h-[36px] md:h-[36px] md:max-w-[180px]"
             alt={import.meta.env.VITE_SITE_NAME as string}
           />
           <button
-            className="btn btn-primary mr-[24px]"
+            className="rounded-[4px] w-[20px] h-[20px]"
             onClick={() => {
               onClose();
-              registerOpenedState.value = true;
+              // registerOpenedState.value = true;
             }}
           >
-            {t("register")}
+            {/* {t("register")} */}
           </button>
         </ModalHeader>
-        <ModalBody className="flex flex-col px-[24px] pb-[32px] pt-[32px]">
+        <ModalBody className="flex flex-col p-[16px]">
           <form className="flex flex-col w-full gap-[16px]" onSubmit={onSubmit}>
-            <div className="flex flex-col gap-[10px]">
-              <div className="text-[#FFFFFF80] text-[14px]">
-                {t("already_have_an_account")}
+            {/* <label className="uppercase text-white text-[18px]">
+              {t("sign_in_waiting")}
+            </label> */}
+            <div className="flex flex-col ">
+              <div className="h-[68px]">
+                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
+                  <span>{t("Email or Username")}</span>
+                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                </label>
+                <Input
+                  type="text"
+                  value={email}
+                  onChange={(e: any) => setEmail(e.target.value)}
+                  classNames={{
+                    inputWrapper: "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-tertiary)] rounded-sm! h-[44px]",
+                    input: "text-white",
+                  }}
+                  ref={emailRef}
+                />
               </div>
-              <div className="uppercase text-white text-[18px]">
-                {t("sign_in_waiting")}
+              <div className="h-[84px] w-full flex flex-col pt-[16px]">
+                <label className="text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
+                  <span>{t("Password")}</span>
+                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                </label>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e: any) => setPassword(e.target.value)}
+                  classNames={{
+                    inputWrapper: "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-tertiary)] rounded-sm! h-[44px]",
+                    input: "text-white",
+                  }}
+                  endContent={
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="cursor-pointer text-white/70 hover:text-white transition-colors"
+                    >
+                      {showPassword ? (
+                        <EyeOff className="w-5 h-5" />
+                      ) : (
+                        <Eye className="w-5 h-5" />
+                      )}
+                    </button>
+                  }
+                />
               </div>
-            </div>
-            <div className="flex flex-col gap-[16px]">
-              <Input
-                type="text"
-                value={email}
-                onChange={(e: any) => setEmail(e.target.value)}
-                label={t("username")}
-                classNames={{
-                  inputWrapper: "bg-[#fff1] border-none rounded-sm!",
-                  input: "text-white",
-                }}
-                ref={emailRef}
-              />
-              <Input
-                type="password"
-                value={password}
-                onChange={(e: any) => setPassword(e.target.value)}
-                label={t("password")}
-                classNames={{
-                  inputWrapper: "bg-[#fff1] border-none rounded-sm!",
-                  input: "text-white",
-                }}
-              />
-              <Select
-                label={t("are_you_an_agent")}
-                placeholder={t("select_user_type")}
-                selectedKeys={userType ? [userType] : []}
-                onSelectionChange={(keys) =>
-                  setUserType(Array.from(keys as Set<string>)[0] || "NORMAL")
-                }
-                classNames={{
-                  trigger: "bg-[#fff1] border-none rounded-sm!",
-                  value: "text-white",
-                }}
-              >
-                <SelectItem key="NORMAL">User</SelectItem>
-                <SelectItem key="AGENT">Agent</SelectItem>
-                <SelectItem key="SUPERAGENT">Super Agent</SelectItem>
-                <SelectItem key="AREA_MANAGER">Area Manager</SelectItem>
-              </Select>
-              <div className="flex flex-row px-[8px]">
-                <Checkbox isSelected={remember} onValueChange={setRemember}>
-                  <span className="text-[14px] text-[#FFFFFFB2]">
-                    {t("remember_me")}
-                  </span>
-                </Checkbox>
-              </div>
-              <Button
-                className={`w-full text-white text-[16px] bg-[var(--green-color)] uppercase`}
-                type="submit"
-                radius="sm"
-                isLoading={loading}
-              >
-                {t("login")}
-              </Button>
               <button
                 type="button"
                 onClick={() => {
                   onClose();
                   forgotOpenedState.value = true;
                 }}
-                className="mt-[20px] uppercase text-[14px] text-[#FFFFFFB2]"
+                className="text-left text-[16px] leading-[24px] font-weight-600 h-[24px] text-[#FFFFFFB2] hover:text-white transition-colors mt-[8px]"
               >
                 {t("forgot_password")}
               </button>
+
+              <div className="w-full h-[68px] pt-[16px]">
+                <Button
+                  className="w-full h-full text-white text-[16px] font-medium bg-[var(--green-color)] hover:opacity-90 rounded-lg py-[14px] px-[28px]"
+                  type="submit"
+                  radius="sm"
+                  isLoading={loading}
+                >
+                  {t("login")}
+                </Button>
+              </div>
+            </div>
+
+            <div className="w-full h-[240px] gap-[24px] flex flex-col">
+              <div className="flex w-full h-[24px] items-center">
+                <div className="flex-1 h-[1px] bg-[var(--bar-background-color)]"></div>
+                <span className="w-[38px] px-[8px] text-center text-[16px] text-[#FFFFFF] font-weight-400 leading-[24px] uppercase">OR</span>
+                <div className="flex-1 h-[1px] bg-[var(--bar-background-color)]"></div>
+              </div>
+
+              <Button
+                type="button"
+                className="w-full flex items-center justify-center text-white text-[14px] bg-[var(--background-secondary)] hover:bg-[#fff2] py-[12px] px-[28px] h-[48px] rounded-lg"
+                radius="sm"
+              >
+                Sign In with passkey
+              </Button>
+
+              <Button
+                type="button"
+                className="w-full flex items-center justify-center text-white text-[14px] bg-[var(--background-secondary)] hover:bg-[#fff2] py-[12px] px-[28px] h-[48px] rounded-lg"
+                radius="sm"
+              >
+                <img src="/images/icons/icons/google.svg" alt="Google" className="w-[20px] h-[20px]" />
+                Sign In with Google
+              </Button>
+
+              <Button
+                type="button"
+                className="w-full flex items-center justify-center text-white text-[14px] bg-[var(--background-secondary)] hover:bg-[#fff2] py-[12px] px-[28px] h-[48px] rounded-lg"
+                radius="sm"
+              >
+                Sign In another way
+              </Button>
+            </div>
+
+            <div className="text-center mt-[40px]">
+              <span className="text-[16px] font-weight-400 text-[#FFFFFFB2] leading-[24px] h-[24px]">
+                <span>Don't have an account?</span>{" "}
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                    registerOpenedState.value = true;
+                  }}
+                  className="text-[16px] font-weight-600 hover:underline leading-[24px] h-[24px]"
+                >
+                  Register an Account
+                </button>
+              </span>
             </div>
           </form>
         </ModalBody>

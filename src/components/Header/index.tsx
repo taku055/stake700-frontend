@@ -81,7 +81,7 @@ export default function Header() {
                   variant="light"
                   className="btn"
                   size="sm"
-                  style={{ background: '#ffffff', color: '#232323' }}
+                  style={{ background: '#ffffff', color: '#232323', width: '80px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
                   onPress={() => (loginOpenedState.value = true)}
                 >
                   {t("login")}
@@ -89,7 +89,7 @@ export default function Header() {
                 <Button
                   className="btn"
                   size="sm"
-                  style={{background: '#01A825', color: '#ffffff'}}
+                  style={{background: '#01A825', color: '#ffffff', width: '100px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
                   onPress={() => (registerOpenedState.value = true)}
                 >
                   {t("register")}

@@ -256,8 +256,8 @@ function Backdrop() {
         if (closeOnBackdropClick) close();
       }}
       className={[
-        "absolute inset-0 bg-black/50",
-        backdrop === "blur" && "backdrop-blur-sm",
+        "absolute inset-0 bg-black/75",
+        // backdrop === "blur" && "backdrop-blur-sm",
         classNames?.backdrop,
       ]
         .filter(Boolean)
@@ -339,7 +339,7 @@ export function ModalContent({
       tabIndex={-1}
       dir={dir}
       className={[
-        "relative w-full max-w-lg rounded-xl shadow-xl outline-none focus:outline-none",
+        "relative w-full rounded-xl shadow-xl outline-none focus:outline-none",
         classNames?.content,
         className,
       ]
@@ -347,7 +347,7 @@ export function ModalContent({
         .join(" ")}
       style={
         scrollBehavior === "inside"
-          ? { maxHeight: "calc(100vh - 4rem)", overflowY: "auto" }
+          ? {  overflowY: "auto" }
           : undefined
       }
       {...rest}

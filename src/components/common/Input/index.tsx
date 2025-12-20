@@ -14,7 +14,7 @@ type ClassNames = {
 };
 
 type Props = Omit<JSX.IntrinsicElements["input"], "class" | "onChange"> & {
-  label: string;
+  // label: string;
   value?: string | null;
   defaultValue?: string;
   onChange?: (e: JSX.TargetedEvent<HTMLInputElement, Event>) => void;
@@ -29,7 +29,7 @@ type Props = Omit<JSX.IntrinsicElements["input"], "class" | "onChange"> & {
 export const Input = forwardRef<HTMLInputElement, Props>(
   (
     {
-      label,
+      // label,
       value,
       defaultValue,
       onChange,
@@ -93,7 +93,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               dir={isRTL ? "rtl" : "ltr"}
               class={clsx(
                 "peer w-full bg-transparent outline-none",
-                "px-3 pt-5 pb-1",
+                "px-3",
                 "text-white placeholder-transparent",
                 isRTL ? "text-right" : "text-left",
                 errorRing,
@@ -103,7 +103,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             />
 
             {/* The floating label */}
-            <span
+            {/* <span
               class={clsx(
                 "pointer-events-none absolute",
                 isRTL ? "right-3" : "left-3",
@@ -119,7 +119,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               )}
             >
               {label}
-            </span>
+            </span> */}
 
             {/* Right slot (icon / action) */}
             {endContent && (
