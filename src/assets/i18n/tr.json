@@ -69,11 +69,35 @@
     "Search Providers": "Sağlayıcı Ara"
   },
   "WalletBox": {
-    "Balance": "Bakiye"
+    "Balance": "Bakiye",
+    "Wallet": "Wallet",
+    "Overview": "Overview",
+    "Buy Crypto": "Buy Crypto",
+    "Swap Crypto": "Swap Crypto",
+    "Settings": "Settings",
+    "Your Stake Wallet is Currently Empty": "Your Stake Wallet is Currently Empty",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.",
+    "Deposit": "Deposit",
+    "Buy": "Buy",
+    "Cryptocurrency": "Cryptocurrency",
+    "Amount": "Amount",
+    "Hide Zero Balances": "Hide Zero Balances",
+    "Your zero balances won't appear in your wallet": "Your zero balances won't appear in your wallet",
+    "Display Crypto in Fiat": "Display Crypto in Fiat",
+    "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
+    "Fiat Currency": "Fiat Currency",
+    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
+    "Enable 2FA": "Enable 2FA"
   },
   "PromotionCard": {
     "daily_promotion_title": "Günlük Promosyon",
-    "daily_promotion_text": "Her gün Blackjack kazançlarınıza %10 bonus kazanın!"
+    "daily_promotion_text": "Her gün Blackjack kazançlarınıza %10 bonus kazanın!",
+    "Read More": "Read More",
+    "Get a 10% bonus": "Get a 10% bonus",
+    "enjoy a daily bonus": "enjoy a daily bonus",
+    " no opt-in required!": "no opt-in required!",
+    "no opt-in required!": "no opt-in required!",
+    "No opt-in required!": "No opt-in required!"
   },
   "CasinoDetailPage": {
     "Games": "Oyunlar",
@@ -175,7 +199,20 @@
     "please_input_all_fields": "Lütfen tüm alanları doldurun",
     "successfully_logged_in": "Başarıyla giriş yapıldı",
     "email_or_password_is_incorrect": "E-posta veya şifre hatalı",
-    "something_went_wrong": "Bir hata oluştu"
+    "something_went_wrong": "Bir hata oluştu",
+    "OR": "VEYA",
+    "Email or Username": "E-posta veya Kullanıcı Adı",
+    "Password": "Şifre",
+    "Sign In with passkey": "Passkey ile giriş yap",
+    "Sign In with Google": "Google ile giriş yap",
+    "Sign In another way": "Başka bir yolla giriş yap",
+    "Don't have an account?": "Hesabınız yok mu?",
+    "Register an Account": "Kayıt Ol",
+    "don_t_have_an_account": "Hesabınız yok",
+    "register_an_account": "Kayıt Ol",
+    "sign_in_with_passkey": "Passkey ile giriş yap",
+    "sign_in_with_google": "Google ile giriş yap",
+    "sign_in_another_way": "Başka bir yolla giriş yap"
   },
   "SignupDialog": {
     "please_input_all_fields": "Lütfen tüm alanları doldurun",
@@ -193,7 +230,14 @@
     "confirm_password": "Şifreyi Onayla",
     "username": "Kullanıcı Adı",
     "register": "Kayıt Ol",
-    "contact_support": "Destekle iletişime geçin"
+    "contact_support": "Destekle iletişime geçin",
+    "Successfully registered": "Başarıyla kaydedildi",
+    "Email or username is already taken": "E-posta veya kullanıcı adı zaten alınmış",
+    "Something went wrong": "Bir şeyler yanlış gitti",
+    "successfully_registered": "Başarıyla kaydedildi",
+    "email_or_username_already_taken": "E-posta veya kullanıcı adı zaten alınmış",
+    "something_went_wrong": "Bir şeyler yanlış gitti",
+    "login_an_account": "Log in"
   },
   "HomePage": {
     "casino-games": "Casino Oyunları",
@@ -242,7 +286,9 @@
     "guide_card_favorite_games_content": "Favori oyunlarınıza anında erişin",
     "guide_card_contact_support_title": "7/24 Destek ile İletişime Geçin",
     "guide_card_contact_support_content": "Herhangi bir sorun için canlı sohbet ile bizimle iletişime geçin",
-    "load_more": "Daha Fazla Yükle"
+    "load_more": "Daha Fazla Yükle",
+    "Casino": "Casino",
+    "Search": "Search"
   },
   "AboutUs": {
     "title": "ichancy Hakkında?",
@@ -277,14 +323,22 @@
     "question_4": "Mola (Kendi Kendini Dışlama) alırken başka bir hesap açabilir miyim?",
     "answer_4": "Ichancy Sorumlu Oyun'a bağlıdır ve özellikle Kendi Kendini Dışlama nedenleriyle oyuncularının birden fazla hesap açmasına izin vermez. Müşterilerimize güvenli ve güvenli bir ortam sağlamayı ve size hoş ve ödüllendirici bir deneyim sunmayı hedefliyoruz. Müşterilerimizi hizmetlerimizi sorumlu ve makul bir şekilde kullanmaya teşvik ediyoruz.",
     "question_5": "Ichancy'de yaş kısıtlaması var mı?",
-    "answer_5": "Ichancy'de kayıt olmak için en az 18 yaşında olmalısınız, bu, yargı yetkiniz içindeki çevrimiçi oyun için minimum yaş gereksinimidir. Daha yüksekse, yerel yargı yetkiniz gereksinimlerini karşılamalısınız."
+    "answer_5": "Ichancy'de kayıt olmak için en az 18 yaşında olmalısınız, bu, yargı yetkiniz içindeki çevrimiçi oyun için minimum yaş gereksinimidir. Daha yüksekse, yerel yargı yetkiniz gereksinimlerini karşılamalısınız.",
+    "question_6": "What Sports Can I Bet On?",
+    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
+    "question_7": "How Do I Watch Live Streams?",
+    "answer_7": "Live streams are available directly on the Stake platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "Daha Fazla",
     "Casino Games": "Casino Oyunları",
     "Live Casino": "Canlı Casino",
     "View All": "Tümünü Gör",
-    "Trending": "Trend"
+    "Trending": "Trend",
+    "Trending Games": "Trending Games",
+    "Trending Sports": "Trending Sports",
+    "Game": "Game",
+    "Promotions": "Promotions"
   },
   "UserBalancePage": {
     "Deposit": "Para Yatır",
@@ -458,7 +512,11 @@
     "CardStatus_APPROVED_Info": "Kartınız doğrulandı. Para yatırma ve çekme işlemleri için kullanabilirsiniz.",
     "CardStatus_REJECTED_Info": "Kartınız reddedildi. Daha fazla bilgi için destekle iletişime geçin.",
     "CardStatus_NO_ID_Info": "Kimliğiniz doğrulanmadı. Profil sayfasından kimlik belgenizi yükleyin.",
-    "address_confirm": "Yanlış adres kullanımını önlemek için her para yatırmadan önce adresi onaylayın."
+    "address_confirm": "Yanlış adres kullanımını önlemek için her para yatırmadan önce adresi onaylayın.",
+    "Direct Deposit": "Direct Deposit",
+    "Credited": "Credited",
+    "Confirmation": "Confirmation",
+    "Or": "Or"
   },
   "Agent": {
     "Users": "Kullanıcılar",
@@ -618,7 +676,11 @@
   "ForgotDialog": {
     "Forgot your password?": "Şifrenizi mi unuttunuz?",
     "Submit": "Gönder",
-    "Enter your email address": "E-posta adresinizi girin"
+    "Enter your email address": "E-posta adresinizi girin",
+    "email": "Email",
+    "recover_password": "Recover Password",
+    "Password reset link was sent to": "Password reset link was sent to",
+    "Something went wrong. Please check your email exists in the": "Something went wrong. Please check your email exists in the"
   },
   "Setting": {
     "language": "Dil"
@@ -732,5 +794,56 @@
     "Favorite": "Favori",
     "Setting": "Ayarlar",
     "Bet": "Bahis"
+  },
+  "SignupStep1": {
+    "Step 1/3": "Adım 1/3",
+    "Select Your Preferred Language": "Tercih Ettiğiniz Dili Seçin",
+    "Stake is available is several languages. Feel free to personalise your language across our site from the options below.": "Birkaç dilde mevcuzuz. Aşağıdaki seçeneklerden sitemizde dilinizi kişiselleştirmekten çekinmeyin.",
+    "Confirm": "Onayla",
+    "Already have an account?": "Zaten bir hesabınız var mı?",
+    "Sign in": "Giriş yap"
+  },
+  "SignupStep2": {
+    "Step 2/3": "Adım 2/3",
+    "< Back": "< Back",
+    "Create an Account": "Hesap Oluştur",
+    "Email": "E-posta",
+    "Username": "Kullanıcı Adı",
+    "Your username must be 3-14 characters long.": "Kullanıcı adınız 3-14 karakter uzunluğunda olmalıdır.",
+    "Password": "Şifre",
+    "Date of Birth": "Doğum Tarihi",
+    "Phone (Optional)": "Telefon (İsteğe Bağlı)",
+    "Referral Code (Optional)": "Referans Kodu (İsteğe Bağlı)",
+    "Continue": "Devam Et",
+    "Already have an account?": "Zaten bir hesabınız var mı?",
+    "Sign in": "Giriş yap"
+  },
+  "SignupStep3": {
+    "Step 3/3": "Adım 3/3",
+    "< Back": "< Back",
+    "Create an Account": "Hesap Oluştur",
+    "Terms and Conditions": "Şartlar ve Koşullar",
+    "terms_and_conditions_title": "1.Stake.com",
+    "terms_and_conditions_content": "Stake.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Stake.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Stake.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Stake.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "I have read and agree to the Terms and Conditions": "Şartları ve Koşulları okudum ve kabul ediyorum",
+    "Already have an account?": "Zaten bir hesabınız var mı?",
+    "Sign in": "Giriş yap"
+  },
+  "WelcomeDialog": {
+    "Welcome to Stake!": "Stake'e Hoş Geldiniz!",
+    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "Başlamaya hazır mısınız? Şimdi cüzdanınızı kurun ve sorunsuz, güvenli para yatırma ve çekme işlemlerinin tadını çıkarın.",
+    "Skip for Later": "Sonraya Bırak",
+    "Setup Wallet": "Cüzdan Kur"
+  },
+  "EmulateBetting": {
+    "Casino Bets": "Casino Bets",
+    "Sports Bets": "Sports Bets",
+    "Race Leaderboard": "Race Leaderboard",
+    "Game": "Game",
+    "User": "User",
+    "Time": "Time",
+    "Bet Amount": "Bet Amount",
+    "Multiplier": "Multiplier",
+    "Payout": "Payout"
   }
 }

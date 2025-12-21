@@ -15,6 +15,7 @@ interface NavigationItem {
   href: string;
   key: string;
   icon: any;
+  onclick?: () => void;
   pageType?: tPageType;
   navIcon?: string;
   expandable?: boolean;
@@ -58,7 +59,6 @@ export default function NavigationSidebar() {
         if (item.key === "slots") pageType = "slots";
         else if (item.key === "live-casino") pageType = "live-casino";
         // else if (item.key === "sport") pageType = "sportbook";
-        console.log("item", item);
 
         return {
           title: item.title,
@@ -66,6 +66,7 @@ export default function NavigationSidebar() {
           key: item.key,
           icon: item.icon,
           navIcon: item.navIcon,
+          onclick: item.onclick,
           pageType,
           expandable: item.expandable,
           expandableItems: item.expandableItems,
@@ -79,6 +80,7 @@ export default function NavigationSidebar() {
     key: string;
     icon: any;
     navIcon?: string;
+    onclick?: () => void;
     pageType?: tPageType;
     expandable?: boolean;
     expandableItems?: Array<{
@@ -95,6 +97,7 @@ export default function NavigationSidebar() {
       key: item.key,
       icon: item.icon,
       navIcon: item.navIcon,
+      onclick: item.onclick,
       pageType: undefined,
       expandable: item.expandable,
       expandableItems: item.expandableItems,
@@ -144,7 +147,6 @@ export default function NavigationSidebar() {
   return (
     <>
       <div className="bg-[var(--bar-background-color)] relative top-0 p-0 m-0">
-        {console.log('mainNavItems', mainNavItems)}
         {navigationSidebarExpandedState.value ? (
           <ExpandedDrawer
             mainNavItems={mainNavItems}

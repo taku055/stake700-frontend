@@ -69,11 +69,35 @@
     "Search Providers": "البحث عن المزوّدين"
   },
   "WalletBox": {
-    "Balance": "الرصيد"
+    "Balance": "الرصيد",
+    "Wallet": "Wallet",
+    "Overview": "Overview",
+    "Buy Crypto": "Buy Crypto",
+    "Swap Crypto": "Swap Crypto",
+    "Settings": "Settings",
+    "Your Stake Wallet is Currently Empty": "Your Stake Wallet is Currently Empty",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.",
+    "Deposit": "Deposit",
+    "Buy": "Buy",
+    "Cryptocurrency": "Cryptocurrency",
+    "Amount": "Amount",
+    "Hide Zero Balances": "Hide Zero Balances",
+    "Your zero balances won't appear in your wallet": "Your zero balances won't appear in your wallet",
+    "Display Crypto in Fiat": "Display Crypto in Fiat",
+    "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
+    "Fiat Currency": "Fiat Currency",
+    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
+    "Enable 2FA": "Enable 2FA"
   },
   "PromotionCard": {
     "daily_promotion_title": "عرض يومي",
-    "daily_promotion_text": "احصل على 10% بونص على أرباح البلاك جاك كل يوم!"
+    "daily_promotion_text": "احصل على 10% بونص على أرباح البلاك جاك كل يوم!",
+    "Read More": "اقرأ المزيد",
+    "Get a 10% bonus": "احصل على 10% بونص",
+    "enjoy a daily bonus": "استمتع ببونص يومي",
+    " no opt-in required!": "لا حاجة للتسجيل!",
+    "no opt-in required!": "لا حاجة للتسجيل!",
+    "No opt-in required!": "لا حاجة للتسجيل!"
   },
   "CasinoDetailPage": {
     "Games": "ألعاب",
@@ -165,6 +189,8 @@
     "already_have_an_account": "لديك حساب بالفعل؟",
     "sign_in_waiting": "سجّل دخولك، نحن بانتظارك",
     "username": "اسم المستخدم/البريد الإلكتروني",
+    "Email or Username": "البريد الإلكتروني أو اسم المستخدم",
+    "Password": "كلمة المرور",
     "password": "كلمة المرور",
     "are_you_an_agent": "هل أنت وكيل؟",
     "remember_me": "تذكّرني",
@@ -175,13 +201,25 @@
     "please_input_all_fields": "يرجى إدخال جميع الحقول",
     "successfully_logged_in": "تم تسجيل الدخول بنجاح",
     "email_or_password_is_incorrect": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
-    "something_went_wrong": "حدث خطأ ما"
+    "something_went_wrong": "حدث خطأ ما",
+    "OR": "أو",
+    "Sign In with passkey": "تسجيل الدخول باستخدام مفتاح المرور",
+    "Sign In with Google": "تسجيل الدخول باستخدام Google",
+    "Sign In another way": "تسجيل الدخول بطريقة أخرى",
+    "Don't have an account?": "ليس لديك حساب؟",
+    "Register an Account": "إنشاء حساب",
+    "don_t_have_an_account": "ليس لديك حساب",
+    "register_an_account": "إنشاء حساب",
+    "sign_in_with_passkey": "تسجيل الدخول باستخدام مفتاح المرور",
+    "sign_in_with_google": "تسجيل الدخول باستخدام Google",
+    "sign_in_another_way": "تسجيل الدخول بطريقة أخرى"
   },
   "SignupDialog": {
     "please_input_all_fields": "يرجى إدخال جميع الحقول",
     "first_letter_condition": "يجب أن يبدأ اسم المستخدم بحرف ويمكن أن يحتوي على أحرف وشرطة سفلية وأرقام فقط",
     "correct_email_request": "يرجى إدخال بريد إلكتروني صحيح",
     "login": "تسجيل الدخول",
+    "login_an_account": "تسجيل الدخول",
     "new_member": "مستخدم جديد؟",
     "register_now": "سجّل الآن، الأمر سهل!",
     "first_name": "الاسم الأول",
@@ -193,7 +231,13 @@
     "confirm_password": "تأكيد كلمة المرور",
     "username": "اسم المستخدم",
     "register": "تسجيل",
-    "contact_support": "التواصل مع الدعم"
+    "contact_support": "التواصل مع الدعم",
+    "Successfully registered": "تم التسجيل بنجاح",
+    "Email or username is already taken": "البريد الإلكتروني أو اسم المستخدم مستخدم بالفعل",
+    "Something went wrong": "حدث خطأ ما",
+    "successfully_registered": "تم التسجيل بنجاح",
+    "email_or_username_already_taken": "البريد الإلكتروني أو اسم المستخدم مستخدم بالفعل",
+    "something_went_wrong": "حدث خطأ ما"
   },
   "HomePage": {
     "casino-games": "ألعاب الكازينو",
@@ -242,7 +286,9 @@
     "guide_card_favorite_games_content": "الوصول إلى ألعابك المفضلة على الفور",
     "guide_card_contact_support_title": "اتصل بالدعم على مدار الساعة",
     "guide_card_contact_support_content": "اتصل بنا لأي مشاكل عبر الدردشة المباشرة",
-    "load_more": "تحميل المزيد"
+    "load_more": "تحميل المزيد",
+    "Casino": "كازينو",
+    "Search": "بحث"
   },
   "AboutUs": {
     "title": "حول ichancy؟",
@@ -277,14 +323,22 @@
     "question_4": "هل يمكنني فتح حساب آخر أثناء أخذ استراحة (الاستبعاد الذاتي)؟",
     "answer_4": "Ichancy ملتزم باللعب المسؤول ولا يسمح للاعبيه بفتح حسابات متعددة خاصة لأسباب الاستبعاد الذاتي. نهدف إلى تزويد عملائنا ببيئة آمنة ومأمونة والتي ستمنحك تجربة ممتعة ومجزية. نشجع عملاءنا على استخدام خدماتنا بمسؤولية وبطريقة معقولة.",
     "question_5": "هل هناك قيود على العمر في Ichancy؟",
-    "answer_5": "يجب أن تكون في سن 18 عامًا على الأقل للتسجيل في Ichancy، بشرط أن يكون هذا هو الحد الأدنى لمتطلبات العمر للألعاب عبر الإنترنت داخل ولايتك القضائية. إذا كان أعلى، يجب أن تفي بمتطلبات ولايتك القضائية المحلية."
+    "answer_5": "يجب أن تكون في سن 18 عامًا على الأقل للتسجيل في Ichancy، بشرط أن يكون هذا هو الحد الأدنى لمتطلبات العمر للألعاب عبر الإنترنت داخل ولايتك القضائية. إذا كان أعلى، يجب أن تفي بمتطلبات ولايتك القضائية المحلية.",
+    "question_6": "What Sports Can I Bet On?",
+    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
+    "question_7": "How Do I Watch Live Streams?",
+    "answer_7": "Live streams are available directly on the Stake platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "المزيد",
     "Casino Games": "ألعاب الكازينو",
     "Live Casino": "كازينو مباشر",
     "View All": "عرض الكل",
-    "Trending": "رائج"
+    "Trending": "رائج",
+    "Trending Games": "الألعاب الرائجة",
+    "Trending Sports": "الرياضات الرائجة",
+    "Game": "لعبة",
+    "Promotions": "العروض الترويجية"
   },
   "UserBalancePage": {
     "Deposit": "إيداع",
@@ -418,7 +472,9 @@
   "BetHistory": {
     "Casino History": "سجلّ الكازينو",
     "Sportsbook History": "سجلّ الرهانات الرياضية",
-    "Show": "عرض"
+    "Show": "عرض",
+    "Start Date": "Start Date",
+    "End Date": "End Date"
   },
   "DepositDialogFull": {
     "Deposit": "إيداع",
@@ -456,7 +512,11 @@
     "CardStatus_APPROVED_Info": "تم توثيق بطاقتك. يمكنك استخدامها للإيداع والسحب.",
     "CardStatus_REJECTED_Info": "تم رفض البطاقة. تواصل مع الدعم لمزيد من المعلومات.",
     "CardStatus_NO_ID_Info": "هويتك غير موثّقة. يرجى رفع المستند في صفحة الملف الشخصي.",
-    "address_confirm": "يرجى تأكيد عنوان الإيداع كل مرة لتجنب الأخطاء."
+    "address_confirm": "يرجى تأكيد عنوان الإيداع كل مرة لتجنب الأخطاء.",
+    "Direct Deposit": "Direct Deposit",
+    "Credited": "Credited",
+    "Confirmation": "Confirmation",
+    "Or": "Or"
   },
   "Agent": {
     "Users": "المستخدمون",
@@ -550,7 +610,8 @@
       "subagent_created": "تم إنشاء مستخدم فرعي",
       "balance_transferred": "تم التحويل بنجاح{currency_symbol}{amount}",
       "removed_from_favorites": "تمت إزالته من المفضلة",
-      "added_to_favorites": "تمت إضافته إلى المفضلة"
+      "added_to_favorites": "تمت إضافته إلى المفضلة",
+      "user_details_updated": "User details updated successfully"
     },
     "error": {
       "something_wrong": "حدث خطأ ما",
@@ -579,7 +640,9 @@
       "cant_create_subuser": "لا يمكن إنشاء مستخدم فرعي. سجّل الدخول وحاول مجددًا.",
       "withdraw_not_allowed": "لا يمكن السحب. يرجى مراجعة السياسة.",
       "withdrawal_exceeded": "تجاوزت حدّ السحب. يرجى مراجعة السياسة.",
-      "insufficient_balance_requests": "رصيدك غير كافٍ للسحب. يرجى مراجعة طلبات السحب التي قدّمتها"
+      "insufficient_balance_requests": "رصيدك غير كافٍ للسحب. يرجى مراجعة طلبات السحب التي قدّمتها",
+      "failed_update_details": "Failed to update user details",
+      "password_changed_failed": "Password changed failed"
     },
     "info": {
       "address_copied": "تم نسخ عنوان المحفظة!",
@@ -613,7 +676,11 @@
   "ForgotDialog": {
     "Forgot your password?": "نسيت كلمة المرور؟",
     "Submit": "إرسال",
-    "Enter your email address": "أدخل بريدك الإلكتروني"
+    "Enter your email address": "أدخل بريدك الإلكتروني",
+    "email": "البريد الإلكتروني",
+    "recover_password": "استعادة كلمة المرور",
+    "Password reset link was sent to": "تم إرسال رابط إعادة تعيين كلمة المرور إلى",
+    "Something went wrong. Please check your email exists in the": "حدث خطأ ما. يرجى التحقق من وجود بريدك الإلكتروني في"
   },
   "Setting": {
     "language": "اللغة"
@@ -703,5 +770,80 @@
     "Total Monthly Bonus": "إجمالي البونص الشهري",
     "Total Profit": "إجمالي الربح",
     "Cash": "نقدًا"
+  },
+  "EmulateBetting": {
+    "Casino Bets": "رهانات الكازينو",
+    "Sports Bets": "رهانات رياضية",
+    "Race Leaderboard": "لوحة المتصدرين للسباق",
+    "Game": "لعبة",
+    "User": "مستخدم",
+    "Time": "الوقت",
+    "Bet Amount": "مبلغ الرهان",
+    "Multiplier": "المضاعف",
+    "Payout": "الدفع"
+  },
+  "SignupStep1": {
+    "Step 1/3": "الخطوة 1/3",
+    "Select Your Preferred Language": "اختر لغتك المفضلة",
+    "Stake is available is several languages. Feel free to personalise your language across our site from the options below.": "نحن متاحون بعدة لغات. لا تتردد في تخصيص لغتك عبر موقعنا من الخيارات أدناه.",
+    "Confirm": "تأكيد",
+    "Already have an account?": "هل لديك حساب بالفعل؟",
+    "Sign in": "تسجيل الدخول"
+  },
+  "SignupStep2": {
+    "Step 2/3": "الخطوة 2/3",
+    "< Back": "< Back",
+    "Create an Account": "إنشاء حساب",
+    "Email": "البريد الإلكتروني",
+    "Username": "اسم المستخدم",
+    "Your username must be 3-14 characters long.": "يجب أن يكون اسم المستخدم بين 3-14 حرفًا.",
+    "Password": "كلمة المرور",
+    "Date of Birth": "تاريخ الميلاد",
+    "Phone (Optional)": "الهاتف (اختياري)",
+    "Referral Code (Optional)": "رمز الإحالة (اختياري)",
+    "Continue": "متابعة",
+    "Already have an account?": "هل لديك حساب بالفعل؟",
+    "Sign in": "تسجيل الدخول"
+  },
+  "SignupStep3": {
+    "Step 3/3": "الخطوة 3/3",
+    "< Back": "< Back",
+    "Create an Account": "إنشاء حساب",
+    "Terms and Conditions": "الشروط والأحكام",
+    "terms_and_conditions_title": "1.Stake.com",
+    "terms_and_conditions_content": "Stake.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Stake.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Stake.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Stake.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "I have read and agree to the Terms and Conditions": "لقد قرأت وأوافق على الشروط والأحكام",
+    "Already have an account?": "هل لديك حساب بالفعل؟",
+    "Sign in": "تسجيل الدخول"
+  },
+  "WelcomeDialog": {
+    "Welcome to Stake!": "مرحبًا بك في Stake!",
+    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "هل أنت مستعد للبدء؟ قم بإعداد محفظتك الآن للاستمتاع بالإيداعات والسحوبات السلسة والآمنة.",
+    "Skip for Later": "تخطي لوقت لاحق",
+    "Setup Wallet": "إعداد المحفظة"
+  },
+  "MessagePage": {
+    "Send New": "Send New",
+    "Subject": "Subject",
+    "Enter text here": "Enter text here",
+    "Message": "Message",
+    "Send": "Send"
+  },
+  "CardDeposit": {
+    "Card Deposit": "Card Deposit",
+    "Card Number": "Card Number",
+    "Info": "Info",
+    "Select Country": "Select Country"
+  },
+  "LiveSupportAI": {
+    "Live Support AI": "Live Support AI",
+    "Close Chat": "Close Chat"
+  },
+  "Sidebar": {
+    "Live Support": "Live Support",
+    "Notification": "Notification",
+    "Favorite": "Favorite",
+    "Setting": "Setting",
+    "Bet": "Bet"
   }
 }

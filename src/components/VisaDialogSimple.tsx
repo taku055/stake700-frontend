@@ -218,7 +218,7 @@ export default function VisaDialogSimple({
         <ModalBody>
           <p className="text-sm text-gray-500 mb-4">{t("Info")}</p>
           <Input
-            label={t("Card Number")}
+            // label={t("Card Number")}
             startContent={<CreditCard />}
             type="password"
             value={cardNumber}
@@ -226,7 +226,7 @@ export default function VisaDialogSimple({
           />
           <div className="flex gap-2">
             <Input
-              label={t("Month")}
+              // label={t("Month")}
               type="number"
               value={expMonth}
               min={1}
@@ -234,7 +234,7 @@ export default function VisaDialogSimple({
               onChange={(e: any) => setExpMonth(e.target.value)}
             />
             <Input
-              label={t("Year")}
+              // label={t("Year")}
               type="number"
               value={expYear}
               min={2025}
@@ -242,7 +242,7 @@ export default function VisaDialogSimple({
             />
           </div>
           <Input
-            label={"CVV"}
+            // label={"CVV"}
             startContent={<Key />}
             type="password"
             value={cvv}
@@ -251,7 +251,7 @@ export default function VisaDialogSimple({
             onChange={(e: any) => setCvv(e.target.value)}
           />
           <Input
-            label={t("Amount")}
+            // label={t("Amount")}
             startContent={<DollarSign />}
             type="number"
             value={amount}
@@ -260,32 +260,32 @@ export default function VisaDialogSimple({
           />
           <div className="flex flex-row gap-2">
             <Input
-              label={t("First Name")}
+              // label={t("First Name")}
               value={firstName}
               onChange={(e: any) => setFirstName(e.target.value)}
             />
             <Input
-              label={t("Last Name")}
+              // label={t("Last Name")}
               value={lastName}
               onChange={(e: any) => setLastName(e.target.value)}
             />
           </div>
 
           <Input
-            label={t("Email")}
+            // label={t("Email")}
             type="email"
             value={email}
             onChange={(e: any) => setEmail(e.target.value)}
           />
           <Input
-            label={t("Phone")}
+            // label={t("Phone")}
             type="tel"
             value={phone}
             onChange={(e: any) => setPhone(e.target.value)}
           />
           <Select
             className="w-full"
-            label="Country"
+            // label="Country"
             placeholder="Select Country"
             selectedKeys={countryList}
             variant="bordered"
@@ -297,24 +297,24 @@ export default function VisaDialogSimple({
           </Select>
           <div className="flex flex-row gap-2">
             <Input
-              label={t("City")}
+              // label={t("City")}
               value={city}
               onChange={(e: any) => setCity(e.target.value)}
             />
             <Input
-              label={t("State")}
+              //  label={t("State")}
               value={state}
               onChange={(e: any) => setState(e.target.value)}
             />
           </div>
           <div className="flex flex-row gap-2">
             <Input
-              label={t("Street")}
+              // label={t("Street")}
               value={street}
               onChange={(e: any) => setStreet(e.target.value)}
             />
             <Input
-              label={t("Zip Code")}
+              //  label={t("Zip Code")}
               value={zipCode}
               onChange={(e: any) => setZipCode(e.target.value)}
             />

@@ -18,27 +18,29 @@ import { options } from "@/components/LocaleSelection";
 interface ExpandedDrawerProps {
   mainNavItems: Array<{
     title: string;
-    href: string;
+    href?: string;
     key: string;
     icon: any;
     navIcon?: string;
     expandable?: boolean;
+    onclick?: () => void;
     expandableItems?: Array<{
       title: string;
-      href: string;
+      href?: string;
       icon: string;
     }>;
   }>;
   ExtraNavItems: Array<{
     title: string;
-    href: string;
+    href?: string;
     key: string;
     icon: any;
     navIcon?: string;
     expandable?: boolean;
+    onclick?: () => void;
     expandableItems?: Array<{
       title: string;
-      href: string;
+      href?: string;
       icon: string;
     }>;
   }>;
@@ -81,14 +83,7 @@ export default function ExpandedDrawer({
     } else {
       setSelectedTab(null);
     }
-    if (selectedTab === "casino") {
-      console.log('casino????');
-    } else if (selectedTab === "live-casino") {
-      console.log('live-casino???');
-    } else {
-      console.log('null???');
-    }
-    console.log('selectedTab', selectedTab);
+ 
   }, [location.path]);
 
 
@@ -99,7 +94,6 @@ export default function ExpandedDrawer({
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = useMemo(() => {
-    console.log('mainNavItems', mainNavItems);
     return mainNavItems;
   }, [mainNavItems]);
 
@@ -147,13 +141,17 @@ export default function ExpandedDrawer({
           </button>
           <button
             className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
-            onClick={() => { setSelectedTab("casino") }}
+            onClick={() => { setSelectedTab("casino")
+              handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
+             }}
           >
             <span className="text-white text-[14px]">Casino</span>
           </button>
           <button
             className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "live-casino" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
-            onClick={() => { setSelectedTab("live-casino") }}
+            onClick={() => { setSelectedTab("live-casino")
+              handleNavigate("/live-casino");
+             }}
           >
             <span className="text-white text-[14px]">Live Casino</span>
           </button>
@@ -207,14 +205,16 @@ export default function ExpandedDrawer({
                         )}
                       </button>
                     ) : (
-                      <Link
-                        href={modifyHref(item.href)}
+                      <button
+                        // href={modifyHref(item.href)}
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          handleNavigate(modifyHref(item.href));
+                          console.log('item.onclick, item.href', item.onclick, item.key, item.onclick?.toString());
+                          item.onclick?.();
+                          handleNavigate(modifyHref(item.href || ""));
                         }}
-                        className={`flex items-center gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
+                        className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
                           : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
                           }`}
@@ -224,8 +224,8 @@ export default function ExpandedDrawer({
                           alt={item.title}
                           className="w-6 h-6 flex-shrink-0 object-contain"
                         />)}
-                        <span className="flex-1">{item.title}</span>
-                      </Link>
+                        <span>{item.title}</span>
+                      </button>
                     )}
 
                     {/* Expandable Sub-items */}
@@ -234,11 +234,11 @@ export default function ExpandedDrawer({
                         {item.expandableItems?.map((subItem, index) => (
                           <Link
                             key={index}
-                            href={modifyHref(subItem.href)}
+                            href={modifyHref(subItem.href || "")}
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              handleNavigate(modifyHref(subItem.href));
+                              handleNavigate(modifyHref(subItem.href || ""));
                             }}
                             className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
                           >
@@ -294,12 +294,14 @@ export default function ExpandedDrawer({
                         )}
                       </button>
                     ) : (
-                      <Link
-                        href={modifyHref(item.href)}
+                      <button
+                        // href={modifyHref(item.href || "")}
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          handleNavigate(modifyHref(item.href));
+                          console.log('item.onclick, item.href', item.onclick, item.key);
+                          item.onclick?.();
+                          handleNavigate(modifyHref(item.href || ""));
                         }}
                         className={`flex items-center gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
@@ -312,7 +314,7 @@ export default function ExpandedDrawer({
                           className="w-6 h-6 flex-shrink-0 object-contain"
                         />)}
                         <span className="flex-1">{item.title}</span>
-                      </Link>
+                      </button>
                     )}
 
                     {/* Expandable Sub-items */}
@@ -321,11 +323,12 @@ export default function ExpandedDrawer({
                         {item.expandableItems?.map((subItem, index) => (
                           <Link
                             key={index}
-                            href={modifyHref(subItem.href)}
+                            href={modifyHref(subItem.href || "")}
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              handleNavigate(modifyHref(subItem.href));
+                              item.onclick?.();
+                              handleNavigate(modifyHref(subItem.href || ""));
                             }}
                             className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
                           >

@@ -69,11 +69,35 @@
     "Search Providers": "Αναζήτηση Παρόχων"
   },
   "WalletBox": {
-    "Balance": "Υπόλοιπο"
+    "Balance": "Υπόλοιπο",
+    "Wallet": "Wallet",
+    "Overview": "Overview",
+    "Buy Crypto": "Buy Crypto",
+    "Swap Crypto": "Swap Crypto",
+    "Settings": "Settings",
+    "Your Stake Wallet is Currently Empty": "Your Stake Wallet is Currently Empty",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.",
+    "Deposit": "Deposit",
+    "Buy": "Buy",
+    "Cryptocurrency": "Cryptocurrency",
+    "Amount": "Amount",
+    "Hide Zero Balances": "Hide Zero Balances",
+    "Your zero balances won't appear in your wallet": "Your zero balances won't appear in your wallet",
+    "Display Crypto in Fiat": "Display Crypto in Fiat",
+    "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
+    "Fiat Currency": "Fiat Currency",
+    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
+    "Enable 2FA": "Enable 2FA"
   },
   "PromotionCard": {
     "daily_promotion_title": "Καθημερινή προσφορά",
-    "daily_promotion_text": "Κερδίστε 10% μπόνους στα κέρδη σας στο Blackjack κάθε μέρα!"
+    "daily_promotion_text": "Κερδίστε 10% μπόνους στα κέρδη σας στο Blackjack κάθε μέρα!",
+    "Read More": "Read More",
+    "Get a 10% bonus": "Get a 10% bonus",
+    "enjoy a daily bonus": "enjoy a daily bonus",
+    " no opt-in required!": "no opt-in required!",
+    "no opt-in required!": "no opt-in required!",
+    "No opt-in required!": "No opt-in required!"
   },
   "CasinoDetailPage": {
     "Games": "Παιχνίδια",
@@ -175,7 +199,20 @@
     "please_input_all_fields": "Παρακαλώ συμπληρώστε όλα τα πεδία",
     "successfully_logged_in": "Επιτυχής σύνδεση",
     "email_or_password_is_incorrect": "Λάθος email ή κωδικός",
-    "something_went_wrong": "Παρουσιάστηκε σφάλμα"
+    "something_went_wrong": "Παρουσιάστηκε σφάλμα",
+    "OR": "Ή",
+    "Email or Username": "Email ή Όνομα χρήστη",
+    "Password": "Κωδικός",
+    "Sign In with passkey": "Σύνδεση με passkey",
+    "Sign In with Google": "Σύνδεση με Google",
+    "Sign In another way": "Σύνδεση με άλλο τρόπο",
+    "Don't have an account?": "Δεν έχετε λογαριασμό;",
+    "Register an Account": "Δημιουργία λογαριασμού",
+    "don_t_have_an_account": "Δεν έχετε λογαριασμό",
+    "register_an_account": "Δημιουργία λογαριασμού",
+    "sign_in_with_passkey": "Σύνδεση με passkey",
+    "sign_in_with_google": "Σύνδεση με Google",
+    "sign_in_another_way": "Σύνδεση με άλλο τρόπο"
   },
   "SignupDialog": {
     "please_input_all_fields": "Παρακαλώ συμπληρώστε όλα τα πεδία",
@@ -193,7 +230,14 @@
     "confirm_password": "Επιβεβαίωση κωδικού",
     "username": "Όνομα χρήστη",
     "register": "Εγγραφή",
-    "contact_support": "Επικοινωνία με υποστήριξη"
+    "contact_support": "Επικοινωνία με υποστήριξη",
+    "Successfully registered": "Εγγραφήκε επιτυχώς",
+    "Email or username is already taken": "Το email ή το όνομα χρήστη είναι ήδη σε χρήση",
+    "Something went wrong": "Κάτι πήγε στραβά",
+    "successfully_registered": "Εγγραφήκε επιτυχώς",
+    "email_or_username_already_taken": "Το email ή το όνομα χρήστη είναι ήδη σε χρήση",
+    "something_went_wrong": "Κάτι πήγε στραβά",
+    "login_an_account": "Log in"
   },
   "HomePage": {
     "casino-games": "Παιχνίδια Καζίνο",
@@ -242,7 +286,9 @@
     "guide_card_favorite_games_content": "Πρόσβαση στα αγαπημένα σας παιχνίδια αμέσως",
     "guide_card_contact_support_title": "Επικοινωνία με Υποστήριξη 24/7",
     "guide_card_contact_support_content": "Επικοινωνήστε μαζί μας για οποιαδήποτε θέματα μέσω live chat",
-    "load_more": "Φόρτωσε περισσότερα"
+    "load_more": "Φόρτωσε περισσότερα",
+    "Casino": "Casino",
+    "Search": "Search"
   },
   "AboutUs": {
     "title": "Σχετικά με το ichancy;",
@@ -277,14 +323,22 @@
     "question_4": "Μπορώ να ανοίξω άλλο λογαριασμό ενώ κάνω ένα διάλειμμα (Αυτο-αποκλεισμός)?",
     "answer_4": "Το Ichancy δεσμεύεται για Υπεύθυνο Παιχνίδι και δεν επιτρέπει στους παίκτες του να ανοίξουν πολλαπλούς λογαριασμούς, ειδικά για λόγους Αυτο-αποκλεισμού. Στόχος μας είναι να παρέχουμε στους πελάτες μας ένα ασφαλές και προστατευμένο περιβάλλον που θα σας δώσει μια ευχάριστη και ανταμοιβή εμπειρία. Ενθαρρύνουμε τους πελάτες μας να χρησιμοποιούν τις υπηρεσίες μας υπεύθυνα και με λογικό τρόπο.",
     "question_5": "Υπάρχει περιορισμός ηλικίας στο Ichancy?",
-    "answer_5": "Πρέπει να είστε τουλάχιστον 18 ετών για να εγγραφείτε στο Ichancy, με την προϋπόθεση ότι αυτή είναι η ελάχιστη απαίτηση ηλικίας για online παιχνίδια εντός της δικαιοδοσίας σας. Εάν υψηλότερη, πρέπει να πληροίτε τις απαιτήσεις της τοπικής σας δικαιοδοσίας."
+    "answer_5": "Πρέπει να είστε τουλάχιστον 18 ετών για να εγγραφείτε στο Ichancy, με την προϋπόθεση ότι αυτή είναι η ελάχιστη απαίτηση ηλικίας για online παιχνίδια εντός της δικαιοδοσίας σας. Εάν υψηλότερη, πρέπει να πληροίτε τις απαιτήσεις της τοπικής σας δικαιοδοσίας.",
+    "question_6": "What Sports Can I Bet On?",
+    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
+    "question_7": "How Do I Watch Live Streams?",
+    "answer_7": "Live streams are available directly on the Stake platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "Περισσότερα",
     "Casino Games": "Παιχνίδια Καζίνο",
     "Live Casino": "Ζωντανό Καζίνο",
     "View All": "Προβολή όλων",
-    "Trending": "Τάσεις"
+    "Trending": "Τάσεις",
+    "Trending Games": "Trending Games",
+    "Trending Sports": "Trending Sports",
+    "Game": "Game",
+    "Promotions": "Promotions"
   },
   "UserBalancePage": {
     "Deposit": "Κατάθεση",
@@ -418,7 +472,9 @@
   "BetHistory": {
     "Casino History": "Ιστορικό Καζίνο",
     "Sportsbook History": "Ιστορικό Στοιχημάτων",
-    "Show": "Προβολή"
+    "Show": "Προβολή",
+    "Start Date": "Start Date",
+    "End Date": "End Date"
   },
   "DepositDialogFull": {
     "Deposit": "Κατάθεση",
@@ -456,7 +512,11 @@
     "CardStatus_APPROVED_Info": "Η κάρτα σας εγκρίθηκε. Μπορείτε να τη χρησιμοποιήσετε για καταθέσεις και αναλήψεις.",
     "CardStatus_REJECTED_Info": "Η κάρτα σας απορρίφθηκε. Επικοινωνήστε με την υποστήριξη για λεπτομέρειες.",
     "CardStatus_NO_ID_Info": "Η ταυτότητά σας δεν έχει επαληθευτεί. Ανεβάστε το έγγραφο στην σελίδα προφίλ.",
-    "address_confirm": "Επιβεβαιώνετε κάθε φορά τη διεύθυνση κατάθεσης για αποφυγή σφαλμάτων."
+    "address_confirm": "Επιβεβαιώνετε κάθε φορά τη διεύθυνση κατάθεσης για αποφυγή σφαλμάτων.",
+    "Direct Deposit": "Direct Deposit",
+    "Credited": "Credited",
+    "Confirmation": "Confirmation",
+    "Or": "Or"
   },
   "Agent": {
     "Users": "Χρήστες",
@@ -550,7 +610,8 @@
       "subagent_created": "Ο υπο-χρήστης δημιουργήθηκε",
       "balance_transferred": "Μεταφέρθηκε επιτυχώς{currency_symbol}{amount}",
       "removed_from_favorites": "Αφαιρέθηκε από τα αγαπημένα",
-      "added_to_favorites": "Προστέθηκε στα αγαπημένα"
+      "added_to_favorites": "Προστέθηκε στα αγαπημένα",
+      "user_details_updated": "User details updated successfully"
     },
     "error": {
       "something_wrong": "Παρουσιάστηκε σφάλμα",
@@ -579,7 +640,9 @@
       "cant_create_subuser": "Δεν μπορείτε να δημιουργήσετε υπο-χρήστη. Συνδεθείτε και δοκιμάστε ξανά.",
       "withdraw_not_allowed": "Δεν μπορείτε να κάνετε ανάληψη. Ελέγξτε την πολιτική.",
       "withdrawal_exceeded": "Υπερβήκατε το όριο ανάληψης. Ελέγξτε την πολιτική.",
-      "insufficient_balance_requests": "Δεν έχετε αρκετό υπόλοιπο για ανάληψη. Ελέγξτε τα αιτήματα ανάληψης που υποβάλατε"
+      "insufficient_balance_requests": "Δεν έχετε αρκετό υπόλοιπο για ανάληψη. Ελέγξτε τα αιτήματα ανάληψης που υποβάλατε",
+      "failed_update_details": "Failed to update user details",
+      "password_changed_failed": "Password changed failed"
     },
     "info": {
       "address_copied": "Η διεύθυνση πορτοφολιού αντιγράφηκε!",
@@ -613,7 +676,11 @@
   "ForgotDialog": {
     "Forgot your password?": "Ξεχάσατε τον κωδικό;",
     "Submit": "Υποβολή",
-    "Enter your email address": "Εισάγετε τη διεύθυνση email σας"
+    "Enter your email address": "Εισάγετε τη διεύθυνση email σας",
+    "email": "Email",
+    "recover_password": "Recover Password",
+    "Password reset link was sent to": "Password reset link was sent to",
+    "Something went wrong. Please check your email exists in the": "Something went wrong. Please check your email exists in the"
   },
   "Setting": {
     "language": "Γλώσσα"
@@ -703,5 +770,80 @@
     "Total Monthly Bonus": "Σύνολο Μηνιαίων Μπόνους",
     "Total Profit": "Συνολικό Κέρδος",
     "Cash": "Μετρητά"
+  },
+  "SignupStep1": {
+    "Step 1/3": "Βήμα 1/3",
+    "Select Your Preferred Language": "Επιλέξτε την προτιμώμενή σας γλώσσα",
+    "Stake is available is several languages. Feel free to personalise your language across our site from the options below.": "Είμαστε διαθέσιμοι σε πολλές γλώσσες. Αισθανθείτε ελεύθεροι να εξατομικεύσετε τη γλώσσα σας στον ιστότοπό μας από τις παρακάτω επιλογές.",
+    "Confirm": "Επιβεβαίωση",
+    "Already have an account?": "Έχετε ήδη λογαριασμό;",
+    "Sign in": "Σύνδεση"
+  },
+  "SignupStep2": {
+    "Step 2/3": "Βήμα 2/3",
+    "< Back": "< Back",
+    "Create an Account": "Δημιουργία λογαριασμού",
+    "Email": "Email",
+    "Username": "Όνομα χρήστη",
+    "Your username must be 3-14 characters long.": "Το όνομα χρήστη σας πρέπει να είναι 3-14 χαρακτήρες.",
+    "Password": "Κωδικός",
+    "Date of Birth": "Ημερομηνία γέννησης",
+    "Phone (Optional)": "Τηλέφωνο (Προαιρετικό)",
+    "Referral Code (Optional)": "Κωδικός παραπομπής (Προαιρετικό)",
+    "Continue": "Συνέχεια",
+    "Already have an account?": "Έχετε ήδη λογαριασμό;",
+    "Sign in": "Σύνδεση"
+  },
+  "SignupStep3": {
+    "Step 3/3": "Βήμα 3/3",
+    "< Back": "< Back",
+    "Create an Account": "Δημιουργία λογαριασμού",
+    "Terms and Conditions": "Όροι και Προϋποθέσεις",
+    "terms_and_conditions_title": "1.Stake.com",
+    "terms_and_conditions_content": "Stake.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Stake.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Stake.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Stake.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "I have read and agree to the Terms and Conditions": "Έχω διαβάσει και συμφωνώ με τους Όρους και Προϋποθέσεις",
+    "Already have an account?": "Έχετε ήδη λογαριασμό;",
+    "Sign in": "Σύνδεση"
+  },
+  "WelcomeDialog": {
+    "Welcome to Stake!": "Καλώς ήρθατε στο Stake!",
+    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "Έτοιμοι να ξεκινήσετε; Ρυθμίστε την πορτοφόλα σας τώρα για να απολαύσετε ομαλές και ασφαλείς καταθέσεις και αναλήψεις.",
+    "Skip for Later": "Παράλειψη για αργότερα",
+    "Setup Wallet": "Ρύθμιση πορτοφόλας"
+  },
+  "MessagePage": {
+    "Send New": "Send New",
+    "Subject": "Subject",
+    "Enter text here": "Enter text here",
+    "Message": "Message",
+    "Send": "Send"
+  },
+  "CardDeposit": {
+    "Card Deposit": "Card Deposit",
+    "Card Number": "Card Number",
+    "Info": "Info",
+    "Select Country": "Select Country"
+  },
+  "LiveSupportAI": {
+    "Live Support AI": "Live Support AI",
+    "Close Chat": "Close Chat"
+  },
+  "Sidebar": {
+    "Live Support": "Live Support",
+    "Notification": "Notification",
+    "Favorite": "Favorite",
+    "Setting": "Setting",
+    "Bet": "Bet"
+  },
+  "EmulateBetting": {
+    "Casino Bets": "Casino Bets",
+    "Sports Bets": "Sports Bets",
+    "Race Leaderboard": "Race Leaderboard",
+    "Game": "Game",
+    "User": "User",
+    "Time": "Time",
+    "Bet Amount": "Bet Amount",
+    "Multiplier": "Multiplier",
+    "Payout": "Payout"
   }
 }

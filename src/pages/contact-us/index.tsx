@@ -83,7 +83,7 @@ export default function ContactUs() {
           dir={isRTL ? "rtl" : "ltr"}
         >
           <Input
-            label={t("name_label") || "Name"}
+            // label={t("name_label") || "Name"}
             type="text"
             value={name}
             onChange={(e) => setName((e.target as HTMLInputElement).value)}
@@ -94,7 +94,7 @@ export default function ContactUs() {
           />
 
           <Input
-            label={t("email_label") || "Email"}
+            // label={t("email_label") || "Email"}
             type="email"
             value={email}
             onChange={(e) => setEmail((e.target as HTMLInputElement).value)}
@@ -106,7 +106,7 @@ export default function ContactUs() {
 
           <div className="w-full">
             <Textarea
-              label={t("message_label") || "Message"}
+              // label={t("message_label") || "Message"}
               value={message}
               onValueChange={setMessage}
               placeholder=" "
@@ -117,7 +117,7 @@ export default function ContactUs() {
                 input: "text-white",
                 inputWrapper:
                   "bg-[#fff1] border-none rounded-sm hover:bg-[#fff2] focus-within:hover:bg-[#fff2]",
-                label: "text-white/80 text-xs",
+                //  label: "text-white/80 text-xs",
               }}
             />
           </div>

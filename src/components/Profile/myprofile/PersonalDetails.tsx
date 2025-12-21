@@ -14,7 +14,7 @@ import { RTL_LANGUAGES } from "@/config/constants";
 
 const myCountryCodesObject = countryCodes.customList(
   "countryCode",
-  "{countryNameEn}({countryCode})"
+  "{countryNameEn}({countryCode})"  
 );
 
 const countries = Object.keys(myCountryCodesObject).map((key) => ({
@@ -87,7 +87,7 @@ const PersonalDetailsPage = () => {
             type="text"
             value={firstName}
             onChange={(e: any) => setFirstName(e.target.value)}
-            label={t("First Name")}
+            // label={t("First Name")}
             classNames={{
               inputWrapper: "bg-[#fff1] border-none rounded-sm!",
               input: "text-[#FFFFFF99]",
@@ -97,7 +97,7 @@ const PersonalDetailsPage = () => {
             type="text"
             value={lastName}
             onChange={(e: any) => setLastName(e.target.value)}
-            label={t("Last Name")}
+            // label={t("Last Name")}
             classNames={{
               inputWrapper: "bg-[#fff1] border-none rounded-sm!",
               input: "text-[#FFFFFF99]",
@@ -107,7 +107,7 @@ const PersonalDetailsPage = () => {
             type="text"
             value={middleName}
             onChange={(e: any) => setMiddleName(e.target.value)}
-            label={t("Middle Name")}
+            // label={t("Middle Name")}
             classNames={{
               inputWrapper: "bg-[#fff1] border-none rounded-sm!",
               input: "text-[#FFFFFF99]",
@@ -115,7 +115,7 @@ const PersonalDetailsPage = () => {
           />
           <DatePicker
             className="bg-[#fff1] border-none rounded-sm!"
-            label={t("Date of Birth")}
+            // label={t("Date of Birth")}
             value={birthDay}
             size="sm"
             onChange={(e: any) => setBirthDay(e)}
@@ -123,7 +123,7 @@ const PersonalDetailsPage = () => {
           />
           <Select
             className="bg-[#fff1] border-none rounded-sm!"
-            label={t("Gender")}
+            // label={t("Gender")}
             placeholder={t("Select a gender")}
             selectedKeys={userGender ? [userGender] : []}
             variant="bordered"
@@ -139,7 +139,7 @@ const PersonalDetailsPage = () => {
           </Select>
           <Select
             className="bg-[#fff1] border-none rounded-sm!"
-            label={t("Country")}
+            // label={t("Country")}
             placeholder={t("Select Country")}
             selectedKeys={country ? [country] : []}
             variant="bordered"
@@ -157,7 +157,7 @@ const PersonalDetailsPage = () => {
             type="text"
             value={userCity}
             onChange={(e: any) => setUserCity(e.target.value)}
-            label={t("City")}
+            // label={t("City")}
             classNames={{
               inputWrapper: "bg-[#fff1] border-none rounded-sm!",
               input: "text-[#FFFFFF99]",
@@ -167,7 +167,7 @@ const PersonalDetailsPage = () => {
             type="text"
             value={userAddress}
             onChange={(e: any) => setUserAddress(e.target.value)}
-            label={t("Address")}
+            // label={t("Address")}
             classNames={{
               inputWrapper: "bg-[#fff1] border-none rounded-sm!",
               input: "text-[#FFFFFF99]",

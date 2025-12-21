@@ -20,7 +20,7 @@ export default function WalletBox() {
   };
 
   return (
-    <div className="flex flex-row gap-2 items-center select-none bg-[var(--bar-background-color)] rounded-full px-3 py-2 transition-all duration-300">
+    <div className="flex flex-row max-w-[100px] max-h-[500px] gap-2 items-center select-none bg-[var(--bar-background-color)] rounded-full px-3 py-2 transition-all duration-300">
       {userState.value?.role === "NORMAL" && (
         <button
           onClick={handleDepositClick}
@@ -30,7 +30,7 @@ export default function WalletBox() {
           <Plus size={14} color="white" />
         </button>
       )}
-      <Dropdown backdrop="blur" className="bg-[var(--bar-background-color)]">
+      <Dropdown backdrop="blur" className="max-h-[500px] overflow-y-auto bg-[var(--bar-background-color)]">
         <DropdownTrigger>
           <div className="flex items-center gap-1 cursor-pointer hover:opacity-90 transition-opacity">
             <span className="text-[12px] font-bold md:text-[14px] text-white">

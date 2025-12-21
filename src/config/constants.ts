@@ -7,6 +7,8 @@ export const TRON_CHAIN_ID = 728126428;
 // export const RTL_LANGUAGES = ["ar", "he", "fa"];
 export const RTL_LANGUAGES = ["ar", "fa"];
 
+export const BASE_URL = "https://tekio.s3.eu-north-1.amazonaws.com/betalarab";
+
 export const mobileMediaQuery =
   "screen and ((max-width: 599px) or ((max-width: 1023px) and (orientation: landscape)))";
 

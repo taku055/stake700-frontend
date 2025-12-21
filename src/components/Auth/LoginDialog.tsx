@@ -20,6 +20,7 @@ import { Select, SelectItem } from "@heroui/react";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
 import { registerOpenedState } from "@/state/registerOpenedState";
 import { Eye, EyeOff } from "lucide-preact";
+import { signupStep1OpenedState } from "@/state/registerOpenedState";
 
 
 interface ILoginComponentProps {
@@ -126,15 +127,13 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
             className="h-[36px] md:h-[36px] md:max-w-[180px]"
             alt={import.meta.env.VITE_SITE_NAME as string}
           />
-          <button
+          {/* <button
             className="rounded-[4px] w-[20px] h-[20px]"
             onClick={() => {
               onClose();
-              // registerOpenedState.value = true;
             }}
           >
-            {/* {t("register")} */}
-          </button>
+          </button> */}
         </ModalHeader>
         <ModalBody className="flex flex-col p-[16px]">
           <form className="flex flex-col w-full gap-[16px]" onSubmit={onSubmit}>
@@ -152,8 +151,8 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   value={email}
                   onChange={(e: any) => setEmail(e.target.value)}
                   classNames={{
-                    inputWrapper: "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-tertiary)] rounded-sm! h-[44px]",
-                    input: "text-white",
+                    inputWrapper: "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-secondary)] rounded-sm! h-[44px] focus-within:bg-[var(--bar-background-color)] focus-within:border-[var(--background-secondary)]",
+                    input: "text-white bg-transparent",
                   }}
                   ref={emailRef}
                 />
@@ -168,21 +167,21 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   value={password}
                   onChange={(e: any) => setPassword(e.target.value)}
                   classNames={{
-                    inputWrapper: "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-tertiary)] rounded-sm! h-[44px]",
+                    inputWrapper: "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-secondary)] rounded-sm h-[44px]",
                     input: "text-white",
                   }}
                   endContent={
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="cursor-pointer text-white/70 hover:text-white transition-colors"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="w-5 h-5" />
-                      ) : (
-                        <Eye className="w-5 h-5" />
-                      )}
-                    </button>
+                    showPassword ? (
+                      <EyeOff 
+                        className="w-5 h-5 text-white/70 hover:text-white transition-colors cursor-pointer" 
+                        onClick={() => setShowPassword(!showPassword)}
+                      />
+                    ) : (
+                      <Eye 
+                        className="w-5 h-5 text-white/70 hover:text-white transition-colors cursor-pointer" 
+                        onClick={() => setShowPassword(!showPassword)}
+                      />
+                    )
                   }
                 />
               </div>
@@ -221,7 +220,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                 className="w-full flex items-center justify-center text-white text-[14px] bg-[var(--background-secondary)] hover:bg-[#fff2] py-[12px] px-[28px] h-[48px] rounded-lg"
                 radius="sm"
               >
-                Sign In with passkey
+                {t("sign_in_with_passkey")}
               </Button>
 
               <Button
@@ -230,7 +229,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                 radius="sm"
               >
                 <img src="/images/icons/icons/google.svg" alt="Google" className="w-[20px] h-[20px]" />
-                Sign In with Google
+                {t("sign_in_with_google")}
               </Button>
 
               <Button
@@ -238,22 +237,22 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                 className="w-full flex items-center justify-center text-white text-[14px] bg-[var(--background-secondary)] hover:bg-[#fff2] py-[12px] px-[28px] h-[48px] rounded-lg"
                 radius="sm"
               >
-                Sign In another way
+                {t("sign_in_another_way")}
               </Button>
             </div>
 
             <div className="text-center mt-[40px]">
               <span className="text-[16px] font-weight-400 text-[#FFFFFFB2] leading-[24px] h-[24px]">
-                <span>Don't have an account?</span>{" "}
+                <span>{t("don_t_have_an_account")}?</span>{" "}
                 <button
                   type="button"
                   onClick={() => {
                     onClose();
-                    registerOpenedState.value = true;
+                    signupStep1OpenedState.value = true;
                   }}
-                  className="text-[16px] font-weight-600 hover:underline leading-[24px] h-[24px]"
+                  className="text-[16px] font-weight-600 text-[var(--green-color)] hover:underline leading-[24px] h-[24px]"
                 >
-                  Register an Account
+                  {t("register_an_account")}
                 </button>
               </span>
             </div>

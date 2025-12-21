@@ -46,9 +46,9 @@ export default function PageComponent() {
     <div className="flex flex-col items-center justify-center w-full gap-4">
       <EmblaBanner />
       <div className="flex flex-col w-[1200px]">
-        <div className="flex w-full gap-2 h-[52px]">
-          <div className="flex w-full border-[2px] border-[var(--background-tertiary)] rounded-[8px]">
-            <div className="flex items-center justify-center border-r-[2px] border-[var(--background-tertiary)] min-w-[108px]">
+        <div className="flex w-full h-[52px]">
+          <div className="flex w-full bg-[var(--background-secondary)] items-center justify-center p-0 border-[2px] border-[var(--background-tertiary)] rounded-[8px]">
+            <div className="flex h-full bg-[var(--background-secondary)] items-center justify-center border-r-[2px] border-[var(--background-tertiary)] min-w-[108px]">
               Casino
             </div>
             <div className="flex items-center justify-center p-2">
@@ -57,14 +57,14 @@ export default function PageComponent() {
             <Input
               label={"Search"}
               type="text"
-              placeholder="Search"
+              placeholder="Search your game"
               value={searchQuery}
               onChange={(e: any) => setSearchQuery(e.target.value)}
               variant="bordered"
               classNames={{
                 inputWrapper:
-                  "bg-[var(--background)] border-none rounded-sm!",
-                input: "text-white text-[14px]",
+                  "bg-[var(--background-secondary)] w-full p-0 h-full border-none rounded-sm!",
+                input: "text-white text-[14px] h-full bg-transparent",
                 label: "text-[#FFFFFF]",
               }}
             />

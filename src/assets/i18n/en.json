@@ -69,11 +69,79 @@
     "Search Providers": "Search Providers"
   },
   "WalletBox": {
-    "Balance": "Balance"
+    "Balance": "Balance",
+    "Wallet": "Wallet",
+    "Overview": "Overview",
+    "Buy Crypto": "Buy Crypto",
+    "Swap Crypto": "Swap Crypto",
+    "Settings": "Settings",
+    "Your Stake Wallet is Currently Empty": "Your Stake Wallet is Currently Empty",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.",
+    "Deposit": "Deposit",
+    "Buy": "Buy",
+    "Cryptocurrency": "Cryptocurrency",
+    "Currency": "Currency",
+    "Search": "Search",
+    "Amount": "Amount",
+    "Address": "Address",
+    "Or": "Or",
+    "Direct Deposit": "Direct Deposit",
+    "Credited": "Credited",
+    "Confirmation": "Confirmation",
+    "Hide Zero Balances": "Hide Zero Balances",
+    "Your zero balances won't appear in your wallet": "Your zero balances won't appear in your wallet",
+    "Display Crypto in Fiat": "Display Crypto in Fiat",
+    "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
+    "Fiat Currency": "Fiat Currency",
+    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
+    "Enable 2FA": "Enable 2FA"
+  },
+  "VipClub": {
+    "VIP": "VIP",
+    "Overview": "Overview",
+    "Rewards": "Rewards",
+    "None": "None",
+    "Your VIP Progress": "Your VIP Progress",
+    "VIP Benefits": "VIP Benefits",
+    "VIP Host": "VIP Host",
+    "Bonus from Support in currency of your choice": "Bonus from Support in currency of your choice",
+    "Rakeback enabled": "Rakeback enabled",
+    "Weekly bonuses": "Weekly bonuses",
+    "Monthly bonuses": "Monthly bonuses",
+    "VIP Telegram channel access": "VIP Telegram channel access",
+    "Monthly bonus increased": "Monthly bonus increased",
+    "14 - 42 day, daily bonus (Reload)": "14 - 42 day, daily bonus (Reload)",
+    "Dedicated VIP host": "Dedicated VIP host",
+    "Unlimited Reloads while maintaining a VIP host": "Unlimited Reloads while maintaining a VIP host",
+    "Bonus from VIP host in currency of your choice": "Bonus from VIP host in currency of your choice",
+    "Weekly & monthly bonuses increased": "Weekly & monthly bonuses increased",
+    "Exclusively customised benefits": "Exclusively customised benefits",
+    "Reach Platinum IV or above and receive your own dedicated VIP host who will support and cater to your betting needs.": "Reach Platinum IV or above and receive your own dedicated VIP host who will support and cater to your betting needs.",
+    "VIP Host benefits": "VIP Host benefits",
+    "VIP Hosts cater to your needs and ensure your time at Stake is safe, entertaining and rewarding. Enjoy:": "VIP Hosts cater to your needs and ensure your time at Stake is safe, entertaining and rewarding. Enjoy:",
+    "Your personal point of contact at Stake": "Your personal point of contact at Stake",
+    "Tailored bonuses and sports betting limits": "Tailored bonuses and sports betting limits",
+    "Insight into gameplay statistics": "Insight into gameplay statistics",
+    "Exclusive promotions and events": "Exclusive promotions and events",
+    "Learn more about being a Stake VIP": "Learn more about being a Stake VIP",
+    "Monthly Bonus": "Monthly Bonus",
+    "Released once a month.": "Released once a month.",
+    "The Monthly Bonus is randomly released. Eligible players will be notified via email. Your bonus is based on your game play throughout the month. The more you play, the bigger the bonus.": "The Monthly Bonus is randomly released. Eligible players will be notified via email. Your bonus is based on your game play throughout the month. The more you play, the bigger the bonus.",
+    "Rakeback": "Rakeback",
+    "Unlocked at Bronze VIP.": "Unlocked at Bronze VIP.",
+    "Weekly Boost": "Weekly Boost",
+    "Reload": "Reload",
+    "Unlocked at Platinum VIP.": "Unlocked at Platinum VIP."
   },
   "PromotionCard": {
     "daily_promotion_title": "Daily Promotion",
-    "daily_promotion_text": "Get a 10% bonus on your Blackjack winnings every day!"
+    "daily_promotion_text": "Get a 10% bonus on your Blackjack winnings every day!",
+    "Read More": "Read More",
+    "Get a 10% bonus": "Get a 10% bonus",
+    "enjoy a daily bonus": "enjoy a daily bonus",
+    " no opt-in required!": "no opt-in required!",
+    "no opt-in required!": "no opt-in required!",
+    "No opt-in required!": "No opt-in required!"
   },
   "CasinoDetailPage": {
     "Games": "Games",
@@ -165,6 +233,8 @@
     "already_have_an_account": "Already have an account?",
     "sign_in_waiting": "Sign in, we are waiting for you",
     "username": "Username/Email",
+    "Email or Username": "Email or Username",
+    "Password": "Password",
     "password": "Password",
     "are_you_an_agent": "Are you an agent?",
     "remember_me": "Remember me",
@@ -175,13 +245,25 @@
     "please_input_all_fields": "Please input all fields",
     "successfully_logged_in": "Successfully logged in",
     "email_or_password_is_incorrect": "Email or password is incorrect",
-    "something_went_wrong": "Something went wrong"
+    "something_went_wrong": "Something went wrong",
+    "OR": "OR",
+    "Sign In with passkey": "Sign In with passkey",
+    "Sign In with Google": "Sign In with Google",
+    "Sign In another way": "Sign In another way",
+    "Don't have an account?": "Don't have an account?",
+    "Register an Account": "Register an Account",
+    "don_t_have_an_account": "Don't have an account",
+    "register_an_account": "Register an Account",
+    "sign_in_with_passkey": "Sign In with passkey",
+    "sign_in_with_google": "Sign In with Google",
+    "sign_in_another_way": "Sign In another way"
   },
   "SignupDialog": {
     "please_input_all_fields": "Please input all fields",
     "first_letter_condition": "The first letter should start from lowercase or uppercase and the username can contain only letters, underscore and digits",
     "correct_email_request": "Please input the correct email",
     "login": "Log in",
+    "login_an_account": "Log in",
     "new_member": "New member?",
     "register_now": "Register now, it's easy!",
     "first_name": "First name",
@@ -193,7 +275,13 @@
     "confirm_password": "Confirm password",
     "username": "Username",
     "register": "Register",
-    "contact_support": "Contact support"
+    "contact_support": "Contact support",
+    "Successfully registered": "Successfully registered",
+    "Email or username is already taken": "Email or username is already taken",
+    "Something went wrong": "Something went wrong",
+    "successfully_registered": "Successfully registered",
+    "email_or_username_already_taken": "Email or username is already taken",
+    "something_went_wrong": "Something went wrong"
   },
   "HomePage": {
     "casino-games": "Casino Games",
@@ -242,7 +330,9 @@
     "guide_card_favorite_games_content": "Access your favorite games instantly",
     "guide_card_contact_support_title": "Contact Support 24/7",
     "guide_card_contact_support_content": "Contact us for any issues with live chat",
-    "load_more": "Load More"
+    "load_more": "Load More",
+    "Casino": "Casino",
+    "Search": "Search"
   },
   "AboutUs": {
     "title": "About ichancy?",
@@ -288,7 +378,11 @@
     "Casino Games": "Casino Games",
     "Live Casino": "Live Casino",
     "View All": "View All",
-    "Trending": "Trending"
+    "Trending": "Trending",
+    "Trending Games": "Trending Games",
+    "Trending Sports": "Trending Sports",
+    "Game": "Game",
+    "Promotions": "Promotions"
   },
   "UserBalancePage": {
     "Deposit": "Deposit",
@@ -462,7 +556,11 @@
     "CardStatus_APPROVED_Info": "Your card is verified. You can use it for deposit and withdrawal.",
     "CardStatus_REJECTED_Info": "Your card is rejected. Please contact support for more information.",
     "CardStatus_NO_ID_Info": "Your Identity is not verified. Please submit your id card on the profile page.",
-    "address_confirm": "Please confirm the deposit address each time to avoid using an incorrect one."
+    "address_confirm": "Please confirm the deposit address each time to avoid using an incorrect one.",
+    "Direct Deposit": "Direct Deposit",
+    "Credited": "Credited",
+    "Confirmation": "Confirmation",
+    "Or": "Or"
   },
   "Agent": {
     "Users": "Users",
@@ -622,7 +720,11 @@
   "ForgotDialog": {
     "Forgot your password?": "Forgot your password?",
     "Submit": "Submit",
-    "Enter your email address": "Enter your email address"
+    "Enter your email address": "Enter your email address",
+    "email": "Email",
+    "recover_password": "Recover Password",
+    "Password reset link was sent to": "Password reset link was sent to",
+    "Something went wrong. Please check your email exists in the": "Something went wrong. Please check your email exists in the"
   },
   "Setting": {
     "language": "Language"
@@ -736,5 +838,56 @@
     "Favorite": "Favorite",
     "Setting": "Setting",
     "Bet": "Bet"
+  },
+  "EmulateBetting": {
+    "Casino Bets": "Casino Bets",
+    "Sports Bets": "Sports Bets",
+    "Race Leaderboard": "Race Leaderboard",
+    "Game": "Game",
+    "User": "User",
+    "Time": "Time",
+    "Bet Amount": "Bet Amount",
+    "Multiplier": "Multiplier",
+    "Payout": "Payout"
+  },
+  "SignupStep1": {
+    "Step 1/3": "Step 1/3",
+    "Select Your Preferred Language": "Select Your Preferred Language",
+    "Stake is available is several languages. Feel free to personalise your language across our site from the options below.": "We are available in several languages. Feel free to personalise your language across our site from the options below.",
+    "Confirm": "Confirm",
+    "Already have an account?": "Already have an account?",
+    "Sign in": "Sign in"
+  },
+  "SignupStep2": {
+    "Step 2/3": "Step 2/3",
+    "< Back": "< Back",
+    "Create an Account": "Create an Account",
+    "Email": "Email",
+    "Username": "Username",
+    "Your username must be 3-14 characters long.": "Your username must be 3-14 characters long.",
+    "Password": "Password",
+    "Date of Birth": "Date of Birth",
+    "Phone (Optional)": "Phone (Optional)",
+    "Referral Code (Optional)": "Referral Code (Optional)",
+    "Continue": "Continue",
+    "Already have an account?": "Already have an account?",
+    "Sign in": "Sign in"
+  },
+  "SignupStep3": {
+    "Step 3/3": "Step 3/3",
+    "< Back": "< Back",
+    "Create an Account": "Create an Account",
+    "Terms and Conditions": "Terms and Conditions",
+    "terms_and_conditions_title": "1.Stake.com",
+    "terms_and_conditions_content": "Stake.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Stake.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Stake.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Stake.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "I have read and agree to the Terms and Conditions": "I have read and agree to the Terms and Conditions",
+    "Already have an account?": "Already have an account?",
+    "Sign in": "Sign in"
+  },
+  "WelcomeDialog": {
+    "Welcome to Stake!": "Welcome to Stake!",
+    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.",
+    "Skip for Later": "Skip for Later",
+    "Setup Wallet": "Setup Wallet"
   }
 }

@@ -262,7 +262,7 @@ const ProfileComponent = ({
         wrapper: "z-[10000000]",
       }}
     >
-      <ModalContent className={`max-w-[90vw]! w-full flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} bg-[var(--background)] min-h-[90vh]!`}>
+      <ModalContent className={`max-w-[60vw]! w-full flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} bg-[var(--background)] max-h-[80vh]! min-h-[60vh]!`}>
         {(!isMobile || (isMobile && !selectedTab)) && (
           <div className={`w-full flex flex-col overflow-y-auto md:max-w-[320px] gap-3 scrollbar-hide p-4 bg-[var(--bar-background-color)] ${isRTL ? 'md:border-l md:border-gray-700' : 'md:border-r md:border-gray-700'}`}>
             <div className="flex flex-col gap-3">

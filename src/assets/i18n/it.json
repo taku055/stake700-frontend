@@ -69,11 +69,35 @@
     "Search Providers": "Cerca Provider"
   },
   "WalletBox": {
-    "Balance": "Saldo"
+    "Balance": "Saldo",
+    "Wallet": "Wallet",
+    "Overview": "Overview",
+    "Buy Crypto": "Buy Crypto",
+    "Swap Crypto": "Swap Crypto",
+    "Settings": "Settings",
+    "Your Stake Wallet is Currently Empty": "Your Stake Wallet is Currently Empty",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.",
+    "Deposit": "Deposit",
+    "Buy": "Buy",
+    "Cryptocurrency": "Cryptocurrency",
+    "Amount": "Amount",
+    "Hide Zero Balances": "Hide Zero Balances",
+    "Your zero balances won't appear in your wallet": "Your zero balances won't appear in your wallet",
+    "Display Crypto in Fiat": "Display Crypto in Fiat",
+    "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
+    "Fiat Currency": "Fiat Currency",
+    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
+    "Enable 2FA": "Enable 2FA"
   },
   "PromotionCard": {
     "daily_promotion_title": "Promozione giornaliera",
-    "daily_promotion_text": "Ottieni un bonus del 10% sulle vincite a Blackjack ogni giorno!"
+    "daily_promotion_text": "Ottieni un bonus del 10% sulle vincite a Blackjack ogni giorno!",
+    "Read More": "Read More",
+    "Get a 10% bonus": "Get a 10% bonus",
+    "enjoy a daily bonus": "enjoy a daily bonus",
+    " no opt-in required!": "no opt-in required!",
+    "no opt-in required!": "no opt-in required!",
+    "No opt-in required!": "No opt-in required!"
   },
   "CasinoDetailPage": {
     "Games": "Giochi",
@@ -175,7 +199,20 @@
     "please_input_all_fields": "Compila tutti i campi",
     "successfully_logged_in": "Accesso effettuato con successo",
     "email_or_password_is_incorrect": "Email o password non corretti",
-    "something_went_wrong": "Qualcosa è andato storto"
+    "something_went_wrong": "Qualcosa è andato storto",
+    "OR": "O",
+    "Email or Username": "Email o nome utente",
+    "Password": "Password",
+    "Sign In with passkey": "Accedi con passkey",
+    "Sign In with Google": "Accedi con Google",
+    "Sign In another way": "Accedi in un altro modo",
+    "Don't have an account?": "Non hai un account?",
+    "Register an Account": "Registrati",
+    "don_t_have_an_account": "Non hai un account",
+    "register_an_account": "Registrati",
+    "sign_in_with_passkey": "Accedi con passkey",
+    "sign_in_with_google": "Accedi con Google",
+    "sign_in_another_way": "Accedi in un altro modo"
   },
   "SignupDialog": {
     "please_input_all_fields": "Compila tutti i campi",
@@ -193,7 +230,14 @@
     "confirm_password": "Conferma password",
     "username": "Nome utente",
     "register": "Registrati",
-    "contact_support": "Contatta il supporto"
+    "contact_support": "Contatta il supporto",
+    "Successfully registered": "Registrato con successo",
+    "Email or username is already taken": "Email o nome utente già in uso",
+    "Something went wrong": "Qualcosa è andato storto",
+    "successfully_registered": "Registrato con successo",
+    "email_or_username_already_taken": "Email o nome utente già in uso",
+    "something_went_wrong": "Qualcosa è andato storto",
+    "login_an_account": "Log in"
   },
   "HomePage": {
     "casino-games": "Giochi da Casinò",
@@ -242,7 +286,9 @@
     "guide_card_favorite_games_content": "Accedi istantaneamente ai tuoi giochi preferiti",
     "guide_card_contact_support_title": "Contatta il Supporto 24/7",
     "guide_card_contact_support_content": "Contattaci per qualsiasi problema tramite chat live",
-    "load_more": "Carica altro"
+    "load_more": "Carica altro",
+    "Casino": "Casino",
+    "Search": "Search"
   },
   "AboutUs": {
     "title": "Informazioni su ichancy?",
@@ -277,14 +323,22 @@
     "question_4": "Posso aprire un altro account mentre prendo una pausa (Auto-esclusione)?",
     "answer_4": "Ichancy è impegnato nel Gioco Responsabile e non consente ai suoi giocatori di aprire più account, specialmente per motivi di Auto-esclusione. Miriamo a fornire ai nostri clienti un ambiente sicuro e protetto che ti darà un'esperienza piacevole e gratificante. Incoraggiamo i nostri clienti a utilizzare i nostri servizi in modo responsabile e ragionevole.",
     "question_5": "C'è una restrizione di età su Ichancy?",
-    "answer_5": "Devi avere almeno 18 anni per registrarti su Ichancy, a condizione che questo sia il requisito di età minima per i giochi online nella tua giurisdizione. Se superiore, devi soddisfare i requisiti della tua giurisdizione locale."
+    "answer_5": "Devi avere almeno 18 anni per registrarti su Ichancy, a condizione che questo sia il requisito di età minima per i giochi online nella tua giurisdizione. Se superiore, devi soddisfare i requisiti della tua giurisdizione locale.",
+    "question_6": "What Sports Can I Bet On?",
+    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
+    "question_7": "How Do I Watch Live Streams?",
+    "answer_7": "Live streams are available directly on the Stake platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "Altro",
     "Casino Games": "Giochi da Casinò",
     "Live Casino": "Casino Live",
     "View All": "Vedi tutto",
-    "Trending": "Di tendenza"
+    "Trending": "Di tendenza",
+    "Trending Games": "Trending Games",
+    "Trending Sports": "Trending Sports",
+    "Game": "Game",
+    "Promotions": "Promotions"
   },
   "UserBalancePage": {
     "Deposit": "Deposito",
@@ -418,7 +472,9 @@
   "BetHistory": {
     "Casino History": "Storico Casinò",
     "Sportsbook History": "Storico Scommesse",
-    "Show": "Mostra"
+    "Show": "Mostra",
+    "Start Date": "Start Date",
+    "End Date": "End Date"
   },
   "DepositDialogFull": {
     "Deposit": "Deposito",
@@ -456,7 +512,11 @@
     "CardStatus_APPROVED_Info": "La tua carta è stata verificata. Puoi usarla per depositi e prelievi.",
     "CardStatus_REJECTED_Info": "La tua carta è stata rifiutata. Contatta il supporto per maggiori informazioni.",
     "CardStatus_NO_ID_Info": "La tua identità non è verificata. Carica il documento nella pagina profilo.",
-    "address_confirm": "Conferma ogni volta l'indirizzo di deposito per evitare di usarne uno errato."
+    "address_confirm": "Conferma ogni volta l'indirizzo di deposito per evitare di usarne uno errato.",
+    "Direct Deposit": "Direct Deposit",
+    "Credited": "Credited",
+    "Confirmation": "Confirmation",
+    "Or": "Or"
   },
   "Agent": {
     "Users": "Utenti",
@@ -550,7 +610,8 @@
       "subagent_created": "Sotto-utente creato",
       "balance_transferred": "Trasferito con successo{currency_symbol}{amount}",
       "removed_from_favorites": "Rimosso dai preferiti",
-      "added_to_favorites": "Aggiunto ai preferiti"
+      "added_to_favorites": "Aggiunto ai preferiti",
+      "user_details_updated": "User details updated successfully"
     },
     "error": {
       "something_wrong": "Qualcosa è andato storto",
@@ -579,7 +640,9 @@
       "cant_create_subuser": "Impossibile creare un sotto-utente. Accedi e riprova.",
       "withdraw_not_allowed": "Non puoi effettuare prelievi. Controlla privacy e policy.",
       "withdrawal_exceeded": "Hai superato l'importo massimo di prelievo. Controlla la policy.",
-      "insufficient_balance_requests": "Non hai abbastanza saldo per il prelievo. Controlla le richieste di prelievo inviate"
+      "insufficient_balance_requests": "Non hai abbastanza saldo per il prelievo. Controlla le richieste di prelievo inviate",
+      "failed_update_details": "Failed to update user details",
+      "password_changed_failed": "Password changed failed"
     },
     "info": {
       "address_copied": "Indirizzo wallet copiato negli appunti!",
@@ -613,7 +676,11 @@
   "ForgotDialog": {
     "Forgot your password?": "Hai dimenticato la password?",
     "Submit": "Invia",
-    "Enter your email address": "Inserisci il tuo indirizzo email"
+    "Enter your email address": "Inserisci il tuo indirizzo email",
+    "email": "Email",
+    "recover_password": "Recover Password",
+    "Password reset link was sent to": "Password reset link was sent to",
+    "Something went wrong. Please check your email exists in the": "Something went wrong. Please check your email exists in the"
   },
   "Setting": {
     "language": "Lingua"
@@ -703,5 +770,80 @@
     "Total Monthly Bonus": "Totale Bonus Mensili",
     "Total Profit": "Profitto Totale",
     "Cash": "Contanti"
+  },
+  "SignupStep1": {
+    "Step 1/3": "Passo 1/3",
+    "Select Your Preferred Language": "Seleziona la tua lingua preferita",
+    "Stake is available is several languages. Feel free to personalise your language across our site from the options below.": "Siamo disponibili in diverse lingue. Sentiti libero di personalizzare la tua lingua sul nostro sito dalle opzioni sottostanti.",
+    "Confirm": "Conferma",
+    "Already have an account?": "Hai già un account?",
+    "Sign in": "Accedi"
+  },
+  "SignupStep2": {
+    "Step 2/3": "Passo 2/3",
+    "< Back": "< Back",
+    "Create an Account": "Crea un account",
+    "Email": "Email",
+    "Username": "Nome utente",
+    "Your username must be 3-14 characters long.": "Il tuo nome utente deve essere lungo tra 3 e 14 caratteri.",
+    "Password": "Password",
+    "Date of Birth": "Data di nascita",
+    "Phone (Optional)": "Telefono (Opzionale)",
+    "Referral Code (Optional)": "Codice di riferimento (Opzionale)",
+    "Continue": "Continua",
+    "Already have an account?": "Hai già un account?",
+    "Sign in": "Accedi"
+  },
+  "SignupStep3": {
+    "Step 3/3": "Passo 3/3",
+    "< Back": "< Back",
+    "Create an Account": "Crea un account",
+    "Terms and Conditions": "Termini e condizioni",
+    "terms_and_conditions_title": "1.Stake.com",
+    "terms_and_conditions_content": "Stake.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Stake.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Stake.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Stake.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "I have read and agree to the Terms and Conditions": "Ho letto e accetto i Termini e condizioni",
+    "Already have an account?": "Hai già un account?",
+    "Sign in": "Accedi"
+  },
+  "WelcomeDialog": {
+    "Welcome to Stake!": "Benvenuto su Stake!",
+    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "Pronto per iniziare? Configura il tuo portafoglio ora per godere di depositi e prelievi fluidi e sicuri.",
+    "Skip for Later": "Salta per dopo",
+    "Setup Wallet": "Configura portafoglio"
+  },
+  "MessagePage": {
+    "Send New": "Send New",
+    "Subject": "Subject",
+    "Enter text here": "Enter text here",
+    "Message": "Message",
+    "Send": "Send"
+  },
+  "CardDeposit": {
+    "Card Deposit": "Card Deposit",
+    "Card Number": "Card Number",
+    "Info": "Info",
+    "Select Country": "Select Country"
+  },
+  "LiveSupportAI": {
+    "Live Support AI": "Live Support AI",
+    "Close Chat": "Close Chat"
+  },
+  "Sidebar": {
+    "Live Support": "Live Support",
+    "Notification": "Notification",
+    "Favorite": "Favorite",
+    "Setting": "Setting",
+    "Bet": "Bet"
+  },
+  "EmulateBetting": {
+    "Casino Bets": "Casino Bets",
+    "Sports Bets": "Sports Bets",
+    "Race Leaderboard": "Race Leaderboard",
+    "Game": "Game",
+    "User": "User",
+    "Time": "Time",
+    "Bet Amount": "Bet Amount",
+    "Multiplier": "Multiplier",
+    "Payout": "Payout"
   }
 }

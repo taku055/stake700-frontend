@@ -69,11 +69,35 @@
     "Search Providers": "Təminatçıları Axtar"
   },
   "WalletBox": {
-    "Balance": "Balans"
+    "Balance": "Balans",
+    "Wallet": "Wallet",
+    "Overview": "Overview",
+    "Buy Crypto": "Buy Crypto",
+    "Swap Crypto": "Swap Crypto",
+    "Settings": "Settings",
+    "Your Stake Wallet is Currently Empty": "Your Stake Wallet is Currently Empty",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.",
+    "Deposit": "Deposit",
+    "Buy": "Buy",
+    "Cryptocurrency": "Cryptocurrency",
+    "Amount": "Amount",
+    "Hide Zero Balances": "Hide Zero Balances",
+    "Your zero balances won't appear in your wallet": "Your zero balances won't appear in your wallet",
+    "Display Crypto in Fiat": "Display Crypto in Fiat",
+    "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
+    "Fiat Currency": "Fiat Currency",
+    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
+    "Enable 2FA": "Enable 2FA"
   },
   "PromotionCard": {
     "daily_promotion_title": "Gündəlik Kampaniya",
-    "daily_promotion_text": "Hər gün Blackjack qazanclarınıza 10% bonus qazanın!"
+    "daily_promotion_text": "Hər gün Blackjack qazanclarınıza 10% bonus qazanın!",
+    "Read More": "Ətraflı Oxuyun",
+    "Get a 10% bonus": "10% bonus əldə edin",
+    "enjoy a daily bonus": "gündəlik bonusdan həzz alın",
+    " no opt-in required!": "qeydiyyat tələb olunmur!",
+    "no opt-in required!": "qeydiyyat tələb olunmur!",
+    "No opt-in required!": "Qeydiyyat tələb olunmur!"
   },
   "CasinoDetailPage": {
     "Games": "Oyunlar",
@@ -165,6 +189,8 @@
     "already_have_an_account": "Artıq hesabınız var?",
     "sign_in_waiting": "Daxil olun, sizi gözləyirik",
     "username": "İstifadəçi adı / Email",
+    "Email or Username": "Email və ya İstifadəçi adı",
+    "Password": "Şifrə",
     "password": "Şifrə",
     "are_you_an_agent": "Agent misiniz?",
     "remember_me": "Məni yadda saxla",
@@ -175,13 +201,25 @@
     "please_input_all_fields": "Bütün sahələri doldurun",
     "successfully_logged_in": "Uğurla daxil oldunuz",
     "email_or_password_is_incorrect": "Email və ya şifrə yanlışdır",
-    "something_went_wrong": "Xəta baş verdi"
+    "something_went_wrong": "Xəta baş verdi",
+    "OR": "VƏ YA",
+    "Sign In with passkey": "Açar ilə daxil ol",
+    "Sign In with Google": "Google ilə daxil ol",
+    "Sign In another way": "Başqa bir yolla daxil ol",
+    "Don't have an account?": "Hesabınız yoxdur?",
+    "Register an Account": "Hesab yaradın",
+    "don_t_have_an_account": "Hesabınız yoxdur",
+    "register_an_account": "Hesab yaradın",
+    "sign_in_with_passkey": "Açar ilə daxil ol",
+    "sign_in_with_google": "Google ilə daxil ol",
+    "sign_in_another_way": "Başqa bir yolla daxil ol"
   },
   "SignupDialog": {
     "please_input_all_fields": "Bütün sahələri doldurun",
     "first_letter_condition": "İstifadəçi adı hərflə başlamalıdır və yalnız hərf, rəqəm və alt xətt simvolu ola bilər",
     "correct_email_request": "Düzgün email daxil edin",
     "login": "Daxil ol",
+    "login_an_account": "Daxil ol",
     "new_member": "Yeni üzv?",
     "register_now": "İndi qeydiyyatdan keçin, çox asandır!",
     "first_name": "Ad",
@@ -193,7 +231,13 @@
     "confirm_password": "Şifrəni təsdiqlə",
     "username": "İstifadəçi adı",
     "register": "Qeydiyyat",
-    "contact_support": "Dəstəyə yazın"
+    "contact_support": "Dəstəyə yazın",
+    "Successfully registered": "Uğurla qeydiyyatdan keçildi",
+    "Email or username is already taken": "Email və ya istifadəçi adı artıq istifadə olunur",
+    "Something went wrong": "Xəta baş verdi",
+    "successfully_registered": "Uğurla qeydiyyatdan keçildi",
+    "email_or_username_already_taken": "Email və ya istifadəçi adı artıq istifadə olunur",
+    "something_went_wrong": "Xəta baş verdi"
   },
   "HomePage": {
     "casino-games": "Kazino Oyunları",
@@ -242,7 +286,9 @@
     "guide_card_favorite_games_content": "Sevimli oyunlarınıza dərhal çatın",
     "guide_card_contact_support_title": "Dəstək ilə Əlaqə 24/7",
     "guide_card_contact_support_content": "Hər hansı bir məsələ üçün canlı söhbət vasitəsilə bizimlə əlaqə saxlayın",
-    "load_more": "Daha çox yüklə"
+    "load_more": "Daha çox yüklə",
+    "Casino": "Kazino",
+    "Search": "Axtar"
   },
   "AboutUs": {
     "title": "ichancy haqqında?",
@@ -277,14 +323,22 @@
     "question_4": "Fasilə (Özünü İstisna Etmə) alarkən başqa bir hesab aça bilərəmmi?",
     "answer_4": "Ichancy Məsuliyyətli Oyun prinsipinə sadiqdir və oyunçularına xüsusilə Özünü İstisna Etmə səbəbi ilə çoxlu hesab açmağa icazə vermir. Müştərilərimizə təhlükəsiz və güvənli mühit təmin etməyi və sizə xoş və mükafatlandırıcı təcrübə verməyi hədəfləyirik. Müştərilərimizi xidmətlərimizdən məsuliyyətlə və məntiqli şəkildə istifadə etməyə təşviq edirik.",
     "question_5": "Ichancy-də yaş məhdudiyyəti varmı?",
-    "answer_5": "Ichancy-də qeydiyyatdan keçmək üçün ən azı 18 yaşında olmalısınız, bu, yurisdiksiyanız daxilində onlayn oyun üçün minimum yaş tələbidir. Daha yüksəkdirsə, yerli yurisdiksiyanızın tələblərinə cavab verməlisiniz."
+    "answer_5": "Ichancy-də qeydiyyatdan keçmək üçün ən azı 18 yaşında olmalısınız, bu, yurisdiksiyanız daxilində onlayn oyun üçün minimum yaş tələbidir. Daha yüksəkdirsə, yerli yurisdiksiyanızın tələblərinə cavab verməlisiniz.",
+    "question_6": "What Sports Can I Bet On?",
+    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
+    "question_7": "How Do I Watch Live Streams?",
+    "answer_7": "Live streams are available directly on the Stake platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "Daha çox",
     "Casino Games": "Kazino Oyunları",
     "Live Casino": "Canlı Kazino",
     "View All": "Hamısını gör",
-    "Trending": "Trend"
+    "Trending": "Trend",
+    "Trending Games": "Trend Oyunlar",
+    "Trending Sports": "Trend İdman",
+    "Game": "Oyun",
+    "Promotions": "Təşviqatlar"
   },
   "UserBalancePage": {
     "Deposit": "Depozit",
@@ -458,7 +512,11 @@
     "CardStatus_APPROVED_Info": "Kartınız təsdiqləndi. İndi onu depozit və çıxarış üçün istifadə edə bilərsiniz.",
     "CardStatus_REJECTED_Info": "Kartınız rədd edildi. Daha çox məlumat üçün dəstəyə müraciət edin.",
     "CardStatus_NO_ID_Info": "Şəxsiyyətiniz təsdiqlənməyib. Profil səhifəsində şəxsiyyət vəsiqənizi yükləyin.",
-    "address_confirm": "Yanlış ünvan istifadəsindən qaçmaq üçün hər dəfə depozit ünvanını təsdiqləyin."
+    "address_confirm": "Yanlış ünvan istifadəsindən qaçmaq üçün hər dəfə depozit ünvanını təsdiqləyin.",
+    "Direct Deposit": "Direct Deposit",
+    "Credited": "Credited",
+    "Confirmation": "Confirmation",
+    "Or": "Or"
   },
   "Agent": {
     "Users": "İstifadəçilər",
@@ -618,7 +676,11 @@
   "ForgotDialog": {
     "Forgot your password?": "Şifrənizi unutmusunuz?",
     "Submit": "Təsdiqlə",
-    "Enter your email address": "Email ünvanınızı daxil edin"
+    "Enter your email address": "Email ünvanınızı daxil edin",
+    "email": "Email",
+    "recover_password": "Şifrəni Bərpa Et",
+    "Password reset link was sent to": "Şifrə sıfırlama linki göndərildi",
+    "Something went wrong. Please check your email exists in the": "Xəta baş verdi. Zəhmət olmasa e-poçtunuzun mövcud olduğunu yoxlayın"
   },
   "Setting": {
     "language": "Dil"
@@ -732,5 +794,56 @@
     "Favorite": "Sevimli",
     "Setting": "Parametrlər",
     "Bet": "Mərc"
+  },
+  "EmulateBetting": {
+    "Casino Bets": "Kazino Mərcləri",
+    "Sports Bets": "İdman Mərcləri",
+    "Race Leaderboard": "Yarış Liderbord",
+    "Game": "Oyun",
+    "User": "İstifadəçi",
+    "Time": "Vaxt",
+    "Bet Amount": "Mərc Məbləği",
+    "Multiplier": "Çarpan",
+    "Payout": "Ödəniş"
+  },
+  "SignupStep1": {
+    "Step 1/3": "Addım 1/3",
+    "Select Your Preferred Language": "Üstünlük verdiyiniz dili seçin",
+    "Stake is available is several languages. Feel free to personalise your language across our site from the options below.": "Biz bir neçə dildə mövcuduq. Aşağıdakı seçimlər arasından saytımızda dilinizi fərdiləşdirməkdən çekinmeyin.",
+    "Confirm": "Təsdiq et",
+    "Already have an account?": "Artıq hesabınız var?",
+    "Sign in": "Daxil ol"
+  },
+  "SignupStep2": {
+    "Step 2/3": "Addım 2/3",
+    "< Back": "< Back",
+    "Create an Account": "Hesab Yarat",
+    "Email": "Email",
+    "Username": "İstifadəçi adı",
+    "Your username must be 3-14 characters long.": "İstifadəçi adınız 3-14 simvol uzunluğunda olmalıdır.",
+    "Password": "Şifrə",
+    "Date of Birth": "Doğum tarixi",
+    "Phone (Optional)": "Telefon (İstəyə bağlı)",
+    "Referral Code (Optional)": "Tövsiyə Kodu (İstəyə bağlı)",
+    "Continue": "Davam et",
+    "Already have an account?": "Artıq hesabınız var?",
+    "Sign in": "Daxil ol"
+  },
+  "SignupStep3": {
+    "Step 3/3": "Addım 3/3",
+    "< Back": "< Back",
+    "Create an Account": "Hesab Yarat",
+    "Terms and Conditions": "Şərtlər və Qaydalar",
+    "terms_and_conditions_title": "1.Stake.com",
+    "terms_and_conditions_content": "Stake.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Stake.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Stake.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Stake.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "I have read and agree to the Terms and Conditions": "Mən Şərtləri və Qaydaları oxudum və razıyam",
+    "Already have an account?": "Artıq hesabınız var?",
+    "Sign in": "Daxil ol"
+  },
+  "WelcomeDialog": {
+    "Welcome to Stake!": "Stake-ə xoş gəlmisiniz!",
+    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "Başlamağa hazırsınız? İndi pul kisənizi qurun və rahat, təhlükəsiz depozit və çıxarışlardan zövq alın.",
+    "Skip for Later": "Sonra üçün keç",
+    "Setup Wallet": "Pul Kisəsini Qur"
   }
 }

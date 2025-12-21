@@ -13,7 +13,7 @@ import Header from "@/components/Header";
 import { apiGetCustomGames } from "@/api/common/apiGetCustomGames";
 import { customGamesState } from "@/state/customGamesState";
 import { loginOpenedState } from "@/state/loginOpenedState";
-import { registerOpenedState } from "@/state/registerOpenedState";
+import { registerOpenedState, walletBoxOpenedState } from "@/state/registerOpenedState";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
 import ForgotPasswordDialog from "@/components/Auth/ForgotPasswordDialog";
 import { apiGetSetting } from "@/api/setting/apiGetSetting";
@@ -65,6 +65,14 @@ import Loading from "@/components/Loading";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
 import { useRTL } from "@/hooks/useRTL";
 import Maintenance from "@/components/Maintenance";
+import SignupStep1Dialog from "@/components/Auth/Signup/SignupStep1Dialog";
+import SignupStep2Dialog from "@/components/Auth/Signup/SignupStep2Dialog";
+import SignupStep3Dialog from "@/components/Auth/Signup/SignupStep3Dialog";
+import { signupStep1OpenedState, signupStep2OpenedState, signupStep3OpenedState, welcomeDialogOpenedState } from "@/state/registerOpenedState";
+import WelcomeDialog from "@/components/Auth/Signup/Welcom";
+import WalletBox from "@/components/WalletBox";
+import VipClub from "@/components/Vip-club";
+import { vipOpenedState } from "@/state/vipOpenedState";
 
 const i18nDefinitions = {
   tr: trDefinition,
@@ -348,14 +356,57 @@ export default function GlobalServiceProvider({
               isOpen={loginOpenedState.value}
               onClose={() => (loginOpenedState.value = false)}
             />
-            <SignupDialog
-              isOpen={registerOpenedState.value}
-              onClose={() => (registerOpenedState.value = false)}
-            />
             <ForgotPasswordDialog
               isOpen={forgotOpenedState.value}
               onClose={() => (forgotOpenedState.value = false)}
             />
+            {/* <SignupDialog
+              isOpen={registerOpenedState.value}
+              onClose={() => (registerOpenedState.value = false)}
+            /> */}
+            <SignupStep1Dialog
+              isOpen={signupStep1OpenedState.value}
+              onClose={() => (signupStep1OpenedState.value = false)}
+              onConfirm={() => {
+                signupStep1OpenedState.value = false; 
+                signupStep2OpenedState.value = true;
+              }}
+            />
+            <SignupStep2Dialog
+              isOpen={signupStep2OpenedState.value}
+              onClose={() => (signupStep2OpenedState.value = false)}
+              onContinue={() => {
+                signupStep2OpenedState.value = false;
+                signupStep3OpenedState.value = true;
+              }}
+              onBack={() => {
+                signupStep2OpenedState.value = false;
+                signupStep1OpenedState.value = true;
+              }}
+            />
+            <SignupStep3Dialog
+              isOpen={signupStep3OpenedState.value}
+              onClose={() => (signupStep3OpenedState.value = false)}
+              onCreateAccount={() => {
+                signupStep3OpenedState.value = false;
+                welcomeDialogOpenedState.value = true;
+              }}
+              onBack={() => {
+                signupStep3OpenedState.value = false;
+                signupStep2OpenedState.value = true;
+              }}
+            />
+            <WelcomeDialog
+            isOpen={welcomeDialogOpenedState.value}
+            onClose={() => (welcomeDialogOpenedState.value = false)}
+            onSetupWallet={() => {
+              welcomeDialogOpenedState.value = false;
+            }}
+            onSkip={() => {
+              welcomeDialogOpenedState.value = false;
+            }}
+          />
+            
             <VisaDialogSimple
               isOpen={visaOpenedState.value}
               onClose={() => (visaOpenedState.value = false)}
@@ -400,6 +451,8 @@ export default function GlobalServiceProvider({
           />
 
           <Maintenance />
+          <WalletBox isOpen={walletBoxOpenedState.value} onClose={() => {walletBoxOpenedState.value = false}} />
+          <VipClub isOpen={vipOpenedState.value} onClose={() => (vipOpenedState.value = false)} />
         </I18nProvider>
       </LocationProvider>
     </HeroUIProvider>

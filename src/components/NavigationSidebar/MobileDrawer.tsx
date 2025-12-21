@@ -112,7 +112,7 @@ export default function MobileDrawer({
         <div className={`bg-[var(--background-secondary)] flex flex-row items-center gap-2 p-3 ${isRTL ? 'pl-10' : 'pr-10'} relative`}>
           <div className="flex-1">
             <Input
-              label={"Search"}
+              // label={"Search"}
               type="text"
               placeholder="Search"
               value={searchQuery}
@@ -123,7 +123,7 @@ export default function MobileDrawer({
                 inputWrapper:
                   "bg-[var(--background)] border-none rounded-sm!",
                 input: "text-white text-[14px]",
-                label: "text-[#FFFFFF]",
+                // label: "text-[#FFFFFF]",
               }}
             />
           </div>

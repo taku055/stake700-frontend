@@ -14,7 +14,7 @@ type ClassNames = {
 };
 
 type Props = Omit<JSX.IntrinsicElements["input"], "class" | "onChange"> & {
-  // label: string;
+  label?: string;
   value?: string | null;
   defaultValue?: string;
   onChange?: (e: JSX.TargetedEvent<HTMLInputElement, Event>) => void;
@@ -29,7 +29,7 @@ type Props = Omit<JSX.IntrinsicElements["input"], "class" | "onChange"> & {
 export const Input = forwardRef<HTMLInputElement, Props>(
   (
     {
-      // label,
+      label,
       value,
       defaultValue,
       onChange,
@@ -66,10 +66,12 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             class={clsx(
               "relative flex items-center",
               borderBase,
-              "bg-[#fff1] border-none rounded-sm!",
+              // "bg-[#fff1] border-none rounded-sm!",
+              // "border-none rounded-sm!",
               "transition-colors",
+              // "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-secondary)] rounded-sm! h-[44px] focus-within:bg-[var(--bar-background-color)] focus-within:border-[var(--background-secondary)]",
               classNames?.inputWrapper,
-              error && "border-red-500"
+              error && "border-red-500",
             )}
           >
             {/* Left slot (icon) */}
@@ -87,14 +89,14 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               value={value}
               defaultValue={defaultValue}
               onChange={onChange}
-              placeholder=" " /* single space is required for :placeholder-shown */
+              placeholder={rest.placeholder || " "} /* single space is required for :placeholder-shown */
               aria-invalid={!!error || undefined}
               aria-describedby={describedBy}
               dir={isRTL ? "rtl" : "ltr"}
               class={clsx(
-                "peer w-full bg-transparent outline-none",
+                "peer w-full outline-none",
                 "px-3",
-                "text-white placeholder-transparent",
+                "text-white placeholder:text-white/60",
                 isRTL ? "text-right" : "text-left",
                 errorRing,
                 classNames?.input

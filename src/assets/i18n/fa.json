@@ -69,11 +69,35 @@
     "Search Providers": "جستجوی ارائه‌دهندگان"
   },
   "WalletBox": {
-    "Balance": "موجودی"
+    "Balance": "موجودی",
+    "Wallet": "Wallet",
+    "Overview": "Overview",
+    "Buy Crypto": "Buy Crypto",
+    "Swap Crypto": "Swap Crypto",
+    "Settings": "Settings",
+    "Your Stake Wallet is Currently Empty": "Your Stake Wallet is Currently Empty",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.",
+    "Deposit": "Deposit",
+    "Buy": "Buy",
+    "Cryptocurrency": "Cryptocurrency",
+    "Amount": "Amount",
+    "Hide Zero Balances": "Hide Zero Balances",
+    "Your zero balances won't appear in your wallet": "Your zero balances won't appear in your wallet",
+    "Display Crypto in Fiat": "Display Crypto in Fiat",
+    "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
+    "Fiat Currency": "Fiat Currency",
+    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
+    "Enable 2FA": "Enable 2FA"
   },
   "PromotionCard": {
     "daily_promotion_title": "پروموشن روزانه",
-    "daily_promotion_text": "هر روز ۱۰٪ بونوس روی بردهای بلک‌جک دریافت کنید!"
+    "daily_promotion_text": "هر روز ۱۰٪ بونوس روی بردهای بلک‌جک دریافت کنید!",
+    "Read More": "Read More",
+    "Get a 10% bonus": "Get a 10% bonus",
+    "enjoy a daily bonus": "enjoy a daily bonus",
+    " no opt-in required!": "no opt-in required!",
+    "no opt-in required!": "no opt-in required!",
+    "No opt-in required!": "No opt-in required!"
   },
   "CasinoDetailPage": {
     "Games": "بازی‌ها",
@@ -175,7 +199,20 @@
     "please_input_all_fields": "لطفاً همه فیلدها را پر کنید",
     "successfully_logged_in": "ورود با موفقیت انجام شد",
     "email_or_password_is_incorrect": "ایمیل یا رمز عبور نادرست است",
-    "something_went_wrong": "خطایی رخ داد"
+    "something_went_wrong": "خطایی رخ داد",
+    "OR": "یا",
+    "Email or Username": "ایمیل یا نام کاربری",
+    "Password": "رمز عبور",
+    "Sign In with passkey": "ورود با passkey",
+    "Sign In with Google": "ورود با Google",
+    "Sign In another way": "ورود به روش دیگر",
+    "Don't have an account?": "حساب ندارید؟",
+    "Register an Account": "ایجاد حساب",
+    "don_t_have_an_account": "حساب ندارید",
+    "register_an_account": "ایجاد حساب",
+    "sign_in_with_passkey": "ورود با passkey",
+    "sign_in_with_google": "ورود با Google",
+    "sign_in_another_way": "ورود به روش دیگر"
   },
   "SignupDialog": {
     "please_input_all_fields": "لطفاً همه فیلدها را پر کنید",
@@ -193,7 +230,14 @@
     "confirm_password": "تأیید رمز عبور",
     "username": "نام کاربری",
     "register": "ثبت‌نام",
-    "contact_support": "تماس با پشتیبانی"
+    "contact_support": "تماس با پشتیبانی",
+    "Successfully registered": "ثبت‌نام با موفقیت انجام شد",
+    "Email or username is already taken": "ایمیل یا نام کاربری از قبل استفاده شده است",
+    "Something went wrong": "مشکلی پیش آمد",
+    "successfully_registered": "ثبت‌نام با موفقیت انجام شد",
+    "email_or_username_already_taken": "ایمیل یا نام کاربری از قبل استفاده شده است",
+    "something_went_wrong": "مشکلی پیش آمد",
+    "login_an_account": "Log in"
   },
   "HomePage": {
     "casino-games": "بازی‌های کازینو",
@@ -242,7 +286,9 @@
     "guide_card_favorite_games_content": "فوراً به بازی‌های مورد علاقه خود دسترسی پیدا کنید",
     "guide_card_contact_support_title": "تماس با پشتیبانی 24/7",
     "guide_card_contact_support_content": "برای هرگونه مشکل از طریق چت زنده با ما تماس بگیرید",
-    "load_more": "نمایش بیشتر"
+    "load_more": "نمایش بیشتر",
+    "Casino": "Casino",
+    "Search": "Search"
   },
   "AboutUs": {
     "title": "درباره ichancy؟",
@@ -277,14 +323,22 @@
     "question_4": "آیا می‌توانم هنگام استراحت (خود-محرومیت) حساب دیگری باز کنم؟",
     "answer_4": "Ichancy متعهد به بازی مسئولانه است و به بازیکنان خود اجازه نمی‌دهد حساب‌های متعدد باز کنند، به ویژه به دلایل خود-محرومیت. ما هدف داریم که به مشتریان خود محیطی امن و محافظت‌شده ارائه دهیم که تجربه‌ای خوشایند و پاداش‌دهنده به شما می‌دهد. ما مشتریان خود را تشویق می‌کنیم که از خدمات ما به صورت مسئولانه و معقول استفاده کنند.",
     "question_5": "آیا محدودیت سنی در Ichancy وجود دارد؟",
-    "answer_5": "برای ثبت‌نام در Ichancy باید حداقل 18 سال سن داشته باشید، مشروط بر اینکه این حداقل سن مورد نیاز برای بازی آنلاین در حوزه قضایی شما باشد. اگر بالاتر است، باید الزامات حوزه قضایی محلی خود را برآورده کنید."
+    "answer_5": "برای ثبت‌نام در Ichancy باید حداقل 18 سال سن داشته باشید، مشروط بر اینکه این حداقل سن مورد نیاز برای بازی آنلاین در حوزه قضایی شما باشد. اگر بالاتر است، باید الزامات حوزه قضایی محلی خود را برآورده کنید.",
+    "question_6": "What Sports Can I Bet On?",
+    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
+    "question_7": "How Do I Watch Live Streams?",
+    "answer_7": "Live streams are available directly on the Stake platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "بیشتر",
     "Casino Games": "بازی‌های کازینو",
     "Live Casino": "کازینوی زنده",
     "View All": "مشاهده همه",
-    "Trending": "محبوب"
+    "Trending": "محبوب",
+    "Trending Games": "Trending Games",
+    "Trending Sports": "Trending Sports",
+    "Game": "Game",
+    "Promotions": "Promotions"
   },
   "UserBalancePage": {
     "Deposit": "واریز",
@@ -418,7 +472,9 @@
   "BetHistory": {
     "Casino History": "تاریخچه کازینو",
     "Sportsbook History": "تاریخچه شرط‌بندی ورزشی",
-    "Show": "نمایش"
+    "Show": "نمایش",
+    "Start Date": "Start Date",
+    "End Date": "End Date"
   },
   "DepositDialogFull": {
     "Deposit": "واریز",
@@ -456,7 +512,11 @@
     "CardStatus_APPROVED_Info": "کارت شما تأیید شد. می‌توانید برای واریز و برداشت از آن استفاده کنید.",
     "CardStatus_REJECTED_Info": "کارت شما رد شد. برای اطلاعات بیشتر با پشتیبانی تماس بگیرید.",
     "CardStatus_NO_ID_Info": "هویت شما تأیید نشده است. لطفاً مدرک خود را در صفحه پروفایل بارگذاری کنید.",
-    "address_confirm": "برای جلوگیری از خطا، هر بار آدرس واریز را تأیید کنید."
+    "address_confirm": "برای جلوگیری از خطا، هر بار آدرس واریز را تأیید کنید.",
+    "Direct Deposit": "Direct Deposit",
+    "Credited": "Credited",
+    "Confirmation": "Confirmation",
+    "Or": "Or"
   },
   "Agent": {
     "Users": "کاربران",
@@ -550,7 +610,8 @@
       "subagent_created": "کاربر فرعی ایجاد شد",
       "balance_transferred": "با موفقیت انتقال یافت{currency_symbol}{amount}",
       "removed_from_favorites": "از علاقه‌مندی‌ها حذف شد",
-      "added_to_favorites": "به علاقه‌مندی‌ها اضافه شد"
+      "added_to_favorites": "به علاقه‌مندی‌ها اضافه شد",
+      "user_details_updated": "User details updated successfully"
     },
     "error": {
       "something_wrong": "خطایی رخ داد",
@@ -579,7 +640,9 @@
       "cant_create_subuser": "ایجاد کاربر فرعی ممکن نیست. وارد شوید و دوباره تلاش کنید.",
       "withdraw_not_allowed": "برداشت مجاز نیست. لطفاً سیاست‌ها را بررسی کنید.",
       "withdrawal_exceeded": "از حد برداشت فراتر رفته‌اید. لطفاً سیاست‌ها را بررسی کنید.",
-      "insufficient_balance_requests": "موجودی کافی برای برداشت ندارید. لطفاً درخواست‌های برداشت ارسال‌شده را بررسی کنید"
+      "insufficient_balance_requests": "موجودی کافی برای برداشت ندارید. لطفاً درخواست‌های برداشت ارسال‌شده را بررسی کنید",
+      "failed_update_details": "Failed to update user details",
+      "password_changed_failed": "Password changed failed"
     },
     "info": {
       "address_copied": "آدرس کیف پول در کلیپ‌بورد کپی شد!",
@@ -613,7 +676,11 @@
   "ForgotDialog": {
     "Forgot your password?": "رمز عبور را فراموش کرده‌اید؟",
     "Submit": "ارسال",
-    "Enter your email address": "ایمیل خود را وارد کنید"
+    "Enter your email address": "ایمیل خود را وارد کنید",
+    "email": "Email",
+    "recover_password": "Recover Password",
+    "Password reset link was sent to": "Password reset link was sent to",
+    "Something went wrong. Please check your email exists in the": "Something went wrong. Please check your email exists in the"
   },
   "Setting": {
     "language": "زبان"
@@ -703,5 +770,80 @@
     "Total Monthly Bonus": "مجموع بونوس‌های ماهانه",
     "Total Profit": "سود کل",
     "Cash": "نقدی"
+  },
+  "SignupStep1": {
+    "Step 1/3": "مرحله 1/3",
+    "Select Your Preferred Language": "زبان مورد علاقه خود را انتخاب کنید",
+    "Stake is available is several languages. Feel free to personalise your language across our site from the options below.": "ما به چندین زبان در دسترس هستیم. آزادانه زبان خود را در سایت ما از گزینه‌های زیر شخصی‌سازی کنید.",
+    "Confirm": "تأیید",
+    "Already have an account?": "قبلاً حساب دارید؟",
+    "Sign in": "ورود"
+  },
+  "SignupStep2": {
+    "Step 2/3": "مرحله 2/3",
+    "< Back": "< Back",
+    "Create an Account": "ایجاد حساب",
+    "Email": "ایمیل",
+    "Username": "نام کاربری",
+    "Your username must be 3-14 characters long.": "نام کاربری شما باید بین 3 تا 14 کاراکتر باشد.",
+    "Password": "رمز عبور",
+    "Date of Birth": "تاریخ تولد",
+    "Phone (Optional)": "تلفن (اختیاری)",
+    "Referral Code (Optional)": "کد معرف (اختیاری)",
+    "Continue": "ادامه",
+    "Already have an account?": "قبلاً حساب دارید؟",
+    "Sign in": "ورود"
+  },
+  "SignupStep3": {
+    "Step 3/3": "مرحله 3/3",
+    "< Back": "< Back",
+    "Create an Account": "ایجاد حساب",
+    "Terms and Conditions": "شرایط و ضوابط",
+    "terms_and_conditions_title": "1.Stake.com",
+    "terms_and_conditions_content": "Stake.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Stake.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Stake.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Stake.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "I have read and agree to the Terms and Conditions": "شرایط و ضوابط را خوانده‌ام و با آن‌ها موافقم",
+    "Already have an account?": "قبلاً حساب دارید؟",
+    "Sign in": "ورود"
+  },
+  "WelcomeDialog": {
+    "Welcome to Stake!": "به Stake خوش آمدید!",
+    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "آماده شروع هستید؟ اکنون کیف پول خود را تنظیم کنید تا از واریز و برداشت‌های روان و ایمن لذت ببرید.",
+    "Skip for Later": "بعداً رد شو",
+    "Setup Wallet": "تنظیم کیف پول"
+  },
+  "MessagePage": {
+    "Send New": "Send New",
+    "Subject": "Subject",
+    "Enter text here": "Enter text here",
+    "Message": "Message",
+    "Send": "Send"
+  },
+  "CardDeposit": {
+    "Card Deposit": "Card Deposit",
+    "Card Number": "Card Number",
+    "Info": "Info",
+    "Select Country": "Select Country"
+  },
+  "LiveSupportAI": {
+    "Live Support AI": "Live Support AI",
+    "Close Chat": "Close Chat"
+  },
+  "Sidebar": {
+    "Live Support": "Live Support",
+    "Notification": "Notification",
+    "Favorite": "Favorite",
+    "Setting": "Setting",
+    "Bet": "Bet"
+  },
+  "EmulateBetting": {
+    "Casino Bets": "Casino Bets",
+    "Sports Bets": "Sports Bets",
+    "Race Leaderboard": "Race Leaderboard",
+    "Game": "Game",
+    "User": "User",
+    "Time": "Time",
+    "Bet Amount": "Bet Amount",
+    "Multiplier": "Multiplier",
+    "Payout": "Payout"
   }
 }

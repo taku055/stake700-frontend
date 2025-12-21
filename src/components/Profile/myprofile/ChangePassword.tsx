@@ -40,7 +40,7 @@ const ChangePasswordPage = () => {
             type="password"
             value={oldPassword}
             onChange={(e: any) => setOldPassword(e.target.value)}
-            label={t("Old Password")}
+            // label={t("Old Password")}
             classNames={{
               inputWrapper: "bg-[#fff1] border-none rounded-sm!",
               container: "col-span-2",
@@ -51,7 +51,7 @@ const ChangePasswordPage = () => {
             type="password"
             value={newPassword}
             onChange={(e: any) => setNewPassword(e.target.value)}
-            label={t("New Password")}
+            // label={t("New Password")}
             classNames={{
               inputWrapper: "bg-[#fff1] border-none rounded-sm!",
               input: "text-[#FFFFFF99]",
@@ -61,7 +61,7 @@ const ChangePasswordPage = () => {
             type="password"
             value={confirmPassword}
             onChange={(e: any) => setConfirmPassword(e.target.value)}
-            label={t("Confirm Password")}
+            // label={t("Confirm Password")}
             classNames={{
               inputWrapper: "bg-[#fff1] border-none rounded-sm!",
               input: "text-[#FFFFFF99]",

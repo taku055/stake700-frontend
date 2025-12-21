@@ -3,8 +3,9 @@ import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery, OFFICIAL_LINKS, RTL_LANGUAGES } from "@/config/constants";
 import { Button } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
-import { registerOpenedState } from "@/state/registerOpenedState";
+import { registerOpenedState, signupStep1OpenedState, walletBoxOpenedState, welcomeDialogOpenedState } from "@/state/registerOpenedState";
 import WalletBox from "./WalletBox";
+// import WalletBox from "@/components/WalletBox";
 import ProfileButton from "./ProfileButton";
 import { useTranslations } from "@/context/I18nContext";
 import {
@@ -68,7 +69,7 @@ export default function Header() {
                 className="h-[24px] md:h-[36px] object-contain md:max-w-[200px]"
                 alt={import.meta.env.VITE_SITE_NAME as string}
               /> */}
-              <img src="/buffer/logo.PNG" alt="Logo" className="h-[24px] md:h-[36px] object-contain md:max-w-[200px]" />
+              <img src="/images/icons/icons/logo.svg" alt="Logo" className="h-[24px] md:h-[36px] object-contain md:max-w-[200px]" />
             </a>
           </div>
           {/* <div className="ml-auto hidden md:block!">
@@ -90,15 +91,35 @@ export default function Header() {
                   className="btn"
                   size="sm"
                   style={{background: '#01A825', color: '#ffffff', width: '100px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
-                  onPress={() => (registerOpenedState.value = true)}
+                  onPress={() => (signupStep1OpenedState.value = true)}
+                  // onPress={() => (welcomeDialogOpenedState.value = true)}
                 >
                   {t("register")}
+                </Button>
+                <Button
+                  className="btn"
+                  size="sm"
+                  style={{background: '#01A825', color: '#ffffff', width: '100px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
+                  onPress={() => (walletBoxOpenedState.value = true)}
+                  // onPress={() => (welcomeDialogOpenedState.value = true)}
+                >
+                  {t("walletBox")}
                 </Button>
               </>
             ) : (
               <>
                 <WalletBox />
+                {/* <WalletBox isOpen={false} onClose={() => {}} /> */}
                 <ProfileButton />
+                <Button
+                  className="btn"
+                  size="sm"
+                  style={{background: '#01A825', color: '#ffffff', width: '100px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
+                  onPress={() => (walletBoxOpenedState.value = true)}
+                  // onPress={() => (welcomeDialogOpenedState.value = true)}
+                >
+                  {t("walletBox")}
+                </Button>
               </>
             )}
 

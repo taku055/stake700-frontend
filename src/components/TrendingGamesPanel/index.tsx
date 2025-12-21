@@ -10,6 +10,7 @@ import { useTranslations } from "@/context/I18nContext";
 import styles from "./TrendingGamesPanel.module.scss";
 import { Button } from "@heroui/react";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
+import TrendingCard from "../TrendingCard";
 
 export default function TrendingGamesPanel() {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
@@ -17,6 +18,19 @@ export default function TrendingGamesPanel() {
   const t = useTranslations("GameGroup");
   const [swiper, setSwiper] = useState<any>(null);
   const [activeAction, setActiveAction] = useState<"left" | "right" | null>("right");
+
+  const imgList = [
+    "/buffer/gameimg1.png",
+    "/buffer/gameimg2.png",
+    "/buffer/gameimg3.png",
+    "/buffer/gameimg4.png",
+    "/buffer/gameimg5.png",
+    "/buffer/gameimg6.png",
+    "/buffer/gameimg7.png",
+    "/buffer/gameimg8.png",
+    "/buffer/gameimg9.png",
+    "/buffer/gameimg10.png",
+  ];
 
   useEffect(() => {
     // Fetch custom games with "trending" category
@@ -77,9 +91,12 @@ export default function TrendingGamesPanel() {
         //   pauseOnMouseEnter: true,
         // }}
       >
-        {[...games, ...games].map((e, index) => (
-          <SwiperSlide key={`${e.id}-${index}`} className={styles.game}>
-            <GameCard data={e} />
+        {/* {[...games, ...games].map((e, index) => ( */}
+           {/* <SwiperSlide key={`${e.id}-${index}`} className={styles.game}> */}
+            {/* <GameCard data={e} /> */}
+        {games.map((e) => (
+          <SwiperSlide key={e.id} className={styles.game}>
+            <TrendingCard id={e.id} name={e.name} image={imgList[games.indexOf(e) % imgList.length]} link={`/game/${e.id}`} />
           </SwiperSlide>
         ))}
       </Swiper>

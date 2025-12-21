@@ -69,11 +69,35 @@
     "Search Providers": "Поиск Провайдеров"
   },
   "WalletBox": {
-    "Balance": "Баланс"
+    "Balance": "Баланс",
+    "Wallet": "Wallet",
+    "Overview": "Overview",
+    "Buy Crypto": "Buy Crypto",
+    "Swap Crypto": "Swap Crypto",
+    "Settings": "Settings",
+    "Your Stake Wallet is Currently Empty": "Your Stake Wallet is Currently Empty",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.",
+    "Deposit": "Deposit",
+    "Buy": "Buy",
+    "Cryptocurrency": "Cryptocurrency",
+    "Amount": "Amount",
+    "Hide Zero Balances": "Hide Zero Balances",
+    "Your zero balances won't appear in your wallet": "Your zero balances won't appear in your wallet",
+    "Display Crypto in Fiat": "Display Crypto in Fiat",
+    "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
+    "Fiat Currency": "Fiat Currency",
+    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
+    "Enable 2FA": "Enable 2FA"
   },
   "PromotionCard": {
     "daily_promotion_title": "Ежедневная акция",
-    "daily_promotion_text": "Получайте 10% бонус на ваши выигрыши в Blackjack каждый день!"
+    "daily_promotion_text": "Получайте 10% бонус на ваши выигрыши в Blackjack каждый день!",
+    "Read More": "Read More",
+    "Get a 10% bonus": "Get a 10% bonus",
+    "enjoy a daily bonus": "enjoy a daily bonus",
+    " no opt-in required!": "no opt-in required!",
+    "no opt-in required!": "no opt-in required!",
+    "No opt-in required!": "No opt-in required!"
   },
   "CasinoDetailPage": {
     "Games": "Игры",
@@ -175,7 +199,20 @@
     "please_input_all_fields": "Пожалуйста, заполните все поля",
     "successfully_logged_in": "Вы успешно вошли",
     "email_or_password_is_incorrect": "Неверный email или пароль",
-    "something_went_wrong": "Что-то пошло не так"
+    "something_went_wrong": "Что-то пошло не так",
+    "OR": "ИЛИ",
+    "Email or Username": "Email или имя пользователя",
+    "Password": "Пароль",
+    "Sign In with passkey": "Войти с passkey",
+    "Sign In with Google": "Войти с Google",
+    "Sign In another way": "Войти другим способом",
+    "Don't have an account?": "Нет аккаунта?",
+    "Register an Account": "Зарегистрироваться",
+    "don_t_have_an_account": "Нет аккаунта",
+    "register_an_account": "Зарегистрироваться",
+    "sign_in_with_passkey": "Войти с passkey",
+    "sign_in_with_google": "Войти с Google",
+    "sign_in_another_way": "Войти другим способом"
   },
   "SignupDialog": {
     "please_input_all_fields": "Пожалуйста, заполните все поля",
@@ -193,7 +230,14 @@
     "confirm_password": "Подтвердите пароль",
     "username": "Имя пользователя",
     "register": "Регистрация",
-    "contact_support": "Связаться с поддержкой"
+    "contact_support": "Связаться с поддержкой",
+    "Successfully registered": "Успешно зарегистрирован",
+    "Email or username is already taken": "Email или имя пользователя уже используется",
+    "Something went wrong": "Что-то пошло не так",
+    "successfully_registered": "Успешно зарегистрирован",
+    "email_or_username_already_taken": "Email или имя пользователя уже используется",
+    "something_went_wrong": "Что-то пошло не так",
+    "login_an_account": "Log in"
   },
   "HomePage": {
     "casino-games": "Казино Игры",
@@ -242,7 +286,9 @@
     "guide_card_favorite_games_content": "Мгновенный доступ к вашим любимым играм",
     "guide_card_contact_support_title": "Свяжитесь с поддержкой 24/7",
     "guide_card_contact_support_content": "Свяжитесь с нами по любым вопросам через онлайн-чат",
-    "load_more": "Загрузить еще"
+    "load_more": "Загрузить еще",
+    "Casino": "Casino",
+    "Search": "Search"
   },
   "AboutUs": {
     "title": "О ichancy?",
@@ -277,14 +323,22 @@
     "question_4": "Могу ли я открыть другой аккаунт, пока я нахожусь в тайм-ауте (самоисключение)?",
     "answer_4": "Ichancy привержен ответственной игре и не позволяет своим игрокам открывать несколько аккаунтов, особенно по причинам самоисключения. Мы стремимся предоставить нашим клиентам безопасную и надежную среду, которая даст вам приятный и полезный опыт. Мы поощряем наших клиентов ответственно и разумно использовать наши услуги.",
     "question_5": "Есть ли ограничение по возрасту в Ichancy?",
-    "answer_5": "Вам должно быть не менее 18 лет для регистрации в Ichancy, при условии, что это минимальное требование к возрасту для онлайн-игр в вашей юрисдикции. Если выше, вы должны соответствовать требованиям вашей местной юрисдикции."
+    "answer_5": "Вам должно быть не менее 18 лет для регистрации в Ichancy, при условии, что это минимальное требование к возрасту для онлайн-игр в вашей юрисдикции. Если выше, вы должны соответствовать требованиям вашей местной юрисдикции.",
+    "question_6": "What Sports Can I Bet On?",
+    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
+    "question_7": "How Do I Watch Live Streams?",
+    "answer_7": "Live streams are available directly on the Stake platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "Больше",
     "Casino Games": "Казино Игры",
     "Live Casino": "Живое Казино",
     "View All": "Посмотреть все",
-    "Trending": "Трендовые"
+    "Trending": "Трендовые",
+    "Trending Games": "Trending Games",
+    "Trending Sports": "Trending Sports",
+    "Game": "Game",
+    "Promotions": "Promotions"
   },
   "UserBalancePage": {
     "Deposit": "Депозит",
@@ -458,7 +512,11 @@
     "CardStatus_APPROVED_Info": "Ваша карта подтверждена. Теперь вы можете использовать её для депозита и вывода.",
     "CardStatus_REJECTED_Info": "Ваша карта отклонена. Обратитесь в поддержку для получения информации.",
     "CardStatus_NO_ID_Info": "Ваша личность не подтверждена. Загрузите документ на странице профиля.",
-    "address_confirm": "Пожалуйста, проверяйте адрес депозита каждый раз, чтобы избежать ошибок."
+    "address_confirm": "Пожалуйста, проверяйте адрес депозита каждый раз, чтобы избежать ошибок.",
+    "Direct Deposit": "Direct Deposit",
+    "Credited": "Credited",
+    "Confirmation": "Confirmation",
+    "Or": "Or"
   },
   "Agent": {
     "Users": "Пользователи",
@@ -625,5 +683,167 @@
     "Favorite": "Избранное",
     "Setting": "Настройки",
     "Bet": "Ставка"
+  },
+  "SignupStep1": {
+    "Step 1/3": "Шаг 1/3",
+    "Select Your Preferred Language": "Выберите предпочитаемый язык",
+    "Stake is available is several languages. Feel free to personalise your language across our site from the options below.": "Мы доступны на нескольких языках. Не стесняйтесь персонализировать свой язык на нашем сайте из вариантов ниже.",
+    "Confirm": "Подтвердить",
+    "Already have an account?": "Уже есть аккаунт?",
+    "Sign in": "Войти"
+  },
+  "SignupStep2": {
+    "Step 2/3": "Шаг 2/3",
+    "< Back": "< Back",
+    "Create an Account": "Создать аккаунт",
+    "Email": "Email",
+    "Username": "Имя пользователя",
+    "Your username must be 3-14 characters long.": "Ваше имя пользователя должно быть от 3 до 14 символов.",
+    "Password": "Пароль",
+    "Date of Birth": "Дата рождения",
+    "Phone (Optional)": "Телефон (Необязательно)",
+    "Referral Code (Optional)": "Реферальный код (Необязательно)",
+    "Continue": "Продолжить",
+    "Already have an account?": "Уже есть аккаунт?",
+    "Sign in": "Войти"
+  },
+  "SignupStep3": {
+    "Step 3/3": "Шаг 3/3",
+    "< Back": "< Back",
+    "Create an Account": "Создать аккаунт",
+    "Terms and Conditions": "Условия использования",
+    "terms_and_conditions_title": "1.Stake.com",
+    "terms_and_conditions_content": "Stake.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Stake.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Stake.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Stake.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "I have read and agree to the Terms and Conditions": "Я прочитал и согласен с Условиями использования",
+    "Already have an account?": "Уже есть аккаунт?",
+    "Sign in": "Войти"
+  },
+  "WelcomeDialog": {
+    "Welcome to Stake!": "Добро пожаловать в Stake!",
+    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "Готовы начать? Настройте свой кошелек сейчас, чтобы наслаждаться плавными и безопасными депозитами и выводами.",
+    "Skip for Later": "Пропустить на потом",
+    "Setup Wallet": "Настроить кошелек"
+  },
+  "AgentAnalysis": {
+    "platform_analysis": "Platform Analysis",
+    "total_bet": "Total Bet",
+    "paid": "Paid",
+    "profit": "Profit",
+    "select_period": "Select period",
+    "platform": "Platform",
+    "bet": "Bet",
+    "paid_out": "Paid out",
+    "profit_percent": "Profit percent"
+  },
+  "ToastMessages": {
+    "validation": {
+      "all_fields_required": "All fields are required.",
+      "invalid_email": "Invalid email address.",
+      "invalid_phone": "Invalid phone number.",
+      "amount_minimum": "Amount cannot be less than 10.",
+      "invalid_cvv": "Invalid CVV. It must be a 3-digit number.",
+      "invalid_expiration_month": "Invalid expiration month.",
+      "invalid_expiration_year": "Invalid expiration year.",
+      "card_expired": "Card expiration date cannot be in the past.",
+      "confirm_password": "Please confirm the password correctly",
+      "password_empty": "Password can not be empty",
+      "valid_amount": "Please enter a valid amount",
+      "balance_low": "Balance is low",
+      "minimum_amount": "Minimum amount value is 15",
+      "input_all_fields": "Please input all fields",
+      "correct_email": "Please input the correct email",
+      "password_empty_agent": "Password is empty",
+      "valid_balance": "Please input the correct balance",
+      "invalid_username": "The first letter should start from lowercase or uppercase and the username can contain only letters, underscore and digits"
+    },
+    "success": {
+      "password_changed": "Changed password successfully",
+      "registered": "Successfully registered",
+      "logged_in": "Successfully logged in",
+      "withdrawal_requested": "Successfully requested",
+      "promotion_joined": "Joined promotion successfully",
+      "promotion_canceled": "Canceled promotion successfully",
+      "user_removed": "User removed",
+      "transaction_created": "Successfully created",
+      "agent_removed": "Agent removed",
+      "password_changed_agent": "Successfully changed password",
+      "subagent_created": "Successfully created",
+      "balance_transferred": "Successfully transferred{currency_symbol}{amount}",
+      "removed_from_favorites": "Removed from favorites",
+      "added_to_favorites": "Added to favorites",
+      "user_details_updated": "User details updated successfully"
+    },
+    "error": {
+      "something_wrong": "Something went wrong",
+      "fetch_cashback": "Something went wrong fetching cashback data.",
+      "claim_cashback": "Something went wrong while claiming cashback",
+      "no_cashback": "Can't claim, no cashback yet.",
+      "cashback_minimum": "Can't claim amount less than {currency_symbol}5.",
+      "login_first": "Please login first",
+      "select_balance": "Please select the balance you want to withdraw",
+      "input_address": "Please input the address",
+      "valid_address": "Please input the valid address",
+      "withdraw_amount": "Please input the valid withdraw amount",
+      "insufficient_balance": "You don't have enough balance to witdhraw",
+      "email_taken": "Email or username is already taken",
+      "incorrect_credentials": "Email or password is incorrect",
+      "get_agent": "Something went wrong in getting agent",
+      "delete_agent": "Something went wrong in deleting agent",
+      "create_agent": "Something went wrong in creating agents",
+      "change_password": "Something went wrong in changing password",
+      "cancel_transaction": "Something went wrong in canceling",
+      "no_permission": "You don't have permission to browse this page.",
+      "recipient_not_found": "Recipient not found",
+      "login_claim_bonus": "You need to be logged in to claim the bonus",
+      "no_daily_bonus": "You have no daily referral bonus to claim",
+      "no_monthly_bonus": "You have no monthly referral bonus to claim",
+      "cant_create_subuser": "You can't create subuser, login and try agin.",
+      "withdraw_not_allowed": "You are not able to withdraw. Please check privacy and policy now.",
+      "withdrawal_exceeded": "You have exceeded the withdrawal amount. Please check the policy.",
+      "insufficient_balance_requests": "You don't have enough balance to witdhraw. Please check the withdraw requests you submitted",
+      "failed_update_details": "Failed to update user details",
+      "password_changed_failed": "Password changed failed"
+    },
+    "info": {
+      "address_copied": "Wallet address copied to clipboard!",
+      "text_copied": "Copied {text}",
+      "promotion_copied": "Copied {text}"
+    }
+  },
+  "ComingSoon": {
+    "Coming soon": "Coming soon",
+    "coming_soon_description": "We’re putting the final touches on something great. Be the first to know when we launch.",
+    "Notify me": "Notify me",
+    "Submitting": "Submitting..."
+  },
+  "ForgotDialog": {
+    "Forgot your password?": "Forgot your password?",
+    "Submit": "Submit",
+    "Enter your email address": "Enter your email address",
+    "email": "Email",
+    "recover_password": "Recover Password",
+    "Password reset link was sent to": "Password reset link was sent to",
+    "Something went wrong. Please check your email exists in the": "Something went wrong. Please check your email exists in the"
+  },
+  "Setting": {
+    "language": "Language"
+  },
+  "LoginRequest": {
+    "you_dont_have_access_to_this_page": "You don't have access to this page. Please login first.",
+    "login": "Login"
+  },
+  "Favorite": {
+    "no_favorite_games": "No favorite games"
+  },
+  "EmulateBetting": {
+    "Casino Bets": "Casino Bets",
+    "Sports Bets": "Sports Bets",
+    "Race Leaderboard": "Race Leaderboard",
+    "Game": "Game",
+    "User": "User",
+    "Time": "Time",
+    "Bet Amount": "Bet Amount",
+    "Multiplier": "Multiplier",
+    "Payout": "Payout"
   }
 }
