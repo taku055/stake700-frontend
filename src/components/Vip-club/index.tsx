@@ -48,9 +48,7 @@ const VipClub = ({ isOpen, onClose, defaultTab = "overview" }: IVipClubProps) =>
         {/* Header */}
         <div className="flex justify-between items-center w-full h-[60px] min-h-[60px] py-[10px] px-[16px] border-b border-[#FFFFFF0A]">
           <div className="flex items-center gap-[12px]">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 7.26L18 8.27L14 12.14L14.91 18.02L10 15.77L5.09 18.02L6 12.14L2 8.27L7.91 7.26L10 2Z" stroke="white" strokeWidth="1.5" fill="none" />
-            </svg>
+            <img src="/images/icons/icons/vip-club.svg" alt="vip" className="w-5 h-5" />
             <span className="text-white text-[18px] leading-[28px] font-semibold">{t("VIP")}</span>
           </div>
         </div>

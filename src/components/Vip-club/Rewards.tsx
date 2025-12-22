@@ -29,11 +29,7 @@ const Rewards = () => {
       detailedDescription: t("The Monthly Bonus is randomly released. Eligible players will be notified via email. Your bonus is based on your game play throughout the month. The more you play, the bigger the bonus."),
       unlockedAtLevel: 0,
       icon: (
-        <div className="w-12 h-12 rounded-lg bg-[#1E3A5F] flex items-center justify-center">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="#FF9500" strokeWidth="2" fill="none" />
-          </svg>
-        </div>
+        <img src="/images/icons/others/monthly.png" alt="monthly-bonus" className="w-[55px] h-[64px]" />
       )
     },
     {
@@ -43,9 +39,7 @@ const Rewards = () => {
       unlockCondition: t("Unlocked at Bronze VIP."),
       unlockedAtLevel: 1,
       icon: (
-        <div className="w-12 h-12 rounded-lg bg-[#2B3344] flex items-center justify-center">
-          <ChevronUp className="w-6 h-6 text-white" />
-        </div>
+        <img src="/images/icons/others/rakeback.png" alt="rakeback" className="w-[55px] h-[64px]" />
       )
     },
     {
@@ -55,11 +49,7 @@ const Rewards = () => {
       unlockCondition: t("Unlocked at Bronze VIP."),
       unlockedAtLevel: 1,
       icon: (
-        <div className="w-12 h-12 rounded-lg bg-[#2B3344] flex items-center justify-center">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" fill="none" stroke="white" strokeWidth="2" />
-          </svg>
-        </div>
+        <img src="/images/icons/others/weekly-boost.png" alt="weekly-boost" className="w-[55px] h-[64px]" />
       )
     },
     {
@@ -69,15 +59,7 @@ const Rewards = () => {
       unlockCondition: t("Unlocked at Platinum VIP."),
       unlockedAtLevel: 4,
       icon: (
-        <div className="w-12 h-12 rounded-lg bg-[#2B3344] flex items-center justify-center">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="4" y="6" width="12" height="8" rx="1" stroke="white" strokeWidth="2" fill="none" />
-            <rect x="6" y="9" width="2" height="4" fill="white" />
-            <rect x="9" y="9" width="2" height="4" fill="white" />
-            <rect x="12" y="9" width="2" height="4" fill="white" />
-            <path d="M7 6V4C7 2.89543 7.89543 2 9 2H11C12.1046 2 13 2.89543 13 4V6" stroke="white" strokeWidth="2" />
-          </svg>
-        </div>
+        <img src="/images/icons/others/reload.png" alt="reload" className="w-[55px] h-[64px]" />
       )
     }
   ];
@@ -112,7 +94,7 @@ const Rewards = () => {
               type="button"
               onClick={() => toggleReward(reward.id)}
               disabled={!canExpand && !isExpanded}
-              className={`flex items-center gap-3 p-4 transition-colors ${!canExpand && !isExpanded ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+              className={`flex items-center gap-3 p-4 transition-colors ${!canExpand && !isExpanded ? "cursor-not-allowed" : "cursor-pointer"
                 }`}
             >
               {/* Icon */}
@@ -124,9 +106,6 @@ const Rewards = () => {
               <div className="flex-1 flex flex-col items-start gap-1">
                 <div className="flex items-center gap-2">
                   <span className="text-white text-[16px] font-medium">{reward.title}</span>
-                  {!unlocked && (
-                    <Lock className="w-4 h-4 text-white/60" />
-                  )}
                 </div>
                 {reward.shortDescription && (
                   <span className="text-white text-[14px]">{reward.shortDescription}</span>
@@ -135,6 +114,9 @@ const Rewards = () => {
                   <span className="text-white text-[14px]">{reward.unlockCondition}</span>
                 )}
               </div>
+              {!unlocked && (
+                <Lock className="w-4 h-4" />
+              )}
 
               {/* Expand/Collapse Icon */}
               {canExpand && (

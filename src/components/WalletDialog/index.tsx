@@ -11,13 +11,13 @@ import Setting from "./Setting";
 import DepositPanel from "./DepositPanel";
 import SwapCrypto from "./SwapCrypto";
 
-interface IWalletBoxProps {
+interface IWalletDialogProps {
   isOpen: boolean;
   onClose: () => void;
   defaultTab?: string;
 }
 
-const WalletBox = ({ isOpen, onClose, defaultTab }: IWalletBoxProps) => {
+const WalletDialog = ({ isOpen, onClose, defaultTab }: IWalletDialogProps) => {
   const t = useTranslations("WalletBox");
   const isMobile = useMediaQuery(mobileMediaQuery);
   const [selectedTab, setSelectedTab] = useState<string>(defaultTab || "overview");
@@ -127,4 +127,4 @@ const WalletBox = ({ isOpen, onClose, defaultTab }: IWalletBoxProps) => {
   );
 };
 
-export default WalletBox;
+export default WalletDialog;

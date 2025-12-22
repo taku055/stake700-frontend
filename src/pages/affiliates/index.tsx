@@ -1,21 +1,26 @@
 import { Router, Route, useLocation } from "preact-iso";
 import Overview from "./overview";
-import Referral from "./referral";
-import Earning from "./earning";
+import Campaigns from "./campaigns";
+import Commission from "./commission";
+import ReferredUsers from "./referred-users";
+import FAQ from "./faq";
 import NotFound404 from "../not-found";
-import { useTranslations } from "@/context/I18nContext";
+import { t, useTranslations } from "@/context/I18nContext";
 import { useMemo } from "preact/hooks";
 import { userState } from "@/state/userState";
+import { Users } from "lucide-preact";
 
-function AffiliateNavbar() {
+function AffiliateSidebar() {
   const location = useLocation();
   const { route } = location;
   const t = useTranslations("Affiliate");
 
   const navItems = [
     { name: "Overview", path: "/affiliates" },
-    { name: "Referrals", path: "/affiliates/referral" },
-    { name: "Earnings", path: "/affiliates/earning" },
+    { name: "Campaigns", path: "/affiliates/campaigns" },
+    { name: "Commission", path: "/affiliates/commission" },
+    { name: "Referred Users", path: "/affiliates/referred-users" },
+    { name: "FAQ", path: "/affiliates/faq" },
   ];
 
   const selectedNavItem = useMemo(() => {
@@ -29,21 +34,24 @@ function AffiliateNavbar() {
   }, [navItems, location.path]);
 
   return (
-    <div className="bg-[var(--header-background)] w-full sticky top-0 z-50 overflow-x-auto">
-      <div className="flex flex-row items-center justify-center gap-5 w-full">
-        {navItems.map((item) => (
-          <a
-            key={item.path}
-            className={`cursor-pointer py-2 px-2 select-none min-w-fit whitespace-nowrap ${
-              selectedNavItem?.name === item.name
-                ? "border-b-1 border-[var(--pink-color)]"
-                : "text-[var(--text-transparent-color)]"
-            }`}
-            onClick={() => route(item.path, true)}
-          >
-            {t(item.name)}
-          </a>
-        ))}
+    <div className="w-[180px] min-w-[180px] h-full   bg-[var(--background-secondary)] flex flex-col rounded-lg">
+      {/* Navigation Items */}
+      <div className="flex flex-col py-2">
+        {navItems.map((item) => {
+          const isSelected = selectedNavItem?.name === item.name;
+          return (
+            <a
+              key={item.path}
+              className={`flex items-center px-6 py-3 cursor-pointer transition-colors ${isSelected
+                ? "bg-[var(--background)] text-white font-medium border-l-2 border-[var(--green-color)]"
+                : "text-white/60 hover:text-white/80 hover:bg-[var(--background)]/50"
+                }`}
+              onClick={() => route(item.path, true)}
+            >
+              {t(item.name)}
+            </a>
+          );
+        })}
       </div>
     </div>
   );
@@ -52,21 +60,34 @@ function AffiliateNavbar() {
 export default function AffiliatesLayout() {
   if (
     !userState.value?.id ||
-    userState.value?.isAgent ||
-    !userState.value?.isCallGroup
+    userState.value?.isAgent
+    // !userState.value?.isCallGroup
   ) {
     return <NotFound404 />;
   }
 
   return (
-    <div className="flex flex-col">
-      <AffiliateNavbar />
-      <Router>
-        <Route path="/" component={Overview} />
-        <Route path="/referral" component={Referral} />
-        <Route path="/earning" component={Earning} />
-        <Route path="*" component={NotFound404} />
-      </Router>
-    </div>
+    <>
+      <div className="w-[1200px] mx-auto flex flex-col gap-6">
+        {/* Header */}
+        < div className="flex w-full h-[60px] items-center gap-3 pt-[24px]">
+          <img src="/images/icons/icons/affiliate.svg" alt="affiliate" className="w-5 h-5 text-white" />
+          <span className="text-white text-[24px] leading-[36px] font-semibold">{t("Affiliate Program")}</span>
+        </div >
+        <div className="flex flex-row min-h-screen gap-6">
+          <AffiliateSidebar />
+          <div className="flex-1 overflow-y-auto bg-[var(--background-secondary)] rounded-lg">
+            <Router>
+              <Route path="/" component={Overview} />
+              <Route path="/campaigns" component={Campaigns} />
+              <Route path="/commission" component={Commission} />
+              <Route path="/referred-users" component={ReferredUsers} />
+              <Route path="/faq" component={FAQ} />
+              <Route path="*" component={NotFound404} />
+            </Router>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

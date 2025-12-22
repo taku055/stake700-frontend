@@ -2,7 +2,7 @@ import { Modal, ModalContent } from "@/components/common";
 import { Button } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { BASE_URL, OFFICIAL_LINKS } from "@/config/constants";
-import { walletBoxOpenedState } from "@/state/registerOpenedState";
+import { walletDialogOpenedState } from "@/state/registerOpenedState";
 
 interface IWelcomeDialogProps {
   isOpen: boolean;
@@ -22,7 +22,7 @@ export default function WelcomeDialog({
   const handleSetupWallet = () => {
     if (onSetupWallet) {
       // onSetupWallet();
-      walletBoxOpenedState.value = true;
+      walletDialogOpenedState.value = true;
       onClose();
     }
     onClose();

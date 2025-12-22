@@ -54,7 +54,7 @@ export const HeaderPhoneVideo: FunctionalComponent = () => {
         className="bg-[var(--green-color)] text-white rounded-sm min-w-[unset]"
         size="sm"
       >
-        <img src="/images/icons/lucky-wheel.svg" alt="Lucky Wheel" />
+        <img src="/images/icons/lucky-wheel.svg" alt={t("Lucky Wheel")} />
         <span className="hidden md:block!">{t("Lucky Wheel")}</span>
       </Button>
     </div>

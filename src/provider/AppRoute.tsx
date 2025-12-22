@@ -18,13 +18,11 @@ import ContactUs from "@/pages/contact-us";
 import OtherRules from "@/pages/other-rules";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import FAQ from "@/pages/faq";
-import WalletPage from "@/components/WalletBox";
 
 export default function AppRoute() {
   return (
     <Router>
       <Route path="/" component={HomePage} />
-      <Route path="/wallet" component={WalletPage} />
 
       <Route path="/live" component={LivePage} />
       <Route path="/live-casino" component={LivePage} />

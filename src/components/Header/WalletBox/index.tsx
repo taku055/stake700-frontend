@@ -1,50 +1,49 @@
 import { userState } from "@/state/userState";
-import { depositDialogState } from "@/state/depositDialogState";
+import { walletDialogOpenedState } from "@/state/registerOpenedState";
 import { currencyState } from "@/state/currencyState";
 import { CURRENCY_LIST } from "@/config/constants";
-import { Plus, ChevronDown } from "lucide-preact";
+import { ChevronDown } from "lucide-preact";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
 } from "@/components/common/Dropdown";
+import { useTranslations } from "@/context/I18nContext";
 
 export default function WalletBox() {
-  const handleDepositClick = (e: Event) => {
-    e.stopPropagation();
-    depositDialogState.value = {
-      isOpen: true,
-      defaultTab: "Deposit",
-    };
+  const t = useTranslations("Header");
+  const balance = (
+    userState.value?.cashDetails?.find(
+      (c) => c.currency === currencyState.value.unit
+    )?.amount || 0
+  );
+
+  const handleWalletClick = () => {
+    walletDialogOpenedState.value = true;
   };
 
   return (
-    <div className="flex flex-row max-w-[100px] max-h-[500px] gap-2 items-center select-none bg-[var(--bar-background-color)] rounded-full px-3 py-2 transition-all duration-300">
-      {userState.value?.role === "NORMAL" && (
-        <button
-          onClick={handleDepositClick}
-          className="w-[20px] h-[20px] rounded-full bg-[var(--primary-color)] flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
-          aria-label="Deposit"
-        >
-          <Plus size={14} color="white" />
-        </button>
-      )}
-      <Dropdown backdrop="blur" className="max-h-[500px] overflow-y-auto bg-[var(--bar-background-color)]">
+    <div className="flex items-center h-[48px] bg-[var(--bar-background-color)] rounded-lg overflow-hidden">
+      {/* Balance and Currency Dropdown */}
+      <Dropdown backdrop="blur" className="flex h-[full] w-[184px] justify-center items-center py-3 px-5 overflow-y-auto bg-[var(--bar-background-color)]">
         <DropdownTrigger>
-          <div className="flex items-center gap-1 cursor-pointer hover:opacity-90 transition-opacity">
-            <span className="text-[12px] font-bold md:text-[14px] text-white">
-              {currencyState.value.symbol}
-              {(
-                userState.value?.cashDetails?.find(
-                  (c) => c.currency === currencyState.value.unit
-                )?.amount || 0
-              ).toFixed(2)}
+          <div className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
+            {/* Balance Amount */}
+            <span className="text-white text-[14px] font-medium">
+              {balance.toFixed(8)}
             </span>
+            
+            {/* Currency Icon (Orange Circle with Bitcoin Symbol) */}
+            <div className="w-6 h-6 rounded-full bg-[#FF9500] flex items-center justify-center">
+              <span className="text-white text-[12px] font-bold">₿</span>
+            </div>
+            
+            {/* Dropdown Chevron */}
             <ChevronDown size={14} color="white" />
           </div>
         </DropdownTrigger>
-        <DropdownMenu aria-label="Select Currency" align="end">
+        <DropdownMenu aria-label={t("Select Currency")} align="end">
           {CURRENCY_LIST.map((currency) => (
             <DropdownItem
               key={currency.unit}
@@ -71,6 +70,14 @@ export default function WalletBox() {
           ))}
         </DropdownMenu>
       </Dropdown>
+
+      {/* Wallet Button */}
+      <button
+        onClick={handleWalletClick}
+        className="px-4 py-2 h-full w-[85px] bg-[var(--green-color)] text-white font-medium text-[14px] hover:opacity-90 transition-opacity whitespace-nowrap"
+      >
+        {t("Wallet")}
+      </button>
     </div>
   );
 }

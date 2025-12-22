@@ -52,7 +52,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["promotions", "affilate","vip-club", "blog", "forum"].includes(item.key)
+        ["promotions", "affiliate","vip-club", "blog", "forum"].includes(item.key)
       )
       .map((item) => {
         let pageType: tPageType | undefined;

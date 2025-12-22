@@ -210,9 +210,9 @@ export default function ExpandedDrawer({
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('item.onclick, item.href', item.onclick, item.key, item.onclick?.toString());
+                          console.log('item.onclick, item.href', item.href, item.key, item.onclick?.toString());
                           item.onclick?.();
-                          handleNavigate(modifyHref(item.href || ""));
+                          handleNavigate(item.href || "");
                         }}
                         className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
@@ -313,7 +313,7 @@ export default function ExpandedDrawer({
                           alt={item.title}
                           className="w-6 h-6 flex-shrink-0 object-contain"
                         />)}
-                        <span className="flex-1">{item.title}</span>
+                        <span>{item.title}</span>
                       </button>
                     )}
 
@@ -350,7 +350,8 @@ export default function ExpandedDrawer({
                             key={lang.value} 
                             onClick={() => { 
                               localeState.value = lang.value; 
-                              window.localStorage.setItem("locale", lang.value); 
+                              window.localStorage.setItem("locale", lang.value);
+                              isExpanded[item.key] = false;
                             }} 
                             className={`flex items-center ${localeState.value === lang.value ? "bg-[var(--background-btn-hover)] text-white" : "text-gray-300 hover:bg-[var(--background-btn-hover)]"} gap-3 px-3 py-2 transition-colors w-full text-left`}
                           >

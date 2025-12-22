@@ -14,7 +14,7 @@ import {
   ModalHeader,
 } from "@/components/common";
 
-export default function SearchWidget() {
+export default function  SearchWidget() {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState<tGame[]>([]);
   const t = useTranslations("SearchWidget");
@@ -42,10 +42,10 @@ export default function SearchWidget() {
       <div className="relative">
         <button
           type="button"
-          className="flex w-[32px] h-[32px] md:w-[32px] md:h-[32px] items-center justify-center border-[1px] border-[var(--primary-color)] rounded-full"
+          className="flex w-[44px] h-[44px] items-center justify-center"
           onClick={togglePanel}
         >
-          <Search size={16} color="var(--primary-color)" />
+          <img src="/images/icons/others/search.svg" alt={t("Search")} className="w-[20px] h-[20px]" />
         </button>
       </div>
       {searchWidgetState.value && (
