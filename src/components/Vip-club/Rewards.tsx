@@ -17,7 +17,7 @@ interface IReward {
 const Rewards = () => {
   const t = useTranslations("VipClub");
   const [expandedReward, setExpandedReward] = useState<string | null>("monthly-bonus");
-  
+
   const user = userState.value;
   const currentVipLevel = user?.vipLevel || 0;
 
@@ -31,7 +31,7 @@ const Rewards = () => {
       icon: (
         <div className="w-12 h-12 rounded-lg bg-[#1E3A5F] flex items-center justify-center">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="#FF9500" strokeWidth="2" fill="none"/>
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="#FF9500" strokeWidth="2" fill="none" />
           </svg>
         </div>
       )
@@ -57,7 +57,7 @@ const Rewards = () => {
       icon: (
         <div className="w-12 h-12 rounded-lg bg-[#2B3344] flex items-center justify-center">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" fill="none" stroke="white" strokeWidth="2"/>
+            <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" fill="none" stroke="white" strokeWidth="2" />
           </svg>
         </div>
       )
@@ -71,11 +71,11 @@ const Rewards = () => {
       icon: (
         <div className="w-12 h-12 rounded-lg bg-[#2B3344] flex items-center justify-center">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="4" y="6" width="12" height="8" rx="1" stroke="white" strokeWidth="2" fill="none"/>
-            <rect x="6" y="9" width="2" height="4" fill="white"/>
-            <rect x="9" y="9" width="2" height="4" fill="white"/>
-            <rect x="12" y="9" width="2" height="4" fill="white"/>
-            <path d="M7 6V4C7 2.89543 7.89543 2 9 2H11C12.1046 2 13 2.89543 13 4V6" stroke="white" strokeWidth="2"/>
+            <rect x="4" y="6" width="12" height="8" rx="1" stroke="white" strokeWidth="2" fill="none" />
+            <rect x="6" y="9" width="2" height="4" fill="white" />
+            <rect x="9" y="9" width="2" height="4" fill="white" />
+            <rect x="12" y="9" width="2" height="4" fill="white" />
+            <path d="M7 6V4C7 2.89543 7.89543 2 9 2H11C12.1046 2 13 2.89543 13 4V6" stroke="white" strokeWidth="2" />
           </svg>
         </div>
       )
@@ -89,7 +89,7 @@ const Rewards = () => {
   const toggleReward = (rewardId: string) => {
     const reward = rewards.find(r => r.id === rewardId);
     if (!reward) return;
-    
+
     // Only allow expansion if unlocked or if it's already expanded
     if (isUnlocked(reward) || expandedReward === rewardId) {
       setExpandedReward(expandedReward === rewardId ? null : rewardId);
@@ -106,15 +106,14 @@ const Rewards = () => {
         return (
           <div
             key={reward.id}
-            className="flex flex-col bg-[var(--bar-background-color)] rounded-lg overflow-hidden"
+            className="flex flex-col bg-[var(--background-secondary)] rounded-lg overflow-hidden"
           >
             <button
               type="button"
               onClick={() => toggleReward(reward.id)}
               disabled={!canExpand && !isExpanded}
-              className={`flex items-center gap-3 p-4 hover:bg-[var(--background-secondary)] transition-colors ${
-                !canExpand && !isExpanded ? "cursor-not-allowed opacity-60" : "cursor-pointer"
-              }`}
+              className={`flex items-center gap-3 p-4 transition-colors ${!canExpand && !isExpanded ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+                }`}
             >
               {/* Icon */}
               <div className="shrink-0">
@@ -130,10 +129,10 @@ const Rewards = () => {
                   )}
                 </div>
                 {reward.shortDescription && (
-                  <span className="text-white/60 text-[14px]">{reward.shortDescription}</span>
+                  <span className="text-white text-[14px]">{reward.shortDescription}</span>
                 )}
                 {reward.unlockCondition && !unlocked && (
-                  <span className="text-white/60 text-[14px]">{reward.unlockCondition}</span>
+                  <span className="text-white text-[14px]">{reward.unlockCondition}</span>
                 )}
               </div>
 
@@ -141,18 +140,17 @@ const Rewards = () => {
               {canExpand && (
                 <div className="shrink-0">
                   {isExpanded ? (
-                    <ChevronUp className="w-5 h-5 text-white/60" />
+                    <ChevronUp className="w-5 h-5 text-white" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-white/60" />
+                    <ChevronDown className="w-5 h-5 text-white" />
                   )}
                 </div>
               )}
             </button>
-
             {/* Expanded Content */}
             {isExpanded && reward.detailedDescription && (
-              <div className="px-4 pb-4 border-t border-[#FFFFFF0A] pt-4">
-                <p className="text-white/70 text-[14px] leading-[20px]">
+              <div className="mx-4 pb-4 pt-4 border-t-[2px] border-t-[var(--bar-background-color)] border-b-0 border-l-0 border-r-0">
+                <p className="text-white text-[14px] leading-[20px]">
                   {reward.detailedDescription}
                 </p>
               </div>

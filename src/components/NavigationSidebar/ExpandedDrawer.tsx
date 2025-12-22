@@ -303,7 +303,7 @@ export default function ExpandedDrawer({
                           item.onclick?.();
                           handleNavigate(modifyHref(item.href || ""));
                         }}
-                        className={`flex items-center gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
+                        className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
                           : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
                           }`}
@@ -352,7 +352,7 @@ export default function ExpandedDrawer({
                               localeState.value = lang.value; 
                               window.localStorage.setItem("locale", lang.value); 
                             }} 
-                            className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)] w-full text-left"
+                            className={`flex items-center ${localeState.value === lang.value ? "bg-[var(--background-btn-hover)] text-white" : "text-gray-300 hover:bg-[var(--background-btn-hover)]"} gap-3 px-3 py-2 transition-colors w-full text-left`}
                           >
                             <span className={`fi fi-${lang.flag}`}></span>
                             <span className="flex-1 text-sm">{lang.label}</span>

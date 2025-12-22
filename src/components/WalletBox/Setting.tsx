@@ -42,7 +42,7 @@ const Setting = () => {
   const [selectedFiat, setSelectedFiat] = useState<string>("USD");
 
   return (
-    <div className="flex flex-col p-6 gap-6">
+    <div className="flex flex-col p-6 gap-6 overflow-hidden">
       {/* Hide Zero Balances Toggle */}
       <div className="flex flex-col gap-2">
         <div className="flex items-start gap-3">
@@ -81,7 +81,7 @@ const Setting = () => {
 
       {/* Fiat Currency Selection */}
       <div className="flex flex-col gap-3">
-        <div className="grid grid-cols-4 gap-3 max-h-[400px] overflow-y-auto">
+        <div className="grid grid-cols-4 gap-3 max-h-[400px] overflow-y-auto overflow-x-hidden">
           {fiatCurrencies.map((currency) => {
             const isSelected = selectedFiat === currency.code;
             return (
