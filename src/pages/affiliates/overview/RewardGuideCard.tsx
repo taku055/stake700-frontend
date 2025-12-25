@@ -15,7 +15,7 @@ export default function RewardGuideCard({
 
   return (
     <div className="flex flex-col gap-[13px] h-full">
-      <div className="flex font-bold text-[18px] leading-[27px]">
+      <div className="flex font-semibold text-[18px] leading-[27px]">
         <span className="text-[#FFFFFF8E] mr-[4px]">
           {no.toString().padStart(2, "0")}.
         </span>

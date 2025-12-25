@@ -173,7 +173,7 @@ export default function DepositPanel() {
             bonus. Please check{" "}
             <a
               href="/privacy_policy/withdrawal_policy"
-              className="font-bold text-white hover:underline"
+              className="font-semibold text-white hover:underline"
             >
               Terms and Conditions for New Depositors
             </a>

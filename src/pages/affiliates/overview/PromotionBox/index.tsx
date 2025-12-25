@@ -12,7 +12,7 @@ export default function PromotionBox() {
   return (
     <div className={styles.container}>
       <div className="flex flex-col md:w-[508px] w-full justify-between md:px-[36px] md:py-[36px] p-[24px]">
-        <h2 className="font-bold text-[30px] leading-[40px] text-[#FFFFFF]">
+        <h2 className="font-semibold text-[30px] leading-[40px] text-[#FFFFFF]">
           {t("Refer friends and get rewarded")}
         </h2>
         <div className="mt-[16px] text-[16px] leading-[24px] text-[#FFFFFF8E]">

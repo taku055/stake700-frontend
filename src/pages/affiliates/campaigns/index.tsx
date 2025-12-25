@@ -98,51 +98,51 @@ export default function Campaigns() {
     <div className="flex flex-col p-6 gap-6">
       {/* Header */}
       <div className="flex flex-col gap-3">
-        <h1 className="text-white text-[20px] font-bold">{t("Campaigns")}</h1>
+        <h1 className="text-white text-[20px] font-semibold">{t("Campaigns")}</h1>
         <p className="text-white/70 text-[16px] leading-[24px] max-w-3xl">
           {t("See the performance of all your campaigns in one simple view below.")}
         </p>
       </div>
 
       {/* Performance Summary Bar */}
-      <div className="bg-[var(--background)] rounded-lg p-4 h-[80px] w-full">
-        <div className="flex justify-between h-full">
-          <div className="flex flex-col gap-2                        ">
-            <div className="flex items-center gap-2">
+      <div className="bg-[var(--background)] rounded-lg p-4 h-full w-full">
+        <div className="grid xl:grid-cols-[repeat(5,auto)] grid-cols-2 gap-2 justify-between h-full">
+          <div className="flex flex-col gap-1                        ">
+            <div className="flex items-center gap-1">
               <span className="text-[#FFFFFF} text-[14px]">{t("Campaign Hits")}</span>
-              <Info className="w-4 h-4 text-[#FFFFFF} cursor-help" />
+              <Info className="w-4 h-4 min-w-4 text-[#FFFFFF} cursor-help" />
             </div>
-            <span className="text-white text-[16px] font-bold">{performanceSummary.campaignHits}</span>
+            <span className="text-white text-[16px] font-semibold">{performanceSummary.campaignHits}</span>
           </div>
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-1">
               <span className="text-[#FFFFFF} text-[14px]">{t("Referred Users")}</span>
-              <Info className="w-4 h-4 text-[#FFFFFF} cursor-help" />
+              <Info className="w-4 h-4 min-w-4 text-[#FFFFFF} cursor-help" />
             </div>
-            <span className="text-white text-[16px] font-bold">{performanceSummary.referredUsers}</span>
+            <span className="text-white text-[16px] font-semibold">{performanceSummary.referredUsers}</span>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
               <span className="text-[#FFFFFF} text-[14px]">{t("First Time Deposits (FTD)")}</span>
-              <Info className="w-4 h-4 text-[#FFFFFF} cursor-help" />
+              <Info className="w-4 min-w-4 h-4 text-[#FFFFFF} cursor-help" />
             </div>
-            <span className="text-white text-[16px] font-bold">{performanceSummary.firstTimeDeposits}</span>
+            <span className="text-white text-[16px] font-semibold">{performanceSummary.firstTimeDeposits}</span>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
               <span className="text-[#FFFFFF} text-[14px]">{t("Total Deposits")}</span>
-              <Info className="w-4 h-4 text-[#FFFFFF} cursor-help" />
+              <Info className="w-4 min-w-4 h-4 text-[#FFFFFF} cursor-help" />
             </div>
-            <span className="text-white text-[16px] font-bold">
+            <span className="text-white text-[16px] font-semibold">
               {DEFAULT_CURRENCY_SYMBOL}{performanceSummary.totalDeposits}
             </span>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
               <span className="text-[#FFFFFF} text-[14px]">{t("Overall Commission")}</span>
-              <Info className="w-4 h-4 text-[#FFFFFF} cursor-help" />
+              <Info className="w-4 min-w-4 h-4 text-[#FFFFFF} cursor-help" />
             </div>
-            <span className="text-white text-[16px] font-bold">
+            <span className="text-white text-[16px] font-semibold">
               {DEFAULT_CURRENCY_SYMBOL}{performanceSummary.overallCommission.toFixed(2)} USD
             </span>
           </div>
@@ -150,13 +150,13 @@ export default function Campaigns() {
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col-reverse md:flex-row w-full gap-3 items-start md:items-center justify-between">
+        <div className="flex w-full md:w-auto items-center gap-4">
           <div className="flex items-center gap-2">
             <img src="/images/icons/icons/sort.png" alt="sort" className="w-4 h-4 text-[#FFFFFF}" />
             <span className="text-[#FFFFFF} text-[14px]">{t("Sort")}</span>
           </div>
-          <div className="flex items-center justify-center w-[236px] h-[40px] bg-[var(--background)] rounded-lg px-4 py-2">
+          <div className="flex items-center justify-center md:w-[236px] w-full h-[40px] bg-[var(--background)] rounded-lg px-4 py-2">
             <select
               value={sortBy}
               onChange={(e: any) => setSortBy(e.target.value)}
@@ -173,15 +173,17 @@ export default function Campaigns() {
 
         </div>
 
-        <div className="flex items-center gap-3">
-          <button className="flex items-center justify-center cursor-pointer py-3 px-5 bg-[var(--background)] border border-[var(--background-secondary)] rounded-lg transition-colors">
-            <img src="/images/icons/icons/filter.png" alt="filter" className="w-4 h-4 text-[#FFFFFF}" />
-          </button>
-          <button className="flex items-center justify-center cursor-pointer py-3 px-5 bg-[var(--background)] border border-[var(--background-secondary)] rounded-lg transition-colors">
-            <img src="/images/icons/icons/download.png" alt="download" className="w-4 h-4 text-[#FFFFFF}" />
-          </button>
+        <div className="flex flex-col w-full md:w-auto md:flex-row gap-3">
+          <div className="flex items-center gap-2">
+            <button className="flex items-center justify-center cursor-pointer py-3 px-5 bg-[var(--background)] border border-[var(--background-secondary)] rounded-lg transition-colors">
+              <img src="/images/icons/icons/filter.png" alt="filter" className="w-4 h-4 text-[#FFFFFF}" />
+            </button>
+            <button className="flex items-center justify-center cursor-pointer py-3 px-5 bg-[var(--background)] border border-[var(--background-secondary)] rounded-lg transition-colors">
+              <img src="/images/icons/icons/download.png" alt="download" className="w-4 h-4 text-[#FFFFFF}" />
+            </button>
+          </div>
           <Button
-            className="bg-[var(--green-color)] text-white font-medium px-6 py-2 rounded-lg hover:opacity-90 transition-opacity"
+            className="bg-[var(--green-color)] w-full md:w-auto text-white font-medium px-6 py-2 rounded-lg hover:opacity-90 transition-opacity"
             onPress={() => {
               // TODO: Open create campaign dialog
               console.log("Create Campaign");
@@ -208,15 +210,21 @@ export default function Campaigns() {
                 onClick={() => toggleCampaign(campaign.id)}
                 className="w-full flex items-center justify-between px-6 py-4 transition-colors"
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-white text-[16px] font-medium">
+                <div className="flex md:flex-row flex-col w-full md:items-center justify-between gap-3 pr-4">
+                  <span className="flex text-white text-[16px] font-medium">
                     {campaign.name} ({campaign.code})
                   </span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-[#FFFFFF} text-[14px]">
-                    {t("Date Created")}: {campaign.dateCreated}
+                  <span className="flex text-white/70 justify-between text-[16px]">
+                    <span className="flex">
+                      {t("Date Created")}:&nbsp;
+                    </span>
+                    <span className="flex">
+                      {campaign.dateCreated}
+                    </span>
                   </span>
+                </div>
+                <div className="flex w-fit items-center gap-4">
+
                   {isExpanded ? (
                     <ChevronUp className="w-5 h-5 text-[#FFFFFF}" />
                   ) : (
@@ -228,7 +236,7 @@ export default function Campaigns() {
               {/* Expanded Content */}
               {isExpanded && (
                 <div className="flex flex-col gap-4 p-4">
-                  <div className="flex justify-start">
+                  <div className="flex flex-col md:flex-row justify-start">
                     {/* Performance Summary */}
                     <div className="flex flex-col gap-4 flex-1 pr-4">
                       <h3 className="text-white text-[18px] font-semibold">{t("Performance Summary")}</h3>
@@ -266,7 +274,7 @@ export default function Campaigns() {
                       </div>
                       <div className="flex items-center justify-between gap-1">
                         <span className="text-[#FFFFFF} text-[14px]">{t("Overall Available Commission")}</span>
-                        <span className="text-white text-[14px]">
+                        <span className="justify-end text-end text-white text-[14px]">
                           {campaign.availableCommission > 0
                             ? `${DEFAULT_CURRENCY_SYMBOL}${campaign.availableCommission.toFixed(2)}`
                             : t("No Commission Available")}
@@ -282,7 +290,7 @@ export default function Campaigns() {
                     </div>
 
                     {/* Share Campaign */}
-                    <div className="flex flex-col gap-4 flex-1 pl-4 border-l border-[var(--background-secondary)]">
+                    <div className="flex flex-col gap-4 flex-1 md:pl-4 md:border-l border-t-[2px] pt-4 mt-4 md:mt-0 md:pt-0 md:border-t-0 border-[var(--background-secondary)]">
                       <h3 className="text-white text-[18px] font-semibold">{t("Share Campaign")}</h3>
                       <div className="flex flex-col gap-2">
                         <span className="text-[#FFFFFF} text-[14px]">{t("Campaign Link")}</span>

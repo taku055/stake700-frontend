@@ -23,6 +23,7 @@ import {
 } from "@internationalized/date";
 import { useLocation } from "preact-iso";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
+import { BASE_URL } from "@/config/constants";
 
 // const inputStyles =
 //   "bg-[#fff1] border-none rounded-sm! hover:bg-[#fff2] focus-within:hover:bg-[#fff2]";
@@ -154,7 +155,7 @@ export default function SignupDialog({
             // src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
             //   import.meta.env.VITE_SITE_NAME as string
             // ).toLowerCase()}/logo.png`}
-            src="/images/icons/icons/logo.svg"
+            src={`${BASE_URL}/images/icons/logo.svg`}
             className="h-[36px] md:h-[36px] md:max-w-[180px]"
             alt={import.meta.env.VITE_SITE_NAME as string}
           />
@@ -172,7 +173,7 @@ export default function SignupDialog({
           <form className="flex flex-col w-full gap-[16px]" onSubmit={onSubmit}>
             <div className="flex flex-col gap-[16px] w-full pt-[8px]">
               <div className="mt-[8px]">
-                <span className="text-[16px] font-weight-400 text-[#FFFFFFB2] leading-[24px] h-[24px]">
+                <span className="text-[16px] font-normal text-[#FFFFFFB2] leading-[24px] h-[24px]">
                   <span>{t("already_have_an_account")}?</span>{" "}
                   <button
                     type="button"
@@ -180,7 +181,7 @@ export default function SignupDialog({
                       onClose();
                       loginOpenedState.value = true;
                     }}
-                    className="text-[16px] font-weight-600 text-[var(--green-color)] hover:underline leading-[24px] h-[24px]"
+                    className="text-[16px] font-semibold text-[var(--green-color)] hover:underline leading-[24px] h-[24px]"
                   >
                       {t("login_an_account")}
                   </button>
@@ -189,7 +190,7 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("first_name")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="text"
@@ -206,7 +207,7 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("middle_name")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="text"
@@ -222,7 +223,7 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("last_name")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="text"
@@ -239,7 +240,7 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("username")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="text"
@@ -256,7 +257,7 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("birthday")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <DatePicker
                   value={birthday}
@@ -270,7 +271,7 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("email")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="email"
@@ -287,7 +288,7 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("password")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type={showPassword ? "text" : "password"}

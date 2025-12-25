@@ -11,9 +11,10 @@ import LocaleSelection from "@/components/LocaleSelection";
 import { localeState } from "@/state/localeState";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
-import { RTL_LANGUAGES } from "@/config/constants";
+import { BASE_URL, mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import { useLocation } from "preact-iso";
 import { options } from "@/components/LocaleSelection";
+import { useMediaQuery } from "usehooks-ts";
 
 interface ExpandedDrawerProps {
   mainNavItems: Array<{
@@ -75,6 +76,9 @@ export default function ExpandedDrawer({
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const { categories: casinoCategories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
   const { categories: liveCasinoCategories } = useLiveCasinoCategories();
+  const isMobile = useMediaQuery(mobileMediaQuery);
+
+
   useEffect(() => {
     if (location.path.includes("/casino")) {
       setSelectedTab("casino");
@@ -83,13 +87,13 @@ export default function ExpandedDrawer({
     } else {
       setSelectedTab(null);
     }
- 
+
   }, [location.path]);
 
 
   // Get categories based on selected tab
   const currentCategories = useMemo(() => {
-    return selectedTab === "casino" ? casinoCategories : liveCasinoCategories;
+    return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
   }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
@@ -133,27 +137,29 @@ export default function ExpandedDrawer({
             }}
           >
             <img
-              src="/images/icons/menu.png"
+              src={`${BASE_URL}/images/icons/menu.svg`}
               alt="sidebararrow"
-              className={`w-[13px] h-[13px] duration-300 brightness-0 invert transition-transform ${isRTL ? 'scale-x-[-1]' : ''
+              className={`w-[16px] h-[16px] duration-300 brightness-0 invert transition-transform ${isRTL ? 'scale-x-[-1]' : ''
                 }`}
             />
           </button>
           <button
             className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
-            onClick={() => { setSelectedTab("casino")
+            onClick={() => {
+              setSelectedTab("casino")
               handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
-             }}
+            }}
           >
             <span className="text-white text-[14px]">Casino</span>
           </button>
           <button
             className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "live-casino" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
-            onClick={() => { setSelectedTab("live-casino")
-              handleNavigate("/live-casino");
-             }}
+            onClick={() => {
+              setSelectedTab("live-casino")
+              // handleNavigate("/sport");
+            }}
           >
-            <span className="text-white text-[14px]">Live Casino</span>
+            <span className="text-white text-[14px]">Sports</span>
           </button>
         </div>
 
@@ -192,7 +198,7 @@ export default function ExpandedDrawer({
                           }`}
                       >{item.icon ? item.icon : (
                         <img
-                          src={item.navIcon || "/images/sidebar/casino.svg"}
+                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
                           alt={item.title}
                           className="w-6 h-6 flex-shrink-0 object-contain"
                         />
@@ -220,7 +226,7 @@ export default function ExpandedDrawer({
                           }`}
                       >
                         {item.icon ? (item.icon) : (<img
-                          src={item.navIcon || "/images/sidebar/casino.svg"}
+                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
                           alt={item.title}
                           className="w-6 h-6 flex-shrink-0 object-contain"
                         />)}
@@ -245,7 +251,7 @@ export default function ExpandedDrawer({
                             <img
                               src={subItem.icon}
                               alt={subItem.title}
-                              className="w-6 h-6 flex-shrink-0 object-contain"
+                              className="w-5 h-5 flex-shrink-0 object-contain"
                             />
                             <span className="flex-1 text-sm">{subItem.title}</span>
                           </Link>
@@ -281,7 +287,7 @@ export default function ExpandedDrawer({
                           }`}
                       >{item.icon ? item.icon : (
                         <img
-                          src={item.navIcon || "/images/sidebar/casino.svg"}
+                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
                           alt={item.title}
                           className="w-6 h-6 flex-shrink-0 object-contain"
                         />
@@ -309,7 +315,7 @@ export default function ExpandedDrawer({
                           }`}
                       >
                         {item.icon ? (item.icon) : (<img
-                          src={item.navIcon || "/images/sidebar/casino.svg"}
+                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
                           alt={item.title}
                           className="w-6 h-6 flex-shrink-0 object-contain"
                         />)}
@@ -346,13 +352,13 @@ export default function ExpandedDrawer({
                     {item.expandable && isExpanded[item.key] && item.key === "language" && (
                       <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
                         {options.map((lang) => (
-                          <button 
-                            key={lang.value} 
-                            onClick={() => { 
-                              localeState.value = lang.value; 
+                          <button
+                            key={lang.value}
+                            onClick={() => {
+                              localeState.value = lang.value;
                               window.localStorage.setItem("locale", lang.value);
                               isExpanded[item.key] = false;
-                            }} 
+                            }}
                             className={`flex items-center ${localeState.value === lang.value ? "bg-[var(--background-btn-hover)] text-white" : "text-gray-300 hover:bg-[var(--background-btn-hover)]"} gap-3 px-3 py-2 transition-colors w-full text-left`}
                           >
                             <span className={`fi fi-${lang.flag}`}></span>
@@ -371,13 +377,13 @@ export default function ExpandedDrawer({
 
 
           {/* Categories Section - Always shown */}
-          {/* <CategoryItems
+          <CategoryItems
             categories={categoriesWithCounts}
             title={selectedMainNavTitle || t("Categories")}
             onCategoryClick={() => {
               navigationSidebarExpandedState.value = false;
             }}
-          /> */}
+          />
         </div>
       </div>
     </div>

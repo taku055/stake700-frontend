@@ -87,7 +87,7 @@ const BuyCrypto = () => {
 
   return (
     <>
-      <div className="flex flex-col p-6 gap-6">
+      <div className="flex flex-col p-2 md:p-6 gap-6">
         {/* Buy Section Header */}
         <h3 className="text-white text-[16px] font-semibold">{t("Buy")}</h3>
 
@@ -97,7 +97,7 @@ const BuyCrypto = () => {
             <button
               type="button"
               onClick={() => setShowCryptoDropdown(!showCryptoDropdown)}
-              className="w-full flex items-center gap-3 px-4 py-3 bg-[var(--background-secondary)] border-[2px] border-[var(--background-secondary)] rounded-lg hover:border-[var(--green-color)] transition-colors"
+              className="w-full flex items-center gap-3 px-4 py-3 bg-[var(--background-secondary)] border-[2px] border-[var(--background-secondary)] rounded-lg transition-colors"
             >
               <img
                 src={selectedCryptoData.icon}
@@ -229,7 +229,7 @@ const BuyCrypto = () => {
         {/* 2FA Security Section */}
 
       </div>
-      <div className="flex flex-col gap-3 p-4 bg-[var(--bar-background-color)]">
+      {/* <div className="flex flex-col gap-3 p-4 bg-[var(--bar-background-color)]">
         <p className="text-white/70 text-[16px] text-center">
           {t("Improve your account security with Two-Factor Authentication")}
         </p>
@@ -241,7 +241,7 @@ const BuyCrypto = () => {
         >
           {t("Enable 2FA")}
         </Button>
-      </div>
+      </div> */}
     </>
   );
 };

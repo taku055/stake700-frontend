@@ -5,6 +5,7 @@ import { FaBolt, FaPhone, FaVideo } from "react-icons/fa";
 import { useState, useEffect } from "preact/hooks";
 import { apiGetTokenPrice } from "@/api/common/apiGetTokenPrice";
 import { numberRound } from "@/helpers/numberRound";
+import { BASE_URL } from "@/config/constants";
 
 export const HeaderPhoneVideo: FunctionalComponent = () => {
   const [ethPrice, setEthPrice] = useState(0);
@@ -54,7 +55,7 @@ export const HeaderPhoneVideo: FunctionalComponent = () => {
         className="bg-[var(--green-color)] text-white rounded-sm min-w-[unset]"
         size="sm"
       >
-        <img src="/images/icons/lucky-wheel.svg" alt={t("Lucky Wheel")} />
+        <img src={`${BASE_URL}/images/icons/lucky-wheel.svg`} alt={t("Lucky Wheel")} />
         <span className="hidden md:block!">{t("Lucky Wheel")}</span>
       </Button>
     </div>

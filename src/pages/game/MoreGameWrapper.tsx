@@ -20,7 +20,8 @@ export default function MoreGameWrapper({ game }: IMoreGameWrapperProps) {
         title={t("More from") + " " + providerState.value.map[game?.providerId || ""]?.name}
         category=""
         isCustom={false}
-        viewallLink={"/gallery/all?providerId=" + game?.providerId}
+        viewallLink={"#"}
+        // viewallLink={"/gallery/all?providerId=" + game?.providerId}
         provider={game?.providerId}
         exceptGameId={game?.id}
         template={1}

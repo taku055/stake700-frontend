@@ -1,17 +1,18 @@
 import { userState } from "@/state/userState";
-import { profileOpenedState } from "@/state/profileOpenedState";
+import { profileMenuOpenedState } from "@/state/profilemenuState";
 import { User } from "lucide-preact";
 import { useState } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
+import { BASE_URL } from "@/config/constants";
 
 export default function ProfileButton() {
   const t = useTranslations("Header");
   const userAvatar = userState.value?.avatar;
-  const defaultIcon = "/images/icons/others/user-default.svg";
+  const defaultIcon = `${BASE_URL}/images/icons/user-default.svg`;
   const [showFallbackIcon, setShowFallbackIcon] = useState(false);
 
   const handleClick = () => {
-    profileOpenedState.value = true;
+    profileMenuOpenedState.value = !profileMenuOpenedState.value;
   };
 
   const handleImageError = () => {

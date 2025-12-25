@@ -108,7 +108,7 @@ export default function ComingSoon({
                 {t("Coming soon")}
               </span>
 
-              <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
+              <h1 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
                 {productName}
               </h1>
               <p className="mt-3 max-w-prose text-slate-300">

@@ -4,6 +4,9 @@ import MoreGameWrapper from "./MoreGameWrapper";
 import { useState, useEffect } from "preact/hooks";
 import { tGame } from "@/types/tGame";
 import Loader from "../../components/Loader";
+import TrendingGamesPanel from "@/components/TrendingGamesPanel";
+import EmulateBetting from "@/components/EmulateBetting";
+import ProviderGroup from "@/components/ProviderGroup";
 
 interface IGamePageComponentProps {
   gameId: string;
@@ -31,16 +34,19 @@ export default function GamePageComponent({ gameId }: IGamePageComponentProps) {
 
   if (loading) {
     return (
-      <div className="flex flex-col gap-[40px] md:px-[12px] p-0 items-center justify-center min-h-[400px]">
+      <div className="flex flex-col gap-[40px] p-2 md:px-[12px] items-center justify-center min-h-[400px]">
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className="w-full flex flex-col gap-[40px]">
+    <div className="flex flex-col max-w-[1200px] w-full mx-auto gap-[40px]">
       <GamePlay game={game} />
-      <MoreGameWrapper game={game} />
+      {/* <MoreGameWrapper game={game} /> */}
+      <EmulateBetting />
+      <TrendingGamesPanel />
+      <ProviderGroup />
     </div>
   );
 }

@@ -43,7 +43,7 @@ export default function ContactUs() {
           isRTL ? "md:text-right" : "md:text-left"
         } text-center md:text-left`}
       >
-        <h1 className="text-[var(--primary-color)] text-3xl md:text-4xl font-bold">
+        <h1 className="text-[var(--primary-color)] text-3xl md:text-4xl font-semibold">
           {t("title") || "CONTACT US"}
         </h1>
 

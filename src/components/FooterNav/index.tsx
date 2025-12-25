@@ -1,5 +1,5 @@
 import { useMediaQuery } from "usehooks-ts";
-import { mobileMediaQuery } from "@/config/constants";
+import { BASE_URL, mobileMediaQuery } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import {
@@ -15,7 +15,7 @@ import {
 
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
-import { navigationSidebarOpenState } from "@/state/navigationSidebarState";
+import { navigationSidebarExpandedState, navigationSidebarOpenState } from "@/state/navigationSidebarState";
 
 export default function FooterNav() {
   const isMobile = useMediaQuery(mobileMediaQuery);
@@ -58,13 +58,13 @@ export default function FooterNav() {
           title: t("Casino"),
           href: "/casino/slots",
           key: "casino",
-          icon: <Casino />,
+          icon: (<img src={`${BASE_URL}/images/icons/casino.png`} width={20} height={20}/>),
         },
         {
           title: t("Live Casino"),
           href: "/live-casino",
           key: "live-casino",
-          icon: <LiveCasino />,
+          icon: (<img src={`${BASE_URL}/images/icons/live-casino.svg`} width={20} height={20}/>),
         },
       ];
     } else {
@@ -114,7 +114,7 @@ export default function FooterNav() {
   }
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-[var(--bar-background-color)] border-t border-gray-800 z-50 overflow-x-auto">
+    <footer className="fixed bottom-0 left-0 right-0 bg-[var(--bar-background-color)] border-t border-gray-800 z-500 overflow-x-auto">
       <div className="flex justify-around items-center h-[57px]">
         {tabList.map((tab) => (
           <a
@@ -136,20 +136,17 @@ export default function FooterNav() {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            navigationSidebarOpenState.value = true;
+            navigationSidebarExpandedState.value = !navigationSidebarExpandedState.value;
           }}
           className={`flex flex-col items-center justify-between py-2 min-w-0 h-full ${isMenuOpen
             ? "text-[var(--primary-color)]"
             : "text-white"
             } bg-transparent`}
         >
-          <span className={`text-sm h-full flex flex-1 flex-col justify-center items-center ${isMenuOpen
-            ? "text-[var(--primary-color)]"
-            : "text-white"
-            } bg-transparent`}>
-            <Menu />
+          <span className={`text-sm h-full flex flex-1 flex-col justify-center items-center text-white bg-transparent`}>
+            <img src={`${BASE_URL}/images/icons/menu.svg`} width={20} height={20} className="brightness-0 invert"/>
           </span>
-          <span className="text-xs">{t("Menu")}</span>
+          <span className="text-xs text-white">{t("Menu")}</span>
         </a>
       </div>
     </footer>

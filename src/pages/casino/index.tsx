@@ -25,7 +25,7 @@ export default function CasinoLayout(props: { pageType: tPageType }) {
   );
 
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-3">
+    <div className="flex flex-col w-[1200px] mx-auto items-center justify-center gap-3">
       <div className="h-full w-full">
         <Router>
           <Route path="/" component={CasinoPage} pageType={props.pageType} />

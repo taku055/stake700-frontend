@@ -19,7 +19,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       <h3 style="font-weight: bold; line-height: 2.5;">Terms and Conditions</h3>
       
       Place multiple bet on Sportsbook. <br/>
-      If the bet loses because of one selection you will receive an additional cash bonus of up to 50x of your stake amount.
+      If the bet loses because of one selection you will receive an additional cash bonus of up to 50x of your Betalarab amount.
       <ul style="list-style-type: disc; padding-left: 20px;">
         <li>Each multiple bet must contain at least 5 event.</li>
         <li>Each event must have odds of 1.30 or higher.</li>
@@ -109,7 +109,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       
       <p>You will have a unique chance to cancel (cashout) your bet without any commission!</p>
       
-      <p>The cashout amount will be higher than or equal to your original stake amount if the odds have not changed or decreased since the bet was placed.</p>
+      <p>The cashout amount will be higher than or equal to your original Betalarab amount if the odds have not changed or decreased since the bet was placed.</p>
       
       <br />
       

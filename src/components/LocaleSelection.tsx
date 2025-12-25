@@ -42,7 +42,7 @@ export default function LocaleSelection({
     >
       <DropdownTrigger className="w-full">
         <div
-          className={`flex items-center gap-1 bg-[var(--background)] h-full rounded-sm p-2 ${!headerMode ? "" : "bg-[var(--footer-background)]"
+          className={`flex items-center gap-[10px] bg-[var(--background)] h-full rounded-sm p-2 ${!headerMode ? "" : "bg-[var(--footer-background)]"
             }`}
         >
           <span
@@ -78,7 +78,7 @@ export default function LocaleSelection({
               e.currentTarget.style.backgroundColor = "";
             }}
           >
-            <div className="flex items-center gap-2 my-2 text-[#000000]">
+            <div className="flex items-center gap-3 my-2 text-[#000000]">
               <span className={`fi fi-${lang.flag}`}></span>
               {lang.label}
             </div>

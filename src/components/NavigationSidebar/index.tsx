@@ -7,8 +7,8 @@ import { useTablist } from "@/hooks/useTablist";
 import { CATEGORY_DATA, tPageType } from "@/pages/casino/data";
 import CollapsedSidebar from "./CollapsedSidebar";
 import ExpandedDrawer from "./ExpandedDrawer";
-import MobileDrawer from "./MobileDrawer";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
+import MobileDrawer from "./MobileDrawer";
 
 interface NavigationItem {
   title: string;
@@ -35,6 +35,7 @@ export default function NavigationSidebar() {
 
   // Sync with signal state
   useEffect(() => {
+    navigationSidebarExpandedState.value = !isMobile;
     const unsubscribeExpanded = navigationSidebarExpandedState.subscribe((value) => {
       setIsExpanded(value);
     });
@@ -46,7 +47,7 @@ export default function NavigationSidebar() {
       unsubscribeExpanded();
       unsubscribeOpen();
     };
-  }, []);
+  }, [isMobile]);
 
   // Filter main navigation items (Casino, Live Casino, Sports, etc.)
   const mainNavItems: NavigationItem[] = useMemo(() => {
@@ -129,18 +130,16 @@ export default function NavigationSidebar() {
 
   // Mobile: Show drawer when open
   if (isMobile) {
-    if (!isOpen) {
+    if (!isExpanded) {
       return null;
     }
-    return (
-      <MobileDrawer
-        mainNavItems={mainNavItems}
-        ExtraNavItems={ExtraNavItems}
-        selectedMainNavKey={selectedMainNav?.key}
-        categories={categories}
-        selectedMainNavTitle={selectedMainNav?.title || "Categories"}
-      />
-    );
+    return <MobileDrawer
+      mainNavItems={mainNavItems}
+      ExtraNavItems={ExtraNavItems}
+      selectedMainNavKey={selectedMainNav?.key}
+      categories={categories}
+      selectedMainNavTitle={selectedMainNav?.title || "Categories"}
+    />
   }
 
   // Desktop: Show collapsed sidebar (always visible) and expanded drawer (when expanded)
@@ -155,7 +154,7 @@ export default function NavigationSidebar() {
             categories={categories}
             selectedMainNavTitle={selectedMainNav?.title || "Categories"}
           />
-        ) : (
+        ) : ( !isMobile &&
           <CollapsedSidebar
             mainNavItems={mainNavItems}
             ExtraNavItems={ExtraNavItems}

@@ -13,7 +13,8 @@ import Header from "@/components/Header";
 import { apiGetCustomGames } from "@/api/common/apiGetCustomGames";
 import { customGamesState } from "@/state/customGamesState";
 import { loginOpenedState } from "@/state/loginOpenedState";
-import { registerOpenedState, walletDialogOpenedState } from "@/state/registerOpenedState";
+import { registerOpenedState } from "@/state/registerOpenedState";
+import { walletDialogOpenedState } from "@/state/walletDialogState";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
 import ForgotPasswordDialog from "@/components/Auth/ForgotPasswordDialog";
 import { apiGetSetting } from "@/api/setting/apiGetSetting";
@@ -73,6 +74,8 @@ import WelcomeDialog from "@/components/Auth/Signup/Welcom";
 import VipClub from "@/components/Vip-club";
 import { vipOpenedState } from "@/state/vipOpenedState";
 import DepositDialogFull from "@/components/DepositDialogFull";
+import DepositPanel from "@/components/WalletDialog/DepositPanel";
+import { depositDialogOpenedState } from "@/state/walletDialogState";
 
 const i18nDefinitions = {
   tr: trDefinition,
@@ -339,7 +342,7 @@ export default function GlobalServiceProvider({
             <NavigationSidebar />
             <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
               <Header />
-              <div className="flex-1 overflow-y-auto h-full max-h-full pl-2 md:pr-0 pr-2 body-content">
+              <div className="flex-1 overflow-y-auto h-full max-h-full overflow-x-hidden md:pr-0 body-content">
                 {children}
                 <Footer />
               </div>
@@ -368,7 +371,7 @@ export default function GlobalServiceProvider({
               isOpen={signupStep1OpenedState.value}
               onClose={() => (signupStep1OpenedState.value = false)}
               onConfirm={() => {
-                signupStep1OpenedState.value = false; 
+                signupStep1OpenedState.value = false;
                 signupStep2OpenedState.value = true;
               }}
             />
@@ -397,21 +400,21 @@ export default function GlobalServiceProvider({
               }}
             />
             <WelcomeDialog
-            isOpen={welcomeDialogOpenedState.value}
-            onClose={() => (welcomeDialogOpenedState.value = false)}
-            onSetupWallet={() => {
-              welcomeDialogOpenedState.value = false;
-            }}
-            onSkip={() => {
-              welcomeDialogOpenedState.value = false;
-            }}
-          />
-            
+              isOpen={welcomeDialogOpenedState.value}
+              onClose={() => (welcomeDialogOpenedState.value = false)}
+              onSetupWallet={() => {
+                welcomeDialogOpenedState.value = false;
+              }}
+              onSkip={() => {
+                welcomeDialogOpenedState.value = false;
+              }}
+            />
+
             <VisaDialogSimple
               isOpen={visaOpenedState.value}
               onClose={() => (visaOpenedState.value = false)}
             />
-            <DepositDialogFull
+            {/* <DepositDialogFull
               isOpen={depositDialogState.value.isOpen}
               tab={depositDialogState.value.defaultTab}
               onClose={() =>
@@ -420,7 +423,7 @@ export default function GlobalServiceProvider({
                 defaultTab: "Deposit",
               })
               }
-            />
+            /> */}
             <AllProvidersModal
               isOpen={allProvidersModalState.value}
               onClose={() => (allProvidersModalState.value = false)}
@@ -451,7 +454,9 @@ export default function GlobalServiceProvider({
           />
 
           <Maintenance />
-          <WalletDialog isOpen={walletDialogOpenedState.value} onClose={() => {walletDialogOpenedState.value = false}} />
+          <WalletDialog isOpen={walletDialogOpenedState.value} onClose={() => { walletDialogOpenedState.value = false }} />
+          <DepositPanel isOpen={depositDialogOpenedState.value} onClose={() => { depositDialogOpenedState.value = false }} />
+
           <VipClub isOpen={vipOpenedState.value} onClose={() => (vipOpenedState.value = false)} />
         </I18nProvider>
       </LocationProvider>

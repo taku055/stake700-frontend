@@ -34,7 +34,7 @@ export default function AboutHeroSection({
         className="w-full h-auto object-cover"
       />
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 transition-all duration-300">
-        <h1 className="text-[var(--primary-color)] text-3xl md:text-5xl font-bold mb-4 text-center px-4">
+        <h1 className="text-[var(--primary-color)] text-3xl md:text-5xl font-semibold mb-4 text-center px-4">
           {title}
         </h1>
         <div

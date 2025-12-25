@@ -5,6 +5,7 @@ import { localeState } from "@/state/localeState";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { options } from "@/components/LocaleSelection";
+import { BASE_URL } from "@/config/constants";
 
 interface ISignupStep1DialogProps {
   isOpen: boolean;
@@ -44,12 +45,12 @@ export default function SignupStep1Dialog({
         wrapper: "z-[10000000]",
       }}
     >
-      <ModalContent className="bg-[var(--background)] w-[630px] max-w-[630px] h-[716px] max-h-[716px] rounded-[8px] overflow-hidden">
+      <ModalContent className="bg-[var(--background)] w-[630px] max-w-[630px] h-[716px] max-h-full rounded-[8px] overflow-y-auto">
         {/* Header with Logo, Progress Bar, and Close Button */}
         <div className="flex flex-col justify-between items-start w-full p-[16px] pb-0">
           <div className="flex flex-col w-full items-start gap-[16px]">
             <img
-              src="/images/icons/icons/logo.svg"
+              src={`${BASE_URL}/images/icons/logo.svg`}
               className="h-[36px] md:h-[36px] md:max-w-[180px]"
               alt={import.meta.env.VITE_SITE_NAME as string}
             />
@@ -74,7 +75,7 @@ export default function SignupStep1Dialog({
 
             {/* Description */}
             <p className="text-white text-[16px] leading-[24px]">
-              {t("Stake is available is several languages. Feel free to personalise your language across our site from the options below.")}
+              {t("Betalarab is available is several languages. Feel free to personalise your language across our site from the options below.")}
             </p>
 
             {/* Language Select */}

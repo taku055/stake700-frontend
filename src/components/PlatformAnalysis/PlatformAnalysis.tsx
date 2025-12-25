@@ -84,7 +84,7 @@ export default function PlatformAnalysis({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-2 items-center">
-        <h3 className="text-[16px] font-bold">Platform Analysis</h3>
+        <h3 className="text-[16px] font-semibold">Platform Analysis</h3>
         <DateRangePicker
           className="md:w-[300px] w-full ml-auto"
           label={"Select period"}

@@ -16,7 +16,7 @@ const getNavIcon = (key: string): string => {
     blog: "/images/sidebar/blog.svg",
     forum: "/images/sidebar/forum.svg",
     sponsorships: "/images/sidebar/sponsorships.svg",
-    "responsible-gambling": "/images/sidebar/responsible-gambling.svg",
+    "responsible-gambling": "/images/sidebar/responsible-gambling.png",
     "live-support": "/images/sidebar/live-support.svg",
     language: "/images/sidebar/language.svg",
     "vip-club": "/images/sidebar/vip-club.svg",
@@ -78,7 +78,7 @@ export const useTablist = () => {
           href: "/promotions",
           key: "promotions",
           icon: (
-            <img src={`${BASE_URL}/images/icons/promotions-icon.svg`} alt="Promotions" />
+            <img src={`${BASE_URL}/images/icons/promotions.svg`} alt="Promotions" />
           ),
           navIcon: getNavIcon("promotions"),
           expandable: true,
@@ -96,7 +96,7 @@ export const useTablist = () => {
             {
               title: "Pragmatic Drops ...",
               href: "/promotions/13",
-              icon: `${BASE_URL}/images/icons/promotions-icon.svg`,
+              icon: `${BASE_URL}/images/icons/promotions.svg`,
             },
           ],
         },
@@ -149,7 +149,7 @@ export const useTablist = () => {
         },
         {
           title: t("Affiliate") || "Affiliate",
-          href: "/affiliates",
+          href: "/affiliate",
           key: "affiliate",
           icon: <img src={`${BASE_URL}/images/icons/affiliate.svg`} alt="Affiliate"/>,
           navIcon: getNavIcon("affiliate"),
@@ -194,7 +194,7 @@ export const useTablist = () => {
           title: t("Responsible Gambling") || "Responsible Gambling",
           href: "/responsible-gambling",
           key: "responsible-gambling",
-          icon: <img src={`${BASE_URL}/images/icons/responsible-gambling.svg`} alt="Responsible-gambling"/>,
+          icon: <img src={`${BASE_URL}/images/icons/responsible-gambling.png`} alt="Responsible-gambling"/>,
           navIcon: getNavIcon("responsible-gambling"),
         },
         {

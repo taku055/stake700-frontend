@@ -31,7 +31,7 @@ export default function FAQAccordion({
       {/* Header */}
       <button
         onClick={handleToggle}
-        className={`w-full h-[56px] flex items-center gap-4  text-[16px] text-[#ffffff] font-weight-600 p-4 md:p-6 bg-[var(--background-secondary)] transition-all duration-300 ${
+        className={`w-full h-[56px] flex items-center gap-4  text-[16px] text-[#ffffff] font-semibold p-4 md:p-6 bg-[var(--background-secondary)] transition-all duration-300 ${
           isRTL ? "flex-row-reverse" : ""
         }`}
       >
@@ -56,7 +56,7 @@ export default function FAQAccordion({
         }`}
       >
         <div className="p-4 md:p-6">
-          <p className="font-weight-400 md:text-base leading-relaxed">
+          <p className="font-normal md:text-base leading-relaxed">
             {answer}
           </p>
         </div>

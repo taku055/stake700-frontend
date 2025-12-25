@@ -23,7 +23,7 @@ export const BetPromotionCard: FunctionalComponent<BetPromotionCardProps> = ({
   return (
     <div className="flex flex-col gap-3 items-center p-8">
       <div className="flex flex-row items-center gap-2">
-        <p className="w-full text-center text-2xl font-bold text-[var(--primary-color)] uppercase">{title}</p>
+        <p className="w-full text-center text-2xl font-semibold text-[var(--primary-color)] uppercase">{title}</p>
       </div>
       <img
         src={image}

@@ -20,7 +20,7 @@ const Overview = ({ onDepositClick, onBuyCryptoClick }: IOverviewProps) => {
       {/* Empty Wallet Message */}
       <div className="flex flex-col justify-between px-4 gap-2">
         <h3 className="text-white text-[20px] leading-[28px] font-semibold">
-          {t("Your Stake Wallet is Currently Empty")}
+          {t("Your Betalarab Wallet is Currently Empty")}
         </h3>
         <p className="text-white/70 text-[16px] leading-[24px]">
           {t("To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.")}
@@ -44,7 +44,7 @@ const Overview = ({ onDepositClick, onBuyCryptoClick }: IOverviewProps) => {
       </div>
 
       {/* 2FA Security Section */}
-      <div className="flex flex-col gap-3 p-4 bg-[var(--bar-background-color)] border-t border-[#FFFFFF0A]">
+      {/* <div className="flex flex-col gap-3 p-4 bg-[var(--bar-background-color)] border-t border-[#FFFFFF0A]">
         <p className="text-white/70 text-[16px] text-center leading-[24px]">
           {t("Improve your account security with Two-Factor Authentication")}
         </p>
@@ -57,7 +57,7 @@ const Overview = ({ onDepositClick, onBuyCryptoClick }: IOverviewProps) => {
         >
           {t("Enable 2FA")}
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

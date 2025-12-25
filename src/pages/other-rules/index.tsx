@@ -11,11 +11,11 @@ export default function OtherRules() {
       }`}
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <h1 className="text-[var(--primary-color)] text-3xl md:text-4xl font-bold mb-8">
+      <h1 className="text-[var(--primary-color)] text-3xl md:text-4xl font-semibold mb-8">
         Other Conditions
       </h1>
 
-      <h2 className="text-[var(--primary-color)] text-2xl md:text-3xl font-bold mb-6">
+      <h2 className="text-[var(--primary-color)] text-2xl md:text-3xl font-semibold mb-6">
         TERMS AND CONDITIONS
       </h2>
 
@@ -336,7 +336,7 @@ export default function OtherRules() {
                 and additions to the rules set forth herein, the provisions and
                 procedures of payments without an individual prior written notice.
                 Users are notified about this with appropriate announcements. The
-                conditions of previously staked (placed) bets remain unchanged,
+                conditions of previously Betalarabd (placed) bets remain unchanged,
                 and bets which are accepted are subject to the posted rules at the
                 time of acceptance.
               </p>
@@ -434,7 +434,7 @@ export default function OtherRules() {
                 bets including events independent from each other. The sum of
                 single bet of chain's each event is equal to the sum of chain. The
                 client is given a chance to determine independently the order of
-                the bets included in the chain and stake only on the first event
+                the bets included in the chain and Betalarab only on the first event
                 of the chain. Thus the concept of "chain account" is imported.
                 After the tournament of each single bet included in the chain the
                 sum of that account is calculated. Initially it is equal to the
@@ -539,14 +539,14 @@ export default function OtherRules() {
               </p>
 
               <p>
-                In case 200 euro stake is made on "Real" and "Real" won: two
+                In case 200 euro Betalarab is made on "Real" and "Real" won: two
                 common bets with the half of sum won and the winning is equal to
                 100*2.0 + 100*2.0 = 400 euros.The match was over in drawn: one
                 common bet with the half of sum lost, and the other won with the
                 odd "1" and the winning is equal to 100*0.0 + 100*1.0 = 100
                 euros. "Real" lost: two common bets with the half of sum lost and
                 the winning is equal to 100*0.0 + 100*0.0 = 0 euro. In case 200
-                euros stake is made on "Barcelona" and "Barcelona" won: two
+                euros Betalarab is made on "Barcelona" and "Barcelona" won: two
                 common bets with the half of sum won and the winning is equal to
                 100*1.8 + 100*1.8 = 360 euros. The match was over in draw: one
                 common bet with the half of sum lost, and the other won with the
@@ -600,7 +600,7 @@ export default function OtherRules() {
                 handicaps, totals) and coefficients of the events specified in
                 the line of the current day may change after any bet, but
                 conditions before bets are the same, except in cases of technical
-                and obvious mistakes in the line.
+                and obvious miBetalarabs in the line.
               </p>
 
               <p>

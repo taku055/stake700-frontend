@@ -113,12 +113,12 @@ export default function GameGroup({
               >
                 <ChevronLeft color="#FFFFFF99" size={16} />
               </Button>
-              <div className={styles.title}>
+              {/* <div className={styles.title}>
                 <div className={styles.text}>{title}</div>
                 <a href={viewallLink || "#"} className={styles.view}>
                   {t("More")}
                 </a>
-              </div>
+              </div> */}
               <Button
                 onPress={goToNextSlide}
                 size="sm"

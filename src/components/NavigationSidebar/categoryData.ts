@@ -1,6 +1,7 @@
 import { customGamesState } from "@/state/customGamesState";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { categoryCountsCache, categoryCountsLoaded } from "@/state/categoryCountsState";
+import { BASE_URL } from "@/config/constants";
 
 export interface CategoryItem {
   name: string;
@@ -89,77 +90,77 @@ export const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: strin
 const getCategoryIcon = (categoryName: string, path: string): string => {
   const name = categoryName.toLowerCase();
   const pathLower = path.toLowerCase();
-  
+
   // Map based on category name or path
   if (name.includes("top slots") || pathLower.includes("slot-top-slots")) {
-    return "/images/sidebar/top-slots.svg";
+    return `${BASE_URL}/images/sidebar/top-slots.svg`;
   }
   if (name.includes("all games") || pathLower.includes("all-games")) {
-    return "/images/sidebar/all-games.svg";
+    return `${BASE_URL}/images/sidebar/all-games.svg`;
   }
   if (name.includes("popular") || pathLower.includes("popular")) {
-    return "/images/sidebar/popular-games.svg";
+    return `${BASE_URL}/images/sidebar/popular-games.svg`;
   }
   if (name.includes("new") || pathLower.includes("slot-new")) {
-    return "/images/sidebar/new.svg";
+    return `${BASE_URL}/images/sidebar/new.svg`;
   }
   if (name.includes("jackpot") || pathLower.includes("jackpot")) {
-    return "/images/sidebar/lottery-games.svg";
+    return `${BASE_URL}/images/sidebar/lottery-games.svg`;
   }
   if (name.includes("buy bonus") || pathLower.includes("buy-bonus")) {
-    return "/images/sidebar/buy-bonus.svg";
+    return `${BASE_URL}/images/sidebar/buy-bonus.svg`;
   }
   if (name.includes("megaways") || pathLower.includes("megaways")) {
-    return "/images/sidebar/megaways.svg";
+    return `${BASE_URL}/images/sidebar/megaways.svg`;
   }
   if (name.includes("classic slots") || pathLower.includes("classic")) {
-    return "/images/sidebar/classic-slots.svg";
+    return `${BASE_URL}/images/sidebar/classic-slots.svg`;
   }
   if (name.includes("video slots") || pathLower.includes("video-slots")) {
-    return "/images/sidebar/video-slots.svg";
+    return `${BASE_URL}/images/sidebar/video-slots.svg`;
   }
   if (name.includes("drop wins") || pathLower.includes("drop-wins")) {
-    return "/images/sidebar/drop-wins.svg";
+    return `${BASE_URL}/images/sidebar/drop-wins.svg`;
   }
   if (name.includes("table games") || pathLower.includes("table") || pathLower.includes("tablegames")) {
-    return "/images/sidebar/table-games.svg";
+    return `${BASE_URL}/images/sidebar/table-games.svg`;
   }
   if (name.includes("roulette") || pathLower.includes("roulette")) {
-    return "/images/sidebar/roulette.svg";
+    return `${BASE_URL}/images/sidebar/roulette.svg`;
   }
   if (name.includes("blackjack") || pathLower.includes("blackjack") || pathLower.includes("blackjacks")) {
-    return "/images/sidebar/blackjack.svg";
+    return `${BASE_URL}/images/sidebar/blackjack.svg`;
   }
   if (name.includes("baccarat") || pathLower.includes("baccarat")) {
-    return "/images/sidebar/baccarat.svg";
+    return `${BASE_URL}/images/sidebar/baccarat.svg`;
   }
   if (name.includes("video poker") || pathLower.includes("video-poker") || pathLower.includes("videopoker")) {
-    return "/images/sidebar/video-poker.svg";
+    return `${BASE_URL}/images/sidebar/video-poker.svg`;
   }
   if (name.includes("video bingo") || pathLower.includes("video-bingo")) {
-    return "/images/sidebar/video-bingo.svg";
+    return `${BASE_URL}/images/sidebar/video-bingo.svg`;
   }
   if (name.includes("scratch") || pathLower.includes("scratch")) {
-    return "/images/sidebar/scratch-games.svg";
+    return `${BASE_URL}/images/sidebar/scratch-games.svg`;
   }
   if (name.includes("instant") || pathLower.includes("instant")) {
-    return "/images/sidebar/instant-game.svg";
+    return `${BASE_URL}/images/sidebar/instant-game.svg`;
   }
   if (name.includes("fishing") || pathLower.includes("fishing")) {
-    return "/images/sidebar/fishing-hunting.svg";
+    return `${BASE_URL}/images/sidebar/fishing-hunting.svg`;
   }
   if (name.includes("casual") || pathLower.includes("casual")) {
-    return "/images/sidebar/casual-games.svg";
+    return `${BASE_URL}/images/sidebar/casual-games.svg`;
   }
   if (name.includes("other") || pathLower.includes("other")) {
-    return "/images/sidebar/other-games.svg";
+    return `${BASE_URL}/images/sidebar/other-games.svg`;
   }
   if (name.includes("favourites") || name.includes("favorites") || pathLower.includes("favourite")) {
-    return "/images/sidebar/favourites.svg";
+    return `${BASE_URL}/images/sidebar/favourites.svg`;
   }
-  
+
   // Default icon
-  return "/images/sidebar/all-games.svg";
+  return `${BASE_URL}/images/sidebar/all-games.svg`;
 };
 
 // Get game count for a category based on its path (with caching)
@@ -267,10 +268,10 @@ export const processCategories = (
 // Map navigation keys to sidebar SVG icons
 export const getNavIcon = (key: string): string => {
   const iconMap: Record<string, string> = {
-    slots: "/images/sidebar/casino.svg",
-    "live-casino": "/images/sidebar/live-casino.svg",
-    sport: "/images/sidebar/sportsbook.svg",
-    promotions: "/images/sidebar/promotions.png",
+    slots: `${BASE_URL}/images/icons/casino.svg`,
+    "live-casino": `${BASE_URL}/images/icons/live-casino.svg`,
+    sport: `${BASE_URL}/images/icons/sportsbook.svg`,
+    promotions: `${BASE_URL}/images/icons/promotions.png`,
   };
-  return iconMap[key] || "/images/sidebar/casino.svg";
+  return iconMap[key] || `${BASE_URL}/images/icons/casino.svg`;
 };

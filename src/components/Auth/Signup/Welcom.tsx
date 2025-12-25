@@ -2,7 +2,7 @@ import { Modal, ModalContent } from "@/components/common";
 import { Button } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { BASE_URL, OFFICIAL_LINKS } from "@/config/constants";
-import { walletDialogOpenedState } from "@/state/registerOpenedState";
+import { walletDialogOpenedState } from "@/state/walletDialogState";
 
 interface IWelcomeDialogProps {
   isOpen: boolean;
@@ -58,7 +58,7 @@ export default function WelcomeDialog({
         <div className="bg-[var(--background)] p-[16px] pt-[32px] gap-[16px] flex flex-col items-center justify-center rounded-b-[8px]">
           {/* Title */}
           <h2 className="text-white text-[20px] font-semibold leading-[28px] text-center">
-            {t("Welcome to Stake!")}
+            {t("Welcome to Betalarab!")}
           </h2>
 
           {/* Description */}
@@ -67,15 +67,15 @@ export default function WelcomeDialog({
           </p>
 
           {/* Action Buttons */}
-          <div className="flex gap-[8px]">
+          <div className="flex gap-[8px] w-full">
             <Button
-              className="flex-1 text-white text-[16px] font-medium bg-[var(--background-secondary)] hover:bg-[var(--background-secondary)]/80 w-[230px] h-[44px] rounded-lg"
+              className="flex-1 text-white text-[16px] font-medium bg-[var(--background-secondary)] hover:bg-[var(--background-secondary)]/80 w-full h-[44px] rounded-lg"
               onPress={handleSkip}
             >
               {t("Skip for Later")}
             </Button>
             <Button
-              className="flex-1 text-white text-[16px] font-medium bg-[var(--green-color)] hover:opacity-90 w-[230px] h-[44px] rounded-lg"
+              className="flex-1 text-white text-[16px] font-medium bg-[var(--green-color)] hover:opacity-90 w-full h-[44px] rounded-lg"
               onPress={handleSetupWallet}
             >
               {t("Setup Wallet")}

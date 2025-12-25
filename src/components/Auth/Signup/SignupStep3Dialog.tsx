@@ -3,6 +3,7 @@ import { Modal, ModalContent, ModalBody } from "@/components/common";
 import { Button, Checkbox } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { useTranslations } from "@/context/I18nContext";
+import { BASE_URL } from "@/config/constants";
 
 interface ISignupStep3DialogProps {
   isOpen: boolean;
@@ -42,12 +43,12 @@ export default function SignupStep3Dialog({
         wrapper: "z-[10000000]",
       }}
     >
-      <ModalContent className="bg-[var(--background)] w-[630px] max-w-[630px] rounded-[8px] overflow-hidden">
+      <ModalContent className="bg-[var(--background)] w-[630px] max-w-[630px] max-h-[90vh] overflow-y-auto rounded-[8px] overflow-hidden">
         {/* Header with Logo, Progress Bar, and Close Button */}
         <div className="flex flex-col justify-between items-start w-full p-[16px] pb-0">
           <div className="flex flex-col w-full items-start gap-[16px]">
             <img
-              src="/images/icons/icons/logo.svg"
+              src={`${BASE_URL}/images/icons/logo.svg`}
               className="h-[36px] md:h-[36px] md:max-w-[180px]"
               alt={import.meta.env.VITE_SITE_NAME as string}
             />

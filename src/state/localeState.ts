@@ -1,3 +1,3 @@
 import { signal } from "@preact/signals";
 
-export const localeState = signal<string>("tr");
+export const localeState = signal<string>("en");

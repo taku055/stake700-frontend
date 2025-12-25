@@ -38,7 +38,7 @@ const UserComponent = () => {
       <div className="w-full text-center text-[16px] leading-[16px] mt-8 text-white">
         {userState.value?.userName || "Eliff Soheili"}
       </div>
-      {/* <div className="w-[32px] h-[32px] rounded-full bg-[#FFFFFF66] text-[#1B1B1B] font-bold flex items-center justify-center">
+      {/* <div className="w-[32px] h-[32px] rounded-full bg-[#FFFFFF66] text-[#1B1B1B] font-semibold flex items-center justify-center">
         {userState.value?.userName.at(0)?.toUpperCase()}
       </div>
       <div className="flex flex-col gap-1">

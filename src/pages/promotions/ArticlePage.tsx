@@ -45,7 +45,7 @@ export default function ArticlePage({ articleId }: ArticlePageProps) {
 
       {/* Title */}
       <div className="w-full">
-        <h1 className="text-2xl md:text-4xl font-bold text-[var(--primary-color)]">
+        <h1 className="text-2xl md:text-4xl font-semibold text-[var(--primary-color)]">
           {article.title}
         </h1>
       </div>

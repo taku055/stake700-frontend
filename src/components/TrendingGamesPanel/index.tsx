@@ -2,7 +2,7 @@ import { Autoplay, Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useState } from "preact/hooks";
 import { useMediaQuery } from "usehooks-ts";
-import { mobilePortraitMediaQuery } from "@/config/constants";
+import { BASE_URL, mobilePortraitMediaQuery } from "@/config/constants";
 import { tGame } from "@/types/tGame";
 import GameCard from "@/components/GameCard";
 import { customGamesState } from "@/state/customGamesState";
@@ -18,6 +18,8 @@ export default function TrendingGamesPanel() {
   const t = useTranslations("GameGroup");
   const [swiper, setSwiper] = useState<any>(null);
   const [activeAction, setActiveAction] = useState<"left" | "right" | null>("right");
+  const [isBeginning, setIsBeginning] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
 
   const imgList = [
     "/buffer/gameimg1.png",
@@ -49,14 +51,16 @@ export default function TrendingGamesPanel() {
 
   const goToStart = () => {
     if (swiper) {
-      swiper.slideTo(0);
+      // swiper.slideTo(0);
+      swiper.slidePrev();
       setActiveAction("right");
     }
   };
 
   const goToEnd = () => {
     if (swiper && swiper.slides) {
-      swiper.slideTo(swiper.slides.length - 1);
+      // swiper.slideTo(swiper.slides.length - 1);
+      swiper.slideNext();
       setActiveAction("left");
     }
   };
@@ -65,13 +69,14 @@ export default function TrendingGamesPanel() {
     <div className={styles.trendingPanel}>
       <div className={styles.titleBar}>
         <div className={styles.title}>
+          <img src={`${BASE_URL}/images/icons/trending-game.png`} alt="Trending" className={styles.icon} />
           <div className={styles.text}>{t("Trending") || "Trending Games"}</div>
         </div>
         <div className={styles.action}>
-          <Button onPress={goToStart} className={`${styles.moveButton} rounded-l-full ${activeAction === "left" ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>
+          <Button onPress={goToStart} className={`${styles.moveButton} rounded-l-full ${!isBeginning ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>
             <ChevronLeft size={18}  />
           </Button>
-          <Button onPress={goToEnd} className={`${styles.moveButton} rounded-r-full ${activeAction === "right" ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>
+          <Button onPress={goToEnd} className={`${styles.moveButton} rounded-r-full ${!isEnd ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>
             <ChevronRight size={18}  />
           </Button>
         </div>
@@ -83,8 +88,12 @@ export default function TrendingGamesPanel() {
         loop={false}
         loopAddBlankSlides={false}
         // spaceBetween={isMobilePortrait ? 6 : 8}
-        slidesPerView={isMobilePortrait ? 2.2 : 8}
-        slidesPerGroup={isMobilePortrait ? 2 : 8}
+        slidesPerView={isMobilePortrait ? 3 : 8}
+        slidesPerGroup={isMobilePortrait ? 3 : 8}
+        onSlideChange={() => {
+          setIsBeginning(swiper?.isBeginning);
+          setIsEnd(swiper?.isEnd);
+        }}
         // autoplay={{
         //   delay: 3000,
         //   disableOnInteraction: false,

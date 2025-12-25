@@ -40,17 +40,17 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
     <div className="w-full flex flex-col gap-3">
       <PromotionSection showAppleImage={false} />
       <TrendingGamesPanel />
-      <TopLinkBar />
+      {/* <TopLinkBar /> */}
       <div className={`w-full flex ${isMobile ? 'flex-col' : 'flex-row'} gap-6 mt-[20px]`}>
         {/* Left Sidebar */}
-        <GameFilterSidebar
+        {/* <GameFilterSidebar
           searchQuery={searchQuery}
           onSearchChange={onSearchChange}
           selectedProviders={selectedProviders}
           onProvidersChange={onProvidersChange}
           selectedCategory={selectedCategory}
           onCategoryChange={onCategoryChange}
-        />
+        /> */}
 
         {/* Right Side - Game Cards Panel */}
         <CasinoGameGrid

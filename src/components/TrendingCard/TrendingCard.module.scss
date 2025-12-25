@@ -12,7 +12,8 @@
   padding: 10px 6px;
 
   @include for-mobile-only {
-    width: unset;
+    width: 100%;
+    // height: auto;
   }
 
   @include for-not-mobile {
@@ -36,6 +37,10 @@
     height: 210px;
     min-height: 210px;
     // min-width: 150px;
+    @include for-mobile-only {
+      width: 100%;
+      height: auto;
+    }
 
     .gameImage {
       object-fit: fill;

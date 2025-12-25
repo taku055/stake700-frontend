@@ -3,6 +3,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { ChevronUp, ChevronDown, Lock } from "lucide-preact";
 import { VNode } from "preact";
+import { BASE_URL } from "@/config/constants";
 
 interface IReward {
   id: string;
@@ -29,7 +30,7 @@ const Rewards = () => {
       detailedDescription: t("The Monthly Bonus is randomly released. Eligible players will be notified via email. Your bonus is based on your game play throughout the month. The more you play, the bigger the bonus."),
       unlockedAtLevel: 0,
       icon: (
-        <img src="/images/icons/others/monthly.png" alt="monthly-bonus" className="w-[55px] h-[64px]" />
+        <img src={`${BASE_URL}/images/icons/monthly.png`} alt="monthly-bonus" className="w-[55px] h-[64px]" />
       )
     },
     {
@@ -39,7 +40,7 @@ const Rewards = () => {
       unlockCondition: t("Unlocked at Bronze VIP."),
       unlockedAtLevel: 1,
       icon: (
-        <img src="/images/icons/others/rakeback.png" alt="rakeback" className="w-[55px] h-[64px]" />
+        <img src={`${BASE_URL}/images/icons/rakeback.png`} alt="rakeback" className="w-[55px] h-[64px]" />
       )
     },
     {
@@ -49,7 +50,7 @@ const Rewards = () => {
       unlockCondition: t("Unlocked at Bronze VIP."),
       unlockedAtLevel: 1,
       icon: (
-        <img src="/images/icons/others/weekly-boost.png" alt="weekly-boost" className="w-[55px] h-[64px]" />
+        <img src={`${BASE_URL}/images/icons/weekly-boost.png`} alt="weekly-boost" className="w-[55px] h-[64px]" />
       )
     },
     {
@@ -59,7 +60,7 @@ const Rewards = () => {
       unlockCondition: t("Unlocked at Platinum VIP."),
       unlockedAtLevel: 4,
       icon: (
-        <img src="/images/icons/others/reload.png" alt="reload" className="w-[55px] h-[64px]" />
+        <img src={`${BASE_URL}/images/icons/reload.png`} alt="reload" className="w-[55px] h-[64px]" />
       )
     }
   ];
@@ -79,7 +80,7 @@ const Rewards = () => {
   };
 
   return (
-    <div className="flex flex-col p-6 gap-3">
+    <div className="flex flex-col md:p-6 p-2 gap-3">
       {rewards.map((reward) => {
         const unlocked = isUnlocked(reward);
         const isExpanded = expandedReward === reward.id;

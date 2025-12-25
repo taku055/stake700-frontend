@@ -1,4 +1,4 @@
-// @import "/src/styles/mixins";
+@use "/src/styles/mixins" as *;
 
 .container {
   display: flex;  
@@ -9,11 +9,10 @@
   z-index: 37;
   overflow-x:auto;
 
-  // @include for-mobile-only {
-  //   // width: 100vw !important;
-  //   bottom: 0;
-  //   margin-left: 0;
-  // }
+  @include for-mobile-only {
+    // width: 100vw !important;
+    padding: 0 6px;
+  }
 }
 
 .header {
@@ -47,8 +46,8 @@
   // background: #213746;
   // border: 1px solid #ffffff44;
   border-radius: 25px;
-  color: #bfc0c3;
-  font-size: 14px;
+  color: white;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;

@@ -1,9 +1,9 @@
 import { tGame } from "@/types/tGame";
 import { userState } from "@/state/userState";
-import { Button } from "@heroui/react";
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
 import { apiStartGame } from "@/api/game/apiStartGame";
 import { useMediaQuery } from "usehooks-ts";
-import { mobileMediaQuery, placeholderGameImage } from "@/config/constants";
+import { BASE_URL, mobileMediaQuery, placeholderGameImage } from "@/config/constants";
 import { FaPlay } from "react-icons/fa";
 import styles from "./GamePlay.module.scss";
 import { MdFullscreen } from "react-icons/md";
@@ -16,6 +16,9 @@ import { localeState } from "@/state/localeState";
 import { currencyState } from "@/state/currencyState";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import ConfirmModal from "./ConfirmModal";
+import { ChevronDown } from "lucide-preact";
+import { Select, SelectItem } from "@heroui/react";
+import { CURRENCY_LIST } from "@/config/constants";
 
 interface IGamePlayProps {
   game?: tGame;
@@ -87,7 +90,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
             document
               .querySelectorAll('script[data-game-injected="true"]')
               .forEach((script) => script.remove());
-              
+
             if (game?.gameSource === "SOFT") {
               if (session.startsWith("1,")) {
                 const html = session.substring(2);
@@ -174,14 +177,14 @@ export default function GamePlay({ game }: IGamePlayProps) {
       style={
         fullscreen
           ? {
-              position: "fixed",
-              left: "0px",
-              top: "0px",
-              width: "100%",
-              height: "100%",
-              zIndex: 101,
-              borderRadius: "0px",
-            }
+            position: "fixed",
+            left: "0px",
+            top: "0px",
+            width: "100%",
+            height: "100%",
+            zIndex: 101,
+            borderRadius: "0px",
+          }
           : {}
       }
     >
@@ -213,29 +216,73 @@ export default function GamePlay({ game }: IGamePlayProps) {
                 alt={game?.name}
               />
             )}
-            <div className="w-full h-full bg-[#000d] top-[0px] absolute" />
-            <div className="absolute w-[300px] left-[calc(50%-150px)] top-[calc(50%-22px)] flex gap-[18px] z-[3] justify-center">
-              <Button
-                className="h-[45px] w-[125px] bg-[var(--primary-color)]"
-                onPress={() => onPlay(false)}
-                isLoading={loading || !game?.name}
-              >
-                <FaPlay />
-                {t("play")}
-              </Button>
-              {game?.demo && (
-                <>
-                  <Button
-                    className="h-[45px] w-[125px] text-[#FFFFFFB7]"
-                    color="default"
-                    onPress={() => onPlay(true)}
-                    isLoading={loading || !game?.name}
-                  >
-                    <FaPlay />
-                    {t("fun-play")}
-                  </Button>
-                </>
-              )}
+            <div className="w-full h-full bg-[#0E1224E5] top-[0px] absolute" />
+            <div className="w-full  absolute left-[0px]  my-auto flex flex-col gap-[18px] z-[3] items-center justify-center">
+              <div className="flex gap-2 h-[24px] w-full items-center justify-center mb-2">
+                <span className="text-[14px] leading-[20px] text-[#B1BAD3] font-weight-semibold">{t("Balance displayed in")}</span>
+                {/* <Button className="">
+                  <img src={`${BASE_URL}/images/tokens/usd.png`} alt="USD" className="w-5 h-5" />
+                  <span className="text-[14px] leading-[20px] text-[#B1BAD3] font-weight-semibold">USD</span>
+                  <ChevronDown />
+                </Button> */}
+                <Dropdown backdrop="blur" className="flex h-[full] justify-center items-center py-3 px-5 overflow-y-auto bg-[var(--bar-background-color)]">
+                  <DropdownTrigger>
+                    <div className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
+                      {/* Balance Amount */}
+                      <img src={`${BASE_URL}/images/currencies/${currencyState.value.code}.png`} alt="Currency" className="w-6 h-6" />
+                      <span className="text-white text-[16px] font-medium">
+                        {currencyState.value.code.toUpperCase()}
+                      </span>
+
+                      {/* Currency Icon (Orange Circle with Bitcoin Symbol) */}
+
+                      {/* Dropdown Chevron */}
+                      <ChevronDown size={14} color="white" />
+                    </div>
+                  </DropdownTrigger>
+                  <DropdownMenu aria-label={t("Select Currency")} variant="flat" className="bg-[var(--bar-background-color)]">
+                    {CURRENCY_LIST.map((currency) => (
+                      <DropdownItem
+                        key={currency.unit}
+                        value={currency.unit}
+                        onPress={() => {
+                          currencyState.value = currency;
+                          window.localStorage.setItem(
+                            "currency",
+                            JSON.stringify(currency)
+                          );
+                          setCurrency(currency.unit);
+                        }}
+                      >
+                        <div className="flex items-center gap-2">
+                          <img src={`${BASE_URL}/images/currencies/${currency.code}.png`} alt="Currency" className="w-6 h-6" />
+                          <span className="font-semibold">{currency.code.toUpperCase()}</span>
+                        </div>
+                      </DropdownItem>
+                    ))}
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
+              <div className="flex gap-2 h-[24px] w-full items-center justify-center p-2">
+                {game?.demo && (
+                  <>
+                    <Button
+                      className="py-2 px-4 text-[#FFFFFFB7] bg-[var(--background-secondary)]"
+                      onPress={() => onPlay(true)}
+                      isLoading={loading || !game?.name}
+                    >
+                      {t("fun-play")}
+                    </Button>
+                  </>
+                )}
+                <Button
+                  className="py-2 px-4 bg-[var(--green-color)] text-[#05080A]"
+                  onPress={() => onPlay(false)}
+                  isLoading={loading || !game?.name}
+                >
+                  {t("Real play")}
+                </Button>
+              </div>
             </div>
           </>
         ))}
@@ -243,7 +290,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
         type="button"
         className="bg-[#0006] p-[6px] rounded-[10px] absolute top-[10px] left-[10px]"
         onClick={() => setFullscreen((p) => !p)}
-        title="Full Screen Mode"
+        title={t("Full Screen Mode")}
       >
         <MdFullscreen size={24} />
       </button>

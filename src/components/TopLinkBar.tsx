@@ -26,8 +26,8 @@ export default function TopLinkBar() {
   const getLinkClasses = (linkKey: string) => {
     const isActive = activeLink === linkKey;
     return isActive
-      ? "text-[var(--primary-color)] text-lg font-bold px-4 py-2 rounded-lg border-2 border-[var(--primary-color)]"
-      : "text-white text-lg font-bold px-4 py-2 rounded-lg";
+      ? "text-[var(--primary-color)] text-lg font-semibold px-4 py-2 rounded-lg border-2 border-[var(--primary-color)]"
+      : "text-white text-lg font-semibold px-4 py-2 rounded-lg";
   };
 
   return (

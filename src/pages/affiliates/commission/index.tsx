@@ -58,15 +58,15 @@ export default function Commission() {
     <div className="flex flex-col p-6 gap-6">
       {/* Header */}
       <div className="flex flex-col gap-3">
-        <h1 className="text-white text-[20px] font-bold">{t("Commission")}</h1>
+        <h1 className="text-white text-[20px] font-semibold">{t("Commission")}</h1>
         <p className="text-white text-[16px] leading-[24px] max-w-3xl">
           {t("View and track the earnings you've generated through your referrals. This section provides a clear breakdown of your commissions and payouts — keeping you in control of your earnings.")}
         </p>
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4">
+        <div className="flex w-full md:w-auto items-center gap-3">
           <div className="flex items-center gap-2">
             <img src={`/images/icons/icons/sort.png`} alt="Sort" className="w-4 h-4 text-white" />
             <span className="text-white text-[14px]">{t("Sort")}</span>
@@ -91,13 +91,13 @@ export default function Commission() {
           </Select>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex w-full md:w-auto items-center gap-3">
           <button className="py-3 px-4 bg-[var(--background)] border border-[var(--background-secondary)] rounded-lg cursor-pointer transition-colors">
             <img src="/images/icons/icons/filter.png" alt="Filter" className="w-[15px] h-[17px] text-white" />
           </button>
           <Button
             onPress={handleTransferToBalance}
-            className="bg-[var(--green-color)] text-white font-medium px-6 py-2 rounded-lg hover:opacity-90 transition-opacity"
+            className="bg-[var(--green-color)] w-full md:w-auto text-white font-medium px-6 py-2 rounded-lg hover:opacity-90 transition-opacity"
           >
             {t("Transfer to Balance")}
           </Button>
@@ -110,7 +110,7 @@ export default function Commission() {
           <Table className="w-full"
           removeWrapper
             classNames={{
-              th: "text-[9px] md:text-[14px] text-white md:py-3 bg-[var(--background-secondary)]",
+              th: "text-[16px] text-white md:py-3 bg-[var(--background-secondary)]",
             }}
           >
             <TableHeader>
@@ -138,7 +138,7 @@ export default function Commission() {
                         )}
                         {!item.icon && currencyInfo && (
                           <div className="w-6 h-6 rounded-full bg-[var(--green-color)] flex items-center justify-center">
-                            <span className="text-white text-[10px] font-bold">
+                            <span className="text-white text-[10px] font-semibold">
                               {currencyInfo.symbol || item.currency}
                             </span>
                           </div>
@@ -151,7 +151,7 @@ export default function Commission() {
                         <span className="text-white text-[14px]">{item.available.toFixed(8)}</span>
                         {item.icon && (
                           <img
-                            src={item.icon.startsWith('/') ? item.icon : `${BASE_URL}${item.icon}`}
+                            src={item.icon}
                             alt={item.currency}
                             className="w-4 h-4 rounded-full"
                           />
@@ -163,7 +163,7 @@ export default function Commission() {
                         <span className="text-white text-[14px]">{item.withdrawn.toFixed(8)}</span>
                         {item.icon && (
                           <img
-                            src={item.icon.startsWith('/') ? item.icon : `${BASE_URL}${item.icon}`}
+                            src={item.icon}
                             alt={item.currency}
                             className="w-4 h-4 rounded-full"
                           />
@@ -175,7 +175,7 @@ export default function Commission() {
                         <span className="text-white text-[14px]">{item.lifetime.toFixed(8)}</span>
                         {item.icon && (
                           <img
-                            src={item.icon.startsWith('/') ? item.icon : `${BASE_URL}${item.icon}`}
+                            src={item.icon}
                             alt={item.currency}
                             className="w-4 h-4 rounded-full"
                           />

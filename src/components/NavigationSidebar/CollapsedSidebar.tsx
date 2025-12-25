@@ -12,7 +12,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@heroui/react";
-import { RTL_LANGUAGES } from "@/config/constants";
+import { BASE_URL, RTL_LANGUAGES } from "@/config/constants";
 import { Link } from "../common";
 import LocaleSelection from "@/components/LocaleSelection";
 
@@ -78,7 +78,7 @@ export default function CollapsedSidebar({
 
   // Get categories based on selected tab
   const categoriesWithIcons = useMemo(() => {
-    return selectedTab === "casino" ? casinoCategories : liveCasinoCategories;
+    return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
   }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   return (
@@ -92,16 +92,16 @@ export default function CollapsedSidebar({
           }}
         >
           <img
-            src="/images/icons/menu.png"
+            src={`${BASE_URL}/images/icons/menu.svg`}
             alt="sidebararrow"
-            className={`w-[13px] h-[13px] duration-300 brightness-0 invert transition-transform ${isRTL ? 'scale-x-[-1]' : ''
+            className={`w-[16px] h-[16px] duration-300 brightness-0 invert transition-transform ${isRTL ? 'scale-x-[-1]' : ''
               }`}
           />
         </button>
-     
+
       </div>
 
-      
+
       {/* Scrollable Content Area */}
       <div className="flex-1 flex flex-col overflow-y-auto min-h-0 scrollbar-hide">
         {/* Navigation Icons */}
@@ -122,7 +122,7 @@ export default function CollapsedSidebar({
               title={item.title}
             >
               {item.icon ? (item.icon) : (<img
-                src={item.navIcon || "/images/sidebar/casino.svg"}
+                src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
                 alt={item.title}
                 className="w-6 h-6 flex-shrink-0 object-contain"
               />)}
@@ -150,7 +150,7 @@ export default function CollapsedSidebar({
               title={item.title}
             >
               {item.icon ? (item.icon) : (<img
-                src={item.navIcon || "/images/sidebar/casino.svg"}
+                src={item.navIcon || `${BASE_URL}/images/icons/menu.png`}
                 alt={item.title}
                 className="w-6 h-6 flex-shrink-0 object-contain"
               />)}
@@ -159,7 +159,7 @@ export default function CollapsedSidebar({
         </div>
 
         {/* Category Icons */}
-        {/* <div className="flex flex-col items-center py-4 gap-2">
+        <div className="flex flex-col items-center py-4 gap-2">
           {categoriesWithIcons.map((category, index) => (
             <Link
               key={index}
@@ -174,7 +174,7 @@ export default function CollapsedSidebar({
               />
             </Link>
           ))}
-        </div> */}
+        </div>
       </div>
 
       {/* Locale Selection Button - Bottom */}

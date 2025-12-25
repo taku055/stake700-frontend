@@ -11,12 +11,12 @@ export default function FAQ() {
 
   return (
     <div
-      className={`w-full font-["Proxima Nova"] py-8 md:py-12 mx-auto ${
+      className={`w-full font-["Proxima Nova"] py-8 px-3 md:px-0 md:py-12 mx-auto ${
         isRTL ? "text-right" : "text-left"
       }`}
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <h1 className="text-[#ffffff] text-[20px] font-weight-600 leading-[24px] mb-8 flex items-center gap-2 h-[28px]">
+      <h1 className="text-[#ffffff] text-[20px] font-semibold leading-[24px] mb-8 flex items-center gap-2 h-[28px]">
         {<img src={'images/icons/icons/info-icon.svg'} className="w-8 h-8" alt="FAQ"/>}{t("title") || "Still Have Questions?"}
       </h1>
 

@@ -170,16 +170,18 @@ export const PAYMENT_METHOD_LIST = [
 
 export const CURRENCY_LIST: {
   symbol: string;
+  code: string;
   name: string;
   unit: eTransactionCurrency;
 }[] = [
-  { symbol: "$", name: "US Dollar", unit: eTransactionCurrency.USD },
+  { symbol: "$", code: "USD", name: "US Dollar", unit: eTransactionCurrency.USD },
   {
-    symbol: "£",
-    name: "Syrian Pound",
-    unit: eTransactionCurrency.SYP,
+    symbol: "€",
+    code: "EUR",
+    name: "Euro",
+    unit: eTransactionCurrency.EUR,
   },
-  { symbol: "₺", name: "Turkish Lira", unit: eTransactionCurrency.TRY },
+  { symbol: "₺", code: "TRY", name: "Turkish Lira", unit: eTransactionCurrency.TRY },
 ];
 
 export const DEFAULT_CURRENCY_SYMBOL =

@@ -11,26 +11,26 @@ export default function FAQ() {
 
   const faqItems = [
     {
-      question: t("What is the Stake Affiliate Program?"),
-      answer: t("The Stake Affiliate Program allows you to earn commissions by referring new players."),
+      question: t("What is the Betalarab Affiliate Program?"),
+      answer: t("The Betalarab Affiliate Program allows you to earn commissions by referring new players."),
     },
     {
-      question: t("Who can join the Stake Affiliate Program?"),
-      answer: t("Anyone can join the Stake Affiliate Program."),
+      question: t("Who can join the Betalarab Affiliate Program?"),
+      answer: t("Anyone can join the Betalarab Affiliate Program."),
     },
     {
-      question: t("How do I join the Stake Affiliate Program?"),
+      question: t("How do I join the Betalarab Affiliate Program?"),
       answer: t("You can join by signing up and getting your referral link."),
     },
     {
-      question: t("What are the benefits of joining the Stake Affiliate Program?"),
+      question: t("What are the benefits of joining the Betalarab Affiliate Program?"),
       answer: t("You earn commissions on all bets placed by your referrals."),
     },
   ];
 
   return (
     <div className="flex flex-col p-6 gap-6">
-      <h1 className="text-white text-[32px] font-bold">{t("FAQ")}</h1>
+      <h1 className="text-white text-[32px] font-semibold">{t("FAQ")}</h1>
 
       {/* Tabs */}
       <div className="flex">
@@ -72,8 +72,8 @@ export default function FAQ() {
                 )}
               </button>
               {isExpanded && (
-                <div className="px-4 pb-4 pt-4">
-                  <p className="text-white text-[14px] leading-[20px]">{item.answer}</p>
+                <div className="px-4 pb-4 pt-4 border-t-[2px] border-[var(--bar-background-color)]">
+                  <p className="text-white/70 text-[16px] leading-[24px]">{item.answer}</p>
                 </div>
               )}
             </div>

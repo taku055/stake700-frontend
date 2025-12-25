@@ -8,4 +8,3 @@ export const signupStep3OpenedState = signal<boolean>(false);
 
 export const welcomeDialogOpenedState = signal<boolean>(false);
 
-export const walletDialogOpenedState = signal<boolean>(false);

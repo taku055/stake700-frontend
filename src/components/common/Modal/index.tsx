@@ -299,7 +299,7 @@ function Wrapper({ children }: { children: preact.ComponentChildren }) {
     <div
       ref={wrapperRef}
       className={[
-        "absolute inset-0 flex justify-center p-4",
+        "absolute inset-0 flex justify-center p-1",
         alignClass,
         classNames?.wrapper,
       ]

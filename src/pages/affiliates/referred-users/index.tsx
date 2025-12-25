@@ -83,7 +83,7 @@ export default function ReferredUsers() {
     <div className="flex flex-col p-6 gap-6">
       {/* Header */}
       <div className="flex flex-col gap-3">
-        <h1 className="text-white text-[20px] font-bold">{t("Referred Users")}</h1>
+        <h1 className="text-white text-[20px] font-semibold">{t("Referred Users")}</h1>
         <p className="text-white text-[16px] leading-[24px] max-w-3xl">
           {t("Track all the users who joined through your referral link. Here you can see their activity and gameplay - making it easy to monitor the growth of your network and the benefits you're gaining from referrals.")}
         </p>
@@ -113,36 +113,36 @@ export default function ReferredUsers() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-[var(--background)] rounded-lg p-4 flex flex-col gap-2">
+      <div className="grid md:grid-cols-[repeat(4,auto)] grid-cols-2 bg-[var(--background)] rounded-lg gap-4">
+        <div className="p-4 flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span className="text-white text-[14px]">{t("First Time Deposits (FTD)")}</span>
-            <Info className="w-4 h-4 text-white cursor-help" />
+            <Info className="w-4 min-w-4 h-4 text-white cursor-help" />
           </div>
-          <span className="text-white text-[24px] font-bold">{statistics.firstTimeDeposits}</span>
+          <span className="text-white text-[24px] font-semibold">{statistics.firstTimeDeposits}</span>
         </div>
-        <div className="bg-[var(--background)] rounded-lg p-4 flex flex-col gap-2">
+        <div className="p-4 flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span className="text-white text-[14px]">{t("Monthly FTD")}</span>
-            <Info className="w-4 h-4 text-white cursor-help" />
+            <Info className="w-4 min-w-4 h-4 text-white cursor-help" />
           </div>
-          <span className="text-white text-[24px] font-bold">{statistics.monthlyFTD}</span>
+          <span className="text-white text-[24px] font-semibold">{statistics.monthlyFTD}</span>
         </div>
-        <div className="bg-[var(--background)] rounded-lg p-4 flex flex-col gap-2">
+        <div className="p-4 flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span className="text-white text-[14px]">{t("Total Deposits")}</span>
-            <Info className="w-4 h-4 text-white cursor-help" />
+            <Info className="w-4 min-w-4 h-4 text-white cursor-help" />
           </div>
-          <span className="text-white text-[24px] font-bold">
+          <span className="text-white text-[24px] font-semibold">
             {DEFAULT_CURRENCY_SYMBOL}{statistics.totalDeposits.toFixed(2)}
           </span>
         </div>
-        <div className="bg-[var(--background)] rounded-lg p-4 flex flex-col gap-2">
+        <div className="p-4 flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span className="text-white text-[14px]">{t("VIP Users")}</span>
-            <Info className="w-4 h-4 text-white cursor-help" />
+            <Info className="w-4 min-w-4 h-4 text-white cursor-help" />
           </div>
-          <span className="text-white text-[24px] font-bold">{statistics.vipUsers}</span>
+          <span className="text-white text-[24px] font-semibold">{statistics.vipUsers}</span>
         </div>
       </div>
 

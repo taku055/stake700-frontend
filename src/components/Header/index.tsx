@@ -1,9 +1,10 @@
 import { userState } from "@/state/userState";
 import { useMediaQuery } from "usehooks-ts";
-import { mobileMediaQuery, OFFICIAL_LINKS, RTL_LANGUAGES } from "@/config/constants";
+import { BASE_URL, mobileMediaQuery, OFFICIAL_LINKS, RTL_LANGUAGES } from "@/config/constants";
 import { Button } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
-import { registerOpenedState, signupStep1OpenedState, walletDialogOpenedState, welcomeDialogOpenedState } from "@/state/registerOpenedState";
+import { registerOpenedState, signupStep1OpenedState, welcomeDialogOpenedState } from "@/state/registerOpenedState";
+import { depositDialogOpenedState, walletDialogOpenedState } from "@/state/walletDialogState";
 import WalletBox from "./WalletBox";
 // import WalletBox from "@/components/WalletBox";
 import ProfileButton from "./ProfileButton";
@@ -23,6 +24,8 @@ import { accessTokenState } from "@/state/accessTokenState";
 import { useLocation } from "preact-iso";
 import axios from "axios";
 import { useCallback } from "preact/hooks";
+import ProfileMenu from "../ProfileMenu";
+import { profileMenuOpenedState } from "@/state/profilemenuState";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
@@ -57,46 +60,14 @@ export default function Header() {
   }, [userState, setAxiosAuthToken, accessTokenState]);
 
   return (
-    <header className="w-full flex items-center justify-center">
-      <div className="flex flex-col items-center w-full px-2 py-1 max-w-[1200px]">
-        {/* {alertVisible && (
-          <div className="flex flex-row items-center justify-center w-full p-5 border-t border-[var(--pink-color)] rounded-sm bg-[var(--bar-background-color)] relative">
-            <div className="flex flex-row items-center gap-3 text-[12px] leading-[150%] text-[var()]">
-              <span>{maintenanceState.value}</span>
-            </div>
-            <a
-              className="absolute right-1 top-1"
-              onClick={() => setAlertVisible(false)}
-            >
-              <XIcon color="white" size={16} />
-            </a>
-          </div>
-        )} */}
-        <div className="flex flex-row items-center justify-between w-full py-2 gap-1 overflow-auto">
-          <div className="flex flex-row items-center gap-2">
-            <button
-              onClick={() => {
-                navigationSidebarOpenState.value = !navigationSidebarOpenState.value;
-              }}
-              className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-700 transition-colors text-white md:hidden"
-              aria-label={t("Toggle navigation menu")}
-            >
-              <Menu size={24} />
-            </button>
-            <a href={modifyHref("/")}>
+    <header className="z-[100] bg-[var(--background)] w-full mx-auto h-[60px] flex items-center justify-center ">
+      <div className="flex flex-col items-center px-2 py-1 max-w-[1200px] w-full mx-auto">
 
-              {/* <img
-                src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
-                  import.meta.env.VITE_SITE_NAME as string
-                ).toLowerCase()}/logo.png`}
-                className="h-[24px] md:h-[36px] object-contain md:max-w-[200px]"
-                alt={import.meta.env.VITE_SITE_NAME as string}
-              /> */}
-              {userState.value?.id ? (
-                <img src="/images/icons/icons/logo-in.svg" alt="Logo" className="h-[24px] md:h-[36px] object-contain md:max-w-[200px]" />
-              ) : (
-                <img src="/images/icons/icons/logo.svg" alt="Logo" className="h-[24px] md:h-[36px] object-contain md:max-w-[200px]" />
-              )}
+        <div className="flex flex-row items-center justify-between w-full h-[60px] gap-1 overflow-hidden">
+          <div className="flex flex-row items-center gap-2">
+
+            <a href={modifyHref("/")}>
+              {isMobile ? <img src={`${BASE_URL}/logo-mini.png`} alt="Logo" className="h-[36px] object-contain max-w-[200px]" /> : <img src={`${BASE_URL}/images/icons/logo.svg`} alt="Logo" className="h-[36px] object-contain max-w-[200px]" />}
             </a>
           </div>
           {/* <div className="ml-auto hidden md:block!">
@@ -107,28 +78,28 @@ export default function Header() {
               <WalletBox />
             </div>
           )}
-          <div className={`${isRTL ? 'mr-auto' : 'ml-auto'} flex flex-row items-center gap-1 md:gap-2`}>
+          <div className={`${isRTL ? 'mr-auto' : 'ml-auto'} text-[16px] leading-[24px] flex flex-row items-center gap-1 md:gap-2`}>
             {!userState.value?.id ? (
               <>
                 <Button
                   variant="light"
-                  className="btn"
+                  className="btn text-[16px] leading-[24px]"
                   size="sm"
-                  style={{ background: '#ffffff', color: '#232323', width: '80px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
+                  style={{ background: '#ffffff', fontSize: '16px', leading: '24px', color: '#232323', width: '80px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
                   onPress={() => (loginOpenedState.value = true)}
                 >
                   {t("login")}
                 </Button>
                 <Button
-                  className="btn"
+                  className="btn text-[16px] leading-[24px]"
                   size="sm"
-                  style={{ background: '#01A825', color: '#ffffff', width: '100px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
+                  style={{ background: '#01A825', fontSize: '16px', leading: '24px', color: '#ffffff', width: '100px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
                   onPress={() => (signupStep1OpenedState.value = true)}
                 // onPress={() => (welcomeDialogOpenedState.value = true)}
                 >
                   {t("register")}
                 </Button>
-                <Button
+                {/* <Button
                   className="btn"
                   size="sm"
                   style={{ background: '#01A825', color: '#ffffff', width: '100px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
@@ -136,32 +107,35 @@ export default function Header() {
                 // onPress={() => (welcomeDialogOpenedState.value = true)}
                 >
                   {t("walletDialog")}
-                </Button>
+                </Button> */}
               </>
             ) : (
               <>
 
-                <div className="flex flex-row items-center gap-2">
-                  <SearchWidget />
+                <div className="flex flex-row items-center">
+                  {!isMobile && <SearchWidget />}
 
-                  <ProfileButton />
-
+                  <div className="relative">
+                    <ProfileButton />
+                    <ProfileMenu />
+                  </div>
                   <button
                     className="flex items-center justify-center w-[44px] h-[44px]"
                     onClick={() => {
                       // console.log("ring");
                     }}
                   >
-                    <img src="/images/icons/others/ring.svg" alt={t("ring")} className="w-[20px] h-[20px]" />
+                    <img src={`${BASE_URL}/images/icons/ring.svg`} alt={t("ring")} className="w-[20px] h-[20px]" />
                   </button>
 
-                  <button
+                  {!isMobile && <button
                     className="flex items-center justify-center w-[44px] h-[44px]"
                     onClick={() => onLogout()}
                   // onPress={() => (welcomeDialogOpenedState.value = true)}
                   >
-                    <img src="/images/icons/others/log-out.svg" alt={t("logout")} className="w-[20px] h-[20px]" />
+                    <img src={`${BASE_URL}/images/icons/log-out.svg`} alt={t("logout")} className="w-[20px] h-[20px]" />
                   </button>
+                  }
                 </div>
                 {/* <Button
                   className="btn"

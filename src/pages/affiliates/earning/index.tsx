@@ -164,14 +164,14 @@ export default function Earning() {
       {userState.value?.id && !userState.value?.isAgent && (
         <div className="flex gap-2 justify-end">
           <Button
-            className="bg-[var(--primary-color)] text-[#0B0E1D] text-[14px] font-bold rounded-full flex items-center pt-[4px] w-full md:w-[200px]"
+            className="bg-[var(--primary-color)] text-[#0B0E1D] text-[14px] font-semibold rounded-full flex items-center pt-[4px] w-full md:w-[200px]"
             onClick={onClaimDailyBonus}
             isLoading={loading}
           >
             {t("Claim Daily Bonus")}
           </Button>
           <Button
-            className="bg-[var(--primary-color)] text-[#0B0E1D] text-[14px] font-bold rounded-full flex items-center pt-[4px] w-full md:w-[200px]"
+            className="bg-[var(--primary-color)] text-[#0B0E1D] text-[14px] font-semibold rounded-full flex items-center pt-[4px] w-full md:w-[200px]"
             onClick={onClaimMonthlyBonus}
             isLoading={loading}
           >

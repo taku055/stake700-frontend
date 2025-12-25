@@ -9,6 +9,12 @@ import { t, useTranslations } from "@/context/I18nContext";
 import { useMemo } from "preact/hooks";
 import { userState } from "@/state/userState";
 import { Users } from "lucide-preact";
+import { BASE_URL, mobileMediaQuery } from "@/config/constants";
+import { useMediaQuery } from "usehooks-ts";
+
+function AffiliateTabSelector() {
+  
+}
 
 function AffiliateSidebar() {
   const location = useLocation();
@@ -16,11 +22,11 @@ function AffiliateSidebar() {
   const t = useTranslations("Affiliate");
 
   const navItems = [
-    { name: "Overview", path: "/affiliates" },
-    { name: "Campaigns", path: "/affiliates/campaigns" },
-    { name: "Commission", path: "/affiliates/commission" },
-    { name: "Referred Users", path: "/affiliates/referred-users" },
-    { name: "FAQ", path: "/affiliates/faq" },
+    { name: "Overview", path: "/affiliate" },
+    { name: "Campaigns", path: "/affiliate/campaigns" },
+    { name: "Commission", path: "/affiliate/commission" },
+    { name: "Referred Users", path: "/affiliate/referred-users" },
+    { name: "FAQ", path: "/affiliate/faq" },
   ];
 
   const selectedNavItem = useMemo(() => {
@@ -34,7 +40,7 @@ function AffiliateSidebar() {
   }, [navItems, location.path]);
 
   return (
-    <div className="w-[180px] min-w-[180px] h-full   bg-[var(--background-secondary)] flex flex-col rounded-lg">
+    <div className="w-[180px] min-w-[180px] h-full bg-[var(--background-secondary)] flex flex-col rounded-lg">
       {/* Navigation Items */}
       <div className="flex flex-col py-2">
         {navItems.map((item) => {
@@ -58,7 +64,8 @@ function AffiliateSidebar() {
 }
 
 export default function AffiliatesLayout() {
-  if (
+  const isMobile = useMediaQuery(mobileMediaQuery);
+   if (
     !userState.value?.id ||
     userState.value?.isAgent
     // !userState.value?.isCallGroup
@@ -68,14 +75,14 @@ export default function AffiliatesLayout() {
 
   return (
     <>
-      <div className="w-[1200px] mx-auto flex flex-col gap-6">
+      <div className="max-w-[1200px] mx-auto flex flex-col p-2 md:px-0 gap-6">
         {/* Header */}
-        < div className="flex w-full h-[60px] items-center gap-3 pt-[24px]">
-          <img src="/images/icons/icons/affiliate.svg" alt="affiliate" className="w-5 h-5 text-white" />
+        <div className="flex w-full items-center gap-3 pt-[24px]">
+          <img src={`${BASE_URL}/images/icons/affiliate.svg`} alt="affiliate" className="w-5 h-5 text-white" />
           <span className="text-white text-[24px] leading-[36px] font-semibold">{t("Affiliate Program")}</span>
         </div >
         <div className="flex flex-row min-h-screen gap-6">
-          <AffiliateSidebar />
+          {isMobile ?(<></>) : (<AffiliateSidebar />)}
           <div className="flex-1 overflow-y-auto bg-[var(--background-secondary)] rounded-lg">
             <Router>
               <Route path="/" component={Overview} />
@@ -85,9 +92,9 @@ export default function AffiliatesLayout() {
               <Route path="/faq" component={FAQ} />
               <Route path="*" component={NotFound404} />
             </Router>
-          </div>
+          </div>                    
         </div>
       </div>
     </>
   );
-}
+} 

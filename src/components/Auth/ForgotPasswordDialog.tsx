@@ -6,6 +6,7 @@ import { apiForgotPassword } from "@/api/account/apiForgotPassword";
 import { Settings } from "lucide-preact";
 import { useTranslations } from "@/context/I18nContext";
 import { Button } from "@heroui/react";
+import { BASE_URL } from "@/config/constants";
 
 interface IForgotPasswordDialogProps {
   isOpen: boolean;
@@ -85,7 +86,7 @@ export default function ForgotPasswordDialog({
               <div className="h-[68px] flex-1">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("email")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="email"

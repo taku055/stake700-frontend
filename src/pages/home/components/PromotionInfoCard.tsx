@@ -20,7 +20,7 @@ export const PromotionInfoCard: FunctionalComponent<PromotionInfoCardProps> = ({
       className={`flex flex-col gap-4 bg-[var(--bar-background-color)] rounded-lg p-12 items-center`}
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <h3 className="text-[var(--primary-color)] text-2xl font-bold text-center uppercase">{title}</h3>
+      <h3 className="text-[var(--primary-color)] text-2xl font-semibold text-center uppercase">{title}</h3>
       <img
         src={image}
         alt={title}

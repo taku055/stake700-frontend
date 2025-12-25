@@ -21,6 +21,7 @@ import { forgotOpenedState } from "@/state/forgotOpenedState";
 import { registerOpenedState } from "@/state/registerOpenedState";
 import { Eye, EyeOff } from "lucide-preact";
 import { signupStep1OpenedState } from "@/state/registerOpenedState";
+import { BASE_URL } from "@/config/constants.ts";
 
 
 interface ILoginComponentProps {
@@ -116,14 +117,14 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
       }}
     >
       <ModalContent
-        className="bg-[var(--background)] w-[630px] h-[716px] max-w-[630px] max-h-[716px] rounded-[8px] overflow-y-auto"
+        className="bg-[var(--background)] w-[630px] h-[716px] max-w-[630px] max-h-full rounded-[8px] overflow-y-auto"
       >
         <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
           <img
             // src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
             //   import.meta.env.VITE_SITE_NAME as string
             // ).toLowerCase()}/logo.png`}
-            src="/images/icons/icons/logo.svg"
+            src={`${BASE_URL}/images/icons/logo.svg`}
             className="h-[36px] md:h-[36px] md:max-w-[180px]"
             alt={import.meta.env.VITE_SITE_NAME as string}
           />
@@ -144,7 +145,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Email or Username")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="text"
@@ -158,9 +159,9 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                 />
               </div>
               <div className="h-[84px] w-full flex flex-col pt-[16px]">
-                <label className="text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
+                <label className="text-[#FFFFFF] flex text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Password")}</span>
-                  <img src="/images/icons/icons/mark.svg" alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type={showPassword ? "text" : "password"}
@@ -173,12 +174,12 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   endContent={
                     showPassword ? (
                       <EyeOff 
-                        className="w-5 h-5 text-white/70 hover:text-white transition-colors cursor-pointer" 
+                        className="w-5 h-5 text-white transition-colors cursor-pointer" 
                         onClick={() => setShowPassword(!showPassword)}
                       />
                     ) : (
                       <Eye 
-                        className="w-5 h-5 text-white/70 hover:text-white transition-colors cursor-pointer" 
+                        className="w-5 h-5 text-white transition-colors cursor-pointer" 
                         onClick={() => setShowPassword(!showPassword)}
                       />
                     )
@@ -191,7 +192,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   onClose();
                   forgotOpenedState.value = true;
                 }}
-                className="text-left text-[16px] leading-[24px] font-weight-600 h-[24px] text-[#FFFFFFB2] hover:text-white transition-colors mt-[8px]"
+                className="text-left text-[16px] leading-[24px] font-semibold h-[24px] text-[#FFFFFFB2] hover:text-white transition-colors mt-[8px]"
               >
                 {t("forgot_password")}
               </button>
@@ -211,7 +212,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
             <div className="w-full h-[240px] gap-[24px] flex flex-col">
               <div className="flex w-full h-[24px] items-center">
                 <div className="flex-1 h-[1px] bg-[var(--bar-background-color)]"></div>
-                <span className="w-[38px] px-[8px] text-center text-[16px] text-[#FFFFFF] font-weight-400 leading-[24px] uppercase">OR</span>
+                <span className="w-[38px] px-[8px] text-center text-[16px] text-[#FFFFFF] font-normal leading-[24px] uppercase">OR</span>
                 <div className="flex-1 h-[1px] bg-[var(--bar-background-color)]"></div>
               </div>
 
@@ -228,7 +229,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                 className="w-full flex items-center justify-center text-white text-[14px] bg-[var(--background-secondary)] hover:bg-[#fff2] py-[12px] px-[28px] h-[48px] rounded-lg"
                 radius="sm"
               >
-                <img src="/images/icons/icons/google.svg" alt="Google" className="w-[20px] h-[20px]" />
+                <img src={`${BASE_URL}/images/icons/google.svg`} alt="Google" className="w-[20px] h-[20px]" />
                 {t("sign_in_with_google")}
               </Button>
 
@@ -242,7 +243,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
             </div>
 
             <div className="text-center mt-[40px]">
-              <span className="text-[16px] font-weight-400 text-[#FFFFFFB2] leading-[24px] h-[24px]">
+              <span className="text-[16px] font-normal text-[#FFFFFFB2] leading-[24px] h-[24px]">
                 <span>{t("don_t_have_an_account")}?</span>{" "}
                 <button
                   type="button"
@@ -250,7 +251,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                     onClose();
                     signupStep1OpenedState.value = true;
                   }}
-                  className="text-[16px] font-weight-600 text-[var(--green-color)] hover:underline leading-[24px] h-[24px]"
+                  className="text-[16px] font-semibold hover:underline leading-[24px] h-[24px]"
                 >
                   {t("register_an_account")}
                 </button>

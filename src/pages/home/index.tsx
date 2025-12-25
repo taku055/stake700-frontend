@@ -1,12 +1,6 @@
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
-import { PromotionSection } from "../casino/PromotionSection";
-import { WinnersTabGroup } from "./components/WinnersTabGroup";
-import { BetPromotionCard } from "./components/BetPromotionCard";
-import { PromotionInfoCard } from "./components/PromotionInfoCard";
-import { getBetPromotionCards, getPromotionInfoCards } from "./data";
-import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { Button } from "@heroui/react";
 import { EmblaBanner } from "./components/EmblaBanner";
 import { Search } from "lucide-preact";
@@ -17,6 +11,11 @@ import TrendingSports from "@/components/TrendingSports";
 import PromotionsGroup from "@/components/PromotionsGroup";
 import EmulateBetting from "@/components/EmulateBetting";
 import FAQ from "@/pages/faq";
+import { searchWidgetState } from "@/state/searchWidgetState";
+import { Select, SelectItem } from "@heroui/react";
+import VipCard from "@/components/Vip-club/VipCard";
+import { useMediaQuery } from "usehooks-ts";
+import { mobileMediaQuery } from "@/config/constants";
 
 export default function PageComponent() {
   const location = useLocation();
@@ -36,21 +35,40 @@ export default function PageComponent() {
   }
 
   const t = useTranslations("HomePage");
-  const { handleNavigate } = useAffiliateNavigation();
-
-  const betPromotionCards = getBetPromotionCards(t);
-  const promotionInfoCards = getPromotionInfoCards(t);
+  const isMobile = useMediaQuery(mobileMediaQuery);
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="flex flex-col items-center justify-center w-full gap-4">
-      <EmblaBanner />
-      <div className="flex flex-col w-[1200px]">
-        <div className="flex w-full h-[52px]">
-          <div className="flex w-full bg-[var(--background-secondary)] items-center justify-center p-0 border-[2px] border-[var(--background-tertiary)] rounded-[8px]">
-            <div className="flex h-full bg-[var(--background-secondary)] items-center justify-center border-r-[2px] border-[var(--background-tertiary)] min-w-[108px]">
+    <div className="flex flex-col z-0 items-center justify-center w-full font-weight-300 gap-6 ">
+      <div className="flex flex-col">
+        {isMobile && (
+          <VipCard />
+        )}
+        <EmblaBanner />
+      </div>
+
+      <div className="flex flex-col max-w-[1200px] w-full gap-6">
+        <div className="flex w-full h-[52px] px-3 md:px-0 ">
+          <div className="flex w-full h-full bg-[var(--background-secondary)] items-center justify-center border-[2px] border-[var(--background-tertiary)] overflow-hidden rounded-[8px]">
+            <Select
+              defaultSelectedKeys={['casino']}
+              onSelectionChange={(e) => {
+                // console.log(e);
+              }}
+              classNames={{
+                base: "flex w-auto items-center justify-center bg-[var(--background-secondary)] text-[16px] leading-[24px] hover:bg-[var(--background-secondary)] focus:bg-[var(--background-secondary)] h-full border-r-[2px] border-[var(--background-tertiary)] bg-transparent",
+                trigger: "w-auto whitespace-nowrap min-w-[108px] bg-[var(--background-secondary)] text-[16px] leading-[24px]",
+                listbox: "w-auto",
+                value: "w-auto whitespace-nowrap",
+                popoverContent: "w-auto",
+              }}>
+              <SelectItem key="casino" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Casino</SelectItem>
+              <SelectItem key="live-casino" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Live Casino</SelectItem>
+              {/* <SelectItem key="sports">Sports</SelectItem> */}
+            </Select>
+            {/* <div className="flex h-full bg-[var(--background-secondary)]  font-light items-center justify-center border-r-[2px] border-[var(--background-tertiary)] min-w-[108px]">
               Casino
-            </div>
+            </div> */}
             <div className="flex items-center justify-center p-2">
               <Search size={16} className="w-[20px] h-[20px]" />
             </div>
@@ -60,6 +78,10 @@ export default function PageComponent() {
               placeholder="Search your game"
               value={searchQuery}
               onChange={(e: any) => setSearchQuery(e.target.value)}
+              onFocus={() => {
+                // searchWidgetState.value = true;
+              }}
+              className="flex flex-1 w-full h-full"
               variant="bordered"
               classNames={{
                 inputWrapper:

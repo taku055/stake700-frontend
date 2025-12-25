@@ -1,7 +1,9 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { Search } from "lucide-preact";
-import { navigationSidebarOpenState } from "@/state/navigationSidebarState";
+import { ChevronLeft, ChevronRight, Search, ChevronUp, ChevronDown } from "lucide-preact";
+import { Link } from "../common";
+import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
+import NavigationItems from "./NavigationItems";
 import CategoryItems from "./CategoryItems";
 import { useState, useMemo, useEffect } from "preact/hooks";
 import { Input } from "@/components/common";
@@ -9,23 +11,39 @@ import LocaleSelection from "@/components/LocaleSelection";
 import { localeState } from "@/state/localeState";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
-import { RTL_LANGUAGES } from "@/config/constants";
-import { Link } from "../common";
+import { BASE_URL, mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
+import { useLocation } from "preact-iso";
+import { options } from "@/components/LocaleSelection";
+import { useMediaQuery } from "usehooks-ts";
 
 interface MobileDrawerProps {
   mainNavItems: Array<{
     title: string;
-    href: string;
+    href?: string;
     key: string;
     icon: any;
     navIcon?: string;
+    expandable?: boolean;
+    onclick?: () => void;
+    expandableItems?: Array<{
+      title: string;
+      href?: string;
+      icon: string;
+    }>;
   }>;
   ExtraNavItems: Array<{
     title: string;
-    href: string;
+    href?: string;
     key: string;
     icon: any;
     navIcon?: string;
+    expandable?: boolean;
+    onclick?: () => void;
+    expandableItems?: Array<{
+      title: string;
+      href?: string;
+      icon: string;
+    }>;
   }>;
   selectedMainNavKey?: string;
   categories: Array<{
@@ -45,7 +63,9 @@ export default function MobileDrawer({
 }: MobileDrawerProps) {
   const t = useTranslations("Header");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTab, setSelectedTab] = useState<"casino" | "live-casino">("casino");
+  const [selectedTab, setSelectedTab] = useState<"casino" | "live-casino" | null>(null);
+  const location = useLocation();
+  const [isExpanded, setIsExpanded] = useState<Record<string, boolean>>({});
   const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
     name: string;
     path: string;
@@ -56,17 +76,29 @@ export default function MobileDrawer({
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const { categories: casinoCategories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
   const { categories: liveCasinoCategories } = useLiveCasinoCategories();
+  const isMobile = useMediaQuery(mobileMediaQuery);
+
+
+  useEffect(() => {
+    if (location.path.includes("/casino")) {
+      setSelectedTab("casino");
+    } else if (location.path.includes("/live-casino")) {
+      setSelectedTab("live-casino");
+    } else {
+      setSelectedTab(null);
+    }
+
+  }, [location.path]);
+
 
   // Get categories based on selected tab
   const currentCategories = useMemo(() => {
-    return selectedTab === "casino" ? casinoCategories : liveCasinoCategories;
+    return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
   }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = useMemo(() => {
-    return mainNavItems.filter((item) =>
-      ["slots", "live-casino", "sport", "promotions"].includes(item.key)
-    );
+    return mainNavItems;
   }, [mainNavItems]);
 
   // Show categories immediately (without waiting for counts)
@@ -91,128 +123,252 @@ export default function MobileDrawer({
     });
   }, [currentCategories, getCategoryGameCount]);
 
-  return (
-    <div className="fixed inset-0 z-50">
-      {/* Backdrop */}
-      <button
-        type="button"
-        aria-hidden="true"
-        onClick={() => {
-          navigationSidebarOpenState.value = false;
-        }}
-        className="absolute inset-0 bg-black/50 transition-opacity duration-300 ease-out rotate-180"
-      />
 
-      {/* Panel */}
-      <div
-        className={`absolute inset-y-0 ${isRTL ? 'right-0' : 'left-0'} bg-[var(--bar-background-color)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform w-80`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Search and Locale Selection Row */}
-        <div className={`bg-[var(--background-secondary)] flex flex-row items-center gap-2 p-3 ${isRTL ? 'pl-10' : 'pr-10'} relative`}>
-          <div className="flex-1">
-            <Input
-              // label={"Search"}
-              type="text"
-              placeholder="Search"
-              value={searchQuery}
-              onChange={(e: any) => setSearchQuery(e.target.value)}
-              variant="bordered"
-              endContent={<Search size={16} color="var(--text-transparent-color)" />}
-              classNames={{
-                inputWrapper:
-                  "bg-[var(--background)] border-none rounded-sm!",
-                input: "text-white text-[14px]",
-                // label: "text-[#FFFFFF]",
-              }}
-            />
-          </div>
-          <div className="flex-shrink-0">
-            <LocaleSelection headerMode={false} />
-          </div>
+
+  return (
+    <div className={`fixed ${isRTL ? 'right-0' : 'left-0'} top-0 pt-16  z-55 h-full overflow-y-auto scrollbar-hide w-full bg-[var(--sidebar-background)] overflow-x-hidden px-[16px]`}>
+      {/* Backdrop */}
+      <div className={` z-55 flex w-full h-[70px] items-center`}>
+        <div className="flex bg-[#ffffff02] w-full h-full items-center justify-between gap-2">
           <button
-            className={`absolute border-none ${isRTL ? 'left-0 translate-x-[-50%]' : 'right-0 translate-x-1/2'} top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[var(--background)] p-2 ratio-1/1 flex items-center justify-center`}
+            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${selectedTab === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
             onClick={() => {
-              navigationSidebarOpenState.value = false;
+              setSelectedTab("casino")
+              handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
             }}
           >
-            <img 
-              src="/images/sidebar/expand.svg" 
-              alt="sidebararrow" 
-              className={`transition-transform duration-300 rotate-180 ${
-                isRTL ? 'scale-x-[-1]' : ''
-              }`}
-            />
+            <span className="text-white text-[14px]">Casino</span>
+          </button>
+          <button
+            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${selectedTab === "live-casino" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
+            onClick={() => {
+              setSelectedTab("live-casino")
+              // handleNavigate("/live-casino");
+            }}
+          >
+            <span className="text-white text-[14px]">Live Casino</span>
           </button>
         </div>
 
+      </div>
+
+
+      {/* Panel */}
+      <div
+        className={`sticky inset-y-0 rounded-[10px] ${isRTL ? 'right-0' : 'left-0'} bg-[var(--background-secondary)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform`}
+        onClick={(e) => e.stopPropagation()}
+      >
+
         {/* Content */}
         <div className="flex-1 overflow-y-auto sidebar-scrollbar">
-          {/* Tab Selector (Casino / Live Casino) */}
-          {/* <div className="p-4 border-b border-gray-700">
-            <div className="flex flex-row gap-2">
-              <button
-                onClick={() => setSelectedTab("casino")}
-                className={`flex-1 px-4 py-2 rounded-lg transition-colors ${
-                  selectedTab === "casino"
-                    ? "bg-[#134077] text-white"
-                    : "bg-[var(--background-secondary)] text-gray-300 hover:bg-gray-700"
-                }`}
-              >
-                {t("Casino") || "Casino"}
-              </button>
-              <button
-                onClick={() => setSelectedTab("live-casino")}
-                className={`flex-1 px-4 py-2 rounded-lg transition-colors ${
-                  selectedTab === "live-casino"
-                    ? "bg-[#134077] text-white"
-                    : "bg-[var(--background-secondary)] text-gray-300 hover:bg-gray-700"
-                }`}
-              >
-                {t("Live Casino") || "Live Casino"}
-              </button>
-            </div>
-          </div> */}
 
           {/* Top Navigation Items (Casino, Live Casino, Sportsbook) */}
-          <div className="p-4 border-b border-gray-700">
+          <div className="py-4">
             <div className="flex flex-col gap-2">
-              {topNavItems.map((item) => (
-                <Link
-                  key={item.key}
-                  href={modifyHref(item.href)}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleNavigate(modifyHref(item.href));
-                    navigationSidebarOpenState.value = false;
-                  }}
-                  className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-                    selectedMainNavKey === item.key
-                      ? "bg-[var(--background-btn-hover)] text-white"
-                      : "text-gray-300 hover:bg-gray-700"
-                  }`}
-                >
-                  <img
-                    src={item.navIcon || "/images/sidebar/casino.svg"}
-                    alt={item.title}
-                    className="w-6 h-6 flex-shrink-0 object-contain"
-                  />
-                  <span className="flex-1">{item.title}</span>
-                </Link>
-              ))}
+              {topNavItems.map((item) => {
+
+                return (
+                  <div key={item.key} className="flex flex-col">
+                    {item.expandable ? (
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setIsExpanded((prev) => ({
+                            ...prev,
+                            [item.key]: !prev[item.key],
+                          }));
+                        }}
+                        className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${selectedMainNavKey === item.key
+                          ? "bg-[var(--background-btn-hover)] text-white"
+                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                          }`}
+                      >{item.icon ? item.icon : (
+                        <img
+                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
+                          alt={item.title}
+                          className="w-6 h-6 flex-shrink-0 object-contain"
+                        />
+                      )}
+                        <span className="flex-1">{item.title}</span>
+                        {isExpanded[item.key] ? (
+                          <ChevronUp size={16} className="transition-transform duration-200" />
+                        ) : (
+                          <ChevronDown size={16} className="transition-transform duration-200" />
+                        )}
+                      </button>
+                    ) : (
+                      <button
+                        // href={modifyHref(item.href)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          console.log('item.onclick, item.href', item.href, item.key, item.onclick?.toString());
+                          item.onclick?.();
+                          handleNavigate(item.href || "");
+                        }}
+                        className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
+                          ? "bg-[var(--background-btn-hover)] text-white"
+                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                          }`}
+                      >
+                        {item.icon ? (item.icon) : (<img
+                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
+                          alt={item.title}
+                          className="w-6 h-6 flex-shrink-0 object-contain"
+                        />)}
+                        <span>{item.title}</span>
+                      </button>
+                    )}
+
+                    {/* Expandable Sub-items */}
+                    {item.expandable && isExpanded[item.key] && item.key !== "language" && (
+                      <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
+                        {item.expandableItems?.map((subItem, index) => (
+                          <Link
+                            key={index}
+                            href={modifyHref(subItem.href || "")}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleNavigate(modifyHref(subItem.href || ""));
+                            }}
+                            className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                          >
+                            <img
+                              src={subItem.icon}
+                              alt={subItem.title}
+                              className="w-5 h-5 flex-shrink-0 object-contain"
+                            />
+                            <span className="flex-1 text-sm">{subItem.title}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
-
           {/* Divider */}
-          <div className="border-b border-gray-700" />
+          <div className="border-b-2 border-[var(--bar-background-color)] w-[calc(100% - 46px)] mx-4" />
+          <div className="py-4">
+            <div className="flex flex-col gap-2">
+              {ExtraNavItems.map((item) => {
+
+                return (
+                  <div key={item.key} className="flex flex-col">
+                    {item.expandable ? (
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setIsExpanded((prev) => ({
+                            ...prev,
+                            [item.key]: !prev[item.key],
+                          }));
+                        }}
+                        className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${selectedMainNavKey === item.key
+                          ? "bg-[var(--background-btn-hover)] text-white"
+                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                          }`}
+                      >{item.icon ? item.icon : (
+                        <img
+                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
+                          alt={item.title}
+                          className="w-6 h-6 flex-shrink-0 object-contain"
+                        />
+                      )}
+                        <span className="flex-1">{item.title}</span>
+                        {isExpanded[item.key] ? (
+                          <ChevronUp width={16} height={16} className="min-w-[16px]!important min-h-[16px]!important transition-transform duration-200" />
+                        ) : (
+                          <ChevronDown width={16} height={16} className="min-w-[16px]!important min-h-[16px]!important transition-transform duration-200" />
+                        )}
+                      </button>
+                    ) : (
+                      <button
+                        // href={modifyHref(item.href || "")}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          console.log('item.onclick, item.href', item.onclick, item.key);
+                          item.onclick?.();
+                          handleNavigate(modifyHref(item.href || ""));
+                        }}
+                        className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
+                          ? "bg-[var(--background-btn-hover)] text-white"
+                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                          }`}
+                      >
+                        {item.icon ? (item.icon) : (<img
+                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
+                          alt={item.title}
+                          className="w-6 h-6 flex-shrink-0 object-contain"
+                        />)}
+                        <span>{item.title}</span>
+                      </button>
+                    )}
+
+                    {/* Expandable Sub-items */}
+                    {item.expandable && isExpanded[item.key] && item.key !== "language" && (
+                      <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
+                        {item.expandableItems?.map((subItem, index) => (
+                          <Link
+                            key={index}
+                            href={modifyHref(subItem.href || "")}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              item.onclick?.();
+                              handleNavigate(modifyHref(subItem.href || ""));
+                            }}
+                            className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                          >
+                            <img
+                              src={subItem.icon}
+                              alt={subItem.title}
+                              className="w-6 h-6 flex-shrink-0 object-contain"
+                            />
+                            <span className="flex-1 text-sm">{subItem.title}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                    {/* Language Selection */}
+                    {item.expandable && isExpanded[item.key] && item.key === "language" && (
+                      <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
+                        {options.map((lang) => (
+                          <button
+                            key={lang.value}
+                            onClick={() => {
+                              localeState.value = lang.value;
+                              window.localStorage.setItem("locale", lang.value);
+                              isExpanded[item.key] = false;
+                            }}
+                            className={`flex items-center ${localeState.value === lang.value ? "bg-[var(--background-btn-hover)] text-white" : "text-gray-300 hover:bg-[var(--background-btn-hover)]"} gap-3 px-3 py-2 transition-colors w-full text-left`}
+                          >
+                            <span className={`fi fi-${lang.flag}`}></span>
+                            <span className="flex-1 text-sm">{lang.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            {/* <div className="border-b-2 border-[var(--bar-background-color)] w-[calc(100% - 46px)] mx-4" /> */}
+          </div>
+
+
 
           {/* Categories Section - Always shown */}
           <CategoryItems
             categories={categoriesWithCounts}
             title={selectedMainNavTitle || t("Categories")}
             onCategoryClick={() => {
-              navigationSidebarOpenState.value = false;
+              navigationSidebarExpandedState.value = false;
             }}
           />
         </div>
@@ -220,4 +376,3 @@ export default function MobileDrawer({
     </div>
   );
 }
-

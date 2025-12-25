@@ -2,22 +2,9 @@ import { useState } from "preact/hooks";
 import { Button } from "@heroui/react";
 import { Switch } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";
+import {BASE_URL, CURRENCY_LIST} from "@/config/constants";
 
 const fiatCurrencies = [
-  { code: "USD" },
-  { code: "EUR" },
-  { code: "JPY" },
-  { code: "INR" },
-  { code: "CAD" },
-  { code: "CNY" },
-  { code: "IDR" },
-  { code: "KRW" },
-  { code: "PHP" },
-  { code: "RUB" },
-  { code: "MXN" },
-  { code: "PLN" },
-  { code: "TRY" },
-  { code: "VND" },
   { code: "ARS" },
   { code: "PEN" },
   { code: "CLP" },
@@ -42,7 +29,7 @@ const Setting = () => {
   const [selectedFiat, setSelectedFiat] = useState<string>("USD");
 
   return (
-    <div className="flex flex-col p-6 gap-6 overflow-hidden">
+    <div className="flex flex-col p-2 md:p-6 gap-6">
       {/* Hide Zero Balances Toggle */}
       <div className="flex flex-col gap-2">
         <div className="flex items-start gap-3">
@@ -81,8 +68,8 @@ const Setting = () => {
 
       {/* Fiat Currency Selection */}
       <div className="flex flex-col gap-3">
-        <div className="grid grid-cols-4 gap-3 max-h-[400px] overflow-y-auto overflow-x-hidden">
-          {fiatCurrencies.map((currency) => {
+        <div className="grid md:grid-cols-4 grid-cols-3 gap-3 max-h-[400px] overflow-hidden">
+          {CURRENCY_LIST.map((currency) => {
             const isSelected = selectedFiat === currency.code;
             return (
               <button
@@ -109,14 +96,14 @@ const Setting = () => {
                 {isSelected ? (
                   <div className="w-6 h-6 rounded-full bg-[var(--green-color)] flex items-center justify-center shrink-0 overflow-hidden">
                     <img 
-                      src={`/images/icons/currencies/${currency.code}.png`}
+                      src={`${BASE_URL}/images/currencies/${currency.code}.png`}
                       alt={currency.code}
                       className="w-full h-full object-contain"
                     />
                   </div>
                 ) : (
                   <img 
-                    src={`/images/icons/currencies/${currency.code}.png`}
+                    src={`${BASE_URL}/images/currencies/${currency.code}.png`}
                     alt={currency.code}
                     className="w-6 h-6 object-contain shrink-0"
                   />
@@ -128,7 +115,7 @@ const Setting = () => {
       </div>
 
       {/* 2FA Security Section */}
-      <div className="flex flex-col gap-3 pt-4 border-t border-[#FFFFFF0A]">
+      {/* <div className="flex flex-col gap-3 pt-4 border-t border-[#FFFFFF0A]">
         <p className="text-white/70 text-[14px]">
           {t("Improve your account security with Two-Factor Authentication")}
         </p>
@@ -140,7 +127,7 @@ const Setting = () => {
         >
           {t("Enable 2FA")}
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

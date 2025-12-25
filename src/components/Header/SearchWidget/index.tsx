@@ -13,8 +13,9 @@ import {
   Input,
   ModalHeader,
 } from "@/components/common";
+import { BASE_URL } from "@/config/constants";
 
-export default function  SearchWidget() {
+export default function SearchWidget() {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState<tGame[]>([]);
   const t = useTranslations("SearchWidget");
@@ -45,7 +46,7 @@ export default function  SearchWidget() {
           className="flex w-[44px] h-[44px] items-center justify-center"
           onClick={togglePanel}
         >
-          <img src="/images/icons/others/search.svg" alt={t("Search")} className="w-[20px] h-[20px]" />
+          <img src={`${BASE_URL}/images/icons/search.svg`} alt={t("Search")} className="w-[20px] h-[20px]" />
         </button>
       </div>
       {searchWidgetState.value && (

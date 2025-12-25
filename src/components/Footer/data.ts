@@ -1,3 +1,5 @@
+import { BASE_URL } from "@/config/constants";
+
 export const FOOTER_LINK_DATA = [
   {
     title: "Casino",
@@ -10,8 +12,8 @@ export const FOOTER_LINK_DATA = [
       { title: "Poker", href: "/casino/poker" },
       { title: "Publishers", href: "/publishers" },
       { title: "Promos & Competitions", href: "/promotions" },
-      { title: "Stake Engine", href: "/stake-engine" },
-      { title: "Stake Vendors", href: "/stake-vendors" },
+      { title: "Betalarab Engine", href: "/Betalarab-engine" },
+      { title: "Betalarab Vendors", href: "/Betalarab-vendors" },
     ],
   },
   {
@@ -68,7 +70,7 @@ export const FOOTER_LINK_DATA = [
       { title: "Online Casino Guide", href: "/faq/online-casino-guide" },
       { title: "Sports Betting Guide", href: "/faq/sports-betting-guide" },
       { title: "How to Live Stream Sports", href: "/faq/live-stream-sports" },
-      { title: "Stake VIP Guide", href: "/faq/vip-guide" },
+      { title: "Betalarab VIP Guide", href: "/faq/vip-guide" },
       { title: "House Edge Guide", href: "/faq/house-edge-guide" },
     ],
   },
@@ -77,38 +79,38 @@ export const FOOTER_LINK_DATA = [
 export const FOOTER_SOCIAL_DATA = [
   {
     title: "Blog",
-    icon: "/images/icons/icons/blog.svg",
+    icon: `${BASE_URL}/images/icons/blog.svg`,
     href: "https://betalarab.com/blog",
   },
   {
     title: "Forum",
-    icon: "/images/icons/icons/forum.svg",
+    icon: `${BASE_URL}/images/icons/forum.svg`,
     href: "https://betalarab.com/forum",
   },
   {
     title: "Facebook",
-    icon: "/images/icons/icons/facebook.svg",
+    icon: `${BASE_URL}/images/icons/facebook.svg`,
     // href: "https://www.facebook.com/ichancy",
     href: "#"
   },
   {
     title: "Twitter",
-    icon: "/images/icons/icons/twitter.svg",
+    icon: `${BASE_URL}/images/icons/twitter.svg`,
     href: "#"
   },
   {
     title: "Instagram",
-    icon: "/images/icons/icons/instagram.svg",
+    icon: `${BASE_URL}/images/icons/instagram.svg`,
     href: "#"
   },
   {
     title: "Youtube",
-    icon: "/images/icons/icons/youtube.svg",
+    icon: `${BASE_URL}/images/icons/youtube.svg`,
     href: "#"
   },
   {
     title: "Shop",
-    icon: "/images/icons/icons/shop.svg",
+    icon: `${BASE_URL}/images/icons/shop.svg`,
     href: "https://betalarab.com/shop"
   },
 ];

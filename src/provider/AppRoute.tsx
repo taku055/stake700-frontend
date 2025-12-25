@@ -18,11 +18,13 @@ import ContactUs from "@/pages/contact-us";
 import OtherRules from "@/pages/other-rules";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import FAQ from "@/pages/faq";
+import ProvablyFairLayout from "@/pages/ProvablyFair";
 
 export default function AppRoute() {
   return (
     <Router>
       <Route path="/" component={HomePage} />
+      <Route path="/provably-fair" component={ProvablyFairLayout} />
 
       <Route path="/live" component={LivePage} />
       <Route path="/live-casino" component={LivePage} />
@@ -42,6 +44,8 @@ export default function AppRoute() {
       <Route path="/other-rules" component={OtherRules} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/faq" component={FAQ} />
+      <Route path="/provably-fair" component={ProvablyFairLayout} />
+      <Route path="/provably-fair/*" component={ProvablyFairLayout} />
 
       <Route path="/agent" component={AgentPage} />
       <Route path="/agent/*" component={AgentPage} />
@@ -52,8 +56,8 @@ export default function AppRoute() {
       <Route path="/area_manager" component={AreaManagerPage} />
       <Route path="/area_manager/*" component={AreaManagerPage} />
 
-      <Route path="/affiliates" component={AffiliatesLayout} />
-      <Route path="/affiliates/*" component={AffiliatesLayout} />
+      <Route path="/affiliate" component={AffiliatesLayout} />
+      <Route path="/affiliate/*" component={AffiliatesLayout} />
 
       <Route path="*" component={NotFound404} />
     </Router>
