@@ -36,7 +36,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
       type = "text",
       helperText,
       error,
-      variant = "bordered",
+      variant = "flat",
       classNames,
       startContent,
       endContent,
@@ -53,7 +53,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
     const borderBase =
       variant === "bordered"
         ? "border rounded-xl"
-        : "border-0 border-b rounded-none";
+        : "border-0 border-0 rounded-none";
 
     const errorRing = error
       ? "border-red-500 focus:ring-2 focus:ring-red-500/40"

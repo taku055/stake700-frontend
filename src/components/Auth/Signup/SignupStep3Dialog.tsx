@@ -1,31 +1,107 @@
-import { useState } from "preact/hooks";
+import { useCallback, useState } from "preact/hooks";
 import { Modal, ModalContent, ModalBody } from "@/components/common";
 import { Button, Checkbox } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { BASE_URL } from "@/config/constants";
+import { toast } from "@/helpers/toast";
+import { validateEmail } from "@/helpers/validateEmail";
+import { apiRegister } from "@/api/account/apiRegister";
+import { setAxiosAuthToken } from "@/api/instance";
+import { userState } from "@/state/userState";
+import { accessTokenState } from "@/state/accessTokenState";
+import { signupRequestState } from "@/state/signupRequestState";
+import axios from "axios";
+import { welcomeDialogOpenedState } from "@/state/registerOpenedState";
 
 interface ISignupStep3DialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onBack?: () => void;
-  onCreateAccount?: () => void;
+  onBack?: () => void;  
 }
 
 export default function SignupStep3Dialog({
   isOpen,
   onClose,
-  onBack,
-  onCreateAccount,
+  onBack, 
 }: ISignupStep3DialogProps) {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const t = useTranslations("SignupStep3");
+  const [loading, setLoading] = useState(false);
+  const { email, password, userName, referCode, firstName, lastName, middleName, birthDay } = signupRequestState.value;
 
-  const handleCreateAccount = () => {
-    if (agreedToTerms && onCreateAccount) {
-      onCreateAccount();
-    }
-  };
+  // const handleCreateAccount = () => {
+  //   if (agreedToTerms) {
+  //     onSubmit();
+  //   }
+  // };
+  const onSubmit = useCallback(
+    async (e: any) => {
+      // e.preventDefault();
+
+      if (loading) {
+        return;
+      }
+
+      if (!email || !password) {
+        toast.error(t("please_input_all_fields"));
+        return;
+      }
+
+      if (!userName.trim()) {
+        toast.error(t("please_input_all_fields"));
+        return;
+      }
+
+      const regex = /^[a-zA-Z][a-zA-Z0-9_]*$/;
+      if (!regex.test(userName.trim())) {
+        toast.error(
+          t("first_letter_condition")
+        );
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        toast.error(t("correct_email_request"));
+        return;
+      }
+
+      setLoading(true);
+      try {
+        const res = await apiRegister({
+          email,
+          password,
+          userName: userName,
+          referCode: referCode || null,
+          firstName,
+          lastName,
+          middleName,
+          birthDay: birthDay.toString(),
+        });
+
+        userState.value = res.user;
+        accessTokenState.value = res.accessToken;
+        setAxiosAuthToken(res.accessToken);
+        toast.success("Successfully registered");
+        onClose();
+        welcomeDialogOpenedState.value = true;
+      } catch (ex) {
+        if (axios.isAxiosError(ex)) {
+          if (ex.response?.status === 400) {
+            toast.error("Email or username is already taken");
+          } else {
+            toast.error("Something went wrong");
+          }
+        } else {
+          toast.error("Something went wrong");
+        }
+        console.error(ex);
+      }
+      setLoading(false);
+      
+    },
+    [email, userName, password, referCode]
+  );
 
   const handleSignIn = () => {
     onClose();
@@ -115,7 +191,7 @@ export default function SignupStep3Dialog({
             <div className="w-full pt-[8px]">
               <Button
                 className="w-full text-white text-[16px] font-medium bg-[var(--green-color)] hover:opacity-90 h-[48px] rounded-lg"
-                onPress={handleCreateAccount}
+                onPress={onSubmit}
                 isDisabled={!agreedToTerms}
               >
                 {t("Create an Account")}

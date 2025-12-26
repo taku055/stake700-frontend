@@ -26,6 +26,7 @@ import axios from "axios";
 import { useCallback } from "preact/hooks";
 import ProfileMenu from "../ProfileMenu";
 import { profileMenuOpenedState } from "@/state/profilemenuState";
+import { chatExpandedState } from "@/state/chatExpandedState";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
@@ -130,7 +131,7 @@ export default function Header() {
 
                   {!isMobile && <button
                     className="flex items-center justify-center w-[44px] h-[44px]"
-                    onClick={() => onLogout()}
+                    // onClick={() => (chatExpandedState.value = !chatExpandedState.value)}
                   // onPress={() => (welcomeDialogOpenedState.value = true)}
                   >
                     <img src={`${BASE_URL}/images/icons/log-out.svg`} alt={t("logout")} className="w-[20px] h-[20px]" />

@@ -1,7 +1,7 @@
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
-import { Button } from "@heroui/react";
+import { Button, user } from "@heroui/react";
 import { EmblaBanner } from "./components/EmblaBanner";
 import { Search } from "lucide-preact";
 import { Input } from "@/components/common";
@@ -39,9 +39,9 @@ export default function PageComponent() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="flex flex-col z-0 items-center justify-center w-full font-weight-300 gap-6 ">
+    <div className="flex flex-col z-0 items-center justify-center w-full font-weight-300 gap-6">
       <div className="flex flex-col">
-        {isMobile && (
+        {isMobile && userState.value?.id && (
           <VipCard />
         )}
         <EmblaBanner />
@@ -63,7 +63,7 @@ export default function PageComponent() {
                 popoverContent: "w-auto",
               }}>
               <SelectItem key="casino" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Casino</SelectItem>
-              <SelectItem key="live-casino" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Live Casino</SelectItem>
+              <SelectItem key="sports" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Sports</SelectItem>
               {/* <SelectItem key="sports">Sports</SelectItem> */}
             </Select>
             {/* <div className="flex h-full bg-[var(--background-secondary)]  font-light items-center justify-center border-r-[2px] border-[var(--background-tertiary)] min-w-[108px]">
@@ -73,21 +73,13 @@ export default function PageComponent() {
               <Search size={16} className="w-[20px] h-[20px]" />
             </div>
             <Input
-              label={"Search"}
               type="text"
-              placeholder="Search your game"
+              placeholder={t("Search")}
               value={searchQuery}
               onChange={(e: any) => setSearchQuery(e.target.value)}
-              onFocus={() => {
-                // searchWidgetState.value = true;
-              }}
-              className="flex flex-1 w-full h-full"
-              variant="bordered"
               classNames={{
-                inputWrapper:
-                  "bg-[var(--background-secondary)] w-full p-0 h-full border-none rounded-sm!",
-                input: "text-white text-[14px] h-full bg-transparent",
-                label: "text-[#FFFFFF]",
+                inputWrapper: "bg-[var(--background-secondary)] border-none rounded-none h-[44px]",
+                input: "text-white text-[16px]",
               }}
             />
           </div>
@@ -98,11 +90,11 @@ export default function PageComponent() {
         <EmulateBetting />
         <FAQ />
       </div>
-      <div className="fixed bottom-1 right-4 w-[60px] h-[44px] rounded-full flex justify-center items-center">
+      {/* <div className="fixed bottom-1 right-4 w-[60px] h-[44px] rounded-full flex justify-center items-center">
         <Button className="w-full h-full rounded-full flex justify-center items-center bg-[#0F212E]" variant="light" size="sm">
           <img src="/images/icons/icons/live-support.svg" alt="Chat" className="w-5 h-5" />
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }

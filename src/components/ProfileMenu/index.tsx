@@ -137,7 +137,7 @@ export default function ProfileMenu() {
           onClick={onLogout}
         >
           <img
-            src={`${BASE_URL}/images/icons/logout.svg`}
+            src={`${BASE_URL}/images/icons/log-out.svg`}
             alt="Logout"
             className="w-5 h-5 object-contain brightness-0"
           />

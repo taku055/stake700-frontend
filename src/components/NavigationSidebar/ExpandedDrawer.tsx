@@ -15,6 +15,7 @@ import { BASE_URL, mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import { useLocation } from "preact-iso";
 import { options } from "@/components/LocaleSelection";
 import { useMediaQuery } from "usehooks-ts";
+import { selectedTabState } from "@/state/selectedTab";
 
 interface ExpandedDrawerProps {
   mainNavItems: Array<{
@@ -63,7 +64,7 @@ export default function ExpandedDrawer({
 }: ExpandedDrawerProps) {
   const t = useTranslations("Header");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTab, setSelectedTab] = useState<"casino" | "live-casino" | null>(null);
+  const selectedTab = selectedTabState.value;
   const location = useLocation();
   const [isExpanded, setIsExpanded] = useState<Record<string, boolean>>({});
   const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
@@ -79,21 +80,22 @@ export default function ExpandedDrawer({
   const isMobile = useMediaQuery(mobileMediaQuery);
 
 
-  useEffect(() => {
-    if (location.path.includes("/casino")) {
-      setSelectedTab("casino");
-    } else if (location.path.includes("/live-casino")) {
-      setSelectedTab("live-casino");
-    } else {
-      setSelectedTab(null);
-    }
+  // useEffect(() => {
+  //   if (location.path.includes("/casino")) {
+  //     selectedTabState.value = "casino";
+  //   } else if (location.path.includes("/sport")) {
+  //     selectedTabState.value = "sports";
+  //   } else {
+  //     selectedTabState.value = null;
+  //   }
 
-  }, [location.path]);
+  // }, [location.path]);
 
 
   // Get categories based on selected tab
   const currentCategories = useMemo(() => {
-    return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
+    // return selectedTab === "casino" ? casinoCategories : selectedTab === "Sports" ? liveCasinoCategories : [];
+    return selectedTab === "casino" ? casinoCategories : [];
   }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
@@ -146,17 +148,17 @@ export default function ExpandedDrawer({
           <button
             className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
             onClick={() => {
-              setSelectedTab("casino")
-              handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
+              selectedTabState.value = "casino";
+              // handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
             }}
           >
             <span className="text-white text-[14px]">Casino</span>
           </button>
           <button
-            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "live-casino" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
+            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "sports" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
             onClick={() => {
-              setSelectedTab("live-casino")
-              // handleNavigate("/sport");
+              selectedTabState.value = "sports";
+              // handleNavigate("/live-casino");
             }}
           >
             <span className="text-white text-[14px]">Sports</span>

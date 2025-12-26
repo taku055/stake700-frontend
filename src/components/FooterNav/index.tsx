@@ -50,19 +50,19 @@ export default function FooterNav() {
         // },
         {
           title: t("Sports"),
-          href: "/sport",
+          // href: "/sport",
           key: "sports",
           icon: <Sports />,
         },
         {
           title: t("Casino"),
-          href: "/casino/slots",
+          // href: "/casino/slots",
           key: "casino",
           icon: (<img src={`${BASE_URL}/images/icons/casino.png`} width={20} height={20}/>),
         },
         {
           title: t("Live Casino"),
-          href: "/live-casino",
+          // href: "/live-casino",
           key: "live-casino",
           icon: (<img src={`${BASE_URL}/images/icons/live-casino.svg`} width={20} height={20}/>),
         },

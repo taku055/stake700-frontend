@@ -74,8 +74,11 @@ import WelcomeDialog from "@/components/Auth/Signup/Welcom";
 import VipClub from "@/components/Vip-club";
 import { vipOpenedState } from "@/state/vipOpenedState";
 import DepositDialogFull from "@/components/DepositDialogFull";
-import DepositPanel from "@/components/WalletDialog/DepositPanel";
+// import DepositPanel from "@/components/WalletDialog/DepositPanel";
+import DepositPanel from "@/components/WalletDialog/new";
 import { depositDialogOpenedState } from "@/state/walletDialogState";
+import Support from "@/components/Chat/Support";
+import LiveSupport from "@/components/LiveSupport";
 
 const i18nDefinitions = {
   tr: trDefinition,
@@ -141,6 +144,7 @@ export default function GlobalServiceProvider({
           limit: 10000,
         });
         customGamesState.value = games.data;
+        // console.log("customGamesState", games.data);
       } catch (ex) {
         console.error(ex);
       }
@@ -390,10 +394,6 @@ export default function GlobalServiceProvider({
             <SignupStep3Dialog
               isOpen={signupStep3OpenedState.value}
               onClose={() => (signupStep3OpenedState.value = false)}
-              onCreateAccount={() => {
-                signupStep3OpenedState.value = false;
-                welcomeDialogOpenedState.value = true;
-              }}
               onBack={() => {
                 signupStep3OpenedState.value = false;
                 signupStep2OpenedState.value = true;
@@ -430,7 +430,8 @@ export default function GlobalServiceProvider({
             />
 
             <Sidebar />
-            {/* <Support /> */}
+            <Support />
+            <LiveSupport />
           </div>
 
           <ToastProvider

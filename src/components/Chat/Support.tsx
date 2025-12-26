@@ -158,13 +158,15 @@ export default function Support() {
   }
 
   return (
-    <button
-      className={styles.expandButton}
-      onClick={() => (chatExpandedState.value = true)}
-      aria-label="Open live support chat"
-    >
-      <ChatIcon />
-    </button>
+    // <button
+    //   className={styles.expandButton}
+    //   onClick={() => (chatExpandedState.value = true)}
+    //   aria-label="Open live support chat"
+    // >
+    //   {/* <ChatIcon /> */}
+    //   <img src="/images/icons/icons/live-support.svg" alt="Chat" className="w-5 h-5" />
+    // </button>
+    <></>
   );
 }
 

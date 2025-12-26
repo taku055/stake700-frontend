@@ -141,7 +141,14 @@
     "Unlocked at Bronze VIP.": "Unlocked at Bronze VIP.",
     "Weekly Boost": "Weekly Boost",
     "Reload": "Reload",
-    "Unlocked at Platinum VIP.": "Unlocked at Platinum VIP."
+    "Unlocked at Platinum VIP.": "Unlocked at Platinum VIP.",
+    "Guest": "Guest",
+    "Bronze": "Bronze",
+    "Silver": "Silver",
+    "Gold": "Gold",
+    "Platinum I - III": "Platinum I - III",
+    "Platinum IV - VI": "Platinum IV - VI",
+    "Diamond I - V": "Diamond I - V"
   },
   "PromotionCard": {
     "daily_promotion_title": "Daily Promotion",

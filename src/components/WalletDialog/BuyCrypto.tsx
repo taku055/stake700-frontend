@@ -4,6 +4,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { BASE_URL } from "@/config/constants";
 import { ChevronDown, Search } from "lucide-preact";
 import { allChains } from "@/config/chains";
+import { CURRENCY_LIST } from "@/config/constants";
 
 interface ICryptoOption {
   symbol: string;
@@ -166,15 +167,12 @@ const BuyCrypto = () => {
             {t("Amount")} <span className="text-[var(--pink-color)]">*</span>
           </label>
           <div className="flex w-full h-[44px] items-center">
-            <Input
+            <input
               type="number"
               value={amount}
               onChange={(e: any) => setAmount(e.target.value)}
               placeholder="0"
-              classNames={{
-                inputWrapper: "w-full h-full bg-[var(--bar-background-color)] border-l-[2px] border-r-[2px] border-t-0 border-[var(--background-secondary)] rounded-l-lg rounded-r-none h-[48px]",
-                input: "text-white text-[16px]",
-              }}
+              className="w-full h-full bg-[var(--bar-background-color)] border-0 rounded-l-lg rounded-r-none text-white text-[16px]"
             />
             <Select
               selectedKeys={[selectedCurrency]}
@@ -198,18 +196,18 @@ const BuyCrypto = () => {
                 />
               }
             >
-              {currencyOptions.map((currency) => (
+              {CURRENCY_LIST.map((currency) => (
                 <SelectItem
-                  key={currency.value}
+                  key={currency.unit}
                   startContent={
                     <img
-                      src={currency.icon}
-                      alt={currency.value}
+                      src={`${BASE_URL}/images/currencies/${currency.code}.png`}
+                      alt={currency.unit}
                       className="w-5 h-5"
                     />
                   }
                 >
-                  {currency.label}
+                  {currency.unit}
                 </SelectItem>
               ))}
             </Select>

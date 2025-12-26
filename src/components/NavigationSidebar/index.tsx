@@ -21,7 +21,7 @@ interface NavigationItem {
   expandable?: boolean;
   expandableItems?: Array<{
     title: string;
-    href: string;
+    href?: string;
     icon: string;
   }>;
 }
@@ -63,14 +63,14 @@ export default function NavigationSidebar() {
 
         return {
           title: item.title,
-          href: item.href,
+          href: item.href || "",
           key: item.key,
           icon: item.icon,
           navIcon: item.navIcon,
           onclick: item.onclick,
           pageType,
           expandable: item.expandable,
-          expandableItems: item.expandableItems,
+          expandableItems: item.expandableItems || [],
         };
       });
   }, [tabList]);
@@ -86,7 +86,7 @@ export default function NavigationSidebar() {
     expandable?: boolean;
     expandableItems?: Array<{
       title: string;
-      href: string;
+      href?: string;
       icon: string;
     }>;
   }> = useMemo(() => {
@@ -94,14 +94,14 @@ export default function NavigationSidebar() {
       ["sponsorships", "responsible-gambling", "live-support", "language"].includes(item.key)
     ).map((item) => ({
       title: item.title,
-      href: item.href,
+      href: item.href || "",
       key: item.key,
       icon: item.icon,
       navIcon: item.navIcon,
       onclick: item.onclick,
       pageType: undefined,
       expandable: item.expandable,
-      expandableItems: item.expandableItems,
+      expandableItems: item.expandableItems || [],
     }));
   }, [tabList]);
 
@@ -127,6 +127,8 @@ export default function NavigationSidebar() {
 
   // Always show static categories - don't change based on selected nav
   const { categories } = useCasinoCategories();
+
+  // console.log("categories", categories);
 
   // Mobile: Show drawer when open
   if (isMobile) {

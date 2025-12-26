@@ -20,10 +20,10 @@ import { slice } from "lodash";
 import { emulateBettingState } from "@/state/emulateBettingState";
 import { tEmulateBet } from "@/types/tEmulateBet";
 import { createElement } from "preact";
-import { EmulateBettingData } from "./data";
+// import { EmulateBettingData } from "./data";
 import { allChains } from "@/config/chains";
 import { useMediaQuery } from "usehooks-ts";
-import { mobileMediaQuery, mobilePortraitMediaQuery } from "@/config/constants";
+import { CURRENCY_LIST, mobileMediaQuery, mobilePortraitMediaQuery } from "@/config/constants";
 
 export default function EmulateBetting() {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
@@ -34,8 +34,10 @@ export default function EmulateBetting() {
   const [currentPage, setCurrentPage] = useState(1);
   const user = userState.value;
   const t = useTranslations("EmulateBetting");
-  const emulateBettings = EmulateBettingData;
-  const emulateSports = EmulateBettingData;
+  const [emulateBettings, setEmulateBettings] = useState<tEmulateBet[]>(emulateBettingState.value);
+  const [emulateSports, setEmulateSports] = useState<tEmulateBet[]>(emulateBettingState.value);
+  // const emulateBettings = EmulateBettingData;
+  // const emulateSports = EmulateBettingData;
   // const [emulateBettings, setEmulateBettings] = useState<tEmulateBet[]>([]);
   // const [emulateSports, setEmulateSports] = useState<tEmulateBet[]>([]);
   const [activeTab, setActiveTab] = useState("casino");
@@ -59,8 +61,9 @@ export default function EmulateBetting() {
     return icons[Math.floor(Math.random() * icons.length)] && createElement(icons[Math.floor(Math.random() * icons.length)], { className: "w-[16px] h-[16px]" });
   }
 
-  const getCryptoIcon = (crypto: string) => {
-    const chain = allChains.find((c) => c.symbol === crypto);
+  const getCryptoIcon = (currency: string) => {
+    const chain = allChains.find((c) => c.symbol?.toLowerCase() === currency.toLowerCase());
+
     return chain?.icon;
   }
 
@@ -80,32 +83,35 @@ export default function EmulateBetting() {
     }
   }, [currentPage, user?.id]);
 
-  // useSocketEvent("emulate-betting", (data) => {
-  //   setEmulateBettings((prev) => {
-  //     const temp = slice(prev, 0, 9);
-  //     const time = new Date(data.data.time);
-  //     const hhmm = time.toLocaleTimeString([], {
-  //       hour: "2-digit",
-  //       minute: "2-digit",
-  //     });
-  //     const newData = { ...data.data, hhmm };
+  useSocketEvent("emulate-betting", (data) => {
+    setEmulateBettings((prev) => {
+      const temp = slice(prev, 0, 9);
+      const time = new Date(data.data.time);
+      const hhmm = time.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      
+      const currency = allChains[Math.floor(Math.random() * allChains.length)].symbol || "USD";
+      
+      const newData = { ...data.data, hhmm, currency };
+      return [newData, ...temp];
+    });
+  });
 
-  //     return [newData, ...temp];
-  //   });
-  // });
-
-  // useSocketEvent("emulate-sports", (data) => {
-  //   setEmulateSports((prev) => {
-  //     const temp = slice(prev, 0, 9);
-  //     const time = new Date(data.data.time);
-  //     const hhmm = time.toLocaleTimeString([], {
-  //       hour: "2-digit",
-  //       minute: "2-digit",
-  //     });
-  //     const newData = { ...data.data, hhmm };
-  //     return [newData, ...temp];
-  //   });
-  // });
+  useSocketEvent("emulate-sports", (data) => {
+    setEmulateSports((prev) => {
+      const temp = slice(prev, 0, 9);
+      const time = new Date(data.data.time);
+      const hhmm = time.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      const currency = allChains[Math.floor(Math.random() * allChains.length)].symbol || "USD";
+      const newData = { ...data.data, hhmm, currency };
+      return [newData, ...temp];
+    });
+  });
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -146,8 +152,8 @@ export default function EmulateBetting() {
           removeWrapper
           aria-label="Users"
           classNames={{
-            th: "bg-[var(--bar-background-color)] text-white text-[16px] p-[15px] items-center",
-            td: "py-[15px]",
+            th: "bg-[var(--bar-background-color)] text-white text-[16px] p-[15px] w-[1%]",
+            td: "py-[15px] w-[1%]",
             base: "text-white text-[16px]",
           }}
         >
@@ -174,7 +180,7 @@ export default function EmulateBetting() {
                   </span>
                 </TableCell>
                 <TableCell>
-                  <span>{e.payout}</span>
+                  <span className={`${e.payout > 0 && "text-[#43e243] "}`}>{e.payout}</span>
                 </TableCell>
               </TableRow>
             ))}
@@ -222,16 +228,17 @@ export default function EmulateBetting() {
                   </TableCell>
                   <TableCell ><span className="flex items-center gap-2">{e.hhmm}</span></TableCell>
                   <TableCell className="flex items-center gap-2">
+                    <img src={getCryptoIcon(e.currency)} alt={e.currency} className="w-[16px] h-[16px]" />
                     <span className="flex items-center gap-2">{e.betAmount}</span>
                   </TableCell>
                   <TableCell >
                     <span className="flex items-center">{e.multiplier}
                       <LiaTimesSolid className="w-[16px] h-[16px]" />
-                      {e.multiplier > 100 ? (<LiaFireAltSolid className="w-[26px] h-[26px] text-[#ff5100]" />) : ""}
+                      {e.multiplier > 100 ? (<img src="/images/icons/icons/fire.gif" className="w-[16px] h-[16px]" />) : ""}
                     </span>
                   </TableCell>
                   <TableCell>
-                    <span>{e.payout}</span>
+                    <span className={`${e.payout > 0 && "text-[#43e243] "}`}>{e.payout}</span>
                   </TableCell>
                 </TableRow>
               ))}
@@ -265,10 +272,10 @@ export default function EmulateBetting() {
                   // } 
                   key={e.name + index} style={{ backgroundColor: index % 2 === 1 ? "" : "var(--background-secondary)" }}>
                   <TableCell>
-                    <span>{e.name}</span>
+                    <span>{e.userName}</span>
                   </TableCell>
                   <TableCell>
-                    <span>{e.payout}</span>
+                    <span  className={`${e.payout > 0 && "text-[#43e243] "}`}>{e.payout}</span>
                   </TableCell>
                 </TableRow>
               ))}
@@ -307,8 +314,8 @@ export default function EmulateBetting() {
                   <TableCell><span>{e.hhmm}</span></TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
+                      <img src={getCryptoIcon(e.currency)} alt={e.currency} className="w-[16px] h-[16px]" />
                       <span>{e.betAmount}</span>
-                      <img src={getCryptoIcon(e.crypto)} alt={e.crypto} className="w-[16px] h-[16px]" />
                     </div>
                   </TableCell>
                   <TableCell>
@@ -317,7 +324,7 @@ export default function EmulateBetting() {
                     {e.multiplier > 100 ? (<LiaFireAltSolid className="w-[26px] h-[26px] text-[#ff5100]" />) : ""}
                   </TableCell>
                   <TableCell>
-                    <span>{e.payout}</span>
+                    <span  className={`${e.payout > 0 && "text-[#43e243] "}`}>{e.payout}</span>
                   </TableCell>
                 </TableRow>
               ))}

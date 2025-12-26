@@ -6,6 +6,7 @@ import { useState, useMemo, useEffect } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
+import { selectedTabState } from "@/state/selectedTab";
 import {
   Dropdown,
   DropdownItem,
@@ -15,6 +16,7 @@ import {
 import { BASE_URL, RTL_LANGUAGES } from "@/config/constants";
 import { Link } from "../common";
 import LocaleSelection from "@/components/LocaleSelection";
+import { useLocation } from "preact-iso";
 
 const localeOptions = [
   { label: "Türkçe", value: "tr", flag: "tr" },
@@ -64,10 +66,10 @@ export default function CollapsedSidebar({
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("Header");
-  const [selectedTab, setSelectedTab] = useState<"casino" | "live-casino">("casino");
+  const selectedTab = selectedTabState.value;
   const { categories: casinoCategories } = useCasinoCategories();
   const { categories: liveCasinoCategories } = useLiveCasinoCategories();
-
+  const location = useLocation();
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   // const topNavItems = mainNavItems.filter((item) =>
   //   ["slots", "live-casino", "sport", "promotions"].includes(item.key)
@@ -78,13 +80,25 @@ export default function CollapsedSidebar({
 
   // Get categories based on selected tab
   const categoriesWithIcons = useMemo(() => {
-    return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
+    // return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
+    return selectedTab === "casino" ? casinoCategories : [];
   }, [selectedTab, casinoCategories, liveCasinoCategories]);
+
+  // useEffect(() => {
+  //   if (location.path.includes("/casino")) {
+  //     selectedTabState.value = "casino";
+  //   } else if (location.path.includes("/live-casino")) {
+  //     selectedTabState.value = "sports";
+  //   } else {
+  //     selectedTabState.value = null;
+  //   }
+
+  // }, [location.path]);
 
   return (
     <div className={`sticky top-0 md:flex w-[64px] bg-[var(--bar-background-color)] flex-col h-screen`}>
       {/* Expand Button */}
-      <div className="flex items-center justify-center p-2 flex-shrink-0 h-[60px]">
+      <div className="flex flex-col items-center justify-center p-2  gap-2">
         <button
           className={`rounded-full h-full p-2 ratio-1/1 flex items-center justify-center`}
           onClick={() => {
@@ -97,6 +111,24 @@ export default function CollapsedSidebar({
             className={`w-[16px] h-[16px] duration-300 brightness-0 invert transition-transform ${isRTL ? 'scale-x-[-1]' : ''
               }`}
           />
+        </button>
+        <button
+          className={`flex items-center rounded-[8px]  justify-center  min-w-[50px] min-h-[50px] ${selectedTab === "casino" ? "bg-[url('/buffer/active-casino-mini.svg')]" : "bg-[url('/buffer/default-casino-mini.svg')]"} hover:bg-[url('/buffer/active-casino-mini.svg')] bg-cover`}
+          onClick={() => {
+            selectedTabState.value = "casino";
+            // handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
+          }}
+        >
+          <img src={`${BASE_URL}/images/icons/casino.png`} alt="casino" className={`w-6 h-6 ${selectedTab === "casino" ? "" : "brightness-80 hover:brightness-100"}`} />
+        </button>
+        <button
+          className={`flex items-center rounded-[8px] justify-center min-w-[50px] min-h-[50px]  ${selectedTab === "sports" ? "bg-[url('/buffer/active-sports-mini.svg')]" : "bg-[url('/buffer/default-sports-mini.svg')]"} hover:bg-[url('/buffer/active-sports-mini.svg')] bg-cover`}
+          onClick={() => {
+            selectedTabState.value = "sports";
+            // handleNavigate("/sport");
+          }}
+        >
+          <img src={`${BASE_URL}/images/icons/sportsbook.png`} alt="sports" className={`w-6 h-6 ${selectedTab === "sports" ? "" : "brightness-80 hover:brightness-100"}`} />
         </button>
 
       </div>
@@ -170,7 +202,7 @@ export default function CollapsedSidebar({
               <img
                 src={category.icon}
                 alt={category.name}
-                className="w-6 h-6 object-contain"
+                className="w-6 h-6 object-contain grayscale"
               />
             </Link>
           ))}

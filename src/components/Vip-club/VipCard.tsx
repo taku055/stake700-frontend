@@ -11,7 +11,7 @@ export default function VipCard() {
   const user = userState.value;
   const currentVipLevel = user?.vipLevel || 0;
   const wagered = user?.wagered || 0;
-  const username = user?.userName || "Guest";
+  const username = user?.userName || t("Guest");
 
   // Get current and next VIP level
   const currentLevelData = vipData.find(v => v.level === currentVipLevel) || vipData[0];

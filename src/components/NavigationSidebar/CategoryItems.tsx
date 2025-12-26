@@ -41,7 +41,7 @@ export default function CategoryItems({ categories, title, onCategoryClick }: Ca
                 <img
                   src={category.icon}
                   alt={category.name}
-                  className="w-6 h-6 flex-shrink-0 object-contain"
+                  className="w-6 h-6 flex-shrink-0 grayscale object-contain"
                 />
               )}
               <span className="flex-1">{category.name}</span>

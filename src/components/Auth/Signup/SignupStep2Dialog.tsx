@@ -6,19 +6,13 @@ import { useTranslations } from "@/context/I18nContext";
 import { Eye, EyeOff } from "lucide-preact";
 import { parseDate, CalendarDate } from "@internationalized/date";
 import { BASE_URL } from "@/config/constants";
+import { signupRequestState } from "@/state/signupRequestState";
 
 interface ISignupStep2DialogProps {
   isOpen: boolean;
   onClose: () => void;
   onBack?: () => void;
-  onContinue?: (data: {
-    email: string;
-    username: string;
-    password: string;
-    dateOfBirth: CalendarDate;
-    phone?: string;
-    referralCode?: string;
-  }) => void;
+  onContinue?: () => void;
 }
 
 export default function SignupStep2Dialog({
@@ -51,16 +45,19 @@ export default function SignupStep2Dialog({
     if (!email || !username || !password) {
       return;
     }
-    if (onContinue) {
-      onContinue({
-        email,
-        username,
-        password,
-        dateOfBirth,
-        phone: showPhone ? phone : undefined,
-        referralCode: showReferralCode ? referralCode : undefined,
-      });
-    }
+    signupRequestState.value = {
+      email: email,
+      password: password,
+      userName: username,
+      referCode: referralCode,
+      firstName: "",
+      lastName: "",
+      middleName: "",
+      birthDay: dateOfBirth.toString(),
+      phone: showPhone ? phone : "",
+      referralCode: showReferralCode ? referralCode : "",
+    };
+    onContinue?.();
   };
 
   const handleSignIn = () => {

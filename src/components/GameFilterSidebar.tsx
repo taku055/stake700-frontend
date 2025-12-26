@@ -175,7 +175,6 @@ export default function GameFilterSidebar({
         </div>
       );
     }
-    
     // More than 1 selection: show first provider with X + "+X more" badge
     const firstProvider = availableProviders.find((p) => p.id === individualProviders[0]);
     const remainingCount = individualProviders.length - 1;

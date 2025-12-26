@@ -1,0 +1,80 @@
+.container {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  width: 350px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 1000;
+
+  @media (max-width: 768px) {
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    // border-radius: 0;
+  }
+}
+
+.expandButton {
+  width: 60px;
+  height: 44px;
+  background-color: #0F212E;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s;
+
+  @media (max-width: 768px) {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: #ff3b3b;
+    color: white;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+}

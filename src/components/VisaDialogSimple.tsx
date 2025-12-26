@@ -208,7 +208,7 @@ export default function VisaDialogSimple({
       classNames={{
         backdrop:
           "custom-modal-backdrop bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-40",
-        wrapper: "custom-modal-wrapper",
+        wrapper: "custom-modal-wrapper bg-[var(--background)]",
       }}
     >
       <ModalContent>

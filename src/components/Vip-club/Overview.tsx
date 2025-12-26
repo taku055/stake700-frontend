@@ -14,7 +14,7 @@ const Overview = () => {
   const user = userState.value;
   const currentVipLevel = user?.vipLevel || 0;
   const wagered = user?.wagered || 0;
-  const username = user?.userName || "Guest";
+  const username = user?.userName || t("Guest");
 
   // Get current and next VIP level
   const currentLevelData = vipData.find(v => v.level === currentVipLevel) || vipData[0];
@@ -28,7 +28,7 @@ const Overview = () => {
   // VIP Benefits tiers data (based on images)
   const vipBenefitsTiers = [
     {
-      name: "Bronze",
+      name: t("Bronze"),
       level: 1,
       icon: <Star className="w-4 h-4" strokeWidth={2} fill="none" stroke="#D7B689" />,
       benefits: [
@@ -40,7 +40,7 @@ const Overview = () => {
       ]
     },
     {
-      name: "Silver",
+      name: t("Silver"),
       level: 2,
       icon: <Star className="w-4 h-4" strokeWidth={2} fill="none" stroke="#CECECE" />,
       benefits: [
@@ -49,7 +49,7 @@ const Overview = () => {
       ]
     },
     {
-      name: "Gold",
+      name: t("Gold"),
       level: 3,
       icon: <Star className="w-4 h-4" fill="none" stroke="#D7B689" />,
       benefits: [
@@ -58,7 +58,7 @@ const Overview = () => {
       ]
     },
     {
-      name: "Platinum I - III",
+      name: t("Platinum I - III"),
       level: 4,
       icon: <img src={`${BASE_URL}/images/icons/platinum1.png`} alt="platinum" className="w-4 h-4" />,
       benefits: [
@@ -68,7 +68,7 @@ const Overview = () => {
       ]
     },
     {
-      name: "Platinum IV - VI",
+      name: t("Platinum IV - VI"),
       level: 5,
       icon: <img src={`${BASE_URL}/images/icons/platinum4.png`} alt="platinum" className="w-4 h-4" />,
       benefits: [
@@ -79,7 +79,7 @@ const Overview = () => {
       ]
     },
     {
-      name: "Diamond I - V",
+      name: t("Diamond I - V"),
       level: 6,
       icon: <img src={`${BASE_URL}/images/icons/diamond.png`} alt="diamond" className="w-4 h-4" />,
       benefits: [

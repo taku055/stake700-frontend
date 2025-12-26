@@ -6,7 +6,7 @@ export type tEmulateBet = {
   time: string;
   betAmount: number;
   // currency: string;
-  crypto: string;
+  currency: string;
   payout: number;
   multiplier: number;
   hhmm: string;

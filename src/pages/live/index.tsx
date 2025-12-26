@@ -29,6 +29,7 @@ export default function Live() {
       try {
         const res = await apiGetProviders("LIVECASINO");
         setProviders(res);
+        console.log("providers", res);
       } catch (error) {
         console.error("Error loading providers:", error);
       }

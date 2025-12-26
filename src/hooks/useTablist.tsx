@@ -5,6 +5,7 @@ import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
 import {BASE_URL} from "@/config/constants";
 import { vipOpenedState } from "@/state/vipOpenedState";
+import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
 
 // Map navigation keys to sidebar SVG icons
 const getNavIcon = (key: string): string => {
@@ -58,7 +59,7 @@ export const useTablist = () => {
         },
         {
           title: t("Casino"),
-          href: "/casino/slots?custom=1&category=slot-top-slots",
+          // href: "/casino/slots?custom=1&category=slot-top-slots",
           key: "slots",
           extra: ["/casino/tournaments"],
           icon: <img src={`${BASE_URL}/images/icons/slot-icon.svg`} alt="Slot" />,
@@ -66,7 +67,7 @@ export const useTablist = () => {
         },
         {
           title: t("Live Casino"),
-          href: "/live-casino",
+          // href: "/live-casino",
           key: "live-casino",
           icon: (
             <img src={`${BASE_URL}/images/icons/livecasino-icon.svg`} alt="Live Casino" />
@@ -85,17 +86,17 @@ export const useTablist = () => {
           expandableItems: [
             {
               title: "Sorteo Semanal d...",
-              href: "/promotions/15",
+              // href: "/promotions/15",
               icon: `${BASE_URL}/images/icons/reward.svg`,
             },
             {
               title: "Carrera de $100k",
-              href: "/promotions/12",
+              // href: "/promotions/12",
               icon: `${BASE_URL}/images/icons/live-icon.svg`,
             },
             {
               title: "Pragmatic Drops ...",
-              href: "/promotions/13",
+              // href: "/promotions/13",
               icon: `${BASE_URL}/images/icons/promotions.svg`,
             },
           ],
@@ -199,10 +200,12 @@ export const useTablist = () => {
         },
         {
           title: t("Live Support") || "Live Support",
-          href: "/live-support",
           key: "live-support",
           icon: <img src={`${BASE_URL}/images/icons/live-support.svg`} alt="Live Support"/>,
           navIcon: getNavIcon("live-support"),
+          onclick: () => {
+            liveSupportExpandedState.value = !liveSupportExpandedState.value;
+          },
         },
         {
           title: t("Language") || "Language",
@@ -260,8 +263,8 @@ export const useTablist = () => {
     const current = [...tabList].reverse().find(
       (t) =>
         // startsWith is safer when routes have deeper paths
-        pathname.path === t.href.split("?")[0] ||
-        pathname.path?.startsWith(`${t.href.split("?")[0]}/`)
+        pathname.path === t.href?.split("?")[0] ||
+        pathname.path?.startsWith(`${t.href?.split("?")[0]}/`)
     );
 
     if (!current) {

@@ -23,19 +23,26 @@
   padding: 14px 0px;
   background: (var(--secondary-background));
   border-bottom: 1px solid #ffffff0a;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
+  min-width: 0;
+  align-items: flex-start;
 }
 
 .tabList {
+  // flex-grow: 0;
   display: flex;
   flex-direction: row;
   gap: 8px;
-  flex: 1;
+  // flex: 1;
   border-radius: 25px;
   padding: 7px;
-  background: var(--bar-background-color);
-  width: fit-content;
+  width: max-content;
+  // flex-shrink: 0;
+  overflow: visible;
   z-index: 100;
+  min-width: max-content;
+  background: var(--bar-background-color);
 }
 
 .tab {
@@ -51,6 +58,10 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   // border: none;
 
 
