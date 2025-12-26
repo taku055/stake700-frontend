@@ -201,7 +201,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
         (iframeSrc ? (
           <iframe
             key={iframeSrc}
-            src={iframeSrc}
+            src={`https://www.betalarab.com/game/a8f6ee8874cc42ba8ab0468beebae7638931f800`}
             className="w-full h-full absolute left-0 top-0"
             allowFullScreen
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
