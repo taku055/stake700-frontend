@@ -18,6 +18,8 @@ import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 
 export default function PageComponent() {
+
+  console.log("backend url", import.meta.env.VITE_BACKEND_URL);
   const location = useLocation();
   if (userState.value?.role === "SUPERAGENT") {
     location.route("/superagent");

@@ -50,6 +50,8 @@ export default function NavigationSidebar() {
   }, [isMobile]);
 
   // Filter main navigation items (Casino, Live Casino, Sports, etc.)
+
+  
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
