@@ -150,6 +150,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
         }
 
         setIframeSrc(iframeSrc1);
+        console.log({ "iframeSrc1": iframeSrc1 });
       } catch (error) {
         if (String(error).toLowerCase().includes("restricted")) {
           toast.error(t("restricted-error"));
@@ -201,7 +202,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
         (iframeSrc ? (
           <iframe
             key={iframeSrc}
-            src={`https://www.betalarab.com/game/a8f6ee8874cc42ba8ab0468beebae7638931f800`}
+            src={iframeSrc}
             className="w-full h-full absolute left-0 top-0"
             allowFullScreen
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

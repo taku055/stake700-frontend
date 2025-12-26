@@ -100,12 +100,12 @@ export default function TrendingGamesPanel() {
         //   pauseOnMouseEnter: true,
         // }}
       >
-        {/* {[...games, ...games].map((e, index) => ( */}
-           {/* <SwiperSlide key={`${e.id}-${index}`} className={styles.game}> */}
-            {/* <GameCard data={e} /> */}
-        {games.map((e) => (
+        {[...games, ...games].map((e, index) => ( 
+           <SwiperSlide key={`${e.id}-${index}`} className={styles.game}>
+           <GameCard data={e} />
+        {/* {games.map((e) => (
           <SwiperSlide key={e.id} className={styles.game}>
-            <TrendingCard id={e.id} name={e.name} image={imgList[games.indexOf(e) % imgList.length]} link={`/game/${e.id}`} />
+            <TrendingCard id={e.id} name={e.name} image={imgList[games.indexOf(e) % imgList.length]} link={`/game/${e.id}`} /> */}
           </SwiperSlide>
         ))}
       </Swiper>
