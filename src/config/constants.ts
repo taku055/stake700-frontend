@@ -21,17 +21,17 @@ export const mobilePortraitMediaQuery =
 export const placeholderGameImage = "/images/placeholder-gamecard.png";
 
 export const OFFICIAL_LINKS = {
-  telegram: "https://t.me/ichancyofc",
+  telegram: "https://t.me/betalarabofc",
   whatsapp: "#",
-  instagram: "https://www.instagram.com/ichancyofc",
-  facebook: "https://www.facebook.com/ichancyofc",
-  twitter: "https://x.com/ichancyofc",
-  youtube: "https://www.youtube.com/ichancyofc",
-  tiktok: "https://www.tiktok.com/@ichancyofc",
-  twitch: "https://www.twitch.tv/ichancyofc",
-  discord: "https://discord.gg/ichancyofc",
-  officialWebsite: "https://www.ichancy.com",
-  supportEmail: "support@ichancy.com",
+  instagram: "https://www.instagram.com/betalarabofc",
+  facebook: "https://www.facebook.com/betalarabofc",
+  twitter: "https://x.com/betalarabofc",
+  youtube: "https://www.youtube.com/betalarabofc",
+  tiktok: "https://www.tiktok.com/@betalarabofc",
+  twitch: "https://www.twitch.tv/betalarabofc",
+  discord: "https://discord.gg/betalarabofc",
+  officialWebsite: "https://www.betalarab.com",
+  supportEmail: "support@betalarab.com",
 };
 
 export const PAYMENT_METHOD_LIST = [

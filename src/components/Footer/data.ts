@@ -90,7 +90,7 @@ export const FOOTER_SOCIAL_DATA = [
   {
     title: "Facebook",
     icon: `${BASE_URL}/images/icons/facebook.svg`,
-    // href: "https://www.facebook.com/ichancy",
+    // href: "https://www.facebook.com/betalarab",
     href: "#"
   },
   {

@@ -21,12 +21,12 @@ export default function OtherRules() {
 
       <div className="text-[var(--passive-color)] text-base md:text-lg leading-relaxed space-y-6">
         <p>
-          ICHANCY may update, amend, edit and supplement the ICHANCY Rules at
-          any time. Any substantial amendment to the ICHANCY Rules shall be
-          notified in advance by ICHANCY to the Account Holder, before coming
+          betalarab may update, amend, edit and supplement the betalarab Rules at
+          any time. Any substantial amendment to the betalarab Rules shall be
+          notified in advance by betalarab to the Account Holder, before coming
           into effect and will require your consent. If you do not agree with
-          the amendment(s) to the ICHANCY rules, you will not be permitted to
-          continue using the Services. All references in the ICHANCY Rules to the
+          the amendment(s) to the betalarab rules, you will not be permitted to
+          continue using the Services. All references in the betalarab Rules to the
           singular shall include the plural and vice versa. All references to
           "the" shall include "a/an" and vice versa.
         </p>
@@ -40,36 +40,36 @@ export default function OtherRules() {
             <div className="space-y-4">
               <p>
                 <strong>1.1</strong> An "Account Holder" is an individual having
-                a contractual relationship with ICHANCY by creating a ICHANCY
+                a contractual relationship with betalarab by creating a betalarab
                 Account on the Website.
               </p>
 
               <p>
-                <strong>1.2</strong> A "ICHANCY Account" is an account held by
+                <strong>1.2</strong> A "betalarab Account" is an account held by
                 an Account Holder, for bona fide transactions, with a strict aim
-                to establish a normal commercial relationship with ICHANCY and
+                to establish a normal commercial relationship with betalarab and
                 with the strict purpose of conducting betting and other gaming
                 and gambling transactions.
               </p>
 
               <p>
                 <strong>1.3</strong> The "Contract" is the contractual
-                relationship between ICHANCY and an Account Holder and shall be
-                constituted under and governed by the ICHANCY Rules, i.e. the
+                relationship between betalarab and an Account Holder and shall be
+                constituted under and governed by the betalarab Rules, i.e. the
                 "Terms and Conditions".
               </p>
 
               <p>
                 <strong>1.4</strong> The "Website" is the internet gateway
-                accessible through the internet address www.ichancy.com where
-                all current and relevant information regarding ICHANCY
+                accessible through the internet address www.betalarab.com where
+                all current and relevant information regarding betalarab
                 operations is published, and through which the Services are
                 provided to the Account Holders.
               </p>
 
               <p>
                 <strong>1.5</strong> The "Services" are the gaming and betting
-                offers provided by ICHANCY to the Account Holder through the
+                offers provided by betalarab to the Account Holder through the
                 Website.
               </p>
 
@@ -95,7 +95,7 @@ export default function OtherRules() {
                 <strong>1.9</strong> "Force Majeure" refers to any occurrence or
                 condition beyond one's reasonable control which leads to a delay
                 or default in the performance of the affected party's contractual
-                obligation and shall, for the purposes of the ICHANCY Rules,
+                obligation and shall, for the purposes of the betalarab Rules,
                 include Acts of God, government restrictions (including the denial
                 or cancellation of any necessary license where such denial or
                 cancellation is made through no fault of the affected party),
@@ -114,7 +114,7 @@ export default function OtherRules() {
 
               <p>
                 <strong>1.11</strong> "Software" shall mean all software used by
-                ICHANCY to offer and/or operate the Services and/or run the Client
+                betalarab to offer and/or operate the Services and/or run the Client
                 Application.
               </p>
 
@@ -124,7 +124,7 @@ export default function OtherRules() {
               </p>
 
               <p>
-                <strong>1.13</strong> An "Inactive Account" is a ICHANCY Account
+                <strong>1.13</strong> An "Inactive Account" is a betalarab Account
                 which has not recorded any log-in and/or log-out for a period
                 exceeding 12 consecutive months.
               </p>
@@ -141,7 +141,7 @@ export default function OtherRules() {
                 names as well as images, graphics, text, concepts or methodologies
                 (collectively the "Intellectual Assets") found on the Website,
                 the Client Application and the material contained therein are the
-                exclusive property of ICHANCY and/or ICHANCY's suppliers and
+                exclusive property of betalarab and/or betalarab's suppliers and
                 partners. The Account Holder is not entitled to exploit or
                 otherwise use any Intellectual Asset for whatever purpose, except
                 for what is allowed by law.
@@ -156,7 +156,7 @@ export default function OtherRules() {
 
             <div className="space-y-4">
               <h4 className="text-[var(--primary-color)] text-lg font-semibold mt-6 mb-3">
-                2.1 Creation of a ICHANCY Bet Account
+                2.1 Creation of a betalarab Bet Account
               </h4>
 
               <p>
@@ -176,9 +176,9 @@ export default function OtherRules() {
                 <strong>2.1.2</strong> An individual applying to become an
                 Account Holder warrants and represents not to be under the age of
                 eighteen (18) years. Minors cannot register as a player and
-                cannot hold a ICHANCY Account. ICHANCY reserves the right to
+                cannot hold a betalarab Account. betalarab reserves the right to
                 request additional proof of age and perform additional checks in
-                order to verify the information provided. A ICHANCY Account may
+                order to verify the information provided. A betalarab Account may
                 be suspended until satisfactory proof of age is provided.
               </p>
 
@@ -207,13 +207,13 @@ export default function OtherRules() {
                   St. Eustatius, St. Maarten, Sudan, Sweden, Switzerland, Syria,
                   Turkey, Uganda, United Kingdom, United States, Vatican City,
                   Yemen (please be aware of particular country exclusions for
-                  Casino – Games – Live Casino, Poker and Bingo); ICHANCY
-                  reserves the right to block the access to ichancy.com and not
+                  Casino – Games – Live Casino, Poker and Bingo); betalarab
+                  reserves the right to block the access to betalarab.com and not
                   to pay the winning to the players from the mentioned countries;
                 </li>
                 <li>
                   not to be a professional player in any sport, competition or
-                  league where ICHANCY offers betting;
+                  league where betalarab offers betting;
                 </li>
                 <li>not to be restricted by limited legal capacity;</li>
                 <li>not to be acting on behalf of another party;</li>
@@ -232,20 +232,20 @@ export default function OtherRules() {
                   jurisdiction in which betting and gaming are prohibited;
                 </li>
                 <li>
-                  not to be conducting criminal activities whereby a ICHANCY
+                  not to be conducting criminal activities whereby a betalarab
                   Account is directly or indirectly involved;
                 </li>
                 <li>
                   not to use the Services if it is illegal in his/her country of
                   residence or otherwise restricted for him/her to open a gaming
-                  account, purchase or use services from ICHANCY and/or otherwise
+                  account, purchase or use services from betalarab and/or otherwise
                   participate in the games offered. It is the Account Holder's
-                  responsibility to ensure his/her use of ICHANCY's Website and
+                  responsibility to ensure his/her use of betalarab's Website and
                   Services is legal;
                 </li>
                 <li>
                   not to find the Website or the Services offensive, objectionable,
-                  unfair, nor indecent; and to maintain his/her ICHANCY Account
+                  unfair, nor indecent; and to maintain his/her betalarab Account
                   details up-to-date in terms of the following: first and last
                   name, country of residence, valid email address and phone
                   number.
@@ -253,21 +253,21 @@ export default function OtherRules() {
               </ul>
 
               <p>
-                <strong>2.1.4</strong> An individual applying for a ICHANCY
+                <strong>2.1.4</strong> An individual applying for a betalarab
                 Account acknowledges and accepts:
               </p>
 
               <ul className="list-disc list-inside ml-4 space-y-2">
                 <li>
-                  all definitions and stipulations as stated under the ICHANCY
+                  all definitions and stipulations as stated under the betalarab
                   Rules;
                 </li>
                 <li>
-                  the ICHANCY Rules as currently published on the Website, as well
-                  as any possible future changes to the ICHANCY Rules;
+                  the betalarab Rules as currently published on the Website, as well
+                  as any possible future changes to the betalarab Rules;
                 </li>
                 <li>
-                  that the Contract is governed by: (i) the ICHANCY Rules as
+                  that the Contract is governed by: (i) the betalarab Rules as
                   published in English; (ii) any regulatory provisions or other
                   decisions made from time to time by the Governing Authorities;
                   and (iii) the Governing Law of the Place of the Contract.
@@ -332,7 +332,7 @@ export default function OtherRules() {
               </p>
 
               <p>
-                <strong>3.3</strong> ICHANCY has the right to make any changes
+                <strong>3.3</strong> betalarab has the right to make any changes
                 and additions to the rules set forth herein, the provisions and
                 procedures of payments without an individual prior written notice.
                 Users are notified about this with appropriate announcements. The
@@ -342,7 +342,7 @@ export default function OtherRules() {
               </p>
 
               <p>
-                <strong>3.4</strong> ICHANCY reserves the right to refuse service
+                <strong>3.4</strong> betalarab reserves the right to refuse service
                 to any person without disclosing the reason(s).
               </p>
             </div>
@@ -355,7 +355,7 @@ export default function OtherRules() {
 
             <div className="space-y-4">
               <p>
-                <strong>4.1</strong> ICHANCY does not bear any responsibility for
+                <strong>4.1</strong> betalarab does not bear any responsibility for
                 any losses or damages claimed as resulting from the use of this
                 site or from its content. This provision equally applies to the
                 use or misuse of the content of the site by any person, inability
@@ -372,7 +372,7 @@ export default function OtherRules() {
               </p>
 
               <p>
-                <strong>4.3</strong> ICHANCY monitors traffic of its website
+                <strong>4.3</strong> betalarab monitors traffic of its website
                 actively, and reserves the right to block access in cases of
                 suspected automated betting (bots).
               </p>
@@ -611,7 +611,7 @@ export default function OtherRules() {
               <p>
                 <strong>6.3</strong> The User is the only person who is
                 responsible for the bet. Once a bet is made and its acceptance is
-                confirmed, it cannot be changed or canceled by the User. ICHANCY
+                confirmed, it cannot be changed or canceled by the User. betalarab
                 does not provide any guarantees with respect to the "lost" or
                 "double" bets made by customers. Please carefully check all the
                 bets you have made.

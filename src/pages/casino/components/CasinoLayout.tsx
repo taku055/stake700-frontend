@@ -11,7 +11,7 @@ import { useEffect, useState } from "preact/hooks";
 import { localeState } from "@/state/localeState";
 import { getCachedCategoryCount, getCategoryGameCount } from "@/components/NavigationSidebar/categoryData";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
-import TrendingCategory from "./trendingCategory";
+import TrendingCategory from "./TrendingCategory";
 import { TRENDING_CATEGORIES } from "./categoriesData";
 
 interface CasinoLayoutProps {

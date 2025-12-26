@@ -10,11 +10,11 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   2: {
     id: 2,
     title: "50X Bonus !!",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/50X Bonus !!.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/50X Bonus !!.png",
     category: "SPORTS",
     content: `
       <h2>If you lose 1 game</h2>
-      <p><b>ICHANCY</b> will reward cashback directly to your account in case your bet is lost because of 1 game</p>
+      <p><b>betalarab</b> will reward cashback directly to your account in case your bet is lost because of 1 game</p>
       
       <h3 style="font-weight: bold; line-height: 2.5;">Terms and Conditions</h3>
       
@@ -61,11 +61,11 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   5: {
     id: 5,
     title: "Bet Builder",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Bet Builder.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Bet Builder.png",
     category: "SPORTS",
     content: `
       <h2>Millions of unreal combinations daily!</h2>
-      <p><b>Ichancy</b> Sportsbook has launched a new betting feature called BetBuilder.</p>
+      <p><b>betalarab</b> Sportsbook has launched a new betting feature called BetBuilder.</p>
       
       <p>BetBuilder, allows you to build your own bets on the same match with multiple selections.</p>
       
@@ -83,20 +83,20 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   6: {
     id: 6,
     title: "Boosted odds",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Boosted odds.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Boosted odds.png",
     category: "SPORTS",
     content: `
-      <h2><b>Ichancy</b> offers Boosted odds to its users.</h2>
+      <h2><b>betalarab</b> offers Boosted odds to its users.</h2>
       
       <p>Boosted odds are an excellent way for sports fans to explore betting possibilities for different sport types, bet types, and events at more attractive odds. Receive enhanced odds on a wide range of global sporting markets. You will be able to find Boosted Odds for events of most of the popular matches and place bets on these events at higher than usual odds and get a higher profit in case of winning. Boosted Odds are available to all users and there's no limit to how many you can bet. Click below to see our cosmic prices, or browse the Boosted Odds section of the Sportsbook page.</p>
       
-      <p>Boost your chances with <b>Ichancy</b> !</p>
+      <p>Boost your chances with <b>betalarab</b> !</p>
     `
   },
   8: {
     id: 8,
     title: "Cashout",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Cashout.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Cashout.png",
     category: "SPORTS",
     content: `
       <h2>Cash Out with 0% commission or Cancel Your Bet</h2>
@@ -126,10 +126,10 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   },
   9: {
     id: 9,
-    title: "Early Payout Offer from ICHANCY",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Early Payout Offer from ICHANCY.png",
+    title: "Early Payout Offer from betalarab",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Early Payout Offer from betalarab.png",
     content: `
-      <h2>Early Payout Offer from <b>ICHANCY</b></h2>
+      <h2>Early Payout Offer from <b>betalarab</b></h2>
       
       <p>Once your team scores two goals, you can claim your profits without waiting for the match to end.</p>
       
@@ -155,7 +155,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   10: {
     id: 10,
     title: "Edit Bet",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Edit Bet.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Edit Bet.png",
     category: "SPORTS",
     content: `
       <h2>A special offer to edit your bets!</h2>
@@ -196,19 +196,19 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       
       <h3 style="font-weight: bold; line-height: 2.5;">Other Terms and Conditions</h3>
       
-      <p>Until the point of confirmation, the feature can be canceled by clicking on the Cancel button. The feature is not applicable for bets placed via the Free bet. The edited bet slip will be available in the My Bets section. <b>ICHANCY</b> has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice. This means that <b>ICHANCY</b> may limit or refuse to allow customers to take part in this or any other offer. The general conditions referring to accepting and implementing bets defined by the current regulation apply to the given feature conditions. The organizer bears no responsibility for the unavailability of the feature caused by technical issues. In that case, the conditions of the initial bet slip will maintain.</p>
+      <p>Until the point of confirmation, the feature can be canceled by clicking on the Cancel button. The feature is not applicable for bets placed via the Free bet. The edited bet slip will be available in the My Bets section. <b>betalarab</b> has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice. This means that <b>betalarab</b> may limit or refuse to allow customers to take part in this or any other offer. The general conditions referring to accepting and implementing bets defined by the current regulation apply to the given feature conditions. The organizer bears no responsibility for the unavailability of the feature caused by technical issues. In that case, the conditions of the initial bet slip will maintain.</p>
     `
   },
 
   11: {
     id: 11,
     title: "Loyalty Program",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Loyalty Program.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Loyalty Program.png",
     category: "CASINO",
     content: `
       <h2>Loyalty Program</h2>
       
-      <p>Get Loyalty Points by spinning Casino Slots at <b>ICHANCY</b> & upgrade your level every 30 days!</p>
+      <p>Get Loyalty Points by spinning Casino Slots at <b>betalarab</b> & upgrade your level every 30 days!</p>
       
       <p>Exchange your Loyalty Points with REAL MONEY or different prizes!</p>
       
@@ -258,7 +258,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       
       <p>Loyalty Points can also be exchanged for free spins, wagering bonus and other prizes at the Exchange Shop and can be used on Slots games.</p>
       
-      <p>Converted real money from Loyalty Points will be credited to your Ichancy account as withdrawable money.</p>
+      <p>Converted real money from Loyalty Points will be credited to your betalarab account as withdrawable money.</p>
       
       <p>The min limit for cash conversion is €1 or equivalent in other currency, which is the equivalent to 1,000 Loyalty Points.</p>
       
@@ -388,32 +388,32 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       
       <p>Promotion runs from November 1.</p>
       
-      <p><b>ICHANCY</b> reserves the right to not provide any Loyalty Points if it is discovered that the Player has used a special program designed to defraud <b>ICHANCY</b>.</p>
+      <p><b>betalarab</b> reserves the right to not provide any Loyalty Points if it is discovered that the Player has used a special program designed to defraud <b>betalarab</b>.</p>
       
-      <p><b>ICHANCY</b> reserves the right to change, temporarily suspend or cancel this promotion at any time.</p>
+      <p><b>betalarab</b> reserves the right to change, temporarily suspend or cancel this promotion at any time.</p>
       
-      <p><b>ICHANCY</b> reserves the right to cancel the bets, winnings, bonuses, jackpots, or any other prizes, which are displayed or provided to the Player due to any technical, mechanical, or software bug or error. In any dispute, the data on the <b>ICHANCY</b> server will be used as the basis for any action.</p>
+      <p><b>betalarab</b> reserves the right to cancel the bets, winnings, bonuses, jackpots, or any other prizes, which are displayed or provided to the Player due to any technical, mechanical, or software bug or error. In any dispute, the data on the <b>betalarab</b> server will be used as the basis for any action.</p>
       
-      <p><b>ICHANCY</b> has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice. This means that <b>ICHANCY</b> may limit or refuse to allow customers to take part in this or any other offer.</p>
+      <p><b>betalarab</b> has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice. This means that <b>betalarab</b> may limit or refuse to allow customers to take part in this or any other offer.</p>
       
       <p>Each Player participating in the current promotion authorises and accepts the publication of their Player ID for any purpose related to the promotion.</p>
       
       <p>Each Player participating in this promotion approves that they have read and agreed to the Terms and Conditions.</p>
       
-      <p><b>ICHANCY</b> General Terms and Conditions apply to this promotion.</p>
+      <p><b>betalarab</b> General Terms and Conditions apply to this promotion.</p>
     `
   },
   12: {
     id: 12,
     title: "Multiple of the day",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Multiple of the day.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Multiple of the day.png",
     category: "SPORTS",
     content: `
       <h2>Ready-made bonuses and wins!</h2>
       
       <p>You want to place a ready-made Multiple bet but don't know what events to pick? Our new MULTIPLE OF THE DAY feature is made just for you!</p>
       
-      <p><b>Ichancy</b> SportsBook specialists have created ready-made Multiple bets that will bring you an Express bonus!</p>
+      <p><b>betalarab</b> SportsBook specialists have created ready-made Multiple bets that will bring you an Express bonus!</p>
       
       <p>Use the Multiple of the Day feature and get</p>
     `
@@ -421,7 +421,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   13: {
     id: 13,
     title: "Predictor",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Predictor.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Predictor.png",
     content: `
       <h2>Free Prediction Challenge - Be the Leader and Win Big!</h2>
       
@@ -432,7 +432,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       <h3 style="font-weight: bold; line-height: 2.5;">How to Play:</h3>
       
       <ul style="list-style-type: disc; padding-left: 20px;">
-        <li>Log in to <b>ICHANCY.COM</b>, place a bet on the site worth $1 or more, and then go to the game section through the side menu.</li>
+        <li>Log in to <b>betalarab.COM</b>, place a bet on the site worth $1 or more, and then go to the game section through the side menu.</li>
         <li>Predict match results in the designated fields, including predicting the first team to score.</li>
       </ul>
       
@@ -503,9 +503,9 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   14: {
     id: 14,
     title: "Refer a friend",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Refer a friend.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Refer a friend.png",
     content: `
-      <h2>Refer a friend to join <b>Ichancy</b> and benefit together.</h2>
+      <h2>Refer a friend to join <b>betalarab</b> and benefit together.</h2>
       
       <h3 style="font-weight: bold; line-height: 2.5;">1- Become a loyal Player by the system</h3>
       <p>Join the offer</p>
@@ -513,7 +513,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       <h3 style="font-weight: bold; line-height: 2.5;">2- Receive a referral link</h3>
       <p>Refer a maximum of 5 friends</p>
       
-      <h3 style="font-weight: bold; line-height: 2.5;">3- Send the link to the friend you want to invite to Ichancy</h3>
+      <h3 style="font-weight: bold; line-height: 2.5;">3- Send the link to the friend you want to invite to betalarab</h3>
       <p>Register - Deposit - Meet bonus requirements</p>
       
       <br />
@@ -533,7 +533,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       <h3 style="font-weight: bold; line-height: 2.5;">Referred friends must follow these steps</h3>
       
       <ul style="list-style-type: disc; padding-left: 20px;">
-        <li>Register on <b>ICHANCY</b> with the referred link on ichancy.com.</li>
+        <li>Register on <b>betalarab</b> with the referred link on betalarab.com.</li>
         <li>Pass verification process successfully.</li>
         <li>Make a min. €20 (or equivalent) deposit.</li>
         <li>Wager on slot games min. €100 (or equivalent) or more.</li>
@@ -774,30 +774,30 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       
       <p>The Promotion runs from September 16, 00:00, (CET) 2022.</p>
       
-      <p>Each Player confirms to have read and accepted all the terms and conditions. This bonus offer is limited to one customer, family, address, shared computer, shared IP address. <b>ICHANCY</b> reserves the right to cancel the bonus and block the account if they discover that the Player is misusing this bonus offer or is opening multiple accounts.</p>
+      <p>Each Player confirms to have read and accepted all the terms and conditions. This bonus offer is limited to one customer, family, address, shared computer, shared IP address. <b>betalarab</b> reserves the right to cancel the bonus and block the account if they discover that the Player is misusing this bonus offer or is opening multiple accounts.</p>
       
-      <p><b>ICHANCY</b> reserves the right to change, temporarily suspend, or cancel this offer at any time.</p>
+      <p><b>betalarab</b> reserves the right to change, temporarily suspend, or cancel this offer at any time.</p>
       
-      <p><b>ICHANCY</b> has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice. This means, that <b>ICHANCY</b> may limit or refuse to allow customers to take part in this or any other offer.</p>
+      <p><b>betalarab</b> has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice. This means, that <b>betalarab</b> may limit or refuse to allow customers to take part in this or any other offer.</p>
       
       <p>Each player participating in this promotion approves to have read and agreed to these Terms and Conditions.</p>
       
-      <p>The <b>ICHANCY</b> General Terms and Conditions apply.</p>
+      <p>The <b>betalarab</b> General Terms and Conditions apply.</p>
     `
   },
   15: {
     id: 15,
-    title: "Upgraded & Modernised Ichancy app",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Upgraded & Modernised Ichancy app.png",
+    title: "Upgraded & Modernised betalarab app",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Upgraded & Modernised betalarab app.png",
     category: "SPORTS",
     content: `
-      <h2>We are excited to announce the release of an upgraded <b>ICHANCY</b> app version.</h2>
+      <h2>We are excited to announce the release of an upgraded <b>betalarab</b> app version.</h2>
       
       <p>By incorporating the latest trends and cutting-edge technologies in the industry we aim to provide our Players with a more enjoyable and seamless betting experience.</p>
       
       <br />
       
-      <h3 style="font-weight: bold; line-height: 2.5;">What to expect in the upgraded <b>ICHANCY</b> App?</h3>
+      <h3 style="font-weight: bold; line-height: 2.5;">What to expect in the upgraded <b>betalarab</b> App?</h3>
       
       <ul style="list-style-type: disc; padding-left: 20px;">
         <li>Faster loading</li>
@@ -808,9 +808,9 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       
       <br />
       
-      <p>*Enjoy Casino, Sports, Live Casino, Poker, Belote, TV Games, Virtual Games, Skill games, eSports via <b>ICHANCY</b> App.</p>
+      <p>*Enjoy Casino, Sports, Live Casino, Poker, Belote, TV Games, Virtual Games, Skill games, eSports via <b>betalarab</b> App.</p>
       
-      <p>*Stay tuned to receive information about our newest, exclusive and unique offers via the <b>ICHANCY</b> app.</p>
+      <p>*Stay tuned to receive information about our newest, exclusive and unique offers via the <b>betalarab</b> app.</p>
       
       <br />
       
@@ -822,12 +822,12 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   16: {
     id: 16,
     title: "Welcome bonus",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Welcome bonus.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Welcome bonus.png",
     category: "WELCOME BONUS",
     content: `
       <h2>100% welcome bonus</h2>
       
-      <p>Start the endless fun with the craziest sports events on <b>Ichancy</b></p>
+      <p>Start the endless fun with the craziest sports events on <b>betalarab</b></p>
       
       <p>Kick off with up to 500 usd welcome bonus in a few steps.</p>
       
@@ -836,7 +836,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       <h3 style="font-weight: bold; line-height: 2.5;">HOW TO QUALIFY :</h3>
       
       <ul style="list-style-type: disc; padding-left: 20px;">
-        <li>Register or login on Ichancy.com.</li>
+        <li>Register or login on betalarab.com.</li>
         <li>Successfully verify your account: go to Verify Account → Upload your identity documents from the Documents page and wait for your documents to be approved.</li>
         <li>Wager 5 times the bonus amount in accumulator bets. Each accumulator bet must contain 3 or more events. At least 3 of the events included in an accumulator must have odds of 1.40 or higher. The start dates of all of these events should not be later than the validity period of this offer.</li>
       </ul>
@@ -847,10 +847,10 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   17: {
     id: 17,
     title: "Wheel Of Chance !",
-    image: "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotion_cards/Wheel Of Chance !.png",
+    image: "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/Wheel Of Chance !.png",
     category: "CASINO",
     content: `
-      <h2>Welcome to <b>Ichancy</b> wonder Wheel</h2>
+      <h2>Welcome to <b>betalarab</b> wonder Wheel</h2>
       
       <h3 style="font-weight: bold; line-height: 2.5;">Get Spins:</h3>
       
@@ -899,7 +899,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
       
       <h3 style="font-weight: bold; line-height: 2.5;">Car Parts:</h3>
       
-      <p><b>Ichancy</b> gives you the Chance to win a Brand-New BMW 2 Series 2024.</p>
+      <p><b>betalarab</b> gives you the Chance to win a Brand-New BMW 2 Series 2024.</p>
       
       <p>Collect All needed parts to complete your car and WIN!</p>
       

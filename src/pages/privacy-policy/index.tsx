@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
           your personal information. We will be clear and open about why we
           collect your personal information and how we use it. Where you have
           choices or rights, we will explain these to you. This Privacy Policy
-          explains how ICHANCY uses your personal information when you're using
+          explains how betalarab uses your personal information when you're using
           one of our website.
         </p>
 
@@ -33,13 +33,13 @@ export default function PrivacyPolicy() {
 
             <p>
               If you have concerns or would like any further information about
-              how ICHANCY handles your personal information, you can contact
+              how betalarab handles your personal information, you can contact
               our Data Protection Officer at{" "}
               <a
-                href="mailto:dpo@ichancy.com"
+                href="mailto:dpo@betalarab.com"
                 className="text-[var(--primary-color)] hover:underline"
               >
-                dpo@ichancy.com
+                dpo@betalarab.com
               </a>
             </p>
           </section>
@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
                 </p>
 
                 <ul className="list-disc list-inside ml-4 space-y-2">
-                  <li>Register an account with ICHANCY</li>
+                  <li>Register an account with betalarab</li>
                   <li>Voluntarily provide it when using the website</li>
                   <li>
                     Personally disclose the information in public areas of the
@@ -112,8 +112,8 @@ export default function PrivacyPolicy() {
                 </h4>
 
                 <p>
-                  ICHANCY strives to make our website as user friendly as
-                  possible and easy to find on the internet. ICHANCY collects data
+                  betalarab strives to make our website as user friendly as
+                  possible and easy to find on the internet. betalarab collects data
                   on how you use the site, which does not identify you personally.
                   When you interact with the services, our servers keep an
                   activity log unique to you that collects certain administrative
@@ -131,7 +131,7 @@ export default function PrivacyPolicy() {
                 </h4>
 
                 <p>
-                  ICHANCY uses cookies to ensure our website works efficiently
+                  betalarab uses cookies to ensure our website works efficiently
                   and to enhance your visits to our platforms. Further information
                   can be found in our Cookie Policy.
                 </p>
@@ -193,7 +193,7 @@ export default function PrivacyPolicy() {
                 </h4>
 
                 <p className="mb-2">
-                  ICHANCY will use your identificationn document and/or proof of
+                  betalarab will use your identificationn document and/or proof of
                   address to check your details in order for us to protect our
                   users from fraudulent behaviour and to promote responsible
                   gambling.
@@ -278,10 +278,10 @@ export default function PrivacyPolicy() {
                   information that cannot be updated through My Account, please
                   contact{" "}
                   <a
-                    href="mailto:support@ichancy.com"
+                    href="mailto:support@betalarab.com"
                     className="text-[var(--primary-color)] hover:underline"
                   >
-                    support@ichancy.com
+                    support@betalarab.com
                   </a>
                 </p>
               </div>
@@ -296,10 +296,10 @@ export default function PrivacyPolicy() {
                   about you, you should request it through live chat or by
                   emailing{" "}
                   <a
-                    href="mailto:dpo@ichancy.com"
+                    href="mailto:dpo@betalarab.com"
                     className="text-[var(--primary-color)] hover:underline"
                   >
-                    dpo@ichancy.com
+                    dpo@betalarab.com
                   </a>{" "}
                   and we will provide you with a form to complete. The form is not
                   compulsory but helps us to provide you with the information you
@@ -443,7 +443,7 @@ export default function PrivacyPolicy() {
             <p>
               We retain personal information for as long as we reasonably require
               it for legal or business purposes. In determining data retention
-              periods, ICHANCY takes into consideration local laws, contractual
+              periods, betalarab takes into consideration local laws, contractual
               obligations, and the expectations and requirements of our customers.
               When we no longer need your personal information, we securely delete
               or destroy it.
@@ -496,7 +496,7 @@ export default function PrivacyPolicy() {
               <p className="mb-2">
                 Google Analytics is a web analysis service provided by Google
                 Inc. ("Google"). Google utilizes the Data collected to track and
-                examine the use of ICHANCY, to prepare reports on its activities
+                examine the use of betalarab, to prepare reports on its activities
                 and share them with other Google services.
               </p>
 
