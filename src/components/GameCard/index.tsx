@@ -118,7 +118,7 @@ export default function GameCard({ data }: GameCardProps) {
             loading="lazy"
             radius="none"
           />
-          <div className={styles.overlap}>
+          {/* <div className={styles.overlap}>
             <span title={data.providerId} className={styles.text}>
               {data.name}
             </span>
@@ -133,7 +133,7 @@ export default function GameCard({ data }: GameCardProps) {
             <Link scrollToTop={true} className={styles.play} href={`/game/${data.id}`}>
               <FaPlay size={24} color="white" />
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </Link>

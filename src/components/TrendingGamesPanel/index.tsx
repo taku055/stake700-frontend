@@ -100,7 +100,7 @@ export default function TrendingGamesPanel() {
         //   pauseOnMouseEnter: true,
         // }}
       >
-        {[...games, ...games].map((e, index) => ( 
+        {games.map((e, index) => ( 
            <SwiperSlide key={`${e.id}-${index}`} className={styles.game}>
            <GameCard data={e} />
         {/* {games.map((e) => (

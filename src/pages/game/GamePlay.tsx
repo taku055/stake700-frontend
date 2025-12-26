@@ -219,25 +219,16 @@ export default function GamePlay({ game }: IGamePlayProps) {
             )}
             <div className="w-full h-full bg-[#0E1224E5] top-[0px] absolute" />
             <div className="w-full  absolute left-[0px]  my-auto flex flex-col gap-[18px] z-[3] items-center justify-center">
-              <div className="flex gap-2 h-[24px] w-full items-center justify-center mb-2">
+              {/* <div className="flex gap-2 h-[24px] w-full items-center justify-center mb-2">
                 <span className="text-[14px] leading-[20px] text-[#B1BAD3] font-weight-semibold">{t("Balance displayed in")}</span>
-                {/* <Button className="">
-                  <img src={`${BASE_URL}/images/tokens/usd.png`} alt="USD" className="w-5 h-5" />
-                  <span className="text-[14px] leading-[20px] text-[#B1BAD3] font-weight-semibold">USD</span>
-                  <ChevronDown />
-                </Button> */}
+                
                 <Dropdown backdrop="blur" className="flex h-[full] justify-center items-center py-3 px-5 overflow-y-auto bg-[var(--bar-background-color)]">
                   <DropdownTrigger>
                     <div className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
-                      {/* Balance Amount */}
                       <img src={`${BASE_URL}/images/currencies/${currencyState.value.code}.png`} alt="Currency" className="w-6 h-6" />
                       <span className="text-white text-[16px] font-medium">
                         {currencyState.value.code.toUpperCase()}
                       </span>
-
-                      {/* Currency Icon (Orange Circle with Bitcoin Symbol) */}
-
-                      {/* Dropdown Chevron */}
                       <ChevronDown size={14} color="white" />
                     </div>
                   </DropdownTrigger>
@@ -263,7 +254,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
                     ))}
                   </DropdownMenu>
                 </Dropdown>
-              </div>
+              </div> */}
               <div className="flex gap-2 h-[24px] w-full items-center justify-center p-2">
                 {game?.demo && (
                   <>
