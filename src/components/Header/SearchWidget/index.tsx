@@ -14,12 +14,14 @@ import {
   ModalHeader,
 } from "@/components/common";
 import { BASE_URL } from "@/config/constants";
+import { useMediaQuery } from "usehooks-ts";
+import { mobileMediaQuery } from "@/config/constants";
 
 export default function SearchWidget() {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState<tGame[]>([]);
   const t = useTranslations("SearchWidget");
-
+  const isMobile = useMediaQuery(mobileMediaQuery);
   useEffect(() => {
     if (keyword.trim() === "") {
       setSearchResult([]);
@@ -40,7 +42,8 @@ export default function SearchWidget() {
 
   return (
     <>
-      <div className="relative">
+      {!isMobile && (
+        <div className="relative">
         <button
           type="button"
           className="flex w-[44px] h-[44px] items-center justify-center"
@@ -48,7 +51,7 @@ export default function SearchWidget() {
         >
           <img src={`${BASE_URL}/images/icons/search.svg`} alt={t("Search")} className="w-[20px] h-[20px]" />
         </button>
-      </div>
+      </div>)}
       {searchWidgetState.value && (
         <Modal
           backdrop="blur"
@@ -57,8 +60,8 @@ export default function SearchWidget() {
           placement="center"
           scrollBehavior="inside"
           classNames={{
-            backdrop: "z-[10000000]",
-            wrapper: "z-[10000000]",
+            backdrop: "z-[100000000]",
+            wrapper: "z-[100000000]",
           }}
         >
           <ModalContent

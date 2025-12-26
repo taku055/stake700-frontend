@@ -1,7 +1,7 @@
 // Live Casino categories
 export const LIVE_CASINO_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = [
   {
-    name: "All Games",
+    name: "Live Casino",
     path: "/casino/live-casino",
   },
   {

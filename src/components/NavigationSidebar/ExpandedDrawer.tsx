@@ -95,7 +95,7 @@ export default function ExpandedDrawer({
   // Get categories based on selected tab
   const currentCategories = useMemo(() => {
     // return selectedTab === "casino" ? casinoCategories : selectedTab === "Sports" ? liveCasinoCategories : [];
-    return selectedTab === "casino" ? casinoCategories : [];
+    return selectedTabState.value === "casino" ? casinoCategories : [];
   }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
@@ -128,9 +128,9 @@ export default function ExpandedDrawer({
 
 
   return (
-    <div className="relative inset-0 z-50 h-full overflow-y-auto scrollbar-hide w-[260px] overflow-x-hidden px-[16px]">
+    <div className="relative inset-0 z-100 h-full overflow-y-auto scrollbar-hide w-[260px] overflow-x-hidden px-[16px]">
       {/* Backdrop */}
-      <div className={`fixed ${isRTL ? 'right-0' : 'left-0'} top-0 z-55 flex bg-[var(--sidebar-background)] w-[260px] h-[60px] items-center`}>
+      <div className={`fixed ${isRTL ? 'right-0' : 'left-0'} top-0 z-5500 flex bg-[var(--sidebar-background)] w-[260px] h-[60px] items-center`}>
         <div className="flex bg-[#ffffff02] w-full h-full px-[16px] items-center justify-between">
           <button
             className={`rounded-full h-full p-2 ratio-1/1 flex items-center justify-center`}
@@ -146,7 +146,7 @@ export default function ExpandedDrawer({
             />
           </button>
           <button
-            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
+            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTabState.value === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
             onClick={() => {
               selectedTabState.value = "casino";
               handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
@@ -155,7 +155,7 @@ export default function ExpandedDrawer({
             <span className="text-white text-[14px]">Casino</span>
           </button>
           <button
-            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "sports" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
+            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTabState.value === "sports" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
             onClick={() => {
               selectedTabState.value = "sports";
               // handleNavigate("/live-casino");
@@ -180,6 +180,16 @@ export default function ExpandedDrawer({
           {/* Top Navigation Items (Casino, Live Casino, Sportsbook) */}
           <div className="py-4">
             <div className="flex flex-col gap-2">
+
+              {/* Categories Section - Always shown */}
+              <CategoryItems
+                categories={categoriesWithCounts}
+                title={selectedMainNavTitle || t("Categories")}
+                onCategoryClick={() => {
+                  // navigationSidebarExpandedState.value = false;
+                }}
+              />
+
               {topNavItems.map((item) => {
 
                 return (
@@ -378,14 +388,6 @@ export default function ExpandedDrawer({
 
 
 
-          {/* Categories Section - Always shown */}
-          <CategoryItems
-            categories={categoriesWithCounts}
-            title={selectedMainNavTitle || t("Categories")}
-            onCategoryClick={() => {
-              navigationSidebarExpandedState.value = false;
-            }}
-          />
         </div>
       </div>
     </div>

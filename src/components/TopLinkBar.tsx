@@ -32,15 +32,15 @@ export default function TopLinkBar() {
 
   return (
     <div className="flex items-center w-full relative py-2">
-      {!isMobile && <img src="https://tekio.s3.eu-north-1.amazonaws.com/betalarab/others/bar-bg1.png" alt="Top Link Bar" className="absolute inset-0 w-full h-full object-cover z-0" />}
+      {!isMobile && <img src="https://tekio.s3.eu-north-1.amazonaws.com/ichancy/others/bar-bg1.png" alt="Top Link Bar" className="absolute inset-0 w-full h-full object-cover z-0" />}
       <div className="relative z-10 flex w-full justify-center px-4 md:px-12 items-center gap-4 md:gap-22">
         <a href="/casino/slots">
           <p className={getLinkClasses("casino")}>{t("Casino")}</p>
         </a>
-        <a href="/live-casino">
+        {/* <a href="/casino/live-casino">
           <p className={getLinkClasses("live-casino")}>{t("Live Casino")}</p>
-        </a>
-        <a href="/sport">
+        </a> */}
+        <a href="">
           <p className={getLinkClasses("sport")}>{t("Sports")}</p>
         </a>
       </div>

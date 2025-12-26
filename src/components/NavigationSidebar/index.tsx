@@ -9,6 +9,7 @@ import CollapsedSidebar from "./CollapsedSidebar";
 import ExpandedDrawer from "./ExpandedDrawer";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import MobileDrawer from "./MobileDrawer";
+import {selectedTabState} from "@/state/selectedTab";
 
 interface NavigationItem {
   title: string;
@@ -33,6 +34,15 @@ export default function NavigationSidebar() {
   const { tabList } = useTablist();
   const location = useLocation();
 
+  useEffect(() => {
+    if (location.path.includes("/casino")) {
+      selectedTabState.value = "casino";
+    } else if (location.path.includes("/sport")) {
+      selectedTabState.value = "sports";
+    } else {
+      selectedTabState.value = null;
+    }
+  }, [location.path]);
   // Sync with signal state
   useEffect(() => {
     navigationSidebarExpandedState.value = !isMobile;

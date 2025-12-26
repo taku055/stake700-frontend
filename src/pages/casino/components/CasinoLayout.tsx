@@ -82,23 +82,23 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
       {/* <PromotionSection showAppleImage={false} /> */}
       <EmblaBanner />
       <div className="flex gap-3">
-        <GameFilterSidebar
+        {/* <GameFilterSidebar
           searchQuery={searchQuery}
           onSearchChange={onSearchChange}
           selectedProviders={selectedProviders}
           onProvidersChange={onProvidersChange}
           selectedCategory={selectedCategory}
           onCategoryChange={onCategoryChange}
-        />
+        /> */}
         <div className="max-w-[1200px] w-full h-full mx-auto">
           <TrendingGamesPanel />
           {/* <TopLinkBar /> */}
-          {TRENDING_CATEGORIES.map((category, index) => {
+          {/* {TRENDING_CATEGORIES.map((category, index) => {
             // const isSelected = selectedCategory === category.path;
             return (
               <TrendingCategory  category={category.category} name={category.name} />
             );
-          })}
+          })} */}
           <div className={`w-full flex ${isMobile ? 'flex-col' : 'flex-row'} gap-6 mt-[20px]`}>
 
             <CasinoGameGrid

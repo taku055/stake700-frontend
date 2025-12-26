@@ -81,7 +81,7 @@ export default function CollapsedSidebar({
   // Get categories based on selected tab
   const categoriesWithIcons = useMemo(() => {
     // return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
-    return selectedTab === "casino" ? casinoCategories : [];
+    return selectedTabState.value === "casino" ? casinoCategories : [];
   }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   // useEffect(() => {
@@ -113,22 +113,22 @@ export default function CollapsedSidebar({
           />
         </button>
         <button
-          className={`flex items-center rounded-[8px]  justify-center  min-w-[50px] min-h-[50px] ${selectedTab === "casino" ? "bg-[url('/buffer/active-casino-mini.svg')]" : "bg-[url('/buffer/default-casino-mini.svg')]"} hover:bg-[url('/buffer/active-casino-mini.svg')] bg-cover`}
+          className={`flex items-center rounded-[8px]  justify-center  min-w-[50px] min-h-[50px] ${selectedTabState.value === "casino" ? "bg-[url('/buffer/active-casino-mini.svg')]" : "bg-[url('/buffer/default-casino-mini.svg')]"} hover:bg-[url('/buffer/active-casino-mini.svg')] bg-cover`}
           onClick={() => {
             selectedTabState.value = "casino";
             // handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
           }}
         >
-          <img src={`${BASE_URL}/images/icons/casino.png`} alt="casino" className={`w-6 h-6 ${selectedTab === "casino" ? "" : "brightness-80 hover:brightness-100"}`} />
+          <img src={`${BASE_URL}/images/icons/casino.png`} alt="casino" className={`w-6 h-6 ${selectedTabState.value === "casino" ? "" : "brightness-80 hover:brightness-100"}`} />
         </button>
         <button
-          className={`flex items-center rounded-[8px] justify-center min-w-[50px] min-h-[50px]  ${selectedTab === "sports" ? "bg-[url('/buffer/active-sports-mini.svg')]" : "bg-[url('/buffer/default-sports-mini.svg')]"} hover:bg-[url('/buffer/active-sports-mini.svg')] bg-cover`}
+          className={`flex items-center rounded-[8px] justify-center min-w-[50px] min-h-[50px]  ${selectedTabState.value === "sports" ? "bg-[url('/buffer/active-sports-mini.svg')]" : "bg-[url('/buffer/default-sports-mini.svg')]"} hover:bg-[url('/buffer/active-sports-mini.svg')] bg-cover`}
           onClick={() => {
             selectedTabState.value = "sports";
             // handleNavigate("/sport");
           }}
         >
-          <img src={`${BASE_URL}/images/icons/sportsbook.png`} alt="sports" className={`w-6 h-6 ${selectedTab === "sports" ? "" : "brightness-80 hover:brightness-100"}`} />
+          <img src={`${BASE_URL}/images/icons/sportsbook.png`} alt="sports" className={`w-6 h-6 ${selectedTabState.value === "sports" ? "" : "brightness-80 hover:brightness-100"}`} />
         </button>
 
       </div>
@@ -136,6 +136,25 @@ export default function CollapsedSidebar({
 
       {/* Scrollable Content Area */}
       <div className="flex-1 flex flex-col overflow-y-auto min-h-0 scrollbar-hide">
+
+        {/* Category Icons */}
+        <div className="flex flex-col items-center py-4 gap-2">
+          {categoriesWithIcons.map((category, index) => (
+            <Link
+              key={index}
+              href={modifyHref(category.path)}
+              className="flex items-center justify-center w-10 h-10 rounded-lg transition-colors text-gray-300 hover:bg-gray-700 flex-shrink-0"
+              title={category.name}
+            >
+              <img
+                src={category.icon}
+                alt={category.name}
+                className="w-6 h-6 object-contain grayscale"
+              />
+            </Link>
+          ))}
+        </div>
+
         {/* Navigation Icons */}
         <div className="flex flex-col items-center py-4 gap-2 flex-shrink-0">
           {topNavItems.map((item) => (
@@ -190,23 +209,7 @@ export default function CollapsedSidebar({
           ))}
         </div>
 
-        {/* Category Icons */}
-        <div className="flex flex-col items-center py-4 gap-2">
-          {categoriesWithIcons.map((category, index) => (
-            <Link
-              key={index}
-              href={modifyHref(category.path)}
-              className="flex items-center justify-center w-10 h-10 rounded-lg transition-colors text-gray-300 hover:bg-gray-700 flex-shrink-0"
-              title={category.name}
-            >
-              <img
-                src={category.icon}
-                alt={category.name}
-                className="w-6 h-6 object-contain grayscale"
-              />
-            </Link>
-          ))}
-        </div>
+        
       </div>
 
       {/* Locale Selection Button - Bottom */}

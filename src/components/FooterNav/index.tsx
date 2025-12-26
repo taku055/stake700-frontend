@@ -56,13 +56,13 @@ export default function FooterNav() {
         },
         {
           title: t("Casino"),
-          // href: "/casino/slots",
+          href: "/casino/slots",
           key: "casino",
           icon: (<img src={`${BASE_URL}/images/icons/casino.png`} width={20} height={20}/>),
         },
         {
           title: t("Live Casino"),
-          // href: "/live-casino",
+          href: "/casino/live-casino",
           key: "live-casino",
           icon: (<img src={`${BASE_URL}/images/icons/live-casino.svg`} width={20} height={20}/>),
         },
@@ -114,12 +114,16 @@ export default function FooterNav() {
   }
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-[var(--bar-background-color)] border-t border-gray-800 z-500 overflow-x-auto">
+    <footer className="fixed bottom-0 left-0 right-0 bg-[var(--bar-background-color)] border-t border-gray-800 z-6000 overflow-x-auto">
       <div className="flex justify-around items-center h-[57px]">
         {tabList.map((tab) => (
           <a
             key={tab.key}
             href={tab.href}
+            onClick={(e) => {
+              e.preventDefault();
+              navigationSidebarExpandedState.value = false;
+            }}
             className={`flex flex-col items-center justify-center py-2 gap-1 h-full min-w-0 ${selectedKey === tab.key
               ? "text-[var(--primary-color)] border-t-2 border-[var(--primary-color)]"
               : "text-white"

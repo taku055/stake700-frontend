@@ -32,14 +32,24 @@ export const PromotionSection: FunctionalComponent<{
       };
     } else if (currentPath.startsWith("/casino")) {
       // Casino page banners
+      // return {
+      //   desktop: [
+      //     "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/promotion-cashback.webp",
+      //     "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/promotion-loyalty.webp",
+      //   ],
+      //   mobile: [
+      //     "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/promotion-cashback-mobile.webp",
+      //     "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/promotion-loyalty-mobile.webp",
+      //   ],
+      // };
       return {
         desktop: [
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/promotion-cashback.webp",
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/promotion-loyalty.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/cashback.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/personal-offer.webp",
         ],
         mobile: [
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/promotion-cashback-mobile.webp",
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/promotion-loyalty-mobile.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/cashback-mobile.webp",
+          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/mobile/personal-offer-mobile.webp",
         ],
       };
 

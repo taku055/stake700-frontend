@@ -35,13 +35,13 @@ export function useAffiliateNavigation() {
 
   const handleNavigate = useCallback(
     (path: string) => {
-      scrollToTop();
+      // scrollToTop();
       const urlWithRef = addRefToPath(path, refCode);
       route(urlWithRef, true);
       // Ensure scroll happens after navigation completes
-      setTimeout(() => {
-        scrollToTop();
-      }, 100);
+        // setTimeout(() => {
+        //   scrollToTop();
+        // }, 100);
     },
     [refCode, route]
   );

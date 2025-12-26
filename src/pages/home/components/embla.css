@@ -22,7 +22,7 @@
 .embla__slide {
   flex: 0 0 100%;
   max-width: 1200px;
-  background-image: url("https://tekio.s3.eu-north-1.amazonaws.com/sportsbook/assets/images/banner/imgi_66_soccer.png");
+  /* background-image: url("https://tekio.s3.eu-north-1.amazonaws.com/sportsbook/assets/images/banner/imgi_66_soccer.png"); */
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 20px;

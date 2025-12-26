@@ -26,9 +26,9 @@ export default function AppRoute() {
       <Route path="/" component={HomePage} />
       <Route path="/provably-fair" component={ProvablyFairLayout} />
 
-      <Route path="/live" component={LivePage} />
-      <Route path="/live-casino" component={LivePage} />
-      <Route path="/sport" component={SportPage} />
+      <Route path="/casino/live-casino" component={LivePage} />
+      <Route path="/casino/live" component={LivePage} />
+      {/* <Route path="/sport" component={SportPage} /> */}
 
       <Route path="/casino/:pageType" component={CasinoLayout} />
       <Route path="/casino/:pageType/*" component={CasinoLayout} />

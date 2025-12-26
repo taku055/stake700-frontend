@@ -94,7 +94,7 @@ export default function MobileDrawer({
 
   // Get categories based on selected tab
   const currentCategories = useMemo(() => {
-    return selectedTab === "casino" ? casinoCategories : [];
+    return selectedTabState.value === "casino" ? casinoCategories : [];
   }, [selectedTab, casinoCategories, liveCasinoCategories]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
@@ -127,12 +127,12 @@ export default function MobileDrawer({
 
 
   return (
-    <div className={`fixed ${isRTL ? 'right-0' : 'left-0'} top-0 pt-16  z-55 h-full overflow-y-auto scrollbar-hide w-full bg-[var(--sidebar-background)] overflow-x-hidden px-[16px]`}>
+    <div className={`fixed ${isRTL ? 'right-0' : 'left-0'} top-0 pt-16  z-5500 h-full overflow-y-auto scrollbar-hide w-full bg-[var(--sidebar-background)] overflow-x-hidden px-[16px]`}>
       {/* Backdrop */}
       <div className={` z-55 flex w-full h-[70px] items-center`}>
         <div className="flex bg-[#ffffff02] w-full h-full items-center justify-between gap-2">
           <button
-            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${selectedTab === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
+            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${selectedTabState.value === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
             onClick={() => {
               selectedTabState.value = "casino";
               // handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
@@ -141,7 +141,7 @@ export default function MobileDrawer({
             <span className="text-white text-[14px]">Casino</span>
           </button>
           <button
-            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${selectedTab === "sports" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
+            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${selectedTabState.value === "sports" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
             onClick={() => {
               selectedTabState.value = "sports";
               // handleNavigate("/live-casino");
@@ -162,6 +162,15 @@ export default function MobileDrawer({
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto sidebar-scrollbar">
+
+          {/* Categories Section - Always shown */}
+          <CategoryItems
+            categories={categoriesWithCounts}
+            title={selectedMainNavTitle || t("Categories")}
+            onCategoryClick={() => {
+              navigationSidebarExpandedState.value = false;
+            }}
+          />
 
           {/* Top Navigation Items (Casino, Live Casino, Sportsbook) */}
           <div className="py-4">
@@ -362,16 +371,6 @@ export default function MobileDrawer({
             {/* <div className="border-b-2 border-[var(--bar-background-color)] w-[calc(100% - 46px)] mx-4" /> */}
           </div>
 
-
-
-          {/* Categories Section - Always shown */}
-          <CategoryItems
-            categories={categoriesWithCounts}
-            title={selectedMainNavTitle || t("Categories")}
-            onCategoryClick={() => {
-              navigationSidebarExpandedState.value = false;
-            }}
-          />
         </div>
       </div>
     </div>

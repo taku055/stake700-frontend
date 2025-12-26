@@ -79,6 +79,9 @@ export default function PageComponent() {
               placeholder={t("Search")}
               value={searchQuery}
               onChange={(e: any) => setSearchQuery(e.target.value)}
+              onFocus={(e: any) => {
+                searchWidgetState.value = true;
+              }}
               classNames={{
                 inputWrapper: "bg-[var(--background-secondary)] border-none rounded-none h-[44px]",
                 input: "text-white text-[16px]",
