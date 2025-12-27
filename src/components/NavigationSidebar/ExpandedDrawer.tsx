@@ -146,7 +146,7 @@ export default function ExpandedDrawer({
             />
           </button>
           <button
-            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTabState.value === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
+            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTabState.value === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('/images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
             onClick={() => {
               selectedTabState.value = "casino";
               handleNavigate("/casino/slots?custom=1&category=home");
@@ -155,7 +155,7 @@ export default function ExpandedDrawer({
             <span className="text-white text-[14px]">Casino</span>
           </button>
           <button
-            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTabState.value === "sports" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
+            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTabState.value === "sports" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('/images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
             onClick={() => {
               selectedTabState.value = "sports";
               // handleNavigate("/live-casino");

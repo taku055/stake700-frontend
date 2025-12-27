@@ -117,7 +117,7 @@ export default function CollapsedSidebar({
           className={`flex items-center rounded-[8px]  justify-center  min-w-[50px] min-h-[50px] ${selectedTabState.value === "casino" ? "bg-[url('/buffer/active-casino-mini.svg')]" : "bg-[url('/buffer/default-casino-mini.svg')]"} hover:bg-[url('/buffer/active-casino-mini.svg')] bg-cover`}
           onClick={() => {
             selectedTabState.value = "casino";
-            // handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
+            handleNavigate("/casino/slots?custom=1&category=home");
           }}
         >
           <img src={`${BASE_URL}/images/icons/casino.png`} alt="casino" className={`w-6 h-6 ${selectedTabState.value === "casino" ? "" : "brightness-80 hover:brightness-100"}`} />

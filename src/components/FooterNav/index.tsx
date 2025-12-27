@@ -56,7 +56,7 @@ export default function FooterNav() {
         },
         {
           title: t("Casino"),
-          href: "/casino/slots",
+          href: "/casino/slots?custom=1&category=home",
           key: "casino",
           icon: (<img src={`${BASE_URL}/images/icons/casino.png`} width={20} height={20}/>),
         },
