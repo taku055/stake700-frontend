@@ -133,7 +133,8 @@
   },
   "ProviderGroup": {
     "Providers": "المزوّدون",
-    "all_providers": "جميع المزوّدين"
+    "all_providers": "جميع المزوّدين",
+    "Publishers": "الناشرون"
   },
   "Footer": {
     "About Us": "من نحن",
@@ -548,7 +549,10 @@
     "Currency": "العملة",
     "Search": "بحث",
     "Password": "كلمة المرور",
-    "Destination wallet address": "عنوان محفظة الوجهة"
+    "Destination wallet address": "عنوان محفظة الوجهة",
+    "Wallet": "المحفظة",
+    "Improve your account security with Two-Factor Authentication": "حسّن أمان حسابك باستخدام المصادقة الثنائية",
+    "Enable 2FA": "تفعيل المصادقة الثنائية"
   },
   "Agent": {
     "Users": "المستخدمون",
@@ -1038,7 +1042,19 @@
     "Gold": "Gold",
     "Platinum I - III": "Platinum I - III",
     "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V"
+    "Diamond I - V": "Diamond I - V",
+    "Iron": "الحديد",
+    "Platinum": "البلاتين",
+    "Diamond": "الماس",
+    "Obsidian": "الأوبسيديان",
+    "Ruby": "الياقوت",
+    "Loyal": "المخلص",
+    "Captain": "الكابتن",
+    "Legend": "الأسطورة",
+    "Roller": "رولر",
+    "Gatos": "جاتوس",
+    "Based": "باسد",
+    "Certified": "معتمد"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",

@@ -41,21 +41,20 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
   const [confirmations, setConfirmations] = useState<number>(1);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("DepositDialogFull");
-  const tWallet = useTranslations("WalletBox");
   const tToast = useTranslations("ToastMessages");
   const [selectedTab, setSelectedTab] = useState("deposit");
   const tabs = useMemo(() => [
     {
       key: "deposit",
-      title: tWallet("Deposit"),
+      title: t("Deposit"),
       content: <DepositSection />,
     },
     {
       key: "withdraw",
-      title: tWallet("Withdraw"),
+      title: t("Withdraw"),
       content: <WithdrawSection />,
     },
-  ], [tWallet]);
+  ], [t]);
 
   useEffect(() => {
     const dispose = effect(() => {
@@ -240,7 +239,7 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
               className="w-[20px] h-[20px]"
             />
             <span className="text-white text-[18px] leading-[28px] font-semibold">
-              {tWallet("Wallet")}
+              {t("Wallet")}
             </span>
           </div>
         </div>
@@ -316,7 +315,7 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
           {/* 2FA Security Section */}
           <div className="flex flex-col gap-3 p-4 bg-[var(--bar-background-color)]">
             <p className="text-white text-[16px] text-center">
-              {tWallet("Improve your account security with Two-Factor Authentication")}
+              {t("Improve your account security with Two-Factor Authentication")}
             </p>
             <Button
               className="w-full text-white text-[16px] font-medium bg-[var(--background-secondary)] hover:bg-[var(--bar-background-color)]/80 h-[48px] rounded-lg border border-[var(--background-secondary)]"
@@ -324,7 +323,7 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
                 console.log("Enable 2FA");
               }}
             >
-              {tWallet("Enable 2FA")}
+              {t("Enable 2FA")}
             </Button>
           </div>
         </div>

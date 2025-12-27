@@ -133,7 +133,8 @@
   },
   "ProviderGroup": {
     "Providers": "Πάροχοι",
-    "all_providers": "Όλοι οι πάροχοι"
+    "all_providers": "Όλοι οι πάροχοι",
+    "Publishers": "Εκδότες"
   },
   "Footer": {
     "About Us": "Σχετικά με εμάς",
@@ -548,7 +549,10 @@
     "Currency": "Νόμισμα",
     "Search": "Αναζήτηση",
     "Password": "Κωδικός πρόσβασης",
-    "Destination wallet address": "Διεύθυνση πορτοφολιού προορισμού"
+    "Destination wallet address": "Διεύθυνση πορτοφολιού προορισμού",
+    "Wallet": "Πορτοφόλι",
+    "Improve your account security with Two-Factor Authentication": "Βελτιώστε την ασφάλεια του λογαριασμού σας με Διπλή Επαλήθευση",
+    "Enable 2FA": "Ενεργοποίηση 2FA"
   },
   "Agent": {
     "Users": "Χρήστες",
@@ -1038,7 +1042,19 @@
     "Gold": "Gold",
     "Platinum I - III": "Platinum I - III",
     "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V"
+    "Diamond I - V": "Diamond I - V",
+    "Iron": "Σίδερο",
+    "Platinum": "Πλατίνα",
+    "Diamond": "Διαμάντι",
+    "Obsidian": "Οψιδιανός",
+    "Ruby": "Ρουμπίνι",
+    "Loyal": "Πιστός",
+    "Captain": "Λοχαγός",
+    "Legend": "Θρύλος",
+    "Roller": "Roller",
+    "Gatos": "Gatos",
+    "Based": "Based",
+    "Certified": "Πιστοποιημένος"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",

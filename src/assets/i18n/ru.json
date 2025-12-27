@@ -133,7 +133,8 @@
   },
   "ProviderGroup": {
     "Providers": "Провайдеры",
-    "all_providers": "Все провайдеры"
+    "all_providers": "Все провайдеры",
+    "Publishers": "Издатели"
   },
   "Footer": {
     "About Us": "О нас",
@@ -548,7 +549,10 @@
     "Currency": "Валюта",
     "Search": "Поиск",
     "Password": "Пароль",
-    "Destination wallet address": "Адрес кошелька получателя"
+    "Destination wallet address": "Адрес кошелька получателя",
+    "Wallet": "Кошелёк",
+    "Improve your account security with Two-Factor Authentication": "Улучшите безопасность своего аккаунта с помощью двухфакторной аутентификации",
+    "Enable 2FA": "Включить 2FA"
   },
   "Agent": {
     "Users": "Пользователи",
@@ -1038,7 +1042,19 @@
     "Gold": "Gold",
     "Platinum I - III": "Platinum I - III",
     "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V"
+    "Diamond I - V": "Diamond I - V",
+    "Iron": "Железо",
+    "Platinum": "Платина",
+    "Diamond": "Алмаз",
+    "Obsidian": "Обсидиан",
+    "Ruby": "Рубин",
+    "Loyal": "Верный",
+    "Captain": "Капитан",
+    "Legend": "Легенда",
+    "Roller": "Роллер",
+    "Gatos": "Гатос",
+    "Based": "Бейс",
+    "Certified": "Сертифицированный"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",

@@ -133,7 +133,8 @@
   },
   "ProviderGroup": {
     "Providers": "Təminatçılar",
-    "all_providers": "Bütün təminatçılar"
+    "all_providers": "Bütün təminatçılar",
+    "Publishers": "Nəşriyyatçılar"
   },
   "Footer": {
     "About Us": "Haqqımızda",
@@ -548,7 +549,10 @@
     "Currency": "Valyuta",
     "Search": "Axtar",
     "Password": "Şifrə",
-    "Destination wallet address": "Təyinat cüzdan ünvanı"
+    "Destination wallet address": "Təyinat cüzdan ünvanı",
+    "Wallet": "Cüzdan",
+    "Improve your account security with Two-Factor Authentication": "Hesabınızın təhlükəsizliyini İki Faktorlu Autentifikasiya ilə təkmilləşdirin",
+    "Enable 2FA": "2FA-nı aktivləşdirin"
   },
   "Agent": {
     "Users": "İstifadəçilər",
@@ -1038,7 +1042,19 @@
     "Gold": "Gold",
     "Platinum I - III": "Platinum I - III",
     "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V"
+    "Diamond I - V": "Diamond I - V",
+    "Iron": "Dəmir",
+    "Platinum": "Platin",
+    "Diamond": "Almaz",
+    "Obsidian": "Obsidian",
+    "Ruby": "Yaqut",
+    "Loyal": "Sadiq",
+    "Captain": "Kapitan",
+    "Legend": "Əfsanə",
+    "Roller": "Roller",
+    "Gatos": "Gatos",
+    "Based": "Based",
+    "Certified": "Sertifikatlı"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",

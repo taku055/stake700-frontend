@@ -133,7 +133,8 @@
   },
   "ProviderGroup": {
     "Providers": "ספקים",
-    "all_providers": "כל הספקים"
+    "all_providers": "כל הספקים",
+    "Publishers": "מוציאים לאור"
   },
   "Footer": {
     "About Us": "אודות",
@@ -548,7 +549,10 @@
     "Currency": "מטבע",
     "Search": "חיפוש",
     "Password": "סיסמה",
-    "Destination wallet address": "כתובת ארנק היעד"
+    "Destination wallet address": "כתובת ארנק היעד",
+    "Wallet": "ארנק",
+    "Improve your account security with Two-Factor Authentication": "שפר/י את אבטחת החשבון שלך עם אימות דו-שלבי",
+    "Enable 2FA": "הפעל/י 2FA"
   },
   "Agent": {
     "Users": "משתמשים",
@@ -1038,7 +1042,19 @@
     "Gold": "Gold",
     "Platinum I - III": "Platinum I - III",
     "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V"
+    "Diamond I - V": "Diamond I - V",
+    "Iron": "ברזל",
+    "Platinum": "פלטינה",
+    "Diamond": "יהלום",
+    "Obsidian": "אובסידיאן",
+    "Ruby": "אודם",
+    "Loyal": "נאמן",
+    "Captain": "קפטן",
+    "Legend": "אגדה",
+    "Roller": "רולר",
+    "Gatos": "גאטוס",
+    "Based": "בסיס",
+    "Certified": "מוסמך"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",

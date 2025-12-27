@@ -133,7 +133,8 @@
   },
   "ProviderGroup": {
     "Providers": "Provedores",
-    "all_providers": "Todos os provedores"
+    "all_providers": "Todos os provedores",
+    "Publishers": "Editores"
   },
   "Footer": {
     "About Us": "Sobre nós",
@@ -548,7 +549,10 @@
     "Currency": "Moeda",
     "Search": "Pesquisar",
     "Password": "Senha",
-    "Destination wallet address": "Endereço da carteira de destino"
+    "Destination wallet address": "Endereço da carteira de destino",
+    "Wallet": "Carteira",
+    "Improve your account security with Two-Factor Authentication": "Melhore a segurança da sua conta com autenticação de dois fatores",
+    "Enable 2FA": "Ativar 2FA"
   },
   "Agent": {
     "Users": "Usuários",
@@ -1038,7 +1042,19 @@
     "Gold": "Gold",
     "Platinum I - III": "Platinum I - III",
     "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V"
+    "Diamond I - V": "Diamond I - V",
+    "Iron": "Ferro",
+    "Platinum": "Platina",
+    "Diamond": "Diamante",
+    "Obsidian": "Obsidiana",
+    "Ruby": "Rubi",
+    "Loyal": "Leal",
+    "Captain": "Capitão",
+    "Legend": "Lenda",
+    "Roller": "Roller",
+    "Gatos": "Gatos",
+    "Based": "Based",
+    "Certified": "Certificado"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",

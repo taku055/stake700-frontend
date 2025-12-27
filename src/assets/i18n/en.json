@@ -104,8 +104,6 @@
     "Display Crypto in Fiat": "Display Crypto in Fiat",
     "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
     "Fiat Currency": "Fiat Currency",
-    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
-    "Enable 2FA": "Enable 2FA",
     "Coming Soon": "Coming Soon"
   },
   "VipClub": {
@@ -150,7 +148,19 @@
     "Gold": "Gold",
     "Platinum I - III": "Platinum I - III",
     "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V"
+    "Diamond I - V": "Diamond I - V",
+    "Iron": "Iron",
+    "Platinum": "Platinum",
+    "Diamond": "Diamond",
+    "Obsidian": "Obsidian",
+    "Ruby": "Ruby",
+    "Loyal": "Loyal",
+    "Captain": "Captain",
+    "Legend": "Legend",
+    "Roller": "Roller",
+    "Gatos": "Gatos",
+    "Based": "Based",
+    "Certified": "Certified"
   },
   "PromotionCard": {
     "daily_promotion_title": "Daily Promotion",
@@ -179,7 +189,8 @@
   },
   "ProviderGroup": {
     "Providers": "Providers",
-    "all_providers": "All Providers"
+    "all_providers": "All Providers",
+    "Publishers": "Publishers"
   },
   "Footer": {
     "About Us": "About Us",
@@ -594,7 +605,10 @@
     "Currency": "Currency",
     "Search": "Search",
     "Password": "Password",
-    "Destination wallet address": "Destination wallet address"
+    "Destination wallet address": "Destination wallet address",
+    "Wallet": "Wallet",
+    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
+    "Enable 2FA": "Enable 2FA"
   },
   "Agent": {
     "Users": "Users",
@@ -884,7 +898,6 @@
     "Performance Summary": "Performance Summary",
     "Campaign Created Date": "Campaign Created Date",
     "First Time Deposits": "First Time Deposits",
-    "Commission Rate": "Commission Rate",
     "Overall Available Commission": "Overall Available Commission",
     "No Commission Available": "No Commission Available",
     "Share Campaign": "Share Campaign",
@@ -944,8 +957,7 @@
     "Total Daily Bonus": "Total Daily Bonus",
     "Total Monthly Bonus": "Total Monthly Bonus",
     "Total Profit": "Total Profit",
-    "Cash": "Cash",
-    "Earnings": "Earnings"
+    "Cash": "Cash"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",
@@ -1046,11 +1058,6 @@
     "Continue": "Continue",
     "Already have an account?": "Already have an account?",
     "Sign in": "Sign in"
-  },
-  "SignupStep1": {
-    "Step 1/3": "Step 1/3",
-    "Select Your Preferred Language": "Select Your Preferred Language",
-    "Betalarab is available is several languages. Feel free to personalise your language across our site from the options below.": "Betalarab is available is several languages. Feel free to personalise your language across our site from the options below."
   },
   "SignupStep3": {
     "Step 3/3": "Step 3/3",

@@ -133,7 +133,8 @@
   },
   "ProviderGroup": {
     "Providers": "ارائه‌دهندگان",
-    "all_providers": "همه ارائه‌دهندگان"
+    "all_providers": "همه ارائه‌دهندگان",
+    "Publishers": "ناشران"
   },
   "Footer": {
     "About Us": "درباره ما",
@@ -548,7 +549,10 @@
     "Currency": "ارز",
     "Search": "جستجو",
     "Password": "رمز عبور",
-    "Destination wallet address": "آدرس کیف پول مقصد"
+    "Destination wallet address": "آدرس کیف پول مقصد",
+    "Wallet": "کیف پول",
+    "Improve your account security with Two-Factor Authentication": "امنیت حساب خود را با احراز هویت دو عاملی بهبود بخشید",
+    "Enable 2FA": "فعال‌سازی 2FA"
   },
   "Agent": {
     "Users": "کاربران",
@@ -1038,7 +1042,19 @@
     "Gold": "Gold",
     "Platinum I - III": "Platinum I - III",
     "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V"
+    "Diamond I - V": "Diamond I - V",
+    "Iron": "آهن",
+    "Platinum": "پلاتین",
+    "Diamond": "الماس",
+    "Obsidian": "ابسیدین",
+    "Ruby": "یاقوت",
+    "Loyal": "وفادار",
+    "Captain": "کاپیتان",
+    "Legend": "افسانه",
+    "Roller": "رولر",
+    "Gatos": "گاتوس",
+    "Based": "بیس",
+    "Certified": "گواهی شده"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",

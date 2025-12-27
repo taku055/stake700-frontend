@@ -133,7 +133,8 @@
   },
   "ProviderGroup": {
     "Providers": "Sağlayıcılar",
-    "all_providers": "Tüm Sağlayıcılar"
+    "all_providers": "Tüm Sağlayıcılar",
+    "Publishers": "Yayıncılar"
   },
   "Footer": {
     "About Us": "Hakkımızda",
@@ -548,7 +549,10 @@
     "Currency": "Para Birimi",
     "Search": "Ara",
     "Password": "Şifre",
-    "Destination wallet address": "Hedef cüzdan adresi"
+    "Destination wallet address": "Hedef cüzdan adresi",
+    "Wallet": "Cüzdan",
+    "Improve your account security with Two-Factor Authentication": "Hesabınızın güvenliğini İki Faktörlü Kimlik Doğrulama ile artırın",
+    "Enable 2FA": "2FA'yı Etkinleştir"
   },
   "Agent": {
     "Users": "Kullanıcılar",
@@ -1043,7 +1047,19 @@
     "Gold": "Gold",
     "Platinum I - III": "Platinum I - III",
     "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V"
+    "Diamond I - V": "Diamond I - V",
+    "Iron": "Demir",
+    "Platinum": "Platin",
+    "Diamond": "Elmas",
+    "Obsidian": "Obsidiyen",
+    "Ruby": "Yakut",
+    "Loyal": "Sadık",
+    "Captain": "Kaptan",
+    "Legend": "Efsane",
+    "Roller": "Roller",
+    "Gatos": "Gatos",
+    "Based": "Based",
+    "Certified": "Sertifikalı"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",

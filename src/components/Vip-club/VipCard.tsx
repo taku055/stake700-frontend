@@ -52,12 +52,12 @@ export default function VipCard() {
           <div className="flex items-center justify-between mt-2">
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4" strokeWidth={2} fill="none" stroke="black" />
-              <span className="text-[var(--bar-background-color)] text-[14px]">{currentVipLevel === 0 ? t("None") : currentLevelData.vipTitle}</span>
+              <span className="text-[var(--bar-background-color)] text-[14px]">{currentVipLevel === 0 ? t("None") : t(currentLevelData.vipTitle)}</span>
             </div>
             {nextLevelData && (
               <div className="flex items-center gap-2">
                 <Star className="w-4 h-4" strokeWidth={2} fill="none" stroke="black" />
-                <span className="text-[var(--bar-background-color)] text-[14px]">{nextLevelData.vipTitle}</span>
+                <span className="text-[var(--bar-background-color)] text-[14px]">{t(nextLevelData.vipTitle)}</span>
               </div>
             )}
           </div>
