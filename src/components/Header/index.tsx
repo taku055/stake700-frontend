@@ -95,7 +95,10 @@ export default function Header() {
                   className="btn text-[16px] leading-[24px]"
                   size="sm"
                   style={{ background: '#01A825', fontSize: '16px', leading: '24px', color: '#ffffff', width: '100px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
-                  onPress={() => (signupStep1OpenedState.value = true)}
+                  onPress={() => (
+                    // signupStep1OpenedState.value = true
+                    welcomeDialogOpenedState.value = true
+                  )}
                 // onPress={() => (welcomeDialogOpenedState.value = true)}
                 >
                   {t("register")}

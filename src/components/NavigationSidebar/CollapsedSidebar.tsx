@@ -66,6 +66,7 @@ export default function CollapsedSidebar({
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("Header");
+  const tCommon = useTranslations("Common");
   const selectedTab = selectedTabState.value;
   const { categories: casinoCategories } = useCasinoCategories();
   const { categories: liveCasinoCategories } = useLiveCasinoCategories();
@@ -218,8 +219,8 @@ export default function CollapsedSidebar({
           <DropdownTrigger>
             <button
               className="flex items-center justify-center w-12 h-12 rounded-lg transition-colors text-gray-300 hover:bg-gray-700"
-              aria-label="Change language"
-              title={localeOptions.find((o) => o.value === localeState.value)?.label || "Language"}
+              aria-label={tCommon("Change language")}
+              title={localeOptions.find((o) => o.value === localeState.value)?.label || tCommon("Language")}
             >
               <span
                 className={`fi fi-${localeOptions.find((o) => o.value === localeState.value)?.flag || "us"}`}
@@ -227,7 +228,7 @@ export default function CollapsedSidebar({
               ></span>
             </button>
           </DropdownTrigger>
-          <DropdownMenu aria-label="Change Locale">
+          <DropdownMenu aria-label={tCommon("Change Locale")}>
             {localeOptions.map((lang) => (
               <DropdownItem
                 key={lang.value}

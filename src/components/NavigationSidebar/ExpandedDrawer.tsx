@@ -149,7 +149,7 @@ export default function ExpandedDrawer({
             className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTabState.value === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
             onClick={() => {
               selectedTabState.value = "casino";
-              handleNavigate("/casino/slots?custom=1&category=slot-top-slots");
+              handleNavigate("/casino/slots?custom=1&category=home");
             }}
           >
             <span className="text-white text-[14px]">Casino</span>

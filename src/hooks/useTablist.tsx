@@ -61,7 +61,7 @@ export const useTablist = () => {
           title: t("Casino"),
           // href: "/casino/slots?custom=1&category=slot-top-slots",
           key: "slots",
-          extra: ["/casino/tournaments"],
+          extra: ["/casino"],
           icon: <img src={`${BASE_URL}/images/icons/slot-icon.svg`} alt="Slot" />,
           navIcon: getNavIcon("slots"),
         },

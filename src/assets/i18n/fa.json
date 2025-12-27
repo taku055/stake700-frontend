@@ -102,8 +102,8 @@
     "Display Crypto in Fiat": "Display Crypto in Fiat",
     "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
     "Fiat Currency": "Fiat Currency",
-    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
-    "Enable 2FA": "Enable 2FA",
+    "Improve your account security with Two-Factor Authentication": "امنیت حساب خود را با احراز هویت دو عاملی بهبود بخشید",
+    "Enable 2FA": "فعال‌سازی 2FA",
     "Coming Soon": "به زودی"
   },
   "PromotionCard": {
@@ -544,7 +544,11 @@
     "Direct Deposit": "Direct Deposit",
     "Credited": "Credited",
     "Confirmation": "Confirmation",
-    "Or": "Or"
+    "Or": "Or",
+    "Currency": "ارز",
+    "Search": "جستجو",
+    "Password": "رمز عبور",
+    "Destination wallet address": "آدرس کیف پول مقصد"
   },
   "Agent": {
     "Users": "کاربران",
@@ -926,9 +930,7 @@
   },
   "WelcomeDialog": {
     "Welcome to Betalarab!": "به Betalarab خوش آمدید!",
-    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "آماده شروع هستید؟ اکنون کیف پول خود را تنظیم کنید تا از واریز و برداشت‌های روان و ایمن لذت ببرید.",
-    "Skip for Later": "بعداً رد شو",
-    "Setup Wallet": "تنظیم کیف پول"
+    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.": "از داشتن شما اینجا بسیار خوشحالیم! آماده باشید تا بازی‌های فوق‌العاده و فرصت‌های هیجان‌انگیز را کاوش کنید."
   },
   "MessagePage": {
     "Send New": "Send New",

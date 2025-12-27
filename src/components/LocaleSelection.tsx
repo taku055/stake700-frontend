@@ -7,6 +7,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@heroui/react";
+import { useTranslations } from "@/context/I18nContext";
 
 export const options = [
   { label: "Türkçe", value: "tr", flag: "tr" },
@@ -32,6 +33,7 @@ export default function LocaleSelection({
   headerMode = true,
 }: LocaleSelectionProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("Common");
 
   return (
     <Dropdown
@@ -61,7 +63,7 @@ export default function LocaleSelection({
           />
         </div>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Change Locale" className="bg-[#FFFFFF]  rounded-lg">
+      <DropdownMenu aria-label={t("Change Locale")} className="bg-[#FFFFFF]  rounded-lg">
         {options.map((lang) => (
           <DropdownItem
             key={lang.value}

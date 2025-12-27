@@ -1,39 +1,17 @@
 import { Modal, ModalContent } from "@/components/common";
-import { Button } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
-import { BASE_URL, OFFICIAL_LINKS } from "@/config/constants";
-import { walletDialogOpenedState } from "@/state/walletDialogState";
+import { BASE_URL } from "@/config/constants";
 
 interface IWelcomeDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onSetupWallet?: () => void;
-  onSkip?: () => void;
 }
 
 export default function WelcomeDialog({
   isOpen,
   onClose,
-  onSetupWallet,
-  onSkip,
 }: IWelcomeDialogProps) {
   const t = useTranslations("WelcomeDialog");
-
-  const handleSetupWallet = () => {
-    if (onSetupWallet) {
-      // onSetupWallet();
-      walletDialogOpenedState.value = true;
-      onClose();
-    }
-    onClose();
-  };
-
-  const handleSkip = () => {
-    if (onSkip) {
-      onSkip();
-    }
-    onClose();
-  };
 
   return (
     <Modal
@@ -50,7 +28,7 @@ export default function WelcomeDialog({
         {/* Top Promotional Section */}
         <div className="relative rounded-t-[8px] overflow-hidden">
           {/* Decorative Glowing Shapes Background */}
-          <img src={ `${BASE_URL}/images/others/Welcome image.png`} alt="Welcome Background" className="w-full h-full object-cover" />
+          <img src={ `${BASE_URL}/images/others/Welcome_image.jpg`} alt="Welcome Background" className="w-full h-full object-cover" />
             
         </div>
 
@@ -63,24 +41,8 @@ export default function WelcomeDialog({
 
           {/* Description */}
           <p className="text-white text-[16px] leading-[24px] text-center">
-            {t("Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.")}
+            {t("We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.")}
           </p>
-
-          {/* Action Buttons */}
-          <div className="flex gap-[8px] w-full">
-            <Button
-              className="flex-1 text-white text-[16px] font-medium bg-[var(--background-secondary)] hover:bg-[var(--background-secondary)]/80 w-full h-[44px] rounded-lg"
-              onPress={handleSkip}
-            >
-              {t("Skip for Later")}
-            </Button>
-            <Button
-              className="flex-1 text-white text-[16px] font-medium bg-[var(--green-color)] hover:opacity-90 w-full h-[44px] rounded-lg"
-              onPress={handleSetupWallet}
-            >
-              {t("Setup Wallet")}
-            </Button>
-          </div>
         </div>
       </ModalContent>
     </Modal>

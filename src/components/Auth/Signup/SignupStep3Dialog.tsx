@@ -27,6 +27,7 @@ export default function SignupStep3Dialog({
 }: ISignupStep3DialogProps) {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const t = useTranslations("SignupStep3");
+  const tToast = useTranslations("ToastMessages");
   const [loading, setLoading] = useState(false);
   const { email, password, userName, referCode, firstName, lastName, middleName, birthDay } = signupRequestState.value;
 
@@ -82,18 +83,18 @@ export default function SignupStep3Dialog({
         userState.value = res.user;
         accessTokenState.value = res.accessToken;
         setAxiosAuthToken(res.accessToken);
-        toast.success("Successfully registered");
+        toast.success(tToast("success.registered"));
         onClose();
         welcomeDialogOpenedState.value = true;
       } catch (ex) {
         if (axios.isAxiosError(ex)) {
           if (ex.response?.status === 400) {
-            toast.error("Email or username is already taken");
+            toast.error(tToast("error.email_taken"));
           } else {
-            toast.error("Something went wrong");
+            toast.error(tToast("error.something_wrong"));
           }
         } else {
-          toast.error("Something went wrong");
+          toast.error(tToast("error.something_wrong"));
         }
         console.error(ex);
       }

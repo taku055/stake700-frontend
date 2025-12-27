@@ -95,7 +95,7 @@ export default function SignupStep2Dialog({
                 <div className="flex-[33.33%] h-[4px] bg-[var(--green-color)] rounded-full"></div>
                 <div className="flex-[33.33%] h-[4px] bg-[#FFFFFF33] rounded-full"></div>
               </div>
-              <span className="flex w-full justify-end text-right text-[14px] leading-[20px] text-[#FFFFFFB2]">{t("Step 1/3")}</span>
+              <span className="flex w-full justify-end text-right text-[14px] leading-[20px] text-[#FFFFFFB2]">{t("Step 2/3")}</span>
             </div>
           </div>
         </div>

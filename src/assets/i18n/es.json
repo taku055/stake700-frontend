@@ -102,8 +102,8 @@
     "Display Crypto in Fiat": "Display Crypto in Fiat",
     "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
     "Fiat Currency": "Fiat Currency",
-    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
-    "Enable 2FA": "Enable 2FA",
+    "Improve your account security with Two-Factor Authentication": "Mejore la seguridad de su cuenta con Autenticación de Dos Factores",
+    "Enable 2FA": "Habilitar 2FA",
     "Coming Soon": "Próximamente"
   },
   "PromotionCard": {
@@ -544,7 +544,11 @@
     "Direct Deposit": "Direct Deposit",
     "Credited": "Credited",
     "Confirmation": "Confirmation",
-    "Or": "Or"
+    "Or": "Or",
+    "Currency": "Moneda",
+    "Search": "Buscar",
+    "Password": "Contraseña",
+    "Destination wallet address": "Dirección de billetera de destino"
   },
   "Agent": {
     "Users": "Usuarios",
@@ -937,9 +941,7 @@
   },
   "WelcomeDialog": {
     "Welcome to Betalarab!": "¡Bienvenido a Betalarab!",
-    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "¿Listo para comenzar? Configura tu billetera ahora para disfrutar de depósitos y retiros fluidos y seguros.",
-    "Skip for Later": "Omitir por ahora",
-    "Setup Wallet": "Configurar billetera"
+    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.": "¡Estamos encantados de tenerte aquí! Prepárate para explorar juegos increíbles y oportunidades emocionantes."
   },
   "MessagePage": {
     "Send New": "Send New",

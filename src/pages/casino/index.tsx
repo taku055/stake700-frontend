@@ -5,6 +5,7 @@ import { useMemo } from "preact/hooks";
 import { CATEGORY_DATA, tPageType } from "./data";
 
 const ALLOWED = new Set([
+  // "home",
   "slots",
   "live-casino",
   "games",
@@ -12,6 +13,7 @@ const ALLOWED = new Set([
   "jackpot",
   "tv-games",
   "live-racing",
+  "home",
 ]);
 
 export default function CasinoLayout(props: { pageType: tPageType }) {

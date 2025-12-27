@@ -8,7 +8,6 @@ import { RTL_LANGUAGES } from "@/config/constants";
 import Overview from "./Overview";
 import BuyCrypto from "./BuyCrypto";
 import Setting from "./Setting";
-import DepositPanel from "./DepositPanel";
 import SwapCrypto from "./SwapCrypto";
 import { depositDialogOpenedState } from "@/state/walletDialogState";
 import { Button } from "@heroui/react";

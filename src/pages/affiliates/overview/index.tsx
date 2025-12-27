@@ -12,7 +12,7 @@ export default function Overview() {
 
   useEffect(() => {
     if (userState.value?.referCode) {
-      const link = `${window.location.protocol}//${window.location.host}?c=${userState.value.referCode}`;
+      const link = `${window.location.protocol}//${window.location.host}?ref=${userState.value.referCode}`;
       setAffiliateLink(link);
     }
   }, [userState.value?.referCode]);

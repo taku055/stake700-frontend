@@ -22,7 +22,7 @@ export default function RewardGuideCard({
         <span className="text-[#00cc00]">{t(title)}</span>
       </div>
       <div className="text-[16px] leading-[27px] text-[#FFFFFF8E]">
-        {t(description)}
+        {description}
       </div>
     </div>
   );

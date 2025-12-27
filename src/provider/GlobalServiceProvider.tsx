@@ -73,9 +73,9 @@ import { signupStep1OpenedState, signupStep2OpenedState, signupStep3OpenedState,
 import WelcomeDialog from "@/components/Auth/Signup/Welcom";
 import VipClub from "@/components/Vip-club";
 import { vipOpenedState } from "@/state/vipOpenedState";
-import DepositDialogFull from "@/components/DepositDialogFull";
+// import DepositDialogFull from "@/components/DepositDialogFull";
 // import DepositPanel from "@/components/WalletDialog/DepositPanel";
-import DepositPanel from "@/components/WalletDialog/new";
+import DepositPanel from "@/components/WalletDialog/DepositWithdrawFull";
 import { depositDialogOpenedState } from "@/state/walletDialogState";
 import Support from "@/components/Chat/Support";
 import LiveSupport from "@/components/LiveSupport";
@@ -402,12 +402,6 @@ export default function GlobalServiceProvider({
             <WelcomeDialog
               isOpen={welcomeDialogOpenedState.value}
               onClose={() => (welcomeDialogOpenedState.value = false)}
-              onSetupWallet={() => {
-                welcomeDialogOpenedState.value = false;
-              }}
-              onSkip={() => {
-                welcomeDialogOpenedState.value = false;
-              }}
             />
 
             <VisaDialogSimple

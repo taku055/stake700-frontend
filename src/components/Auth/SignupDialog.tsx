@@ -47,6 +47,7 @@ export default function SignupDialog({
   const [showPassword, setShowPassword] = useState(false);
   const [birthday, setBirthday] = useState(parseDate("1990-01-01"));
   const t = useTranslations("SignupDialog");
+  const tToast = useTranslations("ToastMessages");
   const location = useLocation();
   const firstNameRef = useRef<HTMLInputElement>(null);
   const { refCode } = useAffiliateNavigation();
@@ -115,17 +116,17 @@ export default function SignupDialog({
         userState.value = res.user;
         accessTokenState.value = res.accessToken;
         setAxiosAuthToken(res.accessToken);
-        toast.success("Successfully registered");
+        toast.success(tToast("success.registered"));
         onClose();
       } catch (ex) {
         if (axios.isAxiosError(ex)) {
           if (ex.response?.status === 400) {
-            toast.error("Email or username is already taken");
+            toast.error(tToast("error.email_taken"));
           } else {
-            toast.error("Something went wrong");
+            toast.error(tToast("error.something_wrong"));
           }
         } else {
-          toast.error("Something went wrong");
+          toast.error(tToast("error.something_wrong"));
         }
         console.error(ex);
       }

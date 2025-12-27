@@ -14,7 +14,7 @@ const Overview = ({ onDepositClick, onBuyCryptoClick }: IOverviewProps) => {
     <div className="flex flex-col  bg-[var(--background)] pt-4 gap-[16px] w-full h-full">
       {/* Wallet Graphic */}
       <div className="flex justify-center items-center mt-16px">
-        <img src="/buffer/wallet-boost.png" alt="Wallet Boost" className="w-[500px] h-[220px] object-fill" />
+        <img src={`${BASE_URL}/images/others/Wallet-boost.jpg`} alt="Wallet Boost" className="w-[500px] h-[220px] object-fill" />
 
       </div>
       {/* Empty Wallet Message */}

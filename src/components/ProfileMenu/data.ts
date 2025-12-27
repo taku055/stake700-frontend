@@ -8,18 +8,16 @@ export const data = [
     onClick: () => walletDialogOpenedState.value = true,
   },
   {
-    title: "Vault",
-    icon: "/icons/vault.png",
-  },
-  {
     title: "VIP",
     icon: "/icons/vip-club.svg",
-    onClick: () => vipOpenedState.value = true,
+    onClick: () => {
+      vipOpenedState.value = true
+    },
   },
   {
     title: "Affiliate",
     icon: "/icons/affiliate.svg",
-    href: "/affiliates",
+    href: "/affiliate",
   },
   {
     title: "Statistics",

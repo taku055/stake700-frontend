@@ -102,8 +102,8 @@
     "Display Crypto in Fiat": "Display Crypto in Fiat",
     "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
     "Fiat Currency": "Fiat Currency",
-    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
-    "Enable 2FA": "Enable 2FA",
+    "Improve your account security with Two-Factor Authentication": "Hesap güvenliğinizi İki Faktörlü Kimlik Doğrulama ile geliştirin",
+    "Enable 2FA": "2FA'yı Etkinleştir",
     "Coming Soon": "Yakında"
   },
   "PromotionCard": {
@@ -544,7 +544,11 @@
     "Direct Deposit": "Direct Deposit",
     "Credited": "Credited",
     "Confirmation": "Confirmation",
-    "Or": "Or"
+    "Or": "Or",
+    "Currency": "Para Birimi",
+    "Search": "Ara",
+    "Password": "Şifre",
+    "Destination wallet address": "Hedef cüzdan adresi"
   },
   "Agent": {
     "Users": "Kullanıcılar",
@@ -673,9 +677,14 @@
       "password_changed_failed": "Şifre değiştirilemedi"
     },
     "info": {
+      "wallet_address_copied": "Cüzdan adresi panoya kopyalandı!",
       "address_copied": "Cüzdan adresi panoya kopyalandı!",
       "text_copied": "{text} kopyalandı",
       "promotion_copied": "{text} kopyalandı"
+    },
+    "aria": {
+      "refresh_address": "Adresi Yenile",
+      "copy_address": "Adresi Kopyala"
     }
   },
   "MoreToolDialog": {
@@ -950,9 +959,7 @@
   },
   "WelcomeDialog": {
     "Welcome to Betalarab!": "Betalarab'e Hoş Geldiniz!",
-    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "Başlamaya hazır mısınız? Şimdi cüzdanınızı kurun ve sorunsuz, güvenli para yatırma ve çekme işlemlerinin tadını çıkarın.",
-    "Skip for Later": "Sonraya Bırak",
-    "Setup Wallet": "Cüzdan Kur"
+    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.": "Sizi burada görmekten çok mutluyuz! Harika oyunları ve heyecan verici fırsatları keşfetmeye hazır olun."
   },
   "EmulateBetting": {
     "Casino Bets": "Casino Bets",
@@ -1050,5 +1057,13 @@
     "Betalarab Smart": "Betalarab Smart",
     "Live Support": "Live Support",
     "Logout": "Logout"
+  },
+  "Common": {
+    "Yes": "Evet",
+    "No": "Hayır",
+    "N/A": "Yok",
+    "Change Locale": "Dili Değiştir",
+    "Language": "Dil",
+    "Change language": "Dili değiştir"
   }
 }

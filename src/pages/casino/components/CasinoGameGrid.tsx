@@ -6,6 +6,8 @@ import { useTranslations } from "@/context/I18nContext";
 import GuideCard from "./GuideCard";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
+import { useCasinoCategories } from "@/hooks/useCasinoCategories";
+import { useMemo } from "preact/hooks";
 
 interface CasinoGameGridProps {
   games: tGame[];
@@ -13,6 +15,7 @@ interface CasinoGameGridProps {
   loading: boolean;
   offset: number;
   onLoadMore: () => void;
+  selectedCategory: string;
 }
 
 export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
@@ -21,29 +24,23 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
   loading,
   offset,
   onLoadMore,
+  selectedCategory,
 }) => {
   const t = useTranslations("HomePage");
   const tHeader = useTranslations("Header");
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
+  const { categories } = useCasinoCategories();
 
-  const guideCards = [
-    {
-      icon: "/images/be-part.svg",
-      title: t("guide_card_exclusive_games_title") || "Be Part of Exclusive Games",
-      content: t("guide_card_exclusive_games_content") || "Enjoy exclusive premium games",
-    },
-    {
-      icon: "/images/games-favorite.svg",
-      title: t("guide_card_favorite_games_title") || "Make Games Favorite",
-      content: t("guide_card_favorite_games_content") || "Access your favorite games instantly",
-    },
-    {
-      icon: "/images/contact-support.svg",
-      title: t("guide_card_contact_support_title") || "Contact Support 24/7",
-      content: t("guide_card_contact_support_content") || "Contact us for any issues with live chat",
-    },
-  ];
-
+  const categoryName = useMemo(() => {
+    console.log("selectedCategory", selectedCategory);
+    if (selectedCategory === "/casino/slots?custom=1&category=home") {
+      return "Home";
+    }
+    return selectedCategory ? categories.find(cat => cat.path === selectedCategory)?.name : "All Games";
+  }, [selectedCategory, categories]);
+  if (categoryName === "Home") {
+    return null;
+  }
   return (
     <div className="flex-1 flex flex-col gap-4 min-w-0">
       <div 
@@ -52,13 +49,19 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
         }`}
         dir={isRTL ? "rtl" : "ltr"}
       >
-        {tHeader("All Games")}
+        {categoryName}
       </div>
       <div className="grid md:grid-cols-8 grid-cols-2 gap-2">
         {games.map((game) => (
           <GameCard key={game.id} data={game} />
         ))}
       </div>
+      {total === 0 && (
+        <div className="text-center text-[20px] text-[var(--text-color)]">
+          {/* {t("no_games_found") || "No games found"} */}
+          No games found for this category
+        </div>
+      )}
 
       {games.length < total && (
         <div className="flex justify-center">
@@ -75,13 +78,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
         </div>
       )}
 
-      <div className="w-full flex flex-col gap-4 md:flex-row items-center justify-center bg-gradient-to-b from-[rgba(11, 22, 41, 0.5)] to-[#122543]">
-        {guideCards.map((guide) => (
-          <div className="flex-1 flex items-center justify-center py-8">
-            <GuideCard key={guide.title} {...guide} />
-          </div>
-        ))}
-      </div>
+      
     </div>
   );
 };

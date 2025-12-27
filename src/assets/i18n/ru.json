@@ -102,8 +102,8 @@
     "Display Crypto in Fiat": "Display Crypto in Fiat",
     "All bets & transactions will be settled in the crypto equivalent": "All bets & transactions will be settled in the crypto equivalent",
     "Fiat Currency": "Fiat Currency",
-    "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
-    "Enable 2FA": "Enable 2FA",
+    "Improve your account security with Two-Factor Authentication": "Улучшите безопасность своего аккаунта с помощью двухфакторной аутентификации",
+    "Enable 2FA": "Включить 2FA",
     "Coming Soon": "Скоро"
   },
   "PromotionCard": {
@@ -544,7 +544,11 @@
     "Direct Deposit": "Direct Deposit",
     "Credited": "Credited",
     "Confirmation": "Confirmation",
-    "Or": "Or"
+    "Or": "Or",
+    "Currency": "Валюта",
+    "Search": "Поиск",
+    "Password": "Пароль",
+    "Destination wallet address": "Адрес кошелька получателя"
   },
   "Agent": {
     "Users": "Пользователи",
@@ -839,9 +843,7 @@
   },
   "WelcomeDialog": {
     "Welcome to Betalarab!": "Добро пожаловать в Betalarab!",
-    "Ready to get started? Set up your wallet now to enjoy smooth, secure deposits and withdrawals.": "Готовы начать? Настройте свой кошелек сейчас, чтобы наслаждаться плавными и безопасными депозитами и выводами.",
-    "Skip for Later": "Пропустить на потом",
-    "Setup Wallet": "Настроить кошелек"
+    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.": "Мы рады видеть вас здесь! Приготовьтесь исследовать удивительные игры и захватывающие возможности."
   },
   "AgentAnalysis": {
     "platform_analysis": "Platform Analysis",
