@@ -218,6 +218,7 @@ export default function MobileDrawer({
                           console.log('item.onclick, item.href', item.href, item.key, item.onclick?.toString());
                           item.onclick?.();
                           handleNavigate(item.href || "");
+                          navigationSidebarExpandedState.value = false;
                         }}
                         className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
@@ -244,6 +245,7 @@ export default function MobileDrawer({
                               e.preventDefault();
                               e.stopPropagation();
                               handleNavigate(modifyHref(subItem.href || ""));
+                              navigationSidebarExpandedState.value = false;
                             }}
                             className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
                           >
@@ -307,6 +309,7 @@ export default function MobileDrawer({
                           console.log('item.onclick, item.href', item.onclick, item.key);
                           item.onclick?.();
                           handleNavigate(modifyHref(item.href || ""));
+                          navigationSidebarExpandedState.value = false;
                         }}
                         className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
@@ -334,6 +337,7 @@ export default function MobileDrawer({
                               e.stopPropagation();
                               item.onclick?.();
                               handleNavigate(modifyHref(subItem.href || ""));
+                              navigationSidebarExpandedState.value = false;
                             }}
                             className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
                           >

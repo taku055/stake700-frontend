@@ -134,7 +134,12 @@ export default function ProfileMenu() {
         )}
         <button
           className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-300 transition-colors text-left cursor-pointer border-t border-gray-200 mt-1"
-          onClick={onLogout}
+          onClick={
+            () => {
+              onLogout();
+              profileMenuOpenedState.value = false;
+            }
+          }
         >
           <img
             src={`${BASE_URL}/images/icons/log-out.svg`}

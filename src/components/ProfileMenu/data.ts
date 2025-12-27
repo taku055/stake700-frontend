@@ -1,47 +1,50 @@
 import { walletDialogOpenedState } from "@/state/walletDialogState";
 import { vipOpenedState } from "@/state/vipOpenedState";
+import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
+import { BASE_URL } from "@/config/constants";
  
 export const data = [
   {
     title: "Wallet",
-    icon: "/icons/wallet.svg",
+    icon: `${BASE_URL}/images/icons/wallet.svg`,
     onClick: () => walletDialogOpenedState.value = true,
   },
   {
     title: "VIP",
-    icon: "/icons/vip-club.svg",
+    icon: `${BASE_URL}/images/icons/vip-club.svg`,
     onClick: () => {
       vipOpenedState.value = true
     },
   },
   {
     title: "Affiliate",
-    icon: "/icons/affiliate.svg",
+    icon: `${BASE_URL}/images/icons/affiliate.svg`,
     href: "/affiliate",
   },
   {
     title: "Statistics",
-    icon: "/icons/statistics.svg",
+    icon: `/images/icons/icons/satistics.png`,
   },
   {
     title: "Transactions",
-    icon: "/icons/transactions.png",
+    icon: `${BASE_URL}/images/icons/transactions.png`,
   },
   {
     title: "My Bets",
-    icon: "/icons/my-bets.png",
+    icon: `/images/icons/icons/my-bet.png`,
   },
   {
     title: "Settings",
-    icon: "/icons/settings.png",
+    icon: `/images/icons/icons/setting.png`,
   },
   {
     title: "Betalarab Smart",
-    icon: "/icons/Betalarab-smart.png",
+    icon: `/images/icons/icons/stake-smart.png`,
   },
   {
     title: "Live Support",
-    icon: "/icons/live-support.svg",
+    icon: `${BASE_URL}/images/icons/live-support.svg`,
+    onClick: () => liveSupportExpandedState.value = true,
   },
   // {
   //   title: "Logout",
