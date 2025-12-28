@@ -52,7 +52,7 @@ export default function ForgotPasswordDialog({
         setMsg(t("Password reset link was sent to") + " " + email);
       } catch (ex) {
         setError(
-          (t("Something went wrong. Please check your email exists in the") +
+          (t("EmailCheckError") +
             " " + import.meta.env.VITE_SITE_NAME) as string
         );
         setMsg("");

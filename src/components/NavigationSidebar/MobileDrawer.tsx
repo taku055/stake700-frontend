@@ -16,6 +16,7 @@ import { useLocation } from "preact-iso";
 import { options } from "@/components/LocaleSelection";
 import { useMediaQuery } from "usehooks-ts";
 import { selectedTabState } from "@/state/selectedTab";
+import { useCategoryCounts } from "@/hooks/useCatigoryCounts";
 
 interface MobileDrawerProps {
   mainNavItems: Array<{
@@ -78,7 +79,7 @@ export default function MobileDrawer({
   const { categories: casinoCategories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
   const { categories: liveCasinoCategories } = useLiveCasinoCategories();
   const isMobile = useMediaQuery(mobileMediaQuery);
-
+  const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } = useCategoryCounts();
 
   // useEffect(() => {
   //   if (location.path.includes("/casino")) {
@@ -94,8 +95,8 @@ export default function MobileDrawer({
 
   // Get categories based on selected tab
   const currentCategories = useMemo(() => {
-    return selectedTabState.value === "casino" ? casinoCategories : [];
-  }, [selectedTab, casinoCategories, liveCasinoCategories]);
+    return selectedTabState.value === "casino" ? [...liveCasinoCategoriesWithCounts, ...casinoCategoriesWithCounts] : [];
+  }, [selectedTabState.value, casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = useMemo(() => {

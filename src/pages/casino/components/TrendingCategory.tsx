@@ -53,8 +53,6 @@ export default function TrendingCategory({ category = "", name = "", icon = null
       .map((e) => e.Game as tGame);
 
     setGames(trendingGames);
-    console.log("trendingGames", trendingGames, games);
-    console.log("category", category);
   }, [customGamesState.value, category]);
 
   // Don't render if no games

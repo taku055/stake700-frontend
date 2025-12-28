@@ -28,32 +28,32 @@ export default function Overview() {
     {
       icon: <img src={`${BASE_URL}/images/icons/payout.svg`} alt="instant-payout" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Instant Payout"),
-      description: t("Skip the wait. See earnings instantly in your account."),
+      description: t("InstantPayoutDesc"),
     },
     {
       icon: <img src={`${BASE_URL}/images/icons/lifetime.png`} alt="lifetime-commission" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Lifetime Commission"),
-      description: t("If the people you refer keep playing, you keep getting paid."),
+      description: t("LifetimeCommissionDesc"),
     },
     {
       icon: <img src={`${BASE_URL}/images/icons/percentage.png`} alt="market-leading-player-value" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Market Leading Player Value"),
-      description: t("Grow your earnings with some of the highest returns offered to players."),
+      description: t("MarketLeadingDesc"),
     },
     {
       icon: <img src={`${BASE_URL}/images/icons/customise.png`} alt="customise-your-commission" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Customise Your Commission"),
-      description: t("Tailor your commission plan to fit your unique business needs."),
+      description: t("CustomiseCommissionDesc"),
     },
     {
       icon: <img src={`${BASE_URL}/images/icons/local-currency.png`} alt="crypto-local-currencies" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Crypto & Local Currencies"),
-      description: t("Earn your way with support for both cryptocurrency and local currencies."),
+      description: t("CryptoLocalCurrenciesDesc"),
     },
     {
       icon: <img src={`${BASE_URL}/images/icons/multi-language.png`} alt="24x7-multi-language-support" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("24x7 Multi Language Support"),
-      description: t("Get the help you want in your preferred language all day, everyday."),
+      description: t("MultiLanguageSupportDesc"),
     },
   ];
 
@@ -65,7 +65,7 @@ export default function Overview() {
         <div className="flex flex-col gap-4 w-full h-full">
           <h2 className="text-white text-[20px] font-semibold">{t("Overview")}</h2>
           <p className="text-white text-[16px] leading-[24px]">
-            {t("Earn commission for all bets placed by your referrals across Casino and Sportsbook.")}
+            {t("OverviewDesc")}
           </p>
 
           {/* Statistics */}
@@ -191,7 +191,7 @@ export default function Overview() {
       <div className="flex flex-col gap-4">
         <h2 className="text-white text-[24px] font-semibold">{t("Commission Rules")}</h2>
         <p className="text-white text-[16px] leading-[24px]">
-          {t("Our default commission rate is 10% but you can calculate specific rates for our products using the formulas below.")}
+          {t("CommissionRulesDesc")}
         </p>
 
         <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mt-4">
@@ -206,7 +206,7 @@ export default function Overview() {
               <h3 className="text-white text-[16px] font-medium">{t("Casino")}</h3>
             </div>
             <p className="text-white text-[14px] leading-[20px]">
-              {t("All of our games have a different house edge. You can derive your commission using the following formula:")}
+              {t("CasinoCommissionDesc")}
             </p>
             <div className="bg-[var(--background)] rounded p-3 mt-2">
               <code className="text-white text-[12px] font-mono">
@@ -226,7 +226,7 @@ export default function Overview() {
               <h3 className="text-white text-[16px] font-medium">{t("Sportsbook")}</h3>
             </div>
             <p className="text-white text-[14px] leading-[20px]">
-              {t("All sports bets are applied at a 3% theoretical house edge. You can derive your commission using the following formula:")}
+              {t("SportsbookCommissionDesc")}
             </p>
             <div className="bg-[var(--background)] rounded p-3 mt-2">
               <code className="text-white text-[12px] font-mono">
@@ -246,7 +246,7 @@ export default function Overview() {
               <h3 className="text-white text-[16px] font-medium">{t("Poker")}</h3>
             </div>
             <p className="text-white text-[14px] leading-[20px]">
-              {t("We collect a small percentage of each pot (known as Rake) as a fee for hosting the game. Your commission is calculated using Rake. You can use the formula below to derive your commission:")}
+              {t("PokerCommissionDesc")}
             </p>
             <div className="bg-[var(--background)] rounded p-3 mt-2">
               <code className="text-white text-[12px] font-mono">

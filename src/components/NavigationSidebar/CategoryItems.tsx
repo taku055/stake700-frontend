@@ -31,13 +31,13 @@ export default function CategoryItems({ categories, title, onCategoryClick }: Ca
       </h3> */}
         {/* divider */}
         <div className="flex flex-col gap-2">
-          <button
+          {/* <button
             onClick={() => handleCategoryClick("/casino/live-casino")}
             className="flex items-center bg-[var(--background-secondary)] gap-2 p-2 px-4 text-gray-300 hover:bg-gray-700 transition-colors text-left w-full"
           >
             <img src={`${BASE_URL}/images/icons/live-icon.svg`} alt="live-casino" className="w-6 h-6 flex-shrink-0 grayscale object-contain" />
             <span className="flex-1">Live Casino</span>
-          </button>
+          </button> */}
           {categories.map((category, index) => (
             <button
               key={index}

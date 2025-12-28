@@ -150,13 +150,13 @@ const Overview = () => {
           {vipHostExpanded && (
             <div className="px-4 pb-4 flex flex-col gap-3 border-t border-[#FFFFFF0A] pt-4">
               <p className="text-white/70 text-[14px] leading-[20px]">
-                {t("Reach Platinum IV or above and receive your own dedicated VIP host who will support and cater to your betting needs.")}
+                {t("VIPHostUnlockDesc")}
               </p>
 
               <div className="flex flex-col gap-2">
                 <h4 className="text-white text-[14px] font-medium">{t("VIP Host benefits")}</h4>
                 <p className="text-white/70 text-[14px] leading-[20px]">
-                  {t("VIP Hosts cater to your needs and ensure your time at Betalarab is safe, entertaining and rewarding. Enjoy:")}
+                  {t("VIPHostBenefitsDesc")}
                 </p>
 
                 <ul className="flex flex-col gap-2 ml-4">

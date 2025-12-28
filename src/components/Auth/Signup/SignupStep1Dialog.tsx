@@ -75,7 +75,7 @@ export default function SignupStep1Dialog({
 
             {/* Description */}
             <p className="text-white text-[16px] leading-[24px]">
-              {t("Betalarab is available is several languages. Feel free to personalise your language across our site from the options below.")}
+              {t("LanguageSelectionDesc")}
             </p>
 
             {/* Language Select */}

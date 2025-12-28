@@ -65,13 +65,13 @@ export default function SearchWidget() {
           }}
         >
           <ModalContent
-            className="w-[460px] bg-[var(--background)] max-h-[calc(var(--viewport-height) * 80)] overflow-y-auto"
+            className="w-[460px] max-w-[1000px] bg-[var(--background)] max-h-[calc(var(--viewport-height) * 80)] overflow-y-auto"
             dir={"ltr"}
           >
-            <ModalHeader className="text-[var(--primary-color)]">
+            <ModalHeader className="text-white">
               {t("Search")}
             </ModalHeader>
-            <ModalBody className="flex flex-col p-2! md:py-6 gap-[10px] bg-[var(--header-background)] shadow-lg overflow-y-auto rounded-[8px] h-full">
+            <ModalBody className="flex flex-col p-2! md:py-6 gap-[10px] bg-[var(--bar-background-color)] shadow-lg overflow-y-auto rounded-[8px] h-full">
               <Input
                 type="text"
                 label={t("Search")}
@@ -79,12 +79,12 @@ export default function SearchWidget() {
                 autoFocus
                 onChange={(e: any) => setKeyword(e.target.value)}
               />
-              <div className="flex flex-col py-[10px] gap-[12px] bg-[#fff1] border-none rounded-sm! px-[14px] border-1 border-[#333]">
-                <span className="text-[#6C718A] text-[12px] font-extrabold">
+              <div className="flex flex-col py-[10px] gap-[12px] bg-[var(--background)] border-none rounded-sm! px-[14px] border-1 border-[#333]">
+                <span className="text-white/80 text-[12px] font-extrabold">
                   {t("Results")}
                 </span>
                 <div
-                  className={`flex flex-col overflow-y-auto max-h-[200px] gap-2`}
+                  className={`grid grid-cols-2 overflow-y-auto max-h-[200px] gap-2`}
                 >
                   {searchResult.map((game, index) => (
                     <div key={index}>

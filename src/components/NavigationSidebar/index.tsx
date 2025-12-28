@@ -37,7 +37,7 @@ export default function NavigationSidebar() {
   useEffect(() => {
     if (location.path.includes("/casino")) {
       selectedTabState.value = "casino";
-    } else if (location.path.includes("/sport")) {
+    } else if (location.path.includes("/live-casino")) {
       selectedTabState.value = "sports";
     } else {
       selectedTabState.value = null;

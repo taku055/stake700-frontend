@@ -96,8 +96,8 @@ export default function Header() {
                   size="sm"
                   style={{ background: '#01A825', fontSize: '16px', leading: '24px', color: '#ffffff', width: '100px', height: '44px', borderRadius: '8px', padding: '10px 20px' }}
                   onPress={() => (
-                    // signupStep1OpenedState.value = true
-                    welcomeDialogOpenedState.value = true
+                    signupStep1OpenedState.value = true
+                    // welcomeDialogOpenedState.value = true
                   )}
                 // onPress={() => (welcomeDialogOpenedState.value = true)}
                 >
@@ -123,7 +123,7 @@ export default function Header() {
                     <ProfileButton />
                     <ProfileMenu />
                   </div>
-                  <button
+                  {/* <button
                     className="flex items-center justify-center w-[44px] h-[44px]"
                     onClick={() => {
                       // console.log("ring");
@@ -138,8 +138,8 @@ export default function Header() {
                   // onPress={() => (welcomeDialogOpenedState.value = true)}
                   >
                     <img src={`${BASE_URL}/images/icons/log-out.svg`} alt={t("logout")} className="w-[20px] h-[20px]" />
-                  </button>
-                  }
+                  </button> */}
+                  {/* } */}
                 </div>
                 {/* <Button
                   className="btn"

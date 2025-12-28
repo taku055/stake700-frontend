@@ -153,7 +153,7 @@ export default function SignupStep2Dialog({
                 />
                 <div className="mt-[4px] bg-[var(--background-secondary)] rounded-sm w-full h-[40px] flex items-center px-[8px]">
                   <span className="text-[14px] text-[#FFFFFFB2]">
-                    {t("Your username must be 3-14 characters long.")}
+                    {t("UsernameLengthValidation")}
                   </span>
                 </div>
               </div>

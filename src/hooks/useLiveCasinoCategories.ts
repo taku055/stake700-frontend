@@ -14,28 +14,28 @@ export interface CategoryItem {
 // Live Casino categories
 const LIVE_CASINO_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = [
   {
-    name: "All Games",
+    name: "Live Casino",
     path: "/casino/live-casino",
   },
   {
     name: "Roulette",
-    path: "/casino/live-casino?custom=1&category=rouletteglobal",
+    path: "/casino/live-casino?custom=2&category=rouletteglobal",
   },
   {
     name: "Blackjack",
-    path: "/casino/live-casino?custom=1&category=blackjacks",
+    path: "/casino/live-casino?custom=2&category=blackjacks",
   },
   {
     name: "Baccarat",
-    path: "/casino/live-casino?custom=1&category=baccaratglobal",
+    path: "/casino/live-casino?custom=2&category=baccaratglobal",
   },
   {
     name: "Video Poker",
-    path: "/casino/live-casino?custom=1&category=videopoker",
+    path: "/casino/live-casino?custom=2&category=videopoker",
   },
   {
     name: "Table Games",
-    path: "/casino/live-casino?custom=1&category=tablegames",
+    path: "/casino/live-casino?custom=2&category=tablegames",
   },
 ];
 
@@ -45,26 +45,26 @@ const getCategoryIcon = (categoryName: string, path: string): string => {
   const pathLower = path.toLowerCase();
   
   if (name.includes("all games") || pathLower.includes("all-games")) {
-    return "/images/sidebar/all-games.svg";
+    return "/images/category_logo/all-games.png";
   }
   if (name.includes("roulette") || pathLower.includes("roulette")) {
-    return "/images/sidebar/roulette.svg";
+    return "/images/category_logo/roulette.png";
   }
   if (name.includes("blackjack") || pathLower.includes("blackjack") || pathLower.includes("blackjacks")) {
-    return "/images/sidebar/blackjack.svg";
+    return "/images/category_logo/blackjack.png";
   }
   if (name.includes("baccarat") || pathLower.includes("baccarat")) {
-    return "/images/sidebar/baccarat.svg";
+    return "/images/category_logo/baccarat.svg";
   }
   if (name.includes("video poker") || pathLower.includes("video-poker") || pathLower.includes("videopoker")) {
-    return "/images/sidebar/video-poker.svg";
+    return "/images/category_logo/video-poker.svg";
   }
   if (name.includes("table games") || pathLower.includes("table") || pathLower.includes("tablegames")) {
-    return "/images/sidebar/table-games.svg";
+    return "/images/category_logo/table-games.svg";
   }
   
   // Default icon
-  return "/images/sidebar/all-games.svg";
+  return "/images/category_logo/all-games.png";
 };
 
 // Get game count for a category based on its path (with caching)
@@ -81,11 +81,26 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
     const category = url.searchParams.get("category");
     const provider = url.searchParams.get("provider");
 
+    if (custom === "1" && category) {
+      // Wait for customGamesState to be populated (max 5 seconds)
+      let attempts = 0;
+      while (customGamesState.value.length === 0 && attempts < 50) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        attempts++;
+      }
+      
+      // If still empty after waiting, return 0
+      if (customGamesState.value.length === 0) {
+        return 0;
+      }
+    }
+
     let count = 0;
 
     if (custom === "1" && category) {
       // Custom category - count from customGamesState
       count = customGamesState.value.filter((c) => c.category === category).length;
+      console.log("count11111111111111", count);
     } else if (category) {
       // Regular category - fetch count from API
       const result = await apiGetGames({
@@ -94,6 +109,7 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
         provider: provider || undefined,
       });
       count = result.total || 0;
+      console.log("count22222222222222", count);
     } else if (path.includes("/casino/live-casino")) {
       // All Games - fetch total count from API
       const result = await apiGetGames({
@@ -102,6 +118,7 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
         provider: provider || undefined,
       });
       count = result.total || 0;
+      console.log("count33333333333333", count);
     }
 
     // Cache the result

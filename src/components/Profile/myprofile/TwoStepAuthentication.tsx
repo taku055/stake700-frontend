@@ -24,7 +24,7 @@ const TwoStepAuthenticationPage = () => {
             {t("Set up Authenticator")}
           </div>
           <div className="flex flex-row items-center gap-1 pb-2 text-[#FFFFFFCC]">
-            {t("Get the Google Authenticator app from App Store. In the Google Authenticator App select Set up an account. Choose Scan a barcode.")}
+            {t("TwoFactorAuthSetupDesc")}
           </div>
           <div className="flex flex-row items-center justify-center gap-1 pb-2 text-[#FFFFFFCC]">
             <img src="/images/authenticator_temp.png" />

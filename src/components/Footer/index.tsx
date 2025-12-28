@@ -78,7 +78,10 @@ export const Footer = () => {
                   {item.links.map((link) => (
                     <Link
                       scrollToTop={true}
-                      href={link.href}
+                      href={link?.href}
+                      onClick={() => {
+                        link?.onClick?.();
+                      }}
                       className="text-[var(--passive-color)] text-[14px] font-semibold"
                     >
                       {t(link.title)}

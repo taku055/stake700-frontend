@@ -17,6 +17,7 @@ import { BASE_URL, RTL_LANGUAGES } from "@/config/constants";
 import { Link } from "../common";
 import LocaleSelection from "@/components/LocaleSelection";
 import { useLocation } from "preact-iso";
+import { useCategoryCounts } from "@/hooks/useCatigoryCounts";
 
 const localeOptions = [
   { label: "Türkçe", value: "tr", flag: "tr" },
@@ -71,6 +72,7 @@ export default function CollapsedSidebar({
   const { categories: casinoCategories } = useCasinoCategories();
   const { categories: liveCasinoCategories } = useLiveCasinoCategories();
   const location = useLocation();
+  const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } = useCategoryCounts();
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   // const topNavItems = mainNavItems.filter((item) =>
   //   ["slots", "live-casino", "sport", "promotions"].includes(item.key)
@@ -82,8 +84,8 @@ export default function CollapsedSidebar({
   // Get categories based on selected tab
   const categoriesWithIcons = useMemo(() => {
     // return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
-    return selectedTabState.value === "casino" ? casinoCategories : [];
-  }, [selectedTab, casinoCategories, liveCasinoCategories]);
+    return selectedTabState.value === "casino" ? [...liveCasinoCategoriesWithCounts, ...casinoCategoriesWithCounts] : [];
+  }, [selectedTabState.value, casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts]);
 
   // useEffect(() => {
   //   if (location.path.includes("/casino")) {

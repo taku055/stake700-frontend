@@ -23,7 +23,7 @@ const Overview = ({ onDepositClick, onBuyCryptoClick }: IOverviewProps) => {
           {t("Your Betalarab Wallet is Currently Empty")}
         </h3>
         <p className="text-white/70 text-[16px] leading-[24px]">
-          {t("To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.")}
+          {t("WalletGetStartedDesc")}
         </p>
       </div>
 

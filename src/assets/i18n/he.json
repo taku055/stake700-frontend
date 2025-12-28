@@ -104,7 +104,8 @@
     "Fiat Currency": "Fiat Currency",
     "Improve your account security with Two-Factor Authentication": "שפר את אבטחת החשבון שלך עם אימות דו-שלבי",
     "Enable 2FA": "הפעל אימות דו-שלבי",
-    "Coming Soon": "בקרוב"
+    "Coming Soon": "בקרוב",
+    "WalletGetStartedDesc": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped."
   },
   "PromotionCard": {
     "daily_promotion_title": "מבצע יומי",
@@ -207,7 +208,10 @@
     "Sports Betting Guide": "מדריך הימורי ספורט",
     "How to Live Stream Sports": "איך לשדר ספורט בשידור חי",
     "Betalarab VIP Guide": "מדריך Betalarab VIP",
-    "House Edge Guide": "מדריך יתרון הבית"
+    "House Edge Guide": "מדריך יתרון הבית",
+    "Roulette": "רולטה",
+    "Blackjack": "בלאק ג'ק",
+    "Live Support": "תמיכה חיה"
   },
   "LoginDialog": {
     "already_have_an_account": "כבר יש לך חשבון?",
@@ -451,7 +455,8 @@
     "24 hours": "24 שעות",
     "One week": "שבוע אחד",
     "One month": "חודש אחד",
-    "Two months": "חודשיים"
+    "Two months": "חודשיים",
+    "TwoFactorAuthSetupDesc": "הורד/י את Google Authenticator מ-App Store. באפליקציה בחר/י \"הגדרת חשבון\" ואז \"סריקת ברקוד\"."
   },
   "Promotions": {
     "Promotions": "מבצעים",
@@ -716,7 +721,8 @@
     "email": "Email",
     "recover_password": "Recover Password",
     "Password reset link was sent to": "Password reset link was sent to",
-    "Something went wrong. Please check your email exists in the": "Something went wrong. Please check your email exists in the"
+    "Something went wrong. Please check your email exists in the": "Something went wrong. Please check your email exists in the",
+    "EmailCheckError": "Something went wrong. Please check your email exists in the"
   },
   "Setting": {
     "language": "שפה"
@@ -896,7 +902,22 @@
     "Total Daily Bonus": "סה\"כ בונוסים יומיים",
     "Total Monthly Bonus": "סה\"כ בונוסים חודשיים",
     "Total Profit": "סה\"כ רווח",
-    "Cash": "מזומן"
+    "Cash": "מזומן",
+    "OverviewDesc": "Earn commission for all bets placed by your referrals across Casino and Sportsbook.",
+    "InstantPayoutDesc": "Skip the wait. See earnings instantly in your account.",
+    "LifetimeCommissionDesc": "If the people you refer keep playing, you keep getting paid.",
+    "MarketLeadingDesc": "Grow your earnings with some of the highest returns offered to players.",
+    "CustomiseCommissionDesc": "Tailor your commission plan to fit your unique business needs.",
+    "CryptoLocalCurrenciesDesc": "Earn your way with support for both cryptocurrency and local currencies.",
+    "MultiLanguageSupportDesc": "Get the help you want in your preferred language all day, everyday.",
+    "CommissionRulesDesc": "Our default commission rate is 10% but you can calculate specific rates for our products using the formulas below.",
+    "CasinoCommissionDesc": "All of our games have a different house edge. You can derive your commission using the following formula:",
+    "SportsbookCommissionDesc": "All sports bets are applied at a 3% theoretical house edge. You can derive your commission using the following formula:",
+    "PokerCommissionDesc": "We collect a small percentage of each pot (known as Rake) as a fee for hosting the game. Your commission is calculated using Rake. You can use the formula below to derive your commission:",
+    "CampaignsDesc": "See the performance of all your campaigns in one simple view below.",
+    "FAQAffiliateProgramAnswer": "The Betalarab Affiliate Program allows you to earn commissions by referring new players.",
+    "FAQJoinAnswer": "You can join by signing up and getting your referral link.",
+    "FAQBenefitsAnswer": "You earn commissions on all bets placed by your referrals."
   },
   "SignupStep1": {
     "Step 1/3": "שלב 1/3",
@@ -904,7 +925,8 @@
     "Betalarab is available is several languages. Feel free to personalise your language across our site from the options below.": "אנחנו זמינים במספר שפות. אנא הרגש חופשי להתאים אישית את השפה שלך באתר שלנו מהאפשרויות למטה.",
     "Confirm": "אישור",
     "Already have an account?": "כבר יש לך חשבון?",
-    "Sign in": "התחברות"
+    "Sign in": "התחברות",
+    "LanguageSelectionDesc": "אנחנו זמינים במספר שפות. אנא הרגש חופשי להתאים אישית את השפה שלך באתר שלנו מהאפשרויות למטה."
   },
   "SignupStep2": {
     "Step 2/3": "שלב 2/3",
@@ -919,7 +941,8 @@
     "Referral Code (Optional)": "קוד הפניה (אופציונלי)",
     "Continue": "המשך",
     "Already have an account?": "כבר יש לך חשבון?",
-    "Sign in": "התחברות"
+    "Sign in": "התחברות",
+    "UsernameLengthValidation": "שם המשתמש שלך חייב להיות באורך 3-14 תווים."
   },
   "SignupStep3": {
     "Step 3/3": "שלב 3/3",
@@ -998,7 +1021,16 @@
     "Conversions content will be displayed here.": "Conversions content will be displayed here.",
     "Game Events content will be displayed here.": "Game Events content will be displayed here.",
     "Unhash Server Seed content will be displayed here.": "Unhash Server Seed content will be displayed here.",
-    "Calculation content will be displayed here.": "Calculation content will be displayed here."
+    "Calculation content will be displayed here.": "Calculation content will be displayed here.",
+    "ProvableFairnessDesc": "Provable fairness allows players to prove and verify that results are fair and unmanipulated. This is achieved through a",
+    "CommitmentSchemeDesc": "The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty. Together they create a",
+    "3rdPartyVerificationDesc": "Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure. You can find them via Google or community-made resources.",
+    "CryptoGamblingFoundationDesc": "Betalarab is a verified operator on the Crypto Gambling Foundation network. This foundation aims to uphold the highest standard of provably fair gambling and we are proud to be a part of their network. You can find further information and insights about provable fairness and the power it has in this industry, check out the Crypto Gambling Foundation via their website: ",
+    "ImplementationPlaceholder": "Implementation content will be displayed here.",
+    "ConversionsPlaceholder": "Conversions content will be displayed here.",
+    "GameEventsPlaceholder": "Game Events content will be displayed here.",
+    "UnhashServerSeedPlaceholder": "Unhash Server Seed content will be displayed here.",
+    "CalculationPlaceholder": "Calculation content will be displayed here."
   },
   "VipClub": {
     "VIP": "VIP",
@@ -1054,7 +1086,13 @@
     "Roller": "רולר",
     "Gatos": "גאטוס",
     "Based": "בסיס",
-    "Certified": "מוסמך"
+    "Certified": "מוסמך",
+    "MonthlyBonusShort": "Released once a month.",
+    "MonthlyBonusDetailed": "The Monthly Bonus is randomly released. Eligible players will be notified via email. Your bonus is based on your game play throughout the month. The more you play, the bigger the bonus.",
+    "UnlockedBronzeVIP": "Unlocked at Bronze VIP.",
+    "UnlockedPlatinumVIP": "Unlocked at Platinum VIP.",
+    "VIPHostUnlockDesc": "Reach Platinum IV or above and receive your own dedicated VIP host who will support and cater to your betting needs.",
+    "VIPHostBenefitsDesc": "VIP Hosts cater to your needs and ensure your time at Betalarab is safe, entertaining and rewarding. Enjoy:"
   },
   "ProfileMenu": {
     "Wallet": "Wallet",

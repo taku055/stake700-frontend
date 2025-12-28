@@ -51,10 +51,10 @@ export default function EmulateBetting() {
       label: t("Sports Bets"),
       value: "sports",
     },
-    {
-      label: t("Race Leaderboard"),
-      value: "race-leaderboard",
-    },
+    // {
+    //   label: t("Race Leaderboard"),
+    //   value: "race-leaderboard",
+    // },
   ];
 
   const getIcon = (gameId: string) => {

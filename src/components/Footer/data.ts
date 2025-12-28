@@ -1,15 +1,19 @@
 import { BASE_URL } from "@/config/constants";
+import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
+import { vipOpenedState } from "@/state/vipOpenedState";
+import { depositDialogOpenedState } from "@/state/walletDialogState";
+
 
 export const FOOTER_LINK_DATA = [
   {
     title: "Casino",
     links: [
-      { title: "Casino Games", href: "/casino" },
+      { title: "Casino Games", href: "/casino/slots?custom=1&category=home"},
       { title: "Slots", href: "/casino/slots" },
-      { title: "Live Casino", href: "/live-casino" },
-      { title: "Roulette", href: "/casino/roulette" },
-      { title: "Blackjack", href: "/casino/blackjack" },
-      { title: "Poker", href: "/casino/poker" },
+      { title: "Live Casino", href: "/casino/live-casino" },
+      { title: "Roulette", href: "/casino/live-casino?custom=2&category=rouletteglobal" },
+      { title: "Blackjack", href: "/casino/live-casino?custom=2&category=blackjacks" },
+      { title: "Poker", href: "/casino/live-casino?custom=2&category=videopoker" },
       { title: "Publishers", href: "/publishers" },
       { title: "Promos & Competitions", href: "/promotions" },
       { title: "Betalarab Engine", href: "/Betalarab-engine" },
@@ -37,7 +41,9 @@ export const FOOTER_LINK_DATA = [
       { title: "Fairness", href: "/fairness" },
       { title: "Responsible Gambling", href: "/responsible-gambling" },
       { title: "Gambling Helpline", href: "/gambling-helpline" },
-      { title: "Live Support", href: "/live-support" },
+      { title: "Live Support", onClick: () => {
+        liveSupportExpandedState.value = true;
+      } },
       { title: "Self Exclusion", href: "/self-exclusion" },
       { title: "Law Enforcement Request", href: "/law-enforcement-request" },
     ],
@@ -45,7 +51,9 @@ export const FOOTER_LINK_DATA = [
   {
     title: "About Us",
     links: [
-      { title: "VIP Club", href: "/vip-club" },
+      { title: "VIP Club", onClick: () => {
+        vipOpenedState.value = true;
+      } },
       { title: "Affiliate", href: "/affiliate" },
       { title: "Privacy Policy", href: "/privacy-policy" },
       { title: "AML Policy", href: "/aml-policy" },
@@ -55,23 +63,23 @@ export const FOOTER_LINK_DATA = [
   {
     title: "Payment Info",
     links: [
-      { title: "Deposit & Withdrawals", href: "/payments/deposits-withdrawals" },
+      { title: "Deposit & Withdrawals", onClick: () => {
+        depositDialogOpenedState.value = true;
+      } },
       { title: "Currency Guide", href: "/payments/currency-guide" },
       { title: "Crypto Guide", href: "/payments/crypto-guide" },
       { title: "Supported Crypto", href: "/payments/supported-crypto" },
-      { title: "How to Use the Vault", href: "/payments/vault" },
       { title: "How Much to Bet With", href: "/payments/how-much-to-bet" },
     ],
   },
   {
     title: "FAQ",
     links: [
-      { title: "How-to Guides", href: "/faq/how-to-guides" },
-      { title: "Online Casino Guide", href: "/faq/online-casino-guide" },
-      { title: "Sports Betting Guide", href: "/faq/sports-betting-guide" },
-      { title: "How to Live Stream Sports", href: "/faq/live-stream-sports" },
-      { title: "Betalarab VIP Guide", href: "/faq/vip-guide" },
-      { title: "House Edge Guide", href: "/faq/house-edge-guide" },
+      { title: "question_1", href: "/faq" },
+      { title: "question_2", href: "/faq" },
+      { title: "question_3", href: "/faq" },
+      { title: "question_4", href: "/faq" },
+      { title: "question_5", href: "/faq" },
     ],
   },
 ];

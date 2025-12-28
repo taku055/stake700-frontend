@@ -9,6 +9,7 @@ import { tGame } from "@/types/tGame";
 import { tProvider } from "@/types/tProvider";
 import { tPaginationResult } from "@/types/tPaginationResult";
 import TopLinkBar from "@/components/TopLinkBar";
+import { useLocation } from "preact-iso";
 
 const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
 const GAME_LOAD_COUNT = 24;
@@ -22,6 +23,10 @@ export default function Live() {
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
+
+  const location = useLocation(); 1
+
+  console.log("location.category", location.query.category);
 
   // Load providers for live casino
   useEffect(() => {
@@ -65,7 +70,7 @@ export default function Live() {
         const newProviders = individualProviders.includes(providerId)
           ? individualProviders.filter((id) => id !== providerId)
           : [...individualProviders, providerId];
-        
+
         // If no providers selected, default to "All Providers"
         if (newProviders.length === 0) {
           setSelectedProviders([ALL_PROVIDERS_ID]);
@@ -90,7 +95,8 @@ export default function Live() {
         const requestParams: any = {
           offset: offset1,
           limit: GAME_LOAD_COUNT,
-          category: "livecasino",
+          category: location.query.category || "livecasino",
+          // category: "livecasino",
           keyword: searchQuery || undefined,
         };
 
@@ -100,6 +106,8 @@ export default function Live() {
         }
 
         const res: tPaginationResult<tGame> = await apiGetGames(requestParams);
+
+        console.log("reslive", res);
 
         if (offset1 === 0) {
           setGames(res.data);
@@ -114,14 +122,14 @@ export default function Live() {
         setLoading(false);
       }
     },
-    [searchQuery, isAllProvidersSelected, individualProviders]
+    [searchQuery, isAllProvidersSelected, individualProviders, location.query.category]
   );
 
   // Load games when filters change
   useEffect(() => {
     setOffset(0);
     loadMore(0);
-  }, [searchQuery, selectedProviders, loadMore]);
+  }, [searchQuery, selectedProviders, loadMore, location.query.category]);
 
   // Handle search button click
   const handleSearchClick = useCallback(() => {
@@ -134,34 +142,37 @@ export default function Live() {
       {/* Banner on top */}
       <PromotionSection showAppleImage={false} category="live-casino" />
 
-      <TopLinkBar />
+      <div className="flex flex-col w-full max-w-[1200px] mx-auto">
 
-      {/* Search game input panel */}
-      <GameSearchPanel
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        onSearchClick={handleSearchClick}
-      />
+        <TopLinkBar />
 
-      {/* Provider selection card */}
-      <ProviderSelectionCard
-        providers={providers}
-        selectedProviders={selectedProviders}
-        providerSearch={providerSearch}
-        allProvidersId={ALL_PROVIDERS_ID}
-        isAllProvidersSelected={isAllProvidersSelected}
-        onProviderSearchChange={setProviderSearch}
-        onToggleProvider={toggleProvider}
-        onResetProviders={resetProviders}
-      />
+        {/* Search game input panel */}
+        <GameSearchPanel
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          onSearchClick={handleSearchClick}
+        />
 
-      {/* Filtered game view panel */}
-      <GameGridView
-        games={games}
-        total={total}
-        loading={loading}
-        onLoadMore={() => loadMore(offset)}
-      />
+        {/* Provider selection card */}
+        <ProviderSelectionCard
+          providers={providers}
+          selectedProviders={selectedProviders}
+          providerSearch={providerSearch}
+          allProvidersId={ALL_PROVIDERS_ID}
+          isAllProvidersSelected={isAllProvidersSelected}
+          onProviderSearchChange={setProviderSearch}
+          onToggleProvider={toggleProvider}
+          onResetProviders={resetProviders}
+        />
+
+        {/* Filtered game view panel */}
+        <GameGridView
+          games={games}
+          total={total}
+          loading={loading}
+          onLoadMore={() => loadMore(offset)}
+        />
+      </div>
     </div>
   );
 }

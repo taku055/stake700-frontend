@@ -5,12 +5,11 @@ import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
 import NavigationItems from "./NavigationItems";
 import CategoryItems from "./CategoryItems";
-import { useState, useMemo, useEffect } from "preact/hooks";
+import { useState, useMemo } from "preact/hooks";
 import { Input } from "@/components/common";
 import LocaleSelection from "@/components/LocaleSelection";
 import { localeState } from "@/state/localeState";
-import { useCasinoCategories } from "@/hooks/useCasinoCategories";
-import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
+import { useCategoryCounts } from "@/hooks/useCatigoryCounts";
 import { BASE_URL, mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import { useLocation } from "preact-iso";
 import { options } from "@/components/LocaleSelection";
@@ -67,16 +66,9 @@ export default function ExpandedDrawer({
   const selectedTab = selectedTabState.value;
   const location = useLocation();
   const [isExpanded, setIsExpanded] = useState<Record<string, boolean>>({});
-  const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
-    name: string;
-    path: string;
-    icon: string;
-    count?: number;
-  }>>([]);
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
-  const { categories: casinoCategories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
-  const { categories: liveCasinoCategories } = useLiveCasinoCategories();
+  const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } = useCategoryCounts();
   const isMobile = useMediaQuery(mobileMediaQuery);
 
 
@@ -93,39 +85,22 @@ export default function ExpandedDrawer({
 
 
   // Get categories based on selected tab
-  const currentCategories = useMemo(() => {
-    // return selectedTab === "casino" ? casinoCategories : selectedTab === "Sports" ? liveCasinoCategories : [];
-    return selectedTabState.value === "casino" ? casinoCategories : [];
-  }, [selectedTab, casinoCategories, liveCasinoCategories]);
+  // const currentCategories = useMemo(() => {
+  //   return selectedTab === "casino" ? casinoCategories : selectedTab === "Sports" ? liveCasinoCategories : [];
+  //   return selectedTabState.value === "casino" ? casinoCategories : [];
+  //   return selectedTabState.value === "casino" ? [...casinoCategories, ...liveCasinoCategories].sort((a, b) => a.name.localeCompare(b.name)) : [];
+
+  // }, [selectedTabState.value, casinoCategories, liveCasinoCategories]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = useMemo(() => {
     return mainNavItems;
   }, [mainNavItems]);
 
-  // Show categories immediately (without waiting for counts)
-  useEffect(() => {
-    setCategoriesWithCounts(currentCategories.map((cat) => ({
-      ...cat,
-      count: getCachedCategoryCount(cat.path),
-    })));
-  }, [currentCategories, getCachedCategoryCount]);
 
-  // Load counts asynchronously and update as they become available
-  useEffect(() => {
-    // Load counts for each category in parallel and update state as each completes
-    currentCategories.forEach((cat) => {
-      getCategoryGameCount(cat.path).then((count) => {
-        setCategoriesWithCounts((prev) => {
-          return prev.map((c) => (c.path === cat.path ? { ...c, count } : c));
-        });
-      }).catch((error) => {
-        console.error(`Error loading count for ${cat.path}:`, error);
-      });
-    });
-  }, [currentCategories, getCategoryGameCount]);
-
-
+  const currentCategories = useMemo(() => {
+    return selectedTabState.value === "casino" ? [...liveCasinoCategoriesWithCounts, ...casinoCategoriesWithCounts] : [];
+  }, [selectedTabState.value, casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts]);
 
   return (
     <div className="relative inset-0 z-100 h-full overflow-y-auto scrollbar-hide w-[260px] overflow-x-hidden px-[16px]">
@@ -182,14 +157,15 @@ export default function ExpandedDrawer({
             <div className="flex flex-col gap-2">
 
               {/* Categories Section - Always shown */}
-              <CategoryItems
-                categories={categoriesWithCounts}
-                title={selectedMainNavTitle || t("Categories")}
-                onCategoryClick={() => {
-                  // navigationSidebarExpandedState.value = false;
-                }}
-              />
-
+              {selectedTabState.value === "casino" &&
+                <CategoryItems
+                  categories={currentCategories}
+                  title={selectedMainNavTitle || t("Categories")}
+                  onCategoryClick={() => {
+                    // navigationSidebarExpandedState.value = false;
+                  }}
+                />
+              }
               {topNavItems.map((item) => {
 
                 return (
@@ -228,7 +204,6 @@ export default function ExpandedDrawer({
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('item.onclick, item.href', item.href, item.key, item.onclick?.toString());
                           item.onclick?.();
                           handleNavigate(item.href || "");
                         }}

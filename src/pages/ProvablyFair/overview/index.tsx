@@ -15,7 +15,7 @@ export default function Overview() {
         {/* Explanation Section */}
         <div className="flex flex-col gap-4">
           <p className="text-white   text-[16px] leading-[24px]">
-            {t("Provable fairness allows players to prove and verify that results are fair and unmanipulated. This is achieved through a")}{" "}
+            {t("ProvableFairnessDesc")}{" "}
             <a
               href="https://en.wikipedia.org/wiki/Commitment_scheme"
               target="_blank"
@@ -27,7 +27,7 @@ export default function Overview() {
             </a>
             {" "}{t("and")}{" "}
             <span className="text-white font-medium">{t("cryptographic hashing")}</span>
-            {". "}{t("The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty. Together they create a")}{" "}
+            {". "}{t("CommitmentSchemeDesc")}{" "}
             <span className="text-white font-medium">{t("trust-less environment")}</span>
             {"."}
           </p>
@@ -53,7 +53,7 @@ export default function Overview() {
         </h3>
         <div className="flex flex-col gap-3">
           <p className="text-white text-[16px] leading-[24px]">
-            {t("Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure. You can find them via Google or community-made resources.")}
+            {t("3rdPartyVerificationDesc")}
           </p>
           <div className="flex gap-2 ml-4">
             <span className="text-white text-[16px] leading-[24px] flex items-center justify-center">•</span>
@@ -78,7 +78,7 @@ export default function Overview() {
         </h3>
         <div className="flex flex-col gap-4">
           <p className="text-white text-[16px] leading-[24px]">
-            {t("Betalarab is a verified operator on the Crypto Gambling Foundation network. This foundation aims to uphold the highest standard of provably fair gambling and we are proud to be a part of their network. You can find further information and insights about provable fairness and the power it has in this industry, check out the Crypto Gambling Foundation via their website: ")}
+            {t("CryptoGamblingFoundationDesc")}
             <a
               href="https://cryptogambling.org"
               target="_blank"

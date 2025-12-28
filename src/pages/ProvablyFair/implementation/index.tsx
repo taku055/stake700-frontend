@@ -5,7 +5,7 @@ export default function Implementation() {
   return (
     <div className="flex flex-col gap-4 w-full p-6">
       <h2 className="text-white text-[24px] font-semibold">{t("Implementation")}</h2>
-      <p className="text-white/70">{t("Implementation content will be displayed here.")}</p>
+      <p className="text-white/70">{t("ImplementationPlaceholder")}</p>
     </div>
   );
 }

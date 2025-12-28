@@ -12,7 +12,7 @@ export default function FAQ() {
   const faqItems = [
     {
       question: t("What is the Betalarab Affiliate Program?"),
-      answer: t("The Betalarab Affiliate Program allows you to earn commissions by referring new players."),
+      answer: t("FAQAffiliateProgramAnswer"),
     },
     {
       question: t("Who can join the Betalarab Affiliate Program?"),
@@ -20,11 +20,11 @@ export default function FAQ() {
     },
     {
       question: t("How do I join the Betalarab Affiliate Program?"),
-      answer: t("You can join by signing up and getting your referral link."),
+      answer: t("FAQJoinAnswer"),
     },
     {
       question: t("What are the benefits of joining the Betalarab Affiliate Program?"),
-      answer: t("You earn commissions on all bets placed by your referrals."),
+      answer: t("FAQBenefitsAnswer"),
     },
   ];
 

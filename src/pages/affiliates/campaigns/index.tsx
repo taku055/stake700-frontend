@@ -100,7 +100,7 @@ export default function Campaigns() {
       <div className="flex flex-col gap-3">
         <h1 className="text-white text-[20px] font-semibold">{t("Campaigns")}</h1>
         <p className="text-white/70 text-[16px] leading-[24px] max-w-3xl">
-          {t("See the performance of all your campaigns in one simple view below.")}
+          {t("CampaignsDesc")}
         </p>
       </div>
 

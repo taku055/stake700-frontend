@@ -26,8 +26,8 @@ const Rewards = () => {
     {
       id: "monthly-bonus",
       title: t("Monthly Bonus"),
-      shortDescription: t("Released once a month."),
-      detailedDescription: t("The Monthly Bonus is randomly released. Eligible players will be notified via email. Your bonus is based on your game play throughout the month. The more you play, the bigger the bonus."),
+      shortDescription: t("MonthlyBonusShort"),
+      detailedDescription: t("MonthlyBonusDetailed"),
       unlockedAtLevel: 0,
       icon: (
         <img src={`${BASE_URL}/images/icons/monthly.png`} alt="monthly-bonus" className="w-[55px] h-[64px]" />
@@ -37,7 +37,7 @@ const Rewards = () => {
       id: "rakeback",
       title: t("Rakeback"),
       shortDescription: "",
-      unlockCondition: t("Unlocked at Bronze VIP."),
+      unlockCondition: t("UnlockedBronzeVIP"),
       unlockedAtLevel: 1,
       icon: (
         <img src={`${BASE_URL}/images/icons/rakeback.png`} alt="rakeback" className="w-[55px] h-[64px]" />
@@ -47,7 +47,7 @@ const Rewards = () => {
       id: "weekly-boost",
       title: t("Weekly Boost"),
       shortDescription: "",
-      unlockCondition: t("Unlocked at Bronze VIP."),
+      unlockCondition: t("UnlockedBronzeVIP"),
       unlockedAtLevel: 1,
       icon: (
         <img src={`${BASE_URL}/images/icons/weekly-boost.png`} alt="weekly-boost" className="w-[55px] h-[64px]" />
@@ -57,7 +57,7 @@ const Rewards = () => {
       id: "reload",
       title: t("Reload"),
       shortDescription: "",
-      unlockCondition: t("Unlocked at Platinum VIP."),
+      unlockCondition: t("UnlockedPlatinumVIP"),
       unlockedAtLevel: 4,
       icon: (
         <img src={`${BASE_URL}/images/icons/reload.png`} alt="reload" className="w-[55px] h-[64px]" />

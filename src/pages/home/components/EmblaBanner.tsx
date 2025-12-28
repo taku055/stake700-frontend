@@ -3,6 +3,8 @@ import { useCallback, useEffect, useRef } from 'preact/hooks';
 import EmblaCarousel, { EmblaCarouselType } from 'embla-carousel';
 import './embla.css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import Autoplay from 'embla-carousel-autoplay';
+
 
 const slides = [
   {
@@ -30,7 +32,10 @@ export const EmblaBanner = () => {
     const api = EmblaCarousel(viewportRef.current, {
       loop: true,
       align: 'center', // Add this to align slides to the start (left)
+      // duration: 10,
+   
     });
+    [Autoplay({ delay: 5000, stopOnInteraction: false })]
     emblaApi.current = api;
 
     return () => {
