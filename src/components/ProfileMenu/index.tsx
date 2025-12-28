@@ -142,7 +142,7 @@ export default function ProfileMenu() {
           }
         >
           <img
-            src={`${BASE_URL}/images/icons/log-out.svg`}
+            src={`/images/icons/icons/logout.png`}
             alt="Logout"
             className="w-5 h-5 object-contain brightness-0"
           />

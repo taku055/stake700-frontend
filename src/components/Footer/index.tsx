@@ -12,16 +12,16 @@ import { useMediaQuery } from "usehooks-ts";
 
 export const Footer = () => {
   const t = useTranslations("Footer");
-  const [time, setTime] = useState(new Date());
+  // const [time, setTime] = useState(new Date());
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const isMobile = useMediaQuery(mobileMediaQuery);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setTime(new Date());
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <footer className="flex flex-col w-full items-center justify-center pb-16 md:pb-8 pt-8 gap-5 bg-[var(--footer-background)] overflow-x-hidden scrollbar-hide">
@@ -82,9 +82,10 @@ export const Footer = () => {
                       onClick={() => {
                         link?.onClick?.();
                       }}
-                      className="text-[var(--passive-color)] text-[14px] font-semibold"
+                      className="flex items-center gap-2 text-[var(--passive-color)] text-[14px] font-semibold"
                     >
                       {t(link.title)}
+                      {link?.icon && <img src={link.icon} alt={link.title} className="w-4 h-4" />}
                     </Link>
                   ))}
                 </div>

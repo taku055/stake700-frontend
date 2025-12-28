@@ -4,7 +4,15 @@ import { vipOpenedState } from "@/state/vipOpenedState";
 import { depositDialogOpenedState } from "@/state/walletDialogState";
 
 
-export const FOOTER_LINK_DATA = [
+export const FOOTER_LINK_DATA : Array<{
+  title: string;
+  links: Array<{
+    title: string;
+    href?: string;
+    onClick?: () => void;
+    icon?: string;
+  }>;
+}> = [
   {
     title: "Casino",
     links: [
@@ -16,8 +24,8 @@ export const FOOTER_LINK_DATA = [
       { title: "Poker", href: "/casino/live-casino?custom=2&category=videopoker" },
       { title: "Publishers", href: "/publishers" },
       { title: "Promos & Competitions", href: "/promotions" },
-      { title: "Betalarab Engine", href: "/Betalarab-engine" },
-      { title: "Betalarab Vendors", href: "/Betalarab-vendors" },
+      { title: "Betalarab Engine", href: "/Betalarab-engine", icon: `/images/icons/icons/link.png` },
+      { title: "Betalarab Vendors", href: "/Betalarab-vendors", icon: `/images/icons/icons/link.png` },
     ],
   },
   {
