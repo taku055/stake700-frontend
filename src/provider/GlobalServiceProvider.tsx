@@ -79,6 +79,10 @@ import DepositPanel from "@/components/WalletDialog/DepositWithdrawFull";
 import { depositDialogOpenedState } from "@/state/walletDialogState";
 import Support from "@/components/Chat/Support";
 import LiveSupport from "@/components/LiveSupport";
+import { tPaginationResult } from "@/types/tPaginationResult";
+import { tGame } from "@/types/tGame";
+import { apiGetGames } from "@/api/common/apiGetGames";
+import { liveCasinoGamesState } from "@/state/liveCasinogamesState";
 
 const i18nDefinitions = {
   tr: trDefinition,
@@ -144,6 +148,17 @@ export default function GlobalServiceProvider({
           limit: 10000,
         });
         customGamesState.value = games.data;
+
+        const requestParams: any = {
+          offset: 0,
+          limit: 10000,
+          category: "livecasino",
+          // category: "livecasino",
+          keyword: "",
+        };
+
+        const res: tPaginationResult<tGame> = await apiGetGames(requestParams);
+        liveCasinoGamesState.value = res.data;
         // console.log("customGamesState", games.data);
       } catch (ex) {
         console.error(ex);

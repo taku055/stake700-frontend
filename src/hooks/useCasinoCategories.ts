@@ -35,10 +35,6 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     path: "/casino/slots?custom=0&category=jackpots",
   },
   {
-    name: "Buy Bonus",
-    path: "/casino/slots?custom=1&category=slot-buy-bonus",
-  },
-  {
     name: "Megaways",
     path: "/casino/slots?custom=1&category=megaways",
   },

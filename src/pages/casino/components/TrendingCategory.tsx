@@ -11,6 +11,7 @@ import { useTranslations } from "@/context/I18nContext";
 import styles from "./TrendingCategory.module.scss";
 import { Button } from "@heroui/react";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { liveCasinoGamesState } from "@/state/liveCasinogamesState";
 
 interface TrendingCategoryProps {
   category?: string;
@@ -40,19 +41,22 @@ export default function TrendingCategory({ category = "", name = "", icon = null
   useEffect(() => {
     // Fetch custom games with "trending" category
     if(category === "live-casino") {
-      const trendingGames = customGamesState.value
-        .filter((c) => c.category === category)
+      console.log("live-casino");
+      console.log("liveCasinoGamesState.value", liveCasinoGamesState.value);
+      const trendingGames = liveCasinoGamesState.value
         .slice(0, 20)
-        .map((e) => e.Game as tGame);
       setGames(trendingGames);
+      console.log("live-casino trendingGames", trendingGames);
       return;
-    }
+    }else{
     const trendingGames = customGamesState.value
       .filter((c) => c.category === category)
       .slice(0, 20)
       .map((e) => e.Game as tGame);
-
-    setGames(trendingGames);
+  
+      setGames(trendingGames);
+      console.log("trendingGames", trendingGames);
+    }
   }, [customGamesState.value, category]);
 
   // Don't render if no games
