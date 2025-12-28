@@ -29,13 +29,14 @@ export const EmblaBanner = () => {
   useEffect(() => {
     if (!viewportRef.current) return;
 
-    const api = EmblaCarousel(viewportRef.current, {
-      loop: true,
-      align: 'center', // Add this to align slides to the start (left)
-      // duration: 10,
-   
-    });
-    [Autoplay({ delay: 5000, stopOnInteraction: false })]
+    const api = EmblaCarousel(
+      viewportRef.current,
+      {
+        loop: true,
+        align: 'center',
+      },
+      [Autoplay({ delay: 5000, stopOnInteraction: false })]
+    );
     emblaApi.current = api;
 
     return () => {
