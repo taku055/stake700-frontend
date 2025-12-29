@@ -245,7 +245,7 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
               />
             </div>
           )}
-          <ProviderGroup />
+          {/* <ProviderGroup /> */}
           <div className="flex flex-col pb-4">
             <EmulateBetting />
           </div>
