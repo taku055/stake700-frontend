@@ -131,9 +131,9 @@
     "Search Providers": "Αναζήτηση Παρόχων",
     "Reset": "Επαναφορά",
     "All Providers": "Όλοι οι Πάροχοι",
-    "Filter": "Filter",
-    "Publishers": "Publishers",
-    "Clear All": "Clear All"
+    "Filter": "Φίλτρο",
+    "Publishers": "Εκδότες",
+    "Clear All": "Εκκαθάριση όλων"
   },
   "ProviderGroup": {
     "Providers": "Πάροχοι",

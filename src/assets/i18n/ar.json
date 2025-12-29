@@ -131,9 +131,9 @@
     "Search Providers": "البحث عن المزوّدين",
     "Reset": "إعادة تعيين",
     "All Providers": "جميع المزوّدين",
-    "Filter": "Filter",
-    "Publishers": "Publishers",
-    "Clear All": "Clear All"
+    "Filter": "تصفية",
+    "Publishers": "الناشرون",
+    "Clear All": "مسح الكل"
   },
   "ProviderGroup": {
     "Providers": "المزوّدون",

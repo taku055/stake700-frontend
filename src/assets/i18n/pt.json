@@ -131,9 +131,9 @@
     "Search Providers": "Pesquisar Provedores",
     "Reset": "Redefinir",
     "All Providers": "Todos os Provedores",
-    "Filter": "Filter",
-    "Publishers": "Publishers",
-    "Clear All": "Clear All"
+    "Filter": "Filtro",
+    "Publishers": "Editores",
+    "Clear All": "Limpar tudo"
   },
   "ProviderGroup": {
     "Providers": "Provedores",

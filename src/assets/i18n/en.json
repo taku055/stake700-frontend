@@ -192,7 +192,10 @@
     "Providers": "Providers",
     "Search Providers": "Search Providers",
     "Reset": "Reset",
-    "All Providers": "All Providers"
+    "All Providers": "All Providers",
+    "Filter": "Filter",
+    "Publishers": "Publishers",
+    "Clear All": "Clear All"
   },
   "ProviderGroup": {
     "Providers": "Providers",

@@ -21,7 +21,7 @@ export default function Live() {
   const [providers, setProviders] = useState<tProvider[]>([]);
   const [games, setGames] = useState<tGame[]>([]);
   const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); 
   const [total, setTotal] = useState(0);
 
   const location = useLocation(); 1
