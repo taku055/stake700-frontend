@@ -1,4 +1,5 @@
 import { FunctionalComponent } from "preact";
+import { useEffect, useState, useMemo, useCallback } from "preact/hooks";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import GameFilterSidebar from "@/components/GameFilterSidebar";
@@ -7,7 +8,6 @@ import { CasinoGameGrid } from "./CasinoGameGrid";
 import TopLinkBar from "@/components/TopLinkBar";
 import TrendingGamesPanel from "@/components/TrendingGamesPanel";
 import { EmblaBanner } from "@/pages/home/components/EmblaBanner";
-import { useEffect, useState, useMemo } from "preact/hooks";
 import { localeState } from "@/state/localeState";
 import { useCasinoGames } from "@/hooks/useCasinoGames";
 import { getCachedCategoryCount, getCategoryGameCount } from "@/components/NavigationSidebar/categoryData";
@@ -19,6 +19,10 @@ import GuideCard from "./GuideCard";
 import { FaThLarge } from "react-icons/fa";
 import ProviderGroup from "@/components/ProviderGroup";
 import EmulateBetting from "@/components/EmulateBetting";
+import { ProviderSelection } from "@/pages/live/components/ProviderSelection";
+import { apiGetProviders } from "@/api/common/apiGetProviders";
+import { tProvider } from "@/types/tProvider";
+import { GameSearchPanel } from "@/pages/live/components/GameSearchPanel";
 
 interface CasinoLayoutProps {
   searchQuery: string;
@@ -49,6 +53,22 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
 }) => {
   const isMobile = useMediaQuery(mobileMediaQuery);
   const { categories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
+  const [providers, setProviders] = useState<tProvider[]>([]);
+  const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
+
+  console.log("selectedProviders", selectedProviders);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await apiGetProviders("SLOT");
+        setProviders(res);
+        console.log("providers", res);
+      } catch (error) {
+        console.error("Error loading providers:", error);
+      }
+    })();
+  }, []);
 
   const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
     name: string;
@@ -117,6 +137,53 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
       setActiveTab("lobby");
     }
   }, [selectedCategory]);
+
+  // Add these after the providers state and ALL_PROVIDERS_ID constant (around line 56-70)
+
+  // Check if "All Providers" is selected
+  const isAllProvidersSelected = useMemo(() => {
+    return selectedProviders.includes(ALL_PROVIDERS_ID);
+  }, [selectedProviders]);
+
+  // Get individual providers (excluding ALL_PROVIDERS_ID)
+  const individualProviders = useMemo(() => {
+    return selectedProviders.filter(id => id !== ALL_PROVIDERS_ID);
+  }, [selectedProviders]);
+
+  // Toggle provider selection
+  const toggleProvider = useCallback((providerId: string) => {
+    if (providerId === ALL_PROVIDERS_ID) {
+      // Toggle "All Providers"
+      if (isAllProvidersSelected) {
+        onProvidersChange([]);
+      } else {
+        onProvidersChange([ALL_PROVIDERS_ID]);
+      }
+    } else {
+      // Toggle individual provider
+      if (isAllProvidersSelected) {
+        // If "All Providers" is selected, replace it with this provider
+        onProvidersChange([providerId]);
+      } else {
+        // Toggle individual provider
+        const newProviders = individualProviders.includes(providerId)
+          ? individualProviders.filter((id) => id !== providerId)
+          : [...individualProviders, providerId];
+
+        // If no providers selected, default to "All Providers"
+        if (newProviders.length === 0) {
+          onProvidersChange([ALL_PROVIDERS_ID]);
+        } else {
+          onProvidersChange(newProviders);
+        }
+      }
+    }
+  }, [isAllProvidersSelected, individualProviders, onProvidersChange]);
+
+  // Reset provider selection
+  const resetProviders = useCallback(() => {
+    onProvidersChange([ALL_PROVIDERS_ID]);
+  }, [onProvidersChange]);
 
   const guideCards = [
     {
@@ -234,7 +301,23 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
             </>
           ) : (
             /* Regular category view - not home or trending category */
-            <div className={`w-full flex ${isMobile ? 'flex-col' : 'flex-row'} gap-6 mt-[20px]`}>
+            <div className={`w-full flex flex-col gap-6 mt-[20px]`}>
+              <GameSearchPanel
+                searchQuery={searchQuery}
+                onSearchChange={onSearchChange}
+                onSearchClick={() => {
+                  // Search is handled automatically by useCasinoGames hook when searchQuery changes
+                }}
+              />
+              <ProviderSelection
+                providers={providers}
+                selectedProviders={selectedProviders}
+                allProvidersId={ALL_PROVIDERS_ID}
+                isAllProvidersSelected={isAllProvidersSelected}
+                onToggleProvider={toggleProvider}
+                onResetProviders={resetProviders}
+                selectedCategory={selectedCategory}
+              />
               <CasinoGameGrid
                 games={games}
                 total={total}

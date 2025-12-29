@@ -20,6 +20,10 @@ const slides = [
     id: '3',
     image: '/buffer/banner3.png',
   },
+  {
+    id: '4',
+    image: '/buffer/banner4.png',
+  },
 ];
 
 export const EmblaBanner = () => {

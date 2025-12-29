@@ -6,6 +6,7 @@ import { tProvider } from "@/types/tProvider";
 import { Filter, ChevronUp, ChevronDown } from "lucide-preact";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { useLocation } from "preact-iso";
+import { useCategoryParams } from "@/hooks/useCategoryParams";
 
 interface ProviderSelectionProps {
   providers: tProvider[];
@@ -14,6 +15,7 @@ interface ProviderSelectionProps {
   isAllProvidersSelected: boolean;
   onToggleProvider: (providerId: string) => void;
   onResetProviders: () => void;
+  selectedCategory?: string;
 }
 
 export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
@@ -23,9 +25,11 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
   isAllProvidersSelected,
   onToggleProvider,
   onResetProviders,
+  selectedCategory,
 }) => {
   const t = useTranslations("CasinoDetailPage");
   const location = useLocation();
+  const { getCategoryParams } = useCategoryParams();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [providerCounts, setProviderCounts] = useState<Record<string, number>>({});
 
@@ -44,12 +48,28 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
     const loadProviderCounts = async () => {
       const counts: Record<string, number> = {};
       
+      // Determine the category to use
+      let categoryToUse = "livecasino"; // default
+      if (selectedCategory) {
+        const categoryParams = getCategoryParams(selectedCategory);
+        if (categoryParams.category) {
+          categoryToUse = categoryParams.category;
+        } else if (selectedCategory.includes("/casino/slots")) {
+          categoryToUse = "slots";
+        } else if (selectedCategory.includes("/casino/live-casino")) {
+          categoryToUse = "livecasino";
+        }
+      } else {
+        // Fallback to location.query.category
+        categoryToUse = location.query.category || "livecasino";
+      }
+      
       // Load count for each provider
       await Promise.all(
         providers.map(async (provider) => {
           try {
             const result = await apiGetGames({
-              category: location.query.category || "livecasino",
+              category: categoryToUse,
               limit: 1,
               provider: provider.id,
             });
@@ -67,7 +87,7 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
     if (providers.length > 0) {
       loadProviderCounts();
     }
-  }, [providers, location.query.category]);
+  }, [providers, selectedCategory, location.query.category, getCategoryParams]);
 
   const handleToggleProvider = (providerId: string) => {
     onToggleProvider(providerId);
