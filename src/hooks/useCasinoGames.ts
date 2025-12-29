@@ -100,6 +100,9 @@ export function useCasinoGames({
           // If path is "/casino/slots" without category, use "slots" category
           if (selectedCategory?.includes("/casino/slots") && !categoryParams.category) {
             requestParams.category = "slots";
+          } else if (selectedCategory?.includes("/casino/live-casino") && !categoryParams.category) {
+            // If path is "/casino/live-casino" without category, use "livecasino" category
+            requestParams.category = "livecasino";
           } else if (categoryParams.category) {
             requestParams.category = categoryParams.category;
           }

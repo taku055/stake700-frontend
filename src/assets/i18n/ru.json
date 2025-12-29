@@ -130,7 +130,10 @@
     "Providers": "Провайдеры",
     "Search Providers": "Поиск Провайдеров",
     "Reset": "Сбросить",
-    "All Providers": "Все Провайдеры"
+    "All Providers": "Все Провайдеры",
+    "Filter": "Filter",
+    "Publishers": "Publishers",
+    "Clear All": "Clear All"
   },
   "ProviderGroup": {
     "Providers": "Провайдеры",
@@ -316,7 +319,13 @@
     "guide_card_contact_support_content": "Свяжитесь с нами по любым вопросам через онлайн-чат",
     "load_more": "Загрузить еще",
     "Casino": "Casino",
-    "Search": "Search"
+    "Search": "Search",
+    "Lobby": "Лобби",
+    "Top Slots": "Топ Слоты",
+    "Live Casino": "Живое Казино",
+    "Megaways": "Megaways",
+    "Classic Slots": "Классические Слоты",
+    "Drop Wins": "Drop Wins"
   },
   "AboutUs": {
     "title": "О betalarab?",

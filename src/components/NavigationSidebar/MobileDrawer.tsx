@@ -216,7 +216,6 @@ export default function MobileDrawer({
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('item.onclick, item.href', item.href, item.key, item.onclick?.toString());
                           item.onclick?.();
                           handleNavigate(item.href || "");
                           navigationSidebarExpandedState.value = false;
@@ -307,7 +306,6 @@ export default function MobileDrawer({
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('item.onclick, item.href', item.onclick, item.key);
                           item.onclick?.();
                           handleNavigate(modifyHref(item.href || ""));
                           navigationSidebarExpandedState.value = false;

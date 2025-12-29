@@ -130,7 +130,10 @@
     "Providers": "المزوّدون",
     "Search Providers": "البحث عن المزوّدين",
     "Reset": "إعادة تعيين",
-    "All Providers": "جميع المزوّدين"
+    "All Providers": "جميع المزوّدين",
+    "Filter": "Filter",
+    "Publishers": "Publishers",
+    "Clear All": "Clear All"
   },
   "ProviderGroup": {
     "Providers": "المزوّدون",
@@ -316,7 +319,13 @@
     "guide_card_contact_support_content": "اتصل بنا لأي مشاكل عبر الدردشة المباشرة",
     "load_more": "تحميل المزيد",
     "Casino": "كازينو",
-    "Search": "بحث"
+    "Search": "بحث",
+    "Lobby": "الردهة",
+    "Top Slots": "أفضل السلوتات",
+    "Live Casino": "كازينو مباشر",
+    "Megaways": "Megaways",
+    "Classic Slots": "السلوتات الكلاسيكية",
+    "Drop Wins": "Drop Wins"
   },
   "AboutUs": {
     "title": "حول betalarab؟",

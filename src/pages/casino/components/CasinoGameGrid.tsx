@@ -33,24 +33,26 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
 
   const categoryName = useMemo(() => {
     console.log("selectedCategory", selectedCategory);
-    if (selectedCategory === "/casino/slots?custom=1&category=home") {
+    if (selectedCategory === "/casino/home?custom=1&category=home") {
       return "Home";
     }
     return selectedCategory ? categories.find(cat => cat.path === selectedCategory)?.name : "All Games";
   }, [selectedCategory, categories]);
+
+
   if (categoryName === "Home") {
     return null;
   }
   return (
     <div className="flex-1 flex flex-col gap-4 min-w-0">
-      <div 
+      {/* <div 
         className={`w-full px-2 py-4 bg-[var(--bar-background-color)] rounded-lg text-[20px] uppercase ${
           isRTL ? "text-right" : "text-left"
         }`}
         dir={isRTL ? "rtl" : "ltr"}
       >
         {categoryName}
-      </div>
+      </div> */}
       <div className="grid md:grid-cols-8 grid-cols-2 gap-2">
         {games.map((game) => (
           <GameCard key={game.id} data={game} />

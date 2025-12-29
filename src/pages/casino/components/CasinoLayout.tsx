@@ -7,14 +7,18 @@ import { CasinoGameGrid } from "./CasinoGameGrid";
 import TopLinkBar from "@/components/TopLinkBar";
 import TrendingGamesPanel from "@/components/TrendingGamesPanel";
 import { EmblaBanner } from "@/pages/home/components/EmblaBanner";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState, useMemo } from "preact/hooks";
 import { localeState } from "@/state/localeState";
+import { useCasinoGames } from "@/hooks/useCasinoGames";
 import { getCachedCategoryCount, getCategoryGameCount } from "@/components/NavigationSidebar/categoryData";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import TrendingCategory from "./TrendingCategory";
 import { TRENDING_CATEGORIES } from "./categoriesData";
 import { useTranslations } from "@/context/I18nContext";
 import GuideCard from "./GuideCard";
+import { FaThLarge } from "react-icons/fa";
+import ProviderGroup from "@/components/ProviderGroup";
+import EmulateBetting from "@/components/EmulateBetting";
 
 interface CasinoLayoutProps {
   searchQuery: string;
@@ -54,6 +58,65 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
   }>>([]);
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("HomePage");
+  const [activeTab, setActiveTab] = useState<string>("lobby");
+
+  // Get the category path for the active tab (when on home category)
+  const activeTabCategory = useMemo(() => {
+    if (selectedCategory === "/casino/home?custom=1&category=home" && activeTab !== "lobby") {
+      return TRENDING_CATEGORIES[activeTab]?.selectedCategory || selectedCategory;
+    }
+    return selectedCategory;
+  }, [activeTab, selectedCategory]);
+
+  // Load games locally for the active tab category when on home with a tab selected
+  const localGamesResult = useCasinoGames({
+    selectedCategory: activeTabCategory,
+    searchQuery,
+    selectedProviders,
+  });
+
+  // Use local games when on home category with a tab selected, otherwise use parent games
+  const displayGames = useMemo(() => {
+    if (selectedCategory === "/casino/home?custom=1&category=home" && activeTab !== "lobby") {
+      return localGamesResult.games;
+    }
+    return games;
+  }, [selectedCategory, activeTab, localGamesResult.games, games]);
+
+  const displayTotal = useMemo(() => {
+    if (selectedCategory === "/casino/home?custom=1&category=home" && activeTab !== "lobby") {
+      return localGamesResult.total;
+    }
+    return total;
+  }, [selectedCategory, activeTab, localGamesResult.total, total]);
+
+  const displayLoading = useMemo(() => {
+    if (selectedCategory === "/casino/home?custom=1&category=home" && activeTab !== "lobby") {
+      return localGamesResult.loading;
+    }
+    return loading;
+  }, [selectedCategory, activeTab, localGamesResult.loading, loading]);
+
+  const displayOffset = useMemo(() => {
+    if (selectedCategory === "/casino/home?custom=1&category=home" && activeTab !== "lobby") {
+      return localGamesResult.offset;
+    }
+    return offset;
+  }, [selectedCategory, activeTab, localGamesResult.offset, offset]);
+
+  const handleLoadMore = useMemo(() => {
+    if (selectedCategory === "/casino/home?custom=1&category=home" && activeTab !== "lobby") {
+      return localGamesResult.loadMore;
+    }
+    return onLoadMore;
+  }, [selectedCategory, activeTab, localGamesResult.loadMore, onLoadMore]);
+
+  // Reset activeTab to lobby when navigating to home category
+  useEffect(() => {
+    if (selectedCategory === "/casino/home?custom=1&category=home") {
+      setActiveTab("lobby");
+    }
+  }, [selectedCategory]);
 
   const guideCards = [
     {
@@ -111,34 +174,80 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
           selectedCategory={selectedCategory}
           onCategoryChange={onCategoryChange}
         /> */}
-        <div className="max-w-[1200px] w-full h-full mx-auto">
+        <div className="max-w-[1200px] w-full h-full gap-4 flex flex-col mx-auto">
 
-          <div className={`w-full flex ${isMobile ? 'flex-col' : 'flex-row'} gap-6 mt-[20px]`}>
-
-            <CasinoGameGrid
-              games={games}
-              total={total}
-              loading={loading}
-              offset={offset}
-              onLoadMore={onLoadMore}
-              selectedCategory={selectedCategory}
-            />
-          </div>
-          {/* <TrendingGamesPanel /> */}
-          {/* <TopLinkBar /> */}
-          {TRENDING_CATEGORIES.map((category, index) => {
-            // const isSelected = selectedCategory === category.path;
-            return (
-              <TrendingCategory category={category.category} name={category.name} />
-            );
-          })}
-
-          <div className="w-full flex flex-col gap-4 md:flex-row items-center justify-center bg-gradient-to-b from-[rgba(11, 22, 41, 0.5)] to-[#122543]">
-            {guideCards.map((guide) => (
-              <div className="flex-1 flex items-center justify-center py-8">
-                <GuideCard key={guide.title} {...guide} />
+          {/* Check if this is home category */}
+          {selectedCategory === "/casino/home?custom=1&category=home" ? (
+            <>
+              {/* TabList - always visible */}
+              <div className="flex flex-col gap-4 mt-[20px]">
+                <div className="flex w-fit gap-2 mb-4 overflow-x-auto rounded-full p-2 bg-[var(--bar-background-color)]">
+                  <button
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors ${activeTab === "lobby"
+                      ? "bg-[var(--background-secondary)] text-white"
+                      : "text-[var(--text-color)] hover:bg-[var(--background-secondary)]"
+                      }`}
+                    onClick={() => setActiveTab("lobby")}
+                  >
+                    <FaThLarge className="w-4 h-4 grayscale object-contain" />
+                    {t("Lobby") || "Lobby"}
+                  </button>
+                  {Object.values(TRENDING_CATEGORIES).map((category) => (
+                    <button
+                      key={category.key}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors ${activeTab === category.key
+                        ? "bg-[var(--background-secondary)] text-white"
+                        : "text-[var(--text-color)] hover:bg-[var(--background-secondary)]"
+                        }`}
+                      onClick={() => setActiveTab(category.key)}
+                    >
+                      <img src={category.icon} alt={category.name} className="w-4 h-4 grayscale object-contain" />
+                      {t(category.name) || category.name}
+                    </button>
+                  ))}
+                </div>
               </div>
-            ))}
+
+              {/* Content based on activeTab */}
+              {activeTab === "lobby" ? (
+                <div className="flex flex-col gap-4">
+                  {Object.values(TRENDING_CATEGORIES).map((category) => (
+                    <TrendingCategory
+                      key={category.key}
+                      category={category.category}
+                      name={category.name}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className={`w-full flex ${isMobile ? 'flex-col' : 'flex-row'} gap-6`}>
+                  <CasinoGameGrid
+                    games={displayGames}
+                    total={displayTotal}
+                    loading={displayLoading}
+                    offset={displayOffset}
+                    onLoadMore={handleLoadMore}
+                    selectedCategory={TRENDING_CATEGORIES[activeTab]?.selectedCategory || selectedCategory}
+                  />
+                </div>
+              )}
+            </>
+          ) : (
+            /* Regular category view - not home or trending category */
+            <div className={`w-full flex ${isMobile ? 'flex-col' : 'flex-row'} gap-6 mt-[20px]`}>
+              <CasinoGameGrid
+                games={games}
+                total={total}
+                loading={loading}
+                offset={offset}
+                onLoadMore={onLoadMore}
+                selectedCategory={selectedCategory}
+              />
+            </div>
+          )}
+          <ProviderGroup />
+          <div className="flex flex-col pb-4">
+            <EmulateBetting />
           </div>
 
         </div>

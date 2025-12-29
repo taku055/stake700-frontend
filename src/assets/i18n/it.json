@@ -130,7 +130,10 @@
     "Providers": "Provider",
     "Search Providers": "Cerca Provider",
     "Reset": "Reimposta",
-    "All Providers": "Tutti i Provider"
+    "All Providers": "Tutti i Provider",
+    "Filter": "Filter",
+    "Publishers": "Publishers",
+    "Clear All": "Clear All"
   },
   "ProviderGroup": {
     "Providers": "Provider",
@@ -316,7 +319,13 @@
     "guide_card_contact_support_content": "Contattaci per qualsiasi problema tramite chat live",
     "load_more": "Carica altro",
     "Casino": "Casino",
-    "Search": "Search"
+    "Search": "Search",
+    "Lobby": "Lobby",
+    "Top Slots": "Top Slots",
+    "Live Casino": "Casino Live",
+    "Megaways": "Megaways",
+    "Classic Slots": "Slot Classiche",
+    "Drop Wins": "Drop Wins"
   },
   "AboutUs": {
     "title": "Informazioni su betalarab?",

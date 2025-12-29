@@ -130,7 +130,10 @@
     "Providers": "Πάροχοι",
     "Search Providers": "Αναζήτηση Παρόχων",
     "Reset": "Επαναφορά",
-    "All Providers": "Όλοι οι Πάροχοι"
+    "All Providers": "Όλοι οι Πάροχοι",
+    "Filter": "Filter",
+    "Publishers": "Publishers",
+    "Clear All": "Clear All"
   },
   "ProviderGroup": {
     "Providers": "Πάροχοι",
@@ -316,7 +319,13 @@
     "guide_card_contact_support_content": "Επικοινωνήστε μαζί μας για οποιαδήποτε θέματα μέσω live chat",
     "load_more": "Φόρτωσε περισσότερα",
     "Casino": "Casino",
-    "Search": "Search"
+    "Search": "Search",
+    "Lobby": "Χώρος υποδοχής",
+    "Top Slots": "Κορυφαία Slots",
+    "Live Casino": "Ζωντανό Καζίνο",
+    "Megaways": "Megaways",
+    "Classic Slots": "Κλασικά Slots",
+    "Drop Wins": "Drop Wins"
   },
   "AboutUs": {
     "title": "Σχετικά με το betalarab;",

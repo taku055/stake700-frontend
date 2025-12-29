@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useMemo } from "preact/hooks";
 import { PromotionSection } from "../casino/PromotionSection";
 import { GameSearchPanel } from "./components/GameSearchPanel";
-import { ProviderSelectionCard } from "./components/ProviderSelectionCard";
+import { ProviderSelection } from "./components/ProviderSelection";
 import { GameGridView } from "./components/GameGridView";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { apiGetProviders } from "@/api/common/apiGetProviders";
@@ -142,9 +142,9 @@ export default function Live() {
       {/* Banner on top */}
       <PromotionSection showAppleImage={false} category="live-casino" />
 
-      <div className="flex flex-col w-full max-w-[1200px] mx-auto">
+      <div className="flex flex-col gap-6 w-full max-w-[1200px] mx-auto">
 
-        <TopLinkBar />
+        {/* <TopLinkBar /> */}
 
         {/* Search game input panel */}
         <GameSearchPanel
@@ -153,14 +153,12 @@ export default function Live() {
           onSearchClick={handleSearchClick}
         />
 
-        {/* Provider selection card */}
-        <ProviderSelectionCard
+        {/* Provider selection */}
+        <ProviderSelection
           providers={providers}
           selectedProviders={selectedProviders}
-          providerSearch={providerSearch}
           allProvidersId={ALL_PROVIDERS_ID}
           isAllProvidersSelected={isAllProvidersSelected}
-          onProviderSearchChange={setProviderSearch}
           onToggleProvider={toggleProvider}
           onResetProviders={resetProviders}
         />
