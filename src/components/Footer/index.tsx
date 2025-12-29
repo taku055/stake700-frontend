@@ -131,14 +131,14 @@ export const Footer = () => {
           <img src={`${BASE_URL}/images/icons/logo.svg`} alt="Betalarab" className="w-full h-full" />
         </div>
         <div className="w-full h-[64px] flex justify-center items-center">
-          <Link href="/" className="p-[2px]">
+          {/* <Link href="/" className="p-[2px]"> */}
             <div
               id="anj-6f593292-7c58-4346-9757-715a8036599c"
               data-anj-seal-id="6f593292-7c58-4346-9757-715a8036599c"
               data-anj-image-size="64"
               data-anj-image-type="basic-small"
             ></div>
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
     </footer>
