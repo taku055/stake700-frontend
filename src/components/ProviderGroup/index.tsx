@@ -33,17 +33,23 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
 
   useEffect(() => {
     (async () => {
-      if (category) {
-        try {
-          const res = await apiGetProviders();
-          setProviderList(res.sort((a, b) => (a.order < b.order ? -1 : 1)));
-        } catch (ex) {
-          console.error(ex);
-        }
-      } else {
-        setProviderList(
-          [...provider.value.array].sort((a, b) => (a.order < b.order ? -1 : 1))
-        );
+      // if (category) {
+      //   try {
+      //     const res = await apiGetProviders();
+      //     setProviderList(res.sort((a, b) => (a.order < b.order ? -1 : 1)));
+      //   } catch (ex) {
+      //     console.error(ex);
+      //   }
+      // } else {
+      //   setProviderList(
+      //     [...provider.value.array].sort((a, b) => (a.order < b.order ? -1 : 1))
+      //   );
+      // }
+      try {
+        const res = await apiGetProviders();
+        setProviderList(res.sort((a, b) => (a.order < b.order ? -1 : 1)));
+      } catch (ex) {
+        console.error(ex);
       }
     })();
   }, [category, provider]);
