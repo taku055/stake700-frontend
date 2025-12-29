@@ -248,7 +248,15 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
             <>
               {/* TabList - always visible */}
               <div className="flex flex-col gap-4 mt-[20px]">
+                {/* <GameSearchPanel
+                  searchQuery={searchQuery}
+                  onSearchChange={onSearchChange}
+                  onSearchClick={() => {
+                    // Search is handled automatically by useCasinoGames hook when searchQuery changes
+                  }}
+                /> */}
                 <div className="flex w-fit gap-2 mb-4 overflow-x-auto rounded-full p-2 bg-[var(--bar-background-color)]">
+
                   <button
                     className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors ${activeTab === "lobby"
                       ? "bg-[var(--background-secondary)] text-white"
