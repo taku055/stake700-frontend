@@ -32,6 +32,8 @@ export default function SearchWidget() {
   const widgetRef = useRef<HTMLDivElement>(null);
   const [showSelection, setShowSelection] = useState(true);
   const location = useLocation();
+  const [showSearchResult, setShowSearchResult] = useState(false);
+  const [blurBackground, setBlurBackground] = useState(false);
 
   useEffect(() => {
     if (location.path.includes("/casino")) {
@@ -82,8 +84,7 @@ export default function SearchWidget() {
   const togglePanel = () => {
     searchWidgetState.value = !searchWidgetState.value;
   };
-  const [showSearchResult, setShowSearchResult] = useState(true);
-  const [blurBackground, setBlurBackground] = useState(false);
+
   const handleSearchChange = (value: string) => {
     setKeyword(value);
     setShowSearchResult(true);
@@ -251,7 +252,7 @@ export function SearchWidgetHeader() {
   const togglePanel = () => {
     searchWidgetStateHeader.value = !searchWidgetStateHeader.value;
   };
-  const [showSearchResult, setShowSearchResult] = useState(true);
+  const [showSearchResult, setShowSearchResult] = useState(false);
   const handleSearchChange = (value: string) => {
     setKeyword(value);
     setShowSearchResult(true);
