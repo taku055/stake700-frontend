@@ -12,7 +12,7 @@ import { Button } from "@heroui/react";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
 import TrendingCard from "../TrendingCard";
 
-export default function TrendingGamesPanel() {
+export default function TrendingGamesPanel({ title }: { title: string }) {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
   const [games, setGames] = useState<tGame[]>([]);
   const t = useTranslations("GameGroup");
@@ -70,7 +70,7 @@ export default function TrendingGamesPanel() {
       <div className={styles.titleBar}>
         <div className={styles.title}>
           <img src={`${BASE_URL}/images/icons/trending-game.png`} alt="Trending" className={styles.icon} />
-          <div className={styles.text}>{t("Trending") || "Trending Games"}</div>
+          <div className={styles.text}>{title || t("Trending") || "Trending Games"}</div>
         </div>
         <div className={styles.action}>
           <Button onPress={goToStart} className={`${styles.moveButton} rounded-l-full ${!isBeginning ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>

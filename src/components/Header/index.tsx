@@ -18,7 +18,7 @@ import { useEffect, useState } from "preact/hooks";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { navigationSidebarOpenState } from "@/state/navigationSidebarState";
 import { Menu } from "lucide-preact";
-import SearchWidget from "./SearchWidget";
+import SearchWidget, { SearchWidgetHeader } from "./SearchWidget";
 import { setAxiosAuthToken } from "@/api/instance";
 import { accessTokenState } from "@/state/accessTokenState";
 import { useLocation } from "preact-iso";
@@ -27,6 +27,7 @@ import { useCallback } from "preact/hooks";
 import ProfileMenu from "../ProfileMenu";
 import { profileMenuOpenedState } from "@/state/profilemenuState";
 import { chatExpandedState } from "@/state/chatExpandedState";
+import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
@@ -118,7 +119,16 @@ export default function Header() {
 
                 <div className="flex flex-row items-center">
                   {/* <SearchWidget /> */}
-
+                  {/* <SearchWidgetHeader /> */}
+                  <div className="relative">
+                    <button
+                      type="button"
+                      className="flex w-[44px] h-[44px] items-center justify-center"
+                      onClick={() => (searchWidgetStateHeader.value = !searchWidgetStateHeader.value)}
+                    >
+                      <img src={`${BASE_URL}/images/icons/search.svg`} alt={t("Search")} className="w-[20px] h-[20px]" />
+                    </button>
+                  </div>
                   <div className="relative">
                     <ProfileButton />
                     <ProfileMenu />

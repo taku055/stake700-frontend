@@ -1,4 +1,4 @@
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useRef } from "preact/hooks";
 import { Search, X } from "lucide-preact";
 import debounce from "lodash/debounce";
 import { apiGetGames } from "@/api/common/apiGetGames";
@@ -20,12 +20,26 @@ import { Select, SelectItem } from "@heroui/react";
 import GameCard from "@/components/GameCard";
 import TrendingGamesPanel from "@/components/TrendingGamesPanel";
 import TrendingSports from "@/components/TrendingSports";
+import { useLocation } from "preact-iso";
+import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 
 export default function SearchWidget() {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState<tGame[]>([]);
   const t = useTranslations("SearchWidget");
   const isMobile = useMediaQuery(mobileMediaQuery);
+  const [showSearchWidget, setShowSearchWidget] = useState(true);
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const [showSelection, setShowSelection] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.path.includes("/casino")) {
+      setShowSelection(false);
+    } else {
+      setShowSelection(true);
+    }
+  }, [location.path]);
   useEffect(() => {
     if (keyword.trim() === "") {
       setSearchResult([]);
@@ -40,11 +54,36 @@ export default function SearchWidget() {
     fetchData();
   }, [keyword]);
 
+  // Handle click outside to close
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (widgetRef.current && !widgetRef.current.contains(event.target as Node)) {
+        // setShowSearchWidget(false);
+        setShowSearchResult(false);
+        setKeyword("");
+        setBlurBackground(false);
+      }
+    };
+
+    if (showSearchWidget) {
+      document.addEventListener("mousedown", handleClickOutside);
+      // Prevent body scroll when widget is open
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "";
+    };
+  }, [showSearchWidget]);
+
   const togglePanel = () => {
     searchWidgetState.value = !searchWidgetState.value;
   };
-  const [showSearchResult, setShowSearchResult] = useState(false);
-
+  const [showSearchResult, setShowSearchResult] = useState(true);
+  const [blurBackground, setBlurBackground] = useState(false);
   const handleSearchChange = (value: string) => {
     setKeyword(value);
     setShowSearchResult(true);
@@ -62,78 +101,261 @@ export default function SearchWidget() {
             <img src={`${BASE_URL}/images/icons/search.svg`} alt={t("Search")} className="w-[20px] h-[20px]" />
           </button>
         </div>)} */}
-      {true && (
-        <div
-          className="bg-opacity-50 flex items-center justify-center z-[100000000] backdrop-blur-sm"
-        >
+      {showSearchWidget && (
+        <>
+          {/* Backdrop with blur */}
+          {blurBackground && (
+            <div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1005]"
+              onClick={() => {
+                // setShowSearchWidget(false);
+                setShowSearchResult(false);
+                setKeyword("");
+                setBlurBackground(false);
+              }}
+            />
+          )}
+          {/* Search Widget */}
           <div
-            className="w-[1260px] max-w-[1260px] h-auto overflow-y-auto"
-            dir={"ltr"}
+            ref={widgetRef}
+            className="flex items-start justify-center z-[1010] pointer-events-none"
           >
-            <div className="flex flex-col md:py-6 gap-[10px]  shadow-lg overflow-y-auto rounded-[8px] h-full">
+            <div
+              className="w-[1260px] max-w-[1260px] h-auto overflow-y-auto pointer-events-auto"
+              dir={"ltr"}
+            >
+              <div className="flex flex-col md:py-6 gap-[10px] shadow-lg overflow-y-auto rounded-[8px] h-full">
 
 
-              <div className="flex w-full h-[52px] px-3 md:px-0 ">
-                <div className="flex w-full h-full bg-[var(--background-secondary)] items-center justify-center border-[2px] border-[var(--background-tertiary)] overflow-hidden rounded-[8px]">
-                  <Select
-                    defaultSelectedKeys={['casino']}
-                    onSelectionChange={(e) => {
-                      // console.log(e);
-                    }}
-                    classNames={{
-                      base: "flex w-auto items-center justify-center bg-[var(--background-secondary)] text-[16px] leading-[24px] hover:bg-[var(--background-secondary)] focus:bg-[var(--background-secondary)] h-full border-r-[2px] border-[var(--background-tertiary)] bg-transparent",
-                      trigger: "w-auto whitespace-nowrap min-w-[108px] bg-[var(--background-secondary)] text-[16px] leading-[24px]",
-                      listbox: "w-auto",
-                      value: "w-auto whitespace-nowrap",
-                      popoverContent: "w-auto",
-                    }}>
-                    <SelectItem key="casino" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Casino</SelectItem>
-                    <SelectItem key="sports" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Sports</SelectItem>
-                    {/* <SelectItem key="sports">Sports</SelectItem> */}
-                  </Select>
-                  {/* <div className="flex h-full bg-[var(--background-secondary)]  font-light items-center justify-center border-r-[2px] border-[var(--background-tertiary)] min-w-[108px]">
-              Casino
-            </div> */}
-                  <div className="flex items-center justify-center p-2">
-                    <Search size={16} className="w-[20px] h-[20px]" />
+                <div className="flex w-full h-[52px] px-3 md:px-0 ">
+                  <div className="flex w-full h-full bg-[var(--background-secondary)] items-center justify-center border-[2px] border-[var(--background-tertiary)] overflow-hidden rounded-[8px]">
+                    {showSelection && (<Select
+                      defaultSelectedKeys={['casino']}
+                      onSelectionChange={(e) => {
+                      }}
+                      classNames={{
+                        base: "flex w-auto items-center justify-center bg-[var(--background-secondary)] text-[16px] leading-[24px] hover:bg-[var(--background-secondary)] focus:bg-[var(--background-secondary)] h-full border-r-[2px] border-[var(--background-tertiary)] bg-transparent",
+                        trigger: "w-auto whitespace-nowrap min-w-[108px] bg-[var(--background-secondary)] text-[16px] leading-[24px]",
+                        listbox: "w-auto",
+                        value: "w-auto whitespace-nowrap",
+                        popoverContent: "w-auto",
+                      }}>
+                      <SelectItem key="casino" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Casino</SelectItem>
+                      <SelectItem key="sports" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Sports</SelectItem>
+                    </Select>)}
+                    <div className="flex items-center justify-center p-2">
+                      <Search size={16} className="w-[20px] h-[20px]" />
+                    </div>
+                    <Input
+                      type="text"
+                      placeholder={t("Search")}
+                      value={keyword}
+                      onChange={(e: any) => handleSearchChange(e.target.value)}
+                      onFocus={(e: any) => {
+                        setBlurBackground(true);
+                      }}
+                      classNames={{
+                        inputWrapper: "bg-[var(--background-secondary)] border-none rounded-none h-[44px]",
+                        input: "text-white text-[16px]",
+                      }}
+                    />
+                    <X
+                      size={16}
+                      className="w-[24px] h-[24px] mx-3 text-white cursor-pointer"
+                      onClick={() => {
+                        setShowSearchResult(false);
+                        setBlurBackground(false);
+                        setKeyword("");
+                      }}
+                    />
                   </div>
-                  <Input
-                    type="text"
-                    placeholder={t("Search")}
-                    value={keyword}
-                    onChange={(e: any) => handleSearchChange(e.target.value)}
-                    onFocus={(e: any) => {
-                      searchWidgetState.value = true;
-                    }}
-                    classNames={{
-                      inputWrapper: "bg-[var(--background-secondary)] border-none rounded-none h-[44px]",
-                      input: "text-white text-[16px]",
-                    }}
-                  />
-                  <X size={16} className="w-[24px] h-[24px] mx-3 text-white" onClick={() => setShowSearchResult(false)} />
                 </div>
+
+                {showSearchResult && (
+                  <div className="flex flex-col rounded-lg h-[450px] overflow-y-auto scrollbar-hide py-[10px] bg-[var(--background)] border-none px-[10px] border-1 border-[#333]">
+                    <div className="grid grid-cols-8">
+                      {searchResult.map((game, index) => (
+                        <div key={index}>
+                          <GameCard data={game} />
+                        </div>
+                      ))}
+                    </div>
+                    <TrendingGamesPanel title="Suggested Games" />
+                    <TrendingSports title="Suggested Sports" />
+                  </div>
+                )}
               </div>
-
-
-
-
-
-              {showSearchResult && (
-                <div className="flex flex-col rounded-lg h-[450px] overflow-y-auto scrollbar-hide py-[10px] bg-[var(--background)] border-none px-[10px] border-1 border-[#333]">
-                  <div className="grid grid-cols-8">
-                    {searchResult.map((game, index) => (
-                      <div key={index}>
-                        <GameCard data={game} />
-                      </div>
-                    ))}
-                  </div>
-                  <TrendingGamesPanel />
-                  <TrendingSports />
-                </div>
-              )}
             </div>
           </div>
-        </div>
+        </>
+      )}
+    </>
+  );
+}
+
+export function SearchWidgetHeader() {
+  const [keyword, setKeyword] = useState("");
+  const [searchResult, setSearchResult] = useState<tGame[]>([]);
+  const t = useTranslations("SearchWidget");
+  const isMobile = useMediaQuery(mobileMediaQuery);
+  const widgetRefHeader = useRef<HTMLDivElement>(null);
+  const [showSelection, setShowSelection] = useState(true);
+  const location = useLocation();
+  
+  useEffect(() => {
+    if (location.path.includes("/casino")) {
+      setShowSelection(false);
+    } else {
+      setShowSelection(true);
+    }
+  }, [location.path]);
+  useEffect(() => {
+    if (keyword.trim() === "") {
+      setSearchResult([]);
+      return;
+    }
+
+    const fetchData = debounce(async () => {
+      const data = (await apiGetGames({ keyword, limit: 25 })).data;
+      setSearchResult(data);
+    }, 700);
+
+    fetchData();
+  }, [keyword]);
+
+  // Handle click outside to close
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (widgetRefHeader.current && !widgetRefHeader.current.contains(event.target as Node)) {
+        // setShowSearchWidget(false);
+        setShowSearchResult(false);
+        setKeyword("");
+        searchWidgetStateHeader.value = false;
+      }
+    };
+
+    if ( searchWidgetStateHeader.value ) {
+      document.addEventListener("mousedown", handleClickOutside);
+      // Prevent body scroll when widget is open
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "";
+    };
+  }, [searchWidgetStateHeader.value]);
+
+  const togglePanel = () => {
+    searchWidgetStateHeader.value = !searchWidgetStateHeader.value;
+  };
+  const [showSearchResult, setShowSearchResult] = useState(true);
+  const handleSearchChange = (value: string) => {
+    setKeyword(value);
+    setShowSearchResult(true);
+  };
+
+  return (
+    <>
+      {/* {!isMobile && (
+        <div className="relative">
+          <button
+            type="button"
+            className="flex w-[44px] h-[44px] items-center justify-center"
+            onClick={togglePanel}
+          >
+            <img src={`${BASE_URL}/images/icons/search.svg`} alt={t("Search")} className="w-[20px] h-[20px]" />
+          </button>
+        </div>)} */}
+      {searchWidgetStateHeader.value && (
+        <>
+          {/* Backdrop with blur */}
+          {searchWidgetStateHeader.value && (
+            <div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1015]"
+              onClick={() => {
+                // searchWidgetStateHeader.value = false;
+                setShowSearchResult(false);
+                setKeyword("");
+                searchWidgetStateHeader.value = false;
+              }}
+            />
+          )}
+          {/* Search Widget */}
+          <div
+            ref={widgetRefHeader}
+            className="absolute right-0 items-center justify-center top-0 left-0  z-[1020] pointer-events-none"
+          >
+            <div
+              className="w-[1200px] max-w-[1200px] mx-auto h-auto overflow-y-auto pointer-events-auto"
+              dir={"ltr"}
+            >
+              <div className="flex flex-col md:py-6 gap-[10px] shadow-lg overflow-y-auto rounded-[8px] h-full">
+
+
+                <div className="flex w-full h-[52px] px-3 md:px-0 ">
+                  <div className="flex w-full h-full bg-[var(--background-secondary)] items-center justify-center border-[2px] border-[var(--background-tertiary)] overflow-hidden rounded-[8px]">
+                    {showSelection && (<Select
+                      defaultSelectedKeys={['casino']}
+                      onSelectionChange={(e) => {
+                      }}
+                      classNames={{
+                        base: "flex w-auto items-center justify-center bg-[var(--background-secondary)] text-[16px] leading-[24px] hover:bg-[var(--background-secondary)] focus:bg-[var(--background-secondary)] h-full border-r-[2px] border-[var(--background-tertiary)] bg-transparent",
+                        trigger: "w-auto whitespace-nowrap min-w-[108px] bg-[var(--background-secondary)] text-[16px] leading-[24px]",
+                        listbox: "w-auto",
+                        value: "w-auto whitespace-nowrap",
+                        popoverContent: "w-auto",
+                      }}>
+                      <SelectItem key="casino" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Casino</SelectItem>
+                      <SelectItem key="sports" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Sports</SelectItem>
+                    </Select>)}
+                    <div className="flex items-center justify-center p-2">
+                      <Search size={16} className="w-[20px] h-[20px]" />
+                    </div>
+                    <Input
+                      type="text"
+                      placeholder={t("Search")}
+                      value={keyword}
+                      onChange={(e: any) => handleSearchChange(e.target.value)}
+                      onFocus={(e: any) => {
+                        searchWidgetStateHeader.value = true;
+                      }}
+                      classNames={{
+                        inputWrapper: "bg-[var(--background-secondary)] border-none rounded-none h-[44px]",
+                        input: "text-white text-[16px]",
+                      }}
+                    />
+                    <X
+                      size={16}
+                      className="w-[24px] h-[24px] mx-3 text-white cursor-pointer"
+                      onClick={() => {
+                        searchWidgetStateHeader.value = false;
+                        setShowSearchResult(false);
+                        setKeyword("");
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {showSearchResult && (
+                  <div className="flex flex-col rounded-lg h-[450px] overflow-y-auto scrollbar-hide py-[10px] bg-[var(--background)] border-none px-[10px] border-1 border-[#333]">
+                    <div className="grid grid-cols-8">
+                      {searchResult.map((game, index) => (
+                        <div key={index}>
+                          <GameCard data={game} />
+                        </div>
+                      ))}
+                    </div>
+                    <TrendingGamesPanel title="Suggested Games" />
+                    <TrendingSports title="Suggested Sports" />
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </>
   );

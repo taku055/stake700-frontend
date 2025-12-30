@@ -45,7 +45,7 @@ export default function GamePageComponent({ gameId }: IGamePageComponentProps) {
       <GamePlay game={game} />
       {/* <MoreGameWrapper game={game} /> */}
       <EmulateBetting />
-      <TrendingGamesPanel />
+      <TrendingGamesPanel title="Suggested Games" />
       <ProviderGroup />
     </div>
   );

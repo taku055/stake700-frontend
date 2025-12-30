@@ -16,7 +16,7 @@ import { Select, SelectItem } from "@heroui/react";
 import VipCard from "@/components/Vip-club/VipCard";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
-import SearchWidget from "@/components/Header/SearchWidget";
+import SearchWidget, { SearchWidgetHeader } from "@/components/Header/SearchWidget";
 
 export default function PageComponent() {
 
@@ -43,6 +43,9 @@ export default function PageComponent() {
 
   return (
     <div className="flex flex-col z-0 items-center justify-center w-full font-weight-300 gap-6">
+      <div className="relative w-full max-w-[1260px]  mx-auto">
+        <SearchWidgetHeader />
+      </div>
       <div className="flex flex-col">
         {isMobile && userState.value?.id && (
           <VipCard />
@@ -87,8 +90,8 @@ export default function PageComponent() {
           </div>
         </div> */}
         <SearchWidget />
-        <TrendingGamesPanel />
-        <TrendingSports />
+        <TrendingGamesPanel title="Trending Games" />
+        <TrendingSports title="Trending Sports" />
         <PromotionsGroup />
         <EmulateBetting />
         <FAQ />

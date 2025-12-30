@@ -11,7 +11,7 @@ import { tSport } from "@/types/tSport";
 import { Button } from "@heroui/react";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
 
-export default function TrendingSports() {
+export default function TrendingSports({ title }: { title: string }) {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
   const t = useTranslations("GameGroup");
   const [sports, setSports] = useState<tSport[]>([]);
@@ -49,7 +49,7 @@ export default function TrendingSports() {
       <div className={styles.titleBar}>
         <div className={styles.title}>
           <img src={`${BASE_URL}/images/icons/sportsbook.png`} alt="Trending" className={styles.icon} />
-          <div className={styles.text}>{t("Trending Sports") || "Trending Sports"}</div>
+          <div className={styles.text}>{title || t("Trending Sports") || "Trending Sports"}</div>
         </div>
         <div className={styles.action}>
           <Button onPress={goToStart} className={`${styles.moveButton} rounded-l-full ${!isBeginning ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>
