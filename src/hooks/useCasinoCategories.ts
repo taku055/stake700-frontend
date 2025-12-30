@@ -15,8 +15,24 @@ export interface CategoryItem {
 // Static categories list - always shown
 const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = [
   {
-    name: "All Games",
+    name: "All Slots",
     path: "/casino/slots",
+  },
+  {
+    name: "Jackpots",
+    path: "/casino/slots?custom=0&category=jackpots",
+  },
+  {
+    name: "Video Poker",
+    path: "/casino/slots?custom=0&category=videopoker",
+  },
+  {
+    name: "Video Bingo",
+    path: "/casino/slots?custom=0&category=bingogame",
+  },
+  {
+    name: "Other Games",
+    path: "/casino/slots?custom=0&category=other",
   },
   {
     name: "Top Slots",
@@ -30,10 +46,7 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     name: "New",
     path: "/casino/slots?custom=1&category=slot-new",
   },
-  {
-    name: "Jackpots",
-    path: "/casino/slots?custom=0&category=jackpots",
-  },
+  
   {
     name: "Megaways",
     path: "/casino/slots?custom=1&category=megaways",
@@ -54,14 +67,7 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     name: "Table Games",
     path: "/casino/slots?custom=0&category=tablegames",
   },
-  {
-    name: "Video Poker",
-    path: "/casino/slots?custom=0&category=videopoker",
-  },
-  {
-    name: "Video Bingo",
-    path: "/casino/slots?custom=0&category=bingogame",
-  },
+  
   {
     name: "Scratch Games",
     path: "/casino/slots?custom=0&category=scratchcards",
@@ -78,10 +84,7 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     name: "Casual Games",
     path: "/casino/slots?custom=1&category=casual-games",
   },
-  {
-    name: "Other Games",
-    path: "/casino/slots?custom=0&category=other",
-  },
+ 
 ];
 
 // Map category names/paths to sidebar SVG icons

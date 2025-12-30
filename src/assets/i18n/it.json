@@ -71,7 +71,8 @@
     "Default user icon": "Icona utente predefinita",
     "ring": "Notifiche",
     "logout": "Disconnetti",
-    "Wallet": "Wallet"
+    "Wallet": "Wallet",
+    "All Slots": "Tutti gli Slot"
   },
   "ProviderSidebar": {
     "Providers": "Provider",

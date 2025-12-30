@@ -71,7 +71,8 @@
     "Default user icon": "Varsayılan kullanıcı simgesi",
     "ring": "Bildirimler",
     "logout": "Çıkış",
-    "Wallet": "Wallet"
+    "Wallet": "Wallet",
+    "All Slots": "Tüm Slotlar"
   },
   "ProviderSidebar": {
     "Providers": "Sağlayıcılar",

@@ -16,6 +16,7 @@ import { Select, SelectItem } from "@heroui/react";
 import VipCard from "@/components/Vip-club/VipCard";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
+import SearchWidget from "@/components/Header/SearchWidget";
 
 export default function PageComponent() {
 
@@ -50,12 +51,11 @@ export default function PageComponent() {
       </div>
 
       <div className="flex flex-col max-w-[1200px] w-full gap-6">
-        <div className="flex w-full h-[52px] px-3 md:px-0 ">
+        {/* <div className="flex w-full h-[52px] px-3 md:px-0 ">
           <div className="flex w-full h-full bg-[var(--background-secondary)] items-center justify-center border-[2px] border-[var(--background-tertiary)] overflow-hidden rounded-[8px]">
             <Select
               defaultSelectedKeys={['casino']}
               onSelectionChange={(e) => {
-                // console.log(e);
               }}
               classNames={{
                 base: "flex w-auto items-center justify-center bg-[var(--background-secondary)] text-[16px] leading-[24px] hover:bg-[var(--background-secondary)] focus:bg-[var(--background-secondary)] h-full border-r-[2px] border-[var(--background-tertiary)] bg-transparent",
@@ -66,11 +66,8 @@ export default function PageComponent() {
               }}>
               <SelectItem key="casino" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Casino</SelectItem>
               <SelectItem key="sports" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Sports</SelectItem>
-              {/* <SelectItem key="sports">Sports</SelectItem> */}
             </Select>
-            {/* <div className="flex h-full bg-[var(--background-secondary)]  font-light items-center justify-center border-r-[2px] border-[var(--background-tertiary)] min-w-[108px]">
-              Casino
-            </div> */}
+            
             <div className="flex items-center justify-center p-2">
               <Search size={16} className="w-[20px] h-[20px]" />
             </div>
@@ -88,7 +85,8 @@ export default function PageComponent() {
               }}
             />
           </div>
-        </div>
+        </div> */}
+        <SearchWidget />
         <TrendingGamesPanel />
         <TrendingSports />
         <PromotionsGroup />

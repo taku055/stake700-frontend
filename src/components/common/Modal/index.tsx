@@ -322,12 +322,14 @@ interface ModalContentProps extends JSX.HTMLAttributes<HTMLDivElement> {
   children: preact.ComponentChildren;
   className?: string;
   dir?: "ltr" | "rtl" | "auto";
+  noCloseButton?: boolean;
 }
 
 export function ModalContent({
   children,
   className,
   dir = "auto",
+  noCloseButton = false,
   ...rest
 }: ModalContentProps) {
   const { contentRef, scrollBehavior, classNames } = useModalInternal();
@@ -353,7 +355,7 @@ export function ModalContent({
       {...rest}
     >
       {children}
-      <ModalClose />
+      {!noCloseButton && <ModalClose />}
     </div>
   );
 }

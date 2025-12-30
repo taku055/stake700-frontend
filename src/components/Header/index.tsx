@@ -61,7 +61,7 @@ export default function Header() {
   }, [userState, setAxiosAuthToken, accessTokenState]);
 
   return (
-    <header className="z-10000 bg-[var(--background)] w-full mx-auto h-[60px] flex items-center justify-center ">
+    <header className="z-1000 bg-[var(--background)] w-full mx-auto h-[60px] flex items-center justify-center ">
       <div className="flex flex-col items-center px-2 py-1 max-w-[1200px] w-full mx-auto">
 
         <div className="flex flex-row items-center justify-between w-full h-[60px] gap-1 overflow-hidden">
@@ -117,7 +117,7 @@ export default function Header() {
               <>
 
                 <div className="flex flex-row items-center">
-                  <SearchWidget />
+                  {/* <SearchWidget /> */}
 
                   <div className="relative">
                     <ProfileButton />

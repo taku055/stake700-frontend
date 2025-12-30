@@ -71,7 +71,8 @@
     "Default user icon": "أيقونة المستخدم الافتراضية",
     "ring": "الإشعارات",
     "logout": "تسجيل الخروج",
-    "Wallet": "Wallet"
+    "Wallet": "Wallet",
+    "All Slots": "جميع السلوتات"
   },
   "ProviderSidebar": {
     "Providers": "المزوّدون",

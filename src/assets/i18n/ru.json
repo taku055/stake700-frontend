@@ -71,7 +71,8 @@
     "Default user icon": "Иконка пользователя по умолчанию",
     "ring": "Уведомления",
     "logout": "Выйти",
-    "Wallet": "Wallet"
+    "Wallet": "Wallet",
+    "All Slots": "Все Слоты"
   },
   "ProviderSidebar": {
     "Providers": "Провайдеры",

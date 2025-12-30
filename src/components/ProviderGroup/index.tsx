@@ -119,7 +119,7 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
                 <Image
                   src={p.img}
                   alt={p.name}
-                  className="w-full h-full object-contain brightness-0 invert"
+                  className="w-full h-full object-contain"
                   classNames={{ wrapper: "w-full h-full" }}
                   loading="lazy"
                 />

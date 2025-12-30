@@ -7,6 +7,7 @@ import { Filter, ChevronUp, ChevronDown } from "lucide-preact";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { useLocation } from "preact-iso";
 import { useCategoryParams } from "@/hooks/useCategoryParams";
+import { customGamesState } from "@/state/customGamesState";
 
 interface ProviderSelectionProps {
   providers: tProvider[];
@@ -48,38 +49,77 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
     const loadProviderCounts = async () => {
       const counts: Record<string, number> = {};
       
-      // Determine the category to use
-      let categoryToUse = "livecasino"; // default
-      if (selectedCategory) {
-        const categoryParams = getCategoryParams(selectedCategory);
-        if (categoryParams.category) {
-          categoryToUse = categoryParams.category;
-        } else if (selectedCategory.includes("/casino/slots")) {
-          categoryToUse = "slots";
-        } else if (selectedCategory.includes("/casino/live-casino")) {
-          categoryToUse = "livecasino";
-        }
+      // For live casino page (when selectedCategory is not provided), use location.query.category directly
+      // For casino pages, use selectedCategory
+      let categoryPath = selectedCategory;
+      let categoryToUseDirect = null;
+      
+      if (!categoryPath) {
+        // Live casino page - use location.query.category directly
+        categoryToUseDirect = location.query.category || "livecasino";
       } else {
-        // Fallback to location.query.category
-        categoryToUse = location.query.category || "livecasino";
+        // Casino page - parse the categoryPath
+        const categoryParams = getCategoryParams(categoryPath);
+        
+        // For custom=1 categories (slots custom categories), use customGamesState
+        // Live casino uses custom=2, so it should use API (not customGamesState)
+        const isCustomCategory = categoryParams.custom && categoryParams.category;
+        const isSlotsCustomCategory = categoryPath.includes("/casino/slots") && isCustomCategory;
+      
+        if (isSlotsCustomCategory) {
+          // Wait for customGamesState to be populated (max 5 seconds)
+          let attempts = 0;
+          while (customGamesState.value.length === 0 && attempts < 50) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+          }
+          
+          // Count from customGamesState for each provider
+          const categoryGames = customGamesState.value.filter(
+            (c) => c.category === categoryParams.category
+          );
+          
+          providers.forEach((provider) => {
+            const providerGames = categoryGames.filter(
+              (c) => c.Game?.providerId === provider.id
+            );
+            counts[provider.id] = providerGames.length;
+          });
+        } else {
+          // Regular category or live casino (custom=2) - use API
+          // Determine the category to use - match logic from useCasinoGames
+          if (categoryPath.includes("/casino/slots") && !categoryParams.category) {
+            categoryToUseDirect = "slots";
+          } else if (categoryPath.includes("/casino/live-casino") && !categoryParams.category) {
+            categoryToUseDirect = "livecasino";
+          } else if (categoryParams.category) {
+            categoryToUseDirect = categoryParams.category;
+          } else {
+            // Fallback to location.query.category
+            categoryToUseDirect = location.query.category || "livecasino";
+          }
+        }
       }
       
-      // Load count for each provider
-      await Promise.all(
-        providers.map(async (provider) => {
-          try {
-            const result = await apiGetGames({
-              category: categoryToUse,
-              limit: 1,
-              provider: provider.id,
-            });
-            counts[provider.id] = result.total || 0;
-          } catch (error) {
-            console.error(`Error loading count for provider ${provider.id}:`, error);
-            counts[provider.id] = 0;
-          }
-        })
-      );
+      // Use API to load counts (unless we already counted from customGamesState above)
+      if (categoryToUseDirect !== null) {
+        // Load count for each provider from API
+        await Promise.all(
+          providers.map(async (provider) => {
+            try {
+              const result = await apiGetGames({
+                category: categoryToUseDirect,
+                limit: 1,
+                provider: provider.id,
+              });
+              counts[provider.id] = result.total || 0;
+            } catch (error) {
+              console.error(`Error loading count for provider ${provider.id}:`, error);
+              counts[provider.id] = 0;
+            }
+          })
+        );
+      }
       
       setProviderCounts(counts);
     };
@@ -87,7 +127,7 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
     if (providers.length > 0) {
       loadProviderCounts();
     }
-  }, [providers, selectedCategory, location.query.category, getCategoryParams]);
+  }, [providers, selectedCategory, location.query.category, getCategoryParams, location]);
 
   const handleToggleProvider = (providerId: string) => {
     onToggleProvider(providerId);

@@ -71,7 +71,8 @@
     "Default user icon": "Ícone de usuário padrão",
     "ring": "Notificações",
     "logout": "Sair",
-    "Wallet": "Wallet"
+    "Wallet": "Wallet",
+    "All Slots": "Todos os Slots"
   },
   "ProviderSidebar": {
     "Providers": "Provedores",

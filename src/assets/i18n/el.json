@@ -71,7 +71,8 @@
     "Default user icon": "Προεπιλεγμένη εικονίδιο χρήστη",
     "ring": "Ειδοποιήσεις",
     "logout": "Αποσύνδεση",
-    "Wallet": "Wallet"
+    "Wallet": "Wallet",
+    "All Slots": "Όλα τα Slots"
   },
   "ProviderSidebar": {
     "Providers": "Πάροχοι",

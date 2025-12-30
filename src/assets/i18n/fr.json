@@ -71,7 +71,8 @@
     "Default user icon": "Icône utilisateur par défaut",
     "ring": "Notifications",
     "logout": "Déconnexion",
-    "Wallet": "Wallet"
+    "Wallet": "Wallet",
+    "All Slots": "Tous les Slots"
   },
   "ProviderSidebar": {
     "Providers": "Fournisseurs",
