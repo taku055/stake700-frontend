@@ -107,7 +107,7 @@ export default function SearchWidget() {
           {/* Backdrop with blur */}
           {blurBackground && (
             <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1005]"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[105]"
               onClick={() => {
                 // setShowSearchWidget(false);
                 setShowSearchResult(false);
@@ -119,7 +119,7 @@ export default function SearchWidget() {
           {/* Search Widget */}
           <div
             ref={widgetRef}
-            className="flex items-start justify-center z-[1010] pointer-events-none"
+            className="flex items-start justify-center z-[110] pointer-events-none"
           >
             <div
               className="w-[1260px] max-w-[1260px] h-auto overflow-y-auto pointer-events-auto"
@@ -275,7 +275,7 @@ export function SearchWidgetHeader() {
           {/* Backdrop with blur */}
           {searchWidgetStateHeader.value && (
             <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1015]"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[115]"
               onClick={() => {
                 // searchWidgetStateHeader.value = false;
                 setShowSearchResult(false);
@@ -287,7 +287,7 @@ export function SearchWidgetHeader() {
           {/* Search Widget */}
           <div
             ref={widgetRefHeader}
-            className="absolute right-0 items-center justify-center top-0 left-0  z-[1020] pointer-events-none"
+            className="absolute right-0 items-center justify-center top-0 left-0  z-[120] pointer-events-none"
           >
             <div
               className="w-[1200px] max-w-[1200px] mx-auto h-auto overflow-y-auto pointer-events-auto"

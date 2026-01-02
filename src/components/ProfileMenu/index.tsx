@@ -89,14 +89,14 @@ export default function ProfileMenu() {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[99999]"
+        className="fixed inset-0 z-[99]"
         onClick={() => (profileMenuOpenedState.value = false)}
       />
       
       {/* Menu */}
       <div
         ref={menuRef}
-        className="fixed bg-white rounded-lg shadow-lg z-[100000] min-w-[200px] py-2"
+        className="fixed bg-white rounded-lg shadow-lg z-[100] min-w-[200px] py-2"
         style={{
           top: `${position.top}px`,
           right: `${position.right}px`,

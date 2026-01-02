@@ -115,10 +115,6 @@ export default function SignupStep3Dialog({
       isOpen={isOpen}
       onClose={onClose}
       placement="center"
-      classNames={{
-        backdrop: "z-[10000000]",
-        wrapper: "z-[10000000]",
-      }}
     >
       <ModalContent className="bg-[var(--background)] w-[630px] max-w-[630px] max-h-[90vh] overflow-y-auto rounded-[8px] overflow-hidden">
         {/* Header with Logo, Progress Bar, and Close Button */}

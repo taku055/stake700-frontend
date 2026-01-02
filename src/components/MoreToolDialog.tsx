@@ -23,10 +23,6 @@ const MoreToolDialog = ({ isOpen, onClose }: IMoreToolDialogProps) => {
       onClose={onClose}
       placement="center"
       scrollBehavior="inside"
-      classNames={{
-        backdrop: "z-[10000000] bg-transparent! backdrop-opacity-0!",
-        wrapper: "z-[10000000] p-0!",
-      }}
     >
       <ModalContent className="w-screen bg-[var(--bar-background-color)] mt-[50px] h-[calc(var(--viewport-height)-50px)] max-h-[calc(var(--viewport-height)-50px)]! rounded-none! pb-10">
         <ModalHeader className="p-2! font-normal!">{t("Menu")}</ModalHeader>

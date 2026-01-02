@@ -225,10 +225,6 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
       isOpen={isOpen}
       onClose={onClose}
       placement="center"
-      classNames={{
-        backdrop: "z-[10000001]",
-        wrapper: "z-[10000001]",
-      }}
     >
       <ModalContent className="bg-[var(--background)] w-[500px] max-w-[500px] rounded-[8px] overflow-hidden">
         <div className="flex justify-between items-center w-full h-[60px] min-h-[60px] px-[16px]">

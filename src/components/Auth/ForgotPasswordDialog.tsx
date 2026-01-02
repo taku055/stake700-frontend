@@ -68,10 +68,6 @@ export default function ForgotPasswordDialog({
       isOpen={isOpen}
       onClose={onClose}
       placement="center"
-      classNames={{
-        backdrop: "z-[10000000]",
-        wrapper: "z-[10000000]",
-      }}
     >
       <ModalContent className="bg-[var(--background)] w-[630px] h-[716px] max-w-[630px] max-h-[716px] rounded-[8px] overflow-y-auto">
         <div className="flex justify-between items-center w-full h-[60px] min-h-[60px] py-[10px] px-[16px] border-b border-[#FFFFFF0A]">

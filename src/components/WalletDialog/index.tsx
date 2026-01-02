@@ -83,10 +83,6 @@ const WalletDialog = ({ isOpen, onClose, defaultTab }: IWalletDialogProps) => {
         onClose={onModalClose}
         placement="center"
         scrollBehavior="inside"
-        classNames={{
-          backdrop: "z-[10000000]",
-          wrapper: "z-[10000000]",
-        }}
       >
         <ModalContent className="bg-[var(--background)] w-[500px] max-w-[500px] rounded-[8px] overflow-hidden scrollbar-hide">
           {/* Header */}

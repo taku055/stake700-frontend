@@ -258,8 +258,8 @@ const ProfileComponent = ({
       placement="center"
       scrollBehavior="inside"
       classNames={{
-        backdrop: "z-[10000000]",
-        wrapper: "z-[10000000]",
+        backdrop: "z-[100]",
+        wrapper: "z-[100]",
       }}
     >
       <ModalContent className={`max-w-[60vw]! w-full flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} bg-[var(--background)] max-h-[80vh]! min-h-[60vh]!`}>

@@ -40,10 +40,6 @@ const VipClub = ({ isOpen, onClose, defaultTab = "overview" }: IVipClubProps) =>
       onClose={onClose}
       placement="center"
       scrollBehavior="inside"
-      classNames={{
-        backdrop: "z-[10000000]",
-        wrapper: "z-[10000000]",
-      }}
     >
       <ModalContent className="bg-[var(--background)] w-[500px] max-w-[500px] rounded-[8px] max-h-[80vh] overflow-hidden" style={{ overflow: 'hidden' }}>
         {/* Header */}

@@ -19,10 +19,6 @@ export default function WelcomeDialog({
       isOpen={isOpen}
       onClose={onClose}
       placement="center"
-      classNames={{
-        backdrop: "z-[10000000]",
-        wrapper: "z-[10000000]",
-      }}
     >
       <ModalContent className="bg-[var(--background)] w-[500px] max-w-[500px] h-[468px] max-h-[837px] rounded-[8px] overflow-hidden border-0 shadow-none">
         {/* Top Promotional Section */}

@@ -111,10 +111,6 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
       onClose={onClose}
       placement="center"
       scrollBehavior="inside"
-      classNames={{
-        backdrop: "z-[10000000]",
-        wrapper: "z-[10000000]",
-      }}
     >
       <ModalContent
         className="bg-[var(--background)] w-[630px] h-[716px] max-w-[630px] max-h-full rounded-[8px] overflow-y-auto"
