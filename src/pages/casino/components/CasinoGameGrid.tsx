@@ -40,12 +40,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
     return selectedCategory ? categories.find(cat => cat.path === selectedCategory)?.name : "All Games";
   }, [selectedCategory, categories]);
 
-
-  if (categoryName === "Home") {
-    return null;
-  }
-
-  // Show loading state during initial load
+  // Show loading state during initial load (before checking for Home category)
   if (loading && games.length === 0) {
     return (
       <div className="flex-1 flex flex-col gap-4 min-w-0">
@@ -59,6 +54,10 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
         </div>
       </div>
     );
+  }
+
+  if (categoryName === "Home") {
+    return null;
   }
 
   return (
