@@ -45,14 +45,14 @@ export function useCasinoGames({
         const categoryParams = selectedCategory ? getCategoryParams(selectedCategory) : { custom: false, category: null, provider: null };
         
         // For custom categories, wait for customGamesState to be loaded
-        if (categoryParams.custom && categoryParams.category) {
-          // Wait for customGamesState to be populated (max 5 seconds)
-          let attempts = 0;
-          while (customGamesState.value.length === 0 && attempts < 50) {
-            await new Promise(resolve => setTimeout(resolve, 100));
-            attempts++;
-          }
-        }
+        // if (categoryParams.custom && categoryParams.category) {
+        //   // Wait for customGamesState to be populated (max 5 seconds)
+        //   let attempts = 0;
+        //   while (customGamesState.value.length === 0 && attempts < 50) {
+        //     await new Promise(resolve => setTimeout(resolve, 100));
+        //     attempts++;
+        //   }
+        // }
         
         // Determine provider filter
         let providerFilter: string | undefined = undefined;
