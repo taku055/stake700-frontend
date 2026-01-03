@@ -175,7 +175,7 @@ export default function SearchWidget() {
 
                 {showSearchResult && (
                   <div className="flex flex-col rounded-lg h-[450px] overflow-y-auto scrollbar-hide py-[10px] bg-[var(--background)] border-none px-[10px] border-1 border-[#333]">
-                    <div className="grid grid-cols-8">
+                    <div className="grid md:grid-cols-8 grid-cols-3">
                       {searchResult.map((game, index) => (
                         <div key={index}>
                           <GameCard data={game} />
@@ -276,7 +276,7 @@ export function SearchWidgetHeader() {
           {/* Backdrop with blur */}
           {searchWidgetStateHeader.value && (
             <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[215]"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[-1]"
               onClick={() => {
                 searchWidgetStateHeader.value = false;
                 setShowSearchResult(false);
@@ -288,10 +288,10 @@ export function SearchWidgetHeader() {
           {/* Search Widget */}
           <div
             ref={widgetRefHeader}
-            className="absolute right-0 top-0 left-0 items-center justify-center z-[220] pointer-events-none"
+            className="absolute right-0 top-[60px] left-0 items-center justify-center z-[5] pointer-events-none"
           >
             <div
-              className="w-[1200px] max-w-[1200px] mx-auto h-auto overflow-y-auto pointer-events-auto"
+              className="w-full max-w-[1200px] mx-auto h-auto overflow-y-auto pointer-events-auto"
               dir={"ltr"}
             >
               <div className="flex flex-col md:py-6 gap-[10px] shadow-lg overflow-y-auto rounded-[8px] h-full">
@@ -343,7 +343,7 @@ export function SearchWidgetHeader() {
 
                 {showSearchResult && (
                   <div className="flex flex-col rounded-lg h-[450px] overflow-y-auto scrollbar-hide py-[10px] bg-[var(--background)] border-none px-[10px] border-1 border-[#333]">
-                    <div className="grid grid-cols-8">
+                    <div className="grid md:grid-cols-8 grid-cols-3">
                       {searchResult.map((game, index) => (
                         <div key={index}>
                           <GameCard data={game} />
