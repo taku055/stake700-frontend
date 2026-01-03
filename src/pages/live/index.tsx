@@ -10,6 +10,7 @@ import { tProvider } from "@/types/tProvider";
 import { tPaginationResult } from "@/types/tPaginationResult";
 import TopLinkBar from "@/components/TopLinkBar";
 import { useLocation } from "preact-iso";
+import SearchWidget from "@/components/Header/SearchWidget";
 
 const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
 const GAME_LOAD_COUNT = 24;
@@ -143,15 +144,15 @@ export default function Live() {
       <PromotionSection showAppleImage={false} category="live-casino" />
 
       <div className="flex flex-col gap-6 w-full max-w-[1200px] mx-auto">
-
+        <SearchWidget />
         {/* <TopLinkBar /> */}
 
         {/* Search game input panel */}
-        <GameSearchPanel
+        {/* <GameSearchPanel
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           onSearchClick={handleSearchClick}
-        />
+        /> */}
 
         {/* Provider selection */}
         <ProviderSelection

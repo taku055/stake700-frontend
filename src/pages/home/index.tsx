@@ -43,9 +43,9 @@ export default function PageComponent() {
 
   return (
     <div className="flex flex-col z-0 items-center justify-center w-full font-weight-300 gap-6">
-      <div className="relative w-full max-w-[1260px]  mx-auto">
+      {/* <div className="relative w-full max-w-[1260px]  mx-auto">
         <SearchWidgetHeader />
-      </div>
+      </div> */}
       <div className="flex flex-col">
         {isMobile && userState.value?.id && (
           <VipCard />

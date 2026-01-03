@@ -4,25 +4,32 @@ import EmblaCarousel, { EmblaCarouselType } from 'embla-carousel';
 import './embla.css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Autoplay from 'embla-carousel-autoplay';
+import { BASE_URL } from '@/config/constants';
 
 
 const slides = [
-  {
-    id: '1',
-    image: '/buffer/banner1.png',
-    title: '100% Welcome Bonus',
-  },
-  {
-    id: '2',
-    image: '/buffer/banner2.png',
-  },
+  // {
+  //   id: '1',
+  //   image: '/buffer/banner1.png',
+  //   title: '100% Welcome Bonus',
+  // },
   {
     id: '3',
-    image: '/buffer/banner3.png',
+    image: '/buffer/banner2.png',
   },
+  // {
+  //   id: '3',
+  //   image: '/buffer/banner3.png',
+  // },
+  
   {
-    id: '4',
-    image: '/buffer/banner4.png',
+    id: '1',
+    image: `${BASE_URL}/images/banner/Banner 1.png`,
+    title: '100% Welcome Bonus',
+  }, 
+  {
+    id: '2',
+    image: `${BASE_URL}/images/banner/Banner 2.png`,
   }, 
 ];
 

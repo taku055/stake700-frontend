@@ -39,6 +39,27 @@ function AffiliateSidebar() {
       );
   }, [navItems, location.path]);
 
+  if (
+    !userState.value?.id ||
+    userState.value?.isAgent
+    // !userState.value?.isCallGroup
+  ) {
+    return (
+      <div className="w-[180px] min-w-[180px] h-full bg-[var(--background-secondary)] flex flex-col rounded-lg">
+      {/* Navigation Items */}
+      <div className="flex flex-col py-2">
+            <a
+              key={"overview"}
+              className={`flex items-center px-6 py-3 cursor-pointer transition-colors bg-[var(--background)] text-white font-medium border-l-2 border-[var(--green-color)]`}
+              onClick={() => route("/affiliate", true)}
+            >
+              {t("Overview")}
+            </a>
+      </div>
+    </div>
+    );
+  }
+
   return (
     <div className="w-[180px] min-w-[180px] h-full bg-[var(--background-secondary)] flex flex-col rounded-lg">
       {/* Navigation Items */}
@@ -65,13 +86,7 @@ function AffiliateSidebar() {
 
 export default function AffiliatesLayout() {
   const isMobile = useMediaQuery(mobileMediaQuery);
-   if (
-    !userState.value?.id ||
-    userState.value?.isAgent
-    // !userState.value?.isCallGroup
-  ) {
-    return <NotFound404 />;
-  }
+ 
 
   return (
     <>

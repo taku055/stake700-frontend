@@ -32,6 +32,7 @@ export const data = [
   {
     title: "My Bets",
     icon: `/images/icons/icons/my-bet.png`,
+    href: "/my-bets/casino",
   },
   {
     title: "Settings",

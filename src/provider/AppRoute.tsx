@@ -19,6 +19,7 @@ import OtherRules from "@/pages/other-rules";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import FAQ from "@/pages/faq";
 import ProvablyFairLayout from "@/pages/ProvablyFair";
+import MyBetsLayout from "@/pages/betHistory";
 
 export default function AppRoute() {
   return (
@@ -58,6 +59,9 @@ export default function AppRoute() {
 
       <Route path="/affiliate" component={AffiliatesLayout} />
       <Route path="/affiliate/*" component={AffiliatesLayout} />
+
+      <Route path="/my-bets" component={MyBetsLayout} />
+      <Route path="/my-bets/*" component={MyBetsLayout} />
 
       <Route path="*" component={NotFound404} />
     </Router>

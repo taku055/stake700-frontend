@@ -23,6 +23,7 @@ import { ProviderSelection } from "@/pages/live/components/ProviderSelection";
 import { apiGetProviders } from "@/api/common/apiGetProviders";
 import { tProvider } from "@/types/tProvider";
 import { GameSearchPanel } from "@/pages/live/components/GameSearchPanel";
+import SearchWidget from "@/components/Header/SearchWidget";
 
 interface CasinoLayoutProps {
   searchQuery: string;
@@ -241,8 +242,8 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
           selectedCategory={selectedCategory}
           onCategoryChange={onCategoryChange}
         /> */}
-        <div className="max-w-[1200px] w-full h-full gap-4 flex flex-col mx-auto">
-
+        <div className="max-w-[1200px] w-full h-full flex flex-col mx-auto">
+        <SearchWidget />
           {/* Check if this is home category */}
           {selectedCategory === "/casino/home?custom=1&category=home" ? (
             <>
@@ -255,6 +256,7 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
                     // Search is handled automatically by useCasinoGames hook when searchQuery changes
                   }}
                 /> */}
+
                 <div className="flex w-fit gap-2 mb-4 overflow-x-auto rounded-full p-2 bg-[var(--bar-background-color)]">
 
                   <button
@@ -310,13 +312,13 @@ export const CasinoLayout: FunctionalComponent<CasinoLayoutProps> = ({
           ) : (
             /* Regular category view - not home or trending category */
             <div className={`w-full flex flex-col gap-6 mt-[20px]`}>
-              <GameSearchPanel
+              {/* <GameSearchPanel
                 searchQuery={searchQuery}
                 onSearchChange={onSearchChange}
                 onSearchClick={() => {
                   // Search is handled automatically by useCasinoGames hook when searchQuery changes
                 }}
-              />
+              /> */}
               <ProviderSelection
                 providers={providers}
                 selectedProviders={selectedProviders}

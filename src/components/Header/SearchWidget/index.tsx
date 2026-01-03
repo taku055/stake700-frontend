@@ -23,6 +23,7 @@ import TrendingSports from "@/components/TrendingSports";
 import { useLocation } from "preact-iso";
 import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 
+
 export default function SearchWidget() {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState<tGame[]>([]);
@@ -119,13 +120,13 @@ export default function SearchWidget() {
           {/* Search Widget */}
           <div
             ref={widgetRef}
-            className="flex items-start justify-center z-[110] pointer-events-none"
+            className=" flex items-start justify-center z-[110] pointer-events-none"
           >
             <div
               className="w-[1260px] max-w-[1260px] h-auto overflow-y-auto pointer-events-auto"
               dir={"ltr"}
             >
-              <div className="flex flex-col md:py-6 gap-[10px] shadow-lg overflow-y-auto rounded-[8px] h-full">
+              <div className="flex flex-col md:py-4 gap-[10px] shadow-lg overflow-y-auto rounded-[8px] h-full">
 
 
                 <div className="flex w-full h-[52px] px-3 md:px-0 ">
@@ -275,19 +276,19 @@ export function SearchWidgetHeader() {
           {/* Backdrop with blur */}
           {searchWidgetStateHeader.value && (
             <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[115]"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[215]"
               onClick={() => {
-                // searchWidgetStateHeader.value = false;
+                searchWidgetStateHeader.value = false;
                 setShowSearchResult(false);
                 setKeyword("");
-                searchWidgetStateHeader.value = false;
+                // searchWidgetStateHeader.value = false;
               }}
             />
           )}
           {/* Search Widget */}
           <div
             ref={widgetRefHeader}
-            className="absolute right-0 items-center justify-center top-0 left-0  z-[120] pointer-events-none"
+            className="absolute right-0 top-0 left-0 items-center justify-center z-[220] pointer-events-none"
           >
             <div
               className="w-[1200px] max-w-[1200px] mx-auto h-auto overflow-y-auto pointer-events-auto"
