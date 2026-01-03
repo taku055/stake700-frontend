@@ -8,6 +8,7 @@ import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import { useMemo } from "preact/hooks";
+import Loader from "@/components/Loader";
 
 interface CasinoGameGridProps {
   games: tGame[];
@@ -43,6 +44,23 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
   if (categoryName === "Home") {
     return null;
   }
+
+  // Show loading state during initial load
+  if (loading && games.length === 0) {
+    return (
+      <div className="flex-1 flex flex-col gap-4 min-w-0">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="flex flex-col items-center gap-4">
+            <Loader />
+            <div className="text-[var(--text-color)] text-lg">
+              {t("loading") || "Loading games..."}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex-1 flex flex-col gap-4 min-w-0">
       {/* <div 
@@ -58,7 +76,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
           <GameCard key={game.id} data={game} />
         ))}
       </div>
-      {total === 0 && (
+      {total === 0 && !loading && (
         <div className="text-center text-[20px] text-[var(--text-color)]">
           {/* {t("no_games_found") || "No games found"} */}
           No games found for this category
