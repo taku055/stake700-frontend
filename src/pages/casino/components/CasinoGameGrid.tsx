@@ -76,12 +76,12 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
           <GameCard key={game.id} data={game} />
         ))}
       </div>
-      {total === 0 && !loading && (
+      {/* {total === 0 && !loading && (
         <div className="text-center text-[20px] text-[var(--text-color)]">
-          {/* {t("no_games_found") || "No games found"} */}
+          {t("no_games_found") || "No games found"}
           No games found for this category
         </div>
-      )}
+      )} */}
 
       {games.length < total && (
         <div className="flex justify-center">
