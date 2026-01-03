@@ -41,7 +41,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
   }, [selectedCategory, categories]);
 
   // Show loading state during initial load (before checking for Home category)
-  if (loading && games.length === 0) {
+  if (loading) {
     return (
       <div className="flex-1 flex flex-col gap-4 min-w-0">
         <div className="flex items-center justify-center min-h-[400px]">
