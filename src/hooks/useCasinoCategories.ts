@@ -188,20 +188,20 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
   }
 
   // Check cache after ensuring customGamesState is loaded (for custom categories)
-  if (categoryCountsCache.value[path] !== undefined) {
-    // For custom categories, verify cache is still valid
-    if (custom === "1" && category) {
-      const currentCount = customGamesState.value.filter((c) => c.category === category).length;
-      // If count changed, invalidate cache
-      if (currentCount !== categoryCountsCache.value[path]) {
-        // Cache is stale, will recalculate below
-      } else {
-        return categoryCountsCache.value[path];
-      }
-    } else {
-      return categoryCountsCache.value[path];
-    }
-  }
+  // if (categoryCountsCache.value[path] !== undefined) {
+  //   // For custom categories, verify cache is still valid
+  //   if (custom === "1" && category) {
+  //     const currentCount = customGamesState.value.filter((c) => c.category === category).length;
+  //     // If count changed, invalidate cache
+  //     if (currentCount !== categoryCountsCache.value[path]) {
+  //       // Cache is stale, will recalculate below
+  //     } else {
+  //       return categoryCountsCache.value[path];
+  //     }
+  //   } else {
+  //     return categoryCountsCache.value[path];
+  //   }
+  // }
 
   try {
     let count = 0;

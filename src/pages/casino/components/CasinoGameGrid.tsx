@@ -48,7 +48,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
           <div className="flex flex-col items-center gap-4">
             <Loader />
             <div className="text-[var(--text-color)] text-lg">
-              {t("loading") || "Loading games..."}
+              {"Loading games..."}
             </div>
           </div>
         </div>
