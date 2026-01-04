@@ -18,6 +18,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { selectedTabState } from "@/state/selectedTab";
 import { useCategoryCounts } from "@/hooks/useCatigoryCounts";
 
+
 interface MobileDrawerProps {
   mainNavItems: Array<{
     title: string;
@@ -68,16 +69,16 @@ export default function MobileDrawer({
   const selectedTab = selectedTabState.value;
   const location = useLocation();
   const [isExpanded, setIsExpanded] = useState<Record<string, boolean>>({});
-  const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
-    name: string;
-    path: string;
-    icon: string;
-    count?: number;
-  }>>([]);
+  // const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
+  //   name: string;
+  //   path: string;
+  //   icon: string;
+  //   count?: number;
+  // }>>([]);
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
-  const { categories: casinoCategories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
-  const { categories: liveCasinoCategories } = useLiveCasinoCategories();
+  // const { categories: casinoCategories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
+  // const { categories: liveCasinoCategories } = useLiveCasinoCategories();
   const isMobile = useMediaQuery(mobileMediaQuery);
   const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } = useCategoryCounts();
 
@@ -104,26 +105,26 @@ export default function MobileDrawer({
   }, [mainNavItems]);
 
   // Show categories immediately (without waiting for counts)
-  useEffect(() => {
-    setCategoriesWithCounts(currentCategories.map((cat) => ({
-      ...cat,
-      count: getCachedCategoryCount(cat.path),
-    })));
-  }, [currentCategories, getCachedCategoryCount]);
+  // useEffect(() => {
+  //   setCategoriesWithCounts(currentCategories.map((cat) => ({
+  //     ...cat,
+  //     count: getCachedCategoryCount(cat.path),
+  //   })));
+  // }, [currentCategories, getCachedCategoryCount]);
 
   // Load counts asynchronously and update as they become available
-  useEffect(() => {
-    // Load counts for each category in parallel and update state as each completes
-    currentCategories.forEach((cat) => {
-      getCategoryGameCount(cat.path).then((count) => {
-        setCategoriesWithCounts((prev) => {
-          return prev.map((c) => (c.path === cat.path ? { ...c, count } : c));
-        });
-      }).catch((error) => {
-        console.error(`Error loading count for ${cat.path}:`, error);
-      });
-    });
-  }, [currentCategories, getCategoryGameCount]);
+  // useEffect(() => {
+  //   // Load counts for each category in parallel and update state as each completes
+  //   currentCategories.forEach((cat) => {
+  //     getCategoryGameCount(cat.path).then((count) => {
+  //       setCategoriesWithCounts((prev) => {
+  //         return prev.map((c) => (c.path === cat.path ? { ...c, count } : c));
+  //       });
+  //     }).catch((error) => {
+  //       console.error(`Error loading count for ${cat.path}:`, error);
+  //     });
+  //   });
+  // }, [currentCategories, getCategoryGameCount]);
 
 
 
@@ -168,7 +169,7 @@ export default function MobileDrawer({
 
           {/* Categories Section - Always shown */}
           <CategoryItems
-            categories={categoriesWithCounts}
+            categories={currentCategories}
             title={selectedMainNavTitle || t("Categories")}
             onCategoryClick={() => {
               navigationSidebarExpandedState.value = false;
