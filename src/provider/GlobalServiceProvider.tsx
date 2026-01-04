@@ -148,6 +148,7 @@ export default function GlobalServiceProvider({
           limit: 10000,
         });
         customGamesState.value = games.data;
+        console.log("customGamesState", games.data);
 
         const requestParams: any = {
           offset: 0,
