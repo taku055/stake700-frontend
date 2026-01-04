@@ -15,29 +15,12 @@ export const useCategoryCounts = () => {
   const { categories: liveCasinoCategories, getCachedCategoryCount: getLiveCasinoCachedCategoryCount, getCategoryGameCount: getLiveCasinoCategoryGameCount } = useLiveCasinoCategories();
 
   // Set initial counts from cache for casino categories
-  // useEffect(() => {
-  //   setCasinoCategoriesWithCounts(casinoCategories.map((cat) => ({
-  //     ...cat,
-  //     count: getCachedCategoryCount(cat.path),
-  //   })));
-  // }, [casinoCategories, getCachedCategoryCount]);
-
   useEffect(() => {
-    async function getCounts() {
-      const categoriesWithCounts = await Promise.all(casinoCategories.map(async (cat) => {
-        const count = getCachedCategoryCount(cat.path);
-        return {
-          ...cat,
-          count: count || 0,
-        };
-      }));
-      console.log("categoriesWithCounts", categoriesWithCounts);
-      setCasinoCategoriesWithCounts(categoriesWithCounts);
-    }
-    getCounts();
+    setCasinoCategoriesWithCounts(casinoCategories.map((cat) => ({
+      ...cat,
+      count: getCachedCategoryCount(cat.path),
+    })));
   }, [casinoCategories, getCachedCategoryCount]);
-
-  
 
   // Set initial counts from cache for live casino categories
   useEffect(() => {
