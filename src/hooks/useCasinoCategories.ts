@@ -208,7 +208,7 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
 
     if (custom === "1" && category) {
       // Custom category - count from customGamesState
-      count = customGamesState.value.filter((c) => c.category === category).length;
+      // count = customGamesState.value.filter((c) => c.category === category).length;
     } else if (category) {
       // Regular category - fetch count from API
       const result = await apiGetGames({
