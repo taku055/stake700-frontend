@@ -138,7 +138,7 @@ export default function NavigationSidebar() {
   }, [mainNavItems, location.path]);
 
   // Always show static categories - don't change based on selected nav
-  const { categories } = useCasinoCategories();
+  // const { categories } = useCasinoCategories();
 
   // console.log("categories", categories);
 
@@ -151,7 +151,8 @@ export default function NavigationSidebar() {
       mainNavItems={mainNavItems}
       ExtraNavItems={ExtraNavItems}
       selectedMainNavKey={selectedMainNav?.key}
-      categories={categories}
+      // categories={categories}
+      categories={[]}
       selectedMainNavTitle={selectedMainNav?.title || "Categories"}
     />
   }
@@ -165,7 +166,8 @@ export default function NavigationSidebar() {
             mainNavItems={mainNavItems}
             ExtraNavItems={ExtraNavItems}
             selectedMainNavKey={selectedMainNav?.key}
-            categories={categories}
+            // categories={categories}
+            categories={[]}
             selectedMainNavTitle={selectedMainNav?.title || "Categories"}
           />
         ) : ( !isMobile &&
@@ -173,7 +175,8 @@ export default function NavigationSidebar() {
             mainNavItems={mainNavItems}
             ExtraNavItems={ExtraNavItems}
             selectedMainNavKey={selectedMainNav?.key}
-            categories={categories}
+            // categories={categories}
+            categories={[]}
           />
         )}
       </div>

@@ -11,6 +11,7 @@ import { tPaginationResult } from "@/types/tPaginationResult";
 import TopLinkBar from "@/components/TopLinkBar";
 import { useLocation } from "preact-iso";
 import SearchWidget from "@/components/Header/SearchWidget";
+import { EmblaBanner } from "../home/components/EmblaBanner";
 
 const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
 const GAME_LOAD_COUNT = 24;
@@ -141,7 +142,8 @@ export default function Live() {
   return (
     <div className="w-full flex flex-col gap-6">
       {/* Banner on top */}
-      <PromotionSection showAppleImage={false} category="live-casino" />
+      {/* <PromotionSection showAppleImage={false} category="live-casino" /> */}
+      <EmblaBanner />
 
       <div className="flex flex-col gap-6 w-full max-w-[1200px] mx-auto">
         <SearchWidget />
