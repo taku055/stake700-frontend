@@ -96,8 +96,8 @@ export default function MobileDrawer({
 
   // Get categories based on selected tab
   const currentCategories = useMemo(() => {
-    return selectedTabState.value === "casino" ? [...liveCasinoCategoriesWithCounts, ...casinoCategoriesWithCounts] : [];
-  }, [selectedTabState.value, casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts]);
+    return selectedTabState.value === "casino" ? casinoCategoriesWithCounts : [];
+  }, [selectedTabState.value, casinoCategoriesWithCounts]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = useMemo(() => {

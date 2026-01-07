@@ -18,7 +18,7 @@ export const GameGridView: FunctionalComponent<GameGridViewProps> = ({
   loading,
   onLoadMore,
 }) => {
-  const t = useTranslations("CasinoDetailPage");
+  const t = useTranslations("HomePage");
 
   if (loading) {
     return (
@@ -42,6 +42,11 @@ export const GameGridView: FunctionalComponent<GameGridViewProps> = ({
           <GameCard key={game.id} data={game} />
         ))}
       </div>
+      {games.length === 0 && (
+        <div className="text-center text-[20px] text-[var(--text-color)] pb-10">
+          {t("no_games_found") || "No games found"}
+        </div>
+      )}
 
       {games.length < total && (
         <div className="flex justify-center">

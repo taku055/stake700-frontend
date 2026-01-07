@@ -84,8 +84,8 @@ export default function CollapsedSidebar({
   // Get categories based on selected tab
   const categoriesWithIcons = useMemo(() => {
     // return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
-    return selectedTabState.value === "casino" ? [...liveCasinoCategoriesWithCounts, ...casinoCategoriesWithCounts] : [];
-  }, [selectedTabState.value, casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts]);
+    return selectedTabState.value === "casino" ? casinoCategoriesWithCounts : [];
+  }, [selectedTabState.value, casinoCategoriesWithCounts]);
 
   // useEffect(() => {
   //   if (location.path.includes("/casino")) {
