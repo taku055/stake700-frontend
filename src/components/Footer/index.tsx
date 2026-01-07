@@ -9,12 +9,15 @@ import { Link } from "../common";
 import { localeState } from "@/state/localeState";
 import { BASE_URL, mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import { useMediaQuery } from "usehooks-ts";
+import { useBtcUsdPrice } from "@/hooks/useBtcUsdPrice";
+import { numberRound } from "@/helpers/numberRound";
 
 export const Footer = () => {
   const t = useTranslations("Footer");
   // const [time, setTime] = useState(new Date());
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const isMobile = useMediaQuery(mobileMediaQuery);
+  const { price } = useBtcUsdPrice();
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
@@ -105,11 +108,11 @@ export const Footer = () => {
 
         <div className="w-full h-[2px] bg-[var(--background)]" />
 
-        <div className={`flex flex-col gap-[16px] w-full h-[120px] ${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>
+        <div className={`flex flex-col gap-[16px] w-full h-full ${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>
           <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
             © 2025 Betalarab.com | All Rights Reserved
           </h2>
-          <p className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
+          <p className=" text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
             Betalarab is owned and operated by Betalarab N.V., registration number: 145353, registered address: Seru Loraweg 17 B, Curaçao.
             Payment agent companies are Medium Rare Limited and MRS Tech Limited. Contact us at support@betalarab.com.
           </p>
@@ -119,7 +122,7 @@ export const Footer = () => {
         </div>
 
         <div className={`flex w-full justify-center items-center ${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>
-          <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">1 BTC = $93,023.26</h2>
+          <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">1 BTC = ${price ? numberRound(price, 100).toLocaleString() : "93,023.26"}</h2>
         </div>
 
         <div className={`flex justify-center items-center w-full h-[44px] ${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>

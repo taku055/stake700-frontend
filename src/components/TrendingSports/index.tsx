@@ -2,7 +2,7 @@ import { Autoplay, Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useState } from "preact/hooks";
 import { useMediaQuery } from "usehooks-ts";
-import { BASE_URL, mobilePortraitMediaQuery } from "@/config/constants";
+import { BASE_URL, mobilePortraitMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
 import styles from "./TrendingSports.module.scss";
 import TrendingCard from "@/components/TrendingCard";
@@ -10,6 +10,8 @@ import { sportsState } from "@/state/sportsState";
 import { tSport } from "@/types/tSport";
 import { Button } from "@heroui/react";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { localeState } from "@/state/localeState";
+import { effect } from "@preact/signals";
 
 export default function TrendingSports({ title }: { title: string }) {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
@@ -19,10 +21,39 @@ export default function TrendingSports({ title }: { title: string }) {
   const [activeAction, setActiveAction] = useState<"left" | "right" | null>("right");
   const [isBeginning, setIsBeginning] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
+  const [isRTL, setIsRTL] = useState(RTL_LANGUAGES.includes(localeState.value));
+  
+  useEffect(() => {
+    const updateRTL = () => {
+      setIsRTL(RTL_LANGUAGES.includes(localeState.value));
+    };
+    
+    updateRTL();
+    
+    // Watch for locale changes
+    const dispose = effect(() => {
+      const _ = localeState.value;
+      updateRTL();
+    });
+    
+    return () => {
+      dispose();
+    };
+  }, []);
 
   useEffect(() => {
     setSports(sportsState.value);
-  }, [sportsState.value]);
+    
+    // Watch for sports state changes
+    const dispose = effect(() => {
+      const _ = sportsState.value;
+      setSports(sportsState.value);
+    });
+    
+    return () => {
+      dispose();
+    };
+  }, []);
 
   const goToStart = () => {
     if (swiper) {
@@ -61,9 +92,11 @@ export default function TrendingSports({ title }: { title: string }) {
         </div>
       </div>
       <Swiper
+        key={`trending-sports-${isRTL ? "rtl" : "ltr"}-${localeState.value}`}
         onSwiper={setSwiper}
         modules={[Mousewheel, Navigation]}
         className={styles.games}
+        dir={isRTL ? "rtl" : "ltr"}
         loop={false}
         loopAddBlankSlides={false}
         // spaceBetween={isMobilePortrait ? 6 : 8}

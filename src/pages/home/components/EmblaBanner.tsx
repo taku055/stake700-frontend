@@ -1,10 +1,11 @@
 /** @jsxImportSource preact */
-import { useCallback, useEffect, useRef } from 'preact/hooks';
+import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import EmblaCarousel, { EmblaCarouselType } from 'embla-carousel';
 import './embla.css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Autoplay from 'embla-carousel-autoplay';
-import { BASE_URL } from '@/config/constants';
+import { BASE_URL, RTL_LANGUAGES } from '@/config/constants';
+import { localeState } from '@/state/localeState';
 
 
 const slides = [
@@ -15,7 +16,7 @@ const slides = [
   // },
   {
     id: '3',
-    image: '/buffer/banner2.png',
+    image: `${BASE_URL}/images/banner/banner2.png`,
   },
   // {
   //   id: '3',
@@ -36,6 +37,12 @@ const slides = [
 export const EmblaBanner = () => {
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const emblaApi = useRef<EmblaCarouselType | null>(null);
+  const [isRTL, setIsRTL] = useState(RTL_LANGUAGES.includes(localeState.value));
+  
+  useEffect(() => {
+    setIsRTL(RTL_LANGUAGES.includes(localeState.value));
+  }, [localeState.value]);
+
 
   useEffect(() => {
     if (!viewportRef.current) return;
@@ -45,6 +52,7 @@ export const EmblaBanner = () => {
       {
         loop: true,
         align: 'center',
+        direction: isRTL ? 'rtl' : 'ltr',
       },
       [Autoplay({ delay: 5000, stopOnInteraction: false })]
     );
@@ -53,7 +61,7 @@ export const EmblaBanner = () => {
     return () => {
       api.destroy();
     };
-  }, []);
+  }, [isRTL]);
 
   const scrollPrev = useCallback(() => {
     emblaApi.current?.scrollPrev();

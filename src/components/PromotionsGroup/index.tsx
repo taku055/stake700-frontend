@@ -1,14 +1,16 @@
 import { Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./PromotionsGroup.module.scss";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { useMediaQuery } from "usehooks-ts";
-import { BASE_URL, mobilePortraitMediaQuery } from "@/config/constants";
+import { BASE_URL, mobilePortraitMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import { Button } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { promotionsData } from "./data";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
 import PromotionCard from "../PromotionCard";
+import { localeState } from "@/state/localeState";
+import { effect } from "@preact/signals";
 
 export default function PromotionsGroup() {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
@@ -18,6 +20,26 @@ export default function PromotionsGroup() {
   const [activeAction, setActiveAction] = useState<"left" | "right" | null>("right");
   const [isBeginning, setIsBeginning] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
+  const [isRTL, setIsRTL] = useState(RTL_LANGUAGES.includes(localeState.value));
+  
+  useEffect(() => {
+    const updateRTL = () => {
+      setIsRTL(RTL_LANGUAGES.includes(localeState.value));
+    };
+    
+    updateRTL();
+    
+    // Watch for locale changes
+    const dispose = effect(() => {
+      const _ = localeState.value;
+      updateRTL();
+    });
+    
+    return () => {
+      dispose();
+    };
+  }, []);
+
 
   const goToNextSlide = () => {
     swiper?.slideNext();
@@ -61,9 +83,11 @@ export default function PromotionsGroup() {
         </div>
       </div>
       <Swiper
+        key={`promotions-group-${isRTL ? "rtl" : "ltr"}-${localeState.value}`}
         onSwiper={setSwiper}
         modules={[Mousewheel, Navigation]}
         className={styles.games}
+        dir={isRTL ? "rtl" : "ltr"}
         loop={false}
         loopAddBlankSlides={false}
         // spaceBetween={isMobilePortrait ? 6 : 8}
