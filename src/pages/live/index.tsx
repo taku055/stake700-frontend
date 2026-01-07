@@ -102,7 +102,7 @@ export default function Live() {
           ).map((c) => c.Game as tGame);
           setGames(filteredGames);
           setTotal(filteredGames.length);
-          return;
+          if (filteredGames.length > 0) return;
         }
 
         const requestParams: any = {
