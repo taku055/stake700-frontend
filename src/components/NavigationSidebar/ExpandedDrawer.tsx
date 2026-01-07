@@ -98,9 +98,13 @@ export default function ExpandedDrawer({
   }, [mainNavItems]);
 
 
+  // const currentCategories = useMemo(() => {
+  //   return selectedTabState.value === "casino" ? [...liveCasinoCategoriesWithCounts, ...casinoCategoriesWithCounts] : [];
+  // }, [selectedTabState.value, casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts]);
+
   const currentCategories = useMemo(() => {
-    return selectedTabState.value === "casino" ? [...liveCasinoCategoriesWithCounts, ...casinoCategoriesWithCounts] : [];
-  }, [selectedTabState.value, casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts]);
+    return selectedTabState.value === "casino" ? casinoCategoriesWithCounts : [];
+  }, [selectedTabState.value, casinoCategoriesWithCounts]);
 
   return (
     <div className="relative inset-0 z-100 h-full overflow-y-auto scrollbar-hide w-[260px] overflow-x-hidden px-[16px]">

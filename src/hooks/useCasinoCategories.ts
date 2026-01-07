@@ -15,6 +15,30 @@ export interface CategoryItem {
 // Static categories list - always shown
 const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = [
   {
+    name: "Live Casino",
+    path: "/casino/live-casino",
+  },
+  {
+    name: "Roulette",
+    path: "/casino/live-casino?custom=1&category=rouletteglobal",
+  },
+  {
+    name: "Blackjack",
+    path: "/casino/live-casino?custom=1&category=blackjacks",
+  },
+  {
+    name: "Baccarat",
+    path: "/casino/live-casino?custom=1&category=baccaratglobal",
+  },
+  {
+    name: "Video Poker",
+    path: "/casino/live-casino?custom=1&category=videopoker",
+  },
+  {
+    name: "Table Games",
+    path: "/casino/live-casino?custom=1&category=tablegames",
+  },
+  {
     name: "All Slots",
     path: "/casino/slots",
   },
@@ -126,15 +150,7 @@ const getCategoryIcon = (categoryName: string, path: string): string => {
   if (name.includes("table games") || pathLower.includes("table") || pathLower.includes("tablegames")) {
     return "/images/sidebar/table-games.svg";
   }
-  if (name.includes("roulette") || pathLower.includes("roulette")) {
-    return "/images/sidebar/roulette.svg";
-  }
-  if (name.includes("blackjack") || pathLower.includes("blackjack") || pathLower.includes("blackjacks")) {
-    return "/images/sidebar/blackjack.svg";
-  }
-  if (name.includes("baccarat") || pathLower.includes("baccarat")) {
-    return "/images/sidebar/baccarat.svg";
-  }
+
   if (name.includes("video poker") || pathLower.includes("video-poker") || pathLower.includes("videopoker")) {
     return "/images/sidebar/video-poker.svg";
   }
@@ -159,6 +175,25 @@ const getCategoryIcon = (categoryName: string, path: string): string => {
   if (name.includes("favourites") || name.includes("favorites") || pathLower.includes("favourite")) {
     return "/images/sidebar/favourites.svg";
   }
+  if (name.includes("all games") || pathLower.includes("all-games")) {
+    return "/images/category_logo/all-games.png";
+  }
+  if (name.includes("roulette") || pathLower.includes("roulette")) {
+    return "/images/category_logo/roulette.png";
+  }
+  if (name.includes("blackjack") || pathLower.includes("blackjack") || pathLower.includes("blackjacks")) {
+    return "/images/category_logo/blackjack.png";
+  }
+  if (name.includes("baccarat") || pathLower.includes("baccarat")) {
+    return "/images/category_logo/baccarat.svg";
+  }
+  if (name.includes("video poker") || pathLower.includes("video-poker") || pathLower.includes("videopoker")) {
+    return "/images/category_logo/video-poker.svg";
+  }
+  if (name.includes("table games") || pathLower.includes("table") || pathLower.includes("tablegames")) {
+    return "/images/category_logo/table-games.svg";
+  }
+  
   
   // Default icon
   return "/images/sidebar/all-games.svg";
@@ -225,7 +260,16 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
         provider: provider || undefined,
       });
       count = result.total || 0;
-    } else if (path.includes("/casino/games")) {
+    }else if (path.includes("/casino/live-casino")) {
+      // All Games - fetch total count from API with category="livecasino"
+      const result = await apiGetGames({
+        category: "livecasino",
+        limit: 1,
+        provider: provider || undefined,
+      });
+      count = result.total || 0;
+    }
+     else if (path.includes("/casino/games")) {
       // All games in /casino/games - fetch total count from API
       const result = await apiGetGames({
         category: category || undefined,
