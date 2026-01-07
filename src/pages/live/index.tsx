@@ -12,6 +12,7 @@ import TopLinkBar from "@/components/TopLinkBar";
 import { useLocation } from "preact-iso";
 import SearchWidget from "@/components/Header/SearchWidget";
 import { EmblaBanner } from "../home/components/EmblaBanner";
+import { customGamesState } from "@/state/customGamesState";
 
 const ALL_PROVIDERS_ID = "__ALL_PROVIDERS__";
 const GAME_LOAD_COUNT = 24;
@@ -94,6 +95,16 @@ export default function Live() {
     async (offset1: number) => {
       setLoading(true);
       try {
+
+        if (customGamesState.value.length > 0 && location.query.category) {
+          const filteredGames: tGame[] = customGamesState.value.filter(
+            (c) => c.category === location.query.category
+          ).map((c) => c.Game as tGame);
+          setGames(filteredGames);
+          setTotal(filteredGames.length);
+          return;
+        }
+
         const requestParams: any = {
           offset: offset1,
           limit: GAME_LOAD_COUNT,
