@@ -202,7 +202,7 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
   if (custom === "1" && category) {
     // Wait for customGamesState to be populated (max 5 seconds)
     let attempts = 0;
-    while (customGamesState.value.length === 0 && attempts < 50) {
+    while (customGamesState.value.length === 0 && attempts < 100) {
       await new Promise(resolve => setTimeout(resolve, 100));
       attempts++;
     }
