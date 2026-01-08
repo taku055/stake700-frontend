@@ -137,7 +137,7 @@ export default function MobileDrawer({
             className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${selectedTabState.value === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
             onClick={() => {
               selectedTabState.value = "casino";
-              handleNavigate("/casino/slots?custom=1&category=home");
+              handleNavigate("/casino/home?custom=1&category=home");
               navigationSidebarExpandedState.value = false;
             }}
           >
