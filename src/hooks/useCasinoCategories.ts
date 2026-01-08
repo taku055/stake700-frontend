@@ -47,10 +47,6 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     path: "/casino/slots?custom=0&category=jackpots",
   },
   {
-    name: "Video Poker",
-    path: "/casino/slots?custom=0&category=videopoker",
-  },
-  {
     name: "Video Bingo",
     path: "/casino/slots?custom=0&category=bingogame",
   },
@@ -87,11 +83,6 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     name: "Drop Wins",
     path: "/casino/slots?custom=1&category=drop-wins",
   },
-  {
-    name: "Table Games",
-    path: "/casino/slots?custom=0&category=tablegames",
-  },
-  
   {
     name: "Scratch Games",
     path: "/casino/slots?custom=0&category=scratchcards",
