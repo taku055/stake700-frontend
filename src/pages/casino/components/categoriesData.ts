@@ -10,7 +10,7 @@ export const TRENDING_CATEGORIES: Record<string, { key: string; name: string; ca
     key: "live-casino",
     name: "Live Casino",
     category: "home-live-casino",
-    selectedCategory: "/casino/live-casino",
+    selectedCategory: "/casino/live-casino?custom=1&category=home-live-casino",
     icon: "/images/category_logo/all-games.png"
   },
   "megaways": { 
