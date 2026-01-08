@@ -9,7 +9,7 @@ export const TRENDING_CATEGORIES: Record<string, { key: string; name: string; ca
   "live-casino": {
     key: "live-casino",
     name: "Live Casino",
-    category: "live-casino",
+    category: "home-live-casino",
     selectedCategory: "/casino/live-casino",
     icon: "/images/category_logo/all-games.png"
   },
