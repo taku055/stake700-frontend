@@ -34,6 +34,18 @@ const slides = [
   }, 
 ];
 
+const MobileSlides = [
+  {
+    id: '1',
+    image: `${BASE_URL}/images/banner/Banner 1.png`,
+    title: '100% Welcome Bonus',
+  }, 
+  {
+    id: '2',
+    image: `${BASE_URL}/images/banner/Banner 2.png`,
+  }, 
+];
+
 export const EmblaBanner = () => {
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const emblaApi = useRef<EmblaCarouselType | null>(null);
