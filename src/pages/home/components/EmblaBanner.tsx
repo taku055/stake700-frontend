@@ -6,6 +6,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Autoplay from 'embla-carousel-autoplay';
 import { BASE_URL, RTL_LANGUAGES } from '@/config/constants';
 import { localeState } from '@/state/localeState';
+import { bannerState } from '@/state/bannerState';
 
 
 const slides = [
@@ -87,13 +88,13 @@ export const EmblaBanner = () => {
     <div class="embla">
       <div class="embla__viewport" ref={viewportRef}>
         <div class="embla__container">
-          {slides.map((slide, index) => {
+          {bannerState.value.map((slide, index) => {
             return (
-              <div key={slide.id} class="embla__slide relative">
+              <div key={slide.id || index} class="embla__slide relative">
                 <img
-                  src={slide.image}
+                  src={slide.img}
                   className="w-full h-full object-cover [object-position:right_bottom]"
-                  alt={slide.title || 'Banner'}
+                  alt={slide.description || 'Banner'}
                 />
               </div>
             );
