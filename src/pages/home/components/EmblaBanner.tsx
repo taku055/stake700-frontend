@@ -4,9 +4,10 @@ import EmblaCarousel, { EmblaCarouselType } from 'embla-carousel';
 import './embla.css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Autoplay from 'embla-carousel-autoplay';
-import { BASE_URL, RTL_LANGUAGES } from '@/config/constants';
+import { BASE_URL, mobileMediaQuery, RTL_LANGUAGES } from '@/config/constants';
 import { localeState } from '@/state/localeState';
 import { bannerState } from '@/state/bannerState';
+import { useMediaQuery } from 'usehooks-ts';
 
 
 const slides = [
@@ -38,16 +39,21 @@ const slides = [
 const MobileSlides = [
   {
     id: '1',
-    image: `${BASE_URL}/images/banner/Banner 1.png`,
+    image: `${BASE_URL}/images/banner/Banner1m.png`,
     title: '100% Welcome Bonus',
   }, 
   {
     id: '2',
-    image: `${BASE_URL}/images/banner/Banner 2.png`,
-  }, 
+    image: `${BASE_URL}/images/banner/Banner2m.png`,
+  },  
+  // {
+  //   id: '3',
+  //   image: `${BASE_URL}/images/banner/Banner2m.png`,
+  // }, 
 ];
 
 export const EmblaBanner = () => {
+  const isMobile = useMediaQuery(mobileMediaQuery);
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const emblaApi = useRef<EmblaCarouselType | null>(null);
   const [isRTL, setIsRTL] = useState(RTL_LANGUAGES.includes(localeState.value));
@@ -56,6 +62,13 @@ export const EmblaBanner = () => {
     setIsRTL(RTL_LANGUAGES.includes(localeState.value));
   }, [localeState.value]);
 
+  // Get the slides array based on mobile/desktop
+  const currentSlides = isMobile ? MobileSlides : slides;
+  
+  // Duplicate slides if there are only 2 to enable proper looping
+  const displaySlides = currentSlides.length === 2 
+    ? [...currentSlides, ...currentSlides] 
+    : currentSlides;
 
   useEffect(() => {
     if (!viewportRef.current) return;
@@ -74,7 +87,7 @@ export const EmblaBanner = () => {
     return () => {
       api.destroy();
     };
-  }, [isRTL]);
+  }, [isRTL, isMobile]);
 
   const scrollPrev = useCallback(() => {
     emblaApi.current?.scrollPrev();
@@ -88,13 +101,13 @@ export const EmblaBanner = () => {
     <div class="embla">
       <div class="embla__viewport" ref={viewportRef}>
         <div class="embla__container">
-          {bannerState.value.map((slide, index) => {
+          {displaySlides.map((slide, index) => {
             return (
-              <div key={slide.id || index} class="embla__slide relative">
+              <div key={`${slide.id}-${index}`} class="embla__slide relative">
                 <img
-                  src={slide.img}
+                  src={slide.image}
                   className="w-full h-full object-cover [object-position:right_bottom]"
-                  alt={slide.description || 'Banner'}
+                  alt={slide.title || 'Banner'}
                 />
               </div>
             );
