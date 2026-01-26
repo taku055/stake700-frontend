@@ -15,6 +15,10 @@ export interface CategoryItem {
 // Static categories list - always shown
 const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = [
   {
+    name: "All Slots",
+    path: "/casino/slots",
+  },
+  {
     name: "Live Casino",
     path: "/casino/live-casino",
   },
@@ -37,10 +41,6 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
   {
     name: "Table Games",
     path: "/casino/live-casino?custom=1&category=tablegames",
-  },
-  {
-    name: "All Slots",
-    path: "/casino/slots",
   },
   {
     name: "Jackpots",
