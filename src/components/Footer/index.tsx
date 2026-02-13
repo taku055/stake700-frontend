@@ -116,7 +116,7 @@ export const Footer = () => {
           </p>
           <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
             Betalarab is committed to responsible gambling, for more
-            information visit 
+            information visit&nbsp;
             <Link
               href="/support/responsible-gambling"
               className="text-[var(--passive-color)] text-[14px] font-semibold"
