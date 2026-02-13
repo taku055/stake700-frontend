@@ -7,7 +7,7 @@ export const TRON_CHAIN_ID = 728126428;
 // export const RTL_LANGUAGES = ["ar", "he", "fa"];
 export const RTL_LANGUAGES = ["ar", "fa"];
 
-export const BASE_URL = "https://tekio.s3.eu-north-1.amazonaws.com/betalarab";
+export const ASSET_BASE_URL = `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}`;
 
 export const mobileMediaQuery =
   "screen and ((max-width: 599px) or ((max-width: 1023px) and (orientation: landscape)))";
@@ -21,17 +21,17 @@ export const mobilePortraitMediaQuery =
 export const placeholderGameImage = "/images/placeholder-gamecard.png";
 
 export const OFFICIAL_LINKS = {
-  telegram: "https://t.me/betalarabofc",
+  telegram: "https://t.me/vistabet777ofc",
   whatsapp: "#",
-  instagram: "https://www.instagram.com/betalarabofc",
-  facebook: "https://www.facebook.com/betalarabofc",
-  twitter: "https://x.com/betalarabofc",
-  youtube: "https://www.youtube.com/betalarabofc",
-  tiktok: "https://www.tiktok.com/@betalarabofc",
-  twitch: "https://www.twitch.tv/betalarabofc",
-  discord: "https://discord.gg/betalarabofc",
-  officialWebsite: "https://www.betalarab.com",
-  supportEmail: "support@betalarab.com",
+  instagram: "https://www.instagram.com/vistabet777ofc",
+  facebook: "https://www.facebook.com/vistabet777ofc",
+  twitter: "https://x.com/vistabet777ofc",
+  youtube: "https://www.youtube.com/vistabet777ofc",
+  tiktok: "https://www.tiktok.com/@vistabet777ofc",
+  twitch: "https://www.twitch.tv/vistabet777ofc",
+  discord: "https://discord.gg/vistabet777ofc",
+  officialWebsite: "https://www.vistabet777.com",
+  supportEmail: "support@vistabet777.com",
 };
 
 export const PAYMENT_METHOD_LIST = [

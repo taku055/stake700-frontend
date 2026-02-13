@@ -17,13 +17,10 @@ import {
 } from "@/components/common";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { Eye, EyeOff } from "lucide-preact";
-import {
-  parseDate,
-  CalendarDate,
-} from "@internationalized/date";
+import { parseDate, CalendarDate } from "@internationalized/date";
 import { useLocation } from "preact-iso";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 // const inputStyles =
 //   "bg-[#fff1] border-none rounded-sm! hover:bg-[#fff2] focus-within:hover:bg-[#fff2]";
@@ -89,9 +86,7 @@ export default function SignupDialog({
 
       const regex = /^[a-zA-Z][a-zA-Z0-9_]*$/;
       if (!regex.test(userName.trim())) {
-        toast.error(
-          t("first_letter_condition")
-        );
+        toast.error(t("first_letter_condition"));
         return;
       }
 
@@ -152,7 +147,7 @@ export default function SignupDialog({
             // src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
             //   import.meta.env.VITE_SITE_NAME as string
             // ).toLowerCase()}/logo.png`}
-            src={`${BASE_URL}/images/icons/logo.svg`}
+            src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
             className="h-[36px] md:h-[36px] md:max-w-[180px]"
             alt={import.meta.env.VITE_SITE_NAME as string}
           />
@@ -180,14 +175,18 @@ export default function SignupDialog({
                     }}
                     className="text-[16px] font-semibold text-[var(--green-color)] hover:underline leading-[24px] h-[24px]"
                   >
-                      {t("login_an_account")}
+                    {t("login_an_account")}
                   </button>
                 </span>
               </div>
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("first_name")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img
+                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    alt="*"
+                    className="h-[20px] pl-[4px]"
+                  />
                 </label>
                 <Input
                   type="text"
@@ -204,7 +203,11 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("middle_name")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img
+                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    alt="*"
+                    className="h-[20px] pl-[4px]"
+                  />
                 </label>
                 <Input
                   type="text"
@@ -220,7 +223,11 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("last_name")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img
+                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    alt="*"
+                    className="h-[20px] pl-[4px]"
+                  />
                 </label>
                 <Input
                   type="text"
@@ -237,7 +244,11 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("username")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img
+                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    alt="*"
+                    className="h-[20px] pl-[4px]"
+                  />
                 </label>
                 <Input
                   type="text"
@@ -254,11 +265,19 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("birthday")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img
+                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    alt="*"
+                    className="h-[20px] pl-[4px]"
+                  />
                 </label>
                 <DatePicker
                   value={birthday}
                   onChange={(value: CalendarDate | null) => setBirthday(value!)}
+                  popoverProps={{
+                    shouldCloseOnScroll: false,
+                    shouldBlockScroll: true,
+                  }}
                   classNames={{
                     input: "text-white",
                   }}
@@ -268,7 +287,11 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("email")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img
+                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    alt="*"
+                    className="h-[20px] pl-[4px]"
+                  />
                 </label>
                 <Input
                   type="email"
@@ -285,7 +308,11 @@ export default function SignupDialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("password")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img
+                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    alt="*"
+                    className="h-[20px] pl-[4px]"
+                  />
                 </label>
                 <Input
                   type={showPassword ? "text" : "password"}

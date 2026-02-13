@@ -5,7 +5,7 @@ import { t, useTranslations } from "@/context/I18nContext";
 import { useMemo } from "preact/hooks";
 import { userState } from "@/state/userState";
 import { Archive, Users } from "lucide-preact";
-import { BASE_URL, mobileMediaQuery } from "@/config/constants";
+import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
 import { useMediaQuery } from "usehooks-ts";
 import CasinoHistoryPage from "./casino";
 import SportsHistoryPage from "./sports";

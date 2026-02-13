@@ -1,9 +1,9 @@
-import { Autoplay, Mousewheel, Navigation } from "swiper/modules";
+import { Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./GameGroup.module.scss";
 import { useEffect, useState, useCallback } from "preact/hooks";
 import { useMediaQuery } from "usehooks-ts";
-import { mobilePortraitMediaQuery } from "@/config/constants";
+import { ASSET_BASE_URL, mobilePortraitMediaQuery } from "@/config/constants";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { tGame } from "@/types/tGame";
 import GameCard from "@/components/GameCard";
@@ -22,6 +22,8 @@ interface IGameGroupProps {
   bigMode?: boolean;
   animated?: boolean;
   template?: number;
+  icon?: string;
+  gameList?: tGame[];
 }
 
 export default function GameGroup({
@@ -33,7 +35,9 @@ export default function GameGroup({
   exceptGameId,
   bigMode,
   animated,
-  template = 0
+  icon,
+  template = 0,
+  gameList,
 }: IGameGroupProps) {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
   const [games, setGames] = useState<tGame[]>([]);
@@ -51,95 +55,77 @@ export default function GameGroup({
 
   useEffect(() => {
     (async () => {
+      if (gameList) {
+        setGames(gameList);
+        return;
+      }
+
       const data = isCustom
         ? customGamesState.value
-          .filter((c) => c.category === category)
-          .slice(0, 30)
-          .map((e) => e.Game as tGame)
+            .filter((c) => c.category === category)
+            .slice(0, 30)
+            .map((e) => e.Game as tGame)
         : (
-          await apiGetGames({
-            category: category,
-            limit: 30,
-            provider: provider,
-            randomOrderby: true,
-          })
-        ).data;
+            await apiGetGames({
+              category: category,
+              limit: 30,
+              provider: provider,
+              randomOrderby: true,
+            })
+          ).data;
       setGames(data.filter((e) => e.id !== exceptGameId));
     })();
-  }, [category, isCustom, customGamesState.value, provider, exceptGameId]);
+  }, [
+    category,
+    isCustom,
+    customGamesState.value,
+    provider,
+    exceptGameId,
+    gameList,
+  ]);
 
   return (
     <div className={styles.gameGroup}>
       <div className={styles.titleBar}>
-        {
-          template == 0 && (
-            <>
-              <div className={styles.title}>
-                <div className={styles.text}>{title}</div>
-              </div>
+        <div className={styles.title}>
+          <img
+            src={icon || `${ASSET_BASE_URL}/images/icons/trending-game.png`}
+            alt={title}
+            className={styles.icon}
+          />
+          <div className={styles.text}>{title}</div>
+        </div>
 
-              <div className={styles.action}>
-                <Button
-                  onPress={goToPrevSlide}
-                  size="sm"
-                  isIconOnly
-                  className={styles.moveButton}
-                >
-                  <ChevronLeft color="#FFFFFF99" size={16} />
-                </Button>
-                <Button
-                  onPress={goToNextSlide}
-                  size="sm"
-                  isIconOnly
-                  className={styles.moveButton}
-                >
-                  <ChevronRight color="#FFFFFF99" size={16} />
-                </Button>
-                <a href={viewallLink || "#"} className={styles.view}>
-                  {t("More")}
-                </a>
-              </div>
-            </>
-          )
-        }
-        {
-          template == 1 && (
-            <>
-              <Button
-                onPress={goToPrevSlide}
-                size="sm"
-                isIconOnly
-                className={styles.moveButton}
-              >
-                <ChevronLeft color="#FFFFFF99" size={16} />
-              </Button>
-              {/* <div className={styles.title}>
-                <div className={styles.text}>{title}</div>
-                <a href={viewallLink || "#"} className={styles.view}>
-                  {t("More")}
-                </a>
-              </div> */}
-              <Button
-                onPress={goToNextSlide}
-                size="sm"
-                isIconOnly
-                className={styles.moveButton}
-              >
-                <ChevronRight color="#FFFFFF99" size={16} />
-              </Button>
-            </>
-          )
-        }
-
+        <div className={styles.action}>
+          <Button
+            onPress={goToPrevSlide}
+            size="sm"
+            isIconOnly
+            className={styles.moveButton + " rounded-l-full"}
+          >
+            <ChevronLeft color="#FFFFFF99" size={16} />
+          </Button>
+          <Button
+            onPress={goToNextSlide}
+            size="sm"
+            isIconOnly
+            className={styles.moveButton + " rounded-r-full"}
+          >
+            <ChevronRight color="#FFFFFF99" size={16} />
+          </Button>
+          <a href={viewallLink || "#"} className={styles.view}>
+            {t("More")}
+          </a>
+        </div>
       </div>
       <Swiper
         modules={[Mousewheel, Navigation]}
         className={styles.games}
         loop={false}
         loopAddBlankSlides={false}
-        spaceBetween={isMobilePortrait ? 6 : 8}
+        spaceBetween={isMobilePortrait ? 10 : 16}
         slidesPerView={
-          isMobilePortrait ? (bigMode ? 1 : 2) : bigMode ? 6 : "auto"
+          isMobilePortrait ? (bigMode ? 2 : 2) : bigMode ? 6 : "auto"
         }
         slidesPerGroup={isMobilePortrait ? 2 : 4}
         onSwiper={setSwiper}

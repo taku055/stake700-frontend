@@ -4,7 +4,7 @@ import { Button } from "@heroui/react";
 import { Filter, ArrowUpDown, ExternalLink } from "lucide-preact";
 import { allChains } from "@/config/chains";
 import { CURRENCY_LIST } from "@/config/constants";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 import { Select, SelectItem } from "@heroui/react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@heroui/react";
 
@@ -82,6 +82,10 @@ export default function Commission() {
             className="rounded-lg ml-2 text-white text-[14px] outline-none bg-[var(--background)] h-[40px]"
             classNames={{
               trigger: "bg-[var(--background)]",
+            }}
+            popoverProps={{
+              shouldCloseOnScroll: false,
+              shouldBlockScroll: true,
             }}
           >
             <SelectItem key="lifetime-high">{t("Lifetime Commission: High to Low")}</SelectItem>

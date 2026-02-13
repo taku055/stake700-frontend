@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { userState } from "@/state/userState";
-import { DateRangePicker, RangeValue } from "@heroui/react";
+import { DateRangePicker, RangeValue, Tabs, Tab } from "@heroui/react";
 import { CalendarDate } from "@internationalized/date";
 import { tProviderAnalysis } from "@/types/tProviderAnalysis";
 import { useMediaQuery } from "usehooks-ts";
@@ -13,6 +13,9 @@ import PlatformAnalysisTable from "@/components/PlatformAnalysis/PlatformAnalysi
 import Loader from "@/components/Loader";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import CurrencySelector from "@/components/CurrencySelector";
+import UserAnalysisTable from "./UserAnalysisTable";
+import { tUserAnalysis } from "@/types/tUserAnalysis";
+import { apiAgentGetUsersAnalytics } from "@/api/agent/agent/apiAgentGetUsersAnalytics";
 
 const today = new Date();
 
@@ -41,6 +44,7 @@ export default function PlatformAnalysis({
     ),
   });
 
+  const [users, setUsers] = useState<tUserAnalysis[]>([]);
   const [loading, setLoading] = useState(false);
   const isMobile = useMediaQuery(mobileMediaQuery);
   const [providers, setProviders] = useState<tProviderAnalysis[]>([]);
@@ -57,14 +61,26 @@ export default function PlatformAnalysis({
   useEffect(() => {
     const load = async () => {
       setLoading(true);
+      const startDate = period?.start.toDate("UTC").getTime() || 0;
+      const endDate = period
+        ? period.end.toDate("UTC").getTime() + 86399999
+        : 0;
       try {
-        const data = await fetchData(agentId, {
-          startDate: period?.start.toDate("UTC").getTime(),
-          endDate: period ? period.end.toDate("UTC").getTime() + 86399999 : 0,
-          currency: selectedCurrency,
-        });
+        const [providerData, userData] = await Promise.all([
+          fetchData(agentId, {
+            startDate,
+            endDate,
+            currency: selectedCurrency,
+          }),
+          apiAgentGetUsersAnalytics({
+            startDate,
+            endDate,
+            currency: selectedCurrency,
+          }),
+        ]);
 
-        setProviders(data);
+        setProviders(providerData);
+        setUsers(userData);
       } catch (ex) {
         console.error(ex);
       }
@@ -100,10 +116,20 @@ export default function PlatformAnalysis({
       {loading ? (
         <Loader />
       ) : (
-        <PlatformAnalysisTable
-          providerData={providers}
-          selectedCurrencySymbol={selectedCurrencySymbol}
-        />
+        <Tabs aria-label="analysis" classNames={{ base: "w-full" }}>
+          <Tab key="platform" title="Platform">
+            <PlatformAnalysisTable
+              providerData={providers}
+              selectedCurrencySymbol={selectedCurrencySymbol}
+            />
+          </Tab>
+          <Tab key="users" title="Users">
+            <UserAnalysisTable
+              userData={users}
+              selectedCurrencySymbol={selectedCurrencySymbol}
+            />
+          </Tab>
+        </Tabs>
       )}
     </div>
   );

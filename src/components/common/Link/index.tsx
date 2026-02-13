@@ -16,10 +16,15 @@ export const Link = ({
   const { modifyHref } = useAffiliateNavigation();
 
   const handleClick = (e: JSX.TargetedMouseEvent<HTMLAnchorElement>) => {
+    if (onClick && typeof onClick === "function") {
+      e.preventDefault();
+      e.stopPropagation();
+      onClick?.(e);
+    }
+    
     if (shouldScrollToTop) {
       scrollToTop();
     }
-    onClick?.(e);
   };
 
   return (

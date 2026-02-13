@@ -132,6 +132,10 @@ const PersonalDetailsPage = () => {
             }
             size="sm"
             dir={isRTL ? "rtl" : "ltr"}
+            popoverProps={{
+              shouldCloseOnScroll: false,
+              shouldBlockScroll: true,
+            }}
           >
             {genders.map((gender) => (
               <SelectItem key={gender.value}>{t(gender.label)}</SelectItem>
@@ -148,6 +152,10 @@ const PersonalDetailsPage = () => {
             }
             size="sm"
             dir={isRTL ? "rtl" : "ltr"}
+            popoverProps={{
+              shouldCloseOnScroll: false,
+              shouldBlockScroll: true,
+            }}
           >
             {countries.map((country) => (
               <SelectItem key={country.value}>{country.label}</SelectItem>

@@ -100,7 +100,6 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
     if (custom === "1" && category) {
       // Custom category - count from customGamesState
       count = customGamesState.value.filter((c) => c.category === category).length;
-      console.log("count11111111111111", count);
     } else if (category) {
       // Regular category - fetch count from API
       const result = await apiGetGames({
@@ -109,7 +108,6 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
         provider: provider || undefined,
       });
       count = result.total || 0;
-      console.log("count22222222222222", count);
     } else if (path.includes("/casino/live-casino")) {
       // All Games - fetch total count from API
       const result = await apiGetGames({
@@ -118,7 +116,6 @@ const getCategoryGameCount = async (path: string): Promise<number> => {
         provider: provider || undefined,
       });
       count = result.total || 0;
-      console.log("count33333333333333", count);
     }
 
     // Cache the result

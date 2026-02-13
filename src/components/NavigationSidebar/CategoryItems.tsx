@@ -1,6 +1,7 @@
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { ChevronRight } from "lucide-preact";
+import { Link } from "../common";
 
 interface CategoryItemsProps {
   categories: Array<{
@@ -39,9 +40,10 @@ export default function CategoryItems({ categories, title, onCategoryClick }: Ca
             <span className="flex-1">Live Casino</span>
           </button> */}
           {categories.map((category, index) => (
-            <button
+            <Link
               key={index}
               onClick={() => handleCategoryClick(category.path)}
+              href={category.path}
               className="flex items-center bg-[var(--background-secondary)] gap-2 p-2 px-4 text-gray-300 hover:bg-gray-700 transition-colors text-left w-full"
             >
               {category.icon && (
@@ -57,7 +59,7 @@ export default function CategoryItems({ categories, title, onCategoryClick }: Ca
                   {category.count}
                 </span>
               )}
-            </button>
+            </Link>
           ))}
         </div>
       </div>

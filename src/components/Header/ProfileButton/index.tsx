@@ -3,12 +3,12 @@ import { profileMenuOpenedState } from "@/state/profilemenuState";
 import { User } from "lucide-preact";
 import { useState } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 export default function ProfileButton() {
   const t = useTranslations("Header");
   const userAvatar = userState.value?.avatar;
-  const defaultIcon = `${BASE_URL}/images/icons/user-default.svg`;
+  const defaultIcon = `${ASSET_BASE_URL}/images/icons/user-default.svg`;
   const [showFallbackIcon, setShowFallbackIcon] = useState(false);
 
   const handleClick = () => {
@@ -22,7 +22,7 @@ export default function ProfileButton() {
   return (
     <button
       onClick={handleClick}
-      className="w-[44px] h-[44px] rounded-full p-1 flex items-center justify-center overflow-hidden hover:opacity-90 transition-opacity cursor-pointer"
+      className="md:w-[44px] md:h-[44px] w-[32px] h-[32px] rounded-full p-1 flex items-center justify-center overflow-hidden hover:opacity-90 transition-opacity cursor-pointer"
       aria-label={t("Open profile")}
     >
       {showFallbackIcon ? (

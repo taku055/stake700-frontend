@@ -22,7 +22,6 @@ import { maintenanceState } from "@/state/maintenanceState";
 import axios from "axios";
 import { visaOpenedState } from "@/state/visaOpenedState";
 import VisaDialogSimple from "@/components/VisaDialogSimple";
-import { depositDialogState } from "@/state/depositDialogState";
 import WalletDialog from "@/components/WalletDialog";
 import { bannerState } from "@/state/bannerState";
 import { apiGetBanners } from "@/api/common/apiGetBanners";
@@ -148,7 +147,6 @@ export default function GlobalServiceProvider({
           limit: 10000,
         });
         customGamesState.value = games.data;
-        console.log("customGamesState", games.data);
 
         const requestParams: any = {
           offset: 0,
@@ -160,7 +158,6 @@ export default function GlobalServiceProvider({
 
         const res: tPaginationResult<tGame> = await apiGetGames(requestParams);
         liveCasinoGamesState.value = res.data;
-        // console.log("customGamesState", games.data);
       } catch (ex) {
         console.error(ex);
       }
@@ -258,14 +255,14 @@ export default function GlobalServiceProvider({
 
     (async () => {
       globalLoadingState.value = true;
-      await getBanners();
       await Promise.all([
         getProviders(),
         getPayments(),
         getCustomGames(),
         getMaintenance(),
         getAccount(),
-        loadGameCategoryImages(),
+        getBanners(),
+        // loadGameCategoryImages(),
       ]);
       setTimeout(() => {
         globalLoadingState.value = false;
@@ -383,11 +380,11 @@ export default function GlobalServiceProvider({
               isOpen={forgotOpenedState.value}
               onClose={() => (forgotOpenedState.value = false)}
             />
-            {/* <SignupDialog
+            <SignupDialog
               isOpen={registerOpenedState.value}
               onClose={() => (registerOpenedState.value = false)}
-            /> */}
-            <SignupStep1Dialog
+            />
+            {/* <SignupStep1Dialog
               isOpen={signupStep1OpenedState.value}
               onClose={() => (signupStep1OpenedState.value = false)}
               onConfirm={() => {
@@ -414,7 +411,7 @@ export default function GlobalServiceProvider({
                 signupStep3OpenedState.value = false;
                 signupStep2OpenedState.value = true;
               }}
-            />
+            /> */}
             <WelcomeDialog
               isOpen={welcomeDialogOpenedState.value}
               onClose={() => (welcomeDialogOpenedState.value = false)}

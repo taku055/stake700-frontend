@@ -24,11 +24,11 @@
 
       .text {
         font-family: var(--primary-font);
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 600;
         line-height: 18px;
         text-align: left;
-        color: var(--text-transparent-color);
+        color: #FFF;
 
         @include for-mobile-only {
           font-size: 14px;
@@ -52,16 +52,22 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 8px;
-        background: var(--bar-background-color);
-        color: var(--text-transparent-color);
+        background: var(--bar-background-secondary);
         height: 100%;
-        width: 40px;
+        width: 58px;
         min-width: 0;
-        padding: 0;
+        padding: 11px 19px;
+        color: #FFFFFF55;
+        border: 1px solid #ffffff55;
+
+        &:disabled {
+          color: #FFFFFF22;
+          border: 1px solid #ffffff22;
+        }
 
         @include for-mobile-only {
           width: 32px;
+          padding: 0;
         }
       }
 
@@ -69,17 +75,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 2px;
-        color: var(--text-transparent-color);
+        border-radius: 50px;;
+        color: #FFFFFF55;
         font-family: Roboto;
         font-size: 12px;
         font-weight: 600;
         line-height: 12px;
         text-align: left;
-        background: var(--bar-background-color);
-        padding: 5px 6px;
+        background: var(--bar-background-secondary);
         width: max-content;
         height: 100%;
+        border: 1px solid #ffffff55;
+        padding: 11px 19px;
       }
     }
   }
@@ -87,8 +94,8 @@
   .games {
     width: 100%;
     .game {
-      width: 160px;
-      height: 160px;
+      width: 136px;
+      height: 182px;
 
       @include for-mobile-portrait-only {
         width: unset;

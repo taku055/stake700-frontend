@@ -1,44 +1,73 @@
 import { FunctionalComponent } from "preact";
 import { Button } from "@heroui/react";
-import { tGame } from "@/types/tGame";
 import GameCard from "@/components/GameCard";
 import { useTranslations } from "@/context/I18nContext";
-import GuideCard from "./GuideCard";
-import { localeState } from "@/state/localeState";
-import { RTL_LANGUAGES } from "@/config/constants";
-import { useCasinoCategories } from "@/hooks/useCasinoCategories";
-import { useMemo } from "preact/hooks";
+import { useCallback, useEffect, useState } from "preact/hooks";
 import Loader from "@/components/Loader";
+import { tGame } from "@/types/tGame";
+import { customGamesState } from "@/state/customGamesState";
+import { apiGetGames } from "@/api/common/apiGetGames";
 
 interface CasinoGameGridProps {
-  games: tGame[];
-  total: number;
-  loading: boolean;
-  offset: number;
-  onLoadMore: () => void;
-  selectedCategory: string;
+  isCustom: boolean;
+  category: string;
+  provider?: string;
+  gameType: "SLOT" | "LIVECASINO" | null;
 }
 
+const GAME_LOAD_COUNT = 24;
+
 export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
-  games,
-  total,
-  loading,
-  offset,
-  onLoadMore,
-  selectedCategory,
+  isCustom,
+  category,
+  provider,
+  gameType,
 }) => {
   const t = useTranslations("HomePage");
-  const tHeader = useTranslations("Header");
-  const isRTL = RTL_LANGUAGES.includes(localeState.value);
-  const { categories } = useCasinoCategories();
+  const [games, setGames] = useState<tGame[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [offset, setOffset] = useState(0);
 
-  const categoryName = useMemo(() => {
-    console.log("selectedCategory", selectedCategory);
-    if (selectedCategory === "/casino/home?custom=1&category=home") {
-      return "Home";
-    }
-    return selectedCategory ? categories.find(cat => cat.path === selectedCategory)?.name : "All Games";
-  }, [selectedCategory, categories]);
+  const onLoadMore = useCallback(
+    async (offset1: number) => {
+      if (offset1 >= total && total > 0) return;
+
+      setLoading(true);
+      let data: tGame[] = [];
+      if (isCustom) {
+        const totalGames = customGamesState.value.filter(
+          (c) => c.category === category
+        );
+        data = totalGames
+          .slice(offset1, offset1 + GAME_LOAD_COUNT)
+          .map((e) => e.Game as tGame);
+
+        setTotal(totalGames.length);
+        setOffset(offset1 + GAME_LOAD_COUNT);
+      } else {
+        const res = await apiGetGames({
+          category: category,
+          limit: GAME_LOAD_COUNT,
+          provider: provider,
+          randomOrderby: true,
+          offset: offset1,
+          gameType: gameType || undefined,
+        });
+        data = res.data;
+        setTotal(res.total);
+        setOffset(offset1 + GAME_LOAD_COUNT);
+      }
+
+      setGames((p) => (offset1 === 0 ? data : [...p, ...data]));
+      setLoading(false);
+    },
+    [category, isCustom, customGamesState.value, provider, gameType]
+  );
+
+  useEffect(() => {
+    onLoadMore(0);
+  }, [category, isCustom, provider, onLoadMore, gameType]);
 
   // Show loading state during initial load (before checking for Home category)
   if (loading) {
@@ -56,39 +85,20 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
     );
   }
 
-  if (categoryName === "Home") {
-    return null;
-  }
-
   return (
     <div className="flex-1 flex flex-col gap-4 min-w-0">
-      {/* <div 
-        className={`w-full px-2 py-4 bg-[var(--bar-background-color)] rounded-lg text-[20px] uppercase ${
-          isRTL ? "text-right" : "text-left"
-        }`}
-        dir={isRTL ? "rtl" : "ltr"}
-      >
-        {categoryName}
-      </div> */}
-      <div className="grid md:grid-cols-8 grid-cols-2 gap-2">
+      <div className="grid md:grid-cols-8 grid-cols-2 gap-[16px]">
         {games.map((game) => (
           <GameCard key={game.id} data={game} />
         ))}
       </div>
-      {/* {total === 0 && !loading && (
-        <div className="text-center text-[20px] text-[var(--text-color)]">
-          {t("no_games_found") || "No games found"}
-          No games found for this category
-        </div>
-      )} */}
-
       {games.length < total && (
         <div className="flex justify-center">
           <Button
             type="button"
             color="success"
             size="sm"
-            onPress={onLoadMore}
+            onPress={() => onLoadMore(offset)}
             isLoading={loading}
             isDisabled={loading || offset >= total}
           >
@@ -96,8 +106,6 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
           </Button>
         </div>
       )}
-
-      
     </div>
   );
 };

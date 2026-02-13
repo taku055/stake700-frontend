@@ -1,4 +1,4 @@
-import { BASE_URL, BITCOIN_CHAIN_ID, SOLANA_CHAIN_ID, TRON_CHAIN_ID } from "./constants";
+import { ASSET_BASE_URL, BITCOIN_CHAIN_ID, SOLANA_CHAIN_ID, TRON_CHAIN_ID } from "./constants";
 import { tChain } from "@/types/tChain";
 
 export const chainIds: { [network: string]: number } = {
@@ -35,49 +35,49 @@ export const ZERO_ADDRESS = "0x";
 
 export const allChains: tChain[] = [
   {
-    icon: `${BASE_URL}/images/tokens/bitcoin-btc-logo.png`,
+    icon: `${ASSET_BASE_URL}/images/tokens/bitcoin-btc-logo.png`,
     name: "BTC",
     symbol: "BTC",
     chainId: 8086,
   },
   {
-    icon: `${BASE_URL}/images/tokens/solana-sol-logo.png`,
+    icon: `${ASSET_BASE_URL}/images/tokens/solana-sol-logo.png`,
     name: "Solana",
     symbol: "SOL",
     chainId: 900,
   },
   {
-    icon: `${BASE_URL}/images/tokens/ethereum-eth-logo.png`,
+    icon: `${ASSET_BASE_URL}/images/tokens/ethereum-eth-logo.png`,
     name: "Ethereum",
     symbol: "ETH",
     chainId: 1,
   },
   {
-    icon: `${BASE_URL}/images/tokens/polygon-matic-logo.png`,
+    icon: `${ASSET_BASE_URL}/images/tokens/polygon-matic-logo.png`,
     name: "Polygon",
     symbol: "POL",
     chainId: 137,
   },
   {
-    icon: `${BASE_URL}/images/tokens/bnb-bnb-logo.png`,
+    icon: `${ASSET_BASE_URL}/images/tokens/bnb-bnb-logo.png`,
     name: "BSC",
     symbol: "BNB",
     chainId: 56,
   },
   {
-    icon: `${BASE_URL}/images/tokens/base-logo.svg`,
+    icon: `${ASSET_BASE_URL}/images/tokens/base-logo.svg`,
     name: "Base",
     symbol: "BASE",
     chainId: 8453,
   },
   {
-    icon: `${BASE_URL}/images/tokens/avalanche-avax-logo.png`,
+    icon: `${ASSET_BASE_URL}/images/tokens/avalanche-avax-logo.png`,
     name: "Avalanche",
     symbol: "AVAX",
     chainId: 43114,
   },
   {
-    icon: `${BASE_URL}/images/tokens/fantom-ftm-logo.png`,
+    icon: `${ASSET_BASE_URL}/images/tokens/fantom-ftm-logo.png`,
     name: "Fantom",
     chainId: 250,
     symbol: "FTM",
@@ -86,7 +86,7 @@ export const allChains: tChain[] = [
 
 export const allChainsMap: tChain[] = [
   {
-    icon: `${BASE_URL}/images/tokens/usd.png`,
+    icon: `${ASSET_BASE_URL}/images/tokens/usd.png`,
     name: "USD",
     chainId: 0,
     symbol: "USD",

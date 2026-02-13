@@ -44,15 +44,15 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
   },
   {
     name: "Jackpots",
-    path: "/casino/slots?custom=0&category=jackpots",
+    path: "/casino/slots?custom=1&category=jackpots",
   },
   {
     name: "Video Bingo",
-    path: "/casino/slots?custom=0&category=bingogame",
+    path: "/casino/slots?custom=1&category=bingogame",
   },
   {
     name: "Other Games",
-    path: "/casino/slots?custom=0&category=other",
+    path: "/casino/slots?custom=1&category=other",
   },
   {
     name: "Top Slots",
@@ -85,7 +85,7 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
   },
   {
     name: "Scratch Games",
-    path: "/casino/slots?custom=0&category=scratchcards",
+    path: "/casino/slots?custom=1&category=scratchcards",
   },
   {
     name: "Instant Game",
@@ -99,7 +99,6 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     name: "Casual Games",
     path: "/casino/slots?custom=1&category=casual-games",
   },
- 
 ];
 
 // Map category names/paths to sidebar SVG icons

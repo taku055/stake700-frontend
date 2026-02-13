@@ -3,7 +3,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { Copy, Zap, DollarSign, Percent, Settings, Coins, Globe, ExternalLink, Play, Volume2, Maximize, MoreVertical, PictureInPicture } from "lucide-preact";
 import { toast } from "@/helpers/toast";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 export default function Overview() {
   const t = useTranslations("Affiliate");
@@ -26,32 +26,32 @@ export default function Overview() {
 
   const exclusiveAdvantages = [
     {
-      icon: <img src={`${BASE_URL}/images/icons/payout.svg`} alt="instant-payout" className="min-w-[40px] min-h-[40px] object-contain" />,
+      icon: <img src={`${ASSET_BASE_URL}/images/icons/payout.svg`} alt="instant-payout" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Instant Payout"),
       description: t("InstantPayoutDesc"),
     },
     {
-      icon: <img src={`${BASE_URL}/images/icons/lifetime.png`} alt="lifetime-commission" className="min-w-[40px] min-h-[40px] object-contain" />,
+      icon: <img src={`${ASSET_BASE_URL}/images/icons/lifetime.png`} alt="lifetime-commission" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Lifetime Commission"),
       description: t("LifetimeCommissionDesc"),
     },
     {
-      icon: <img src={`${BASE_URL}/images/icons/percentage.png`} alt="market-leading-player-value" className="min-w-[40px] min-h-[40px] object-contain" />,
+      icon: <img src={`${ASSET_BASE_URL}/images/icons/percentage.png`} alt="market-leading-player-value" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Market Leading Player Value"),
       description: t("MarketLeadingDesc"),
     },
     {
-      icon: <img src={`${BASE_URL}/images/icons/customise.png`} alt="customise-your-commission" className="min-w-[40px] min-h-[40px] object-contain" />,
+      icon: <img src={`${ASSET_BASE_URL}/images/icons/customise.png`} alt="customise-your-commission" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Customise Your Commission"),
       description: t("CustomiseCommissionDesc"),
     },
     {
-      icon: <img src={`${BASE_URL}/images/icons/local-currency.png`} alt="crypto-local-currencies" className="min-w-[40px] min-h-[40px] object-contain" />,
+      icon: <img src={`${ASSET_BASE_URL}/images/icons/local-currency.png`} alt="crypto-local-currencies" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("Crypto & Local Currencies"),
       description: t("CryptoLocalCurrenciesDesc"),
     },
     {
-      icon: <img src={`${BASE_URL}/images/icons/multi-language.png`} alt="24x7-multi-language-support" className="min-w-[40px] min-h-[40px] object-contain" />,
+      icon: <img src={`${ASSET_BASE_URL}/images/icons/multi-language.png`} alt="24x7-multi-language-support" className="min-w-[40px] min-h-[40px] object-contain" />,
       title: t("24x7 Multi Language Support"),
       description: t("MultiLanguageSupportDesc"),
     },
@@ -105,18 +105,18 @@ export default function Overview() {
         </div>
 
         {/* Right: Video Player */}
-        <div className={`flex flex-col gap-2 w-full h-full bg-[url('${BASE_URL}/images/icons/videoimg.png')] bg-cover bg-center rounded-lg overflow-hidden`}
-          style={{ background: `url('${BASE_URL}/images/icons/videoimg.png') no-repeat`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+        <div className={`flex flex-col gap-2 w-full h-full bg-[url('${ASSET_BASE_URL}/images/icons/videoimg.png')] bg-cover bg-center rounded-lg overflow-hidden`}
+          style={{ background: `url('${ASSET_BASE_URL}/images/icons/videoimg.png') no-repeat`, backgroundSize: 'cover', backgroundPosition: 'center' }}
         >
           <div className="rounded-lg overflow-hidden aspect-video flex flex-col items-between border border-[var(--background-secondary)]">
             {/* Top Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#FFFFFF0A]">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center">
-                  <img src={`${BASE_URL}/images/icons/face.png`} alt="user" className="w-full h-full object-cover" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/face.png`} alt="user" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-white bg-[var(--background)] text-[14px] font-medium">Betalarab.com Affiliate Program</span>
+                  <span className="text-white bg-[var(--background)] text-[14px] font-medium">Vistabet777.com Affiliate Program</span>
                   <span className="text-white/60 bg-[var(--background)] text-[12px]">Creative Department</span>
                 </div>
               </div>
@@ -200,7 +200,7 @@ export default function Overview() {
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-[var(--background-secondary)] flex items-center justify-center">
                 <span className="text-white text-[20px]">
-                  <img src={`${BASE_URL}/images/icons/casino.png`} alt="casino" className="w-full h-full object-cover" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/casino.png`} alt="casino" className="w-full h-full object-cover" />
                 </span>
               </div>
               <h3 className="text-white text-[16px] font-medium">{t("Casino")}</h3>
@@ -220,7 +220,7 @@ export default function Overview() {
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-[var(--background-secondary)] flex items-center justify-center">
                 <span className="text-white text-[20px]">
-                  <img src={`${BASE_URL}/images/icons/sportsbook.png`} alt="sportsbook" className="w-full h-full object-cover" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/sportsbook.png`} alt="sportsbook" className="w-full h-full object-cover" />
                 </span>
               </div>
               <h3 className="text-white text-[16px] font-medium">{t("Sportsbook")}</h3>
@@ -240,7 +240,7 @@ export default function Overview() {
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-[var(--background-secondary)] flex items-center justify-center">
                 <span className="text-white text-[20px]">
-                  <img src={`${BASE_URL}/images/icons/poker.png`} alt="poker" className="w-full h-full object-cover" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/poker.png`} alt="poker" className="w-full h-full object-cover" />
                 </span>
               </div>
               <h3 className="text-white text-[16px] font-medium">{t("Poker")}</h3>
@@ -256,7 +256,7 @@ export default function Overview() {
           </div>
         </div>
       </div>
-      <img src={`${BASE_URL}/images/others/affiliate-img.png`} alt="affiliate-rules" className="h-[180px] w-full object-cover" />
+      <img src={`${ASSET_BASE_URL}/images/others/affiliate-img.png`} alt="affiliate-rules" className="h-[180px] w-full object-cover" />
 
       {/* Templates Section */}
       <div className="flex flex-col gap-4 mt-4">

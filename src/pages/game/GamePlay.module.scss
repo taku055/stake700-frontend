@@ -11,7 +11,7 @@
   border-radius: 16px;
 
   @include for-mobile-only {
-    height: calc(var(--viewport-height) - 134px);
+    height: calc(var(--viewport-height) - 118px);
     border-radius: 0;
     margin: 0;
   }

@@ -100,6 +100,10 @@ export default function ReferredUsers() {
           classNames={{
             trigger: "bg-[var(--background)]",
           }}
+          popoverProps={{
+            shouldCloseOnScroll: false,
+            shouldBlockScroll: true,
+          }}
         >
           {campaigns.map((campaign) => (
             <SelectItem key={campaign.id}>{`${campaign.name} (${campaign.code})`}</SelectItem>
@@ -153,6 +157,10 @@ export default function ReferredUsers() {
           <span className="text-white text-[16px]">{t("Sort")}</span>
         </div>
         <Select
+          popoverProps={{
+            shouldCloseOnScroll: false,
+            shouldBlockScroll: true,
+          }}
           onSelectionChange={(keys) => setSortBy(Array.from(keys)[0] as string)}
           className="rounded-lg ml-2 w-[300px] text-white text-[14px] outline-none"
           aria-label="Sort"

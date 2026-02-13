@@ -3,7 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./PromotionsGroup.module.scss";
 import { useEffect, useState } from "preact/hooks";
 import { useMediaQuery } from "usehooks-ts";
-import { BASE_URL, mobilePortraitMediaQuery, RTL_LANGUAGES } from "@/config/constants";
+import {
+  ASSET_BASE_URL,
+  mobilePortraitMediaQuery,
+  RTL_LANGUAGES,
+} from "@/config/constants";
 import { Button } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { promotionsData } from "./data";
@@ -17,37 +21,27 @@ export default function PromotionsGroup() {
   const t = useTranslations("GameGroup");
   const tPromo = useTranslations("PromotionCard");
   const [swiper, setSwiper] = useState<any>(null);
-  const [activeAction, setActiveAction] = useState<"left" | "right" | null>("right");
   const [isBeginning, setIsBeginning] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
   const [isRTL, setIsRTL] = useState(RTL_LANGUAGES.includes(localeState.value));
-  
+
   useEffect(() => {
     const updateRTL = () => {
       setIsRTL(RTL_LANGUAGES.includes(localeState.value));
     };
-    
+
     updateRTL();
-    
+
     // Watch for locale changes
     const dispose = effect(() => {
       const _ = localeState.value;
       updateRTL();
     });
-    
+
     return () => {
       dispose();
     };
   }, []);
-
-
-  const goToNextSlide = () => {
-    swiper?.slideNext();
-  };
-
-  const goToPrevSlide = () => {
-    swiper?.slidePrev();
-  };
 
   const goToStart = () => {
     if (swiper) {
@@ -69,16 +63,34 @@ export default function PromotionsGroup() {
     <div className={styles.promotionsGroup}>
       <div className={styles.titleBar}>
         <div className={styles.title}>
-          <img src={`${BASE_URL}/images/icons/promotions.svg`} alt="Promotions" className={styles.icon} />
+          <img
+            src={`${ASSET_BASE_URL}/images/icons/promotions.svg`}
+            alt="Promotions"
+            className={styles.icon}
+          />
           <div className={styles.text}>{t("Promotions")}</div>
         </div>
 
         <div className={styles.action}>
-          <Button onPress={goToStart} className={`${styles.moveButton} rounded-l-full ${!isBeginning ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>
-            <ChevronLeft size={18}  />
+          <Button
+            onPress={goToStart}
+            className={`${styles.moveButton} rounded-l-full ${
+              !isBeginning
+                ? "border-[#ffffff55] text-[#FFFFFF55]"
+                : "border-[#ffffff22] text-[#FFFFFF22]"
+            }`}
+          >
+            <ChevronLeft size={18} />
           </Button>
-          <Button onPress={goToEnd} className={`${styles.moveButton} rounded-r-full ${!isEnd ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>
-            <ChevronRight size={18}  />
+          <Button
+            onPress={goToEnd}
+            className={`${styles.moveButton} rounded-r-full ${
+              !isEnd
+                ? "border-[#ffffff55] text-[#FFFFFF55]"
+                : "border-[#ffffff22] text-[#FFFFFF22]"
+            }`}
+          >
+            <ChevronRight size={18} />
           </Button>
         </div>
       </div>
@@ -90,7 +102,7 @@ export default function PromotionsGroup() {
         dir={isRTL ? "rtl" : "ltr"}
         loop={false}
         loopAddBlankSlides={false}
-        // spaceBetween={isMobilePortrait ? 6 : 8}
+        spaceBetween={isMobilePortrait ? 10 : 16}
         slidesPerView={isMobilePortrait ? 1 : 3}
         slidesPerGroup={isMobilePortrait ? 1 : 3}
         onSlideChange={() => {
@@ -104,7 +116,7 @@ export default function PromotionsGroup() {
               title={tPromo(e.title) || e.title}
               description={e.description}
               image={e.image}
-              label={e.label ? (tPromo(e.label) || e.label) : undefined}
+              label={e.label ? tPromo(e.label) || e.label : undefined}
               readMoreLink={e.readMoreLink}
             />
           </SwiperSlide>

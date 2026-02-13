@@ -10,7 +10,7 @@ import Loader from "../Loader";
 import { visaOpenedState } from "@/state/visaOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
-import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID, BASE_URL } from "@/config/constants";
+import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID, ASSET_BASE_URL } from "@/config/constants";
 import { effect } from "@preact/signals";
 import { toast } from "@/helpers/toast";
 import { QRCodeSVG } from "qrcode.react";

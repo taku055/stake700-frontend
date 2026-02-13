@@ -2,7 +2,6 @@ export type tUserAnalysis = {
   userId: string;
   userName: string;
   email: string;
-  cashBalance: number;
   depositCount: number;
   depositAmount: number;
   cashOut: number;
@@ -10,4 +9,12 @@ export type tUserAnalysis = {
   betAmount: number;
   winAmount: number;
   avgBetSize: number;
+  bonusBalance: number;
+  cashBalance: number;
+  sportBetAmount: number;
+  sportWinAmount: number;
+  slotBetAmount: number;
+  slotWinAmount: number;
+  livecasinoBetAmount: number;
+  livecasinoWinAmount: number;
 };

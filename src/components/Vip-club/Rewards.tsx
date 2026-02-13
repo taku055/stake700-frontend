@@ -3,7 +3,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { ChevronUp, ChevronDown, Lock } from "lucide-preact";
 import { VNode } from "preact";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 interface IReward {
   id: string;
@@ -30,7 +30,7 @@ const Rewards = () => {
       detailedDescription: t("MonthlyBonusDetailed"),
       unlockedAtLevel: 0,
       icon: (
-        <img src={`${BASE_URL}/images/icons/monthly.png`} alt="monthly-bonus" className="w-[55px] h-[64px]" />
+        <img src={`${ASSET_BASE_URL}/images/icons/monthly.png`} alt="monthly-bonus" className="w-[55px] h-[64px]" />
       )
     },
     {
@@ -40,7 +40,7 @@ const Rewards = () => {
       unlockCondition: t("UnlockedBronzeVIP"),
       unlockedAtLevel: 1,
       icon: (
-        <img src={`${BASE_URL}/images/icons/rakeback.png`} alt="rakeback" className="w-[55px] h-[64px]" />
+        <img src={`${ASSET_BASE_URL}/images/icons/rakeback.png`} alt="rakeback" className="w-[55px] h-[64px]" />
       )
     },
     {
@@ -50,7 +50,7 @@ const Rewards = () => {
       unlockCondition: t("UnlockedBronzeVIP"),
       unlockedAtLevel: 1,
       icon: (
-        <img src={`${BASE_URL}/images/icons/weekly-boost.png`} alt="weekly-boost" className="w-[55px] h-[64px]" />
+        <img src={`${ASSET_BASE_URL}/images/icons/weekly-boost.png`} alt="weekly-boost" className="w-[55px] h-[64px]" />
       )
     },
     {
@@ -60,7 +60,7 @@ const Rewards = () => {
       unlockCondition: t("UnlockedPlatinumVIP"),
       unlockedAtLevel: 4,
       icon: (
-        <img src={`${BASE_URL}/images/icons/reload.png`} alt="reload" className="w-[55px] h-[64px]" />
+        <img src={`${ASSET_BASE_URL}/images/icons/reload.png`} alt="reload" className="w-[55px] h-[64px]" />
       )
     }
   ];

@@ -3,7 +3,7 @@ import { userState } from "@/state/userState";
 import { Users, Crown, ChartArea, Shield, Globe, Headphones, Handshake, MessageSquare, FileText, Trophy } from "lucide-preact";
 import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
-import {BASE_URL} from "@/config/constants";
+import {ASSET_BASE_URL} from "@/config/constants";
 import { vipOpenedState } from "@/state/vipOpenedState";
 import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
 
@@ -43,7 +43,7 @@ export const useTablist = () => {
           key: "live",
           icon: (
             <img
-              src={`${BASE_URL}/images/icons/live-icon.svg`}
+              src={`${ASSET_BASE_URL}/images/icons/live-icon.svg`}
               alt="Live"
               className="w-[24px] h-[24px]"
             />
@@ -54,23 +54,21 @@ export const useTablist = () => {
           title: t("Sports"),
           href: "/sport",
           key: "sport",
-          icon: <img src={`${BASE_URL}/images/icons/sport-icon.svg`} alt="Sport" />,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/sport-icon.svg`} alt="Sport" />,
           navIcon: getNavIcon("sport"),
         },
         {
           title: t("Casino"),
-          // href: "/casino/slots?custom=1&category=slot-top-slots",
           key: "slots",
           extra: ["/casino"],
-          icon: <img src={`${BASE_URL}/images/icons/slot-icon.svg`} alt="Slot" />,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/slot-icon.svg`} alt="Slot" />,
           navIcon: getNavIcon("slots"),
         },
         {
           title: t("Live Casino"),
-          // href: "/live-casino",
           key: "live-casino",
           icon: (
-            <img src={`${BASE_URL}/images/icons/livecasino-icon.svg`} alt="Live Casino" />
+            <img src={`${ASSET_BASE_URL}/images/icons/livecasino-icon.svg`} alt="Live Casino" />
           ),
           navIcon: getNavIcon("live-casino"),
         },
@@ -79,7 +77,7 @@ export const useTablist = () => {
           href: "/promotions",
           key: "promotions",
           icon: (
-            <img src={`${BASE_URL}/images/icons/promotions.svg`} alt="Promotions" />
+            <img src={`${ASSET_BASE_URL}/images/icons/promotions.svg`} alt="Promotions" />
           ),
           navIcon: getNavIcon("promotions"),
           expandable: true,
@@ -87,17 +85,17 @@ export const useTablist = () => {
             {
               title: "Sorteo Semanal d...",
               // href: "/promotions/15",
-              icon: `${BASE_URL}/images/icons/reward.svg`,
+              icon: `${ASSET_BASE_URL}/images/icons/reward.svg`,
             },
             {
               title: "Carrera de $100k",
               // href: "/promotions/12",
-              icon: `${BASE_URL}/images/icons/live-icon.svg`,
+              icon: `${ASSET_BASE_URL}/images/icons/live-icon.svg`,
             },
             {
               title: "Pragmatic Drops ...",
               // href: "/promotions/13",
-              icon: `${BASE_URL}/images/icons/promotions.svg`,
+              icon: `${ASSET_BASE_URL}/images/icons/promotions.svg`,
             },
           ],
         },
@@ -105,14 +103,14 @@ export const useTablist = () => {
           title: t("Games"),
           href: "/casino/games",
           key: "games",
-          icon: <img src={`${BASE_URL}/images/icons/games-icon.svg`} alt="Games" />,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/games-icon.svg`} alt="Games" />,
           navIcon: getNavIcon("games"),
         },
         {
           title: t("Live Racing"),
           href: "/casino/live-racing?sportsBookPath=/horse-racing",
           key: "live-racing",
-          icon: <img src={`${BASE_URL}/images/icons/live-racing.svg`} alt="Live Racing" />,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/live-racing.svg`} alt="Live Racing" />,
           navIcon: getNavIcon("live-racing"),
         },
         {
@@ -121,7 +119,7 @@ export const useTablist = () => {
           key: "virtual-sports",
           icon: (
             <img
-              src={`${BASE_URL}/images/icons/virtualsports-icon.svg`}
+              src={`${ASSET_BASE_URL}/images/icons/virtualsports-icon.svg`}
               alt="Virtual Sports"
             />
           ),
@@ -131,35 +129,35 @@ export const useTablist = () => {
           title: t("Jackpot"),
           href: "/casino/jackpot",
           key: "jackpot",
-          icon: <img src={`${BASE_URL}/images/icons/jackpot-icon.svg`} alt="Jackpot" />,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/jackpot-icon.svg`} alt="Jackpot" />,
           navIcon: getNavIcon("jackpot"),
         },
         {
           title: t("TV Games"),
           href: "/casino/tv-games",
           key: "tv-games",
-          icon: <img src={`${BASE_URL}/images/icons/tv-games.svg`} alt="TV Games" />,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/tv-games.svg`} alt="TV Games" />,
           navIcon: getNavIcon("tv-games"),
         },
         {
           title: t("Trebuchet"),
           href: "/trebuchet",
           key: "trebuchet",
-          icon: <img src={`${BASE_URL}/images/icons/trebuchet.svg`} alt="Trebuchet" />,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/trebuchet.svg`} alt="Trebuchet" />,
           navIcon: getNavIcon("trebuchet"),
         },
         {
           title: t("Affiliate") || "Affiliate",
           href: "/affiliate",
           key: "affiliate",
-          icon: <img src={`${BASE_URL}/images/icons/affiliate.svg`} alt="Affiliate"/>,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/affiliate.svg`} alt="Affiliate"/>,
           navIcon: getNavIcon("affiliate"),
         },
         {
           title: t("VIP Club") || "VIP Club",
           href: "",
           key: "vip-club",
-          icon: <img src={`${BASE_URL}/images/icons/vip-club.svg`} alt="VIP-Club"/>,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/vip-club.svg`} alt="VIP-Club"/>,
           navIcon: getNavIcon("vip-club"),
           onclick: () => {
             vipOpenedState.value = true;
@@ -170,21 +168,21 @@ export const useTablist = () => {
           title: t("Blog") || "Blog",
           href: "/blog",
           key: "blog",
-          icon: <img src={`${BASE_URL}/images/icons/blog.svg`} alt="Blog"/>,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/blog.svg`} alt="Blog"/>,
           navIcon: getNavIcon("blog"),
         },
         {
           title: t("Forum") || "Forum",
           href: "/forum",
           key: "forum",
-          icon: <img src={`${BASE_URL}/images/icons/forum.svg`} alt="Forum"/>,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/forum.svg`} alt="Forum"/>,
           navIcon: getNavIcon("forum"),
         },
         {
           title: t("Sponsorships") || "Sponsorships",
           href: "/sponsorships",
           key: "sponsorships",
-          icon: <img src={`${BASE_URL}/images/icons/sponsorships.svg`} alt="sponsorships"/>,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/sponsorships.svg`} alt="sponsorships"/>,
           navIcon: getNavIcon("sponsorships"),
           expandable: true,
           expandableItems: [
@@ -195,13 +193,13 @@ export const useTablist = () => {
           title: t("Responsible Gambling") || "Responsible Gambling",
           href: "/responsible-gambling",
           key: "responsible-gambling",
-          icon: <img src={`${BASE_URL}/images/icons/responsible-gambling.png`} alt="Responsible-gambling"/>,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/responsible-gambling.png`} alt="Responsible-gambling"/>,
           navIcon: getNavIcon("responsible-gambling"),
         },
         {
           title: t("Live Support") || "Live Support",
           key: "live-support",
-          icon: <img src={`${BASE_URL}/images/icons/live-support.svg`} alt="Live Support"/>,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/live-support.svg`} alt="Live Support"/>,
           navIcon: getNavIcon("live-support"),
           onclick: () => {
             liveSupportExpandedState.value = !liveSupportExpandedState.value;
@@ -211,7 +209,7 @@ export const useTablist = () => {
           title: t("Language") || "Language",
           href: "#",
           key: "language",
-          icon: <img src={`${BASE_URL}/images/icons/language.svg`} alt="Language"/>,
+          icon: <img src={`${ASSET_BASE_URL}/images/icons/language.svg`} alt="Language"/>,
           navIcon: getNavIcon("language"),
           expandable: true,
         },

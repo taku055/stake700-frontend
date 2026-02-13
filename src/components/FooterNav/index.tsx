@@ -1,27 +1,25 @@
 import { useMediaQuery } from "usehooks-ts";
-import { BASE_URL, mobileMediaQuery } from "@/config/constants";
+import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
 import { useEffect, useMemo, useState } from "preact/hooks";
-import {
-  Home,
-  ChartArea,
-  Crown,
-  Users,
-} from "lucide-preact";
+import { Home, ChartArea, Crown, Users } from "lucide-preact";
 
-import {
-  Casino, LiveCasino, Live, Sports, Menu
-} from "@/components/icons";
+import { Sports } from "@/components/icons";
 
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
-import { navigationSidebarExpandedState, navigationSidebarOpenState } from "@/state/navigationSidebarState";
+import {
+  navigationSidebarExpandedState,
+  navigationSidebarOpenState,
+} from "@/state/navigationSidebarState";
 
 export default function FooterNav() {
   const isMobile = useMediaQuery(mobileMediaQuery);
   const pathname = useLocation();
   const t = useTranslations("Header");
-  const [isMenuOpen, setIsMenuOpen] = useState(navigationSidebarOpenState.value);
+  const [isMenuOpen, setIsMenuOpen] = useState(
+    navigationSidebarOpenState.value
+  );
 
   // Sync with signal state
   useEffect(() => {
@@ -42,29 +40,35 @@ export default function FooterNav() {
           key: "home",
           icon: <Home width={20} height={20} />,
         },
-        // {
-        //   title: t("Live"),
-        //   href: "/live?sportsBookPath=%2Flive",
-        //   key: "live",
-        //   icon: <img src="/images/icons/live.png" />,
-        // },
         {
           title: t("Sports"),
-          // href: "/sport",
+          href: "/sports",
           key: "sports",
           icon: <Sports />,
         },
         {
           title: t("Casino"),
-          href: "/casino/slots?custom=1&category=home",
+          href: "/casino/slots",
           key: "casino",
-          icon: (<img src={`${BASE_URL}/images/icons/casino.png`} width={20} height={20}/>),
+          icon: (
+            <img
+              src={`${ASSET_BASE_URL}/images/icons/casino.png`}
+              width={20}
+              height={20}
+            />
+          ),
         },
         {
           title: t("Live Casino"),
           href: "/casino/live-casino",
           key: "live-casino",
-          icon: (<img src={`${BASE_URL}/images/icons/live-casino.svg`} width={20} height={20}/>),
+          icon: (
+            <img
+              src={`${ASSET_BASE_URL}/images/icons/live-casino.svg`}
+              width={20}
+              height={20}
+            />
+          ),
         },
       ];
     } else {
@@ -96,7 +100,7 @@ export default function FooterNav() {
     }
   }, [userState.value, t]);
 
-  useEffect(() => { }, [userState.value, tabList]);
+  useEffect(() => {}, [userState.value, tabList]);
 
   const selectedKey = useMemo(() => {
     // if you use i18n like /en/..., strip the locale prefix here if needed
@@ -124,10 +128,11 @@ export default function FooterNav() {
               e.preventDefault();
               navigationSidebarExpandedState.value = false;
             }}
-            className={`flex flex-col items-center justify-center py-2 gap-1 h-full min-w-0 ${selectedKey === tab.key
-              ? "text-[var(--primary-color)] border-t-2 border-[var(--primary-color)]"
-              : "text-white"
-              } bg-transparent`}
+            className={`flex flex-col items-center justify-center py-2 gap-1 h-full min-w-0 ${
+              selectedKey === tab.key
+                ? "text-[var(--primary-color)] border-t-2 border-[var(--primary-color)]"
+                : "text-white"
+            } bg-transparent`}
           >
             <span className="text-sm my-auto h-full flex flex-col justify-center items-center">
               {tab.icon}
@@ -140,15 +145,22 @@ export default function FooterNav() {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            navigationSidebarExpandedState.value = !navigationSidebarExpandedState.value;
+            navigationSidebarExpandedState.value =
+              !navigationSidebarExpandedState.value;
           }}
-          className={`flex flex-col items-center justify-between py-2 min-w-0 h-full ${isMenuOpen
-            ? "text-[var(--primary-color)]"
-            : "text-white"
-            } bg-transparent`}
+          className={`flex flex-col items-center justify-between py-2 min-w-0 h-full ${
+            isMenuOpen ? "text-[var(--primary-color)]" : "text-white"
+          } bg-transparent`}
         >
-          <span className={`text-sm h-full flex flex-1 flex-col justify-center items-center text-white bg-transparent`}>
-            <img src={`${BASE_URL}/images/icons/menu.svg`} width={20} height={20} className="brightness-0 invert"/>
+          <span
+            className={`text-sm h-full flex flex-1 flex-col justify-center items-center text-white bg-transparent`}
+          >
+            <img
+              src={`${ASSET_BASE_URL}/images/icons/menu.svg`}
+              width={20}
+              height={20}
+              className="brightness-0 invert"
+            />
           </span>
           <span className="text-xs text-white">{t("Menu")}</span>
         </a>

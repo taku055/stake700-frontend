@@ -1,6 +1,6 @@
 import { Button } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 interface IOverviewProps {
   onDepositClick: () => void;
@@ -14,13 +14,13 @@ const Overview = ({ onDepositClick, onBuyCryptoClick }: IOverviewProps) => {
     <div className="flex flex-col  bg-[var(--background)] pt-4 gap-[16px] w-full h-full">
       {/* Wallet Graphic */}
       <div className="flex justify-center items-center mt-16px">
-        <img src={`${BASE_URL}/images/others/Wallet-boost.jpg`} alt="Wallet Boost" className="w-[500px] h-[220px] object-fill" />
+        <img src={`${ASSET_BASE_URL}/images/others/Wallet-boost.jpg`} alt="Wallet Boost" className="w-[500px] h-[220px] object-fill" />
 
       </div>
       {/* Empty Wallet Message */}
       <div className="flex flex-col justify-between px-4 gap-2">
         <h3 className="text-white text-[20px] leading-[28px] font-semibold">
-          {t("Your Betalarab Wallet is Currently Empty")}
+          {t("Your Vistabet777 Wallet is Currently Empty")}
         </h3>
         <p className="text-white/70 text-[16px] leading-[24px]">
           {t("WalletGetStartedDesc")}

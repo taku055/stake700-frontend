@@ -1,25 +1,27 @@
 import { Route, Router } from "preact-iso";
-import LivePage from "@/pages/live";
-import SportPage from "@/pages/sport";
 import CasinoLayout from "@/pages/casino";
 import PromotionsPage from "@/pages/promotions";
 import ArticlePage from "@/pages/promotions/ArticlePage";
-import TrebuchetPage from "@/pages/trebuchet";
-import HomePage from "@/pages/home";
 import NotFound404 from "@/pages/not-found";
 import GamePageComponent from "@/pages/game";
 import AgentPage from "@/pages/agent";
 import SuperAgentPage from "@/pages/superagent";
 import AreaManagerPage from "@/pages/area_manager";
-import TombalaPage from "@/pages/tombala";
 import AffiliatesLayout from "@/pages/affiliates";
-import AboutUs from "@/pages/about-us";
 import ContactUs from "@/pages/contact-us";
 import OtherRules from "@/pages/other-rules";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import FAQ from "@/pages/faq";
-import ProvablyFairLayout from "@/pages/ProvablyFair";
+import ProvablyFairLayout from "@/pages/support/provably-fair";
 import MyBetsLayout from "@/pages/betHistory";
+import HelpCenterPage from "@/pages/support/help_center";
+import ResponsibleGamblingPage from "@/pages/support/responsible_gambling";
+import GamblingHelplinePage from "@/pages/support/gambling_helpline";
+import SelfExclusionPage from "@/pages/support/self_exclusion";
+import LawEnforcementRequestPage from "@/pages/support/law_enforcement_request";
+import AMLPolicyPage from "@/pages/about-us/aml_policy";
+import HomePage from "@/pages/home";
+import SportPage from "@/pages/sport";
 
 export default function AppRoute() {
   return (
@@ -27,9 +29,7 @@ export default function AppRoute() {
       <Route path="/" component={HomePage} />
       <Route path="/provably-fair" component={ProvablyFairLayout} />
 
-      <Route path="/casino/live-casino" component={LivePage} />
-      <Route path="/casino/live" component={LivePage} />
-      {/* <Route path="/sport" component={SportPage} /> */}
+      <Route path="/sports" component={SportPage} />
 
       <Route path="/casino/:pageType" component={CasinoLayout} />
       <Route path="/casino/:pageType/*" component={CasinoLayout} />
@@ -37,16 +37,19 @@ export default function AppRoute() {
 
       <Route path="/promotions" component={PromotionsPage} />
       <Route path="/promotions/:articleId" component={ArticlePage} />
-      <Route path="/trebuchet" component={TrebuchetPage} />
-      <Route path="/tombala" component={TombalaPage} />
-      <Route path="/about-us" component={AboutUs} />
-      <Route path="/about-us/*" component={AboutUs} />
+      <Route path="/about-us/aml-policy" component={AMLPolicyPage} />
       <Route path="/contact-us" component={ContactUs} />
       <Route path="/other-rules" component={OtherRules} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/faq" component={FAQ} />
-      <Route path="/provably-fair" component={ProvablyFairLayout} />
-      <Route path="/provably-fair/*" component={ProvablyFairLayout} />
+
+      <Route path="/support/fairness" component={ProvablyFairLayout} />
+      <Route path="/support/fairness/*" component={ProvablyFairLayout} />
+      <Route path="/support/help-center" component={HelpCenterPage} />
+      <Route path="/support/responsible-gambling" component={ResponsibleGamblingPage} />
+      <Route path="/support/gambling-helpline" component={GamblingHelplinePage} />
+      <Route path="/support/self-exclusion" component={SelfExclusionPage} />
+      <Route path="/support/law-enforcement-request" component={LawEnforcementRequestPage} />
 
       <Route path="/agent" component={AgentPage} />
       <Route path="/agent/*" component={AgentPage} />

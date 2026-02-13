@@ -11,6 +11,7 @@ export type tGameSearchParams = {
   freespins?: number;
   randomOrderby?: boolean;
   platform?: string;
+  gameType?: "SLOT" | "LIVECASINO";
 };
 
 export const apiGetGames = async (params: tGameSearchParams) => {

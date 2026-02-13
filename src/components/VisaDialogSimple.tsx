@@ -290,6 +290,10 @@ export default function VisaDialogSimple({
             selectedKeys={countryList}
             variant="bordered"
             onSelectionChange={setCountryList as any}
+            popoverProps={{
+              shouldCloseOnScroll: false,
+              shouldBlockScroll: true,
+            }}
           >
             {countryCodesList.map((e) => (
               <SelectItem key={e.key}>{e.label}</SelectItem>

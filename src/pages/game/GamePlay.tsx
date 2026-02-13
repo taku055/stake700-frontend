@@ -1,9 +1,19 @@
 import { tGame } from "@/types/tGame";
 import { userState } from "@/state/userState";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@heroui/react";
 import { apiStartGame } from "@/api/game/apiStartGame";
 import { useMediaQuery } from "usehooks-ts";
-import { BASE_URL, mobileMediaQuery, placeholderGameImage } from "@/config/constants";
+import {
+  ASSET_BASE_URL,
+  mobileMediaQuery,
+  placeholderGameImage,
+} from "@/config/constants";
 import { FaPlay } from "react-icons/fa";
 import styles from "./GamePlay.module.scss";
 import { MdFullscreen } from "react-icons/md";
@@ -150,7 +160,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
         }
 
         setIframeSrc(iframeSrc1);
-        console.log({ "iframeSrc1": iframeSrc1 });
+        console.log({ iframeSrc1: iframeSrc1 });
       } catch (error) {
         if (String(error).toLowerCase().includes("restricted")) {
           toast.error(t("restricted-error"));
@@ -178,14 +188,14 @@ export default function GamePlay({ game }: IGamePlayProps) {
       style={
         fullscreen
           ? {
-            position: "fixed",
-            left: "0px",
-            top: "0px",
-            width: "100%",
-            height: "100%",
-            zIndex: 101,
-            borderRadius: "0px",
-          }
+              position: "fixed",
+              left: "0px",
+              top: "0px",
+              width: "100%",
+              height: "100%",
+              zIndex: 101,
+              borderRadius: "0px",
+            }
           : {}
       }
     >
@@ -210,51 +220,20 @@ export default function GamePlay({ game }: IGamePlayProps) {
           />
         ) : (
           <>
-            {(game?.img_custom || game?.img) && (
+            {(game?.img_custom || game?.img_vertical || game?.img) && (
               <img
-                src={game?.img || placeholderGameImage}
+                src={
+                  game?.img_custom ||
+                  game?.img_vertical ||
+                  game?.img ||
+                  placeholderGameImage
+                }
                 className="w-full h-full object-cover"
                 alt={game?.name}
               />
             )}
             <div className="w-full h-full bg-[#0E1224E5] top-[0px] absolute" />
             <div className="w-full  absolute left-[0px]  my-auto flex flex-col gap-[18px] z-[3] items-center justify-center">
-              {/* <div className="flex gap-2 h-[24px] w-full items-center justify-center mb-2">
-                <span className="text-[14px] leading-[20px] text-[#B1BAD3] font-weight-semibold">{t("Balance displayed in")}</span>
-                
-                <Dropdown backdrop="blur" className="flex h-[full] justify-center items-center py-3 px-5 overflow-y-auto bg-[var(--bar-background-color)]">
-                  <DropdownTrigger>
-                    <div className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
-                      <img src={`${BASE_URL}/images/currencies/${currencyState.value.code}.png`} alt="Currency" className="w-6 h-6" />
-                      <span className="text-white text-[16px] font-medium">
-                        {currencyState.value.code.toUpperCase()}
-                      </span>
-                      <ChevronDown size={14} color="white" />
-                    </div>
-                  </DropdownTrigger>
-                  <DropdownMenu aria-label={t("Select Currency")} variant="flat" className="bg-[var(--bar-background-color)]">
-                    {CURRENCY_LIST.map((currency) => (
-                      <DropdownItem
-                        key={currency.unit}
-                        value={currency.unit}
-                        onPress={() => {
-                          currencyState.value = currency;
-                          window.localStorage.setItem(
-                            "currency",
-                            JSON.stringify(currency)
-                          );
-                          setCurrency(currency.unit);
-                        }}
-                      >
-                        <div className="flex items-center gap-2">
-                          <img src={`${BASE_URL}/images/currencies/${currency.code}.png`} alt="Currency" className="w-6 h-6" />
-                          <span className="font-semibold">{currency.code.toUpperCase()}</span>
-                        </div>
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-              </div> */}
               <div className="flex gap-2 h-[24px] w-full items-center justify-center p-2">
                 {game?.demo && (
                   <>

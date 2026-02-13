@@ -66,10 +66,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             class={clsx(
               "relative flex items-center",
               borderBase,
-              // "bg-[#fff1] border-none rounded-sm!",
-              // "border-none rounded-sm!",
+              "bg-[#fff1] border-none rounded-sm!",
+              "border-none rounded-sm!",
               "transition-colors",
-              // "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-secondary)] rounded-sm! h-[44px] focus-within:bg-[var(--bar-background-color)] focus-within:border-[var(--background-secondary)]",
+              "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-secondary)] rounded-sm! h-[44px] focus-within:bg-[var(--bar-background-color)] focus-within:border-[var(--background-secondary)]",
               classNames?.inputWrapper,
               error && "border-red-500",
             )}

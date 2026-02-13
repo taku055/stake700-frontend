@@ -1,8 +1,5 @@
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
-import { vipOpenedState } from "@/state/vipOpenedState";
-import { depositDialogOpenedState } from "@/state/walletDialogState";
-
 
 export const FOOTER_LINK_DATA : Array<{
   title: string;
@@ -16,68 +13,49 @@ export const FOOTER_LINK_DATA : Array<{
   {
     title: "Casino",
     links: [
-      { title: "Casino Games", href: "/casino/slots?custom=1&category=home"},
+      { title: "Casino Games", href: "/casino/search"},
       { title: "Slots", href: "/casino/slots" },
       { title: "Live Casino", href: "/casino/live-casino" },
-      { title: "Roulette", href: "/casino/live-casino?custom=2&category=rouletteglobal" },
-      { title: "Blackjack", href: "/casino/live-casino?custom=2&category=blackjacks" },
-      { title: "Poker", href: "/casino/live-casino?custom=2&category=videopoker" },
-      { title: "Publishers", href: "/publishers" },
+      { title: "Roulette", href: "/casino/live-casino?custom=1&category=rouletteglobal" },
+      { title: "Blackjack", href: "/casino/live-casino?custom=1&category=blackjacks" },
+      { title: "Baccarat", href: "/casino/live-casino?custom=1&category=baccaratglobal" },
       { title: "Promos & Competitions", href: "/promotions" },
-      { title: "Betalarab Engine", href: "/Betalarab-engine", icon: `/images/icons/icons/link.png` },
-      { title: "Betalarab Vendors", href: "/Betalarab-vendors", icon: `/images/icons/icons/link.png` },
     ],
   },
-  {
-    title: "Sports",
-    links: [
-      { title: "Sportsbook", href: "/sportsbook" },
-      { title: "Live Sports", href: "/live-sports" },
-      { title: "Soccer", href: "/sports/soccer" },
-      { title: "Basketball", href: "/sports/basketball" },
-      { title: "Tennis", href: "/sports/tennis" },
-      { title: "eSports", href: "/sports/esports" },
-      { title: "Bet Bonuses", href: "/sports/bonuses" },
-      { title: "Sports Rules", href: "/sports/rules" },
-      { title: "Racing Rules", href: "/sports/racing-rules" },
-    ],
-  },
+  // {
+  //   title: "Sports",
+  //   links: [
+  //     { title: "Sportsbook", href: "/sportsbook" },
+  //     { title: "Live Sports", href: "/live-sports" },
+  //     { title: "Soccer", href: "/sports/soccer" },
+  //     { title: "Basketball", href: "/sports/basketball" },
+  //     { title: "Tennis", href: "/sports/tennis" },
+  //     { title: "eSports", href: "/sports/esports" },
+  //     { title: "Bet Bonuses", href: "/sports/bonuses" },
+  //     { title: "Sports Rules", href: "/sports/rules" },
+  //     { title: "Racing Rules", href: "/sports/racing-rules" },
+  //   ],
+  // },
   {
     title: "Support",
     links: [
-      { title: "Help Center", href: "/help-center" },
-      { title: "Fairness", href: "/fairness" },
-      { title: "Responsible Gambling", href: "/responsible-gambling" },
-      { title: "Gambling Helpline", href: "/gambling-helpline" },
+      { title: "Help Center", href: "/support/help-center" },
+      { title: "Fairness", href: "/support/fairness" },
+      { title: "Responsible Gambling", href: "/support/responsible-gambling" },
+      { title: "Gambling Helpline", href: "/support/gambling-helpline" },
       { title: "Live Support", onClick: () => {
         liveSupportExpandedState.value = true;
       } },
-      { title: "Self Exclusion", href: "/self-exclusion" },
-      { title: "Law Enforcement Request", href: "/law-enforcement-request" },
+      { title: "Self Exclusion", href: "/support/self-exclusion" },
+      { title: "Law Enforcement Request", href: "/support/law-enforcement-request" },
     ],
   },
   {
     title: "About Us",
     links: [
-      { title: "VIP Club", onClick: () => {
-        vipOpenedState.value = true;
-      } },
-      { title: "Affiliate", href: "/affiliate" },
       { title: "Privacy Policy", href: "/privacy-policy" },
-      { title: "AML Policy", href: "/aml-policy" },
-      { title: "Terms of Service", href: "/terms-of-service" },
-    ],
-  },
-  {
-    title: "Payment Info",
-    links: [
-      { title: "Deposit & Withdrawals", onClick: () => {
-        depositDialogOpenedState.value = true;
-      } },
-      { title: "Currency Guide", href: "/payments/currency-guide" },
-      { title: "Crypto Guide", href: "/payments/crypto-guide" },
-      { title: "Supported Crypto", href: "/payments/supported-crypto" },
-      { title: "How Much to Bet With", href: "/payments/how-much-to-bet" },
+      { title: "AML Policy", href: "/about-us/aml-policy" },
+      { title: "Contact Us", href: "/contact-us" },
     ],
   },
   {
@@ -95,38 +73,38 @@ export const FOOTER_LINK_DATA : Array<{
 export const FOOTER_SOCIAL_DATA = [
   {
     title: "Blog",
-    icon: `${BASE_URL}/images/icons/blog.svg`,
-    href: "https://betalarab.com/blog",
+    icon: `${ASSET_BASE_URL}/images/icons/blog.svg`,
+    href: "https://vistabet777.com/blog",
   },
   {
     title: "Forum",
-    icon: `${BASE_URL}/images/icons/forum.svg`,
-    href: "https://betalarab.com/forum",
+    icon: `${ASSET_BASE_URL}/images/icons/forum.svg`,
+    href: "https://vistabet777.com/forum",
   },
   {
     title: "Facebook",
-    icon: `${BASE_URL}/images/icons/facebook.svg`,
-    // href: "https://www.facebook.com/betalarab",
+    icon: `${ASSET_BASE_URL}/images/icons/facebook.svg`,
+    // href: "https://www.facebook.com/vistabet777",
     href: "#"
   },
   {
     title: "Twitter",
-    icon: `${BASE_URL}/images/icons/twitter.svg`,
+    icon: `${ASSET_BASE_URL}/images/icons/twitter.svg`,
     href: "#"
   },
   {
     title: "Instagram",
-    icon: `${BASE_URL}/images/icons/instagram.svg`,
+    icon: `${ASSET_BASE_URL}/images/icons/instagram.svg`,
     href: "#"
   },
   {
     title: "Youtube",
-    icon: `${BASE_URL}/images/icons/youtube.svg`,
+    icon: `${ASSET_BASE_URL}/images/icons/youtube.svg`,
     href: "#"
   },
   {
     title: "Shop",
-    icon: `${BASE_URL}/images/icons/shop.svg`,
-    href: "https://betalarab.com/shop"
+    icon: `${ASSET_BASE_URL}/images/icons/shop.svg`,
+    href: "https://vistabet777.com/shop"
   },
 ];

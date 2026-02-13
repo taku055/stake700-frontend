@@ -1,106 +1,94 @@
-import { useTranslations } from "@/context/I18nContext";
-import { userState } from "@/state/userState";
-import { useLocation } from "preact-iso";
-import { Button, user } from "@heroui/react";
-import { EmblaBanner } from "./components/EmblaBanner";
-import { Search } from "lucide-preact";
-import { Input } from "@/components/common";
-import { useState } from "preact/hooks";
-import TrendingGamesPanel from "@/components/TrendingGamesPanel";
-import TrendingSports from "@/components/TrendingSports";
-import PromotionsGroup from "@/components/PromotionsGroup";
-import EmulateBetting from "@/components/EmulateBetting";
-import FAQ from "@/pages/faq";
-import { searchWidgetState } from "@/state/searchWidgetState";
-import { Select, SelectItem } from "@heroui/react";
-import VipCard from "@/components/Vip-club/VipCard";
+import { useMemo } from "preact/hooks";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
-import SearchWidget, { SearchWidgetHeader } from "@/components/Header/SearchWidget";
+import { CasinoGameGrid } from "@/pages/casino/components/CasinoGameGrid";
+import { HOME_CATEGORIES } from "./data.ts";
+import { useTranslations } from "@/context/I18nContext";
+import GameGroup from "@/components/GameGroup";
+import { useLocation } from "preact-iso";
+import { Link } from "@/components/common";
+import { EmblaBanner } from "@/components/EmblaBanner/EmblaBanner";
+import ContentWrapper from "@/provider/ContentWrapper.tsx";
+import { userState } from "@/state/userState.ts";
 
-export default function PageComponent() {
-
-  console.log("backend url", import.meta.env.VITE_BACKEND_URL);
+export default function HomePage() {
   const location = useLocation();
   if (userState.value?.role === "SUPERAGENT") {
     location.route("/superagent");
     return null;
-  }
-
-  if (userState.value?.role === "AREA_MANAGER") {
+  } else if (userState.value?.role === "AREA_MANAGER") {
     location.route("/area_manager");
     return null;
-  }
-
-  if (userState.value?.role === "AGENT") {
+  } else if (userState.value?.role === "AGENT") {
     location.route("/agent");
     return null;
   }
 
-  const t = useTranslations("HomePage");
   const isMobile = useMediaQuery(mobileMediaQuery);
-  const [searchQuery, setSearchQuery] = useState("");
+  const t = useTranslations("HomePage");
+  const activeCategory = useMemo(() => {
+    return (
+      HOME_CATEGORIES.find((cat) => cat.category === location.query.category)
+        ?.category || HOME_CATEGORIES[0].category
+    );
+  }, [location.query.category]);
 
   return (
-    <div className="flex flex-col z-0 items-center justify-center w-full font-weight-300 gap-6">
-      {/* <div className="relative w-full max-w-[1260px]  mx-auto">
-        <SearchWidgetHeader />
-      </div> */}
-      <div className="flex flex-col">
-        {isMobile && userState.value?.id && (
-          <VipCard />
-        )}
-        <EmblaBanner />
-      </div>
+    <>
+      <EmblaBanner />
+      <ContentWrapper>
+        <div className="flex flex-col gap-4 mt-[20px] overflow-x-auto mb-4">
+          <div className="flex w-fit gap-2 rounded-full p-2 bg-[var(--bar-background-color)]">
+            {HOME_CATEGORIES.map((category) => (
+              <Link
+                href={`/?category=${category.category}`}
+                key={category.key}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors flex-shrink-0 ${
+                  activeCategory === category.category
+                    ? "bg-[var(--background-secondary)] text-white"
+                    : "text-[var(--text-color)] hover:bg-[var(--background-secondary)]"
+                }`}
+              >
+                <img
+                  src={category.icon}
+                  alt={category.name}
+                  className="w-4 h-4 grayscale object-contain"
+                />
+                {t(category.name) || category.name}
+              </Link>
+            ))}
+          </div>
+        </div>
 
-      <div className="flex flex-col max-w-[1200px] w-full gap-6">
-        {/* <div className="flex w-full h-[52px] px-3 md:px-0 ">
-          <div className="flex w-full h-full bg-[var(--background-secondary)] items-center justify-center border-[2px] border-[var(--background-tertiary)] overflow-hidden rounded-[8px]">
-            <Select
-              defaultSelectedKeys={['casino']}
-              onSelectionChange={(e) => {
-              }}
-              classNames={{
-                base: "flex w-auto items-center justify-center bg-[var(--background-secondary)] text-[16px] leading-[24px] hover:bg-[var(--background-secondary)] focus:bg-[var(--background-secondary)] h-full border-r-[2px] border-[var(--background-tertiary)] bg-transparent",
-                trigger: "w-auto whitespace-nowrap min-w-[108px] bg-[var(--background-secondary)] text-[16px] leading-[24px]",
-                listbox: "w-auto",
-                value: "w-auto whitespace-nowrap",
-                popoverContent: "w-auto",
-              }}>
-              <SelectItem key="casino" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Casino</SelectItem>
-              <SelectItem key="sports" className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap">Sports</SelectItem>
-            </Select>
-            
-            <div className="flex items-center justify-center p-2">
-              <Search size={16} className="w-[20px] h-[20px]" />
-            </div>
-            <Input
-              type="text"
-              placeholder={t("Search")}
-              value={searchQuery}
-              onChange={(e: any) => setSearchQuery(e.target.value)}
-              onFocus={(e: any) => {
-                searchWidgetState.value = true;
-              }}
-              classNames={{
-                inputWrapper: "bg-[var(--background-secondary)] border-none rounded-none h-[44px]",
-                input: "text-white text-[16px]",
-              }}
+        {/* Content based on activeTab */}
+        {activeCategory === "" ? (
+          <div className="flex flex-col gap-4">
+            {HOME_CATEGORIES.filter((category) => category.category !== "").map(
+              (category) => (
+                <GameGroup
+                  key={category.key}
+                  category={category.category}
+                  title={category.name}
+                  isCustom={true}
+                  viewallLink={`/?category=${category.category}`}
+                />
+              )
+            )}
+          </div>
+        ) : (
+          <div
+            className={`w-full flex ${
+              isMobile ? "flex-col" : "flex-row"
+            } gap-6`}
+          >
+            <CasinoGameGrid
+              isCustom={true}
+              category={activeCategory}
+              gameType="SLOT"
             />
           </div>
-        </div> */}
-        <SearchWidget />
-        <TrendingGamesPanel title="Trending Games" />
-        <TrendingSports title="Trending Sports" />
-        <PromotionsGroup />
-        <EmulateBetting />
-        <FAQ />
-      </div>
-      {/* <div className="fixed bottom-1 right-4 w-[60px] h-[44px] rounded-full flex justify-center items-center">
-        <Button className="w-full h-full rounded-full flex justify-center items-center bg-[#0F212E]" variant="light" size="sm">
-          <img src="/images/icons/icons/live-support.svg" alt="Chat" className="w-5 h-5" />
-        </Button>
-      </div> */}
-    </div>
+        )}
+      </ContentWrapper>
+    </>
   );
 }

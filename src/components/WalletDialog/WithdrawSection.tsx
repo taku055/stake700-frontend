@@ -24,7 +24,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 import { effect } from "@preact/signals";
 import { Search, EyeOff, Eye } from "lucide-preact";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 interface ICryptoOption {
   symbol: string;

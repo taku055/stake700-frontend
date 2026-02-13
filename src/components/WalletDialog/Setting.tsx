@@ -2,7 +2,7 @@ import { useState } from "preact/hooks";
 import { Button } from "@heroui/react";
 import { Switch } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";
-import {BASE_URL, CURRENCY_LIST} from "@/config/constants";
+import {ASSET_BASE_URL, CURRENCY_LIST} from "@/config/constants";
 
 const fiatCurrencies = [
   { code: "ARS" },
@@ -96,14 +96,14 @@ const Setting = () => {
                 {isSelected ? (
                   <div className="w-6 h-6 rounded-full bg-[var(--green-color)] flex items-center justify-center shrink-0 overflow-hidden">
                     <img 
-                      src={`${BASE_URL}/images/currencies/${currency.code}.png`}
+                      src={`${ASSET_BASE_URL}/images/currencies/${currency.code}.png`}
                       alt={currency.code}
                       className="w-full h-full object-contain"
                     />
                   </div>
                 ) : (
                   <img 
-                    src={`${BASE_URL}/images/currencies/${currency.code}.png`}
+                    src={`${ASSET_BASE_URL}/images/currencies/${currency.code}.png`}
                     alt={currency.code}
                     className="w-6 h-6 object-contain shrink-0"
                   />

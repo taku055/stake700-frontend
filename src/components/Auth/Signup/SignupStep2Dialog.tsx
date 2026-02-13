@@ -5,7 +5,7 @@ import { loginOpenedState } from "@/state/loginOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { Eye, EyeOff } from "lucide-preact";
 import { parseDate, CalendarDate } from "@internationalized/date";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 import { signupRequestState } from "@/state/signupRequestState";
 
 interface ISignupStep2DialogProps {
@@ -80,7 +80,7 @@ export default function SignupStep2Dialog({
         <div className="flex flex-col justify-between items-start w-full p-[16px] pb-0">
           <div className="flex flex-col w-full items-start gap-[16px]">
             <img
-              src={`${BASE_URL}/images/icons/logo.svg`}
+              src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
               className="h-[36px] md:h-[36px] md:max-w-[180px]"
               alt={import.meta.env.VITE_SITE_NAME as string}
             />
@@ -118,7 +118,7 @@ export default function SignupStep2Dialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Email")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="email"
@@ -136,7 +136,7 @@ export default function SignupStep2Dialog({
               <div className="">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Username")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="text"
@@ -158,7 +158,7 @@ export default function SignupStep2Dialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Password")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type={showPassword ? "text" : "password"}
@@ -188,7 +188,7 @@ export default function SignupStep2Dialog({
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Date of Birth")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <DatePicker
                   value={dateOfBirth}

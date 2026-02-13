@@ -1,15 +1,18 @@
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 import { useMemo, useState, useEffect } from "preact/hooks";
-import { navigationSidebarExpandedState, navigationSidebarOpenState } from "@/state/navigationSidebarState";
+import {
+  navigationSidebarExpandedState,
+  navigationSidebarOpenState,
+} from "@/state/navigationSidebarState";
 import { useLocation } from "preact-iso";
 import { useTablist } from "@/hooks/useTablist";
-import { CATEGORY_DATA, tPageType } from "@/pages/casino/data";
+import { tPageType } from "@/pages/casino/data";
 import CollapsedSidebar from "./CollapsedSidebar";
 import ExpandedDrawer from "./ExpandedDrawer";
-import { useCasinoCategories } from "@/hooks/useCasinoCategories";
 import MobileDrawer from "./MobileDrawer";
-import {selectedTabState} from "@/state/selectedTab";
+import { userState } from "@/state/userState";
+import { useSelectedTab } from "@/hooks/useSelectedTab";
 
 interface NavigationItem {
   title: string;
@@ -29,26 +32,30 @@ interface NavigationItem {
 
 export default function NavigationSidebar() {
   const isMobile = useMediaQuery(mobileMediaQuery);
-  const [isExpanded, setIsExpanded] = useState(navigationSidebarExpandedState.value);
+  const [isExpanded, setIsExpanded] = useState(
+    navigationSidebarExpandedState.value
+  );
   const [isOpen, setIsOpen] = useState(navigationSidebarOpenState.value);
   const { tabList } = useTablist();
   const location = useLocation();
+  const hideSidebar = useMemo(
+    () => userState.value?.role && userState.value?.role !== "NORMAL",
+    [userState.value?.role]
+  );
+  const selectedTab = useSelectedTab();
 
-  useEffect(() => {
-    if (location.path.includes("/casino")) {
-      selectedTabState.value = "casino";
-    } else if (location.path.includes("/live-casino")) {
-      selectedTabState.value = "sports";
-    } else {
-      selectedTabState.value = null;
-    }
-  }, [location.path]);
+  if (hideSidebar) {
+    return null;
+  }
+
   // Sync with signal state
   useEffect(() => {
     navigationSidebarExpandedState.value = !isMobile;
-    const unsubscribeExpanded = navigationSidebarExpandedState.subscribe((value) => {
-      setIsExpanded(value);
-    });
+    const unsubscribeExpanded = navigationSidebarExpandedState.subscribe(
+      (value) => {
+        setIsExpanded(value);
+      }
+    );
     const unsubscribeOpen = navigationSidebarOpenState.subscribe((value) => {
       setIsOpen(value);
     });
@@ -60,19 +67,14 @@ export default function NavigationSidebar() {
   }, [isMobile]);
 
   // Filter main navigation items (Casino, Live Casino, Sports, etc.)
-
-  
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["promotions", "affiliate","vip-club", "blog", "forum"].includes(item.key)
+        ["promotions", "affiliate", "vip-club", "blog", "forum"].includes(
+          item.key
+        )
       )
       .map((item) => {
-        let pageType: tPageType | undefined;
-        if (item.key === "slots") pageType = "slots";
-        else if (item.key === "live-casino") pageType = "live-casino";
-        // else if (item.key === "sport") pageType = "sportbook";
-
         return {
           title: item.title,
           href: item.href || "",
@@ -80,7 +82,6 @@ export default function NavigationSidebar() {
           icon: item.icon,
           navIcon: item.navIcon,
           onclick: item.onclick,
-          pageType,
           expandable: item.expandable,
           expandableItems: item.expandableItems || [],
         };
@@ -102,19 +103,26 @@ export default function NavigationSidebar() {
       icon: string;
     }>;
   }> = useMemo(() => {
-    return tabList.filter((item) =>
-      ["sponsorships", "responsible-gambling", "live-support", "language"].includes(item.key)
-    ).map((item) => ({
-      title: item.title,
-      href: item.href || "",
-      key: item.key,
-      icon: item.icon,
-      navIcon: item.navIcon,
-      onclick: item.onclick,
-      pageType: undefined,
-      expandable: item.expandable,
-      expandableItems: item.expandableItems || [],
-    }));
+    return tabList
+      .filter((item) =>
+        [
+          "sponsorships",
+          "responsible-gambling",
+          "live-support",
+          "language",
+        ].includes(item.key)
+      )
+      .map((item) => ({
+        title: item.title,
+        href: item.href || "",
+        key: item.key,
+        icon: item.icon,
+        navIcon: item.navIcon,
+        onclick: item.onclick,
+        pageType: undefined,
+        expandable: item.expandable,
+        expandableItems: item.expandableItems || [],
+      }));
   }, [tabList]);
 
   // Determine selected main nav item
@@ -129,55 +137,51 @@ export default function NavigationSidebar() {
         return path.startsWith("/sport");
       } else if (item.key === "promotions") {
         return path.startsWith("/promotions");
-      }
-      else if (item.key === "live") {
+      } else if (item.key === "live") {
         return path.startsWith("/live");
       }
       return false;
     });
   }, [mainNavItems, location.path]);
 
-  // Always show static categories - don't change based on selected nav
-  // const { categories } = useCasinoCategories();
-
-  // console.log("categories", categories);
-
   // Mobile: Show drawer when open
   if (isMobile) {
     if (!isExpanded) {
       return null;
     }
-    return <MobileDrawer
-      mainNavItems={mainNavItems}
-      ExtraNavItems={ExtraNavItems}
-      selectedMainNavKey={selectedMainNav?.key}
-      // categories={categories}
-      categories={[]}
-      selectedMainNavTitle={selectedMainNav?.title || "Categories"}
-    />
+
+    return (
+      <MobileDrawer
+        mainNavItems={mainNavItems}
+        ExtraNavItems={ExtraNavItems}
+        selectedMainNavKey={selectedMainNav?.key}
+        categories={[]}
+        selectedMainNavTitle={selectedMainNav?.title || "Categories"}
+      />
+    );
   }
 
   // Desktop: Show collapsed sidebar (always visible) and expanded drawer (when expanded)
   return (
     <>
       <div className="bg-[var(--bar-background-color)] relative top-0 p-0 m-0">
-        {navigationSidebarExpandedState.value ? (
+        {navigationSidebarExpandedState.value && selectedTab === "casino" ? (
           <ExpandedDrawer
             mainNavItems={mainNavItems}
             ExtraNavItems={ExtraNavItems}
             selectedMainNavKey={selectedMainNav?.key}
-            // categories={categories}
             categories={[]}
             selectedMainNavTitle={selectedMainNav?.title || "Categories"}
           />
-        ) : ( !isMobile &&
-          <CollapsedSidebar
-            mainNavItems={mainNavItems}
-            ExtraNavItems={ExtraNavItems}
-            selectedMainNavKey={selectedMainNav?.key}
-            // categories={categories}
-            categories={[]}
-          />
+        ) : (
+          !isMobile && (
+            <CollapsedSidebar
+              mainNavItems={mainNavItems}
+              ExtraNavItems={ExtraNavItems}
+              selectedMainNavKey={selectedMainNav?.key}
+              categories={[]}
+            />
+          )
         )}
       </div>
     </>

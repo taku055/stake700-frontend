@@ -3,7 +3,7 @@ export type tGame = {
   platform_id?: string;
   name: string;
   img: string;
-  device: number;
+  device?: number;
   igp_title?: string;
   igp_categories?: string;
   soft_url?: string;
@@ -17,10 +17,10 @@ export type tGame = {
   megaways?: number;
   freespins?: number;
   freebonus?: number;
-  demo: boolean;
-  is_deleted: boolean;
+  demo?: boolean;
+  is_deleted?: boolean;
   img_custom?: string;
   providerId: string;
-  gameSource: "IGP" | "SOFT" | "GSS";
+  gameSource: "IGP" | "SOFT" | "GSS" | "BETCONSTRUCT" | "SLOTER" | "EVENBET";
   img_vertical?: string;
 };

@@ -24,27 +24,16 @@ export const PromotionSection: FunctionalComponent<{
       // Home page banners
       return {
         desktop: [
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/power-chance.jpg",
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/desktop/power-chance.jpg`,
         ],
         mobile: [
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/power-chance-mobile.jpg",
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/mobile/power-chance-mobile.jpg`,
         ],
       };
     } else if (currentPath.startsWith("/casino")) {
-      // Casino page banners
-      // return {
-      //   desktop: [
-      //     "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/promotion-cashback.webp",
-      //     "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/promotion-loyalty.webp",
-      //   ],
-      //   mobile: [
-      //     "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/promotion-cashback-mobile.webp",
-      //     "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/promotion-loyalty-mobile.webp",
-      //   ],
-      // };
       return {
         desktop: [
-          "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/cashback.webp",
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/desktop/cashback.webp`,
           "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/personal-offer.webp",
         ],
         mobile: [
@@ -57,24 +46,24 @@ export const PromotionSection: FunctionalComponent<{
       // Live casino page banners
       return {
         desktop: [
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/cashback.webp",
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/personal-offer.webp",
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/desktop/cashback.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/desktop/personal-offer.webp`,
         ],
         mobile: [
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/cashback-mobile.webp",
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/personal-offer-mobile.webp",
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/mobile/cashback-mobile.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/mobile/personal-offer-mobile.webp`,
         ],
       };
     } else {
       // Default banners
       return {
         desktop: [
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/promotion-cashback.webp",
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/desktop/promotion-loyalty.webp",
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/desktop/promotion-cashback.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/desktop/promotion-loyalty.webp`,
         ],
         mobile: [
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/promotion-cashback-mobile.webp",
-          "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotions/mobile/promotion-loyalty-mobile.webp",
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/mobile/promotion-cashback-mobile.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}/promotions/mobile/promotion-loyalty-mobile.webp`,
         ],
       };
     }

@@ -1,7 +1,7 @@
 import { tEmulateBet } from "@/types/tEmulateBet";
 
 const baseImg =
-  "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/cards/emulate-betting.webp";
+  "https://tekio.s3.eu-north-1.amazonaws.com/vistabet777/cards/emulate-betting.webp";
 
 const pad2 = (n: number) => String(n).padStart(2, "0");
 

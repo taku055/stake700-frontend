@@ -14,14 +14,12 @@ import {
   ModalBody,
   ModalHeader,
   Input,
-  Checkbox,
 } from "@/components/common";
 import { Select, SelectItem } from "@heroui/react";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
-import { registerOpenedState } from "@/state/registerOpenedState";
 import { Eye, EyeOff } from "lucide-preact";
-import { signupStep1OpenedState } from "@/state/registerOpenedState";
-import { BASE_URL } from "@/config/constants.ts";
+import { registerOpenedState, signupStep1OpenedState } from "@/state/registerOpenedState";
+import { ASSET_BASE_URL } from "@/config/constants.ts";
 
 
 interface ILoginComponentProps {
@@ -117,20 +115,10 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
       >
         <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
           <img
-            // src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
-            //   import.meta.env.VITE_SITE_NAME as string
-            // ).toLowerCase()}/logo.png`}
-            src={`${BASE_URL}/images/icons/logo.svg`}
+            src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
             className="h-[36px] md:h-[36px] md:max-w-[180px]"
             alt={import.meta.env.VITE_SITE_NAME as string}
           />
-          {/* <button
-            className="rounded-[4px] w-[20px] h-[20px]"
-            onClick={() => {
-              onClose();
-            }}
-          >
-          </button> */}
         </ModalHeader>
         <ModalBody className="flex flex-col p-[16px]">
           <form className="flex flex-col w-full gap-[16px]" onSubmit={onSubmit}>
@@ -141,7 +129,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Email or Username")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="text"
@@ -157,7 +145,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
               <div className="h-[84px] w-full flex flex-col pt-[16px]">
                 <label className="text-[#FFFFFF] flex text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Password")}</span>
-                  <img src={`${BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`${ASSET_BASE_URL}/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type={showPassword ? "text" : "password"}
@@ -169,19 +157,41 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   }}
                   endContent={
                     showPassword ? (
-                      <EyeOff 
-                        className="w-5 h-5 text-white transition-colors cursor-pointer" 
+                      <EyeOff
+                        className="w-5 h-5 text-white transition-colors cursor-pointer"
                         onClick={() => setShowPassword(!showPassword)}
                       />
                     ) : (
-                      <Eye 
-                        className="w-5 h-5 text-white transition-colors cursor-pointer" 
+                      <Eye
+                        className="w-5 h-5 text-white transition-colors cursor-pointer"
                         onClick={() => setShowPassword(!showPassword)}
                       />
                     )
                   }
                 />
               </div>
+              <div className="h-[84px] w-full flex flex-col pt-[16px]">
+                <Select
+                  label={t("are_you_an_agent")}
+                  placeholder={t("select_user_type")}
+                  selectedKeys={userType ? [userType] : []}
+                  onSelectionChange={(keys) =>
+                    setUserType(Array.from(keys as Set<string>)[0] || "NORMAL")
+                  }
+                  classNames={{
+                    trigger: "bg-[#fff1] border-none rounded-sm!",
+                    value: "text-white",
+                  }}
+                  popoverProps={{
+                    shouldCloseOnScroll: false,
+                    shouldBlockScroll: true,
+                  }}
+                >
+                  <SelectItem key="NORMAL">User</SelectItem>
+                  <SelectItem key="AGENT">Agent</SelectItem>
+                  <SelectItem key="SUPERAGENT">Super Agent</SelectItem>
+                  <SelectItem key="AREA_MANAGER">Area Manager</SelectItem>
+                </Select></div>
               <button
                 type="button"
                 onClick={() => {
@@ -205,47 +215,14 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
               </div>
             </div>
 
-            <div className="w-full h-[240px] gap-[24px] flex flex-col">
-              <div className="flex w-full h-[24px] items-center">
-                <div className="flex-1 h-[1px] bg-[var(--bar-background-color)]"></div>
-                <span className="w-[38px] px-[8px] text-center text-[16px] text-[#FFFFFF] font-normal leading-[24px] uppercase">OR</span>
-                <div className="flex-1 h-[1px] bg-[var(--bar-background-color)]"></div>
-              </div>
-
-              <Button
-                type="button"
-                className="w-full flex items-center justify-center text-white text-[14px] bg-[var(--background-secondary)] hover:bg-[#fff2] py-[12px] px-[28px] h-[48px] rounded-lg"
-                radius="sm"
-              >
-                {t("sign_in_with_passkey")}
-              </Button>
-
-              <Button
-                type="button"
-                className="w-full flex items-center justify-center text-white text-[14px] bg-[var(--background-secondary)] hover:bg-[#fff2] py-[12px] px-[28px] h-[48px] rounded-lg"
-                radius="sm"
-              >
-                <img src={`${BASE_URL}/images/icons/google.svg`} alt="Google" className="w-[20px] h-[20px]" />
-                {t("sign_in_with_google")}
-              </Button>
-
-              <Button
-                type="button"
-                className="w-full flex items-center justify-center text-white text-[14px] bg-[var(--background-secondary)] hover:bg-[#fff2] py-[12px] px-[28px] h-[48px] rounded-lg"
-                radius="sm"
-              >
-                {t("sign_in_another_way")}
-              </Button>
-            </div>
-
             <div className="text-center mt-[40px]">
               <span className="text-[16px] font-normal text-[#FFFFFFB2] leading-[24px] h-[24px]">
                 <span>{t("don_t_have_an_account")}?</span>{" "}
                 <button
                   type="button"
                   onClick={() => {
+                    registerOpenedState.value = true;
                     onClose();
-                    signupStep1OpenedState.value = true;
                   }}
                   className="text-[16px] font-semibold hover:underline leading-[24px] h-[24px]"
                 >

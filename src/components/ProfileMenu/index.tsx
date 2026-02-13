@@ -8,7 +8,7 @@ import { useLocation } from "preact-iso";
 import { Link } from "@/components/common";
 import { data } from "./data";
 import { profileMenuOpenedState } from "@/state/profilemenuState";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 export default function ProfileMenu() {
   const user = userState.value;

@@ -3,7 +3,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { vipData } from "@/config/vipData";
 import { ChevronUp, ChevronDown, Star, Info } from "lucide-preact";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 import VipCard from "./VipCard";
 
 const Overview = () => {
@@ -60,7 +60,7 @@ const Overview = () => {
     {
       name: t("Platinum I - III"),
       level: 4,
-      icon: <img src={`${BASE_URL}/images/icons/platinum1.png`} alt="platinum" className="w-4 h-4" />,
+      icon: <img src={`${ASSET_BASE_URL}/images/icons/platinum1.png`} alt="platinum" className="w-4 h-4" />,
       benefits: [
         t("Bonus from Support in currency of your choice"),
         t("Monthly bonus increased"),
@@ -70,7 +70,7 @@ const Overview = () => {
     {
       name: t("Platinum IV - VI"),
       level: 5,
-      icon: <img src={`${BASE_URL}/images/icons/platinum4.png`} alt="platinum" className="w-4 h-4" />,
+      icon: <img src={`${ASSET_BASE_URL}/images/icons/platinum4.png`} alt="platinum" className="w-4 h-4" />,
       benefits: [
         t("Dedicated VIP host"),
         t("Unlimited Reloads while maintaining a VIP host"),
@@ -81,7 +81,7 @@ const Overview = () => {
     {
       name: t("Diamond I - V"),
       level: 6,
-      icon: <img src={`${BASE_URL}/images/icons/diamond.png`} alt="diamond" className="w-4 h-4" />,
+      icon: <img src={`${ASSET_BASE_URL}/images/icons/diamond.png`} alt="diamond" className="w-4 h-4" />,
       benefits: [
         t("Bonus from VIP host in currency of your choice"),
         t("Exclusively customised benefits"),
@@ -161,7 +161,7 @@ const Overview = () => {
 
                 <ul className="flex flex-col gap-2 ml-4">
                   <li className="flex items-start gap-2">
-                    <span className="text-white/70 text-[14px]">{t("Your personal point of contact at Betalarab")}</span>
+                    <span className="text-white/70 text-[14px]">{t("Your personal point of contact at Vistabet777")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-white/70 text-[14px]">{t("Tailored bonuses and sports betting limits")}</span>
@@ -178,7 +178,7 @@ const Overview = () => {
           )}
         </div>
         <button className="text-[#FFFFFF] text-[14px] font-medium hover:underline py-4 text-left">
-          {t("Learn more about being a Betalarab VIP")}
+          {t("Learn more about being a Vistabet777 VIP")}
         </button>
       </div>
     </div>

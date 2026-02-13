@@ -1,6 +1,6 @@
 import { Modal, ModalContent } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 interface IWelcomeDialogProps {
   isOpen: boolean;
@@ -24,7 +24,7 @@ export default function WelcomeDialog({
         {/* Top Promotional Section */}
         <div className="relative rounded-t-[8px] overflow-hidden">
           {/* Decorative Glowing Shapes Background */}
-          <img src={ `${BASE_URL}/images/others/Welcome_image.jpg`} alt="Welcome Background" className="w-full h-full object-cover" />
+          <img src={ `${ASSET_BASE_URL}/images/others/Welcome_image.jpg`} alt="Welcome Background" className="w-full h-full object-cover" />
             
         </div>
 
@@ -32,7 +32,7 @@ export default function WelcomeDialog({
         <div className="bg-[var(--background)] p-[16px] pt-[32px] gap-[16px] flex flex-col items-center justify-center rounded-b-[8px]">
           {/* Title */}
           <h2 className="text-white text-[20px] font-semibold leading-[28px] text-center">
-            {t("Welcome to Betalarab!")}
+            {t("Welcome to Vistabet777!")}
           </h2>
 
           {/* Description */}

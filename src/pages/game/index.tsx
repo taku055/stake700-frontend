@@ -1,12 +1,11 @@
 import { apiGetGameById } from "@/api/common/apiGetGameById";
 import GamePlay from "./GamePlay";
-import MoreGameWrapper from "./MoreGameWrapper";
 import { useState, useEffect } from "preact/hooks";
 import { tGame } from "@/types/tGame";
 import Loader from "../../components/Loader";
-import TrendingGamesPanel from "@/components/TrendingGamesPanel";
 import EmulateBetting from "@/components/EmulateBetting";
 import ProviderGroup from "@/components/ProviderGroup";
+import GameGroup from "@/components/GameGroup";
 
 interface IGamePageComponentProps {
   gameId: string;
@@ -43,9 +42,7 @@ export default function GamePageComponent({ gameId }: IGamePageComponentProps) {
   return (
     <div className="flex flex-col max-w-[1200px] w-full mx-auto gap-[40px]">
       <GamePlay game={game} />
-      {/* <MoreGameWrapper game={game} /> */}
       <EmulateBetting />
-      <TrendingGamesPanel title="Suggested Games" />
       <ProviderGroup />
     </div>
   );

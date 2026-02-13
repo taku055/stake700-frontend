@@ -10,7 +10,7 @@ import Loader from "../Loader";
 import { visaOpenedState } from "@/state/visaOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
-import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID, BASE_URL } from "@/config/constants";
+import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID, ASSET_BASE_URL } from "@/config/constants";
 import { effect } from "@preact/signals";
 import { toast } from "@/helpers/toast";
 import { QRCodeSVG } from "qrcode.react";
@@ -230,7 +230,7 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
         <div className="flex justify-between items-center w-full h-[60px] min-h-[60px] px-[16px]">
           <div className="flex items-center gap-[12px]">
             <img
-              src={`${BASE_URL}/images/icons/wallet.svg`}
+              src={`${ASSET_BASE_URL}/images/icons/wallet.svg`}
               alt="Wallet Icon"
               className="w-[20px] h-[20px]"
             />

@@ -1,65 +1,56 @@
 import { signal } from "@preact/signals";
-import {tSport} from "@/types/tSport";
+import { tGame } from "@/types/tGame";
 
-export const sportsState = signal<tSport[]>([
+const imgData = [
   {
-    id: "1",
     name: "Soccer",
-    image: "buffer/soccer-en.png",
-    link: "#",
+    img: "buffer/soccer-en.png",
   },
   {
-    id: "2",
     name: "Basketball",
-    image: "buffer/basketball-en.png",
-    link: "#",
+    img: "buffer/basketball-en.png",
   },
   {
-    id: "3",
     name: "Cricket",
-    image: "buffer/cricket-en.png",
-    link: "#",
+    img: "buffer/cricket-en.png",
   },
   {
-    id: "4",
     name: "Tennis",
-    image: "buffer/tennis-en.png",
-    link: "#",
+    img: "buffer/tennis-en.png",
   },
   {
-    id: "5",
     name: "American Football",
-    image: "buffer/american-football-en.png",
-    link: "#",
+    img: "buffer/american-football-en.png",
   },
   {
-    id: "6",
     name: "Ice Hockey",
-    image: "buffer/ice-hockey-en.png",
-    link: "#",
+    img: "buffer/ice-hockey-en.png",
   },
   {
-    id: "7",
     name: "Darts",
-    image: "buffer/darts-en.png",
-    link: "#",
+    img: "buffer/darts-en.png",
   },
   {
-    id: "8",
     name: "Horse Racing",
-    image: "buffer/racing-en.png",
-    link: "#",
+    img: "buffer/racing-en.png",
   },
   {
-    id: "9",
     name: "Dota 2",
-    image: "buffer/dota-2-en.png",
-    link: "#",
+    img: "buffer/dota-2-en.png",
   },
   {
-    id: "10",
     name: "CS2",
-    image: "buffer/counter-strike-en.png",
-    link: "#",
-  }
-]);
+    img: "buffer/counter-strike-en.png",
+  },
+];
+
+export const sportsState = signal<tGame[]>(
+  imgData.map((item) => ({
+    id: item.name,
+    name: item.name,
+    img: item.img,
+    providerId: "",
+    soft_categories: [],
+    gameSource: "SOFT",
+  }))
+);

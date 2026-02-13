@@ -3,23 +3,14 @@
 .game {
   position: relative;
   overflow: hidden;
-  width: 150px;
-  height: 230px;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 10;
-  padding: 10px 6px;
 
   @include for-mobile-only {
     width: unset;
-  }
-
-  @include for-not-mobile {
-    &:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
   }
 
   .imgWrapper {
@@ -27,7 +18,7 @@
     overflow: hidden;
     flex: 1;
     display: flex;
-    aspect-ratio: 1;
+    aspect-ratio: 136/182;
     justify-content: center;
     border-radius: 10px;
     width: 100%;

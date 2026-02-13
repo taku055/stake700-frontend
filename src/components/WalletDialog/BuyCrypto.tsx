@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
 import { Button, Select, SelectItem, Input } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 import { ChevronDown, Search } from "lucide-preact";
 import { allChains } from "@/config/chains";
 import { CURRENCY_LIST } from "@/config/constants";
@@ -77,8 +77,11 @@ const BuyCrypto = () => {
   const [showCryptoDropdown, setShowCryptoDropdown] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const selectedCryptoData = allChains.find((c) => c.symbol === selectedCrypto) || allChains[0];
-  const selectedCurrencyData = currencyOptions.find((c) => c.value === selectedCurrency) || currencyOptions[0];
+  const selectedCryptoData =
+    allChains.find((c) => c.symbol === selectedCrypto) || allChains[0];
+  const selectedCurrencyData =
+    currencyOptions.find((c) => c.value === selectedCurrency) ||
+    currencyOptions[0];
 
   const filteredCryptoOptions = allChains.filter(
     (chain) =>
@@ -106,8 +109,12 @@ const BuyCrypto = () => {
                 className="w-8 h-8"
               />
               <div className="flex flex-col items-start flex-1">
-                <span className="text-white text-[16px] font-medium">{selectedCryptoData.name}</span>
-                <span className="text-white/60 text-[12px]">{selectedCryptoData.name}</span>
+                <span className="text-white text-[16px] font-medium">
+                  {selectedCryptoData.name}
+                </span>
+                <span className="text-white/60 text-[12px]">
+                  {selectedCryptoData.name}
+                </span>
               </div>
               <ChevronDown className="w-5 h-5 text-white/60" />
             </button>
@@ -124,7 +131,8 @@ const BuyCrypto = () => {
                       value={searchQuery}
                       onChange={(e: any) => setSearchQuery(e.target.value)}
                       classNames={{
-                        inputWrapper: "bg-[var(--bar-background-color)] border-none rounded-none h-[44px]",
+                        inputWrapper:
+                          "bg-[var(--bar-background-color)] border-none rounded-none h-[44px]",
                         input: "text-white text-[14px]",
                       }}
                     />
@@ -150,8 +158,12 @@ const BuyCrypto = () => {
                         className="w-8 h-8"
                       />
                       <div className="flex flex-col items-start flex-1">
-                        <span className="text-white text-[14px] font-medium">{crypto.symbol}</span>
-                        <span className="text-white/60 text-[12px]">{crypto.name}</span>
+                        <span className="text-white text-[14px] font-medium">
+                          {crypto.symbol}
+                        </span>
+                        <span className="text-white/60 text-[12px]">
+                          {crypto.name}
+                        </span>
                       </div>
                     </button>
                   ))}
@@ -175,6 +187,10 @@ const BuyCrypto = () => {
               className="w-full h-full bg-[var(--bar-background-color)] border-0 rounded-l-lg rounded-r-none text-white text-[16px]"
             />
             <Select
+              popoverProps={{
+                shouldCloseOnScroll: false,
+                shouldBlockScroll: true,
+              }}
               selectedKeys={[selectedCurrency]}
               onSelectionChange={(keys) => {
                 const selected = Array.from(keys as Set<string>)[0];
@@ -184,9 +200,12 @@ const BuyCrypto = () => {
               }}
               className="w-[120px] max-w-[120px] h-full bg-[var(--background-secondary)] border-r-[2px] border-[var(--background-secondary)] rounded-r-lg rounded-l-none  "
               classNames={{
-                trigger: "w-[120px] h-[44px] rounded-0 bg-[var(--background-secondary)] border-none",
-                value: "text-white text-[16px] bg-[var(--background-secondary)] rounded-0 border-none",
-                popoverContent: "bg-[var(--background-secondary)] rounded-0 border-none",
+                trigger:
+                  "w-[120px] h-[44px] rounded-0 bg-[var(--background-secondary)] border-none",
+                value:
+                  "text-white text-[16px] bg-[var(--background-secondary)] rounded-0 border-none",
+                popoverContent:
+                  "bg-[var(--background-secondary)] rounded-0 border-none",
               }}
               startContent={
                 <img
@@ -201,7 +220,7 @@ const BuyCrypto = () => {
                   key={currency.unit}
                   startContent={
                     <img
-                      src={`${BASE_URL}/images/currencies/${currency.code}.png`}
+                      src={`${ASSET_BASE_URL}/images/currencies/${currency.code}.png`}
                       alt={currency.unit}
                       className="w-5 h-5"
                     />
@@ -218,14 +237,17 @@ const BuyCrypto = () => {
         <Button
           className="w-full text-white text-[16px] font-medium bg-[var(--green-color)] hover:opacity-90 h-[44px] rounded-lg"
           onPress={() => {
-            console.log("Buy crypto:", { crypto: selectedCrypto, amount, currency: selectedCurrency });
+            console.log("Buy crypto:", {
+              crypto: selectedCrypto,
+              amount,
+              currency: selectedCurrency,
+            });
           }}
         >
           {t("Buy")}
         </Button>
 
         {/* 2FA Security Section */}
-
       </div>
       {/* <div className="flex flex-col gap-3 p-4 bg-[var(--bar-background-color)]">
         <p className="text-white/70 text-[16px] text-center">
@@ -245,4 +267,3 @@ const BuyCrypto = () => {
 };
 
 export default BuyCrypto;
-

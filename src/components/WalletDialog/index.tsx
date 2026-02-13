@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from "preact/hooks";
 import { Modal, ModalContent } from "@/components/common";
-import { BASE_URL, mobileMediaQuery } from "@/config/constants";
+import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
 import { useMediaQuery } from "usehooks-ts";
 import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
@@ -88,7 +88,7 @@ const WalletDialog = ({ isOpen, onClose, defaultTab }: IWalletDialogProps) => {
           {/* Header */}
           <div className="flex justify-between items-center w-full h-[60px] min-h-[60px] py-[10px] md:px-[16px] px-2">
             <div className="flex items-center gap-[12px]">
-              <img src={`${BASE_URL}/images/icons/wallet.svg`} alt="Wallet Icon" className="w-[20px] h-[20px]" />
+              <img src={`${ASSET_BASE_URL}/images/icons/wallet.svg`} alt="Wallet Icon" className="w-[20px] h-[20px]" />
               <span className="text-white text-[18px] leading-[28px] font-semibold">{t("Wallet")}</span>
             </div>
           </div>

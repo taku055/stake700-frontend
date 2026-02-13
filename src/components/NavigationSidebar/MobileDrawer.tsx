@@ -1,23 +1,21 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ChevronLeft, ChevronRight, Search, ChevronUp, ChevronDown } from "lucide-preact";
+import { ChevronUp, ChevronDown } from "lucide-preact";
 import { Link } from "../common";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
-import NavigationItems from "./NavigationItems";
 import CategoryItems from "./CategoryItems";
-import { useState, useMemo, useEffect } from "preact/hooks";
-import { Input } from "@/components/common";
-import LocaleSelection from "@/components/LocaleSelection";
+import { useState, useMemo } from "preact/hooks";
 import { localeState } from "@/state/localeState";
-import { useCasinoCategories } from "@/hooks/useCasinoCategories";
-import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
-import { BASE_URL, mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
+import {
+  ASSET_BASE_URL,
+  mobileMediaQuery,
+  RTL_LANGUAGES,
+} from "@/config/constants";
 import { useLocation } from "preact-iso";
 import { options } from "@/components/LocaleSelection";
 import { useMediaQuery } from "usehooks-ts";
-import { selectedTabState } from "@/state/selectedTab";
 import { useCategoryCounts } from "@/hooks/useCatigoryCounts";
-
+import { useSelectedTab } from "@/hooks/useSelectedTab";
 
 interface MobileDrawerProps {
   mainNavItems: Array<{
@@ -65,108 +63,69 @@ export default function MobileDrawer({
   selectedMainNavTitle,
 }: MobileDrawerProps) {
   const t = useTranslations("Header");
-  const [searchQuery, setSearchQuery] = useState("");
-  const selectedTab = selectedTabState.value;
-  const location = useLocation();
+  const selectedTab = useSelectedTab();
   const [isExpanded, setIsExpanded] = useState<Record<string, boolean>>({});
-  // const [categoriesWithCounts, setCategoriesWithCounts] = useState<Array<{
-  //   name: string;
-  //   path: string;
-  //   icon: string;
-  //   count?: number;
-  // }>>([]);
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
-  // const { categories: casinoCategories, getCachedCategoryCount, getCategoryGameCount } = useCasinoCategories();
-  // const { categories: liveCasinoCategories } = useLiveCasinoCategories();
-  const isMobile = useMediaQuery(mobileMediaQuery);
-  const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } = useCategoryCounts();
-
-  // useEffect(() => {
-  //   if (location.path.includes("/casino")) {
-  //     selectedTabState.value = "casino";
-  //   } else if (location.path.includes("/live-casino")) {
-  //     selectedTabState.value = "sports";
-  //   } else {
-  //     selectedTabState.value = null;
-  //   }
-
-  // }, [location.path]);
-
+  const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } =
+    useCategoryCounts();
+  const location = useLocation();
 
   // Get categories based on selected tab
   const currentCategories = useMemo(() => {
-    return selectedTabState.value === "casino" ? casinoCategoriesWithCounts : [];
-  }, [selectedTabState.value, casinoCategoriesWithCounts]);
+    return selectedTab === "casino" ? casinoCategoriesWithCounts : [];
+  }, [selectedTab, casinoCategoriesWithCounts]);
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
   const topNavItems = useMemo(() => {
     return mainNavItems;
   }, [mainNavItems]);
 
-  // Show categories immediately (without waiting for counts)
-  // useEffect(() => {
-  //   setCategoriesWithCounts(currentCategories.map((cat) => ({
-  //     ...cat,
-  //     count: getCachedCategoryCount(cat.path),
-  //   })));
-  // }, [currentCategories, getCachedCategoryCount]);
-
-  // Load counts asynchronously and update as they become available
-  // useEffect(() => {
-  //   // Load counts for each category in parallel and update state as each completes
-  //   currentCategories.forEach((cat) => {
-  //     getCategoryGameCount(cat.path).then((count) => {
-  //       setCategoriesWithCounts((prev) => {
-  //         return prev.map((c) => (c.path === cat.path ? { ...c, count } : c));
-  //       });
-  //     }).catch((error) => {
-  //       console.error(`Error loading count for ${cat.path}:`, error);
-  //     });
-  //   });
-  // }, [currentCategories, getCategoryGameCount]);
-
-
-
   return (
-    <div className={`fixed ${isRTL ? 'right-0' : 'left-0'} top-0 pt-16  z-5500 h-full overflow-y-auto scrollbar-hide w-full bg-[var(--sidebar-background)] overflow-x-hidden px-[16px]`}>
+    <div
+      className={`fixed ${
+        isRTL ? "right-0" : "left-0"
+      } top-0 pt-16  z-5500 h-full overflow-y-auto scrollbar-hide w-full bg-[var(--sidebar-background)] overflow-x-hidden px-[16px]`}
+    >
       {/* Backdrop */}
       <div className={` z-55 flex w-full h-[70px] items-center`}>
         <div className="flex bg-[#ffffff02] w-full h-full items-center justify-between gap-2">
           <button
-            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${selectedTabState.value === "casino" ? "bg-[url('/buffer/active-casino.svg')]" : "bg-[url('images/icons/icons/default-casino.svg')]"} hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
+            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${
+              selectedTab === "casino"
+                ? "bg-[url('/buffer/active-casino.svg')]"
+                : "bg-[url('images/icons/icons/default-casino.svg')]"
+            } hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
             onClick={() => {
-              selectedTabState.value = "casino";
-              handleNavigate("/casino/home?custom=1&category=home");
-              navigationSidebarExpandedState.value = false;
+              location.route("/");
             }}
           >
             <span className="text-white text-[14px]">Casino</span>
           </button>
           <button
-            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${selectedTabState.value === "sports" ? "bg-[url('/buffer/active-sports.svg')]" : "bg-[url('images/icons/icons/default-sports.svg')]"} hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
+            className={`flex flex-1 items-center rounded-[8px] justify-center h-[50px] ${
+              selectedTab === "sports"
+                ? "bg-[url('/buffer/active-sports.svg')]"
+                : "bg-[url('images/icons/icons/default-sports.svg')]"
+            } hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
             onClick={() => {
-              selectedTabState.value = "sports";
-              // handleNavigate("/live-casino");
-              navigationSidebarExpandedState.value = false;
+              location.route("/sports");
             }}
           >
             <span className="text-white text-[14px]">Sports</span>
           </button>
         </div>
-
       </div>
-
 
       {/* Panel */}
       <div
-        className={`sticky inset-y-0 rounded-[10px] ${isRTL ? 'right-0' : 'left-0'} bg-[var(--background-secondary)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform`}
+        className={`sticky inset-y-0 rounded-[10px] ${
+          isRTL ? "right-0" : "left-0"
+        } bg-[var(--background-secondary)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform`}
         onClick={(e) => e.stopPropagation()}
       >
-
         {/* Content */}
         <div className="flex-1 overflow-y-auto sidebar-scrollbar">
-
           {/* Categories Section - Always shown */}
           <CategoryItems
             categories={currentCategories}
@@ -180,7 +139,6 @@ export default function MobileDrawer({
           <div className="py-4">
             <div className="flex flex-col gap-2">
               {topNavItems.map((item) => {
-
                 return (
                   <div key={item.key} className="flex flex-col">
                     {item.expandable ? (
@@ -193,22 +151,35 @@ export default function MobileDrawer({
                             [item.key]: !prev[item.key],
                           }));
                         }}
-                        className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${selectedMainNavKey === item.key
-                          ? "bg-[var(--background-btn-hover)] text-white"
-                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                          }`}
-                      >{item.icon ? item.icon : (
-                        <img
-                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
-                          alt={item.title}
-                          className="w-6 h-6 flex-shrink-0 object-contain"
-                        />
-                      )}
+                        className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${
+                          selectedMainNavKey === item.key
+                            ? "bg-[var(--background-btn-hover)] text-white"
+                            : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                        }`}
+                      >
+                        {item.icon ? (
+                          item.icon
+                        ) : (
+                          <img
+                            src={
+                              item.navIcon ||
+                              `${ASSET_BASE_URL}/images/icons/casino.svg`
+                            }
+                            alt={item.title}
+                            className="w-6 h-6 flex-shrink-0 object-contain"
+                          />
+                        )}
                         <span className="flex-1">{item.title}</span>
                         {isExpanded[item.key] ? (
-                          <ChevronUp size={16} className="transition-transform duration-200" />
+                          <ChevronUp
+                            size={16}
+                            className="transition-transform duration-200"
+                          />
                         ) : (
-                          <ChevronDown size={16} className="transition-transform duration-200" />
+                          <ChevronDown
+                            size={16}
+                            className="transition-transform duration-200"
+                          />
                         )}
                       </button>
                     ) : (
@@ -221,45 +192,57 @@ export default function MobileDrawer({
                           handleNavigate(item.href || "");
                           navigationSidebarExpandedState.value = false;
                         }}
-                        className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
-                          ? "bg-[var(--background-btn-hover)] text-white"
-                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                          }`}
+                        className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${
+                          selectedMainNavKey === item.key
+                            ? "bg-[var(--background-btn-hover)] text-white"
+                            : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                        }`}
                       >
-                        {item.icon ? (item.icon) : (<img
-                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
-                          alt={item.title}
-                          className="w-6 h-6 flex-shrink-0 object-contain"
-                        />)}
+                        {item.icon ? (
+                          item.icon
+                        ) : (
+                          <img
+                            src={
+                              item.navIcon ||
+                              `${ASSET_BASE_URL}/images/icons/casino.svg`
+                            }
+                            alt={item.title}
+                            className="w-6 h-6 flex-shrink-0 object-contain"
+                          />
+                        )}
                         <span>{item.title}</span>
                       </button>
                     )}
 
                     {/* Expandable Sub-items */}
-                    {item.expandable && isExpanded[item.key] && item.key !== "language" && (
-                      <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
-                        {item.expandableItems?.map((subItem, index) => (
-                          <Link
-                            key={index}
-                            href={modifyHref(subItem.href || "")}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              handleNavigate(modifyHref(subItem.href || ""));
-                              navigationSidebarExpandedState.value = false;
-                            }}
-                            className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                          >
-                            <img
-                              src={subItem.icon}
-                              alt={subItem.title}
-                              className="w-5 h-5 flex-shrink-0 object-contain"
-                            />
-                            <span className="flex-1 text-sm">{subItem.title}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                    {item.expandable &&
+                      isExpanded[item.key] &&
+                      item.key !== "language" && (
+                        <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
+                          {item.expandableItems?.map((subItem, index) => (
+                            <Link
+                              key={index}
+                              href={modifyHref(subItem.href || "")}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleNavigate(modifyHref(subItem.href || ""));
+                                navigationSidebarExpandedState.value = false;
+                              }}
+                              className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                            >
+                              <img
+                                src={subItem.icon}
+                                alt={subItem.title}
+                                className="w-5 h-5 flex-shrink-0 object-contain"
+                              />
+                              <span className="flex-1 text-sm">
+                                {subItem.title}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                   </div>
                 );
               })}
@@ -270,7 +253,6 @@ export default function MobileDrawer({
           <div className="py-4">
             <div className="flex flex-col gap-2">
               {ExtraNavItems.map((item) => {
-
                 return (
                   <div key={item.key} className="flex flex-col">
                     {item.expandable ? (
@@ -283,22 +265,37 @@ export default function MobileDrawer({
                             [item.key]: !prev[item.key],
                           }));
                         }}
-                        className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${selectedMainNavKey === item.key
-                          ? "bg-[var(--background-btn-hover)] text-white"
-                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                          }`}
-                      >{item.icon ? item.icon : (
-                        <img
-                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
-                          alt={item.title}
-                          className="w-6 h-6 flex-shrink-0 object-contain"
-                        />
-                      )}
+                        className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${
+                          selectedMainNavKey === item.key
+                            ? "bg-[var(--background-btn-hover)] text-white"
+                            : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                        }`}
+                      >
+                        {item.icon ? (
+                          item.icon
+                        ) : (
+                          <img
+                            src={
+                              item.navIcon ||
+                              `${ASSET_BASE_URL}/images/icons/casino.svg`
+                            }
+                            alt={item.title}
+                            className="w-6 h-6 flex-shrink-0 object-contain"
+                          />
+                        )}
                         <span className="flex-1">{item.title}</span>
                         {isExpanded[item.key] ? (
-                          <ChevronUp width={16} height={16} className="min-w-[16px]!important min-h-[16px]!important transition-transform duration-200" />
+                          <ChevronUp
+                            width={16}
+                            height={16}
+                            className="min-w-[16px]!important min-h-[16px]!important transition-transform duration-200"
+                          />
                         ) : (
-                          <ChevronDown width={16} height={16} className="min-w-[16px]!important min-h-[16px]!important transition-transform duration-200" />
+                          <ChevronDown
+                            width={16}
+                            height={16}
+                            className="min-w-[16px]!important min-h-[16px]!important transition-transform duration-200"
+                          />
                         )}
                       </button>
                     ) : (
@@ -311,72 +308,94 @@ export default function MobileDrawer({
                           handleNavigate(modifyHref(item.href || ""));
                           navigationSidebarExpandedState.value = false;
                         }}
-                        className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
-                          ? "bg-[var(--background-btn-hover)] text-white"
-                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                          }`}
+                        className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${
+                          selectedMainNavKey === item.key
+                            ? "bg-[var(--background-btn-hover)] text-white"
+                            : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                        }`}
                       >
-                        {item.icon ? (item.icon) : (<img
-                          src={item.navIcon || `${BASE_URL}/images/icons/casino.svg`}
-                          alt={item.title}
-                          className="w-6 h-6 flex-shrink-0 object-contain"
-                        />)}
+                        {item.icon ? (
+                          item.icon
+                        ) : (
+                          <img
+                            src={
+                              item.navIcon ||
+                              `${ASSET_BASE_URL}/images/icons/casino.svg`
+                            }
+                            alt={item.title}
+                            className="w-6 h-6 flex-shrink-0 object-contain"
+                          />
+                        )}
                         <span>{item.title}</span>
                       </button>
                     )}
 
                     {/* Expandable Sub-items */}
-                    {item.expandable && isExpanded[item.key] && item.key !== "language" && (
-                      <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
-                        {item.expandableItems?.map((subItem, index) => (
-                          <Link
-                            key={index}
-                            href={modifyHref(subItem.href || "")}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              item.onclick?.();
-                              handleNavigate(modifyHref(subItem.href || ""));
-                              navigationSidebarExpandedState.value = false;
-                            }}
-                            className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                          >
-                            <img
-                              src={subItem.icon}
-                              alt={subItem.title}
-                              className="w-6 h-6 flex-shrink-0 object-contain"
-                            />
-                            <span className="flex-1 text-sm">{subItem.title}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                    {item.expandable &&
+                      isExpanded[item.key] &&
+                      item.key !== "language" && (
+                        <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
+                          {item.expandableItems?.map((subItem, index) => (
+                            <Link
+                              key={index}
+                              href={modifyHref(subItem.href || "")}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                item.onclick?.();
+                                handleNavigate(modifyHref(subItem.href || ""));
+                                navigationSidebarExpandedState.value = false;
+                              }}
+                              className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                            >
+                              <img
+                                src={subItem.icon}
+                                alt={subItem.title}
+                                className="w-6 h-6 flex-shrink-0 object-contain"
+                              />
+                              <span className="flex-1 text-sm">
+                                {subItem.title}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     {/* Language Selection */}
-                    {item.expandable && isExpanded[item.key] && item.key === "language" && (
-                      <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
-                        {options.map((lang) => (
-                          <button
-                            key={lang.value}
-                            onClick={() => {
-                              localeState.value = lang.value;
-                              window.localStorage.setItem("locale", lang.value);
-                              isExpanded[item.key] = false;
-                            }}
-                            className={`flex items-center ${localeState.value === lang.value ? "bg-[var(--background-btn-hover)] text-white" : "text-gray-300 hover:bg-[var(--background-btn-hover)]"} gap-3 px-3 py-2 transition-colors w-full text-left`}
-                          >
-                            <span className={`fi fi-${lang.flag}`}></span>
-                            <span className="flex-1 text-sm">{lang.label}</span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
+                    {item.expandable &&
+                      isExpanded[item.key] &&
+                      item.key === "language" && (
+                        <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
+                          {options.map((lang) => (
+                            <button
+                              key={lang.value}
+                              onClick={() => {
+                                localeState.value = lang.value;
+                                window.localStorage.setItem(
+                                  "locale",
+                                  lang.value
+                                );
+                                isExpanded[item.key] = false;
+                              }}
+                              className={`flex items-center ${
+                                localeState.value === lang.value
+                                  ? "bg-[var(--background-btn-hover)] text-white"
+                                  : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
+                              } gap-3 px-3 py-2 transition-colors w-full text-left`}
+                            >
+                              <span className={`fi fi-${lang.flag}`}></span>
+                              <span className="flex-1 text-sm">
+                                {lang.label}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
                   </div>
                 );
               })}
             </div>
             {/* <div className="border-b-2 border-[var(--bar-background-color)] w-[calc(100% - 46px)] mx-4" /> */}
           </div>
-
         </div>
       </div>
     </div>

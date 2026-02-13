@@ -5,7 +5,7 @@ import { localeState } from "@/state/localeState";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { options } from "@/components/LocaleSelection";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 interface ISignupStep1DialogProps {
   isOpen: boolean;
@@ -46,7 +46,7 @@ export default function SignupStep1Dialog({
         <div className="flex flex-col justify-between items-start w-full p-[16px] pb-0">
           <div className="flex flex-col w-full items-start gap-[16px]">
             <img
-              src={`${BASE_URL}/images/icons/logo.svg`}
+              src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
               className="h-[36px] md:h-[36px] md:max-w-[180px]"
               alt={import.meta.env.VITE_SITE_NAME as string}
             />

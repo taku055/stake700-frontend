@@ -3,7 +3,7 @@ import { Modal, ModalContent } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";
 import Overview from "./Overview";
 import Rewards from "./Rewards";
-import { BASE_URL } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 
 interface IVipClubProps {
   isOpen: boolean;
@@ -45,7 +45,7 @@ const VipClub = ({ isOpen, onClose, defaultTab = "overview" }: IVipClubProps) =>
         {/* Header */}
         <div className="flex justify-between items-center w-full h-[60px] min-h-[60px] py-[10px] px-[16px] border-b border-[#FFFFFF0A]">
           <div className="flex items-center gap-[12px]">
-            <img src={`${BASE_URL}/images/icons/vip-club.svg`} alt="vip" className="w-5 h-5" />
+            <img src={`${ASSET_BASE_URL}/images/icons/vip-club.svg`} alt="vip" className="w-5 h-5" />
             <span className="text-white text-[18px] leading-[28px] font-semibold">{t("VIP")}</span>
           </div>
         </div>

@@ -6,12 +6,9 @@
   overflow: hidden;
   color: #fff;
   width: 400px;
-  // height: 170px;
   display: flex;
   flex-direction: row;
   border-radius: 8px;
-  // margin-top: 12px;
-  padding: 10px 6px;
 
   @include for-mobile-only {
     width: 100%;

@@ -98,45 +98,51 @@ export default function GameCard({ data }: GameCardProps) {
   );
 
   return (
-    <Link scrollToTop={true} className={styles.play} href={`/game/${data.id}`}>
-      <div
-        ref={ref}
-        className={`${styles.game} ${open ? styles.is_open : ""}`}
-        onPointerEnter={onCardPointerEnter}
-        onPointerLeave={onCardPointerLeave}
-        onClick={onCardClick}
-        role="group" // helps screen readers announce nested controls
-      >
-        <div className={styles.imgWrapper}>
-          <Image
-            className={styles.gameImage}
-            src={data.img_custom || data.img || placeholderGameImage}
-            fallbackSrc={placeholderGameImage}
-            alt={data.id}
-            classNames={{ wrapper: "w-full h-full" }}
-            style={{ maxWidth: "unset" }}
-            loading="lazy"
-            radius="none"
-          />
-          {/* <div className={styles.overlap}>
-            <span title={data.providerId} className={styles.text}>
-              {data.name}
-            </span>
-            {userState.value?.id && (
-              <FaStar
-                size={20}
-                color={isFavorite ? "yellow" : "white"}
-                className={styles.star}
-                onClick={() => setFavorite(data.id)}
-              />
-            )}
-            <Link scrollToTop={true} className={styles.play} href={`/game/${data.id}`}>
-              <FaPlay size={24} color="white" />
-            </Link>
-          </div> */}
+    <div
+      ref={ref}
+      className={`${styles.game} ${open ? styles.is_open : ""}`}
+      onPointerEnter={onCardPointerEnter}
+      onPointerLeave={onCardPointerLeave}
+      onClick={onCardClick}
+      role="group"
+    >
+      <div className={styles.imgWrapper}>
+        <Image
+          className={styles.gameImage}
+          src={
+            data.img_custom ||
+            data.img_vertical ||
+            data.img ||
+            placeholderGameImage
+          }
+          fallbackSrc={placeholderGameImage}
+          alt={data.id}
+          classNames={{ wrapper: "w-full h-full" }}
+          style={{ maxWidth: "unset" }}
+          loading="lazy"
+          radius="none"
+        />
+        <div className={styles.overlap}>
+          <span title={data.providerId} className={styles.text}>
+            {data.name}
+          </span>
+          {userState.value?.id && (
+            <FaStar
+              size={20}
+              color={isFavorite ? "yellow" : "white"}
+              className={styles.star}
+              onClick={() => setFavorite(data.id)}
+            />
+          )}
+          <Link
+            scrollToTop={true}
+            className={styles.play}
+            href={`/game/${data.id}`}
+          >
+            <FaPlay size={24} color="white" />
+          </Link>
         </div>
       </div>
-    </Link>
-
+    </div>
   );
 }
