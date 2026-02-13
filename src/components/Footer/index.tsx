@@ -118,7 +118,7 @@ export const Footer = () => {
             Betalarab is committed to responsible gambling, for more
             information visit 
             <Link
-              href="/responsible-gambling"
+              href="/support/responsible-gambling"
               className="text-[var(--passive-color)] text-[14px] font-semibold"
             >
               Responsible Gambling

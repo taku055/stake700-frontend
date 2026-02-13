@@ -2,11 +2,13 @@ import { FunctionalComponent } from "preact";
 import { Button } from "@heroui/react";
 import GameCard from "@/components/GameCard";
 import { useTranslations } from "@/context/I18nContext";
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import Loader from "@/components/Loader";
 import { tGame } from "@/types/tGame";
 import { customGamesState } from "@/state/customGamesState";
 import { apiGetGames } from "@/api/common/apiGetGames";
+import { useMediaQuery } from "usehooks-ts";
+import { mobileMediaQuery } from "@/config/constants";
 
 interface CasinoGameGridProps {
   isCustom: boolean;
@@ -14,8 +16,6 @@ interface CasinoGameGridProps {
   provider?: string;
   gameType: "SLOT" | "LIVECASINO" | null;
 }
-
-const GAME_LOAD_COUNT = 24;
 
 export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
   isCustom,
@@ -28,6 +28,8 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [offset, setOffset] = useState(0);
+  const isMobile = useMediaQuery(mobileMediaQuery);
+  const GAME_LOAD_COUNT = useMemo(() => (isMobile ? 8 : 24), [isMobile]);
 
   const onLoadMore = useCallback(
     async (offset1: number) => {
@@ -62,7 +64,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
       setGames((p) => (offset1 === 0 ? data : [...p, ...data]));
       setLoading(false);
     },
-    [category, isCustom, customGamesState.value, provider, gameType]
+    [category, isCustom, customGamesState.value, provider, gameType, GAME_LOAD_COUNT]
   );
 
   useEffect(() => {
@@ -87,7 +89,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
 
   return (
     <div className="flex-1 flex flex-col gap-4 min-w-0">
-      <div className="grid md:grid-cols-8 grid-cols-2 gap-[16px]">
+      <div className="grid md:grid-cols-8 grid-cols-2 md:gap-[16px] gap-[8px]">
         {games.map((game) => (
           <GameCard key={game.id} data={game} />
         ))}

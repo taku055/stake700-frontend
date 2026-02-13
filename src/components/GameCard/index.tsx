@@ -117,8 +117,7 @@ export default function GameCard({ data }: GameCardProps) {
           }
           fallbackSrc={placeholderGameImage}
           alt={data.id}
-          classNames={{ wrapper: "w-full h-full" }}
-          style={{ maxWidth: "unset" }}
+          classNames={{ wrapper: "w-full h-full max-w-[unset]!" }}
           loading="lazy"
           radius="none"
         />
