@@ -12,6 +12,7 @@ export type tGameSearchParams = {
   is_deleted?: boolean;
   freespins?: number;
   randomOrderby?: boolean;
+  gameType?: string;
 };
 
 export const apiGetGames = async (params: tGameSearchParams) => {
