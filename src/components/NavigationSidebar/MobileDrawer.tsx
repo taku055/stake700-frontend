@@ -110,6 +110,7 @@ export default function MobileDrawer({
             } hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
             onClick={() => {
               location.route("/sports");
+              navigationSidebarExpandedState.value = false;
             }}
           >
             <span className="text-white text-[14px]">Sports</span>
