@@ -120,6 +120,7 @@ export const Footer = () => {
             <Link
               href="/support/responsible-gambling"
               className="text-[var(--passive-color)] text-[14px] font-semibold"
+              scrollToTop={true}
             >
               Responsible Gambling
             </Link>
