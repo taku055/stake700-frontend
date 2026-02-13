@@ -51,10 +51,6 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     path: "/casino/slots?custom=1&category=bingogame",
   },
   {
-    name: "Other Games",
-    path: "/casino/slots?custom=1&category=other",
-  },
-  {
     name: "Top Slots",
     path: "/casino/slots?custom=1&category=slot-top-slots",
   },
@@ -76,28 +72,8 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     path: "/casino/slots?custom=1&category=classic-slots",
   },
   {
-    name: "Video Slots",
-    path: "/casino/slots?custom=1&category=video-slots",
-  },
-  {
-    name: "Drop Wins",
-    path: "/casino/slots?custom=1&category=drop-wins",
-  },
-  {
-    name: "Scratch Games",
-    path: "/casino/slots?custom=1&category=scratchcards",
-  },
-  {
     name: "Instant Game",
     path: "/casino/slots?custom=1&category=instant-game",
-  },
-  {
-    name: "Fishing & Hunting",
-    path: "/casino/slots?custom=1&category=fishing-hunting",
-  },
-  {
-    name: "Casual Games",
-    path: "/casino/slots?custom=1&category=casual-games",
   },
 ];
 
