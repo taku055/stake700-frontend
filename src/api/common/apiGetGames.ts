@@ -1,5 +1,7 @@
 import { tGame } from "@/types/tGame";
+import { instance } from "../instance";
 import { tPaginationResult } from "@/types/tPaginationResult";
+import queryString from "query-string";
 
 export type tGameSearchParams = {
   keyword?: string;
@@ -10,21 +12,13 @@ export type tGameSearchParams = {
   is_deleted?: boolean;
   freespins?: number;
   randomOrderby?: boolean;
-  platform?: string;
-  gameType?: "SLOT" | "LIVECASINO";
 };
 
 export const apiGetGames = async (params: tGameSearchParams) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_URL}/v1/game/games`,
-    {
-      method: "POST",
-      body: JSON.stringify(params),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+  const response = await instance.get<tPaginationResult<tGame>>(
+    `${import.meta.env.VITE_BACKEND_URL}/v1/game/games?${queryString.stringify(
+      params
+    )}`
   );
-  const res: tPaginationResult<tGame> = await response.json();
-  return res;
+  return response.data;
 };
