@@ -74,17 +74,17 @@ export const FOOTER_SOCIAL_DATA = [
   {
     title: "Blog",
     icon: `${ASSET_BASE_URL}/images/icons/blog.svg`,
-    href: "https://vistabet777.com/blog",
+    href: "https://betalarab.com/blog",
   },
   {
     title: "Forum",
     icon: `${ASSET_BASE_URL}/images/icons/forum.svg`,
-    href: "https://vistabet777.com/forum",
+    href: "https://betalarab.com/forum",
   },
   {
     title: "Facebook",
     icon: `${ASSET_BASE_URL}/images/icons/facebook.svg`,
-    // href: "https://www.facebook.com/vistabet777",
+    // href: "https://www.facebook.com/betalarab",
     href: "#"
   },
   {
@@ -105,6 +105,6 @@ export const FOOTER_SOCIAL_DATA = [
   {
     title: "Shop",
     icon: `${ASSET_BASE_URL}/images/icons/shop.svg`,
-    href: "https://vistabet777.com/shop"
+    href: "https://betalarab.com/shop"
   },
 ];

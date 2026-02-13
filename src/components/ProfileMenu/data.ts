@@ -39,7 +39,7 @@ export const data = [
     icon: `/images/icons/icons/setting.png`,
   },
   {
-    title: "Vistabet777 Smart",
+    title: "Betalarab Smart",
     icon: `/images/icons/icons/stake-smart.png`,
   },
   {

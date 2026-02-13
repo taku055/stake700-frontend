@@ -5,7 +5,7 @@
 import { FunctionalComponent, h } from "preact";
 import { useMemo } from "preact/hooks";
 
-export const BRAND_NAME = "Vistabet777";
+export const BRAND_NAME = "Betalarab";
 
 type Section = {
   title: string;
@@ -28,8 +28,8 @@ const LawEnforcementRequestPage: FunctionalComponent = () => {
           "Send requests from an official government or agency email address whenever possible. If you must send by another method, " +
           "include clear contact details so we can verify authenticity.",
         bullets: [
-          "Email: legal@vistabet777.com (replace with your legal inbox)",
-          "Emergency: emergency@vistabet777.com (replace with your emergency inbox)",
+          "Email: legal@betalarab.com (replace with your legal inbox)",
+          "Emergency: emergency@betalarab.com (replace with your emergency inbox)",
           "Mail: [Company Legal Address] (replace with your address)",
         ],
       },

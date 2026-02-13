@@ -11,7 +11,7 @@ export const promotionsData : Array<tPromotionInformation> = [
     title: "Blackjack Boost",
     description: "Get a 10% bonus",
     image: "buffer/promotion1.png",
-    label: "Only on Vistabet777",
+    label: "Only on Betalarab",
     readMoreLink: "#",
   },
   {

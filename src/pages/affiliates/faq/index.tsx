@@ -11,19 +11,19 @@ export default function FAQ() {
 
   const faqItems = [
     {
-      question: t("What is the Vistabet777 Affiliate Program?"),
+      question: t("What is the Betalarab Affiliate Program?"),
       answer: t("FAQAffiliateProgramAnswer"),
     },
     {
-      question: t("Who can join the Vistabet777 Affiliate Program?"),
-      answer: t("Anyone can join the Vistabet777 Affiliate Program."),
+      question: t("Who can join the Betalarab Affiliate Program?"),
+      answer: t("Anyone can join the Betalarab Affiliate Program."),
     },
     {
-      question: t("How do I join the Vistabet777 Affiliate Program?"),
+      question: t("How do I join the Betalarab Affiliate Program?"),
       answer: t("FAQJoinAnswer"),
     },
     {
-      question: t("What are the benefits of joining the Vistabet777 Affiliate Program?"),
+      question: t("What are the benefits of joining the Betalarab Affiliate Program?"),
       answer: t("FAQBenefitsAnswer"),
     },
   ];

@@ -106,16 +106,16 @@ export const Footer = () => {
           dir={isRTL ? "rtl" : "ltr"}
         >
           <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
-            © 2026 Vistabet777.com | All Rights Reserved
+            © 2026 Betalarab.com | All Rights Reserved
           </h2>
           <p className=" text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
-            Vistabet777 is owned and operated by Vistabet777 N.V., registration
+            Betalarab is owned and operated by Betalarab N.V., registration
             number: 145353, registered address: Seru Loraweg 17 B, Curaçao.
             Payment agent companies are Medium Rare Limited and MRS Tech
-            Limited. Contact us at support@vistabet777.com.
+            Limited. Contact us at support@betalarab.com.
           </p>
           <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
-            Vistabet777 is committed to responsible gambling, for more
+            Betalarab is committed to responsible gambling, for more
             information visit 
             <Link
               href="/responsible-gambling"
@@ -151,7 +151,7 @@ export const Footer = () => {
         <div className="w-full h-[36px] flex justify-center items-center">
           <img
             src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
-            alt="Vistabet777"
+            alt="Betalarab"
             className="w-full h-full"
           />
         </div>

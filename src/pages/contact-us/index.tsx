@@ -58,17 +58,17 @@ export default function ContactUs() {
           <p className="text-[var(--passive-color)] text-base">
             {t("customer_queries_text") || "For customer queries, write to us at"}{" "}
             <a
-              href="mailto:support@vistabet777.com"
+              href="mailto:support@betalarab.com"
               className="text-[var(--primary-color)] hover:underline"
             >
-              support@vistabet777.com
+              support@betalarab.com
             </a>
             . {t("other_questions_text") || "For other questions or offers, drop us a line at"}{" "}
             <a
-              href="mailto:info@vistabet777.com"
+              href="mailto:info@betalarab.com"
               className="text-[var(--primary-color)] hover:underline"
             >
-              info@vistabet777.com
+              info@betalarab.com
             </a>{" "}
             {t("email_receipt_text") || "and we will make sure the right person receives your email."}
           </p>

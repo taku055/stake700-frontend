@@ -13,7 +13,7 @@ export type HelpCategory = {
   articles: HelpArticle[];
 };
 
-export const BRAND_NAME = "Vistabet777";
+export const BRAND_NAME = "Betalarab";
 
 export const HELP_CATEGORY_DATA = [
   {

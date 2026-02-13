@@ -8,7 +8,7 @@
 import { FunctionalComponent, h } from "preact";
 import { useMemo } from "preact/hooks";
 
-export const BRAND_NAME = "Vistabet777";
+export const BRAND_NAME = "Betalarab";
 
 type Section = { title: string; body: string; bullets?: string[] };
 
@@ -127,8 +127,8 @@ const AMLPolicyPage: FunctionalComponent = () => {
         title: "Contact",
         body: "For AML or compliance questions, contact our compliance team (replace with your real contact details).",
         bullets: [
-          "Compliance email: compliance@vistabet777.com",
-          "MLRO contact: mlro@vistabet777.com",
+          "Compliance email: compliance@betalarab.com",
+          "MLRO contact: mlro@betalarab.com",
         ],
       },
     ],
@@ -247,12 +247,12 @@ const AMLPolicyPage: FunctionalComponent = () => {
             <div class="mt-2 text-base leading-relaxed text-zinc-300">
               Compliance:{" "}
               <span class="font-extrabold text-zinc-100">
-                compliance@vistabet777.com
+                compliance@betalarab.com
               </span>
             </div>
             <div class="mt-1 text-base leading-relaxed text-zinc-300">
               MLRO:{" "}
-              <span class="font-extrabold text-zinc-100">mlro@vistabet777.com</span>
+              <span class="font-extrabold text-zinc-100">mlro@betalarab.com</span>
             </div>
             <div class="mt-1 text-sm text-zinc-400">
               Tip: Use addresses under your domain and keep them consistent

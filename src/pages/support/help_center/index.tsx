@@ -334,12 +334,12 @@ const HelpCenterPage: FunctionalComponent = () => {
                     </div>
                     <a
                       class="mt-3 inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-xs font-extrabold hover:bg-zinc-900/70"
-                      href="mailto:support@vistabet777.com"
+                      href="mailto:support@betalarab.com"
                     >
                       Email support
                     </a>
                     <div class="mt-2 text-[11px] text-zinc-500">
-                      support@vistabet777.com
+                      support@betalarab.com
                     </div>
                   </div>
 

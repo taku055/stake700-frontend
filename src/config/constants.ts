@@ -21,17 +21,17 @@ export const mobilePortraitMediaQuery =
 export const placeholderGameImage = "/images/placeholder-gamecard.png";
 
 export const OFFICIAL_LINKS = {
-  telegram: "https://t.me/vistabet777ofc",
+  telegram: "https://t.me/Betalarabofc",
   whatsapp: "#",
-  instagram: "https://www.instagram.com/vistabet777ofc",
-  facebook: "https://www.facebook.com/vistabet777ofc",
-  twitter: "https://x.com/vistabet777ofc",
-  youtube: "https://www.youtube.com/vistabet777ofc",
-  tiktok: "https://www.tiktok.com/@vistabet777ofc",
-  twitch: "https://www.twitch.tv/vistabet777ofc",
-  discord: "https://discord.gg/vistabet777ofc",
-  officialWebsite: "https://www.vistabet777.com",
-  supportEmail: "support@vistabet777.com",
+  instagram: "https://www.instagram.com/Betalarabofc",
+  facebook: "https://www.facebook.com/Betalarabofc",
+  twitter: "https://x.com/Betalarabofc",
+  youtube: "https://www.youtube.com/Betalarabofc",
+  tiktok: "https://www.tiktok.com/@Betalarabofc",
+  twitch: "https://www.twitch.tv/Betalarabofc",
+  discord: "https://discord.gg/Betalarabofc",
+  officialWebsite: "https://www.betalarab.com",
+  supportEmail: "support@betalarab.com",
 };
 
 export const PAYMENT_METHOD_LIST = [

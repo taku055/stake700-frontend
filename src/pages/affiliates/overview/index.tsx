@@ -116,7 +116,7 @@ export default function Overview() {
                   <img src={`${ASSET_BASE_URL}/images/icons/face.png`} alt="user" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-white bg-[var(--background)] text-[14px] font-medium">Vistabet777.com Affiliate Program</span>
+                  <span className="text-white bg-[var(--background)] text-[14px] font-medium">Betalarab.com Affiliate Program</span>
                   <span className="text-white/60 bg-[var(--background)] text-[12px]">Creative Department</span>
                 </div>
               </div>

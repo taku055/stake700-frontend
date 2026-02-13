@@ -6,7 +6,7 @@
 import { FunctionalComponent, h } from "preact";
 import { useMemo, useState } from "preact/hooks";
 
-export const BRAND_NAME = "Vistabet777";
+export const BRAND_NAME = "Betalarab";
 
 type Period = {
   id: string;
