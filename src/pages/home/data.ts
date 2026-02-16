@@ -35,8 +35,8 @@ export const HOME_CATEGORIES: {
     icon: "/images/sidebar/classic-slots.svg",
   },
   {
-    key: "new slots",
-    name: "New Slots",
+    key: "new-games",
+    name: "New Games",
     category: "drop-wins",
     icon: "/images/sidebar/drop-wins.svg",
   },
