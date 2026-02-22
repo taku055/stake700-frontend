@@ -93,13 +93,17 @@ export default function Header() {
             </a>
           </div>
           {userState.value?.id && (
-            <div className="flex flex-row w-full justify-center items-center gap-2">
+            <div className={
+              `${
+                isRTL ? "mr-auto" : "ml-auto"
+              }flex flex-row w-full justify-center items-center gap-2`
+            }>
               <WalletBox />
             </div>
           )}
           <div
             className={`${
-              isRTL ? "mr-auto" : "ml-auto"
+              !(userState.value?.id) && isRTL ? "mr-auto" : "ml-auto"
             } text-[16px] leading-[24px] flex flex-row items-center gap-1 md:gap-2`}
           >
             {!userState.value?.id ? (
