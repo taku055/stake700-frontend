@@ -210,9 +210,9 @@ export default function WageringPage() {
 
       {/* Main panel container like screenshot */}
       <div className="rounded-2xl border border-slate-700/60 bg-slate-950/35 p-5">
-        {loading && !balanceState.value[currencyState.value] ? (
+        {loading && !balanceState.value[currencyState.value.code] ? (
           <Loader />
-        ) : !balanceState.value[currencyState.value] ? (
+        ) : !balanceState.value[currencyState.value.code] ? (
           <div className="text-slate-300 text-sm">No balance data.</div>
         ) : (
           <div className="space-y-4">
@@ -220,13 +220,15 @@ export default function WageringPage() {
               title="Cash Wagering"
               balanceLabel="Cash Balance"
               balanceValue={
-                balanceState.value[currencyState.value].cash.balance
+                balanceState.value[currencyState.value.code].cash.balance
               }
               completed={
-                balanceState.value[currencyState.value].cash.wageringCompleted
+                balanceState.value[currencyState.value.code].cash
+                  .wageringCompleted
               }
               required={
-                balanceState.value[currencyState.value].cash.wageringRequired
+                balanceState.value[currencyState.value.code].cash
+                  .wageringRequired
               }
             />
 
@@ -265,19 +267,20 @@ export default function WageringPage() {
             */}
 
             {/* Bonus row like screenshot */}
-            {balanceState.value[currencyState.value].bonus.isActive ? (
+            {balanceState.value[currencyState.value.code].bonus.isActive ? (
               <WageringCard
                 title="Bonus"
                 balanceLabel="Bonus Balance"
                 balanceValue={
-                  balanceState.value[currencyState.value].bonus.balance
+                  balanceState.value[currencyState.value.code].bonus.balance
                 }
                 completed={
-                  balanceState.value[currencyState.value].bonus
+                  balanceState.value[currencyState.value.code].bonus
                     .wageringCompleted
                 }
                 required={
-                  balanceState.value[currencyState.value].bonus.wageringRequired
+                  balanceState.value[currencyState.value.code].bonus
+                    .wageringRequired
                 }
                 rightChip={
                   <Chip
@@ -287,7 +290,7 @@ export default function WageringPage() {
                   >
                     x
                     {
-                      balanceState.value[currencyState.value].bonus
+                      balanceState.value[currencyState.value.code].bonus
                         .wageringMultiplier
                     }
                   </Chip>

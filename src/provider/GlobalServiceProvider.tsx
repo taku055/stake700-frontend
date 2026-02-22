@@ -42,7 +42,11 @@ import ProfileComponent from "@/components/Profile";
 import { profileOpenedState } from "@/state/profileOpenedState";
 import { paymentState } from "@/state/paymentState";
 import { tPayment } from "@/types/tPayment";
-import { PAYMENT_METHOD_LIST, PRELOAD_IMAGE_URLS } from "@/config/constants";
+import {
+  CURRENCY_LIST,
+  PAYMENT_METHOD_LIST,
+  PRELOAD_IMAGE_URLS,
+} from "@/config/constants";
 import Sidebar from "@/components/Sidebar";
 import NavigationSidebar from "@/components/NavigationSidebar";
 import { favoritesGameState } from "@/state/favoritesGameState";
@@ -89,6 +93,7 @@ import { apiGetGames } from "@/api/common/apiGetGames";
 import { liveCasinoGamesState } from "@/state/liveCasinogamesState";
 import { tUserBalance } from "@/types/tUserLedger";
 import { balanceState } from "@/state/balanceState";
+import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
 
 const i18nDefinitions = {
   tr: trDefinition,
@@ -324,7 +329,7 @@ export default function GlobalServiceProvider({
     (async () => {
       try {
         const balances = await Promise.all(
-          SUPPORTED_CURRENCIES.map((cur) => apiGetUserBalance(userId, cur)),
+          CURRENCY_LIST.map((cur) => apiGetUserBalance(userId, cur.code)),
         );
 
         if (cancelled) return;
