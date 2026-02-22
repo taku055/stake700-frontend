@@ -68,7 +68,12 @@ import Maintenance from "@/components/Maintenance";
 import SignupStep1Dialog from "@/components/Auth/Signup/SignupStep1Dialog";
 import SignupStep2Dialog from "@/components/Auth/Signup/SignupStep2Dialog";
 import SignupStep3Dialog from "@/components/Auth/Signup/SignupStep3Dialog";
-import { signupStep1OpenedState, signupStep2OpenedState, signupStep3OpenedState, welcomeDialogOpenedState } from "@/state/registerOpenedState";
+import {
+  signupStep1OpenedState,
+  signupStep2OpenedState,
+  signupStep3OpenedState,
+  welcomeDialogOpenedState,
+} from "@/state/registerOpenedState";
 import WelcomeDialog from "@/components/Auth/Signup/Welcom";
 import VipClub from "@/components/Vip-club";
 import { vipOpenedState } from "@/state/vipOpenedState";
@@ -82,6 +87,8 @@ import { tPaginationResult } from "@/types/tPaginationResult";
 import { tGame } from "@/types/tGame";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { liveCasinoGamesState } from "@/state/liveCasinogamesState";
+import { tUserBalance } from "@/types/tUserLedger";
+import { balanceState } from "@/state/balanceState";
 
 const i18nDefinitions = {
   tr: trDefinition,
@@ -203,7 +210,10 @@ export default function GlobalServiceProvider({
     const loadGameCategoryImages = async () => {
       try {
         const imageMap: { [url: string]: string } = {};
-        const urls = [...PRELOAD_IMAGE_URLS, ...bannerState.value.map((b) => b.img)];
+        const urls = [
+          ...PRELOAD_IMAGE_URLS,
+          ...bannerState.value.map((b) => b.img),
+        ];
 
         await Promise.all(
           urls.map(async (url) => {
@@ -229,7 +239,7 @@ export default function GlobalServiceProvider({
               // Keep original URL if loading fails
               imageMap[url] = url;
             }
-          })
+          }),
         );
 
         gameCategoryImagesState.value = imageMap;
@@ -273,7 +283,7 @@ export default function GlobalServiceProvider({
     const onResizeViewport = () => {
       setViewportCss(
         window.visualViewport?.width || -1,
-        window.visualViewport?.height || -1
+        window.visualViewport?.height || -1,
       );
     };
 
@@ -306,6 +316,36 @@ export default function GlobalServiceProvider({
   }, [userState.value?.id]);
 
   useEffect(() => {
+    if (!userState.value?.id) return;
+
+    const userId = userState.value.id;
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const balances = await Promise.all(
+          SUPPORTED_CURRENCIES.map((cur) => apiGetUserBalance(userId, cur)),
+        );
+
+        if (cancelled) return;
+
+        const next = { ...balanceState.value };
+        balances.forEach((b) => {
+          next[b.currencyCode] = b;
+        });
+
+        balanceState.value = next;
+      } catch (ex) {
+        console.error(ex);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [userState.value?.id]);
+
+  useEffect(() => {
     if (userState.value?.email && socket && socketConnected) {
       socket.emit("user.id", userState.value.id);
     }
@@ -314,7 +354,7 @@ export default function GlobalServiceProvider({
   useSocketEvent("balance.updated", (data: tBalance) => {
     if (userState.value) {
       const cashDetails = [...userState.value.cashDetails];
-      const i = cashDetails.findIndex(c => c.currency === data.currency);
+      const i = cashDetails.findIndex((c) => c.currency === data.currency);
       if (i !== -1) {
         cashDetails[i] = data;
       } else {
@@ -325,6 +365,13 @@ export default function GlobalServiceProvider({
         cashDetails,
       };
     }
+  });
+
+  useSocketEvent("ledger.updated", (data: tUserBalance) => {
+    balanceState.value = {
+      ...balanceState.value,
+      [data.currencyCode]: data,
+    };
   });
 
   useSocketEvent("user.logout", (userId: string) => {
@@ -462,10 +509,23 @@ export default function GlobalServiceProvider({
           />
 
           <Maintenance />
-          <WalletDialog isOpen={walletDialogOpenedState.value} onClose={() => { walletDialogOpenedState.value = false }} />
-          <DepositPanel isOpen={depositDialogOpenedState.value} onClose={() => { depositDialogOpenedState.value = false }} />
+          <WalletDialog
+            isOpen={walletDialogOpenedState.value}
+            onClose={() => {
+              walletDialogOpenedState.value = false;
+            }}
+          />
+          <DepositPanel
+            isOpen={depositDialogOpenedState.value}
+            onClose={() => {
+              depositDialogOpenedState.value = false;
+            }}
+          />
 
-          <VipClub isOpen={vipOpenedState.value} onClose={() => (vipOpenedState.value = false)} />
+          <VipClub
+            isOpen={vipOpenedState.value}
+            onClose={() => (vipOpenedState.value = false)}
+          />
         </I18nProvider>
       </LocationProvider>
     </HeroUIProvider>

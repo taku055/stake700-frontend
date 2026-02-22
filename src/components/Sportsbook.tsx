@@ -97,7 +97,7 @@ export default function Sportsbook({
         // Initialize the sportsbook application
         try {
           sportsbookApp = await (window as any).Sportsbook.init(
-            sportsbookConfig
+            sportsbookConfig,
           );
         } catch (ex) {
           setError(t("failed_initialize"));
