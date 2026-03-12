@@ -226,7 +226,10 @@
     "question_4": "Com quais moedas posso apostar?",
     "answer_4": "Betalarab suporta múltiplas criptomoedas, incluindo Bitcoin, Ethereum, Litecoin, Dogecoin e várias outras moedas digitais. Algumas regiões também podem suportar opções de moeda fiduciária.",
     "question_5": "Que tipo de jogos de cassino posso jogar?",
-    "answer_5": "Betalarab oferece uma grande variedade de jogos de cassino, como slots, jogos de mesa, jogos originais Betalarab e jogos de dealer ao vivo dos principais provedores de jogos."
+    "answer_5": "Betalarab oferece uma grande variedade de jogos de cassino, como slots, jogos de mesa, jogos originais Betalarab e jogos de dealer ao vivo dos principais provedores de jogos.",
+    "Copyright": "© 2026 Betalarab.com | Todos os direitos reservados",
+    "CompanyInfo": "Betalarab é propriedade e operado por Betalarab N.V., número de registro: 145353, endereço registrado: Seru Loraweg 17 B, Curaçao. As empresas agente de pagamento são Medium Rare Limited e MRS Tech Limited. Entre em contato conosco em support@betalarab.com.",
+    "ResponsibleGamblingText": "Betalarab está comprometido com o jogo responsável, para mais informações visite"
   },
   "LoginDialog": {
     "already_have_an_account": "Já tem uma conta?",
@@ -377,10 +380,7 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
-    "Copyright": "© 2026 Betalarab.com | Todos os direitos reservados",
-    "CompanyInfo": "Betalarab é propriedade e operado por Betalarab N.V., número de registro: 145353, endereço registrado: Seru Loraweg 17 B, Curaçao. As empresas agente de pagamento são Medium Rare Limited e MRS Tech Limited. Entre em contato conosco em support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab está comprometido com o jogo responsável, para mais informações visite"
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "Mais",
@@ -501,7 +501,7 @@
   "GamePlay": {
     "play": "Jogar",
     "fun-play": "Modo diversão",
-    "Real play": "Real play",
+    "Real play": "Jogo real",
     "restricted-error": "This game is restricted in your region.",
     "play-error": "An error occurred while starting the game. Please try again.",
     "confirm-currency-change": "Confirmar Mudança de Moeda",

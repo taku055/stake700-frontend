@@ -226,7 +226,10 @@
     "question_4": "ما هي العملات التي يمكنني المراهنة بها؟",
     "answer_4": "يدعم Betalarab عملات مشفرة متعددة، بما في ذلك Bitcoin و Ethereum و Litecoin و Dogecoin والعديد من العملات الرقمية الأخرى. قد تدعم بعض المناطق أيضًا خيارات العملة الورقية.",
     "question_5": "ما نوع ألعاب الكازينو التي يمكنني لعبها؟",
-    "answer_5": "يقدم Betalarab مجموعة متنوعة من ألعاب الكازينو مثل السلوتات وألعاب الطاولة وألعاب Betalarab الأصلية وألعاب الموزع المباشر من مزودي الألعاب الرائدين."
+    "answer_5": "يقدم Betalarab مجموعة متنوعة من ألعاب الكازينو مثل السلوتات وألعاب الطاولة وألعاب Betalarab الأصلية وألعاب الموزع المباشر من مزودي الألعاب الرائدين.",
+    "Copyright": "© 2026 Betalarab.com | جميع الحقوق محفوظة",
+    "CompanyInfo": "Betalarab مملوكة وتديرها Betalarab N.V.، رقم التسجيل: 145353، العنوان المسجل: Seru Loraweg 17 B، كوراساو. شركات وكلاء الدفع هي Medium Rare Limited و MRS Tech Limited. اتصل بنا على support@betalarab.com.",
+    "ResponsibleGamblingText": "Betalarab ملتزمة بالمقامرة المسؤولة، لمزيد من المعلومات قم بزيارة"
   },
   "LoginDialog": {
     "already_have_an_account": "لديك حساب بالفعل؟",
@@ -377,10 +380,7 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
-    "Copyright": "© 2026 Betalarab.com | جميع الحقوق محفوظة",
-    "CompanyInfo": "Betalarab مملوكة وتديرها Betalarab N.V.، رقم التسجيل: 145353، العنوان المسجل: Seru Loraweg 17 B، كوراساو. شركات وكلاء الدفع هي Medium Rare Limited و MRS Tech Limited. اتصل بنا على support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab ملتزمة بالمقامرة المسؤولة، لمزيد من المعلومات قم بزيارة"
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "المزيد",
@@ -501,7 +501,7 @@
   "GamePlay": {
     "play": "العب",
     "fun-play": "لعب تجريبي",
-    "Real play": "Real play",
+    "Real play": "لعب حقيقي",
     "restricted-error": "This game is restricted in your region.",
     "play-error": "An error occurred while starting the game. Please try again.",
     "confirm-currency-change": "تأكيد تغيير العملة",

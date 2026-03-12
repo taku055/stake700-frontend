@@ -226,7 +226,10 @@
     "question_4": "Hangi Para Birimleriyle Bahis Yapabilirim?",
     "answer_4": "Betalarab Bitcoin, Ethereum, Litecoin, Dogecoin ve diğer birkaç dijital para birimi dahil olmak üzere birden fazla kripto para birimini destekler. Bazı bölgeler ayrıca fiat para birimi seçeneklerini de destekleyebilir.",
     "question_5": "Ne Tür Kumarhane Oyunları Oynayabilirim?",
-    "answer_5": "Betalarab, slotlar, masa oyunları, orijinal Betalarab oyunları ve önde gelen oyun sağlayıcılardan canlı krupiye oyunları gibi çok çeşitli kumarhane oyunları sunar."
+    "answer_5": "Betalarab, slotlar, masa oyunları, orijinal Betalarab oyunları ve önde gelen oyun sağlayıcılardan canlı krupiye oyunları gibi çok çeşitli kumarhane oyunları sunar.",
+    "Copyright": "© 2026 Betalarab.com | Tüm Hakları Saklıdır",
+    "CompanyInfo": "Betalarab, Betalarab N.V. tarafından sahip olunan ve işletilen, kayıt numarası: 145353, kayıtlı adres: Seru Loraweg 17 B, Curaçao. Ödeme acente şirketleri Medium Rare Limited ve MRS Tech Limited'dir. Bize support@betalarab.com adresinden ulaşabilirsiniz.",
+    "ResponsibleGamblingText": "Betalarab sorumlu kumara bağlıdır, daha fazla bilgi için ziyaret edin"
   },
   "LoginDialog": {
     "already_have_an_account": "Zaten bir hesabınız var mı?",
@@ -377,10 +380,7 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
-    "Copyright": "© 2026 Betalarab.com | Tüm Hakları Saklıdır",
-    "CompanyInfo": "Betalarab, Betalarab N.V. tarafından sahip olunan ve işletilen, kayıt numarası: 145353, kayıtlı adres: Seru Loraweg 17 B, Curaçao. Ödeme acente şirketleri Medium Rare Limited ve MRS Tech Limited'dir. Bize support@betalarab.com adresinden ulaşabilirsiniz.",
-    "ResponsibleGamblingText": "Betalarab sorumlu kumara bağlıdır, daha fazla bilgi için ziyaret edin"
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "Daha Fazla",
@@ -501,7 +501,7 @@
   "GamePlay": {
     "play": "Oyna",
     "fun-play": "Eğlenceli Oyun",
-    "Real play": "Real play",
+    "Real play": "Gerçek oyun",
     "restricted-error": "This game is restricted in your region.",
     "play-error": "An error occurred while starting the game. Please try again.",
     "confirm-currency-change": "Para Birimi Değişikliğini Onayla",

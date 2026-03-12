@@ -226,7 +226,10 @@
     "question_4": "Με ποια νομίσματα μπορώ να στοιχηματίσω?",
     "answer_4": "Το Betalarab υποστηρίζει πολλαπλά κρυπτονομίσματα, συμπεριλαμβανομένων Bitcoin, Ethereum, Litecoin, Dogecoin και πολλών άλλων ψηφιακών νομισμάτων. Ορισμένες περιοχές μπορεί επίσης να υποστηρίζουν επιλογές νομίσματος fiat.",
     "question_5": "Τι είδους παιχνίδια καζίνο μπορώ να παίξω?",
-    "answer_5": "Το Betalarab προσφέρει μια μεγάλη ποικιλία παιχνιδιών καζίνο όπως slots, επιτραπέζια παιχνίδια, πρωτότυπα παιχνίδια Betalarab και παιχνίδια ζωντανού dealer από κορυφαίους παρόχους παιχνιδιών."
+    "answer_5": "Το Betalarab προσφέρει μια μεγάλη ποικιλία παιχνιδιών καζίνο όπως slots, επιτραπέζια παιχνίδια, πρωτότυπα παιχνίδια Betalarab και παιχνίδια ζωντανού dealer από κορυφαίους παρόχους παιχνιδιών.",
+    "Copyright": "© 2026 Betalarab.com | Όλα τα δικαιώματα διατηρούνται",
+    "CompanyInfo": "Το Betalarab ανήκει και λειτουργεί από την Betalarab N.V., αριθμός εγγραφής: 145353, καταχωρημένη διεύθυνση: Seru Loraweg 17 B, Curaçao. Οι εταιρείες πρακτόρων πληρωμών είναι η Medium Rare Limited και η MRS Tech Limited. Επικοινωνήστε μαζί μας στο support@betalarab.com.",
+    "ResponsibleGamblingText": "Το Betalarab δεσμεύεται για υπεύθυνο τζόγο, για περισσότερες πληροφορίες επισκεφτείτε"
   },
   "LoginDialog": {
     "already_have_an_account": "Έχετε ήδη λογαριασμό;",
@@ -377,10 +380,7 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
-    "Copyright": "© 2026 Betalarab.com | Όλα τα δικαιώματα διατηρούνται",
-    "CompanyInfo": "Το Betalarab ανήκει και λειτουργεί από την Betalarab N.V., αριθμός εγγραφής: 145353, καταχωρημένη διεύθυνση: Seru Loraweg 17 B, Curaçao. Οι εταιρείες πρακτόρων πληρωμών είναι η Medium Rare Limited και η MRS Tech Limited. Επικοινωνήστε μαζί μας στο support@betalarab.com.",
-    "ResponsibleGamblingText": "Το Betalarab δεσμεύεται για υπεύθυνο τζόγο, για περισσότερες πληροφορίες επισκεφτείτε"
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "Περισσότερα",
@@ -501,7 +501,7 @@
   "GamePlay": {
     "play": "Παίξε",
     "fun-play": "Δοκιμαστικό παιχνίδι",
-    "Real play": "Real play",
+    "Real play": "Πραγματικό παιχνίδι",
     "restricted-error": "This game is restricted in your region.",
     "play-error": "An error occurred while starting the game. Please try again.",
     "confirm-currency-change": "Επιβεβαίωση Αλλαγής Νομίσματος",

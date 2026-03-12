@@ -226,7 +226,10 @@
     "question_4": "Какими валютами я могу делать ставки?",
     "answer_4": "Betalarab поддерживает несколько криптовалют, включая Bitcoin, Ethereum, Litecoin, Dogecoin и несколько других цифровых валют. Некоторые регионы также могут поддерживать варианты фиатных валют.",
     "question_5": "В какие типы казино-игр я могу играть?",
-    "answer_5": "Betalarab предлагает широкий выбор казино-игр, таких как слоты, настольные игры, оригинальные игры Betalarab и игры с живыми дилерами от ведущих поставщиков игр."
+    "answer_5": "Betalarab предлагает широкий выбор казино-игр, таких как слоты, настольные игры, оригинальные игры Betalarab и игры с живыми дилерами от ведущих поставщиков игр.",
+    "Copyright": "© 2026 Betalarab.com | Все права защищены",
+    "CompanyInfo": "Betalarab принадлежит и управляется Betalarab N.V., регистрационный номер: 145353, зарегистрированный адрес: Seru Loraweg 17 B, Кюрасао. Компании-агенты по платежам: Medium Rare Limited и MRS Tech Limited. Свяжитесь с нами по адресу support@betalarab.com.",
+    "ResponsibleGamblingText": "Betalarab привержен ответственной игре, для получения дополнительной информации посетите"
   },
   "LoginDialog": {
     "already_have_an_account": "Уже есть аккаунт?",
@@ -377,10 +380,7 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
-    "Copyright": "© 2026 Betalarab.com | Все права защищены",
-    "CompanyInfo": "Betalarab принадлежит и управляется Betalarab N.V., регистрационный номер: 145353, зарегистрированный адрес: Seru Loraweg 17 B, Кюрасао. Компании-агенты по платежам: Medium Rare Limited и MRS Tech Limited. Свяжитесь с нами по адресу support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab привержен ответственной игре, для получения дополнительной информации посетите"
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "Больше",
@@ -501,7 +501,7 @@
   "GamePlay": {
     "play": "Играть",
     "fun-play": "Демо игра",
-    "Real play": "Real play",
+    "Real play": "Реальная игра",
     "restricted-error": "This game is restricted in your region.",
     "play-error": "An error occurred while starting the game. Please try again.",
     "confirm-currency-change": "Подтвердить изменение валюты",

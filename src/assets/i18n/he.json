@@ -226,7 +226,10 @@
     "question_4": "באילו מטבעות אוכל להמר?",
     "answer_4": "Betalarab תומך במספר מטבעות קריפטוגרפיים, כולל Bitcoin, Ethereum, Litecoin, Dogecoin ומספר מטבעות דיגיטליים נוספים. חלק מהאזורים עשויים גם לתמוך באפשרויות מטבע פיאט.",
     "question_5": "אילו סוגי משחקי קזינו אוכל לשחק?",
-    "answer_5": "Betalarab מציע מגוון רחב של משחקי קזינו כמו סלוטס, משחקי שולחן, משחקי Betalarab מקוריים ומשחקי דילר חי מספקי משחקים מובילים."
+    "answer_5": "Betalarab מציע מגוון רחב של משחקי קזינו כמו סלוטס, משחקי שולחן, משחקי Betalarab מקוריים ומשחקי דילר חי מספקי משחקים מובילים.",
+    "Copyright": "© 2026 Betalarab.com | כל הזכויות שמורות",
+    "CompanyInfo": "Betalarab בבעלות ובתפעול של Betalarab N.V., מספר רישום: 145353, כתובת רשומה: Seru Loraweg 17 B, Curaçao. חברות סוכני התשלום הן Medium Rare Limited ו-MRS Tech Limited. צרו קשר איתנו ב-support@betalarab.com.",
+    "ResponsibleGamblingText": "Betalarab מחויבת להימורים אחראיים, למידע נוסף בקרו"
   },
   "LoginDialog": {
     "already_have_an_account": "כבר יש לך חשבון?",
@@ -377,10 +380,7 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
-    "Copyright": "© 2026 Betalarab.com | כל הזכויות שמורות",
-    "CompanyInfo": "Betalarab בבעלות ובתפעול של Betalarab N.V., מספר רישום: 145353, כתובת רשומה: Seru Loraweg 17 B, Curaçao. חברות סוכני התשלום הן Medium Rare Limited ו-MRS Tech Limited. צרו קשר איתנו ב-support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab מחויבת להימורים אחראיים, למידע נוסף בקרו"
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
   },
   "GameGroup": {
     "More": "עוד",
@@ -501,7 +501,7 @@
   "GamePlay": {
     "play": "שחק",
     "fun-play": "משחק הדגמה",
-    "Real play": "Real play",
+    "Real play": "משחק אמיתי",
     "restricted-error": "This game is restricted in your region.",
     "play-error": "An error occurred while starting the game. Please try again.",
     "confirm-currency-change": "אישור שינוי מטבע",
