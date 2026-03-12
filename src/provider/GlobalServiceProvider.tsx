@@ -266,7 +266,7 @@ export default function GlobalServiceProvider({
     }
 
     // set location
-    localeState.value = window.localStorage.getItem("locale") || "en";
+    localeState.value = window.localStorage.getItem("locale") || "ar";
 
     (async () => {
       globalLoadingState.value = true;
