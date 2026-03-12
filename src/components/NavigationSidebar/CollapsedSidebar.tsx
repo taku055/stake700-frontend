@@ -45,9 +45,6 @@ export default function CollapsedSidebar({
   const t = useTranslations("Header");
   const tCommon = useTranslations("Common");
   const selectedTab = useSelectedTab();
-  const { categories: casinoCategories } = useCasinoCategories();
-  const { categories: liveCasinoCategories } = useLiveCasinoCategories();
-  const location = useLocation();
   const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } =
     useCategoryCounts();
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)

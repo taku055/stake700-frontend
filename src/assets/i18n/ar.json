@@ -215,7 +215,18 @@
     "House Edge Guide": "دليل ميزة المنزل",
     "Roulette": "روليت",
     "Blackjack": "بلاك جاك",
-    "Live Support": "الدعم المباشر"
+    "Baccarat": "باكارات",
+    "Live Support": "الدعم المباشر",
+    "question_1": "من هو Betalarab؟",
+    "answer_1": "Betalarab هو كازينو للعملات المشفرة عبر الإنترنت ومنصة للمراهنة الرياضية التي تقدم مجموعة واسعة من ألعاب الكازينو وأسواق الرياضة للاعبين في جميع أنحاء العالم.",
+    "question_2": "هل Betalarab مرخص؟",
+    "answer_2": "نعم، يعمل Betalarab بموجب ترخيص ألعاب رسمي ويتبع المعايير التنظيمية لضمان اللعب العادل والأمان والشفافية لمستخدميه.",
+    "question_3": "هل المراهنة على Betalarab آمنة؟",
+    "answer_3": "نعم، المراهنة على Betalarab آمنة. تستخدم المنصة تدابير أمنية متقدمة، بما في ذلك التشفير وتكنولوجيا الألعاب العادلة القابلة للإثبات، لحماية بيانات المستخدم وضمان النتائج العادلة.",
+    "question_4": "ما هي العملات التي يمكنني المراهنة بها؟",
+    "answer_4": "يدعم Betalarab عملات مشفرة متعددة، بما في ذلك Bitcoin و Ethereum و Litecoin و Dogecoin والعديد من العملات الرقمية الأخرى. قد تدعم بعض المناطق أيضًا خيارات العملة الورقية.",
+    "question_5": "ما نوع ألعاب الكازينو التي يمكنني لعبها؟",
+    "answer_5": "يقدم Betalarab مجموعة متنوعة من ألعاب الكازينو مثل السلوتات وألعاب الطاولة وألعاب Betalarab الأصلية وألعاب الموزع المباشر من مزودي الألعاب الرائدين."
   },
   "LoginDialog": {
     "already_have_an_account": "لديك حساب بالفعل؟",
@@ -357,16 +368,19 @@
     "answer_1": "كل ما عليك فعله هو النقر على زر التسجيل وإدخال عنوان بريدك الإلكتروني وكلمة المرور المطلوبة. هذا كل شيء. لن يُطلب منك معلومات شخصية إضافية وستكون داخل!",
     "question_2": "نسيت كلمة المرور الخاصة بي، كيف يمكنني استرداد حسابي؟",
     "answer_2": "انقر على تسجيل الدخول من القائمة العلوية ثم انقر على نسيت كلمة المرور. اكتب عنوان بريدك الإلكتروني الذي استخدمته أثناء التسجيل وسيتم إرسال كلمة مرور جديدة.",
-    "question_3": "كم عدد الحسابات التي يمكنني إنشاؤها في betalarab؟",
+    "question_3": "هل المراهنة على Betalarab آمنة؟",
     "answer_3": "حساب واحد فقط لكل شخص وعنوان بريد إلكتروني وعنوان IP ورقم محفظة مشفرة وجهاز إلكتروني واحد. يمكن حظرك لإنشاء حسابات إضافية ويمكن مصادرة الأموال في الحساب.",
-    "question_4": "هل يمكنني فتح حساب آخر أثناء أخذ استراحة (الاستبعاد الذاتي)؟",
+    "question_4": "ما هي العملات التي يمكنني المراهنة بها؟",
     "answer_4": "betalarab ملتزم باللعب المسؤول ولا يسمح للاعبيه بفتح حسابات متعددة خاصة لأسباب الاستبعاد الذاتي. نهدف إلى تزويد عملائنا ببيئة آمنة ومأمونة والتي ستمنحك تجربة ممتعة ومجزية. نشجع عملاءنا على استخدام خدماتنا بمسؤولية وبطريقة معقولة.",
-    "question_5": "هل هناك قيود على العمر في betalarab؟",
+    "question_5": "ما نوع ألعاب الكازينو التي يمكنني لعبها؟",
     "answer_5": "يجب أن تكون في سن 18 عامًا على الأقل للتسجيل في betalarab، بشرط أن يكون هذا هو الحد الأدنى لمتطلبات العمر للألعاب عبر الإنترنت داخل ولايتك القضائية. إذا كان أعلى، يجب أن تفي بمتطلبات ولايتك القضائية المحلية.",
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
+    "Copyright": "© 2026 Betalarab.com | جميع الحقوق محفوظة",
+    "CompanyInfo": "Betalarab مملوكة وتديرها Betalarab N.V.، رقم التسجيل: 145353، العنوان المسجل: Seru Loraweg 17 B، كوراساو. شركات وكلاء الدفع هي Medium Rare Limited و MRS Tech Limited. اتصل بنا على support@betalarab.com.",
+    "ResponsibleGamblingText": "Betalarab ملتزمة بالمقامرة المسؤولة، لمزيد من المعلومات قم بزيارة"
   },
   "GameGroup": {
     "More": "المزيد",

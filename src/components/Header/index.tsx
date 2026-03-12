@@ -3,47 +3,30 @@ import { useMediaQuery } from "usehooks-ts";
 import {
   ASSET_BASE_URL,
   mobileMediaQuery,
-  OFFICIAL_LINKS,
   RTL_LANGUAGES,
 } from "@/config/constants";
 import { Button } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
-import {
-  registerOpenedState,
-  signupStep1OpenedState,
-  welcomeDialogOpenedState,
-} from "@/state/registerOpenedState";
-import {
-  depositDialogOpenedState,
-  walletDialogOpenedState,
-} from "@/state/walletDialogState";
+import { registerOpenedState } from "@/state/registerOpenedState";
 import WalletBox from "./WalletBox";
-// import WalletBox from "@/components/WalletBox";
 import ProfileButton from "./ProfileButton";
 import { useTranslations } from "@/context/I18nContext";
-import { XIcon } from "lucide-preact";
 import { localeState } from "@/state/localeState";
-import { maintenanceState } from "@/state/maintenanceState";
 import { useEffect, useState } from "preact/hooks";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { navigationSidebarOpenState } from "@/state/navigationSidebarState";
-import { Menu } from "lucide-preact";
-import SearchWidget, { SearchWidgetHeader } from "./SearchWidget";
+import { SearchWidgetHeader } from "./SearchWidget";
 import { setAxiosAuthToken } from "@/api/instance";
 import { accessTokenState } from "@/state/accessTokenState";
 import { useLocation } from "preact-iso";
 import axios from "axios";
 import { useCallback } from "preact/hooks";
 import ProfileMenu from "../ProfileMenu";
-import { profileMenuOpenedState } from "@/state/profilemenuState";
-import { chatExpandedState } from "@/state/chatExpandedState";
 import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const isMobile = useMediaQuery(mobileMediaQuery);
   const t = useTranslations("Header");
-  const [alertVisible, setAlertVisible] = useState(!!maintenanceState.value);
   const [time, setTime] = useState(new Date());
   const { modifyHref } = useAffiliateNavigation();
   const location = useLocation();

@@ -7,9 +7,11 @@ import CategoryItems from "./CategoryItems";
 import { useState, useMemo } from "preact/hooks";
 import { localeState } from "@/state/localeState";
 import { useCategoryCounts } from "@/hooks/useCatigoryCounts";
-import { ASSET_BASE_URL, mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
+import {
+  ASSET_BASE_URL,
+  RTL_LANGUAGES,
+} from "@/config/constants";
 import { options } from "@/components/LocaleSelection";
-import { useMediaQuery } from "usehooks-ts";
 import { useSelectedTab } from "@/hooks/useSelectedTab";
 
 interface ExpandedDrawerProps {
@@ -60,9 +62,7 @@ export default function ExpandedDrawer({
   const [isExpanded, setIsExpanded] = useState<Record<string, boolean>>({});
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
-  const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } =
-    useCategoryCounts();
-  const isMobile = useMediaQuery(mobileMediaQuery);
+  const { casinoCategoriesWithCounts } = useCategoryCounts();
   const selectedTab = useSelectedTab();
 
   // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
@@ -105,7 +105,7 @@ export default function ExpandedDrawer({
                 : "bg-[url('/images/icons/icons/default-casino.svg')]"
             } hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
           >
-            <span className="text-white text-[14px]">Casino</span>
+            <span className="text-white text-[14px]">{t("Casino")}</span>
           </Link>
           {/* Sports Button */}
           <Link
@@ -116,7 +116,7 @@ export default function ExpandedDrawer({
                 : "bg-[url('/images/icons/icons/default-sports.svg')]"
             } hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
           >
-            <span className="text-white text-[14px]">Sports</span>
+            <span className="text-white text-[14px]">{t("Sports")}</span>
           </Link>
         </div>
       </div>

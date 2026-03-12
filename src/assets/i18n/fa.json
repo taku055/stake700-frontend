@@ -215,7 +215,18 @@
     "House Edge Guide": "راهنمای مزیت کازینو",
     "Roulette": "رولت",
     "Blackjack": "بلک‌جک",
-    "Live Support": "پشتیبانی زنده"
+    "Baccarat": "باکارات",
+    "Live Support": "پشتیبانی زنده",
+    "question_1": "Betalarab چیست؟",
+    "answer_1": "Betalarab یک کازینوی آنلاین ارزهای دیجیتال و پلتفرم شرط‌بندی ورزشی است که طیف گسترده‌ای از بازی‌های کازینو و بازارهای ورزشی را به بازیکنان در سراسر جهان ارائه می‌دهد.",
+    "question_2": "آیا Betalarab مجوز دارد؟",
+    "answer_2": "بله، Betalarab تحت مجوز بازی رسمی فعالیت می‌کند و استانداردهای نظارتی را برای اطمینان از بازی عادلانه، امنیت و شفافیت برای کاربران خود دنبال می‌کند.",
+    "question_3": "آیا شرط‌بندی در Betalarab ایمن است؟",
+    "answer_3": "بله، شرط‌بندی در Betalarab ایمن است. این پلتفرم از اقدامات امنیتی پیشرفته، از جمله رمزگذاری و فناوری بازی عادلانه قابل اثبات، برای محافظت از داده‌های کاربر و اطمینان از نتایج عادلانه استفاده می‌کند.",
+    "question_4": "با چه ارزهایی می‌توانم شرط ببندم؟",
+    "answer_4": "Betalarab از چندین ارز دیجیتال پشتیبانی می‌کند، از جمله Bitcoin، Ethereum، Litecoin، Dogecoin و چندین ارز دیجیتال دیگر. برخی مناطق ممکن است گزینه‌های ارز فیات را نیز پشتیبانی کنند.",
+    "question_5": "چه نوع بازی‌های کازینویی می‌توانم انجام دهم؟",
+    "answer_5": "Betalarab انواع مختلفی از بازی‌های کازینو مانند اسلات‌ها، بازی‌های میزی، بازی‌های اصلی Betalarab و بازی‌های دیلر زنده از ارائه‌دهندگان پیشرو بازی ارائه می‌دهد."
   },
   "LoginDialog": {
     "already_have_an_account": "از قبل حساب دارید؟",
@@ -366,7 +377,10 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
+    "Copyright": "© 2026 Betalarab.com | تمامی حقوق محفوظ است",
+    "CompanyInfo": "Betalarab متعلق به و توسط Betalarab N.V. اداره می‌شود، شماره ثبت: 145353، آدرس ثبت شده: Seru Loraweg 17 B، Curaçao. شرکت‌های نماینده پرداخت Medium Rare Limited و MRS Tech Limited هستند. با ما در support@betalarab.com تماس بگیرید.",
+    "ResponsibleGamblingText": "Betalarab متعهد به قمار مسئولانه است، برای اطلاعات بیشتر بازدید کنید"
   },
   "GameGroup": {
     "More": "بیشتر",

@@ -215,7 +215,18 @@
     "House Edge Guide": "מדריך יתרון הבית",
     "Roulette": "רולטה",
     "Blackjack": "בלאק ג'ק",
-    "Live Support": "תמיכה חיה"
+    "Baccarat": "בקרה",
+    "Live Support": "תמיכה חיה",
+    "question_1": "מי זה Betalarab?",
+    "answer_1": "Betalarab הוא קזינו מטבעות קריפטוגרפיים מקוון ופלטפורמת הימורי ספורט המציעה מגוון רחב של משחקי קזינו ושווקי ספורט לשחקנים ברחבי העולם.",
+    "question_2": "האם Betalarab מורשה?",
+    "answer_2": "כן, Betalarab פועל תחת רישיון משחקים רשמי ועוקב אחר תקנים רגולטוריים כדי להבטיח משחק הוגן, אבטחה ושקיפות למשתמשיו.",
+    "question_3": "האם הימור ב-Betalarab בטוח?",
+    "answer_3": "כן, הימור ב-Betalarab בטוח. הפלטפורמה משתמשת באמצעי אבטחה מתקדמים, כולל הצפנה וטכנולוגיית משחקים הוגנים הניתנים להוכחה, כדי להגן על נתוני המשתמש ולהבטיח תוצאות הוגנות.",
+    "question_4": "באילו מטבעות אוכל להמר?",
+    "answer_4": "Betalarab תומך במספר מטבעות קריפטוגרפיים, כולל Bitcoin, Ethereum, Litecoin, Dogecoin ומספר מטבעות דיגיטליים נוספים. חלק מהאזורים עשויים גם לתמוך באפשרויות מטבע פיאט.",
+    "question_5": "אילו סוגי משחקי קזינו אוכל לשחק?",
+    "answer_5": "Betalarab מציע מגוון רחב של משחקי קזינו כמו סלוטס, משחקי שולחן, משחקי Betalarab מקוריים ומשחקי דילר חי מספקי משחקים מובילים."
   },
   "LoginDialog": {
     "already_have_an_account": "כבר יש לך חשבון?",
@@ -366,7 +377,10 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
+    "Copyright": "© 2026 Betalarab.com | כל הזכויות שמורות",
+    "CompanyInfo": "Betalarab בבעלות ובתפעול של Betalarab N.V., מספר רישום: 145353, כתובת רשומה: Seru Loraweg 17 B, Curaçao. חברות סוכני התשלום הן Medium Rare Limited ו-MRS Tech Limited. צרו קשר איתנו ב-support@betalarab.com.",
+    "ResponsibleGamblingText": "Betalarab מחויבת להימורים אחראיים, למידע נוסף בקרו"
   },
   "GameGroup": {
     "More": "עוד",

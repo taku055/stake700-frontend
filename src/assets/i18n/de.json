@@ -215,7 +215,18 @@
     "House Edge Guide": "Hausvorteil-Führer",
     "Roulette": "Roulette",
     "Blackjack": "Blackjack",
-    "Live Support": "Live Support"
+    "Baccarat": "Baccarat",
+    "Live Support": "Live Support",
+    "question_1": "Wer ist Betalarab?",
+    "answer_1": "Betalarab ist eine Online-Kryptowährungs-Casino- und Sportwetten-Plattform, die Spielern weltweit eine breite Palette von Casino-Spielen und Sportmärkten bietet.",
+    "question_2": "Ist Betalarab lizenziert?",
+    "answer_2": "Ja, Betalarab arbeitet unter einer offiziellen Spielerlizenz und folgt regulatorischen Standards, um faires Spiel, Sicherheit und Transparenz für seine Benutzer zu gewährleisten.",
+    "question_3": "Ist Wetten auf Betalarab sicher?",
+    "answer_3": "Ja, Wetten auf Betalarab ist sicher. Die Plattform verwendet erweiterte Sicherheitsmaßnahmen, einschließlich Verschlüsselung und nachweislich fairer Spieltechnologie, um Benutzerdaten zu schützen und faire Ergebnisse zu gewährleisten.",
+    "question_4": "Mit welchen Währungen kann ich wetten?",
+    "answer_4": "Betalarab unterstützt mehrere Kryptowährungen, einschließlich Bitcoin, Ethereum, Litecoin, Dogecoin und mehrere andere digitale Währungen. Einige Regionen können auch Fiat-Währungsoptionen unterstützen.",
+    "question_5": "Welche Art von Casino-Spielen kann ich spielen?",
+    "answer_5": "Betalarab bietet eine große Auswahl an Casino-Spielen wie Slots, Tischspiele, originale Betalarab-Spiele und Live-Dealer-Spiele von führenden Spielanbietern."
   },
   "LoginDialog": {
     "already_have_an_account": "Bereits ein Konto?",
@@ -366,7 +377,10 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
+    "Copyright": "© 2026 Betalarab.com | Alle Rechte vorbehalten",
+    "CompanyInfo": "Betalarab gehört und wird betrieben von Betalarab N.V., Registrierungsnummer: 145353, eingetragene Adresse: Seru Loraweg 17 B, Curaçao. Die Zahlungsagenten-Unternehmen sind Medium Rare Limited und MRS Tech Limited. Kontaktieren Sie uns unter support@betalarab.com.",
+    "ResponsibleGamblingText": "Betalarab ist dem verantwortungsvollen Glücksspiel verpflichtet, für weitere Informationen besuchen Sie"
   },
   "GameGroup": {
     "More": "Mehr",

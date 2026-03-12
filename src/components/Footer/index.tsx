@@ -106,23 +106,19 @@ export const Footer = () => {
           dir={isRTL ? "rtl" : "ltr"}
         >
           <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
-            © 2026 Betalarab.com | All Rights Reserved
+            {t("Copyright")}
           </h2>
           <p className=" text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
-            Betalarab is owned and operated by Betalarab N.V., registration
-            number: 145353, registered address: Seru Loraweg 17 B, Curaçao.
-            Payment agent companies are Medium Rare Limited and MRS Tech
-            Limited. Contact us at support@betalarab.com.
+            {t("CompanyInfo")}
           </p>
           <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
-            Betalarab is committed to responsible gambling, for more
-            information visit&nbsp;
+            {t("ResponsibleGamblingText")}&nbsp;
             <Link
               href="/support/responsible-gambling"
               className="text-[var(--passive-color)] text-[14px] font-semibold"
               scrollToTop={true}
             >
-              Responsible Gambling
+              {t("Responsible Gambling")}
             </Link>
           </h2>
         </div>

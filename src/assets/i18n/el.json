@@ -215,7 +215,18 @@
     "House Edge Guide": "Οδηγός Πλεονεκτήματος Καζίνο",
     "Roulette": "Ρουλέτα",
     "Blackjack": "Blackjack",
-    "Live Support": "Ζωντανή Υποστήριξη"
+    "Baccarat": "Μπακαρά",
+    "Live Support": "Ζωντανή Υποστήριξη",
+    "question_1": "Ποιος είναι ο Betalarab?",
+    "answer_1": "Το Betalarab είναι ένα online καζίνο κρυπτονομισμάτων και πλατφόρμα αθλητικών στοιχημάτων που προσφέρει μια ευρεία γκάμα παιχνιδιών καζίνο και αθλητικών αγορών σε παίκτες σε όλο τον κόσμο.",
+    "question_2": "Είναι το Betalarab άδεια;",
+    "answer_2": "Ναι, το Betalarab λειτουργεί με επίσημη άδεια παιχνιδιών και ακολουθεί κανονιστικά πρότυπα για να εξασφαλίσει δίκαιο παιχνίδι, ασφάλεια και διαφάνεια για τους χρήστες του.",
+    "question_3": "Είναι ασφαλές να στοιχηματίζω στο Betalarab?",
+    "answer_3": "Ναι, το στοίχημα στο Betalarab είναι ασφαλές. Η πλατφόρμα χρησιμοποιεί προηγμένα μέτρα ασφαλείας, συμπεριλαμβανομένης της κρυπτογράφησης και της τεχνολογίας αποδεικνύσιμα δίκαιων παιχνιδιών, για να προστατεύσει τα δεδομένα των χρηστών και να εξασφαλίσει δίκαια αποτελέσματα.",
+    "question_4": "Με ποια νομίσματα μπορώ να στοιχηματίσω?",
+    "answer_4": "Το Betalarab υποστηρίζει πολλαπλά κρυπτονομίσματα, συμπεριλαμβανομένων Bitcoin, Ethereum, Litecoin, Dogecoin και πολλών άλλων ψηφιακών νομισμάτων. Ορισμένες περιοχές μπορεί επίσης να υποστηρίζουν επιλογές νομίσματος fiat.",
+    "question_5": "Τι είδους παιχνίδια καζίνο μπορώ να παίξω?",
+    "answer_5": "Το Betalarab προσφέρει μια μεγάλη ποικιλία παιχνιδιών καζίνο όπως slots, επιτραπέζια παιχνίδια, πρωτότυπα παιχνίδια Betalarab και παιχνίδια ζωντανού dealer από κορυφαίους παρόχους παιχνιδιών."
   },
   "LoginDialog": {
     "already_have_an_account": "Έχετε ήδη λογαριασμό;",
@@ -366,7 +377,10 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
+    "Copyright": "© 2026 Betalarab.com | Όλα τα δικαιώματα διατηρούνται",
+    "CompanyInfo": "Το Betalarab ανήκει και λειτουργεί από την Betalarab N.V., αριθμός εγγραφής: 145353, καταχωρημένη διεύθυνση: Seru Loraweg 17 B, Curaçao. Οι εταιρείες πρακτόρων πληρωμών είναι η Medium Rare Limited και η MRS Tech Limited. Επικοινωνήστε μαζί μας στο support@betalarab.com.",
+    "ResponsibleGamblingText": "Το Betalarab δεσμεύεται για υπεύθυνο τζόγο, για περισσότερες πληροφορίες επισκεφτείτε"
   },
   "GameGroup": {
     "More": "Περισσότερα",

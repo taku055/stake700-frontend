@@ -215,7 +215,18 @@
     "House Edge Guide": "Ev Kənarı Bələdçisi",
     "Roulette": "Rulet",
     "Blackjack": "Blackjack",
-    "Live Support": "Canlı Dəstək"
+    "Baccarat": "Bakkara",
+    "Live Support": "Canlı Dəstək",
+    "question_1": "Betalarab kimdir?",
+    "answer_1": "Betalarab dünya üzrə oyunçulara geniş kazino oyunları və idman bazarları təklif edən onlayn kripto valyuta kazinosu və idman mərc platformasıdır.",
+    "question_2": "Betalarab lisenziyalıdır?",
+    "answer_2": "Bəli, Betalarab rəsmi oyun lisenziyası altında fəaliyyət göstərir və istifadəçiləri üçün ədalətli oyun, təhlükəsizlik və şəffaflıq təmin etmək üçün tənzimləyici standartlara riayət edir.",
+    "question_3": "Betalarab-da mərc etmək təhlükəsizdir?",
+    "answer_3": "Bəli, Betalarab-da mərc etmək təhlükəsizdir. Platforma istifadəçi məlumatlarını qorumaq və ədalətli nəticələr təmin etmək üçün şifrələmə və sübut edilə bilən ədalətli oyun texnologiyası daxil olmaqla qabaqcıl təhlükəsizlik tədbirlərindən istifadə edir.",
+    "question_4": "Hansı Valyutalarla Mərc Edə Bilərəm?",
+    "answer_4": "Betalarab Bitcoin, Ethereum, Litecoin, Dogecoin və digər bir neçə rəqəmsal valyuta daxil olmaqla çoxsaylı kripto valyutaları dəstəkləyir. Bəzi regionlar həmçinin fiat valyuta seçimlərini də dəstəkləyə bilər.",
+    "question_5": "Hansı Növ Kazino Oyunlarını Oynaya Bilərəm?",
+    "answer_5": "Betalarab aparıcı oyun təminatçılarından slotlar, masa oyunları, orijinal Betalarab oyunları və canlı krupiye oyunları kimi müxtəlif kazino oyunları təklif edir."
   },
   "LoginDialog": {
     "already_have_an_account": "Artıq hesabınız var?",
@@ -366,7 +377,10 @@
     "question_6": "What Sports Can I Bet On?",
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
+    "Copyright": "© 2026 Betalarab.com | Bütün hüquqlar qorunur",
+    "CompanyInfo": "Betalarab Betalarab N.V. şirkətinə məxsusdur və idarə olunur, qeydiyyat nömrəsi: 145353, qeydiyyat ünvanı: Seru Loraweg 17 B, Curaçao. Ödəniş agent şirkətləri Medium Rare Limited və MRS Tech Limited-dir. Bizimlə support@betalarab.com ünvanı ilə əlaqə saxlayın.",
+    "ResponsibleGamblingText": "Betalarab məsuliyyətli qumar oyununa sadiqdir, daha çox məlumat üçün ziyarət edin"
   },
   "GameGroup": {
     "More": "Daha çox",
