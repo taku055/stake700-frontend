@@ -37,8 +37,8 @@ export default function HomePage() {
     <>
       <EmblaBanner />
       <ContentWrapper>
-        <div className="flex flex-col gap-4 mt-[20px] overflow-x-auto mb-4">
-          <div className="flex gap-2 rounded-full p-2 bg-[var(--bar-background-color)]">
+        <div className="flex flex-col gap-4 mt-[20px] overflow-x-auto mb-4 scrollbar-hide bg-[var(--bar-background-color)] rounded-full">
+          <div className="flex gap-2 p-2">
             {HOME_CATEGORIES.map((category) => (
               <Link
                 href={`/?category=${category.category}`}
