@@ -4,106 +4,95 @@
  */
 import { FunctionalComponent, h } from "preact";
 import { useMemo } from "preact/hooks";
+import { useTranslations } from "@/context/I18nContext";
 
 export const BRAND_NAME = "Betalarab";
 
-type Section = {
-  title: string;
-  body: string;
-  bullets?: string[];
+type SectionConfig = {
+  titleKey: string;
+  bodyKey: string;
+  bulletKeys?: string[];
 };
 
 const LawEnforcementRequestPage: FunctionalComponent = () => {
-  const sections = useMemo<Section[]>(
+  const t = useTranslations("LawEnforcement");
+
+  const sections = useMemo<SectionConfig[]>(
     () => [
       {
-        title: "Overview",
-        body:
-          `This page explains how law enforcement and authorized government agencies can request user data from ${BRAND_NAME}. ` +
-          "We review each request for validity and scope, and we disclose information only when legally required.",
+        titleKey: "OverviewTitle",
+        bodyKey: "OverviewBody",
       },
       {
-        title: "Where to send requests",
-        body:
-          "Send requests from an official government or agency email address whenever possible. If you must send by another method, " +
-          "include clear contact details so we can verify authenticity.",
-        bullets: [
-          "Email: legal@betalarab.com (replace with your legal inbox)",
-          "Emergency: emergency@betalarab.com (replace with your emergency inbox)",
-          "Mail: [Company Legal Address] (replace with your address)",
+        titleKey: "WhereToSendTitle",
+        bodyKey: "WhereToSendBody",
+        bulletKeys: ["WhereToSendBullet1", "WhereToSendBullet2", "WhereToSendBullet3"],
+      },
+      {
+        titleKey: "WhatToIncludeTitle",
+        bodyKey: "WhatToIncludeBody",
+        bulletKeys: [
+          "WhatToIncludeBullet1",
+          "WhatToIncludeBullet2",
+          "WhatToIncludeBullet3",
+          "WhatToIncludeBullet4",
+          "WhatToIncludeBullet5",
         ],
       },
       {
-        title: "What to include",
-        body: "To help us process quickly, include the following information:",
-        bullets: [
-          "Agency name, case number, and requestor contact details",
-          "Legal process type (e.g., subpoena/court order/search warrant) and issuing jurisdiction",
-          "Identifiers (username, account ID, email, phone, transaction IDs, wallet addresses, IPs, timestamps)",
-          "Date range and specific data categories requested",
-          "Preferred response format and any deadline stated by the legal process",
+        titleKey: "TypesOfDataTitle",
+        bodyKey: "TypesOfDataBody",
+        bulletKeys: [
+          "TypesOfDataBullet1",
+          "TypesOfDataBullet2",
+          "TypesOfDataBullet3",
+          "TypesOfDataBullet4",
+          "TypesOfDataBullet5",
         ],
       },
       {
-        title: "Types of data we may have",
-        body: "Availability varies by service use and retention policy. Examples may include:",
-        bullets: [
-          "Basic account information (profile details, verification status)",
-          "Login and security logs (IP addresses, device/session metadata)",
-          "Payment and transaction records (deposits, withdrawals, chargebacks)",
-          "Gameplay activity (timestamps, game/provider identifiers, results metadata)",
-          "Customer support communications",
+        titleKey: "EmergencyRequestsTitle",
+        bodyKey: "EmergencyRequestsBody",
+        bulletKeys: [
+          "EmergencyRequestsBullet1",
+          "EmergencyRequestsBullet2",
+          "EmergencyRequestsBullet3",
         ],
       },
       {
-        title: "Emergency requests",
-        body:
-          "If you believe there is an imminent threat to life or serious physical harm, mark your request as an emergency and " +
-          "include details supporting the emergency. We may disclose limited information when permitted by law.",
-        bullets: [
-          "Describe the emergency and why it is time-sensitive",
-          "Provide identifying information and any relevant timestamps",
-          "Include a callback number for verification",
+        titleKey: "InternationalRequestsTitle",
+        bodyKey: "InternationalRequestsBody",
+      },
+      {
+        titleKey: "ResponseProcessTitle",
+        bodyKey: "ResponseProcessBody",
+        bulletKeys: [
+          "ResponseProcessBullet1",
+          "ResponseProcessBullet2",
+          "ResponseProcessBullet3",
+          "ResponseProcessBullet4",
         ],
       },
       {
-        title: "International requests",
-        body:
-          "Requests outside our operating jurisdiction may require additional legal process (e.g., MLAT/letters rogatory) or " +
-          "local legal validation. We will respond according to applicable laws.",
-      },
-      {
-        title: "Response process",
-        body: "We verify the requesting authority, review legal sufficiency, limit disclosures to what is required, and may push back on overly broad requests.",
-        bullets: [
-          "Verification of requestor identity and authority",
-          "Legal review for validity, jurisdiction, and scope",
-          "Production of responsive records (if any) in a secure manner",
-          "Notice to users where required or permitted (exceptions may apply)",
+        titleKey: "PreservationRequestsTitle",
+        bodyKey: "PreservationRequestsBody",
+        bulletKeys: [
+          "PreservationRequestsBullet1",
+          "PreservationRequestsBullet2",
+          "PreservationRequestsBullet3",
         ],
       },
       {
-        title: "Preservation requests",
-        body: "We can preserve certain records for a limited period when we receive a valid preservation request. Preservation does not mean production.",
-        bullets: [
-          "Include identifiers and date range",
-          "Include legal basis for preservation and the preservation period requested",
-          "Follow up with formal legal process for production",
-        ],
+        titleKey: "CostFormatTimingTitle",
+        bodyKey: "CostFormatTimingBody",
       },
       {
-        title: "Cost, format, and timing",
-        body:
-          "We aim to respond promptly. Timing depends on request completeness, scope, and legal review. We may provide records electronically and securely. " +
-          "Fees may apply where permitted by law.",
-      },
-      {
-        title: "Important notes",
-        body: "This page is for informational purposes only and does not constitute legal advice. ${BRAND_NAME} will interpret and apply this process consistent with applicable laws.",
-        bullets: [
-          "Do not send sensitive data about minors unless specifically required and lawful",
-          "Narrow requests reduce processing time",
-          "We do not provide access or “live monitoring” of user accounts",
+        titleKey: "ImportantNotesTitle",
+        bodyKey: "ImportantNotesBody",
+        bulletKeys: [
+          "ImportantNotesBullet1",
+          "ImportantNotesBullet2",
+          "ImportantNotesBullet3",
         ],
       },
     ],
@@ -128,10 +117,10 @@ const LawEnforcementRequestPage: FunctionalComponent = () => {
               </div>
               <div>
                 <div class="text-base font-extrabold tracking-wide">
-                  Law Enforcement Requests
+                  {t("Title")}
                 </div>
                 <div class="text-sm text-zinc-400">
-                  Data request guidelines for{" "}
+                  {t("Subtitle")}{" "}
                   <span class="font-semibold text-zinc-200">{BRAND_NAME}</span>
                 </div>
               </div>
@@ -142,13 +131,13 @@ const LawEnforcementRequestPage: FunctionalComponent = () => {
                 href="/privacy"
                 class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
-                Privacy
+                {t("Privacy")}
               </a>
               <a
                 href="/help"
                 class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
-                Help Center
+                {t("HelpCenter")}
               </a>
             </div>
           </div>
@@ -160,26 +149,24 @@ const LawEnforcementRequestPage: FunctionalComponent = () => {
         <section class="py-7">
           <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900/70 to-zinc-900/35 p-6 shadow-2xl shadow-black/40">
             <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Requesting user data
+              {t("RequestingTitle")}
             </h1>
             <p class="mt-3 max-w-3xl text-lg leading-relaxed text-zinc-300">
-              We take user privacy seriously. We disclose user information only
-              in response to valid legal process or where permitted by law for
-              emergency situations.
+              {t("RequestingDesc")}
             </p>
 
             <div class="mt-5 grid gap-3 md:grid-cols-3">
               <QuickCard
-                title="Be specific"
-                text="Include identifiers, date ranges, and exact data categories."
+                title={t("BeSpecificTitle")}
+                text={t("BeSpecificText")}
               />
               <QuickCard
-                title="Use official channels"
-                text="Send from an agency email whenever possible."
+                title={t("UseOfficialChannelsTitle")}
+                text={t("UseOfficialChannelsText")}
               />
               <QuickCard
-                title="Emergency help"
-                text="Clearly mark emergencies and provide justification."
+                title={t("EmergencyHelpTitle")}
+                text={t("EmergencyHelpText")}
               />
             </div>
           </div>
@@ -189,20 +176,24 @@ const LawEnforcementRequestPage: FunctionalComponent = () => {
         <section class="grid gap-3">
           {sections.map((s) => (
             <article
-              key={s.title}
+              key={s.titleKey}
               class="rounded-3xl border border-white/10 bg-zinc-900/35 p-6"
             >
-              <h2 class="text-xl font-extrabold tracking-wide">{s.title}</h2>
+              <h2 class="text-xl font-extrabold tracking-wide">
+                {t(s.titleKey)}
+              </h2>
               <p class="mt-2 text-base leading-relaxed text-zinc-300">
-                {s.body}
+                {s.bodyKey === "OverviewBody" || s.bodyKey === "ImportantNotesBody"
+                  ? t(s.bodyKey, { brand: BRAND_NAME })
+                  : t(s.bodyKey)}
               </p>
 
-              {s.bullets?.length ? (
+              {s.bulletKeys?.length ? (
                 <ul class="mt-4 space-y-2 text-base text-zinc-200">
-                  {s.bullets.map((b) => (
-                    <li key={b} class="flex gap-3">
+                  {s.bulletKeys.map((key) => (
+                    <li key={key} class="flex gap-3">
                       <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-400/40" />
-                      <span class="leading-relaxed">{b}</span>
+                      <span class="leading-relaxed">{t(key)}</span>
                     </li>
                   ))}
                 </ul>
@@ -215,13 +206,10 @@ const LawEnforcementRequestPage: FunctionalComponent = () => {
         <section class="mt-6">
           <div class="rounded-3xl border border-amber-500/20 bg-amber-500/10 p-6">
             <div class="text-base font-extrabold text-amber-200/90">
-              Disclaimer
+              {t("DisclaimerTitle")}
             </div>
             <div class="mt-2 text-sm leading-relaxed text-amber-200/80">
-              This page is general information and does not replace legal
-              advice. Processes and requirements may vary by jurisdiction.
-              Replace placeholder contact details (emails/address) with your
-              real legal contacts.
+              {t("DisclaimerBody")}
             </div>
           </div>
         </section>

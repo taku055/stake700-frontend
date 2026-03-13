@@ -5,68 +5,71 @@
  */
 import { FunctionalComponent, h } from "preact";
 import { useMemo } from "preact/hooks";
+import { useTranslations } from "@/context/I18nContext";
 
 export const BRAND_NAME = "Betalarab";
 
 type Helpline = {
-  region: string;
-  name: string;
+  regionKey: string;
+  nameKey: string;
   phone?: string;
-  text?: string;
-  websiteLabel?: string;
-  websiteHref?: string; // put your real URL here
-  hours?: string;
+  textKey?: string;
+  websiteLabelKey: string;
+  websiteHref: string;
+  hoursKey: string;
 };
 
 const GamblingHelplinePage: FunctionalComponent = () => {
+  const t = useTranslations("GamblingHelpline");
+
   const helplines = useMemo<Helpline[]>(
     () => [
       {
-        region: "United States",
-        name: "National Problem Gambling Helpline (NCPG)",
+        regionKey: "region_us",
+        nameKey: "name_ncpg",
         phone: "1-800-GAMBLER",
-        text: "Text: 800GAM",
-        websiteLabel: "Visit help site",
+        textKey: "text_800gam",
+        websiteLabelKey: "VisitHelpSite",
         websiteHref: "https://www.ncpgambling.org/help-treatment/",
-        hours: "24/7 (availability may vary by state)",
+        hoursKey: "hours_us",
       },
       {
-        region: "United Kingdom",
-        name: "GamCare",
+        regionKey: "region_uk",
+        nameKey: "name_gamcare",
         phone: "0808 8020 133",
-        websiteLabel: "Visit help site",
+        websiteLabelKey: "VisitHelpSite",
         websiteHref: "https://www.gamcare.org.uk/",
-        hours: "24/7",
+        hoursKey: "hours_uk",
       },
       {
-        region: "Canada",
-        name: "Canada gambling help (provincial services)",
-        websiteLabel: "Find provincial resources",
+        regionKey: "region_ca",
+        nameKey: "name_ca_provincial",
+        websiteLabelKey: "FindProvincialResources",
         websiteHref: "https://www.problemgambling.ca/",
-        hours: "Varies by province",
+        hoursKey: "hours_ca",
       },
       {
-        region: "Australia",
-        name: "Gambling Help Online",
+        regionKey: "region_au",
+        nameKey: "name_au",
         phone: "1800 858 858",
-        websiteLabel: "Visit help site",
+        websiteLabelKey: "VisitHelpSite",
         websiteHref: "https://www.gamblinghelponline.org.au/",
-        hours: "24/7",
+        hoursKey: "hours_au",
       },
       {
-        region: "New Zealand",
-        name: "Gambling Helpline NZ",
+        regionKey: "region_nz",
+        nameKey: "name_nz",
         phone: "0800 654 655",
-        websiteLabel: "Visit help site",
+        websiteLabelKey: "VisitHelpSite",
         websiteHref: "https://gamblinghelpline.co.nz/",
-        hours: "24/7",
+        hoursKey: "hours_nz",
       },
       {
-        region: "International",
-        name: "Find local support",
-        websiteLabel: "Search international resources",
+        regionKey: "region_intl",
+        nameKey: "name_find_local",
+        websiteLabelKey: "SearchInternationalResources",
         websiteHref: "https://www.gamblersanonymous.org/",
-        hours: "Varies by location",
+        hoursKey: "hours_intl",
       },
     ],
     []
@@ -90,12 +93,12 @@ const GamblingHelplinePage: FunctionalComponent = () => {
               </div>
               <div>
                 <div class="text-base font-extrabold tracking-wide">
-                  Gambling Helplines
+                  {t("Title")}
                 </div>
                 <div class="text-sm text-zinc-400">
-                  Confidential help for{" "}
+                  {t("Subtitle")}{" "}
                   <span class="font-semibold text-zinc-200">{BRAND_NAME}</span>{" "}
-                  players
+                  {t("Players")}
                 </div>
               </div>
             </div>
@@ -105,13 +108,13 @@ const GamblingHelplinePage: FunctionalComponent = () => {
                 href="/responsible-gaming"
                 class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
-                Responsible Gaming
+                {t("ResponsibleGaming")}
               </a>
               <a
                 href="/help"
                 class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
-                Help Center
+                {t("HelpCenter")}
               </a>
             </div>
           </div>
@@ -123,12 +126,10 @@ const GamblingHelplinePage: FunctionalComponent = () => {
         <section class="py-7">
           <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900/70 to-zinc-900/35 p-6 shadow-2xl shadow-black/40">
             <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Need help with gambling?
+              {t("NeedHelpTitle")}
             </h1>
             <p class="mt-3 max-w-3xl text-lg leading-relaxed text-zinc-300">
-              You’re not alone. Free, confidential support is available. If you
-              feel out of control, please contact a helpline below or talk to
-              someone you trust.
+              {t("NeedHelpDesc")}
             </p>
 
             <div class="mt-5 flex flex-wrap gap-2">
@@ -136,23 +137,22 @@ const GamblingHelplinePage: FunctionalComponent = () => {
                 href="#list"
                 class="inline-flex items-center justify-center rounded-full bg-violet-500 px-5 py-3 text-base font-extrabold text-zinc-950 hover:brightness-110"
               >
-                View helplines
+                {t("ViewHelplines")}
               </a>
               <a
                 href="/responsible-gaming"
                 class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-5 py-3 text-base font-extrabold hover:bg-zinc-900/70"
               >
-                Safer play tools
+                {t("SaferPlayTools")}
               </a>
             </div>
 
             <div class="mt-5 rounded-2xl border border-rose-500/20 bg-rose-500/10 p-4">
               <div class="text-base font-extrabold text-rose-200/90">
-                Emergency
+                {t("Emergency")}
               </div>
               <div class="mt-1 text-sm leading-relaxed text-rose-200/80">
-                If you are in immediate danger or feel unsafe, contact local
-                emergency services right now.
+                {t("EmergencyText")}
               </div>
             </div>
           </div>
@@ -162,36 +162,37 @@ const GamblingHelplinePage: FunctionalComponent = () => {
         <section id="list" class="py-3">
           <div class="mb-3">
             <h2 class="text-xl font-extrabold tracking-wide">
-              Helplines by region
+              {t("HelplinesByRegion")}
             </h2>
             <p class="mt-1 text-base leading-relaxed text-zinc-300">
-              Choose a service in your country/region. Links below go to
-              external websites.
+              {t("HelplinesByRegionDesc")}
             </p>
           </div>
 
           <div class="grid gap-3 md:grid-cols-2">
             {helplines.map((hLine) => (
               <div
-                key={`${hLine.region}-${hLine.name}`}
+                key={`${hLine.regionKey}-${hLine.nameKey}`}
                 class="rounded-3xl border border-white/10 bg-zinc-900/35 p-5"
               >
                 <div class="flex items-start justify-between gap-3">
                   <div>
                     <div class="text-sm font-extrabold text-zinc-400">
-                      {hLine.region}
+                      {t(hLine.regionKey)}
                     </div>
-                    <div class="mt-1 text-lg font-extrabold">{hLine.name}</div>
+                    <div class="mt-1 text-lg font-extrabold">
+                      {t(hLine.nameKey)}
+                    </div>
                   </div>
                   <span class="rounded-full border border-white/10 bg-zinc-950/20 px-3 py-1 text-xs text-zinc-400">
-                    Confidential
+                    {t("Confidential")}
                   </span>
                 </div>
 
                 <div class="mt-4 space-y-2 text-base text-zinc-200">
                   {hLine.phone ? (
                     <div class="flex flex-wrap items-center gap-2">
-                      <span class="text-zinc-400">Phone:</span>
+                      <span class="text-zinc-400">{t("Phone")}</span>
                       <a
                         class="font-extrabold hover:underline"
                         href={`tel:${normalizeTel(hLine.phone)}`}
@@ -201,17 +202,17 @@ const GamblingHelplinePage: FunctionalComponent = () => {
                     </div>
                   ) : null}
 
-                  {hLine.text ? (
+                  {hLine.textKey ? (
                     <div class="flex flex-wrap items-center gap-2">
-                      <span class="text-zinc-400">Text:</span>
-                      <span class="font-semibold">{hLine.text}</span>
+                      <span class="text-zinc-400">{t("Text")}</span>
+                      <span class="font-semibold">{t(hLine.textKey)}</span>
                     </div>
                   ) : null}
 
-                  {hLine.hours ? (
+                  {hLine.hoursKey ? (
                     <div class="flex flex-wrap items-center gap-2">
-                      <span class="text-zinc-400">Hours:</span>
-                      <span class="font-semibold">{hLine.hours}</span>
+                      <span class="text-zinc-400">{t("Hours")}</span>
+                      <span class="font-semibold">{t(hLine.hoursKey)}</span>
                     </div>
                   ) : null}
                 </div>
@@ -223,7 +224,7 @@ const GamblingHelplinePage: FunctionalComponent = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {hLine.websiteLabel || "Visit website"}
+                    {t(hLine.websiteLabelKey)}
                   </a>
                 ) : null}
               </div>
@@ -234,23 +235,25 @@ const GamblingHelplinePage: FunctionalComponent = () => {
         {/* simple steps */}
         <section class="py-8">
           <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900/55 to-zinc-900/25 p-6">
-            <h2 class="text-xl font-extrabold tracking-wide">3 quick steps</h2>
+            <h2 class="text-xl font-extrabold tracking-wide">
+              {t("ThreeQuickSteps")}
+            </h2>
 
             <div class="mt-4 grid gap-3 md:grid-cols-3">
               <StepCard
                 num="1"
-                title="Pause"
-                text="Take a break. Close the game. Breathe."
+                title={t("Step1Title")}
+                text={t("Step1Text")}
               />
               <StepCard
                 num="2"
-                title="Reach out"
-                text="Call or chat with a helpline (confidential)."
+                title={t("Step2Title")}
+                text={t("Step2Text")}
               />
               <StepCard
                 num="3"
-                title="Protect yourself"
-                text="Use limits or self-exclusion in your account."
+                title={t("Step3Title")}
+                text={t("Step3Text")}
               />
             </div>
 
@@ -259,20 +262,17 @@ const GamblingHelplinePage: FunctionalComponent = () => {
                 href="/responsible-gaming"
                 class="inline-flex items-center justify-center rounded-full bg-violet-500 px-5 py-3 text-base font-extrabold text-zinc-950 hover:brightness-110"
               >
-                Open safer play tools
+                {t("OpenSaferPlayTools")}
               </a>
               <a
                 href="/help"
                 class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-5 py-3 text-base font-extrabold hover:bg-zinc-900/70"
               >
-                Contact support
+                {t("ContactSupport")}
               </a>
             </div>
 
-            <div class="mt-4 text-sm text-zinc-400">
-              Tip: If you’re worried about your spending, consider setting a
-              deposit limit today.
-            </div>
+            <div class="mt-4 text-sm text-zinc-400">{t("Tip")}</div>
           </div>
         </section>
       </main>
@@ -305,7 +305,6 @@ const StepCard = ({
 );
 
 function normalizeTel(input: string): string {
-  // Keep digits and leading +
   const trimmed = input.trim();
   const plus = trimmed.startsWith("+") ? "+" : "";
   const digits = trimmed.replace(/[^\d]/g, "");

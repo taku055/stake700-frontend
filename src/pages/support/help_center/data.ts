@@ -1,144 +1,122 @@
 export type HelpArticle = {
   id: string;
-  title: string;
-  body: string;
-  tags?: string[];
+  titleKey: string;
+  bodyKey: string;
+  tagsKey: string;
 };
 
 export type HelpCategory = {
   id: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   icon: string;
   articles: HelpArticle[];
 };
 
 export const BRAND_NAME = "Betalarab";
 
-export const HELP_CATEGORY_DATA = [
+export const HELP_CATEGORY_DATA: HelpCategory[] = [
   {
     id: "getting-started",
-    title: "Getting started",
-    description: "Account setup, verification, and first deposit.",
+    titleKey: "category_getting_started_title",
+    descriptionKey: "category_getting_started_description",
     icon: "🚀",
     articles: [
       {
         id: "create-account",
-        title: "How do I create an account?",
-        body:
-          `To create an account on ${BRAND_NAME}, select “Sign Up”, enter your details, and confirm your email. ` +
-          "For security, choose a strong password and enable 2FA if available.",
-        tags: ["account", "signup"],
+        titleKey: "article_create_account_title",
+        bodyKey: "article_create_account_body",
+        tagsKey: "article_create_account_tags",
       },
       {
         id: "kyc",
-        title: "Why do you need verification (KYC)?",
-        body:
-          "Verification helps protect you and prevents fraud. You may be asked for proof of identity and address " +
-          "before withdrawals are processed.",
-        tags: ["verification", "security"],
+        titleKey: "article_kyc_title",
+        bodyKey: "article_kyc_body",
+        tagsKey: "article_kyc_tags",
       },
       {
         id: "responsible-gaming",
-        title: "Responsible gaming tools",
-        body:
-          "You can set deposit limits, cooling-off periods, or self-exclusion in your account settings. " +
-          "If you feel gaming is no longer fun, please use these tools or contact support.",
-        tags: ["limits", "safety"],
+        titleKey: "article_responsible_gaming_title",
+        bodyKey: "article_responsible_gaming_body",
+        tagsKey: "article_responsible_gaming_tags",
       },
     ],
   },
   {
     id: "payments",
-    title: "Payments & withdrawals",
-    description: "Deposits, withdrawals, fees, and processing times.",
+    titleKey: "category_payments_title",
+    descriptionKey: "category_payments_description",
     icon: "💳",
     articles: [
       {
         id: "deposit-methods",
-        title: "What deposit methods are supported?",
-        body:
-          "Supported methods vary by region. In the cashier, you’ll see the options available to you, along with " +
-          "any minimum/maximum deposit limits.",
-        tags: ["deposit", "cashier"],
+        titleKey: "article_deposit_methods_title",
+        bodyKey: "article_deposit_methods_body",
+        tagsKey: "article_deposit_methods_tags",
       },
       {
         id: "withdrawal-times",
-        title: "How long do withdrawals take?",
-        body:
-          "Withdrawal times depend on verification status and payment method. After approval, processing can range " +
-          "from minutes to several business days.",
-        tags: ["withdrawals", "processing"],
+        titleKey: "article_withdrawal_times_title",
+        bodyKey: "article_withdrawal_times_body",
+        tagsKey: "article_withdrawal_times_tags",
       },
       {
         id: "chargebacks",
-        title: "What is a chargeback and why is it important?",
-        body:
-          "A chargeback is a payment reversal initiated by your bank or card provider. Excessive chargebacks can " +
-          "lead to restrictions. Please contact support first if you need help with a transaction.",
-        tags: ["billing", "policy"],
+        titleKey: "article_chargebacks_title",
+        bodyKey: "article_chargebacks_body",
+        tagsKey: "article_chargebacks_tags",
       },
     ],
   },
   {
     id: "bonuses",
-    title: "Bonuses & promotions",
-    description: "Bonus eligibility, wagering, and common rules.",
+    titleKey: "category_bonuses_title",
+    descriptionKey: "category_bonuses_description",
     icon: "🎁",
     articles: [
       {
         id: "wagering",
-        title: "What are wagering requirements?",
-        body:
-          "Wagering requirements indicate how many times a bonus must be played through before it becomes withdrawable. " +
-          "Check the promotion terms for the exact multiplier and eligible games.",
-        tags: ["bonus", "terms"],
+        titleKey: "article_wagering_title",
+        bodyKey: "article_wagering_body",
+        tagsKey: "article_wagering_tags",
       },
       {
         id: "bonus-issues",
-        title: "My bonus didn’t activate—what should I do?",
-        body:
-          "First, ensure you opted-in and met the minimum deposit requirement. If everything looks correct, contact support " +
-          "with your transaction ID and the promotion name.",
-        tags: ["bonus", "troubleshooting"],
+        titleKey: "article_bonus_issues_title",
+        bodyKey: "article_bonus_issues_body",
+        tagsKey: "article_bonus_issues_tags",
       },
       {
         id: "promo-terms",
-        title: "Where can I find promotion terms?",
-        body:
-          "Promotion terms are shown in the Promotions section and may also appear in the cashier during deposit. " +
-          "We recommend reviewing terms before opting in.",
-        tags: ["terms", "promotions"],
+        titleKey: "article_promo_terms_title",
+        bodyKey: "article_promo_terms_body",
+        tagsKey: "article_promo_terms_tags",
       },
     ],
   },
   {
     id: "security",
-    title: "Security & privacy",
-    description: "2FA, account protection, and privacy questions.",
+    titleKey: "category_security_title",
+    descriptionKey: "category_security_description",
     icon: "🛡️",
     articles: [
       {
         id: "2fa",
-        title: "How do I enable 2-factor authentication (2FA)?",
-        body: "Go to Account → Security → 2FA, then follow the steps to pair your authenticator app. Store backup codes safely.",
-        tags: ["security", "2fa"],
+        titleKey: "article_2fa_title",
+        bodyKey: "article_2fa_body",
+        tagsKey: "article_2fa_tags",
       },
       {
         id: "locked-account",
-        title: "My account is locked—what now?",
-        body:
-          "Accounts may lock after multiple failed login attempts. Use “Forgot Password” or contact support to regain access. " +
-          "Never share your password with anyone.",
-        tags: ["login", "security"],
+        titleKey: "article_locked_account_title",
+        bodyKey: "article_locked_account_body",
+        tagsKey: "article_locked_account_tags",
       },
       {
         id: "privacy",
-        title: "How is my data used?",
-        body:
-          "We use your data to provide the service, comply with legal obligations, and prevent fraud. For details, review " +
-          "the Privacy Policy linked in the footer of the site.",
-        tags: ["privacy", "policy"],
+        titleKey: "article_privacy_title",
+        bodyKey: "article_privacy_body",
+        tagsKey: "article_privacy_tags",
       },
     ],
   },

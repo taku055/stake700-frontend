@@ -4,9 +4,11 @@
  */
 import { FunctionalComponent, h } from "preact";
 import { useMemo, useState } from "preact/hooks";
+import { useTranslations } from "@/context/I18nContext";
 import { BRAND_NAME, HELP_CATEGORY_DATA, HelpArticle } from "./data";
 
 const HelpCenterPage: FunctionalComponent = () => {
+  const t = useTranslations("HelpCenter");
   const [query, setQuery] = useState("");
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [openIds, setOpenIds] = useState<Record<string, boolean>>({});
@@ -17,9 +19,13 @@ const HelpCenterPage: FunctionalComponent = () => {
     if (!q) return HELP_CATEGORY_DATA;
 
     const matches = (a: HelpArticle) => {
-      const inTitle = a.title.toLowerCase().includes(q);
-      const inBody = a.body.toLowerCase().includes(q);
-      const inTags = (a.tags || []).some((t) => t.toLowerCase().includes(q));
+      const title = t(a.titleKey);
+      const body = t(a.bodyKey, { brand: BRAND_NAME });
+      const tagsStr = t(a.tagsKey);
+      const tags = tagsStr ? tagsStr.split(",").map((s: string) => s.trim()) : [];
+      const inTitle = title.toLowerCase().includes(q);
+      const inBody = body.toLowerCase().includes(q);
+      const inTags = tags.some((tag: string) => tag.toLowerCase().includes(q));
       return inTitle || inBody || inTags;
     };
 
@@ -27,7 +33,7 @@ const HelpCenterPage: FunctionalComponent = () => {
       ...c,
       articles: c.articles.filter(matches),
     })).filter((c) => c.articles.length > 0);
-  }, [q]);
+  }, [q, t]);
 
   const activeCategory = useMemo(() => {
     if (!activeCategoryId) return null;
@@ -58,10 +64,10 @@ const HelpCenterPage: FunctionalComponent = () => {
             </div>
             <div>
               <div class="text-sm font-extrabold tracking-wide">
-                Help Center
+                {t("Title")}
               </div>
               <div class="text-xs text-zinc-400">
-                Support and answers for{" "}
+                {t("Subtitle")}{" "}
                 <span class="font-semibold text-zinc-200">{BRAND_NAME}</span>
               </div>
             </div>
@@ -72,7 +78,7 @@ const HelpCenterPage: FunctionalComponent = () => {
             role="search"
           >
             <label class="sr-only" for="hc-search">
-              Search help articles
+              {t("SearchAriaLabel")}
             </label>
             <input
               id="hc-search"
@@ -81,7 +87,7 @@ const HelpCenterPage: FunctionalComponent = () => {
               onInput={(e) =>
                 setQuery((e.currentTarget as HTMLInputElement).value)
               }
-              placeholder="Search: withdrawals, bonus, verification…"
+              placeholder={t("SearchPlaceholder")}
               class="w-full rounded-full border border-white/10 bg-zinc-900/60 px-4 py-2.5 text-sm text-zinc-100 outline-none placeholder:text-zinc-500 focus:border-violet-400/60 focus:ring-4 focus:ring-violet-500/15"
               autoComplete="off"
             />
@@ -90,9 +96,9 @@ const HelpCenterPage: FunctionalComponent = () => {
                 type="button"
                 onClick={() => setQuery("")}
                 class="rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-semibold text-zinc-200 hover:bg-zinc-900/70"
-                aria-label="Clear search"
+                aria-label={t("Clear")}
               >
-                Clear
+                {t("Clear")}
               </button>
             ) : null}
           </div>
@@ -106,11 +112,10 @@ const HelpCenterPage: FunctionalComponent = () => {
             <div class="flex flex-col gap-5 lg:flex-row lg:items-stretch lg:justify-between">
               <div class="flex-1">
                 <h1 class="text-2xl font-extrabold tracking-tight sm:text-3xl">
-                  How can we help?
+                  {t("HowCanWeHelp")}
                 </h1>
                 <p class="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">
-                  Browse common topics below or search for a specific question.
-                  If you still need help, contact support.
+                  {t("HeroDescription")}
                 </p>
 
                 <div class="mt-4 flex flex-wrap gap-2">
@@ -118,21 +123,21 @@ const HelpCenterPage: FunctionalComponent = () => {
                     href="#contact"
                     class="inline-flex items-center justify-center rounded-full bg-violet-500 px-4 py-2.5 text-sm font-extrabold text-zinc-950 shadow-lg shadow-violet-500/15 hover:brightness-110"
                   >
-                    Contact support
+                    {t("ContactSupport")}
                   </a>
                   <a
                     href="/faq"
                     class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold text-zinc-100 hover:bg-zinc-900/70"
                   >
-                    View FAQs
+                    {t("ViewFaqs")}
                   </a>
                 </div>
               </div>
 
               <div class="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:w-[360px] lg:grid-cols-1">
-                <Stat title="24/7" label="Chat support" />
-                <Stat title="Safe" label="Secure payments" />
-                <Stat title="Fast" label="Quick answers" />
+                <Stat title={t("Stat24_7")} label={t("Stat24_7Label")} />
+                <Stat title={t("StatSafe")} label={t("StatSafeLabel")} />
+                <Stat title={t("StatFast")} label={t("StatFastLabel")} />
               </div>
             </div>
           </div>
@@ -143,9 +148,9 @@ const HelpCenterPage: FunctionalComponent = () => {
           {/* Left: categories */}
           <aside>
             <div class="mb-3">
-              <h2 class="text-base font-extrabold tracking-wide">Topics</h2>
+              <h2 class="text-base font-extrabold tracking-wide">{t("Topics")}</h2>
               <p class="mt-1 text-xs leading-relaxed text-zinc-400">
-                Pick a category to narrow down answers.
+                {t("TopicsDescription")}
               </p>
             </div>
 
@@ -177,14 +182,14 @@ const HelpCenterPage: FunctionalComponent = () => {
                       <div class="min-w-0 flex-1">
                         <div class="flex items-center justify-between gap-3">
                           <div class="truncate text-sm font-extrabold">
-                            {c.title}
+                            {t(c.titleKey)}
                           </div>
                           <span class="shrink-0 rounded-full border border-white/10 bg-zinc-950/30 px-2.5 py-0.5 text-xs text-zinc-400">
                             {c.articles.length}
                           </span>
                         </div>
                         <div class="mt-1 text-xs leading-relaxed text-zinc-400">
-                          {c.description}
+                          {t(c.descriptionKey)}
                         </div>
                       </div>
                     </div>
@@ -194,10 +199,9 @@ const HelpCenterPage: FunctionalComponent = () => {
 
               {filteredCategories.length === 0 ? (
                 <div class="rounded-3xl border border-dashed border-white/15 bg-zinc-900/30 p-4">
-                  <div class="text-sm font-extrabold">No results</div>
+                  <div class="text-sm font-extrabold">{t("NoResults")}</div>
                   <div class="mt-1 text-xs leading-relaxed text-zinc-400">
-                    Try a different search term (e.g., “KYC”, “bonus”,
-                    “withdrawal”).
+                    {t("NoResultsHint")}
                   </div>
                 </div>
               ) : null}
@@ -209,7 +213,7 @@ const HelpCenterPage: FunctionalComponent = () => {
             <div class="mb-3" id="faq">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <h2 class="text-base font-extrabold tracking-wide">
-                  {activeCategory ? activeCategory.title : "Top answers"}
+                  {activeCategory ? t(activeCategory.titleKey) : t("TopAnswers")}
                 </h2>
                 {activeCategoryId ? (
                   <button
@@ -217,14 +221,14 @@ const HelpCenterPage: FunctionalComponent = () => {
                     onClick={() => setActiveCategoryId(null)}
                     class="rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2 text-xs font-extrabold hover:bg-zinc-900/70"
                   >
-                    Show all topics
+                    {t("ShowAllTopics")}
                   </button>
                 ) : null}
               </div>
               <p class="mt-1 text-xs leading-relaxed text-zinc-400">
                 {q
-                  ? `Showing results for “${query.trim()}”.`
-                  : "Popular questions and detailed articles."}
+                  ? t("ShowingResultsFor", { query: query.trim() })
+                  : t("PopularQuestions")}
               </p>
             </div>
 
@@ -239,13 +243,17 @@ const HelpCenterPage: FunctionalComponent = () => {
                       <div class="grid h-9 w-9 place-items-center rounded-2xl border border-white/10 bg-zinc-950/20">
                         <span aria-hidden="true">{c.icon}</span>
                       </div>
-                      <div class="text-sm font-extrabold">{c.title}</div>
+                      <div class="text-sm font-extrabold">{t(c.titleKey)}</div>
                     </div>
                   ) : null}
 
                   <div class="flex flex-col gap-2">
                     {c.articles.map((a) => {
                       const open = !!openIds[a.id];
+                      const tagsStr = t(a.tagsKey);
+                      const tags = tagsStr
+                        ? tagsStr.split(",").map((s: string) => s.trim())
+                        : [];
                       return (
                         <div
                           key={a.id}
@@ -259,7 +267,7 @@ const HelpCenterPage: FunctionalComponent = () => {
                             class="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-violet-500/5"
                           >
                             <span class="text-sm font-extrabold">
-                              {a.title}
+                              {t(a.titleKey)}
                             </span>
                             <span class="text-zinc-400" aria-hidden="true">
                               {open ? "▾" : "▸"}
@@ -273,20 +281,20 @@ const HelpCenterPage: FunctionalComponent = () => {
                               class="px-4 pb-4"
                             >
                               <p class="text-sm leading-relaxed text-zinc-400">
-                                {a.body}
+                                {t(a.bodyKey, { brand: BRAND_NAME })}
                               </p>
 
-                              {a.tags?.length ? (
+                              {tags.length ? (
                                 <div
                                   class="mt-3 flex flex-wrap gap-2"
                                   aria-label="Article tags"
                                 >
-                                  {a.tags.map((t) => (
+                                  {tags.map((tag: string) => (
                                     <span
-                                      key={t}
+                                      key={tag}
                                       class="rounded-full border border-white/10 bg-zinc-900/40 px-3 py-1 text-xs text-zinc-400"
                                     >
-                                      {t}
+                                      {tag}
                                     </span>
                                   ))}
                                 </div>
@@ -305,38 +313,37 @@ const HelpCenterPage: FunctionalComponent = () => {
             <section id="contact" class="mt-4">
               <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900/60 to-zinc-900/30 p-5">
                 <h2 class="text-base font-extrabold tracking-wide">
-                  Still need help?
+                  {t("StillNeedHelp")}
                 </h2>
                 <p class="mt-1 text-xs leading-relaxed text-zinc-400">
-                  Our team can assist with account issues, transactions, and
-                  promotions. Please don’t share your password.
+                  {t("StillNeedHelpDesc")}
                 </p>
 
                 <div class="mt-4 grid gap-3 lg:grid-cols-3">
                   <div class="rounded-2xl border border-white/10 bg-zinc-950/20 p-4">
-                    <div class="text-sm font-extrabold">Live chat</div>
+                    <div class="text-sm font-extrabold">{t("LiveChat")}</div>
                     <div class="mt-1 text-xs leading-relaxed text-zinc-400">
-                      Fastest way to reach us (recommended).
+                      {t("LiveChatDesc")}
                     </div>
                     <button
                       type="button"
                       onClick={() => alert("Open live chat…")}
                       class="mt-3 inline-flex items-center justify-center rounded-full bg-violet-500 px-4 py-2.5 text-xs font-extrabold text-zinc-950 hover:brightness-110"
                     >
-                      Start chat
+                      {t("StartChat")}
                     </button>
                   </div>
 
                   <div class="rounded-2xl border border-white/10 bg-zinc-950/20 p-4">
-                    <div class="text-sm font-extrabold">Email</div>
+                    <div class="text-sm font-extrabold">{t("Email")}</div>
                     <div class="mt-1 text-xs leading-relaxed text-zinc-400">
-                      Best for documents and detailed requests.
+                      {t("EmailDesc")}
                     </div>
                     <a
                       class="mt-3 inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-xs font-extrabold hover:bg-zinc-900/70"
                       href="mailto:support@betalarab.com"
                     >
-                      Email support
+                      {t("EmailSupport")}
                     </a>
                     <div class="mt-2 text-[11px] text-zinc-500">
                       support@betalarab.com
@@ -344,16 +351,15 @@ const HelpCenterPage: FunctionalComponent = () => {
                   </div>
 
                   <div class="rounded-2xl border border-white/10 bg-zinc-950/20 p-4">
-                    <div class="text-sm font-extrabold">Security note</div>
+                    <div class="text-sm font-extrabold">{t("SecurityNote")}</div>
                     <div class="mt-1 text-xs leading-relaxed text-zinc-400">
-                      Enable 2FA and contact support immediately if you suspect
-                      account compromise.
+                      {t("SecurityNoteDesc")}
                     </div>
                     <a
                       class="mt-3 inline-flex text-xs font-extrabold text-zinc-200 hover:underline"
                       href="#faq"
                     >
-                      Review security FAQs →
+                      {t("ReviewSecurityFaqs")}
                     </a>
                   </div>
                 </div>

@@ -5,39 +5,42 @@
  */
 import { FunctionalComponent, h } from "preact";
 import { useMemo, useState } from "preact/hooks";
+import { useTranslations } from "@/context/I18nContext";
 
 export const BRAND_NAME = "Betalarab";
 
 type Period = {
   id: string;
-  label: string;
-  desc: string;
+  labelKey: string;
+  descKey: string;
   recommended?: boolean;
 };
 
 const SelfExclusionPage: FunctionalComponent = () => {
+  const t = useTranslations("SelfExclusion");
+
   const periods = useMemo<Period[]>(
     () => [
       {
         id: "7d",
-        label: "7 days",
-        desc: "A short reset to stop impulsive play.",
+        labelKey: "Period7d",
+        descKey: "Period7dDesc",
       },
       {
         id: "30d",
-        label: "30 days",
-        desc: "Good if you need a stronger break.",
+        labelKey: "Period30d",
+        descKey: "Period30dDesc",
         recommended: true,
       },
       {
         id: "6m",
-        label: "6 months",
-        desc: "A longer option to rebuild habits.",
+        labelKey: "Period6m",
+        descKey: "Period6mDesc",
       },
       {
         id: "1y",
-        label: "1 year",
-        desc: "A serious, long-term step for protection.",
+        labelKey: "Period1y",
+        descKey: "Period1yDesc",
       },
     ],
     []
@@ -68,10 +71,10 @@ const SelfExclusionPage: FunctionalComponent = () => {
               </div>
               <div>
                 <div class="text-base font-extrabold tracking-wide">
-                  Self-Exclusion
+                  {t("Title")}
                 </div>
                 <div class="text-sm text-zinc-400">
-                  Block access to your account on{" "}
+                  {t("Subtitle")}{" "}
                   <span class="font-semibold text-zinc-200">{BRAND_NAME}</span>
                 </div>
               </div>
@@ -82,13 +85,13 @@ const SelfExclusionPage: FunctionalComponent = () => {
                 href="/responsible-gaming"
                 class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
-                Responsible Gaming
+                {t("ResponsibleGaming")}
               </a>
               <a
                 href="/gambling-helpline"
                 class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
-                Helplines
+                {t("Helplines")}
               </a>
             </div>
           </div>
@@ -100,30 +103,20 @@ const SelfExclusionPage: FunctionalComponent = () => {
         <section class="py-7">
           <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900/70 to-zinc-900/35 p-6 shadow-2xl shadow-black/40">
             <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Take a break that sticks
+              {t("TakeABreakTitle")}
             </h1>
             <p class="mt-3 max-w-3xl text-lg leading-relaxed text-zinc-300">
-              Self-exclusion blocks access to your account for a fixed time.
-              It’s a strong step if gambling feels out of control.
+              {t("TakeABreakDesc")}
             </p>
 
             <div class="mt-5 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4">
               <div class="text-base font-extrabold text-amber-200/90">
-                Please read
+                {t("PleaseRead")}
               </div>
               <ul class="mt-2 space-y-2 text-sm leading-relaxed text-amber-200/80">
-                <li>
-                  • You won’t be able to log in or place bets during the
-                  exclusion period.
-                </li>
-                <li>
-                  • Promotional messages may stop (where supported), but
-                  receipts/required notices may still be sent.
-                </li>
-                <li>
-                  • In many regions, self-exclusion can’t be undone until the
-                  period ends.
-                </li>
+                <li>• {t("Bullet1")}</li>
+                <li>• {t("Bullet2")}</li>
+                <li>• {t("Bullet3")}</li>
               </ul>
             </div>
           </div>
@@ -135,13 +128,13 @@ const SelfExclusionPage: FunctionalComponent = () => {
             {/* period selection */}
             <div
               class="rounded-3xl border border-white/10 bg-zinc-900/35 p-6"
-              aria-label="Choose self-exclusion period"
+              aria-label={t("ChoosePeriod")}
             >
               <h2 class="text-xl font-extrabold tracking-wide">
-                Choose a period
+                {t("ChoosePeriod")}
               </h2>
               <p class="mt-1 text-base leading-relaxed text-zinc-300">
-                Pick the option that gives you real breathing room.
+                {t("ChoosePeriodDesc")}
               </p>
 
               <div class="mt-4 grid gap-3 sm:grid-cols-2">
@@ -162,18 +155,18 @@ const SelfExclusionPage: FunctionalComponent = () => {
                     >
                       <div class="flex items-start justify-between gap-3">
                         <div>
-                          <div class="text-lg font-extrabold">{p.label}</div>
+                          <div class="text-lg font-extrabold">{t(p.labelKey)}</div>
                           <div class="mt-1 text-sm leading-relaxed text-zinc-400">
-                            {p.desc}
+                            {t(p.descKey)}
                           </div>
                         </div>
                         {p.recommended ? (
                           <span class="rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1 text-xs font-extrabold text-emerald-200/90">
-                            Recommended
+                            {t("Recommended")}
                           </span>
                         ) : (
                           <span class="rounded-full border border-white/10 bg-zinc-950/20 px-3 py-1 text-xs text-zinc-400">
-                            Option
+                            {t("Option")}
                           </span>
                         )}
                       </div>
@@ -186,35 +179,34 @@ const SelfExclusionPage: FunctionalComponent = () => {
             {/* what happens */}
             <div class="rounded-3xl border border-white/10 bg-zinc-900/35 p-6">
               <h2 class="text-xl font-extrabold tracking-wide">
-                What happens during self-exclusion?
+                {t("WhatHappensTitle")}
               </h2>
 
               <div class="mt-4 grid gap-3 md:grid-cols-2">
                 <InfoCard
-                  title="Access blocked"
-                  text="You cannot log in, deposit, or play while the self-exclusion is active."
+                  title={t("AccessBlockedTitle")}
+                  text={t("AccessBlockedText")}
                 />
                 <InfoCard
-                  title="Withdrawals"
-                  text="You may still be able to withdraw available funds, depending on rules in your region."
+                  title={t("WithdrawalsTitle")}
+                  text={t("WithdrawalsText")}
                 />
                 <InfoCard
-                  title="Marketing reduced"
-                  text="We’ll stop promotions where supported, but important account notices may still be sent."
+                  title={t("MarketingReducedTitle")}
+                  text={t("MarketingReducedText")}
                 />
                 <InfoCard
-                  title="Support available"
-                  text="If you’re unsure, contact support or a professional helpline for guidance."
+                  title={t("SupportAvailableTitle")}
+                  text={t("SupportAvailableText")}
                 />
               </div>
 
               <div class="mt-5 rounded-2xl border border-rose-500/20 bg-rose-500/10 p-4">
                 <div class="text-base font-extrabold text-rose-200/90">
-                  If you feel unsafe
+                  {t("IfYouFeelUnsafe")}
                 </div>
                 <div class="mt-1 text-sm leading-relaxed text-rose-200/80">
-                  If you’re in immediate danger or feel you might harm yourself,
-                  contact local emergency services right away.
+                  {t("IfYouFeelUnsafeText")}
                 </div>
               </div>
             </div>
@@ -224,12 +216,14 @@ const SelfExclusionPage: FunctionalComponent = () => {
           <aside class="lg:sticky lg:top-6">
             <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900/65 to-zinc-900/30 p-6">
               <h2 class="text-xl font-extrabold tracking-wide">
-                Confirm self-exclusion
+                {t("ConfirmTitle")}
               </h2>
               <p class="mt-1 text-base leading-relaxed text-zinc-300">
-                You selected:{" "}
+                {t("YouSelected")}{" "}
                 <span class="font-extrabold text-zinc-100">
-                  {periods.find((p) => p.id === selected)?.label}
+                  {periods.find((p) => p.id === selected)
+                    ? t(periods.find((p) => p.id === selected)!.labelKey)
+                    : ""}
                 </span>
               </p>
 
@@ -237,17 +231,17 @@ const SelfExclusionPage: FunctionalComponent = () => {
                 <CheckRow
                   checked={confirm1}
                   onToggle={() => setConfirm1((v) => !v)}
-                  text="I understand I will not be able to gamble during this period."
+                  text={t("Confirm1")}
                 />
                 <CheckRow
                   checked={confirm2}
                   onToggle={() => setConfirm2((v) => !v)}
-                  text="I understand self-exclusion may not be reversible until it ends."
+                  text={t("Confirm2")}
                 />
                 <CheckRow
                   checked={confirm3}
                   onToggle={() => setConfirm3((v) => !v)}
-                  text="I want to proceed for my wellbeing."
+                  text={t("Confirm3")}
                 />
               </div>
 
@@ -262,40 +256,40 @@ const SelfExclusionPage: FunctionalComponent = () => {
                     : "cursor-not-allowed bg-zinc-800 text-zinc-400")
                 }
               >
-                Start self-exclusion
+                {t("StartSelfExclusion")}
               </button>
 
               <div class="mt-3 text-sm text-zinc-400">
-                Need help choosing?{" "}
+                {t("NeedHelpChoosing")}{" "}
                 <a
                   class="font-extrabold text-zinc-200 hover:underline"
                   href="/gambling-helpline"
                 >
-                  View helplines
+                  {t("ViewHelplines")}
                 </a>{" "}
                 or{" "}
                 <a
                   class="font-extrabold text-zinc-200 hover:underline"
                   href="/help"
                 >
-                  contact support
+                  {t("ContactSupport")}
                 </a>
                 .
               </div>
 
               <div class="mt-4 rounded-2xl border border-white/10 bg-zinc-950/15 p-4">
                 <div class="text-sm font-extrabold">
-                  Prefer a lighter option?
+                  {t("PreferLighterOption")}
                 </div>
                 <div class="mt-1 text-sm leading-relaxed text-zinc-400">
-                  Try a{" "}
+                  {t("PreferLighterOptionDescBefore")}
                   <a
                     class="font-extrabold text-zinc-200 hover:underline"
                     href="/responsible-gaming"
                   >
-                    cooling-off
-                  </a>{" "}
-                  break or set deposit limits.
+                    {t("PreferLighterOptionLink")}
+                  </a>
+                  {t("PreferLighterOptionDescAfter")}
                 </div>
               </div>
             </div>
