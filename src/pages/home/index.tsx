@@ -35,7 +35,7 @@ export default function HomePage() {
 
   return (
     <>
-      <EmblaBanner />
+      {/* <EmblaBanner /> */}
       <ContentWrapper>
         <div className="flex flex-col gap-4 mt-[20px] overflow-x-auto mb-4">
           <div className="flex w-fit gap-2 rounded-full p-2 bg-[var(--bar-background-color)]">

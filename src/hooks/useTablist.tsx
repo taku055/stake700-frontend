@@ -72,33 +72,33 @@ export const useTablist = () => {
           ),
           navIcon: getNavIcon("live-casino"),
         },
-        {
-          title: t("Promotions"),
-          href: "/promotions",
-          key: "promotions",
-          icon: (
-            <img src={`${ASSET_BASE_URL}/images/icons/promotions.svg`} alt="Promotions" />
-          ),
-          navIcon: getNavIcon("promotions"),
-          expandable: true,
-          expandableItems: [
-            {
-              title: "Sorteo Semanal d...",
-              // href: "/promotions/15",
-              icon: `${ASSET_BASE_URL}/images/icons/reward.svg`,
-            },
-            {
-              title: "Carrera de $100k",
-              // href: "/promotions/12",
-              icon: `${ASSET_BASE_URL}/images/icons/live-icon.svg`,
-            },
-            {
-              title: "Pragmatic Drops ...",
-              // href: "/promotions/13",
-              icon: `${ASSET_BASE_URL}/images/icons/promotions.svg`,
-            },
-          ],
-        },
+        // {
+        //   title: t("Promotions"),
+        //   href: "/promotions",
+        //   key: "promotions",
+        //   icon: (
+        //     <img src={`${ASSET_BASE_URL}/images/icons/promotions.svg`} alt="Promotions" />
+        //   ),
+        //   navIcon: getNavIcon("promotions"),
+        //   expandable: true,
+        //   expandableItems: [
+        //     {
+        //       title: "Sorteo Semanal d...",
+        //       // href: "/promotions/15",
+        //       icon: `${ASSET_BASE_URL}/images/icons/reward.svg`,
+        //     },
+        //     {
+        //       title: "Carrera de $100k",
+        //       // href: "/promotions/12",
+        //       icon: `${ASSET_BASE_URL}/images/icons/live-icon.svg`,
+        //     },
+        //     {
+        //       title: "Pragmatic Drops ...",
+        //       // href: "/promotions/13",
+        //       icon: `${ASSET_BASE_URL}/images/icons/promotions.svg`,
+        //     },
+        //   ],
+        // },
         {
           title: t("Games"),
           href: "/casino/games",
@@ -146,52 +146,52 @@ export const useTablist = () => {
           icon: <img src={`${ASSET_BASE_URL}/images/icons/trebuchet.svg`} alt="Trebuchet" />,
           navIcon: getNavIcon("trebuchet"),
         },
-        {
-          title: t("Affiliate") || "Affiliate",
-          href: "/affiliate",
-          key: "affiliate",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/affiliate.svg`} alt="Affiliate"/>,
-          navIcon: getNavIcon("affiliate"),
-        },
-        {
-          title: t("VIP Club") || "VIP Club",
-          href: "",
-          key: "vip-club",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/vip-club.svg`} alt="VIP-Club"/>,
-          navIcon: getNavIcon("vip-club"),
-          onclick: () => {
-            vipOpenedState.value = true;
-            console.log("vipOpenedState", vipOpenedState.value);
-          },
-        },
-        {
-          title: t("Blog") || "Blog",
-          href: "/blog",
-          key: "blog",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/blog.svg`} alt="Blog"/>,
-          navIcon: getNavIcon("blog"),
-        },
-        {
-          title: t("Forum") || "Forum",
-          href: "/forum",
-          key: "forum",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/forum.svg`} alt="Forum"/>,
-          navIcon: getNavIcon("forum"),
-        },
-        {
-          title: t("Sponsorships") || "Sponsorships",
-          href: "/sponsorships",
-          key: "sponsorships",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/sponsorships.svg`} alt="sponsorships"/>,
-          navIcon: getNavIcon("sponsorships"),
-          expandable: true,
-          expandableItems: [
+        // {
+        //   title: t("Affiliate") || "Affiliate",
+        //   href: "/affiliate",
+        //   key: "affiliate",
+        //   icon: <img src={`${ASSET_BASE_URL}/images/icons/affiliate.svg`} alt="Affiliate"/>,
+        //   navIcon: getNavIcon("affiliate"),
+        // },
+        // {
+        //   title: t("VIP Club") || "VIP Club",
+        //   href: "",
+        //   key: "vip-club",
+        //   icon: <img src={`${ASSET_BASE_URL}/images/icons/vip-club.svg`} alt="VIP-Club"/>,
+        //   navIcon: getNavIcon("vip-club"),
+        //   onclick: () => {
+        //     vipOpenedState.value = true;
+        //     console.log("vipOpenedState", vipOpenedState.value);
+        //   },
+        // },
+        // {
+        //   title: t("Blog") || "Blog",
+        //   href: "/blog",
+        //   key: "blog",
+        //   icon: <img src={`${ASSET_BASE_URL}/images/icons/blog.svg`} alt="Blog"/>,
+        //   navIcon: getNavIcon("blog"),
+        // },
+        // {
+        //   title: t("Forum") || "Forum",
+        //   href: "/forum",
+        //   key: "forum",
+        //   icon: <img src={`${ASSET_BASE_URL}/images/icons/forum.svg`} alt="Forum"/>,
+        //   navIcon: getNavIcon("forum"),
+        // },
+        // {
+        //   title: t("Sponsorships") || "Sponsorships",
+        //   href: "/sponsorships",
+        //   key: "sponsorships",
+        //   icon: <img src={`${ASSET_BASE_URL}/images/icons/sponsorships.svg`} alt="sponsorships"/>,
+        //   navIcon: getNavIcon("sponsorships"),
+        //   expandable: true,
+        //   expandableItems: [
             
-          ],
-        },
+        //   ],
+        // },
         {
           title: t("Responsible Gambling") || "Responsible Gambling",
-          href: "/responsible-gambling",
+          href: "/support/responsible-gambling",
           key: "responsible-gambling",
           icon: <img src={`${ASSET_BASE_URL}/images/icons/responsible-gambling.png`} alt="Responsible-gambling"/>,
           navIcon: getNavIcon("responsible-gambling"),

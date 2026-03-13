@@ -83,7 +83,8 @@ export default function NavigationSidebar() {
           navIcon: item.navIcon,
           onclick: item.onclick,
           expandable: item.expandable,
-          expandableItems: item.expandableItems || [],
+          // expandableItems: item.expandableItems || [],
+          expandableItems: [],
         };
       });
   }, [tabList]);
@@ -121,7 +122,8 @@ export default function NavigationSidebar() {
         onclick: item.onclick,
         pageType: undefined,
         expandable: item.expandable,
-        expandableItems: item.expandableItems || [],
+        expandableItems: [],
+        // expandableItems: item.expandableItems || [],
       }));
   }, [tabList]);
 
