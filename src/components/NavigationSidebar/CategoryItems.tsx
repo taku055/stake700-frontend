@@ -63,7 +63,7 @@ export default function CategoryItems({ categories, title, onCategoryClick }: Ca
           ))}
         </div>
       </div>
-      <div className="border-b-2 border-[var(--bar-background-color)] w-[calc(100% - 46px)] mx-4" />
+      <div className="border-b-2 border-[var(--bar-background-color)] w-[calc(100% - 46px)] m-4" />
 
     </>
   );
