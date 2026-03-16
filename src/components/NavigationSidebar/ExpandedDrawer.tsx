@@ -75,7 +75,7 @@ export default function ExpandedDrawer({
   }, [selectedTab, casinoCategoriesWithCounts]);
 
   return (
-    <div className="relative inset-0 z-100 h-full overflow-y-auto scrollbar-hide w-[260px] overflow-x-hidden px-[16px] pb-4">
+    <div className="relative inset-0 z-100 h-full overflow-y-auto scrollbar-hide w-[260px] overflow-x-hidden px-[16px] pb-[60px]">
       <div
         className={`fixed ${
           isRTL ? "right-0" : "left-0"

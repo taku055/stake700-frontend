@@ -22,6 +22,7 @@ import axios from "axios";
 import { useCallback } from "preact/hooks";
 import ProfileMenu from "../ProfileMenu";
 import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
+import LocaleSelection from "../LocaleSelection";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
@@ -81,6 +82,9 @@ export default function Header() {
               isRTL ? "mr-auto" : "ml-auto"
             } text-[16px] leading-[24px] flex flex-row items-center gap-1 md:gap-2`}
           >
+            <div className="flex flex-row items-center gap-2 w-[60px]">
+              <LocaleSelection headerMode={true} />
+            </div>
             {userState.value?.id && (
               <div className="flex flex-row justify-center items-center gap-2">
                 <WalletBox />
@@ -108,18 +112,8 @@ export default function Header() {
                 </Button>
                 <Button
                   variant="light"
-                  className="btn text-[16px] leading-[24px]"
+                  className="btn text-[16px]! leading-[24px] w-[100px] h-[44px] bg-[#339933]! px-[20px] py-[10px] text-white rounded-[8px]"
                   size="sm"
-                  style={{
-                    background: "#339933",
-                    fontSize: "16px",
-                    leading: "24px",
-                    color: "#ffffff",
-                    width: "80px",
-                    height: "44px",
-                    borderRadius: "8px",
-                    padding: "10px 20px",
-                  }}
                   onPress={() => (registerOpenedState.value = true)}
                 >
                   {t("register")}

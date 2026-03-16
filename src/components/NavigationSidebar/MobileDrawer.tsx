@@ -122,7 +122,7 @@ export default function MobileDrawer({
       <div
         className={`sticky inset-y-0 rounded-[10px] ${
           isRTL ? "right-0" : "left-0"
-        } bg-[var(--background-secondary)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform`}
+        } bg-[var(--background-secondary)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform pb-[60px]`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Content */}
