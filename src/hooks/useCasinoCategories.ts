@@ -43,14 +43,6 @@ const STATIC_CATEGORIES: Array<{ name: string; path: string; icon?: string }> = 
     path: "/casino/live-casino?custom=1&category=tablegames",
   },
   {
-    name: "Jackpots",
-    path: "/casino/slots?custom=1&category=jackpots",
-  },
-  {
-    name: "Video Bingo",
-    path: "/casino/slots?custom=1&category=bingogame",
-  },
-  {
     name: "Top Slots",
     path: "/casino/slots?custom=1&category=slot-top-slots",
   },
