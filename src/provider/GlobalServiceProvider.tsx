@@ -40,7 +40,6 @@ import SignupDialog from "@/components/Auth/SignupDialog";
 import FooterNav from "@/components/FooterNav";
 import ProfileComponent from "@/components/Profile";
 import { profileOpenedState } from "@/state/profileOpenedState";
-import { paymentState } from "@/state/paymentState";
 import { tPayment } from "@/types/tPayment";
 import {
   CURRENCY_LIST,
@@ -69,13 +68,7 @@ import Loading from "@/components/Loading";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
 import { useRTL } from "@/hooks/useRTL";
 import Maintenance from "@/components/Maintenance";
-import SignupStep1Dialog from "@/components/Auth/Signup/SignupStep1Dialog";
-import SignupStep2Dialog from "@/components/Auth/Signup/SignupStep2Dialog";
-import SignupStep3Dialog from "@/components/Auth/Signup/SignupStep3Dialog";
 import {
-  signupStep1OpenedState,
-  signupStep2OpenedState,
-  signupStep3OpenedState,
   welcomeDialogOpenedState,
 } from "@/state/registerOpenedState";
 import WelcomeDialog from "@/components/Auth/Signup/Welcom";
@@ -123,20 +116,6 @@ export default function GlobalServiceProvider({
   useRTL(); // Enable RTL support
 
   useEffect(() => {
-    const getPayments = async () => {
-      try {
-        // const providers1 = await apiGetProviders();
-        const payments = PAYMENT_METHOD_LIST;
-        const paymentMap: { [id: string]: tPayment } = {};
-        payments.forEach((p) => (paymentMap[p.key] = p));
-        paymentState.value = {
-          array: payments,
-          map: paymentMap,
-        };
-      } catch (ex) {
-        console.error(ex);
-      }
-    };
     const getProviders = async () => {
       try {
         const providers1 = await apiGetProviders();
@@ -272,7 +251,6 @@ export default function GlobalServiceProvider({
       globalLoadingState.value = true;
       await Promise.all([
         getProviders(),
-        getPayments(),
         getCustomGames(),
         getMaintenance(),
         getAccount(),

@@ -341,7 +341,7 @@ export default function WalletBox() {
                   >
                     <span className="inline-flex items-center gap-2">
                       <span className="opacity-80">{cur.symbol}</span>
-                      <span className="font-semibold">{cur}</span>
+                      <span className="font-semibold">{cur.code}</span>
                       {active && (
                         <span className="ml-auto text-[11px] text-white/60">
                           Selected
