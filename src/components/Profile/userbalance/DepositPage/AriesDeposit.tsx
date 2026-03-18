@@ -1,6 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import { Button, Input } from "@heroui/react";
 import { userState } from "@/state/userState";
+import { apiPayWithAries } from "@/api/wallet/apiPayWithAries";
 
 const AriesDeposit = () => {
   const [amount, setAmount] = useState("");
@@ -12,6 +13,8 @@ const AriesDeposit = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const user = userState.value;
@@ -21,9 +24,36 @@ const AriesDeposit = () => {
     }
   }, [userState.value]);
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    // TODO: submit payment
+    setError("");
+    setIsSubmitting(true);
+    try {
+      const res = await apiPayWithAries({
+        amount: Number(amount) || 0,
+        streetAddress,
+        city,
+        state,
+        zip,
+        country,
+        email,
+        phone: phone || undefined,
+        name,
+      });
+      if (res.data?.paymentUrl) {
+        window.location.href = res.data.paymentUrl;
+      } else {
+        setError(res.message || "Payment could not be created.");
+      }
+    } catch (err: unknown) {
+      const message =
+        err && typeof err === "object" && "message" in err
+          ? String((err as { message: unknown }).message)
+          : "Something went wrong.";
+      setError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,11 +76,11 @@ const AriesDeposit = () => {
       <Input
         type="number"
         label="Amount"
-        placeholder="0.00"
+        placeholder="0"
         value={amount}
-        onValueChange={setAmount}
+        onValueChange={(value) => setAmount(value.replace(/\D/g, ""))}
         min={0}
-        step="any"
+        step={1}
         isRequired
       />
       <Input
@@ -100,7 +130,18 @@ const AriesDeposit = () => {
         onValueChange={setPhone}
         isRequired
       />
-      <Button type="submit" color="primary" className="mt-2">
+      {error && (
+        <p className="text-danger text-sm" role="alert">
+          {error}
+        </p>
+      )}
+      <Button
+        type="submit"
+        color="primary"
+        className="mt-2"
+        isLoading={isSubmitting}
+        isDisabled={isSubmitting}
+      >
         Submit payment
       </Button>
     </form>
