@@ -524,6 +524,43 @@
     "Deposit": "Депозит",
     "Withdraw": "Вывод"
   },
+  "AriesPaymentResult": {
+    "Payment result": "Результат платежа",
+    "Aries deposit order status and balance": "Статус заказа пополнения Aries и баланс",
+    "Missing order": "Заказ отсутствует",
+    "Add order_id to URL hint": "Добавьте order_id в URL, чтобы увидеть результат платежа.",
+    "Checking status…": "Проверка статуса…",
+    "Order ID": "ID заказа",
+    "Something went wrong": "Что-то пошло не так",
+    "Order status": "Статус заказа",
+    "Current balance": "Текущий баланс",
+    "Completed": "Завершён",
+    "Success": "Успешно",
+    "Failed": "Ошибка",
+    "Pending": "В ожидании",
+    "Unknown": "Неизвестно",
+    "Failed to load order status": "Не удалось загрузить статус заказа"
+  },
+  "AriesDeposit": {
+    "Email": "Email",
+    "Email placeholder": "you@example.com",
+    "Name": "Имя",
+    "Name placeholder": "Полное имя",
+    "Amount": "Сумма",
+    "Amount placeholder": "0",
+    "Street address": "Адрес",
+    "Street address placeholder": "ул. Главная, 123",
+    "City": "Город",
+    "State": "Регион",
+    "ZIP": "Индекс",
+    "ZIP placeholder": "Почтовый индекс",
+    "Country": "Страна",
+    "Phone": "Телефон",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "Отправить платёж",
+    "Payment could not be created.": "Не удалось создать платёж.",
+    "Something went wrong.": "Что-то пошло не так."
+  },
   "SearchWidget": {
     "Search": "Поиск",
     "Results": "Результаты"

@@ -524,6 +524,43 @@
     "Deposit": "Depozit",
     "Withdraw": "Çıxarış"
   },
+  "AriesPaymentResult": {
+    "Payment result": "Ödəniş nəticəsi",
+    "Aries deposit order status and balance": "Aries depozit sifariş statusu və balans",
+    "Missing order": "Sifariş tapılmadı",
+    "Add order_id to URL hint": "Ödəniş nəticəsini görmək üçün URL-ə order_id əlavə edin.",
+    "Checking status…": "Status yoxlanılır…",
+    "Order ID": "Sifariş ID",
+    "Something went wrong": "Xəta baş verdi",
+    "Order status": "Sifariş statusu",
+    "Current balance": "Cari balans",
+    "Completed": "Tamamlandı",
+    "Success": "Uğurlu",
+    "Failed": "Uğursuz",
+    "Pending": "Gözləmədə",
+    "Unknown": "Naməlum",
+    "Failed to load order status": "Sifariş statusu yüklənə bilmədi"
+  },
+  "AriesDeposit": {
+    "Email": "E-poçt",
+    "Email placeholder": "you@example.com",
+    "Name": "Ad",
+    "Name placeholder": "Tam ad",
+    "Amount": "Məbləğ",
+    "Amount placeholder": "0",
+    "Street address": "Küçə ünvanı",
+    "Street address placeholder": "123 Əsas küçə",
+    "City": "Şəhər",
+    "State": "Ştat",
+    "ZIP": "Poçt indeksi",
+    "ZIP placeholder": "Poçt indeksi",
+    "Country": "Ölkə",
+    "Phone": "Telefon",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "Ödənişi təsdiqlə",
+    "Payment could not be created.": "Ödəniş yaradıla bilmədi.",
+    "Something went wrong.": "Xəta baş verdi."
+  },
   "SearchWidget": {
     "Search": "Axtar",
     "Results": "Nəticələr"

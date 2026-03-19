@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "preact/hooks";
 import { Button, Input } from "@heroui/react";
+import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { apiPayWithAries } from "@/api/wallet/apiPayWithAries";
 import { useMediaQuery } from "usehooks-ts";
@@ -7,6 +8,7 @@ import { mobileMediaQuery } from "@/config/constants";
 import { localeState } from "@/state/localeState";
 
 const AriesDeposit = () => {
+  const t = useTranslations("AriesDeposit");
   const [amount, setAmount] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
   const [city, setCity] = useState("");
@@ -58,13 +60,13 @@ const AriesDeposit = () => {
         if (res.data?.paymentUrl) {
           window.location.href = res.data.paymentUrl;
         } else {
-          setError(res.message || "Payment could not be created.");
+          setError(res.message || t("Payment could not be created."));
         }
       } catch (err: unknown) {
         const message =
           err && typeof err === "object" && "message" in err
             ? String((err as { message: unknown }).message)
-            : "Something went wrong.";
+            : t("Something went wrong.");
         setError(message);
       } finally {
         setIsSubmitting(false);
@@ -82,6 +84,7 @@ const AriesDeposit = () => {
       name,
       isMobile,
       localeState.value,
+      t,
     ]
   );
 
@@ -89,23 +92,23 @@ const AriesDeposit = () => {
     <form className="flex flex-col w-full gap-4" onSubmit={handleSubmit}>
       <Input
         type="email"
-        label="Email"
-        placeholder="you@example.com"
+        label={t("Email")}
+        placeholder={t("Email placeholder")}
         value={email}
         onValueChange={setEmail}
         isRequired
       />
       <Input
-        label="Name"
-        placeholder="Full name"
+        label={t("Name")}
+        placeholder={t("Name placeholder")}
         value={name}
         onValueChange={setName}
         isRequired
       />
       <Input
         type="number"
-        label="Amount"
-        placeholder="0"
+        label={t("Amount")}
+        placeholder={t("Amount placeholder")}
         value={amount}
         onValueChange={(value) => setAmount(value.replace(/\D/g, ""))}
         min={0}
@@ -113,23 +116,23 @@ const AriesDeposit = () => {
         isRequired
       />
       <Input
-        label="Street address"
-        placeholder="123 Main St"
+        label={t("Street address")}
+        placeholder={t("Street address placeholder")}
         value={streetAddress}
         onValueChange={setStreetAddress}
         isRequired
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
-          label="City"
-          placeholder="City"
+          label={t("City")}
+          placeholder={t("City")}
           value={city}
           onValueChange={setCity}
           isRequired
         />
         <Input
-          label="State"
-          placeholder="State"
+          label={t("State")}
+          placeholder={t("State")}
           value={state}
           onValueChange={setState}
           isRequired
@@ -137,15 +140,15 @@ const AriesDeposit = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
-          label="ZIP"
-          placeholder="ZIP code"
+          label={t("ZIP")}
+          placeholder={t("ZIP placeholder")}
           value={zip}
           onValueChange={setZip}
           isRequired
         />
         <Input
-          label="Country"
-          placeholder="Country"
+          label={t("Country")}
+          placeholder={t("Country")}
           value={country}
           onValueChange={setCountry}
           isRequired
@@ -153,8 +156,8 @@ const AriesDeposit = () => {
       </div>
       <Input
         type="tel"
-        label="Phone"
-        placeholder="+1 234 567 8900"
+        label={t("Phone")}
+        placeholder={t("Phone placeholder")}
         value={phone}
         onValueChange={setPhone}
         isRequired
@@ -171,7 +174,7 @@ const AriesDeposit = () => {
         isLoading={isSubmitting}
         isDisabled={isSubmitting}
       >
-        Submit payment
+        {t("Submit payment")}
       </Button>
     </form>
   );

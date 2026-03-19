@@ -524,6 +524,43 @@
     "Deposit": "הפקדה",
     "Withdraw": "משיכה"
   },
+  "AriesPaymentResult": {
+    "Payment result": "תוצאת תשלום",
+    "Aries deposit order status and balance": "סטטוס הזמנת ההפקדה של Aries והיתרה",
+    "Missing order": "ההזמנה חסרה",
+    "Add order_id to URL hint": "הוסף order_id לכתובת כדי לראות את תוצאת התשלום.",
+    "Checking status…": "בודק סטטוס…",
+    "Order ID": "מזהה הזמנה",
+    "Something went wrong": "משהו השתבש",
+    "Order status": "סטטוס הזמנה",
+    "Current balance": "יתרה נוכחית",
+    "Completed": "הושלם",
+    "Success": "הצלחה",
+    "Failed": "נכשל",
+    "Pending": "ממתין",
+    "Unknown": "לא ידוע",
+    "Failed to load order status": "טעינת סטטוס ההזמנה נכשלה"
+  },
+  "AriesDeposit": {
+    "Email": "אימייל",
+    "Email placeholder": "you@example.com",
+    "Name": "שם",
+    "Name placeholder": "שם מלא",
+    "Amount": "סכום",
+    "Amount placeholder": "0",
+    "Street address": "כתובת",
+    "Street address placeholder": "רחוב ראשי 123",
+    "City": "עיר",
+    "State": "מחוז",
+    "ZIP": "מיקוד",
+    "ZIP placeholder": "מיקוד",
+    "Country": "מדינה",
+    "Phone": "טלפון",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "שלח תשלום",
+    "Payment could not be created.": "לא ניתן היה ליצור את התשלום.",
+    "Something went wrong.": "משהו השתבש."
+  },
   "SearchWidget": {
     "Search": "חיפוש",
     "Results": "תוצאות"

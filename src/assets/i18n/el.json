@@ -524,6 +524,43 @@
     "Deposit": "Κατάθεση",
     "Withdraw": "Ανάληψη"
   },
+  "AriesPaymentResult": {
+    "Payment result": "Αποτέλεσμα πληρωμής",
+    "Aries deposit order status and balance": "Κατάσταση παραγγελίας κατάθεσης Aries και υπόλοιπο",
+    "Missing order": "Ελλιπής παραγγελία",
+    "Add order_id to URL hint": "Προσθέστε order_id στο URL για να δείτε το αποτέλεσμα πληρωμής.",
+    "Checking status…": "Έλεγχος κατάστασης…",
+    "Order ID": "Αναγνωριστικό παραγγελίας",
+    "Something went wrong": "Κάτι πήγε στραβά",
+    "Order status": "Κατάσταση παραγγελίας",
+    "Current balance": "Τρέχον υπόλοιπο",
+    "Completed": "Ολοκληρώθηκε",
+    "Success": "Επιτυχία",
+    "Failed": "Αποτυχία",
+    "Pending": "Σε εκκρεμότητα",
+    "Unknown": "Άγνωστο",
+    "Failed to load order status": "Αποτυχία φόρτωσης κατάστασης παραγγελίας"
+  },
+  "AriesDeposit": {
+    "Email": "Email",
+    "Email placeholder": "you@example.com",
+    "Name": "Όνομα",
+    "Name placeholder": "Πλήρες όνομα",
+    "Amount": "Ποσό",
+    "Amount placeholder": "0",
+    "Street address": "Διεύθυνση",
+    "Street address placeholder": "Οδός 123",
+    "City": "Πόλη",
+    "State": "Νομός",
+    "ZIP": "ΤΚ",
+    "ZIP placeholder": "Ταχυδρομικός κώδικας",
+    "Country": "Χώρα",
+    "Phone": "Τηλέφωνο",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "Υποβολή πληρωμής",
+    "Payment could not be created.": "Η πληρωμή δεν μπόρεσε να δημιουργηθεί.",
+    "Something went wrong.": "Κάτι πήγε στραβά."
+  },
   "SearchWidget": {
     "Search": "Αναζήτηση",
     "Results": "Αποτελέσματα"

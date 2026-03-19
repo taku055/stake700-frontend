@@ -22,6 +22,7 @@ import LawEnforcementRequestPage from "@/pages/support/law_enforcement_request";
 import AMLPolicyPage from "@/pages/about-us/aml_policy";
 import HomePage from "@/pages/home";
 import SportPage from "@/pages/sport";
+import AriesPaymentResult from "@/pages/payment/aries/AriesPaymentResult";
 
 export default function AppRoute() {
   return (
@@ -50,6 +51,8 @@ export default function AppRoute() {
       <Route path="/support/gambling-helpline" component={GamblingHelplinePage} />
       <Route path="/support/self-exclusion" component={SelfExclusionPage} />
       <Route path="/support/law-enforcement-request" component={LawEnforcementRequestPage} />
+
+      <Route path="/payment/aries/result" component={AriesPaymentResult} />
 
       <Route path="/agent" component={AgentPage} />
       <Route path="/agent/*" component={AgentPage} />

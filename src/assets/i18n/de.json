@@ -524,6 +524,43 @@
     "Deposit": "Einzahlung",
     "Withdraw": "Auszahlung"
   },
+  "AriesPaymentResult": {
+    "Payment result": "Zahlungsergebnis",
+    "Aries deposit order status and balance": "Aries-Einzahlungsstatus und Kontostand",
+    "Missing order": "Auftrag fehlt",
+    "Add order_id to URL hint": "Fügen Sie order_id zur URL hinzu, um das Zahlungsergebnis zu sehen.",
+    "Checking status…": "Status wird geprüft…",
+    "Order ID": "Auftrags-ID",
+    "Something went wrong": "Etwas ist schiefgelaufen",
+    "Order status": "Auftragsstatus",
+    "Current balance": "Aktueller Kontostand",
+    "Completed": "Abgeschlossen",
+    "Success": "Erfolgreich",
+    "Failed": "Fehlgeschlagen",
+    "Pending": "Ausstehend",
+    "Unknown": "Unbekannt",
+    "Failed to load order status": "Auftragsstatus konnte nicht geladen werden"
+  },
+  "AriesDeposit": {
+    "Email": "E-Mail",
+    "Email placeholder": "sie@beispiel.de",
+    "Name": "Name",
+    "Name placeholder": "Vollständiger Name",
+    "Amount": "Betrag",
+    "Amount placeholder": "0",
+    "Street address": "Straße und Hausnummer",
+    "Street address placeholder": "Musterstraße 123",
+    "City": "Stadt",
+    "State": "Bundesland",
+    "ZIP": "PLZ",
+    "ZIP placeholder": "Postleitzahl",
+    "Country": "Land",
+    "Phone": "Telefon",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "Zahlung absenden",
+    "Payment could not be created.": "Zahlung konnte nicht erstellt werden.",
+    "Something went wrong.": "Etwas ist schiefgelaufen."
+  },
   "SearchWidget": {
     "Search": "Suche",
     "Results": "Ergebnisse"

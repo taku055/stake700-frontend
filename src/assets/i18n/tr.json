@@ -524,6 +524,43 @@
     "Deposit": "Para Yatır",
     "Withdraw": "Para Çek"
   },
+  "AriesPaymentResult": {
+    "Payment result": "Ödeme sonucu",
+    "Aries deposit order status and balance": "Aries yatırım sipariş durumu ve bakiye",
+    "Missing order": "Sipariş eksik",
+    "Add order_id to URL hint": "Ödeme sonucunu görmek için URL'ye order_id ekleyin.",
+    "Checking status…": "Durum kontrol ediliyor…",
+    "Order ID": "Sipariş ID",
+    "Something went wrong": "Bir şeyler yanlış gitti",
+    "Order status": "Sipariş durumu",
+    "Current balance": "Güncel bakiye",
+    "Completed": "Tamamlandı",
+    "Success": "Başarılı",
+    "Failed": "Başarısız",
+    "Pending": "Beklemede",
+    "Unknown": "Bilinmiyor",
+    "Failed to load order status": "Sipariş durumu yüklenemedi"
+  },
+  "AriesDeposit": {
+    "Email": "E-posta",
+    "Email placeholder": "siz@ornek.com",
+    "Name": "Ad",
+    "Name placeholder": "Ad soyad",
+    "Amount": "Tutar",
+    "Amount placeholder": "0",
+    "Street address": "Adres",
+    "Street address placeholder": "Ana Cadde 123",
+    "City": "Şehir",
+    "State": "İlçe",
+    "ZIP": "Posta kodu",
+    "ZIP placeholder": "Posta kodu",
+    "Country": "Ülke",
+    "Phone": "Telefon",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "Ödemeyi gönder",
+    "Payment could not be created.": "Ödeme oluşturulamadı.",
+    "Something went wrong.": "Bir şeyler yanlış gitti."
+  },
   "SearchWidget": {
     "Search": "Ara",
     "Results": "Sonuçlar"

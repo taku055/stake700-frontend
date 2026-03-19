@@ -590,6 +590,43 @@
     "Deposit": "Deposit",
     "Withdraw": "Withdraw"
   },
+  "AriesPaymentResult": {
+    "Payment result": "Payment result",
+    "Aries deposit order status and balance": "Aries deposit order status and balance",
+    "Missing order": "Missing order",
+    "Add order_id to URL hint": "Add order_id to the URL to see the payment result.",
+    "Checking status…": "Checking status…",
+    "Order ID": "Order ID",
+    "Something went wrong": "Something went wrong",
+    "Order status": "Order status",
+    "Current balance": "Current balance",
+    "Completed": "Completed",
+    "Success": "Success",
+    "Failed": "Failed",
+    "Pending": "Pending",
+    "Unknown": "Unknown",
+    "Failed to load order status": "Failed to load order status"
+  },
+  "AriesDeposit": {
+    "Email": "Email",
+    "Email placeholder": "you@example.com",
+    "Name": "Name",
+    "Name placeholder": "Full name",
+    "Amount": "Amount",
+    "Amount placeholder": "0",
+    "Street address": "Street address",
+    "Street address placeholder": "123 Main St",
+    "City": "City",
+    "State": "State",
+    "ZIP": "ZIP",
+    "ZIP placeholder": "ZIP code",
+    "Country": "Country",
+    "Phone": "Phone",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "Submit payment",
+    "Payment could not be created.": "Payment could not be created.",
+    "Something went wrong.": "Something went wrong."
+  },
   "SearchWidget": {
     "Search": "Search",
     "Results": "Results"

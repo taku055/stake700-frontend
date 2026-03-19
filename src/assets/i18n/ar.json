@@ -524,6 +524,43 @@
     "Deposit": "إيداع",
     "Withdraw": "سحب"
   },
+  "AriesPaymentResult": {
+    "Payment result": "نتيجة الدفع",
+    "Aries deposit order status and balance": "حالة طلب إيداع Aries والرصيد",
+    "Missing order": "طلب مفقود",
+    "Add order_id to URL hint": "أضف order_id إلى الرابط لمعرفة نتيجة الدفع.",
+    "Checking status…": "جاري التحقق من الحالة…",
+    "Order ID": "معرف الطلب",
+    "Something went wrong": "حدث خطأ ما",
+    "Order status": "حالة الطلب",
+    "Current balance": "الرصيد الحالي",
+    "Completed": "مكتمل",
+    "Success": "نجاح",
+    "Failed": "فشل",
+    "Pending": "قيد الانتظار",
+    "Unknown": "غير معروف",
+    "Failed to load order status": "فشل تحميل حالة الطلب"
+  },
+  "AriesDeposit": {
+    "Email": "البريد الإلكتروني",
+    "Email placeholder": "you@example.com",
+    "Name": "الاسم",
+    "Name placeholder": "الاسم الكامل",
+    "Amount": "المبلغ",
+    "Amount placeholder": "0",
+    "Street address": "العنوان",
+    "Street address placeholder": "123 الشارع الرئيسي",
+    "City": "المدينة",
+    "State": "الولاية",
+    "ZIP": "الرمز البريدي",
+    "ZIP placeholder": "الرمز البريدي",
+    "Country": "الدولة",
+    "Phone": "الهاتف",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "إرسال الدفع",
+    "Payment could not be created.": "تعذر إنشاء الدفع.",
+    "Something went wrong.": "حدث خطأ ما."
+  },
   "SearchWidget": {
     "Search": "بحث",
     "Results": "النتائج"

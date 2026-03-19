@@ -524,6 +524,43 @@
     "Deposit": "واریز",
     "Withdraw": "برداشت"
   },
+  "AriesPaymentResult": {
+    "Payment result": "نتیجه پرداخت",
+    "Aries deposit order status and balance": "وضعیت سفارش واریز Aries و موجودی",
+    "Missing order": "سفارش یافت نشد",
+    "Add order_id to URL hint": "برای مشاهده نتیجه پرداخت، order_id را به آدرس URL اضافه کنید.",
+    "Checking status…": "در حال بررسی وضعیت…",
+    "Order ID": "شناسه سفارش",
+    "Something went wrong": "مشکلی پیش آمد",
+    "Order status": "وضعیت سفارش",
+    "Current balance": "موجودی فعلی",
+    "Completed": "تکمیل شده",
+    "Success": "موفق",
+    "Failed": "ناموفق",
+    "Pending": "در انتظار",
+    "Unknown": "نامشخص",
+    "Failed to load order status": "بارگذاری وضعیت سفارش ناموفق بود"
+  },
+  "AriesDeposit": {
+    "Email": "ایمیل",
+    "Email placeholder": "you@example.com",
+    "Name": "نام",
+    "Name placeholder": "نام کامل",
+    "Amount": "مبلغ",
+    "Amount placeholder": "0",
+    "Street address": "آدرس",
+    "Street address placeholder": "خیابان اصلی ۱۲۳",
+    "City": "شهر",
+    "State": "استان",
+    "ZIP": "کد پستی",
+    "ZIP placeholder": "کد پستی",
+    "Country": "کشور",
+    "Phone": "تلفن",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "ثبت پرداخت",
+    "Payment could not be created.": "پرداخت ایجاد نشد.",
+    "Something went wrong.": "مشکلی پیش آمد."
+  },
   "SearchWidget": {
     "Search": "جستجو",
     "Results": "نتایج"

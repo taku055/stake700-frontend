@@ -524,6 +524,43 @@
     "Deposit": "Dépôt",
     "Withdraw": "Retrait"
   },
+  "AriesPaymentResult": {
+    "Payment result": "Résultat du paiement",
+    "Aries deposit order status and balance": "Statut de l'ordre de dépôt Aries et solde",
+    "Missing order": "Ordre manquant",
+    "Add order_id to URL hint": "Ajoutez order_id à l'URL pour voir le résultat du paiement.",
+    "Checking status…": "Vérification du statut…",
+    "Order ID": "ID de commande",
+    "Something went wrong": "Une erreur s'est produite",
+    "Order status": "Statut de la commande",
+    "Current balance": "Solde actuel",
+    "Completed": "Terminé",
+    "Success": "Succès",
+    "Failed": "Échoué",
+    "Pending": "En attente",
+    "Unknown": "Inconnu",
+    "Failed to load order status": "Échec du chargement du statut de la commande"
+  },
+  "AriesDeposit": {
+    "Email": "E-mail",
+    "Email placeholder": "vous@exemple.fr",
+    "Name": "Nom",
+    "Name placeholder": "Nom complet",
+    "Amount": "Montant",
+    "Amount placeholder": "0",
+    "Street address": "Adresse",
+    "Street address placeholder": "123 rue Principale",
+    "City": "Ville",
+    "State": "Région",
+    "ZIP": "Code postal",
+    "ZIP placeholder": "Code postal",
+    "Country": "Pays",
+    "Phone": "Téléphone",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "Envoyer le paiement",
+    "Payment could not be created.": "Le paiement n'a pas pu être créé.",
+    "Something went wrong.": "Une erreur s'est produite."
+  },
   "SearchWidget": {
     "Search": "Rechercher",
     "Results": "Résultats"

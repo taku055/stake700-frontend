@@ -524,6 +524,43 @@
     "Deposit": "Depositar",
     "Withdraw": "Sacar"
   },
+  "AriesPaymentResult": {
+    "Payment result": "Resultado do pagamento",
+    "Aries deposit order status and balance": "Estado do depósito Aries e saldo",
+    "Missing order": "Pedido em falta",
+    "Add order_id to URL hint": "Adicione order_id ao URL para ver o resultado do pagamento.",
+    "Checking status…": "A verificar estado…",
+    "Order ID": "ID do pedido",
+    "Something went wrong": "Algo correu mal",
+    "Order status": "Estado do pedido",
+    "Current balance": "Saldo atual",
+    "Completed": "Concluído",
+    "Success": "Sucesso",
+    "Failed": "Falhou",
+    "Pending": "Pendente",
+    "Unknown": "Desconhecido",
+    "Failed to load order status": "Falha ao carregar o estado do pedido"
+  },
+  "AriesDeposit": {
+    "Email": "E-mail",
+    "Email placeholder": "voce@exemplo.com",
+    "Name": "Nome",
+    "Name placeholder": "Nome completo",
+    "Amount": "Valor",
+    "Amount placeholder": "0",
+    "Street address": "Morada",
+    "Street address placeholder": "Rua Principal 123",
+    "City": "Cidade",
+    "State": "Distrito",
+    "ZIP": "Código postal",
+    "ZIP placeholder": "Código postal",
+    "Country": "País",
+    "Phone": "Telefone",
+    "Phone placeholder": "+1 234 567 8900",
+    "Submit payment": "Enviar pagamento",
+    "Payment could not be created.": "Não foi possível criar o pagamento.",
+    "Something went wrong.": "Algo correu mal."
+  },
   "SearchWidget": {
     "Search": "Buscar",
     "Results": "Resultados"
