@@ -12,6 +12,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { apiGetAriesOrderStatus } from "@/api/wallet/apiGetAriesOrderStatus";
 import { balanceState } from "@/state/balanceState";
 import { CURRENCY_LIST } from "@/config/constants";
+import { userState } from "@/state/userState";
 
 const statusConfig: Record<
   string,
@@ -62,7 +63,7 @@ export default function AriesPaymentResult() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!orderId) {
+    if (!orderId || !userState.value?.id) {
       setLoading(false);
       return;
     }
@@ -87,7 +88,7 @@ export default function AriesPaymentResult() {
     return () => {
       cancelled = true;
     };
-  }, [orderId]);
+  }, [orderId, userState.value?.id]);
 
   const balances = balanceState.value;
 
