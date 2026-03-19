@@ -9,18 +9,10 @@ import { Button } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { registerOpenedState } from "@/state/registerOpenedState";
 import WalletBox from "./WalletBox";
-import ProfileButton from "./ProfileButton";
 import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
-import { useEffect, useState } from "preact/hooks";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { SearchWidgetHeader } from "./SearchWidget";
-import { setAxiosAuthToken } from "@/api/instance";
-import { accessTokenState } from "@/state/accessTokenState";
-import { useLocation } from "preact-iso";
-import axios from "axios";
-import { useCallback } from "preact/hooks";
-import ProfileMenu from "../ProfileMenu";
 import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 import LocaleSelection from "../LocaleSelection";
 
@@ -28,32 +20,7 @@ export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const isMobile = useMediaQuery(mobileMediaQuery);
   const t = useTranslations("Header");
-  const [time, setTime] = useState(new Date());
   const { modifyHref } = useAffiliateNavigation();
-  const location = useLocation();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const onLogout = useCallback(async () => {
-    try {
-      userState.value = null;
-      setAxiosAuthToken("");
-      accessTokenState.value = null;
-
-      if (location.path.includes("agent")) {
-        location.route("/");
-      }
-    } catch (ex) {
-      if (axios.isAxiosError(ex)) {
-        console.error(ex.message);
-      }
-    }
-  }, [userState, setAxiosAuthToken, accessTokenState]);
 
   return (
     <header className="relative z-[200] bg-[var(--background)] w-full mx-auto h-[60px] flex items-center justify-center ">
@@ -137,10 +104,6 @@ export default function Header() {
                     />
                   </button>
                   <SearchWidgetHeader />
-                </div>
-                <div className="relative">
-                  <ProfileButton />
-                  <ProfileMenu />
                 </div>
               </div>
             )}
