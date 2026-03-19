@@ -1,7 +1,10 @@
-import { useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "preact/hooks";
 import { Button, Input } from "@heroui/react";
 import { userState } from "@/state/userState";
 import { apiPayWithAries } from "@/api/wallet/apiPayWithAries";
+import { useMediaQuery } from "usehooks-ts";
+import { mobileMediaQuery } from "@/config/constants";
+import { localeState } from "@/state/localeState";
 
 const AriesDeposit = () => {
   const [amount, setAmount] = useState("");
@@ -15,6 +18,7 @@ const AriesDeposit = () => {
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const isMobile = useMediaQuery(mobileMediaQuery);
 
   useEffect(() => {
     const user = userState.value;
@@ -30,37 +34,56 @@ const AriesDeposit = () => {
     }
   }, [userState.value]);
 
-  const handleSubmit = async (e: Event) => {
-    e.preventDefault();
-    setError("");
-    setIsSubmitting(true);
-    try {
-      const res = await apiPayWithAries({
-        amount: Number(amount) || 0,
-        streetAddress,
-        city,
-        state,
-        zip,
-        country,
-        email,
-        phone: phone || undefined,
-        name,
-      });
-      if (res.data?.paymentUrl) {
-        window.location.href = res.data.paymentUrl;
-      } else {
-        setError(res.message || "Payment could not be created.");
+  const handleSubmit = useCallback(
+    async (e: Event) => {
+      e.preventDefault();
+      setError("");
+      setIsSubmitting(true);
+      try {
+        const res = await apiPayWithAries({
+          amount: Number(amount) || 0,
+          streetAddress,
+          city,
+          state,
+          zip,
+          country,
+          email,
+          phone: phone || undefined,
+          name,
+          isMobile,
+          language: localeState.value,
+          applePayEnabled: true,
+          googlePayEnabled: true,
+        });
+        if (res.data?.paymentUrl) {
+          window.location.href = res.data.paymentUrl;
+        } else {
+          setError(res.message || "Payment could not be created.");
+        }
+      } catch (err: unknown) {
+        const message =
+          err && typeof err === "object" && "message" in err
+            ? String((err as { message: unknown }).message)
+            : "Something went wrong.";
+        setError(message);
+      } finally {
+        setIsSubmitting(false);
       }
-    } catch (err: unknown) {
-      const message =
-        err && typeof err === "object" && "message" in err
-          ? String((err as { message: unknown }).message)
-          : "Something went wrong.";
-      setError(message);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    },
+    [
+      amount,
+      streetAddress,
+      city,
+      state,
+      zip,
+      country,
+      email,
+      phone,
+      name,
+      isMobile,
+      localeState.value,
+    ]
+  );
 
   return (
     <form className="flex flex-col w-full gap-4" onSubmit={handleSubmit}>
