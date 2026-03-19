@@ -21,6 +21,12 @@ const AriesDeposit = () => {
     if (user) {
       setEmail(user.email);
       setName((user.firstName + " " + user.lastName).trim());
+      setStreetAddress(user.address || "");
+      setCity(user.city || "");
+      setState(user.state || "");
+      setZip(user.zipCode || "");
+      setCountry(user.country || "");
+      setPhone(user.phone || "");
     }
   }, [userState.value]);
 
