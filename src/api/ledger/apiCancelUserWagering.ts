@@ -3,7 +3,7 @@ import { tUserBalance } from "@/types/tUserLedger";
 
 export const apiCancelWagering = async (
   userId: string,
-  currencyCode : string = "TRY",
+  currencyCode : string = "USD",
 ) => {
   const res = await instance.get<{
     hasError: boolean;

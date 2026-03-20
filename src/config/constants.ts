@@ -181,7 +181,7 @@ export const CURRENCY_LIST: {
     name: "Euro",
     unit: eTransactionCurrency.EUR,
   },
-  { symbol: "₺", code: "TRY", name: "Turkish Lira", unit: eTransactionCurrency.TRY },
+  // { symbol: "₺", code: "TRY", name: "Turkish Lira", unit: eTransactionCurrency.TRY },
 ];
 
 export const DEFAULT_CURRENCY_SYMBOL =

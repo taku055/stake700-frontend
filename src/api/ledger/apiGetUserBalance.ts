@@ -3,7 +3,7 @@ import { tUserBalance } from "@/types/tUserLedger";
 
 export const apiGetUserBalance = async (
   userId: string,
-  currency: string = "TRY",
+  currency: string = "USD",
 ) => {
   const res = await instance.get<{
     hasError: boolean;

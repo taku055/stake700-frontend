@@ -4,7 +4,7 @@ import { tLedgerPromotion } from "@/types/tUserLedger";
 export const apiGetPromotions = async (
   category: "ALL" | "NORMAL" | "USER" = "ALL",
   userId: string,
-  currencyCode: string = "TRY",
+  currencyCode: string = "USD",
   page: number = 1,
   pageSize: number = 20,
 ) => {
