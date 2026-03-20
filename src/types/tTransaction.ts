@@ -40,10 +40,7 @@ export enum eTransactionPlatform {
 }
 
 export enum eTransactionCurrency {
-  // SYP = "SYP",
-  USD = "USD",
-  EUR = "EUR",
-  // TRY = "TRY",
+  USD = "USD"
 }
 
 export type tTransaction = {

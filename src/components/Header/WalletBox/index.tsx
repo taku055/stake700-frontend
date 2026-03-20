@@ -115,7 +115,7 @@ import { currencyState } from "@/state/currencyState";
 import { ASSET_BASE_URL, CURRENCY_LIST } from "@/config/constants";
 // import { CURRENCY_SYMBOL } from "@/config/constants";
 
-const SUPPORTED_CURRENCIES = ["TRY", "EUR"] as const;
+const SUPPORTED_CURRENCIES = ["USD"] as const;
 type Pos = { top: number; left: number; width: number };
 
 export default function WalletBox() {
