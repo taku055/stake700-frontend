@@ -89,7 +89,7 @@
 
         @include for-not-mobile {
           &:hover:not(:active) {
-            background: "#313131";
+            background: #313131;
           }
         }
       }

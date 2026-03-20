@@ -1,8 +1,6 @@
 import styles from "./GameCard.module.scss";
 import { tGame } from "@/types/tGame";
-import { Play } from "lucide-preact";
 import { placeholderGameImage } from "@/config/constants";
-import { Image } from "@heroui/react";
 import {
   useCallback,
   useEffect,
@@ -26,6 +24,8 @@ interface GameCardProps {
 export default function GameCard({ data }: GameCardProps) {
   const [isTouchLike, setIsTouchLike] = useState(false);
   const [open, setOpen] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const tToast = useTranslations("ToastMessages");
 
@@ -68,7 +68,7 @@ export default function GameCard({ data }: GameCardProps) {
 
   const isFavorite = useMemo(
     () => favoritesGameState.value.some((game) => game.id === data.id),
-    [favoritesGameState.value, data.id]
+    [favoritesGameState.value, data.id],
   );
 
   const setFavorite = useCallback(
@@ -77,7 +77,7 @@ export default function GameCard({ data }: GameCardProps) {
         if (isFavorite) {
           await apiDeleteFavoritesGame(id);
           favoritesGameState.value = favoritesGameState.value.filter(
-            (game) => game.id !== id
+            (game) => game.id !== id,
           );
         } else {
           await apiAddFavoritesGame(id);
@@ -87,15 +87,19 @@ export default function GameCard({ data }: GameCardProps) {
         toast.success(
           isFavorite
             ? tToast("success.removed_from_favorites")
-            : tToast("success.added_to_favorites")
+            : tToast("success.added_to_favorites"),
         );
       } catch (ex) {
         console.error(ex);
         toast.error(tToast("error.something_wrong"));
       }
     },
-    [isFavorite, tToast, favoritesGameState]
+    [isFavorite, tToast, favoritesGameState],
   );
+
+  const imgSrc = imgError
+    ? placeholderGameImage
+    : data.img_custom || data.img_vertical || data.img || placeholderGameImage;
 
   return (
     <div
@@ -107,19 +111,25 @@ export default function GameCard({ data }: GameCardProps) {
       role="group"
     >
       <div className={styles.imgWrapper}>
-        <Image
+        {/* Placeholder shown until image loads */}
+        {!imgLoaded && (
+          <img
+            src={placeholderGameImage}
+            aria-hidden="true"
+            className={styles.gamePlaceholderImage}
+          />
+        )}
+        <img
           className={styles.gameImage}
-          src={
-            data.img_custom ||
-            data.img_vertical ||
-            data.img ||
-            placeholderGameImage
-          }
-          fallbackSrc={placeholderGameImage}
-          alt={data.id}
-          classNames={{ wrapper: "w-full h-full max-w-[unset]!" }}
+          src={imgSrc}
+          alt={data.name || data.id}
           loading="lazy"
-          radius="none"
+          onLoad={() => setImgLoaded(true)}
+          onError={() => {
+            setImgError(true);
+            setImgLoaded(true); // still show fallback
+          }}
+          style={{ opacity: imgLoaded ? 1 : 0, transition: "opacity 0.3s" }}
         />
         <div className={styles.overlap}>
           <span title={data.providerId} className={styles.text}>
