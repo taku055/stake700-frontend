@@ -190,9 +190,16 @@ export default function WalletBox() {
 
   const formattedTotal = useMemo(() => {
     const cur = currencyState.value;
-    const cash = Number(balanceState.value?.[cur.code]?.cash?.balance ?? 0);
-    const bonus = Number(balanceState.value?.[cur.code]?.bonus?.balance ?? 0);
-    const total = cash + bonus;
+    if (userState.value == null || cur == null) return "0.00";
+    let total = 0;
+    if (userState.value.role === "NORMAL") {
+      const cash = Number(balanceState.value?.[cur.code]?.cash?.balance ?? 0);
+      const bonus = Number(balanceState.value?.[cur.code]?.bonus?.balance ?? 0);
+      total = cash + bonus;
+    } else {
+      total = Number(userState.value.cashDetails?.find((c) => c.currency === cur.unit)?.amount ?? 0);
+    }
+
 
     return total.toLocaleString("tr-TR", {
       minimumFractionDigits: 2,
