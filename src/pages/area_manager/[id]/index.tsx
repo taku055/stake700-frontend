@@ -21,6 +21,16 @@ interface IAgentDetailPageProps {
   agentId: string;
 }
 
+const upsertCashDetail = (
+  details: tCurrencyBalance[],
+  newItem: tCurrencyBalance
+): tCurrencyBalance[] => {
+  const i = details.findIndex((c) => c.currency === newItem.currency);
+  return i !== -1
+    ? details.map((c, idx) => (idx === i ? newItem : c))
+    : [...details, newItem];
+};
+
 export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
   const [agent, setAgent] = useState<tAgent>();
   const [loadingDelete, setLoadingDelete] = useState(false);
@@ -72,34 +82,14 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
     newSuperAgent: tCurrencyBalance,
     transaction: tSuperAgentTransaction
   ) => {
-    setAgent((prev) => {
-      if (!prev) return prev;
-      const newCashDetails = [...prev.cashDetails];
-      const i = newCashDetails.findIndex(
-        (c) => c.currency === newSuperAgent.currency
-      );
-      if (i !== -1) {
-        newCashDetails[i] = newSuperAgent;
-      } else {
-        newCashDetails.push(newSuperAgent);
-      }
-      return { ...prev, cashDetails: newCashDetails };
-    });
+    setAgent((prev) =>
+      prev ? { ...prev, cashDetails: upsertCashDetail(prev.cashDetails, newSuperAgent) } : prev
+    );
 
     if (userState.value?.id) {
-      const newCashDetails = [...userState.value.cashDetails];
-      const i = newCashDetails.findIndex(
-        (c) => c.currency === newAreaManager.currency
-      );
-      if (i !== -1) {
-        newCashDetails[i] = newAreaManager;
-      } else {
-        newCashDetails.push(newAreaManager);
-      }
-
       userState.value = {
         ...userState.value,
-        cashDetails: newCashDetails,
+        cashDetails: upsertCashDetail(userState.value.cashDetails, newAreaManager),
       };
     }
 
