@@ -197,15 +197,17 @@ export default function WalletBox() {
       const bonus = Number(balanceState.value?.[cur.code]?.bonus?.balance ?? 0);
       total = cash + bonus;
     } else {
-      total = Number(userState.value.cashDetails?.find((c) => c.currency === cur.unit)?.amount ?? 0);
+      total = Number(
+        userState.value.cashDetails?.find((c) => c.currency === cur.unit)
+          ?.amount ?? 0,
+      );
     }
-
 
     return total.toLocaleString("tr-TR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
-  }, [currencyState.value, balanceState.value]);
+  }, [currencyState.value, balanceState.value, userState.value]);
 
   const symbol = currencyState.value.symbol ?? "";
 
