@@ -45,7 +45,6 @@ export default function SignupDialog({
   const [birthday, setBirthday] = useState(parseDate("1990-01-01"));
   const t = useTranslations("SignupDialog");
   const tToast = useTranslations("ToastMessages");
-  const location = useLocation();
   const firstNameRef = useRef<HTMLInputElement>(null);
   const { refCode } = useAffiliateNavigation();
 
@@ -139,27 +138,15 @@ export default function SignupDialog({
       scrollBehavior="inside"
     >
       <ModalContent
-        className="bg-[var(--background)] w-[630px] h-[716px] max-w-[630px] max-h-[716px] rounded-[8px] overflow-y-auto"
+        className="bg-[var(--background)] max-w-[630px] max-h-[calc(var(--viewport-height)-140px)] rounded-[8px] overflow-y-auto"
         dir={"ltr"}
       >
         <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
           <img
-            // src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
-            //   import.meta.env.VITE_SITE_NAME as string
-            // ).toLowerCase()}/logo.png`}
             src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
             className="h-[36px] md:h-[36px] md:max-w-[180px]"
             alt={import.meta.env.VITE_SITE_NAME as string}
           />
-          <button
-            className="rounded-[4px] w-[20px] h-[20px]"
-            onClick={() => {
-              onClose();
-              // registerOpenedState.value = true;
-            }}
-          >
-            {/* {t("register")} */}
-          </button>
         </ModalHeader>
         <ModalBody className="flex flex-col p-[16px] h-[656px]">
           <form className="flex flex-col w-full gap-[16px]" onSubmit={onSubmit}>
