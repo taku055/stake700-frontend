@@ -20,13 +20,13 @@ const countries = Object.keys(myCountryCodesObject).map((key) => ({
   label: myCountryCodesObject[key],
 }));
 
-const genders = [
-  { label: "Male", value: "male" },
-  { label: "Female", value: "female" },
-];
-
 const PersonalDetailsPage = () => {
   const t = useTranslations("PersonalDetails");
+
+  const genders = [
+    { label: t("Male"), value: "male" },
+    { label: t("Female"), value: "female" },
+  ];
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
   const [firstName, setFirstName] = useState(userState.value?.firstName || "");

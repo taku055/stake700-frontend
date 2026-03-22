@@ -15,6 +15,7 @@ import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID } from "@/confi
 import { effect } from "@preact/signals";
 import { toast } from "@/helpers/toast";
 
+
 export default function DepositPanel() {
   const blockchainPanelRef = useRef<HTMLDivElement | null>(null);
   const [selectedCryptoType, setSelectedCryptoType] = useState<string | null>(
@@ -29,6 +30,7 @@ export default function DepositPanel() {
   const [loadingWantBonus, setLoadingWantBonus] = useState(false);
   const [loadingInfo, setLoadingInfo] = useState(false);
   const t = useTranslations("DepositDialogFull");
+  const tToast = useTranslations("ToastMessages");
 
   useEffect(() => {
     const dispose = effect(() => {
@@ -91,7 +93,7 @@ export default function DepositPanel() {
 
   const openVisaDeposit = async () => {
     if (!userState.value?.id) {
-      toast.error("Please login first");
+      toast.error(tToast("error.login_first"));
       return;
     }
 
@@ -117,7 +119,7 @@ export default function DepositPanel() {
   const copyWallet = () => {
     if (wallet === "") return;
     navigator.clipboard.writeText(wallet);
-    toast.info("Wallet address copied to clipboard!");
+    toast.info(tToast("info.wallet_address_copied"));
   };
 
   const onSelectToken = useCallback(
@@ -166,18 +168,16 @@ export default function DepositPanel() {
       {userState.value?.wantBonus === null ? (
         <div className="flex flex-col">
           <div className="md:text-[14px] text-[12px]">
-            You are doing first deposit now. Do you want to get bonus for the
-            first deposit?
+            {t("first_deposit_bonus_question")}
             <br />
-            There are some restrictions in withdrawing if you choose to get
-            bonus. Please check{" "}
+            {t("first_deposit_bonus_restriction")}{" "}
             <a
               href="/privacy_policy/withdrawal_policy"
               className="font-semibold text-white hover:underline"
             >
-              Terms and Conditions for New Depositors
+              {t("terms_conditions_link")}
             </a>
-            for details.
+            {t("for_details")}
           </div>
 
           <div className="flex justify-center mt-4 gap-4">
@@ -188,7 +188,7 @@ export default function DepositPanel() {
               onClick={() => onSetBonus(true)}
               isLoading={loadingWantBonus}
             >
-              Yes, I want bonus
+              {t("yes_want_bonus")}
             </Button>
             <Button
               size="sm"
@@ -197,7 +197,7 @@ export default function DepositPanel() {
               onClick={() => onSetBonus(false)}
               isLoading={loadingWantBonus}
             >
-              No, I don&#39;t want bonus
+              {t("no_dont_want_bonus")}
             </Button>
           </div>
         </div>
@@ -259,7 +259,7 @@ export default function DepositPanel() {
                           className="absolute top-full left-0 mt-2 z-20 bg-[#21211C] p-3 rounded-lg shadow-lg border border-white/10 w-max"
                         >
                           <label className="text-xs text-gray-300">
-                            BLOCKCHAIN
+                            {t("BLOCKCHAIN")}
                           </label>
                           <div className="flex flex-col md:flex-row gap-2 mt-2">
                             {tokenGroup.map((token) => (

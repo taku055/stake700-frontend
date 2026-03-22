@@ -38,6 +38,7 @@ export default function WithdrawalPanel() {
   const [loadingInfo, setLoadingInfo] = useState(false);
   const [loading, setLoading] = useState(false);
   const t = useTranslations("DepositDialogFull");
+  const tToast = useTranslations("ToastMessages");
 
   useEffect(() => {
     (async () => {
@@ -123,39 +124,37 @@ export default function WithdrawalPanel() {
     }
 
     if (selectedCryptoId < 0) {
-      toast.error("Please select the balance you want to withdraw");
+      toast.error(tToast("error.select_balance"));
       return;
     }
 
     if (!wallet) {
-      toast.error("Please input the address");
+      toast.error(tToast("error.input_address"));
       return;
     }
 
     if (!isWithdrawable) {
-      toast.error(
-        "You are not able to withdraw. Please check privacy and policy now."
-      );
+      toast.error(tToast("error.withdraw_not_allowed"));
       return;
     }
 
     if (selectedBlockchain === 8086 && !isValidSegwitAddress(wallet)) {
-      toast.error("Please input the valid address");
+      toast.error(tToast("error.valid_address"));
       return;
     } else if (selectedBlockchain === 900 && !isValidSolAddress(wallet)) {
-      toast.error("Please input the valid address");
+      toast.error(tToast("error.valid_address"));
       return;
     } else if (
       selectedBlockchain !== 8086 &&
       selectedBlockchain !== 900 &&
       !isAddress(wallet)
     ) {
-      toast.error("Please input the valid address");
+      toast.error(tToast("error.valid_address"));
       return;
     }
 
     if (+amount < 1 || +amount > (userState.value?.cash || 0)) {
-      toast.error("Please input the valid withdraw amount");
+      toast.error(tToast("error.withdraw_amount"));
       return;
     }
 
@@ -175,9 +174,7 @@ export default function WithdrawalPanel() {
           Number(amount) <
         100000;
       if (!weekly || !monthly) {
-        toast.error(
-          "You have exceeded the withdrawal amount. Please check the policy."
-        );
+        toast.error(tToast("error.withdrawal_exceeded"));
         return;
       }
     }
@@ -185,21 +182,19 @@ export default function WithdrawalPanel() {
     setLoading(true);
     try {
       await apiLazyWithdraw(selectedBlockchain, wallet, +amount);
-      toast.success("Successfully requested");
+      toast.success(tToast("success.withdrawal_requested"));
     } catch (ex) {
       if (axios.isAxiosError(ex)) {
         console.log(ex.response?.data.message);
         if (ex.response?.data.message === "low.balance") {
-          toast.error("You don't have enough balance to witdhraw");
+          toast.error(tToast("error.insufficient_balance"));
         } else if (ex.response?.data.message === "low.balance.requests") {
-          toast.error(
-            "You don't have enough balance to witdhraw. Please check the withdraw requests you submitted"
-          );
+          toast.error(tToast("error.insufficient_balance_requests"));
         } else {
-          toast.error("Something went wrong");
+          toast.error(tToast("error.something_wrong"));
         }
       } else {
-        toast.error("Something went wrong");
+        toast.error(tToast("error.something_wrong"));
       }
     }
     setLoading(false);
@@ -284,7 +279,7 @@ export default function WithdrawalPanel() {
                         className="absolute top-full left-0 mt-2 z-20 bg-[#1e2238] p-3 rounded-lg shadow-lg border border-white/10 w-max"
                       >
                         <label className="text-xs text-gray-300">
-                          BLOCKCHAIN
+                          {t("BLOCKCHAIN")}
                         </label>
                         <div className="flex flex-col md:flex-row gap-2 mt-2">
                           {tokenGroup.map((token) => (

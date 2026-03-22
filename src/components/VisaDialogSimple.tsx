@@ -42,6 +42,7 @@ export default function VisaDialogSimple({
   const [country, setCountry] = useState("");
   const isMobile = useMediaQuery(mobileMediaQuery);
   const t = useTranslations("CardDeposit");
+  const tToast = useTranslations("ToastMessages");
   const myCountryCodesObject = countryCodes.customList(
     "countryCode",
     "{countryNameEn}({countryCode})"
@@ -102,24 +103,24 @@ export default function VisaDialogSimple({
       !zipCode ||
       !country
     ) {
-      toast.error("All fields are required.");
+      toast.error(tToast("validation.all_fields_required"));
       return false;
     }
     if (!email.includes("@")) {
-      toast.error("Invalid email address.");
+      toast.error(tToast("validation.invalid_email"));
       return false;
     }
     if (phone.length < 8) {
-      toast.error("Invalid phone number.");
+      toast.error(tToast("validation.invalid_phone"));
       return false;
     }
     if (parseFloat(amount) < 10) {
-      toast.error("Amount cannot be less than 10.");
+      toast.error(tToast("validation.amount_minimum"));
       return false;
     }
 
     if (cvv.length !== 3 || isNaN(Number(cvv))) {
-      toast.error("Invalid CVV. It must be a 3-digit number.");
+      toast.error(tToast("validation.invalid_cvv"));
       return false;
     }
     const month = parseInt(expMonth, 10);
@@ -128,15 +129,15 @@ export default function VisaDialogSimple({
     const currentMonth = new Date().getMonth() + 1;
 
     if (isNaN(month) || month < 1 || month > 12) {
-      toast.error("Invalid expiration month.");
+      toast.error(tToast("validation.invalid_expiration_month"));
       return false;
     }
     if (isNaN(year) || year < currentYear || year > currentYear + 10) {
-      toast.error("Invalid expiration year.");
+      toast.error(tToast("validation.invalid_expiration_year"));
       return false;
     }
     if (year === currentYear && month < currentMonth) {
-      toast.error("Card expiration date cannot be in the past.");
+      toast.error(tToast("validation.card_expired"));
       return false;
     }
 

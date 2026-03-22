@@ -264,18 +264,16 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
           {userState.value?.wantBonus === null ? (
             <div className="flex flex-col p-4">
               <div className="md:text-[14px] text-[12px] text-white/70">
-                You are doing first deposit now. Do you want to get bonus for the
-                first deposit?
+                {t("first_deposit_bonus_question")}
                 <br />
-                There are some restrictions in withdrawing if you choose to get
-                bonus. Please check{" "}
+                {t("first_deposit_bonus_restriction")}{" "}
                 <a
                   href="/privacy_policy/withdrawal_policy"
                   className="font-semibold text-white hover:underline"
                 >
-                  Terms and Conditions for New Depositors
+                  {t("terms_conditions_link")}
                 </a>
-                for details.
+                {t("for_details")}
               </div>
 
               <div className="flex justify-center mt-4 gap-4">
@@ -286,7 +284,7 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
                   onClick={() => onSetBonus(true)}
                   isLoading={loadingWantBonus}
                 >
-                  Yes, I want bonus
+                  {t("yes_want_bonus")}
                 </Button>
                 <Button
                   size="sm"
@@ -295,7 +293,7 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
                   onClick={() => onSetBonus(false)}
                   isLoading={loadingWantBonus}
                 >
-                  No, I don&#39;t want bonus
+                  {t("no_dont_want_bonus")}
                 </Button>
               </div>
             </div>

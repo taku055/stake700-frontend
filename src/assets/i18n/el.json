@@ -415,7 +415,23 @@
     "Balance": "Υπόλοιπο",
     "Unplayed amount": "Μη παιγμένο ποσό",
     "Bank Accounts": "Τραπεζικοί Λογαριασμοί",
-    "Amount": "Ποσό"
+    "Amount": "Ποσό",
+    "Card": "Κάρτα",
+    "Crypto": "Κρύπτο",
+    "Data And ID": "Δεδομένα & ID",
+    "Paid Time": "Ώρα πληρωμής",
+    "System": "Σύστημα",
+    "Voucher Code": "Κωδικός κουπονιού",
+    "Cancel": "Ακύρωση",
+    "Pending": "Σε αναμονή",
+    "Approved": "Εγκρίθηκε",
+    "Banned": "Απαγορεύτηκε",
+    "Canceled": "Ακυρώθηκε",
+    "Completed": "Ολοκληρώθηκε",
+    "Cancelled": "Ακυρώθηκε",
+    "Failed": "Απέτυχε",
+    "Unknown": "Άγνωστο",
+    "Status": "Κατάσταση"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Πόντοι Πιστότητας",
@@ -619,7 +635,14 @@
     "Destination wallet address": "Διεύθυνση πορτοφολιού προορισμού",
     "Wallet": "Πορτοφόλι",
     "Improve your account security with Two-Factor Authentication": "Βελτιώστε την ασφάλεια του λογαριασμού σας με Διπλή Επαλήθευση",
-    "Enable 2FA": "Ενεργοποίηση 2FA"
+    "Enable 2FA": "Ενεργοποίηση 2FA",
+    "first_deposit_bonus_question": "Κάνετε την πρώτη σας κατάθεση. Θέλετε να λάβετε μπόνους για την πρώτη κατάθεση;",
+    "first_deposit_bonus_restriction": "Υπάρχουν ορισμένοι περιορισμοί στις αναλήψεις αν επιλέξετε το μπόνους. Παρακαλούμε ελέγξτε",
+    "terms_conditions_link": "Όροι και Προϋποθέσεις για Νέους Καταθέτες",
+    "for_details": "για λεπτομέρειες.",
+    "yes_want_bonus": "Ναι, θέλω μπόνους",
+    "no_dont_want_bonus": "Όχι, δεν θέλω μπόνους",
+    "BLOCKCHAIN": "BLOCKCHAIN"
   },
   "Agent": {
     "Users": "Χρήστες",

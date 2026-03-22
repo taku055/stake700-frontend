@@ -415,7 +415,23 @@
     "Balance": "Saldo",
     "Unplayed amount": "Nicht gespielter Betrag",
     "Bank Accounts": "Bankkonten",
-    "Amount": "Betrag"
+    "Amount": "Betrag",
+    "Card": "Karte",
+    "Crypto": "Krypto",
+    "Data And ID": "Daten & ID",
+    "Paid Time": "Zahlungszeitpunkt",
+    "System": "System",
+    "Voucher Code": "Gutscheincode",
+    "Cancel": "Stornieren",
+    "Pending": "Ausstehend",
+    "Approved": "Genehmigt",
+    "Banned": "Gesperrt",
+    "Canceled": "Abgebrochen",
+    "Completed": "Abgeschlossen",
+    "Cancelled": "Abgebrochen",
+    "Failed": "Fehlgeschlagen",
+    "Unknown": "Unbekannt",
+    "Status": "Status"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Treuepunkte",
@@ -619,7 +635,14 @@
     "Destination wallet address": "Ziel-Wallet-Adresse",
     "Wallet": "Geldbörse",
     "Improve your account security with Two-Factor Authentication": "Verbessern Sie die Sicherheit Ihres Kontos mit der Zwei-Faktor-Authentifizierung",
-    "Enable 2FA": "2FA aktivieren"
+    "Enable 2FA": "2FA aktivieren",
+    "first_deposit_bonus_question": "Sie tätigen Ihre erste Einzahlung. Möchten Sie einen Bonus für die erste Einzahlung erhalten?",
+    "first_deposit_bonus_restriction": "Es gibt einige Einschränkungen bei Auszahlungen, wenn Sie sich für den Bonus entscheiden. Bitte lesen Sie",
+    "terms_conditions_link": "Allgemeine Geschäftsbedingungen für Neueinzahler",
+    "for_details": "für Details.",
+    "yes_want_bonus": "Ja, ich möchte den Bonus",
+    "no_dont_want_bonus": "Nein, ich möchte keinen Bonus",
+    "BLOCKCHAIN": "BLOCKCHAIN"
   },
   "Agent": {
     "Users": "Benutzer",

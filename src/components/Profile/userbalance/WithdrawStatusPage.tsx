@@ -21,6 +21,7 @@ interface WithdrawData {
 
 const WithdrawStatusPage = () => {
   const t = useTranslations("UserBalancePage");
+  const tToast = useTranslations("ToastMessages");
   const [data, setData] = useState<tWithdrawRequest[]>([]);
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
@@ -74,7 +75,7 @@ const WithdrawStatusPage = () => {
             return p;
           });
         } catch (ex) {
-          toast.error("Something went wrong in canceling");
+          toast.error(tToast("error.cancel_transaction"));
         }
       }
     },
@@ -82,22 +83,10 @@ const WithdrawStatusPage = () => {
   );
 
   const statusChips = [
-    {
-      color: "default",
-      text: "Pending",
-    },
-    {
-      color: "success",
-      text: "Approved",
-    },
-    {
-      color: "danger",
-      text: "Banned",
-    },
-    {
-      color: "default",
-      text: "Canceled",
-    },
+    { color: "default", text: "Pending" },
+    { color: "success", text: "Approved" },
+    { color: "danger", text: "Banned" },
+    { color: "default", text: "Canceled" },
   ];
 
   const getStatusIcon = (status: string) => {
@@ -118,15 +107,15 @@ const WithdrawStatusPage = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case "completed":
-        return "Completed";
+        return t("Completed");
       case "pending":
-        return "Pending";
+        return t("Pending");
       case "cancelled":
-        return "Cancelled";
+        return t("Cancelled");
       case "failed":
-        return "Failed";
+        return t("Failed");
       default:
-        return "Unknown";
+        return t("Unknown");
     }
   };
 
@@ -157,13 +146,13 @@ const WithdrawStatusPage = () => {
           <div className="min-w-full">
             {/* Table Header */}
             <div className="grid grid-cols-7 gap-4 p-4 bg-[var(--bar-background-color)] border-b border-[var(--highlight-background)] text-[var(--foreground)] text-[14px] font-medium">
-              <div>Data And ID</div>
-              <div>Paid Time</div>
-              <div>System</div>
-              <div>Voucher Code</div>
-              <div>Amount</div>
-              <div>Status</div>
-              <div>Cancel</div>
+              <div>{t("Data And ID")}</div>
+              <div>{t("Paid Time")}</div>
+              <div>{t("System")}</div>
+              <div>{t("Voucher Code")}</div>
+              <div>{t("Amount")}</div>
+              <div>{t("Status")}</div>
+              <div>{t("Cancel")}</div>
             </div>
 
             {/* Table Body */}

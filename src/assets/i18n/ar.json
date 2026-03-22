@@ -415,7 +415,23 @@
     "Balance": "الرصيد",
     "Unplayed amount": "مبلغ غير مُستخدَم",
     "Bank Accounts": "حسابات بنكية",
-    "Amount": "المبلغ"
+    "Amount": "المبلغ",
+    "Card": "بطاقة",
+    "Crypto": "كريبتو",
+    "Data And ID": "البيانات والمعرّف",
+    "Paid Time": "وقت الدفع",
+    "System": "النظام",
+    "Voucher Code": "رمز القسيمة",
+    "Cancel": "إلغاء",
+    "Pending": "قيد الانتظار",
+    "Approved": "موافق عليه",
+    "Banned": "محظور",
+    "Canceled": "أُلغي",
+    "Completed": "مكتمل",
+    "Cancelled": "مُلغى",
+    "Failed": "فشل",
+    "Unknown": "غير معروف",
+    "Status": "الحالة"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "نقاط الولاء",
@@ -619,7 +635,14 @@
     "Destination wallet address": "عنوان محفظة الوجهة",
     "Wallet": "المحفظة",
     "Improve your account security with Two-Factor Authentication": "حسّن أمان حسابك باستخدام المصادقة الثنائية",
-    "Enable 2FA": "تفعيل المصادقة الثنائية"
+    "Enable 2FA": "تفعيل المصادقة الثنائية",
+    "first_deposit_bonus_question": "أنت تقوم بأول إيداع لك. هل تريد الحصول على مكافأة أول إيداع؟",
+    "first_deposit_bonus_restriction": "هناك بعض القيود على السحب إذا اخترت الحصول على مكافأة. يرجى الاطلاع على",
+    "terms_conditions_link": "الشروط والأحكام للمودعين الجدد",
+    "for_details": "للتفاصيل.",
+    "yes_want_bonus": "نعم، أريد المكافأة",
+    "no_dont_want_bonus": "لا، لا أريد المكافأة",
+    "BLOCKCHAIN": "البلوكشين"
   },
   "Agent": {
     "Users": "المستخدمون",

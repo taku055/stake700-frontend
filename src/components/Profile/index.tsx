@@ -131,11 +131,11 @@ const ProfileComponent = ({
           Title: t("Time-Out"),
           Content: <TimeoutPage />,
         },
-        {
-          TabKey: "/my-profile/verify-account",
-          Title: t("Verify Account"),
-          Content: <VerfyAccountPage />,
-        },
+        // {
+        //   TabKey: "/my-profile/verify-account",
+        //   Title: t("Verify Account"),
+        //   Content: <VerfyAccountPage />,
+        // },
         {
           TabKey: "/my-profile/two-step-authentication",
           Title: t("Two-Step Authentication"),
@@ -267,9 +267,9 @@ const ProfileComponent = ({
           <div className={`w-full flex flex-col overflow-y-auto md:max-w-[320px] gap-3 scrollbar-hide p-4 bg-[var(--bar-background-color)] ${isRTL ? 'md:border-l md:border-gray-700' : 'md:border-r md:border-gray-700'}`}>
             <div className="flex flex-col gap-3">
               <UserComponent />
-              <UserVerifyBox
+              {/* <UserVerifyBox
                 onClick={() => setSelectedTab("/my-profile/verify-account")}
-              />
+              /> */}
               <MainBalanceCard
                 onDepositClick={() =>
                   setSelectedTab("/balance-management/deposit")

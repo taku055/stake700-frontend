@@ -415,7 +415,23 @@
     "Balance": "Баланс",
     "Unplayed amount": "Неотыгранная сумма",
     "Bank Accounts": "Банковские счета",
-    "Amount": "Сумма"
+    "Amount": "Сумма",
+    "Card": "Карта",
+    "Crypto": "Крипто",
+    "Data And ID": "Данные и ID",
+    "Paid Time": "Время оплаты",
+    "System": "Система",
+    "Voucher Code": "Код ваучера",
+    "Cancel": "Отмена",
+    "Pending": "В ожидании",
+    "Approved": "Одобрено",
+    "Banned": "Заблокировано",
+    "Canceled": "Отменено",
+    "Completed": "Завершено",
+    "Cancelled": "Отменено",
+    "Failed": "Неудача",
+    "Unknown": "Неизвестно",
+    "Status": "Статус"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Бонусные баллы",
@@ -619,7 +635,14 @@
     "Destination wallet address": "Адрес кошелька получателя",
     "Wallet": "Кошелёк",
     "Improve your account security with Two-Factor Authentication": "Улучшите безопасность своего аккаунта с помощью двухфакторной аутентификации",
-    "Enable 2FA": "Включить 2FA"
+    "Enable 2FA": "Включить 2FA",
+    "first_deposit_bonus_question": "Вы делаете первый депозит. Хотите получить бонус за первый депозит?",
+    "first_deposit_bonus_restriction": "При выборе бонуса существуют некоторые ограничения на вывод средств. Пожалуйста, ознакомьтесь с",
+    "terms_conditions_link": "Условиями для новых вкладчиков",
+    "for_details": "для получения подробностей.",
+    "yes_want_bonus": "Да, хочу бонус",
+    "no_dont_want_bonus": "Нет, не хочу бонус",
+    "BLOCKCHAIN": "БЛОКЧЕЙН"
   },
   "Agent": {
     "Users": "Пользователи",

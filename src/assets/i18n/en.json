@@ -481,7 +481,23 @@
     "Balance": "Balance",
     "Unplayed amount": "Unplayed amount",
     "Bank Accounts": "Bank Accounts",
-    "Amount": "Amount"
+    "Amount": "Amount",
+    "Card": "Card",
+    "Crypto": "Crypto",
+    "Data And ID": "Data & ID",
+    "Paid Time": "Paid Time",
+    "System": "System",
+    "Voucher Code": "Voucher Code",
+    "Cancel": "Cancel",
+    "Pending": "Pending",
+    "Approved": "Approved",
+    "Banned": "Banned",
+    "Canceled": "Canceled",
+    "Completed": "Completed",
+    "Cancelled": "Cancelled",
+    "Failed": "Failed",
+    "Unknown": "Unknown",
+    "Status": "Status"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Loyalty Points",
@@ -688,7 +704,14 @@
     "Destination wallet address": "Destination wallet address",
     "Wallet": "Wallet",
     "Improve your account security with Two-Factor Authentication": "Improve your account security with Two-Factor Authentication",
-    "Enable 2FA": "Enable 2FA"
+    "Enable 2FA": "Enable 2FA",
+    "first_deposit_bonus_question": "You are doing your first deposit. Do you want to get a bonus for the first deposit?",
+    "first_deposit_bonus_restriction": "There are some restrictions on withdrawing if you choose to get a bonus. Please check",
+    "terms_conditions_link": "Terms and Conditions for New Depositors",
+    "for_details": "for details.",
+    "yes_want_bonus": "Yes, I want bonus",
+    "no_dont_want_bonus": "No, I don't want bonus",
+    "BLOCKCHAIN": "BLOCKCHAIN"
   },
   "Agent": {
     "Users": "Users",

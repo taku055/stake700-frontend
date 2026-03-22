@@ -415,7 +415,23 @@
     "Balance": "Saldo",
     "Unplayed amount": "Monto no jugado",
     "Bank Accounts": "Cuentas bancarias",
-    "Amount": "Monto"
+    "Amount": "Monto",
+    "Card": "Tarjeta",
+    "Crypto": "Cripto",
+    "Data And ID": "Datos e ID",
+    "Paid Time": "Hora de pago",
+    "System": "Sistema",
+    "Voucher Code": "Código de cupón",
+    "Cancel": "Cancelar",
+    "Pending": "Pendiente",
+    "Approved": "Aprobado",
+    "Banned": "Bloqueado",
+    "Canceled": "Cancelado",
+    "Completed": "Completado",
+    "Cancelled": "Cancelado",
+    "Failed": "Fallido",
+    "Unknown": "Desconocido",
+    "Status": "Estado"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Puntos de lealtad",
@@ -619,7 +635,14 @@
     "Destination wallet address": "Dirección de billetera de destino",
     "Wallet": "Billetera",
     "Improve your account security with Two-Factor Authentication": "Mejore la seguridad de su cuenta con autenticación de dos factores",
-    "Enable 2FA": "Habilitar 2FA"
+    "Enable 2FA": "Habilitar 2FA",
+    "first_deposit_bonus_question": "Estás realizando tu primer depósito. ¿Quieres recibir un bono por el primer depósito?",
+    "first_deposit_bonus_restriction": "Hay algunas restricciones al retirar si eliges recibir el bono. Por favor, consulta",
+    "terms_conditions_link": "Términos y Condiciones para nuevos depositantes",
+    "for_details": "para más detalles.",
+    "yes_want_bonus": "Sí, quiero el bono",
+    "no_dont_want_bonus": "No, no quiero el bono",
+    "BLOCKCHAIN": "BLOCKCHAIN"
   },
   "Agent": {
     "Users": "Usuarios",

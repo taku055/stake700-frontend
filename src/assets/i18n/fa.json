@@ -415,7 +415,23 @@
     "Balance": "موجودی",
     "Unplayed amount": "مبلغ بازی‌نشده",
     "Bank Accounts": "حساب‌های بانکی",
-    "Amount": "مبلغ"
+    "Amount": "مبلغ",
+    "Card": "کارت",
+    "Crypto": "کریپتو",
+    "Data And ID": "داده و شناسه",
+    "Paid Time": "زمان پرداخت",
+    "System": "سیستم",
+    "Voucher Code": "کد واچر",
+    "Cancel": "لغو",
+    "Pending": "در انتظار",
+    "Approved": "تأیید شد",
+    "Banned": "مسدود شد",
+    "Canceled": "لغو شد",
+    "Completed": "تکمیل شد",
+    "Cancelled": "کنسل شد",
+    "Failed": "ناموفق",
+    "Unknown": "نامشخص",
+    "Status": "وضعیت"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "امتیازهای وفاداری",
@@ -619,7 +635,14 @@
     "Destination wallet address": "آدرس کیف پول مقصد",
     "Wallet": "کیف پول",
     "Improve your account security with Two-Factor Authentication": "امنیت حساب خود را با احراز هویت دو عاملی بهبود بخشید",
-    "Enable 2FA": "فعال‌سازی 2FA"
+    "Enable 2FA": "فعال‌سازی 2FA",
+    "first_deposit_bonus_question": "شما در حال انجام اولین واریز خود هستید. آیا می‌خواهید پاداش اولین واریز را دریافت کنید؟",
+    "first_deposit_bonus_restriction": "در صورت انتخاب دریافت پاداش، برخی محدودیت‌ها برای برداشت وجود دارد. لطفاً بررسی کنید",
+    "terms_conditions_link": "شرایط و ضوابط برای واریزکنندگان جدید",
+    "for_details": "برای جزئیات.",
+    "yes_want_bonus": "بله، پاداش می‌خواهم",
+    "no_dont_want_bonus": "نه، پاداش نمی‌خواهم",
+    "BLOCKCHAIN": "بلاکچین"
   },
   "Agent": {
     "Users": "کاربران",

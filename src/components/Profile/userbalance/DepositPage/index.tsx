@@ -1,6 +1,7 @@
 import { useTranslations } from "@/context/I18nContext";
 import { Tabs, Tab } from "@heroui/react";
 import AriesDeposit from "./AriesDeposit";
+import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
 
 const DepositPage = () => {
   const t = useTranslations("UserBalancePage");
@@ -11,7 +12,14 @@ const DepositPage = () => {
         {t("Deposit")}
       </div>
       <div className="flex flex-col w-full p-5 gap-5">
-        <AriesDeposit />
+        <Tabs aria-label="Deposit methods">
+          <Tab key="card" title={t("Card")}>
+            <AriesDeposit />
+          </Tab>
+          <Tab key="crypto" title={t("Crypto")}>
+            <DepositPanel />
+          </Tab>
+        </Tabs>
       </div>
     </div>
   );

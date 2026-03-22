@@ -415,7 +415,23 @@
     "Balance": "יתרה",
     "Unplayed amount": "סכום שלא שוחק",
     "Bank Accounts": "חשבונות בנק",
-    "Amount": "סכום"
+    "Amount": "סכום",
+    "Card": "כרטיס",
+    "Crypto": "קריפטו",
+    "Data And ID": "נתונים ומזהה",
+    "Paid Time": "זמן תשלום",
+    "System": "מערכת",
+    "Voucher Code": "קוד שובר",
+    "Cancel": "ביטול",
+    "Pending": "ממתין",
+    "Approved": "אושר",
+    "Banned": "חסום",
+    "Canceled": "בוטל",
+    "Completed": "הושלם",
+    "Cancelled": "מבוטל",
+    "Failed": "נכשל",
+    "Unknown": "לא ידוע",
+    "Status": "סטטוס"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "נקודות נאמנות",
@@ -619,7 +635,14 @@
     "Destination wallet address": "כתובת ארנק היעד",
     "Wallet": "ארנק",
     "Improve your account security with Two-Factor Authentication": "שפר/י את אבטחת החשבון שלך עם אימות דו-שלבי",
-    "Enable 2FA": "הפעל/י 2FA"
+    "Enable 2FA": "הפעל/י 2FA",
+    "first_deposit_bonus_question": "אתה מבצע את ההפקדה הראשונה שלך. האם ברצונך לקבל בונוס על ההפקדה הראשונה?",
+    "first_deposit_bonus_restriction": "ישנן מגבלות מסוימות על משיכות אם תבחר לקבל את הבונוס. אנא בדוק",
+    "terms_conditions_link": "תנאים והגבלות למפקידים חדשים",
+    "for_details": "לפרטים.",
+    "yes_want_bonus": "כן, אני רוצה בונוס",
+    "no_dont_want_bonus": "לא, אני לא רוצה בונוס",
+    "BLOCKCHAIN": "בלוקצ'יין"
   },
   "Agent": {
     "Users": "משתמשים",

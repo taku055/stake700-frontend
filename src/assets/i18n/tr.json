@@ -415,7 +415,23 @@
     "Balance": "Bakiye",
     "Unplayed amount": "Oynanmamış miktar",
     "Bank Accounts": "Banka Hesapları",
-    "Amount": "Tutar"
+    "Amount": "Tutar",
+    "Card": "Kart",
+    "Crypto": "Kripto",
+    "Data And ID": "Veri ve ID",
+    "Paid Time": "Ödeme Zamanı",
+    "System": "Sistem",
+    "Voucher Code": "Kupon Kodu",
+    "Cancel": "İptal",
+    "Pending": "Beklemede",
+    "Approved": "Onaylandı",
+    "Banned": "Yasaklandı",
+    "Canceled": "İptal Edildi",
+    "Completed": "Tamamlandı",
+    "Cancelled": "İptal Edildi",
+    "Failed": "Başarısız",
+    "Unknown": "Bilinmiyor",
+    "Status": "Durum"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Sadakat Puanları",
@@ -619,7 +635,14 @@
     "Destination wallet address": "Hedef cüzdan adresi",
     "Wallet": "Cüzdan",
     "Improve your account security with Two-Factor Authentication": "Hesabınızın güvenliğini İki Faktörlü Kimlik Doğrulama ile artırın",
-    "Enable 2FA": "2FA'yı Etkinleştir"
+    "Enable 2FA": "2FA'yı Etkinleştir",
+    "first_deposit_bonus_question": "İlk yatırımınızı yapıyorsunuz. İlk yatırım için bonus almak ister misiniz?",
+    "first_deposit_bonus_restriction": "Bonusu almayı seçerseniz, çekimde bazı kısıtlamalar söz konusudur. Lütfen kontrol edin",
+    "terms_conditions_link": "Yeni Yatırımcılar için Şartlar ve Koşullar",
+    "for_details": "detaylar için.",
+    "yes_want_bonus": "Evet, bonus istiyorum",
+    "no_dont_want_bonus": "Hayır, bonus istemiyorum",
+    "BLOCKCHAIN": "BLOCKCHAIN"
   },
   "Agent": {
     "Users": "Kullanıcılar",

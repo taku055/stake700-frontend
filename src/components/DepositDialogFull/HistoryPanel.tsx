@@ -52,6 +52,7 @@ export default function HistoryPanel() {
   const [currentPage, setCurrentPage] = useState(1);
   const isMobile = useMediaQuery(mobileMediaQuery);
   const t = useTranslations("DepositDialogFull");
+  const tToast = useTranslations("ToastMessages");
 
   useEffect(() => {
     if (userState.value?.id) {
@@ -100,7 +101,7 @@ export default function HistoryPanel() {
             return p;
           });
         } catch (ex) {
-          toast.error("Something went wrong in canceling");
+          toast.error(tToast("error.cancel_transaction"));
         }
       }
     },
