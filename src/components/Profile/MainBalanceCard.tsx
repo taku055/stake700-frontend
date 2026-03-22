@@ -25,7 +25,7 @@ const MainBalanceCard = ({
   const hasAnyBalance = nonZeroBalances.length > 0;
 
   return (
-    <div className="w-full flex flex-col py-3 gap-2 relative bg-[var(--green-color)] rounded-sm bg-no-repeat shadow-[0_1px_4px_0_#1B1B1B80]">
+    <div className="w-full flex flex-col px-5 py-3 gap-2 relative bg-[var(--green-color)] rounded-sm bg-no-repeat shadow-[0_1px_4px_0_#1B1B1B80]">
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-col gap-1">
           <span className="text-white text-[14px] leading-[20px]">
