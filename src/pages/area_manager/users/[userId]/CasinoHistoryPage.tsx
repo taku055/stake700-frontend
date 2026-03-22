@@ -22,6 +22,7 @@ import { CalendarDate } from "@internationalized/date";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 import { userState } from "@/state/userState";
+import { useTranslations } from "@/context/I18nContext";
 
 const columns: {
   title: string;
@@ -65,9 +66,13 @@ const columns: {
   },
 ];
 
+const translatedColumns = (t: (k: string) => string) =>
+  columns.map((c) => ({ ...c, title: t(c.title) }));
+
 const today = new Date();
 
 export default function CasinoHistoryPage({ userId }: { userId: string }) {
+  const t = useTranslations("BetHistory");
   const [data, setData] = useState<tMergedTransaction[]>([]);
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
@@ -126,14 +131,14 @@ export default function CasinoHistoryPage({ userId }: { userId: string }) {
   return (
     <div>
       <DateRangePicker
-        label="Select period"
+        label={t("Select period")}
         value={period}
         onChange={setPeriod}
         visibleMonths={isMobile ? 1 : 3}
         className="max-w-[300px] md:ml-auto"
       />
       <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
-        <div className="flex text-[12px]">Total History: {total} items</div>
+        <div className="flex text-[12px]">{t("total_history", { total })}</div>
         <Pagination
           showControls
           total={Math.ceil(total / 10)}
@@ -159,7 +164,7 @@ export default function CasinoHistoryPage({ userId }: { userId: string }) {
           onSortChange={handleSortChange}
         >
           <TableHeader>
-            {columns.map((e) => (
+            {translatedColumns(t).map((e) => (
               <TableColumn key={e.key} allowsSorting={e.sotable}>
                 {e.title}
               </TableColumn>

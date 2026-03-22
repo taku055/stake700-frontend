@@ -291,7 +291,7 @@
     "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
     "question_7": "How Do I Watch Live Streams?",
     "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time.",
-    "Copyright": "© 2026 Betalarab.com | All Rights Reserved",
+    "Copyright": "© 2026 betalarab.com | All Rights Reserved",
     "CompanyInfo": "Betalarab is owned and operated by Betalarab N.V., registration number: 145353, registered address: Seru Loraweg 17 B, Curaçao. Payment agent companies are Medium Rare Limited and MRS Tech Limited. Contact us at support@betalarab.com.",
     "ResponsibleGamblingText": "Betalarab is committed to responsible gambling, for more information visit"
   },
@@ -655,7 +655,18 @@
     "Sportsbook History": "Sportsbook History",
     "Show": "Show",
     "Start Date": "Start Date",
-    "End Date": "End Date"
+    "End Date": "End Date",
+    "Game": "Game",
+    "Provider": "Provider",
+    "RoundId": "Round ID",
+    "Currency": "Currency",
+    "Bet": "Bet",
+    "Win": "Win",
+    "Date": "Date",
+    "Match": "Match",
+    "Type": "Type",
+    "total_history": "Total History: {total} items",
+    "Select period": "Select period"
   },
   "DepositDialogFull": {
     "Deposit": "Deposit",
@@ -1531,8 +1542,8 @@
     "< Back": "< Back",
     "Create an Account": "Create an Account",
     "Terms and Conditions": "Terms and Conditions",
-    "terms_and_conditions_title": "1.Betalarab.com",
-    "terms_and_conditions_content": "Betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_content": "betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
     "I have read and agree to the Terms and Conditions": "I have read and agree to the Terms and Conditions",
     "Already have an account?": "Already have an account?",
     "Sign in": "Sign in"
@@ -1548,5 +1559,26 @@
     "Change Locale": "Change Locale",
     "Language": "Language",
     "Change language": "Change language"
+  },
+  "Wagering": {
+    "Wagering": "Wagering",
+    "Cancel Wagering": "Cancel Wagering",
+    "Cash Wagering": "Cash Wagering",
+    "Cash Balance": "Cash Balance",
+    "Bonus": "Bonus",
+    "Bonus Balance": "Bonus Balance",
+    "Completed": "Completed",
+    "In progress": "In progress",
+    "Required": "Required",
+    "Remaining": "Remaining",
+    "No balance data": "No balance data.",
+    "No active bonus right now": "No active bonus right now.",
+    "Redeem": "Redeem",
+    "Cancel wagering?": "Cancel wagering?",
+    "cancel_wagering_confirm": "Are you sure you want to cancel wagering? This will reset your wagering progress and bonus balance but keep your cash balance.",
+    "No, keep it": "No, keep it",
+    "Yes, cancel": "Yes, cancel",
+    "Wagering cancelled": "Wagering cancelled and balance updated.",
+    "Failed to cancel wagering": "Failed to cancel wagering."
   }
 }

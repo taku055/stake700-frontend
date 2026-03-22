@@ -227,7 +227,7 @@
     "answer_4": "Betalarab Bitcoin, Ethereum, Litecoin, Dogecoin ve diğer birkaç dijital para birimi dahil olmak üzere birden fazla kripto para birimini destekler. Bazı bölgeler ayrıca fiat para birimi seçeneklerini de destekleyebilir.",
     "question_5": "Ne Tür Kumarhane Oyunları Oynayabilirim?",
     "answer_5": "Betalarab, slotlar, masa oyunları, orijinal Betalarab oyunları ve önde gelen oyun sağlayıcılardan canlı krupiye oyunları gibi çok çeşitli kumarhane oyunları sunar.",
-    "Copyright": "© 2026 Betalarab.com | Tüm Hakları Saklıdır",
+    "Copyright": "© 2026 betalarab.com | Tüm Hakları Saklıdır",
     "CompanyInfo": "Betalarab, Betalarab N.V. tarafından sahip olunan ve işletilen, kayıt numarası: 145353, kayıtlı adres: Seru Loraweg 17 B, Curaçao. Ödeme acente şirketleri Medium Rare Limited ve MRS Tech Limited'dir. Bize support@betalarab.com adresinden ulaşabilirsiniz.",
     "ResponsibleGamblingText": "Betalarab sorumlu kumara bağlıdır, daha fazla bilgi için ziyaret edin"
   },
@@ -586,7 +586,21 @@
     "Sportsbook History": "Spor Bahisleri Geçmişi",
     "Show": "Göster",
     "Start Date": "Başlangıç Tarihi",
-    "End Date": "Bitiş Tarihi"
+    "End Date": "Bitiş Tarihi",
+    "Game": "Oyun",
+    "Provider": "Sağlayıcı",
+    "RoundId": "Tur ID",
+    "Currency": "Para Birimi",
+    "Bet": "Bahis",
+    "Win": "Kazanç",
+    "Date": "Tarih",
+    "Match": "Maç",
+    "Type": "Tür",
+    "total_history": "Toplam Geçmiş: {total} kayıt",
+    "Select period": "Dönem seç",
+    "My Bets": "Bahislerim",
+    "Casino": "Casino",
+    "Sports": "Spor"
   },
   "DepositDialogFull": {
     "Deposit": "Para Yatır",
@@ -1063,8 +1077,8 @@
     "< Back": "< Back",
     "Create an Account": "Hesap Oluştur",
     "Terms and Conditions": "Şartlar ve Koşullar",
-    "terms_and_conditions_title": "1.Betalarab.com",
-    "terms_and_conditions_content": "Betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_content": "betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
     "I have read and agree to the Terms and Conditions": "Şartları ve Koşulları okudum ve kabul ediyorum",
     "Already have an account?": "Zaten bir hesabınız var mı?",
     "Sign in": "Giriş yap"
@@ -1157,7 +1171,6 @@
     "SecurityNote": "Güvenlik notu",
     "SecurityNoteDesc": "Hesabınızın tehlikeye girdiğini düşünüyorsanız 2FA'yı etkinleştirin ve hemen destekle iletişime geçin.",
     "ReviewSecurityFaqs": "Güvenlik SSS'lerini incele →",
-
     "category_getting_started_title": "Başlarken",
     "category_getting_started_description": "Hesap oluşturma, doğrulama ve ilk para yatırma.",
     "category_payments_title": "Ödemeler ve para çekme",
@@ -1166,51 +1179,39 @@
     "category_bonuses_description": "Bonus uygunluğu, çevrim şartları ve genel kurallar.",
     "category_security_title": "Güvenlik ve gizlilik",
     "category_security_description": "2FA, hesap güvenliği ve gizlilik soruları.",
-
     "article_create_account_title": "Nasıl hesap oluşturabilirim?",
     "article_create_account_body": "{brand} üzerinde hesap oluşturmak için \"Kayıt Ol\" seçeneğini seçin, bilgilerinizi girin ve e-postanızı doğrulayın. Güvenlik için güçlü bir şifre seçin ve mümkünse 2FA'yı etkinleştirin.",
     "article_create_account_tags": "hesap, kayıt",
-
     "article_kyc_title": "Neden doğrulama (KYC) gerekiyor?",
     "article_kyc_body": "Doğrulama sizi korumaya yardımcı olur ve dolandırıcılığı önler. Para çekme işlemleri gerçekleştirilmeden önce kimlik ve adres doğrulaması istenebilir.",
     "article_kyc_tags": "doğrulama, güvenlik",
-
     "article_responsible_gaming_title": "Sorumlu oyun araçları",
     "article_responsible_gaming_body": "Hesap ayarlarınızdan para yatırma limitleri, mola süreleri veya kendi kendini dışlama ayarlayabilirsiniz. Oyun artık eğlenceli gelmiyorsa bu araçları kullanın veya destekle iletişime geçin.",
     "article_responsible_gaming_tags": "limitler, güvenlik",
-
     "article_deposit_methods_title": "Hangi para yatırma yöntemleri destekleniyor?",
     "article_deposit_methods_body": "Desteklenen yöntemler bölgeye göre değişir. Kasa bölümünde size sunulan seçenekleri ve minimum/maksimum para yatırma limitlerini görebilirsiniz.",
     "article_deposit_methods_tags": "para yatırma, kasa",
-
     "article_withdrawal_times_title": "Para çekme işlemleri ne kadar sürer?",
     "article_withdrawal_times_body": "Para çekme süreleri doğrulama durumuna ve ödeme yöntemine bağlıdır. Onaylandıktan sonra işlemler birkaç dakika ile birkaç iş günü arasında sürebilir.",
     "article_withdrawal_times_tags": "para çekme, işlem",
-
     "article_chargebacks_title": "Chargeback nedir ve neden önemlidir?",
     "article_chargebacks_body": "Chargeback, bankanız veya kart sağlayıcınız tarafından başlatılan bir ödeme geri alma işlemidir. Aşırı chargeback işlemleri kısıtlamalara neden olabilir. Bir işlemle ilgili sorun yaşarsanız önce destekle iletişime geçin.",
     "article_chargebacks_tags": "ödeme, politika",
-
     "article_wagering_title": "Çevrim şartları nedir?",
     "article_wagering_body": "Çevrim şartları, bir bonusun çekilebilir hale gelmeden önce kaç kez oynanması gerektiğini belirtir. Tam çarpanı ve uygun oyunları öğrenmek için promosyon şartlarını kontrol edin.",
     "article_wagering_tags": "bonus, şartlar",
-
     "article_bonus_issues_title": "Bonusum aktif olmadı — ne yapmalıyım?",
     "article_bonus_issues_body": "Öncelikle promosyonu etkinleştirdiğinizden ve minimum para yatırma şartını karşıladığınızdan emin olun. Her şey doğruysa işlem kimliğiniz ve promosyon adıyla birlikte destekle iletişime geçin.",
     "article_bonus_issues_tags": "bonus, sorun giderme",
-
     "article_promo_terms_title": "Promosyon şartlarını nerede bulabilirim?",
     "article_promo_terms_body": "Promosyon şartları Promosyonlar bölümünde gösterilir ve para yatırma sırasında kasa ekranında da görünebilir. Katılmadan önce şartları incelemenizi öneririz.",
     "article_promo_terms_tags": "şartlar, promosyonlar",
-
     "article_2fa_title": "2 faktörlü kimlik doğrulama (2FA) nasıl etkinleştirilir?",
     "article_2fa_body": "Hesap → Güvenlik → 2FA bölümüne gidin ve kimlik doğrulayıcı uygulamanızı eşleştirmek için adımları takip edin. Yedek kodlarınızı güvenli bir yerde saklayın.",
     "article_2fa_tags": "güvenlik, 2fa",
-
     "article_locked_account_title": "Hesabım kilitlendi — şimdi ne yapmalıyım?",
     "article_locked_account_body": "Birden fazla hatalı giriş denemesi sonrası hesaplar kilitlenebilir. \"Şifremi Unuttum\" seçeneğini kullanın veya erişimi geri kazanmak için destekle iletişime geçin. Şifrenizi asla kimseyle paylaşmayın.",
     "article_locked_account_tags": "giriş, güvenlik",
-
     "article_privacy_title": "Verilerim nasıl kullanılıyor?",
     "article_privacy_body": "Verileriniz hizmeti sağlamak, yasal yükümlülüklere uymak ve dolandırıcılığı önlemek için kullanılır. Ayrıntılar için sitenin alt kısmındaki Gizlilik Politikası'nı inceleyin.",
     "article_privacy_tags": "gizlilik, politika"
@@ -1472,7 +1473,6 @@
     "UrgentSafety": "Acil güvenlik",
     "UrgentSafetyText": "Hemen bir tehlike altındaysanız veya güvensiz hissediyorsanız, derhal yerel acil servislerle iletişime geçin."
   },
-
   "VipClub": {
     "VIP": "VIP",
     "Overview": "Genel Bakış",
@@ -1555,5 +1555,26 @@
     "Change Locale": "Dili Değiştir",
     "Language": "Dil",
     "Change language": "Dili değiştir"
+  },
+  "Wagering": {
+    "Wagering": "Çevrim",
+    "Cancel Wagering": "Çevrimi İptal Et",
+    "Cash Wagering": "Nakit Çevrimi",
+    "Cash Balance": "Nakit Bakiye",
+    "Bonus": "Bonus",
+    "Bonus Balance": "Bonus Bakiyesi",
+    "Completed": "Tamamlandı",
+    "In progress": "Devam ediyor",
+    "Required": "Gerekli",
+    "Remaining": "Kalan",
+    "No balance data": "Bakiye verisi yok.",
+    "No active bonus right now": "Şu an aktif bonus yok.",
+    "Redeem": "Kullan",
+    "Cancel wagering?": "Çevrim iptal edilsin mi?",
+    "cancel_wagering_confirm": "Çevrimi iptal etmek istediğinizden emin misiniz? Bu işlem çevrim ilerlemenizi ve bonus bakiyenizi sıfırlayacak ancak nakit bakiyenizi koruyacaktır.",
+    "No, keep it": "Hayır, devam et",
+    "Yes, cancel": "Evet, iptal et",
+    "Wagering cancelled": "Çevrim iptal edildi ve bakiye güncellendi.",
+    "Failed to cancel wagering": "Çevrim iptal edilemedi."
   }
 }

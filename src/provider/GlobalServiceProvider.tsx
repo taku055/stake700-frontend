@@ -377,7 +377,7 @@ export default function GlobalServiceProvider({
   });
 
   return (
-    <HeroUIProvider>
+    <HeroUIProvider locale={localeState.value}>
       {globalLoadingState.value && <Loading />}
       <LocationProvider>
         <I18nProvider

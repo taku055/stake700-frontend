@@ -56,6 +56,9 @@ const columns: {
   },
 ];
 
+const translatedColumns = (t: (k: string) => string) =>
+  columns.map((c) => ({ ...c, title: t(c.title) }));
+
 const CasinoHistoryPage = () => {
   const t = useTranslations("BetHistory");
   const [data, setData] = useState<tMergedTransaction[]>([]);
@@ -116,7 +119,7 @@ const CasinoHistoryPage = () => {
                 onSortChange={handleSortChange}
               >
                 <TableHeader>
-                  {columns.map((e) => (
+                  {translatedColumns(t).map((e) => (
                     <TableColumn key={e.key} allowsSorting={e.sotable}>
                       {e.title}
                     </TableColumn>

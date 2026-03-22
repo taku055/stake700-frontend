@@ -227,7 +227,7 @@
     "answer_4": "Betalarab Bitcoin, Ethereum, Litecoin, Dogecoin və digər bir neçə rəqəmsal valyuta daxil olmaqla çoxsaylı kripto valyutaları dəstəkləyir. Bəzi regionlar həmçinin fiat valyuta seçimlərini də dəstəkləyə bilər.",
     "question_5": "Hansı Növ Kazino Oyunlarını Oynaya Bilərəm?",
     "answer_5": "Betalarab aparıcı oyun təminatçılarından slotlar, masa oyunları, orijinal Betalarab oyunları və canlı krupiye oyunları kimi müxtəlif kazino oyunları təklif edir.",
-    "Copyright": "© 2026 Betalarab.com | Bütün hüquqlar qorunur",
+    "Copyright": "© 2026 betalarab.com | Bütün hüquqlar qorunur",
     "CompanyInfo": "Betalarab Betalarab N.V. şirkətinə məxsusdur və idarə olunur, qeydiyyat nömrəsi: 145353, qeydiyyat ünvanı: Seru Loraweg 17 B, Curaçao. Ödəniş agent şirkətləri Medium Rare Limited və MRS Tech Limited-dir. Bizimlə support@betalarab.com ünvanı ilə əlaqə saxlayın.",
     "ResponsibleGamblingText": "Betalarab məsuliyyətli qumar oyununa sadiqdir, daha çox məlumat üçün ziyarət edin"
   },
@@ -586,7 +586,21 @@
     "Sportsbook History": "İdman Tarixi",
     "Show": "Göstər",
     "Start Date": "Başlanğıc tarixi",
-    "End Date": "Bitmə tarixi"
+    "End Date": "Bitmə tarixi",
+    "Game": "Oyun",
+    "Provider": "Təminatçı",
+    "RoundId": "Raund ID",
+    "Currency": "Valyuta",
+    "Bet": "Mərc",
+    "Win": "Qazanc",
+    "Date": "Tarix",
+    "Match": "Oyun",
+    "Type": "Növ",
+    "total_history": "Ümumi tarixçə: {total} qeyd",
+    "Select period": "Dövr seçin",
+    "My Bets": "Mərclərim",
+    "Casino": "Kazino",
+    "Sports": "İdman"
   },
   "DepositDialogFull": {
     "Deposit": "Depozit",
@@ -1069,8 +1083,8 @@
     "< Back": "< Geri",
     "Create an Account": "Hesab Yarat",
     "Terms and Conditions": "Şərtlər və Qaydalar",
-    "terms_and_conditions_title": "1.Betalarab.com",
-    "terms_and_conditions_content": "Betalarab.com Curaçao qanunlarına əsasən qurulmuş, baş ofisi Zuiderpark 6, Willemstad, Curaçao ünvanında yerləşən Medium Rare, N.V. şirkətinə məxsusdur və onun tərəfindən idarə olunur. Betalarab.com Curaçao Oyun Səlahiyyəti tərəfindən lisenziyalaşdırılıb və tənzimlənir (lisenziya nömrəsi OGL/2024/1451/0918).\n\nBetalarab.com üçün ödənişlərin emalı Kiprda qeydiyyatlı filiallar Medium Rare Limited və MRS Tech Ltd tərəfindən həyata keçirilir (qeydiyyat ünvanları: 28 Oktovriou 1, Limassol 4102, Kipr; qeydiyyat nömrələri: HE 410775 və HE 477481).\n\nBetalarab.com-dan istifadə etməklə bu Şərtlər və Qaydalara bağlı olduğunuzu qəbul edirsiniz. Xidmətlərimizdən istifadə etməzdən əvvəl diqqətlə oxuyun.",
+    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_content": "betalarab.com Curaçao qanunlarına əsasən qurulmuş, baş ofisi Zuiderpark 6, Willemstad, Curaçao ünvanında yerləşən Medium Rare, N.V. şirkətinə məxsusdur və onun tərəfindən idarə olunur. betalarab.com Curaçao Oyun Səlahiyyəti tərəfindən lisenziyalaşdırılıb və tənzimlənir (lisenziya nömrəsi OGL/2024/1451/0918).\n\nbetalarab.com üçün ödənişlərin emalı Kiprda qeydiyyatlı filiallar Medium Rare Limited və MRS Tech Ltd tərəfindən həyata keçirilir (qeydiyyat ünvanları: 28 Oktovriou 1, Limassol 4102, Kipr; qeydiyyat nömrələri: HE 410775 və HE 477481).\n\nbetalarab.com-dan istifadə etməklə bu Şərtlər və Qaydalara bağlı olduğunuzu qəbul edirsiniz. Xidmətlərimizdən istifadə etməzdən əvvəl diqqətlə oxuyun.",
     "I have read and agree to the Terms and Conditions": "Mən Şərtləri və Qaydaları oxudum və razıyam",
     "Already have an account?": "Artıq hesabınız var?",
     "Sign in": "Daxil ol"
@@ -1117,7 +1131,7 @@
     "UnhashServerSeedPlaceholder": "Server Seed açılması məzmunu burada göstəriləcək.",
     "CalculationPlaceholder": "Hesablama məzmunu burada göstəriləcək."
   },
-    "HelpCenter": {
+  "HelpCenter": {
     "Title": "Yardım Mərkəzi",
     "Subtitle": "Dəstək və cavablar",
     "SearchPlaceholder": "Axtar: çıxarış, bonus, təsdiq…",
@@ -1454,7 +1468,6 @@
     "UrgentSafety": "Təcili təhlükəsizlik",
     "UrgentSafetyText": "Dərhal təhlükədəsinizsə və ya təhlükəsiz hiss edirsinizsə, dərhal yerli təcili yardım xidmətinə müraciət edin."
   },
-
   "VipClub": {
     "VIP": "VIP",
     "Overview": "Ümumi baxış",
@@ -1529,5 +1542,26 @@
     "Betalarab Smart": "Betalarab Smart",
     "Live Support": "Canlı Dəstək",
     "Logout": "Çıxış"
+  },
+  "Wagering": {
+    "Wagering": "Mərc",
+    "Cancel Wagering": "Mərci ləğv et",
+    "Cash Wagering": "Nağd mərc",
+    "Cash Balance": "Nağd balans",
+    "Bonus": "Bonus",
+    "Bonus Balance": "Bonus balansı",
+    "Completed": "Tamamlandı",
+    "In progress": "Davam edir",
+    "Required": "Tələb olunan",
+    "Remaining": "Qalıq",
+    "No balance data": "Balans məlumatı yoxdur.",
+    "No active bonus right now": "Hal-hazırda aktiv bonus yoxdur.",
+    "Redeem": "Aktivləşdir",
+    "Cancel wagering?": "Mərci ləğv edək?",
+    "cancel_wagering_confirm": "Mərci ləğv etmək istədiyinizə əminsinizmi? Bu, mərc irəliləyişinizi və bonus balansınızı sıfırlayacaq, lakin nağd balansınızı saxlayacaq.",
+    "No, keep it": "Xeyr, saxla",
+    "Yes, cancel": "Bəli, ləğv et",
+    "Wagering cancelled": "Mərc ləğv edildi, balans yeniləndi.",
+    "Failed to cancel wagering": "Mərci ləğv etmək alınmadı."
   }
 }

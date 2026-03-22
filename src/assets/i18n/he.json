@@ -227,7 +227,7 @@
     "answer_4": "Betalarab תומך במספר מטבעות קריפטוגרפיים, כולל Bitcoin, Ethereum, Litecoin, Dogecoin ומספר מטבעות דיגיטליים נוספים. חלק מהאזורים עשויים גם לתמוך באפשרויות מטבע פיאט.",
     "question_5": "אילו סוגי משחקי קזינו אוכל לשחק?",
     "answer_5": "Betalarab מציע מגוון רחב של משחקי קזינו כמו סלוטס, משחקי שולחן, משחקי Betalarab מקוריים ומשחקי דילר חי מספקי משחקים מובילים.",
-    "Copyright": "© 2026 Betalarab.com | כל הזכויות שמורות",
+    "Copyright": "© 2026 betalarab.com | כל הזכויות שמורות",
     "CompanyInfo": "Betalarab בבעלות ובתפעול של Betalarab N.V., מספר רישום: 145353, כתובת רשומה: Seru Loraweg 17 B, Curaçao. חברות סוכני התשלום הן Medium Rare Limited ו-MRS Tech Limited. צרו קשר איתנו ב-support@betalarab.com.",
     "ResponsibleGamblingText": "Betalarab מחויבת להימורים אחראיים, למידע נוסף בקרו"
   },
@@ -585,8 +585,22 @@
     "Casino History": "היסטוריית קזינו",
     "Sportsbook History": "היסטוריית הימורים",
     "Show": "הצג",
-    "Start Date": "Start Date",
-    "End Date": "End Date"
+    "Start Date": "תאריך התחלה",
+    "End Date": "תאריך סיום",
+    "Game": "משחק",
+    "Provider": "ספק",
+    "RoundId": "מזהה סיבוב",
+    "Currency": "מטבע",
+    "Bet": "הימור",
+    "Win": "זכייה",
+    "Date": "תאריך",
+    "Match": "משחק",
+    "Type": "סוג",
+    "total_history": "סך ההיסטוריה: {total} פריטים",
+    "Select period": "בחר תקופה",
+    "My Bets": "ההימורים שלי",
+    "Casino": "קזינו",
+    "Sports": "ספורט"
   },
   "DepositDialogFull": {
     "Deposit": "הפקדה",
@@ -1034,8 +1048,8 @@
     "< Back": "< Back",
     "Create an Account": "צור חשבון",
     "Terms and Conditions": "תנאים והגבלות",
-    "terms_and_conditions_title": "1.Betalarab.com",
-    "terms_and_conditions_content": "Betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_content": "betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
     "I have read and agree to the Terms and Conditions": "קראתי ואני מסכים לתנאים והגבלות",
     "Already have an account?": "כבר יש לך חשבון?",
     "Sign in": "התחברות"
@@ -1117,7 +1131,7 @@
     "UnhashServerSeedPlaceholder": "Unhash Server Seed content will be displayed here.",
     "CalculationPlaceholder": "Calculation content will be displayed here."
   },
-    "HelpCenter": {
+  "HelpCenter": {
     "Title": "Help Center",
     "Subtitle": "Support and answers for",
     "SearchPlaceholder": "Search: withdrawals, bonus, verification…",
@@ -1454,7 +1468,6 @@
     "UrgentSafety": "Urgent safety",
     "UrgentSafetyText": "If you're in immediate danger or feel unsafe, contact local emergency services right away."
   },
-
   "VipClub": {
     "VIP": "VIP",
     "Overview": "Overview",
@@ -1529,5 +1542,26 @@
     "Betalarab Smart": "Betalarab Smart",
     "Live Support": "Live Support",
     "Logout": "Logout"
+  },
+  "Wagering": {
+    "Wagering": "הימור",
+    "Cancel Wagering": "ביטול הימור",
+    "Cash Wagering": "הימור מזומן",
+    "Cash Balance": "יתרה מזומנת",
+    "Bonus": "בונוס",
+    "Bonus Balance": "יתרת בונוס",
+    "Completed": "הושלם",
+    "In progress": "בתהליך",
+    "Required": "נדרש",
+    "Remaining": "נותר",
+    "No balance data": "אין נתוני יתרה.",
+    "No active bonus right now": "אין בונוס פעיל כרגע.",
+    "Redeem": "פדה",
+    "Cancel wagering?": "לבטל את ההימור?",
+    "cancel_wagering_confirm": "האם אתה בטוח שברצונך לבטל את ההימור? פעולה זו תאפס את התקדמות ההימור ואת יתרת הבונוס שלך, אך תשמור על יתרת המזומנים שלך.",
+    "No, keep it": "לא, שמור",
+    "Yes, cancel": "כן, בטל",
+    "Wagering cancelled": "ההימור בוטל והיתרה עודכנה.",
+    "Failed to cancel wagering": "ביטול ההימור נכשל."
   }
 }

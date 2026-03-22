@@ -68,7 +68,7 @@ export default function HomePage() {
                 <GameGroup
                   key={category.key}
                   category={category.category}
-                  title={category.name}
+                  title={t(category.name) || category.name}
                   isCustom={true}
                   viewallLink={`/?category=${category.category}`}
                 />

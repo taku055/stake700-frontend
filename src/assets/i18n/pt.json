@@ -227,7 +227,7 @@
     "answer_4": "Betalarab suporta múltiplas criptomoedas, incluindo Bitcoin, Ethereum, Litecoin, Dogecoin e várias outras moedas digitais. Algumas regiões também podem suportar opções de moeda fiduciária.",
     "question_5": "Que tipo de jogos de cassino posso jogar?",
     "answer_5": "Betalarab oferece uma grande variedade de jogos de cassino, como slots, jogos de mesa, jogos originais Betalarab e jogos de dealer ao vivo dos principais provedores de jogos.",
-    "Copyright": "© 2026 Betalarab.com | Todos os direitos reservados",
+    "Copyright": "© 2026 betalarab.com | Todos os direitos reservados",
     "CompanyInfo": "Betalarab é propriedade e operado por Betalarab N.V., número de registro: 145353, endereço registrado: Seru Loraweg 17 B, Curaçao. As empresas agente de pagamento são Medium Rare Limited e MRS Tech Limited. Entre em contato conosco em support@betalarab.com.",
     "ResponsibleGamblingText": "Betalarab está comprometido com o jogo responsável, para mais informações visite"
   },
@@ -585,8 +585,22 @@
     "Casino History": "Histórico de cassino",
     "Sportsbook History": "Histórico de apostas esportivas",
     "Show": "Mostrar",
-    "Start Date": "Start Date",
-    "End Date": "End Date"
+    "Start Date": "Data de início",
+    "End Date": "Data de fim",
+    "Game": "Jogo",
+    "Provider": "Fornecedor",
+    "RoundId": "ID da rodada",
+    "Currency": "Moeda",
+    "Bet": "Aposta",
+    "Win": "Ganho",
+    "Date": "Data",
+    "Match": "Partida",
+    "Type": "Tipo",
+    "total_history": "Total do histórico: {total} itens",
+    "Select period": "Selecionar período",
+    "My Bets": "Minhas apostas",
+    "Casino": "Casino",
+    "Sports": "Desporto"
   },
   "DepositDialogFull": {
     "Deposit": "Depositar",
@@ -1034,8 +1048,8 @@
     "< Back": "< Back",
     "Create an Account": "Criar uma conta",
     "Terms and Conditions": "Termos e condições",
-    "terms_and_conditions_title": "1.Betalarab.com",
-    "terms_and_conditions_content": "Betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_content": "betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
     "I have read and agree to the Terms and Conditions": "Li e concordo com os Termos e condições",
     "Already have an account?": "Já tem uma conta?",
     "Sign in": "Entrar"
@@ -1454,7 +1468,6 @@
     "UrgentSafety": "Urgent safety",
     "UrgentSafetyText": "If you're in immediate danger or feel unsafe, contact local emergency services right away."
   },
-
   "VipClub": {
     "VIP": "VIP",
     "Overview": "Overview",
@@ -1529,5 +1542,26 @@
     "Betalarab Smart": "Betalarab Smart",
     "Live Support": "Live Support",
     "Logout": "Logout"
+  },
+  "Wagering": {
+    "Wagering": "Aposta",
+    "Cancel Wagering": "Cancelar aposta",
+    "Cash Wagering": "Aposta em dinheiro",
+    "Cash Balance": "Saldo em dinheiro",
+    "Bonus": "Bónus",
+    "Bonus Balance": "Saldo de bónus",
+    "Completed": "Concluído",
+    "In progress": "Em progresso",
+    "Required": "Necessário",
+    "Remaining": "Restante",
+    "No balance data": "Sem dados de saldo.",
+    "No active bonus right now": "Sem bónus ativo no momento.",
+    "Redeem": "Resgatar",
+    "Cancel wagering?": "Cancelar aposta?",
+    "cancel_wagering_confirm": "Tem certeza de que deseja cancelar a aposta? Isso redefinirá seu progresso de aposta e saldo de bónus, mas manterá seu saldo em dinheiro.",
+    "No, keep it": "Não, manter",
+    "Yes, cancel": "Sim, cancelar",
+    "Wagering cancelled": "Aposta cancelada e saldo atualizado.",
+    "Failed to cancel wagering": "Falha ao cancelar a aposta."
   }
 }

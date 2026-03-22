@@ -227,7 +227,7 @@
     "answer_4": "Το Betalarab υποστηρίζει πολλαπλά κρυπτονομίσματα, συμπεριλαμβανομένων Bitcoin, Ethereum, Litecoin, Dogecoin και πολλών άλλων ψηφιακών νομισμάτων. Ορισμένες περιοχές μπορεί επίσης να υποστηρίζουν επιλογές νομίσματος fiat.",
     "question_5": "Τι είδους παιχνίδια καζίνο μπορώ να παίξω?",
     "answer_5": "Το Betalarab προσφέρει μια μεγάλη ποικιλία παιχνιδιών καζίνο όπως slots, επιτραπέζια παιχνίδια, πρωτότυπα παιχνίδια Betalarab και παιχνίδια ζωντανού dealer από κορυφαίους παρόχους παιχνιδιών.",
-    "Copyright": "© 2026 Betalarab.com | Όλα τα δικαιώματα διατηρούνται",
+    "Copyright": "© 2026 betalarab.com | Όλα τα δικαιώματα διατηρούνται",
     "CompanyInfo": "Το Betalarab ανήκει και λειτουργεί από την Betalarab N.V., αριθμός εγγραφής: 145353, καταχωρημένη διεύθυνση: Seru Loraweg 17 B, Curaçao. Οι εταιρείες πρακτόρων πληρωμών είναι η Medium Rare Limited και η MRS Tech Limited. Επικοινωνήστε μαζί μας στο support@betalarab.com.",
     "ResponsibleGamblingText": "Το Betalarab δεσμεύεται για υπεύθυνο τζόγο, για περισσότερες πληροφορίες επισκεφτείτε"
   },
@@ -585,8 +585,22 @@
     "Casino History": "Ιστορικό Καζίνο",
     "Sportsbook History": "Ιστορικό Στοιχημάτων",
     "Show": "Προβολή",
-    "Start Date": "Start Date",
-    "End Date": "End Date"
+    "Start Date": "Ημερομηνία έναρξης",
+    "End Date": "Ημερομηνία λήξης",
+    "Game": "Παιχνίδι",
+    "Provider": "Πάροχος",
+    "RoundId": "ID Γύρου",
+    "Currency": "Νόμισμα",
+    "Bet": "Στοίχημα",
+    "Win": "Κέρδος",
+    "Date": "Ημερομηνία",
+    "Match": "Αγώνας",
+    "Type": "Τύπος",
+    "total_history": "Σύνολο ιστορικού: {total} εγγραφές",
+    "Select period": "Επιλέξτε περίοδο",
+    "My Bets": "Τα Στοιχήματά μου",
+    "Casino": "Καζίνο",
+    "Sports": "Αθλητισμός"
   },
   "DepositDialogFull": {
     "Deposit": "Κατάθεση",
@@ -1034,8 +1048,8 @@
     "< Back": "< Back",
     "Create an Account": "Δημιουργία λογαριασμού",
     "Terms and Conditions": "Όροι και Προϋποθέσεις",
-    "terms_and_conditions_title": "1.Betalarab.com",
-    "terms_and_conditions_content": "Betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. Betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for Betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using Betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_content": "betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
     "I have read and agree to the Terms and Conditions": "Έχω διαβάσει και συμφωνώ με τους Όρους και Προϋποθέσεις",
     "Already have an account?": "Έχετε ήδη λογαριασμό;",
     "Sign in": "Σύνδεση"
@@ -1117,7 +1131,7 @@
     "UnhashServerSeedPlaceholder": "Unhash Server Seed content will be displayed here.",
     "CalculationPlaceholder": "Calculation content will be displayed here."
   },
-    "HelpCenter": {
+  "HelpCenter": {
     "Title": "Help Center",
     "Subtitle": "Support and answers for",
     "SearchPlaceholder": "Search: withdrawals, bonus, verification…",
@@ -1454,7 +1468,6 @@
     "UrgentSafety": "Urgent safety",
     "UrgentSafetyText": "If you're in immediate danger or feel unsafe, contact local emergency services right away."
   },
-
   "VipClub": {
     "VIP": "VIP",
     "Overview": "Overview",
@@ -1529,5 +1542,26 @@
     "Betalarab Smart": "Betalarab Smart",
     "Live Support": "Live Support",
     "Logout": "Logout"
+  },
+  "Wagering": {
+    "Wagering": "Στοίχημα",
+    "Cancel Wagering": "Ακύρωση στοιχήματος",
+    "Cash Wagering": "Μετρητό στοίχημα",
+    "Cash Balance": "Υπόλοιπο μετρητών",
+    "Bonus": "Μπόνους",
+    "Bonus Balance": "Υπόλοιπο μπόνους",
+    "Completed": "Ολοκληρώθηκε",
+    "In progress": "Σε εξέλιξη",
+    "Required": "Απαιτούμενο",
+    "Remaining": "Υπόλοιπο",
+    "No balance data": "Δεν υπάρχουν δεδομένα υπολοίπου.",
+    "No active bonus right now": "Δεν υπάρχει ενεργό μπόνους αυτή τη στιγμή.",
+    "Redeem": "Εξαργύρωση",
+    "Cancel wagering?": "Ακύρωση στοιχήματος;",
+    "cancel_wagering_confirm": "Είστε σίγουροι ότι θέλετε να ακυρώσετε το στοίχημα; Αυτό θα μηδενίσει την πρόοδό σας και το υπόλοιπο μπόνους, αλλά θα διατηρήσει το υπόλοιπο μετρητών σας.",
+    "No, keep it": "Όχι, κράτα το",
+    "Yes, cancel": "Ναι, ακύρωση",
+    "Wagering cancelled": "Το στοίχημα ακυρώθηκε και το υπόλοιπο ενημερώθηκε.",
+    "Failed to cancel wagering": "Αποτυχία ακύρωσης στοιχήματος."
   }
 }

@@ -9,6 +9,7 @@ import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
 import { apiCancelWagering } from "@/api/ledger/apiCancelUserWagering";
 import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";
+import { useTranslations } from "@/context/I18nContext";
 
 function formatMoney(n: number | string | null | undefined) {
   const v = typeof n === "string" ? Number(n) : (n ?? 0);
@@ -40,6 +41,8 @@ function WageringCard({
   required,
   rightChip,
 }: WageringCardProps) {
+  const t = useTranslations("Wagering");
+
   const pct = useMemo(() => {
     if (!required || required <= 0) return 100;
     return clampPct((completed / required) * 100);
@@ -76,7 +79,7 @@ function WageringCard({
                 : "bg-slate-700/40 text-slate-200"
             }
           >
-            {isDone ? "Completed" : "In progress"}
+            {isDone ? t("Completed") : t("In progress")}
           </Chip>
         </div>
       </div>
@@ -84,11 +87,11 @@ function WageringCard({
       <div className="mt-4">
         <div className="flex justify-between text-xs text-slate-300 mb-2">
           <span>
-            Completed:{" "}
+            {t("Completed")}:{" "}
             <span className="text-slate-100">{formatMoney(completed)}</span>
           </span>
           <span>
-            Required:{" "}
+            {t("Required")}:{" "}
             <span className="text-slate-100">{formatMoney(required)}</span>
           </span>
         </div>
@@ -102,7 +105,7 @@ function WageringCard({
         <div className="flex justify-between text-xs text-slate-400 mt-2">
           <span>{pct.toFixed(0)}%</span>
           <span>
-            Remaining:{" "}
+            {t("Remaining")}:{" "}
             <span className="text-slate-200">{formatMoney(remaining)}</span>
           </span>
         </div>
@@ -124,6 +127,8 @@ function CancelWageringModal({
   onClose,
   onConfirm,
 }: CancelWageringModalProps) {
+  const t = useTranslations("Wagering");
+
   if (!open) return null;
 
   return (
@@ -133,10 +138,9 @@ function CancelWageringModal({
         onClick={loading ? undefined : onClose}
       />
       <div className="relative z-10 w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-xl">
-        <h2 className="text-lg font-semibold text-white">Cancel wagering?</h2>
+        <h2 className="text-lg font-semibold text-white">{t("Cancel wagering?")}</h2>
         <p className="mt-2 text-sm text-slate-300">
-          Are you sure you want to cancel wagering? This will reset your
-          wagering progress and bonus balance but keep your cash balance.
+          {t("cancel_wagering_confirm")}
         </p>
 
         <div className="mt-6 flex justify-end gap-3">
@@ -145,14 +149,14 @@ function CancelWageringModal({
             onClick={onClose}
             disabled={loading}
           >
-            No, keep it
+            {t("No, keep it")}
           </button>
           <button
             className="rounded-lg bg-red-600 px-4 py-2 text-white disabled:opacity-60"
             onClick={onConfirm}
             disabled={loading}
           >
-            Yes, cancel
+            {t("Yes, cancel")}
           </button>
         </div>
       </div>
@@ -161,6 +165,7 @@ function CancelWageringModal({
 }
 
 export default function WageringPage() {
+  const t = useTranslations("Wagering");
   const userId = userState.value?.id ?? null;
 
   const [loading, setLoading] = useState(false);
@@ -172,9 +177,9 @@ export default function WageringPage() {
     setLoading(true);
     try {
       const res = await apiCancelWagering(userId);
-      toast.success("Wagering cancelled and balance updated.");
+      toast.success(t("Wagering cancelled"));
     } catch (e: any) {
-      toast.error(e?.message ?? "Failed to cancel wagering.");
+      toast.error(e?.message ?? t("Failed to cancel wagering"));
     } finally {
       setLoading(false);
     }
@@ -183,7 +188,7 @@ export default function WageringPage() {
   if (!userId) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-semibold text-white mb-6">Wagering</h1>
+        <h1 className="text-2xl font-semibold text-white mb-6">{t("Wagering")}</h1>
         <LoginRequest />
       </div>
     );
@@ -194,7 +199,7 @@ export default function WageringPage() {
       {/* Top bar like screenshot */}
       <div className="mb-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-semibold text-white">Wagering</h1>
+          <h1 className="text-2xl font-semibold text-white">{t("Wagering")}</h1>
 
           <Button
             size="sm"
@@ -203,7 +208,7 @@ export default function WageringPage() {
             onPress={() => setIsCancelModalOpen(true)}
             className="bg-slate-800/60 text-slate-100"
           >
-            Cancel Wagering
+            {t("Cancel Wagering")}
           </Button>
         </div>
       </div>
@@ -213,12 +218,12 @@ export default function WageringPage() {
         {loading && !balanceState.value[currencyState.value.code] ? (
           <Loader />
         ) : !balanceState.value[currencyState.value.code] ? (
-          <div className="text-slate-300 text-sm">No balance data.</div>
+          <div className="text-slate-300 text-sm">{t("No balance data")}</div>
         ) : (
           <div className="space-y-4">
             <WageringCard
-              title="Cash Wagering"
-              balanceLabel="Cash Balance"
+              title={t("Cash Wagering")}
+              balanceLabel={t("Cash Balance")}
               balanceValue={
                 balanceState.value[currencyState.value.code].cash.balance
               }
@@ -253,7 +258,7 @@ export default function WageringPage() {
                       {balanceState.value[currencyState.value].freespin.expireHours}h
                     </span>
                   </div>
-                </div> 
+                </div>
 
                 <Chip
                   size="sm"
@@ -269,8 +274,8 @@ export default function WageringPage() {
             {/* Bonus row like screenshot */}
             {balanceState.value[currencyState.value.code].bonus.isActive ? (
               <WageringCard
-                title="Bonus"
-                balanceLabel="Bonus Balance"
+                title={t("Bonus")}
+                balanceLabel={t("Bonus Balance")}
                 balanceValue={
                   balanceState.value[currencyState.value.code].bonus.balance
                 }
@@ -299,9 +304,9 @@ export default function WageringPage() {
             ) : (
               <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4 flex items-center justify-between gap-3">
                 <div>
-                  <div className="text-white font-semibold">Bonus</div>
+                  <div className="text-white font-semibold">{t("Bonus")}</div>
                   <div className="mt-1 text-sm text-slate-300">
-                    No active bonus right now.
+                    {t("No active bonus right now")}
                   </div>
                 </div>
 
@@ -311,7 +316,7 @@ export default function WageringPage() {
                   className="bg-slate-800/60 text-slate-100"
                   onPress={() => toast.info("Redeem flow here")}
                 >
-                  Redeem
+                  {t("Redeem")}
                 </Button>
               </div>
             )}

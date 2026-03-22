@@ -61,6 +61,9 @@ const columns: {
   },
 ];
 
+const translatedColumns = (t: (k: string) => string) =>
+  columns.map((c) => ({ ...c, title: t(c.title) }));
+
 const SportsbookHistoryPage = () => {
   const t = useTranslations("BetHistory");
   const [data, setData] = useState<tMergedTransaction[]>([]);
@@ -111,7 +114,7 @@ const SportsbookHistoryPage = () => {
           <div>
             <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
               <div className="flex text-[12px]">
-                Total History: {total} items
+                {t("total_history", { total })}
               </div>
               <Pagination
                 showControls
@@ -137,7 +140,7 @@ const SportsbookHistoryPage = () => {
                 onSortChange={handleSortChange}
               >
                 <TableHeader>
-                  {columns.map((e) => (
+                  {translatedColumns(t).map((e) => (
                     <TableColumn key={e.key} allowsSorting={e.sotable}>
                       {e.title}
                     </TableColumn>
