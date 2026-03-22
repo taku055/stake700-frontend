@@ -79,22 +79,6 @@ export const Footer = () => {
             ))}
           </div>
         )}
-        <div className="w-full flex justify-center">
-          <div className="flex w-[202px] h-[24px] justify-between">
-            {FOOTER_SOCIAL_DATA.map((item) => (
-              <Link
-                href={item.href}
-                className="w-[16px] h-[16px] rounded-[4px]"
-              >
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  className="w-full h-full"
-                />
-              </Link>
-            ))}
-          </div>
-        </div>
 
         <div className="w-full h-[2px] bg-[var(--background)]" />
 
