@@ -1,10 +1,9 @@
 import { useState } from "preact/hooks";
-import { Input } from "@/components/common/Input";
-import { Textarea } from "@heroui/react";
-import { Button } from "@heroui/react";
+import { Textarea, Button, Input } from "@heroui/react";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
+import { toast } from "@/helpers/toast";
 
 export default function ContactUs() {
   const t = useTranslations("ContactUs");
@@ -28,6 +27,7 @@ export default function ContactUs() {
       setName("");
       setEmail("");
       setMessage("");
+      toast.success(t("success_message") || "Message sent successfully");
     }, 1000);
   };
 
@@ -48,7 +48,8 @@ export default function ContactUs() {
         </h1>
 
         <p className="text-[var(--passive-color)] text-base md:text-lg">
-          {t("description") || "For any questions, comments, or suggestions, please feel free to contact us."}
+          {t("description") ||
+            "For any questions, comments, or suggestions, please feel free to contact us."}
         </p>
 
         <div className="flex flex-col gap-4">
@@ -56,57 +57,61 @@ export default function ContactUs() {
             {t("email_section_title") || "EMAIL"}
           </h2>
           <p className="text-[var(--passive-color)] text-base">
-            {t("customer_queries_text") || "For customer queries, write to us at"}{" "}
+            {t("customer_queries_text") ||
+              "For customer queries, write to us at"}{" "}
             <a
               href="mailto:support@betalarab.com"
               className="text-[var(--primary-color)] hover:underline"
             >
               support@betalarab.com
             </a>
-            . {t("other_questions_text") || "For other questions or offers, drop us a line at"}{" "}
+            .{" "}
+            {t("other_questions_text") ||
+              "For other questions or offers, drop us a line at"}{" "}
             <a
               href="mailto:info@betalarab.com"
               className="text-[var(--primary-color)] hover:underline"
             >
               info@betalarab.com
             </a>{" "}
-            {t("email_receipt_text") || "and we will make sure the right person receives your email."}
+            {t("email_receipt_text") ||
+              "and we will make sure the right person receives your email."}
           </p>
         </div>
       </div>
 
       {/* Right Side - Contact Form */}
-      <div className="flex flex-col gap-6 md:w-1/2">
+      <div className="flex flex-col gap-6 w-full md:w-1/2">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-6"
           dir={isRTL ? "rtl" : "ltr"}
         >
           <Input
-            // label={t("name_label") || "Name"}
+            label={t("name_label") || "Name"}
             type="text"
             value={name}
             onChange={(e) => setName((e.target as HTMLInputElement).value)}
             required
             classNames={{
-              container: "w-full",
+              input: "text-[16px]",
             }}
           />
 
           <Input
-            // label={t("email_label") || "Email"}
+            label={t("email_label") || "Email"}
             type="email"
             value={email}
             onChange={(e) => setEmail((e.target as HTMLInputElement).value)}
             required
             classNames={{
-              container: "w-full",
+              input: "text-[16px]",
             }}
           />
 
           <div className="w-full">
             <Textarea
-              // label={t("message_label") || "Message"}
+              label={t("message_label") || "Message"}
               value={message}
               onValueChange={setMessage}
               placeholder=" "
@@ -114,10 +119,9 @@ export default function ContactUs() {
               required
               classNames={{
                 base: "w-full",
-                input: "text-white",
+                input: "text-[16px]",
                 inputWrapper:
                   "bg-[#fff1] border-none rounded-sm hover:bg-[#fff2] focus-within:hover:bg-[#fff2]",
-                //  label: "text-white/80 text-xs",
               }}
             />
           </div>

@@ -363,7 +363,8 @@
     "name_label": "Nom",
     "email_label": "E-mail",
     "message_label": "Message",
-    "submit_button": "Soumettre"
+    "submit_button": "Soumettre",
+    "success_message": "Message envoyé avec succès"
   },
   "FAQ": {
     "title": "Questions Fréquemment Posées",

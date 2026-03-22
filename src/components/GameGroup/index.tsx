@@ -125,9 +125,9 @@ export default function GameGroup({
         loopAddBlankSlides={false}
         spaceBetween={isMobilePortrait ? 10 : 16}
         slidesPerView={
-          isMobilePortrait ? (bigMode ? 2 : 2) : bigMode ? 6 : "auto"
+          isMobilePortrait ? (bigMode ? 2 : 3) : bigMode ? 6 : "auto"
         }
-        slidesPerGroup={isMobilePortrait ? 2 : 4}
+        slidesPerGroup={isMobilePortrait ? 3 : 4}
         onSwiper={setSwiper}
         autoplay={
           animated ? { delay: 5000, disableOnInteraction: false } : undefined

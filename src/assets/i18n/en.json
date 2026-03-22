@@ -429,7 +429,8 @@
     "name_label": "Name",
     "email_label": "Email",
     "message_label": "Message",
-    "submit_button": "Submit"
+    "submit_button": "Submit",
+    "success_message": "Message sent successfully"
   },
   "FAQ": {
     "title": "Still Have Questions?",

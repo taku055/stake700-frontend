@@ -363,7 +363,8 @@
     "name_label": "Όνομα",
     "email_label": "Ηλεκτρονικό ταχυδρομείο",
     "message_label": "Μήνυμα",
-    "submit_button": "Υποβολή"
+    "submit_button": "Υποβολή",
+    "success_message": "Το μήνυμα στάλθηκε με επιτυχία"
   },
   "FAQ": {
     "title": "Συχνές Ερωτήσεις",

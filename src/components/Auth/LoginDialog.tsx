@@ -111,7 +111,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
       scrollBehavior="inside"
     >
       <ModalContent
-        className="bg-[var(--background)] w-[630px] h-[716px] max-w-[630px] max-h-full rounded-[8px] overflow-y-auto"
+        className="bg-[var(--background)] max-w-[630px] max-h-[calc(var(--viewport-height)-140px)] rounded-[8px] overflow-y-auto"
       >
         <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
           <img

@@ -363,7 +363,8 @@
     "name_label": "الاسم",
     "email_label": "البريد الإلكتروني",
     "message_label": "الرسالة",
-    "submit_button": "إرسال"
+    "submit_button": "إرسال",
+    "success_message": "تم إرسال الرسالة بنجاح"
   },
   "FAQ": {
     "title": "الأسئلة الشائعة",
