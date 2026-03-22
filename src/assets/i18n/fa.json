@@ -363,7 +363,8 @@
     "name_label": "نام",
     "email_label": "ایمیل",
     "message_label": "پیام",
-    "submit_button": "ارسال"
+    "submit_button": "ارسال",
+    "success_message": "پیام با موفقیت ارسال شد"
   },
   "FAQ": {
     "title": "سؤالات متداول",

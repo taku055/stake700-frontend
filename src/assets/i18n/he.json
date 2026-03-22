@@ -363,7 +363,8 @@
     "name_label": "שם",
     "email_label": "אימייל",
     "message_label": "הודעה",
-    "submit_button": "שלח"
+    "submit_button": "שלח",
+    "success_message": "ההודעה נשלחה בהצלחה"
   },
   "FAQ": {
     "title": "שאלות נפוצות",

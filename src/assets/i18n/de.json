@@ -363,7 +363,8 @@
     "name_label": "Name",
     "email_label": "E-Mail",
     "message_label": "Nachricht",
-    "submit_button": "Absenden"
+    "submit_button": "Absenden",
+    "success_message": "Nachricht erfolgreich gesendet"
   },
   "FAQ": {
     "title": "Häufig Gestellte Fragen",

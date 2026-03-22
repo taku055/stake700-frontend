@@ -363,7 +363,8 @@
     "name_label": "Ad",
     "email_label": "E-posta",
     "message_label": "Mesaj",
-    "submit_button": "Gönder"
+    "submit_button": "Gönder",
+    "success_message": "Mesaj başarıyla gönderildi"
   },
   "FAQ": {
     "title": "Sıkça Sorulan Sorular",
