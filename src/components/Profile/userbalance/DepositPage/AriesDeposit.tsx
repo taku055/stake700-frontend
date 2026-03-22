@@ -7,7 +7,11 @@ import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 import { localeState } from "@/state/localeState";
 
-const AriesDeposit = () => {
+export interface AriesDepositProps {
+  bonusId?: string;
+}
+
+const AriesDeposit = ({ bonusId }: AriesDepositProps) => {
   const t = useTranslations("AriesDeposit");
   const [amount, setAmount] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
