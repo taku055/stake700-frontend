@@ -11,7 +11,7 @@ import { useTranslations } from "@/context/I18nContext";
 import styles from "./ProviderGroup.module.scss";
 import { tProvider } from "@/types/tProvider";
 import { apiGetProviders } from "@/api/common/apiGetProviders";
-import { Button, Image } from "@heroui/react";
+import { Button } from "@heroui/react";
 import { useSignal } from "@preact/signals";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
@@ -98,11 +98,10 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
               className={styles.provider}
             >
               {p.img ? (
-                <Image
+                <img
                   src={p.img}
                   alt={p.name}
                   className="w-full h-full object-contain"
-                  classNames={{ wrapper: "w-full h-full" }}
                   loading="lazy"
                 />
               ) : (
