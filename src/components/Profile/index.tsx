@@ -39,12 +39,14 @@ interface IProfileComponentProps {
   isOpen: boolean;
   onClose: () => void;
   defaultTab?: string;
+  bonusId?: string;
 }
 
 const ProfileComponent = ({
   isOpen,
   onClose,
   defaultTab,
+  bonusId,
 }: IProfileComponentProps) => {
   const t = useTranslations("Profile");
 
@@ -66,7 +68,7 @@ const ProfileComponent = ({
         {
           TabKey: "/balance-management/deposit",
           Title: t("Deposit"),
-          Content: <DepositPage />,
+          Content: <DepositPage bonusId={bonusId} />,
         },
         {
           TabKey: "/balance-management/withdraw",

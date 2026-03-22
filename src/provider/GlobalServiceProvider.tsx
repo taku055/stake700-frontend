@@ -31,7 +31,7 @@ import { ComponentChildren } from "preact";
 import { setViewportCss } from "@/helpers/setViewportCss";
 import { HeroUIProvider, ToastProvider } from "@heroui/react";
 import "swiper/swiper-bundle.css";
-import { LocationProvider } from "preact-iso";
+import { LocationProvider, useLocation } from "preact-iso";
 import { apiAccount } from "@/api/account/apiAccount";
 import { localeState } from "@/state/localeState";
 import { I18nProvider } from "@/context/I18nContext";
@@ -103,6 +103,20 @@ const i18nDefinitions = {
   he: heDefinition,
   it: itDefinition,
 };
+
+function ProfileQueryHandler() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const profileTab = location.query?.profileTab as string | undefined;
+    const bonusId = location.query?.bonusId as string | undefined;
+    if (profileTab) {
+      profileOpenedState.value = { isOpen: true, defaultTab: profileTab, bonusId };
+    }
+  }, [location.query?.profileTab, location.query?.bonusId]);
+
+  return null;
+}
 
 interface GlobalServiceProviderProps {
   children: ComponentChildren;
@@ -380,6 +394,7 @@ export default function GlobalServiceProvider({
     <HeroUIProvider locale={localeState.value}>
       {globalLoadingState.value && <Loading />}
       <LocationProvider>
+        <ProfileQueryHandler />
         <I18nProvider
           messages={
             i18nDefinitions[localeState.value as keyof typeof i18nDefinitions]
@@ -399,8 +414,10 @@ export default function GlobalServiceProvider({
 
           <div>
             <ProfileComponent
-              isOpen={profileOpenedState.value && userState.value != null}
-              onClose={() => (profileOpenedState.value = false)}
+              isOpen={profileOpenedState.value.isOpen && userState.value != null}
+              onClose={() => (profileOpenedState.value = { isOpen: false })}
+              defaultTab={profileOpenedState.value.defaultTab}
+              bonusId={profileOpenedState.value.bonusId}
             />
             <LoginDialog
               isOpen={loginOpenedState.value}

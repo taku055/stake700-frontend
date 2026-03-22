@@ -285,7 +285,7 @@ export default function WalletBox() {
         ].join(" ")}
         onClick={(e) => {
           e.stopPropagation();
-          profileOpenedState.value = true;
+          profileOpenedState.value = { isOpen: true };
           setIsSelectorOpen(false);
         }}
         aria-label="Open profile"

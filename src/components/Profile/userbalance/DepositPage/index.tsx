@@ -3,7 +3,11 @@ import { Tabs, Tab } from "@heroui/react";
 import AriesDeposit from "./AriesDeposit";
 import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
 
-const DepositPage = () => {
+interface DepositPageProps {
+  bonusId?: string;
+}
+
+const DepositPage = ({ bonusId }: DepositPageProps) => {
   const t = useTranslations("UserBalancePage");
 
   return (
@@ -14,7 +18,7 @@ const DepositPage = () => {
       <div className="flex flex-col w-full p-5 gap-5">
         <Tabs aria-label="Deposit methods">
           <Tab key="card" title={t("Card")}>
-            <AriesDeposit />
+            <AriesDeposit bonusId={bonusId} />
           </Tab>
           <Tab key="crypto" title={t("Crypto")}>
             <DepositPanel />
