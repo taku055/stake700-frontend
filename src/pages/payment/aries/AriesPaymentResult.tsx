@@ -105,7 +105,7 @@ export default function AriesPaymentResult() {
         </div>
 
         {!orderId ? (
-          <Card className="bg-[var(--profile-main-balance-card-background)] border border-white/10 shadow-[0_1px_4px_0_#1B1B1B80]">
+          <Card className="bg-[var(--green-color)] border border-white/10 shadow-[0_1px_4px_0_#1B1B1B80]">
             <CardBody className="flex flex-row items-center gap-3 p-5">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-500/20 shrink-0">
                 <HelpCircle className="w-5 h-5 text-slate-400" />
@@ -119,7 +119,7 @@ export default function AriesPaymentResult() {
             </CardBody>
           </Card>
         ) : loading ? (
-          <Card className="bg-[var(--profile-main-balance-card-background)] border border-white/10 shadow-[0_1px_4px_0_#1B1B1B80]">
+          <Card className="bg-[var(--green-color)] border border-white/10 shadow-[0_1px_4px_0_#1B1B1B80]">
             <CardBody className="flex flex-row items-center gap-3 p-5">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-amber-500/20 shrink-0">
                 <Loader2 className="w-5 h-5 text-amber-400 animate-spin" />
@@ -133,7 +133,7 @@ export default function AriesPaymentResult() {
             </CardBody>
           </Card>
         ) : error ? (
-          <Card className="bg-[var(--profile-main-balance-card-background)] border border-rose-500/20 shadow-[0_1px_4px_0_#1B1B1B80]">
+          <Card className="bg-[var(--green-color)] border border-rose-500/20 shadow-[0_1px_4px_0_#1B1B1B80]">
             <CardBody className="flex flex-row items-center gap-3 p-5">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-rose-500/20 shrink-0">
                 <AlertCircle className="w-5 h-5 text-rose-400" />
@@ -149,7 +149,7 @@ export default function AriesPaymentResult() {
             const config = getStatusConfig(orderStatus.status);
             const Icon = config.icon;
             return (
-              <Card className="bg-[var(--profile-main-balance-card-background)] border border-white/10 shadow-[0_1px_4px_0_#1B1B1B80]">
+              <Card className="bg-[var(--green-color)] border border-white/10 shadow-[0_1px_4px_0_#1B1B1B80]">
                 <CardBody className="p-5">
                   <div className="flex flex-row items-center gap-3">
                     <div
@@ -179,7 +179,7 @@ export default function AriesPaymentResult() {
           })()
         ) : null}
 
-        <Card className="bg-[var(--profile-main-balance-card-background)] border border-white/10 shadow-[0_1px_4px_0_#1B1B1B80]">
+        <Card className="bg-[var(--green-color)] border border-white/10 shadow-[0_1px_4px_0_#1B1B1B80]">
           <CardBody className="p-5">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center w-11 h-11 rounded-full bg-[#FFFFFF20] shrink-0">
