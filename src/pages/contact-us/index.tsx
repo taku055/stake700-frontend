@@ -81,7 +81,7 @@ export default function ContactUs() {
       </div>
 
       {/* Right Side - Contact Form */}
-      <div className="flex flex-col gap-6 md:w-1/2">
+      <div className="flex flex-col gap-6 w-full md:w-1/2">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-6"
