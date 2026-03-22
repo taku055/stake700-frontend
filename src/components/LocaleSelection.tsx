@@ -1,13 +1,6 @@
 import { localeState } from "@/state/localeState";
-import { useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { ChevronDown } from "lucide-preact";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@heroui/react";
-import { useTranslations } from "@/context/I18nContext";
 
 export const options = [
   { label: "Türkçe", value: "tr", flag: "tr" },
@@ -33,60 +26,62 @@ export default function LocaleSelection({
   headerMode = true,
 }: LocaleSelectionProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const t = useTranslations("Common");
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const currentOption = options.find((o) => o.value === localeState.value);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <Dropdown
-      // backdrop="blur" 
-      className="bg-[var(--background)] h-full w-full text-[16px] items-center justify-center"
-      isOpen={isOpen}
-      onOpenChange={setIsOpen}
-    >
-      <DropdownTrigger className="w-full">
-        <div
-          className={`flex items-center gap-[10px] bg-[var(--background)] h-full rounded-sm p-2 ${!headerMode ? "" : "bg-[var(--footer-background)]"
-            }`}
-        >
-          <span
-            className={`fi fi-${options.find((o) => o.value === localeState.value)?.flag || "us"
+    <div ref={containerRef} className="relative h-full">
+      <button
+        type="button"
+        onClick={() => setIsOpen((v) => !v)}
+        className={`flex items-center gap-[10px] h-full rounded-sm p-2 cursor-pointer ${
+          !headerMode ? "bg-[var(--background)]" : "bg-[var(--footer-background)]"
+        }`}
+      >
+        <span className={`fi fi-${currentOption?.flag || "us"}`}></span>
+        {!headerMode && (
+          <span className="text-[var(--text-transparent-color)]">
+            {currentOption?.label}
+          </span>
+        )}
+        <ChevronDown
+          size={16}
+          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {isOpen && (
+        <div className="absolute z-[9999] mt-1 right-0 bg-white rounded-lg shadow-lg py-1 min-w-[160px] max-h-[320px] overflow-y-auto">
+          {options.map((lang) => (
+            <button
+              key={lang.value}
+              type="button"
+              onClick={() => {
+                localeState.value = lang.value;
+                window.localStorage.setItem("locale", lang.value);
+                setIsOpen(false);
+              }}
+              className={`w-full text-left flex items-center gap-3 px-3 py-2 text-[#000000] hover:bg-[#0000002a] ${
+                lang.value === localeState.value ? "bg-[#b4b4b4]" : ""
               }`}
-          ></span>
-          {!headerMode && (
-            <span className="text-[var(--text-transparent-color)]">
-              {options.find((o) => o.value === localeState.value)?.label}
-            </span>
-          )}
-          <ChevronDown
-            size={16}
-            className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""
-              }`}
-          />
-        </div>
-      </DropdownTrigger>
-      <DropdownMenu aria-label={t("Change Locale")} className="bg-[#FFFFFF]  rounded-lg">
-        {options.map((lang) => (
-          <DropdownItem
-            key={lang.value}
-            value={lang.value}
-            onPress={() => {
-              localeState.value = lang.value;
-              window.localStorage.setItem("locale", lang.value);
-            }}
-            className={`rounded-lg p-2 ${lang.value === localeState.value ? "bg-[#b4b4b4]" : ""}`}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#0000002a";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "";
-            }}
-          >
-            <div className="flex items-center gap-3 my-2 text-[#000000]">
+            >
               <span className={`fi fi-${lang.flag}`}></span>
               {lang.label}
-            </div>
-          </DropdownItem>
-        ))}
-      </DropdownMenu>
-    </Dropdown>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
