@@ -136,11 +136,11 @@ const ProfileComponent = ({
         //   Title: t("Verify Account"),
         //   Content: <VerfyAccountPage />,
         // },
-        {
-          TabKey: "/my-profile/two-step-authentication",
-          Title: t("Two-Step Authentication"),
-          Content: <TwoStepAuthenticationPage />,
-        },
+        // {
+        //   TabKey: "/my-profile/two-step-authentication",
+        //   Title: t("Two-Step Authentication"),
+        //   Content: <TwoStepAuthenticationPage />,
+        // },
       ],
     }),
     [t]
