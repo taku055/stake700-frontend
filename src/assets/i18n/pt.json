@@ -589,7 +589,8 @@
     "Enter amount": "Digite o valor",
     "Card number": "Número do cartão",
     "Enter card number": "Digite o número do cartão",
-    "Submit withdraw": "Enviar saque"
+    "Submit withdraw": "Enviar saque",
+    "WAGERING_REQUIREMENT_NOT_MET": "Não pode levantar dinheiro até cumprir os requisitos de apostas do seu saldo em dinheiro."
   },
   "SearchWidget": {
     "Search": "Buscar",

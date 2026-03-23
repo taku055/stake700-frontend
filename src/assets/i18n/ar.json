@@ -589,7 +589,8 @@
     "Enter amount": "أدخل المبلغ",
     "Card number": "رقم البطاقة",
     "Enter card number": "أدخل رقم البطاقة",
-    "Submit withdraw": "إرسال السحب"
+    "Submit withdraw": "إرسال السحب",
+    "WAGERING_REQUIREMENT_NOT_MET": "لا يمكنك سحب النقد حتى تستوفي متطلبات الرهان لرصيدك النقدي."
   },
   "SearchWidget": {
     "Search": "بحث",

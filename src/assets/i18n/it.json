@@ -589,7 +589,8 @@
     "Enter amount": "Inserisci importo",
     "Card number": "Numero carta",
     "Enter card number": "Inserisci numero carta",
-    "Submit withdraw": "Invia prelievo"
+    "Submit withdraw": "Invia prelievo",
+    "WAGERING_REQUIREMENT_NOT_MET": "Non puoi prelevare denaro finché non hai soddisfatto i requisiti di puntata per il tuo saldo contante."
   },
   "SearchWidget": {
     "Search": "Cerca",

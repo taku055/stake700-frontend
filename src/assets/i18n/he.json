@@ -589,7 +589,8 @@
     "Enter amount": "הזן סכום",
     "Card number": "מספר כרטיס",
     "Enter card number": "הזן מספר כרטיס",
-    "Submit withdraw": "שלח משיכה"
+    "Submit withdraw": "שלח משיכה",
+    "WAGERING_REQUIREMENT_NOT_MET": "אינך יכול למשוך מזומן עד שתעמוד בדרישות ההימור של יתרת המזומן שלך."
   },
   "SearchWidget": {
     "Search": "חיפוש",

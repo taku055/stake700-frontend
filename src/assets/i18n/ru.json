@@ -589,7 +589,8 @@
     "Enter amount": "Введите сумму",
     "Card number": "Номер карты",
     "Enter card number": "Введите номер карты",
-    "Submit withdraw": "Отправить вывод"
+    "Submit withdraw": "Отправить вывод",
+    "WAGERING_REQUIREMENT_NOT_MET": "Вы не можете вывести деньги, пока не выполните требования по обороту для вашего наличного баланса."
   },
   "SearchWidget": {
     "Search": "Поиск",

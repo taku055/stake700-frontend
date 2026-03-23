@@ -5,6 +5,7 @@ import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";
 import { userState } from "@/state/userState";
 import { Button, Input } from "@heroui/react";
+import axios from "axios";
 import { Eye, EyeOff } from "lucide-preact";
 import { useCallback, useState } from "preact/hooks";
 
@@ -66,11 +67,13 @@ const AriesWithdraw = () => {
 
         setError(res.message || t("Withdraw could not be created."));
       } catch (err: unknown) {
-        const message =
-          err && typeof err === "object" && "message" in err
-            ? String((err as { message: unknown }).message)
-            : t("Something went wrong.");
-        setError(message);
+
+        if (axios.isAxiosError(err)) {
+          console.log(err.response);
+          setError(t(err.response?.data.errorCode || "Something went wrong."));
+        } else {
+          setError(t("Something went wrong."));
+        }
       } finally {
         setIsSubmitting(false);
       }

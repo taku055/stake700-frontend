@@ -589,7 +589,8 @@
     "Enter amount": "مبلغ را وارد کنید",
     "Card number": "شماره کارت",
     "Enter card number": "شماره کارت را وارد کنید",
-    "Submit withdraw": "ارسال برداشت"
+    "Submit withdraw": "ارسال برداشت",
+    "WAGERING_REQUIREMENT_NOT_MET": "تا وقتی شرایط شرط‌بندی برای موجودی نقدی خود را برآورده نکرده‌اید، نمی‌توانید برداشت نقدی انجام دهید."
   },
   "SearchWidget": {
     "Search": "جستجو",

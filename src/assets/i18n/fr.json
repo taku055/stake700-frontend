@@ -589,7 +589,8 @@
     "Enter amount": "Saisir le montant",
     "Card number": "Numéro de carte",
     "Enter card number": "Saisir le numéro de carte",
-    "Submit withdraw": "Envoyer le retrait"
+    "Submit withdraw": "Envoyer le retrait",
+    "WAGERING_REQUIREMENT_NOT_MET": "Vous ne pouvez pas retirer d'argent tant que vous n'avez pas rempli les exigences de mise en jeu concernant votre solde en espèces."
   },
   "SearchWidget": {
     "Search": "Rechercher",
