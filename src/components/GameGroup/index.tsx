@@ -11,6 +11,8 @@ import { Button } from "@heroui/react";
 import { customGamesState } from "@/state/customGamesState";
 import { useTranslations } from "@/context/I18nContext";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { localeState } from "@/state/localeState";
+import { RTL_LANGUAGES } from "@/config/constants";
 
 interface IGameGroupProps {
   title: string;
@@ -43,6 +45,7 @@ export default function GameGroup({
   const [games, setGames] = useState<tGame[]>([]);
   const t = useTranslations("GameGroup");
   const [swiper, setSwiper] = useState<any>(null);
+  const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
   const goToNextSlide = useCallback(() => {
     console.log("goToNextSlide", swiper);
@@ -97,30 +100,55 @@ export default function GameGroup({
         </div>
 
         <div className={styles.action}>
-          <Button
-            onPress={goToPrevSlide}
-            size="sm"
-            isIconOnly
-            className={styles.moveButton + " rounded-l-full"}
-          >
-            <ChevronLeft color="#FFFFFF99" size={16} />
-          </Button>
-          <Button
-            onPress={goToNextSlide}
-            size="sm"
-            isIconOnly
-            className={styles.moveButton + " rounded-r-full"}
-          >
-            <ChevronRight color="#FFFFFF99" size={16} />
-          </Button>
+          {isRTL ? (
+            <>
+              <Button
+                onPress={goToNextSlide}
+                size="sm"
+                isIconOnly
+                className={styles.moveButton + " rounded-r-full"}
+              >
+                <ChevronRight color="#FFFFFF99" size={16} />
+              </Button>
+              <Button
+                onPress={goToPrevSlide}
+                size="sm"
+                isIconOnly
+                className={styles.moveButton + " rounded-l-full"}
+              >
+                <ChevronLeft color="#FFFFFF99" size={16} />
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                onPress={goToPrevSlide}
+                size="sm"
+                isIconOnly
+                className={styles.moveButton + " rounded-l-full"}
+              >
+                <ChevronLeft color="#FFFFFF99" size={16} />
+              </Button>
+              <Button
+                onPress={goToNextSlide}
+                size="sm"
+                isIconOnly
+                className={styles.moveButton + " rounded-r-full"}
+              >
+                <ChevronRight color="#FFFFFF99" size={16} />
+              </Button>
+            </>
+          )}
           <a href={viewallLink || "#"} className={styles.view}>
             {t("More")}
           </a>
         </div>
       </div>
       <Swiper
+        key={`game-group-${isRTL ? "rtl" : "ltr"}-${localeState.value}`}
         modules={[Mousewheel, Navigation]}
         className={styles.games}
+        dir={isRTL ? "rtl" : "ltr"}
         loop={false}
         loopAddBlankSlides={false}
         spaceBetween={isMobilePortrait ? 10 : 16}
