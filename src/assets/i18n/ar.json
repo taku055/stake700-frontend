@@ -27,7 +27,7 @@
     "Sports": "رياضة",
     "Live Racing": "السباقات المباشرة",
     "All Games": "كل الألعاب",
-    "Pragmatic Play": "Pragmatic Play",
+    "Pragmatic Play": "براغماتيك بلاي",
     "New": "جديد",
     "Popular Games": "ألعاب شائعة",
     "Jackpots": "جاكبوتات",
@@ -86,7 +86,9 @@
     "Swap Crypto": "مبادلة عملات رقمية",
     "Settings": "الإعدادات",
     "Your Betalarab Wallet is Currently Empty": "محفظة Betalarab فارغة حالياً",
-    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "للبدء، قم بإيداع باستخدام العملات الرقمية أو المحلية (حيث متاح)، أو شراء عملات رقمية فوراً عبر MoonPay أو Swapped.",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped": {
+      "": "للبدء، قم بإيداع باستخدام العملات الرقمية أو المحلية (حيث متاح)، أو شراء عملات رقمية فوراً عبر MoonPay أو Swapped."
+    },
     "WalletGetStartedDesc": "للبدء، قم بإيداع باستخدام العملات الرقمية أو المحلية (حيث متاح)، أو شراء عملات رقمية فوراً عبر MoonPay أو Swapped.",
     "Deposit": "إيداع",
     "Buy": "شراء",
@@ -487,7 +489,13 @@
     "Activate two-factor authentication": "تفعيل التحقق الثنائي",
     "Deactivate two-factor authentication": "إلغاء التحقق الثنائي",
     "Set up Authenticator": "إعداد تطبيق Authenticator",
-    "Get the Google Authenticator app from App Store. In the Google Authenticator App select Set up an account. Choose Scan a barcode.": "حمّل تطبيق Google Authenticator من App Store. في التطبيق اختر \"إعداد حساب\" ثم \"مسح باركود\".",
+    "Get the Google Authenticator app from App Store": {
+      " In the Google Authenticator App select Set up an account": {
+        " Choose Scan a barcode": {
+          "": "حمّل تطبيق Google Authenticator من App Store. في التطبيق اختر \"إعداد حساب\" ثم \"مسح باركود\"."
+        }
+      }
+    },
     "TwoFactorAuthSetupDesc": "حمّل تطبيق Google Authenticator من App Store. في التطبيق اختر \"إعداد حساب\" ثم \"مسح باركود\".",
     "Verify": "تحقّق",
     "Date of Birth": "تاريخ الميلاد",
@@ -581,8 +589,12 @@
     "Phone": "الهاتف",
     "Phone placeholder": "+1 234 567 8900",
     "Submit payment": "إرسال الدفع",
-    "Payment could not be created.": "تعذر إنشاء الدفع.",
-    "Something went wrong.": "حدث خطأ ما."
+    "Payment could not be created": {
+      "": "تعذر إنشاء الدفع."
+    },
+    "Something went wrong": {
+      "": "حدث خطأ ما."
+    }
   },
   "SearchWidget": {
     "Search": "بحث",
@@ -813,7 +825,7 @@
     "Jackpot": "جاكبوت",
     "Tournaments": "بطولات",
     "Tombala": "طمبولا",
-    "BetGames TV": "BetGames TV",
+    "BetGames TV": "تلفزيون ألعاب الرهان",
     "Autre": "أخرى",
     "Esports": "رياضات إلكترونية",
     "Jackpots": "جاكبوتات",
@@ -832,7 +844,9 @@
     "email": "البريد الإلكتروني",
     "recover_password": "استعادة كلمة المرور",
     "Password reset link was sent to": "تم إرسال رابط إعادة تعيين كلمة المرور إلى",
-    "Something went wrong. Please check your email exists in the": "حدث خطأ ما. يرجى التحقق من وجود بريدك الإلكتروني في",
+    "Something went wrong": {
+      " Please check your email exists in the": "حدث خطأ ما. يرجى التحقق من وجود بريدك الإلكتروني في"
+    },
     "EmailCheckError": "حدث خطأ ما. يرجى التحقق من وجود بريدك الإلكتروني في"
   },
   "Setting": {
@@ -897,7 +911,9 @@
     "Referrals": "الإحالات",
     "Earnings": "الأرباح",
     "Affiliate Program": "برنامج الشراكة",
-    "Earn commission for all bets placed by your referrals across Casino and Sportsbook.": "اكسب عمولة على جميع الرهانات التي يضعها المشار إليهم في الكازينو ومركز المراهنات.",
+    "Earn commission for all bets placed by your referrals across Casino and Sportsbook": {
+      "": "اكسب عمولة على جميع الرهانات التي يضعها المشار إليهم في الكازينو ومركز المراهنات."
+    },
     "OverviewDesc": "اكسب عمولة على جميع الرهانات التي يضعها المشار إليهم في الكازينو ومركز المراهنات.",
     "Worldwide Customers": "العملاء في جميع أنحاء العالم",
     "Payment Methods": "طرق الدفع",
@@ -905,39 +921,69 @@
     "Affiliate Link": "رابط الشراكة",
     "Exclusive Advantages": "المزايا الحصرية",
     "Instant Payout": "دفع فوري",
-    "Skip the wait. See earnings instantly in your account.": "تخطى الانتظار. شاهد الأرباح فورًا في حسابك.",
+    "Skip the wait": {
+      " See earnings instantly in your account": {
+        "": "تخطى الانتظار. شاهد الأرباح فورًا في حسابك."
+      }
+    },
     "InstantPayoutDesc": "تخطى الانتظار. شاهد الأرباح فورًا في حسابك.",
     "Lifetime Commission": "عمولة مدى الحياة",
-    "If the people you refer keep playing, you keep getting paid.": "إذا استمر الأشخاص الذين تحيلهم في اللعب، فستستمر في الحصول على الأموال.",
+    "If the people you refer keep playing, you keep getting paid": {
+      "": "إذا استمر الأشخاص الذين تحيلهم في اللعب، فستستمر في الحصول على الأموال."
+    },
     "LifetimeCommissionDesc": "إذا استمر الأشخاص الذين تحيلهم في اللعب، فستستمر في الحصول على الأموال.",
     "Market Leading Player Value": "قيمة اللاعب الرائدة في السوق",
-    "Grow your earnings with some of the highest returns offered to players.": "نمو أرباحك مع بعض من أعلى العوائد المقدمة للاعبين.",
+    "Grow your earnings with some of the highest returns offered to players": {
+      "": "نمو أرباحك مع بعض من أعلى العوائد المقدمة للاعبين."
+    },
     "MarketLeadingDesc": "نمو أرباحك مع بعض من أعلى العوائد المقدمة للاعبين.",
     "Customise Your Commission": "تخصيص عمولتك",
-    "Tailor your commission plan to fit your unique business needs.": "خصص خطة العمولة الخاصة بك لتناسب احتياجات عملك الفريدة.",
+    "Tailor your commission plan to fit your unique business needs": {
+      "": "خصص خطة العمولة الخاصة بك لتناسب احتياجات عملك الفريدة."
+    },
     "CustomiseCommissionDesc": "خصص خطة العمولة الخاصة بك لتناسب احتياجات عملك الفريدة.",
     "Crypto & Local Currencies": "العملات المشفرة والعملات المحلية",
-    "Earn your way with support for both cryptocurrency and local currencies.": "اكسب بطريقتك مع دعم كل من العملات المشفرة والعملات المحلية.",
+    "Earn your way with support for both cryptocurrency and local currencies": {
+      "": "اكسب بطريقتك مع دعم كل من العملات المشفرة والعملات المحلية."
+    },
     "CryptoLocalCurrenciesDesc": "اكسب بطريقتك مع دعم كل من العملات المشفرة والعملات المحلية.",
     "24x7 Multi Language Support": "دعم متعدد اللغات على مدار الساعة",
-    "Get the help you want in your preferred language all day, everyday.": "احصل على المساعدة التي تريدها بلغتك المفضلة طوال اليوم، كل يوم.",
+    "Get the help you want in your preferred language all day, everyday": {
+      "": "احصل على المساعدة التي تريدها بلغتك المفضلة طوال اليوم، كل يوم."
+    },
     "MultiLanguageSupportDesc": "احصل على المساعدة التي تريدها بلغتك المفضلة طوال اليوم، كل يوم.",
     "Commission Rules": "قواعد العمولة",
-    "Our default commission rate is 10% but you can calculate specific rates for our products using the formulas below.": "معدل العمولة الافتراضي لدينا هو 10٪ ولكن يمكنك حساب معدلات محددة لمنتجاتنا باستخدام الصيغ أدناه.",
+    "Our default commission rate is 10% but you can calculate specific rates for our products using the formulas below": {
+      "": "معدل العمولة الافتراضي لدينا هو 10٪ ولكن يمكنك حساب معدلات محددة لمنتجاتنا باستخدام الصيغ أدناه."
+    },
     "CommissionRulesDesc": "معدل العمولة الافتراضي لدينا هو 10٪ ولكن يمكنك حساب معدلات محددة لمنتجاتنا باستخدام الصيغ أدناه.",
     "Casino": "الكازينو",
-    "All of our games have a different house edge. You can derive your commission using the following formula:": "جميع ألعابنا لها حافة منزل مختلفة. يمكنك اشتقاق عمولتك باستخدام الصيغة التالية:",
+    "All of our games have a different house edge": {
+      " You can derive your commission using the following formula:": "جميع ألعابنا لها حافة منزل مختلفة. يمكنك اشتقاق عمولتك باستخدام الصيغة التالية:"
+    },
     "CasinoCommissionDesc": "جميع ألعابنا لها حافة منزل مختلفة. يمكنك اشتقاق عمولتك باستخدام الصيغة التالية:",
     "Sportsbook": "مركز المراهنات",
-    "All sports bets are applied at a 3% theoretical house edge. You can derive your commission using the following formula:": "يتم تطبيق جميع الرهانات الرياضية على حافة منزل نظرية 3٪. يمكنك اشتقاق عمولتك باستخدام الصيغة التالية:",
+    "All sports bets are applied at a 3% theoretical house edge": {
+      " You can derive your commission using the following formula:": "يتم تطبيق جميع الرهانات الرياضية على حافة منزل نظرية 3٪. يمكنك اشتقاق عمولتك باستخدام الصيغة التالية:"
+    },
     "SportsbookCommissionDesc": "يتم تطبيق جميع الرهانات الرياضية على حافة منزل نظرية 3٪. يمكنك اشتقاق عمولتك باستخدام الصيغة التالية:",
     "Poker": "البوكر",
-    "We collect a small percentage of each pot (known as Rake) as a fee for hosting the game. Your commission is calculated using Rake. You can use the formula below to derive your commission:": "نجمع نسبة صغيرة من كل وعاء (تُعرف باسم Rake) كرسوم لاستضافة اللعبة. يتم حساب عمولتك باستخدام Rake. يمكنك استخدام الصيغة أدناه لاشتقاق عمولتك:",
+    "We collect a small percentage of each pot (known as Rake) as a fee for hosting the game": {
+      " Your commission is calculated using Rake": {
+        " You can use the formula below to derive your commission:": "نجمع نسبة صغيرة من كل وعاء (تُعرف باسم Rake) كرسوم لاستضافة اللعبة. يتم حساب عمولتك باستخدام Rake. يمكنك استخدام الصيغة أدناه لاشتقاق عمولتك:"
+      }
+    },
     "PokerCommissionDesc": "نجمع نسبة صغيرة من كل وعاء (تُعرف باسم Rake) كرسوم لاستضافة اللعبة. يتم حساب عمولتك باستخدام Rake. يمكنك استخدام الصيغة أدناه لاشتقاق عمولتك:",
     "Templates to Help Your Campaign Stand Out": "قوالب لمساعدة حملتك على التميز",
-    "We've created digital banner templates to make it easier for you to promote your campaigns online.": "لقد أنشأنا قوالب لافتات رقمية لتسهيل الترويج لحملاتك عبر الإنترنت.",
+    "We've created digital banner templates to make it easier for you to promote your campaigns online": {
+      "": "لقد أنشأنا قوالب لافتات رقمية لتسهيل الترويج لحملاتك عبر الإنترنت."
+    },
     "Browse Templates": "تصفح القوالب",
-    "View and track the earnings you've generated through your referrals. This section provides a clear breakdown of your commissions and payouts — keeping you in control of your earnings.": "عرض وتتبع الأرباح التي حققتها من خلال المشار إليهم. يوفر هذا القسم تفصيلاً واضحًا لعمولاتك ومدفوعاتك - مما يجعلك تتحكم في أرباحك.",
+    "View and track the earnings you've generated through your referrals": {
+      " This section provides a clear breakdown of your commissions and payouts — keeping you in control of your earnings": {
+        "": "عرض وتتبع الأرباح التي حققتها من خلال المشار إليهم. يوفر هذا القسم تفصيلاً واضحًا لعمولاتك ومدفوعاتك - مما يجعلك تتحكم في أرباحك."
+      }
+    },
     "Sort": "ترتيب",
     "Lifetime Commission: High to Low": "عمولة مدى الحياة: من الأعلى إلى الأدنى",
     "Lifetime Commission: Low to High": "عمولة مدى الحياة: من الأدنى إلى الأعلى",
@@ -949,7 +995,9 @@
     "Withdrawn Commission": "العمولة المسحوبة",
     "Campaigns page coming soon": "صفحة الحملات قريبًا",
     "Referred Users page coming soon": "صفحة المستخدمين المشار إليهم قريبًا",
-    "See the performance of all your campaigns in one simple view below.": "شاهد أداء جميع حملاتك في عرض واحد بسيط أدناه.",
+    "See the performance of all your campaigns in one simple view below": {
+      "": "شاهد أداء جميع حملاتك في عرض واحد بسيط أدناه."
+    },
     "CampaignsDesc": "اطّلع على أداء جميع حملاتك في عرض واحد بسيط أدناه.",
     "Campaign Hits": "زيارات الحملة",
     "First Time Deposits (FTD)": "الإيداعات لأول مرة (FTD)",
@@ -974,7 +1022,11 @@
     "Export CSV": "تصدير CSV",
     "Previous": "السابق",
     "Next": "التالي",
-    "Track all the users who joined through your referral link. Here you can see their activity and gameplay - making it easy to monitor the growth of your network and the benefits you're gaining from referrals.": "تتبّع جميع المستخدمين الذين انضموا عبر رابط الإحالة الخاص بك. يمكنك هنا الاطلاع على نشاطهم وطريقة لعبهم، مما يسهّل مراقبة نمو شبكتك والفوائد التي تجنيها من الإحالات.",
+    "Track all the users who joined through your referral link": {
+      " Here you can see their activity and gameplay - making it easy to monitor the growth of your network and the benefits you're gaining from referrals": {
+        "": "تتبّع جميع المستخدمين الذين انضموا عبر رابط الإحالة الخاص بك. يمكنك هنا الاطلاع على نشاطهم وطريقة لعبهم، مما يسهّل مراقبة نمو شبكتك والفوائد التي تجنيها من الإحالات."
+      }
+    },
     "Campaign": "الحملة",
     "Total Referred Users": "إجمالي المستخدمين المُحالين",
     "Monthly FTD": "الإيداعات الأولى الشهرية",
@@ -985,20 +1037,36 @@
     "Date Joined: Old to New": "تاريخ الانضمام: من الأقدم إلى الأحدث",
     "Name: A to Z": "الاسم: من أ إلى ي",
     "Name: Z to A": "الاسم: من ي إلى أ",
-    "Loading...": "جارٍ التحميل...",
-    "No Referred Users.": "لا يوجد مستخدمون مُحالون.",
+    "Loading": {
+      "": {
+        "": {
+          "": "جارٍ التحميل..."
+        }
+      }
+    },
+    "No Referred Users": {
+      "": "لا يوجد مستخدمون مُحالون."
+    },
     "N/A": "غير متاح",
     "General": "عام",
     "What is the Betalarab Affiliate Program?": "ما هو برنامج الشراكة betalarab؟",
-    "The Betalarab Affiliate Program allows you to earn commissions by referring new players.": "يسمح لك برنامج الشراكة Betalarab بكسب العمولات من خلال إحالة لاعبين جدد.",
+    "The Betalarab Affiliate Program allows you to earn commissions by referring new players": {
+      "": "يسمح لك برنامج الشراكة Betalarab بكسب العمولات من خلال إحالة لاعبين جدد."
+    },
     "FAQAffiliateProgramAnswer": "يسمح لك برنامج الشراكة Betalarab بكسب العمولات من خلال إحالة لاعبين جدد.",
     "Who can join the Betalarab Affiliate Program?": "من يمكنه الانضمام إلى برنامج الشراكة betalarab؟",
-    "Anyone can join the Betalarab Affiliate Program.": "يمكن لأي شخص الانضمام إلى برنامج الشراكة Betalarab.",
+    "Anyone can join the Betalarab Affiliate Program": {
+      "": "يمكن لأي شخص الانضمام إلى برنامج الشراكة Betalarab."
+    },
     "How do I join the Betalarab Affiliate Program?": "كيف أنضم إلى برنامج الشراكة betalarab؟",
-    "You can join by signing up and getting your referral link.": "يمكنك الانضمام من خلال التسجيل والحصول على رابط الإحالة الخاص بك.",
+    "You can join by signing up and getting your referral link": {
+      "": "يمكنك الانضمام من خلال التسجيل والحصول على رابط الإحالة الخاص بك."
+    },
     "FAQJoinAnswer": "يمكنك الانضمام من خلال التسجيل والحصول على رابط الإحالة الخاص بك.",
     "What are the benefits of joining the Betalarab Affiliate Program?": "ما هي فوائد الانضمام إلى برنامج الشراكة betalarab؟",
-    "You earn commissions on all bets placed by your referrals.": "تكسب عمولات على جميع الرهانات التي يضعها المشار إليهم.",
+    "You earn commissions on all bets placed by your referrals": {
+      "": "تكسب عمولات على جميع الرهانات التي يضعها المشار إليهم."
+    },
     "FAQBenefitsAnswer": "تكسب عمولات على جميع الرهانات التي يضعها المشار إليهم.",
     "Affiliate Overview": "نظرة عامة على الشراكة",
     "Total Referrals": "إجمالي الإحالات",
@@ -1044,7 +1112,11 @@
   "SignupStep1": {
     "Step 1/3": "الخطوة 1/3",
     "Select Your Preferred Language": "اختر لغتك المفضلة",
-    "Betalarab is available is several languages. Feel free to personalise your language across our site from the options below.": "نحن متاحون بعدة لغات. لا تتردد في تخصيص لغتك عبر موقعنا من الخيارات أدناه.",
+    "Betalarab is available is several languages": {
+      " Feel free to personalise your language across our site from the options below": {
+        "": "نحن متاحون بعدة لغات. لا تتردد في تخصيص لغتك عبر موقعنا من الخيارات أدناه."
+      }
+    },
     "LanguageSelectionDesc": "نحن متاحون بعدة لغات. لا تتردد في تخصيص لغتك عبر موقعنا من الخيارات أدناه.",
     "Confirm": "تأكيد",
     "Already have an account?": "هل لديك حساب بالفعل؟",
@@ -1056,7 +1128,9 @@
     "Create an Account": "إنشاء حساب",
     "Email": "البريد الإلكتروني",
     "Username": "اسم المستخدم",
-    "Your username must be 3-14 characters long.": "يجب أن يكون اسم المستخدم بين 3-14 حرفًا.",
+    "Your username must be 3-14 characters long": {
+      "": "يجب أن يكون اسم المستخدم بين 3-14 حرفًا."
+    },
     "UsernameLengthValidation": "يجب أن يكون اسم المستخدم بين 3-14 حرفًا.",
     "Password": "كلمة المرور",
     "Date of Birth": "تاريخ الميلاد",
@@ -1079,7 +1153,9 @@
   },
   "WelcomeDialog": {
     "Welcome to Betalarab!": "مرحبًا بك في Betalarab!",
-    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.": "نحن سعداء جدًا لوجودك هنا! استعد لاستكشاف ألعاب رائعة وفرص مثيرة."
+    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities": {
+      "": "نحن سعداء جدًا لوجودك هنا! استعد لاستكشاف ألعاب رائعة وفرص مثيرة."
+    }
   },
   "MessagePage": {
     "Send New": "رسالة جديدة",
@@ -1114,33 +1190,57 @@
     "Unhash Server Seed": "فك التجزئة لبذرة الخادم",
     "Calculation": "الحساب",
     "Solving the Trust Issue with Online Gambling": "حل مشكلة الثقة في المقامرة عبر الإنترنت",
-    "Provable fairness allows players to prove and verify that results are fair and unmanipulated. This is achieved through a": "تسمح العدالة القابلة للإثبات للاعبين بإثبات والتحقق من أن النتائج عادلة وغير مُعالجة. يُحقق ذلك من خلال",
+    "Provable fairness allows players to prove and verify that results are fair and unmanipulated": {
+      " This is achieved through a": "تسمح العدالة القابلة للإثبات للاعبين بإثبات والتحقق من أن النتائج عادلة وغير مُعالجة. يُحقق ذلك من خلال"
+    },
     "ProvableFairnessDesc": "تسمح العدالة القابلة للإثبات للاعبين بإثبات والتحقق من أن النتائج عادلة وغير مُعالجة. يُحقق ذلك من خلال",
     "commitment scheme": "نظام الالتزام",
     "and": "و",
     "cryptographic hashing": "التجزئة التشفيرية",
-    "The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty. Together they create a": "يضمن نظام الالتزام تأثير اللاعب، وتضمن التجزئة التشفيرية نزاهة الكازينو. معًا يخلقان",
+    "The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty": {
+      " Together they create a": "يضمن نظام الالتزام تأثير اللاعب، وتضمن التجزئة التشفيرية نزاهة الكازينو. معًا يخلقان"
+    },
     "CommitmentSchemeDesc": "يضمن نظام الالتزام تأثير اللاعب، وتضمن التجزئة التشفيرية نزاهة الكازينو. معًا يخلقان",
     "trust-less environment": "بيئة لا تتطلب ثقة عمياء",
     "This is simplified in the following representation:": "يُبسّط ذلك في التمثيل التالي:",
     "fair result = operators input (hashed) + players input": "نتيجة عادلة = مدخلات المشغّل (بعد التجزئة) + مدخلات اللاعب",
     "3rd Party Verification": "التحقق من طرف ثالث",
-    "Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure. You can find them via Google or community-made resources.": "يمكن التحقق من ألعاب Betalarab الأصلية على الموقع أو عبر مواقع طرف ثالث تفتح مصدر إجراءات التحقق. يمكنك العثور عليها عبر Google أو موارد المجتمع.",
+    "Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure": {
+      " You can find them via Google or community-made resources": {
+        "": "يمكن التحقق من ألعاب Betalarab الأصلية على الموقع أو عبر مواقع طرف ثالث تفتح مصدر إجراءات التحقق. يمكنك العثور عليها عبر Google أو موارد المجتمع."
+      }
+    },
     "3rdPartyVerificationDesc": "يمكن التحقق من ألعاب Betalarab الأصلية على الموقع أو عبر مواقع طرف ثالث تفتح مصدر إجراءات التحقق. يمكنك العثور عليها عبر Google أو موارد المجتمع.",
     "Crypto Gambling Foundation": "مؤسسة المقامرة بالعملات المشفرة",
-    "Betalarab is a verified operator on the Crypto Gambling Foundation network. The foundation aims to uphold high standards of provably fair gambling. Check their website for more information.": "Betalarab مشغّل معتمد على شبكة Crypto Gambling Foundation. تهدف المؤسسة إلى الحفاظ على معايير عالية للمقامرة العادلة قابلة للإثبات. راجع موقعهم لمزيد من المعلومات.",
+    "Betalarab is a verified operator on the Crypto Gambling Foundation network": {
+      " The foundation aims to uphold high standards of provably fair gambling": {
+        " Check their website for more information": {
+          "": "Betalarab مشغّل معتمد على شبكة Crypto Gambling Foundation. تهدف المؤسسة إلى الحفاظ على معايير عالية للمقامرة العادلة قابلة للإثبات. راجع موقعهم لمزيد من المعلومات."
+        }
+      }
+    },
     "CryptoGamblingFoundationDesc": "Betalarab مشغّل معتمد على شبكة Crypto Gambling Foundation. تسعى هذه المؤسسة إلى أعلى معايير المقامرة العادلة قابلة للإثبات ونفخر بكوننا جزءًا من شبكتها. لمزيد من المعلومات والرؤى حول العدالة القابلة للإثبات وقوتها في هذا الصناعة، تفضل بزيارة Crypto Gambling Foundation عبر موقعهم: ",
     "CRYPTO GAMBLING FOUNDATION": "مؤسسة المقامرة بالعملات المشفرة",
     "VERIFIED OPERATOR": "مشغّل معتمد",
-    "Implementation content will be displayed here.": "سيُعرض محتوى التنفيذ هنا.",
+    "Implementation content will be displayed here": {
+      "": "سيُعرض محتوى التنفيذ هنا."
+    },
     "ImplementationPlaceholder": "سيُعرض محتوى التنفيذ هنا.",
-    "Conversions content will be displayed here.": "سيُعرض محتوى التحويلات هنا.",
+    "Conversions content will be displayed here": {
+      "": "سيُعرض محتوى التحويلات هنا."
+    },
     "ConversionsPlaceholder": "سيُعرض محتوى التحويلات هنا.",
-    "Game Events content will be displayed here.": "سيُعرض محتوى أحداث اللعبة هنا.",
+    "Game Events content will be displayed here": {
+      "": "سيُعرض محتوى أحداث اللعبة هنا."
+    },
     "GameEventsPlaceholder": "سيُعرض محتوى أحداث اللعبة هنا.",
-    "Unhash Server Seed content will be displayed here.": "سيُعرض محتوى فك تجزئة بذرة الخادم هنا.",
+    "Unhash Server Seed content will be displayed here": {
+      "": "سيُعرض محتوى فك تجزئة بذرة الخادم هنا."
+    },
     "UnhashServerSeedPlaceholder": "سيُعرض محتوى فك تجزئة بذرة الخادم هنا.",
-    "Calculation content will be displayed here.": "سيُعرض محتوى الحساب هنا.",
+    "Calculation content will be displayed here": {
+      "": "سيُعرض محتوى الحساب هنا."
+    },
     "CalculationPlaceholder": "سيُعرض محتوى الحساب هنا."
   },
   "HelpCenter": {
@@ -1364,7 +1464,7 @@
     "name_ncpg": "الخط الوطني لمشكلة المقامرة (NCPG)",
     "name_gamcare": "GamCare",
     "name_ca_provincial": "مساعدة المقامرة في كندا (خدمات المحافظات)",
-    "name_au": "Gambling Help Online",
+    "name_au": "مساعدة المقامرة عبر الإنترنت",
     "name_nz": "خط مساعدة المقامرة NZ",
     "name_find_local": "البحث عن دعم محلي",
     "hours_us": "24/7 (قد يختلف التوفر حسب الولاية)",
@@ -1481,7 +1581,7 @@
     "UrgentSafetyText": "إن كنت في خطر فوري أو لا تشعر بالأمان، تواصل مع خدمات الطوارئ المحلية فوراً."
   },
   "VipClub": {
-    "VIP": "VIP",
+    "VIP": "كبار الشخصيات",
     "Overview": "نظرة عامة",
     "Rewards": "المكافآت",
     "None": "لا يوجد",
@@ -1500,10 +1600,14 @@
     "Bonus from VIP host in currency of your choice": "مكافأة من مضيف VIP بعملتك المفضلة",
     "Weekly & monthly bonuses increased": "زيادة المكافآت الأسبوعية والشهرية",
     "Exclusively customised benefits": "مزايا مخصصة حصرياً",
-    "Reach Platinum IV or above and receive your own dedicated VIP host who will support and cater to your betting needs.": "أوصل إلى مستوى Platinum IV أو أعلى واحصل على مضيف VIP مخصص يدعمك ويلبي احتياجاتك في المراهنة.",
+    "Reach Platinum IV or above and receive your own dedicated VIP host who will support and cater to your betting needs": {
+      "": "أوصل إلى مستوى Platinum IV أو أعلى واحصل على مضيف VIP مخصص يدعمك ويلبي احتياجاتك في المراهنة."
+    },
     "VIPHostUnlockDesc": "أوصل إلى مستوى Platinum IV أو أعلى واحصل على مضيف VIP مخصص يدعمك ويلبي احتياجاتك في المراهنة.",
     "VIP Host benefits": "مزايا مضيف VIP",
-    "VIP Hosts cater to your needs and ensure your time at Betalarab is safe, entertaining and rewarding. Enjoy:": "يهتم مضيفو VIP باحتياجاتك ويضمنون أن تكون تجربتك في Betalarab آمنة وممتعة ومجزية. استمتع بـ:",
+    "VIP Hosts cater to your needs and ensure your time at Betalarab is safe, entertaining and rewarding": {
+      " Enjoy:": "يهتم مضيفو VIP باحتياجاتك ويضمنون أن تكون تجربتك في Betalarab آمنة وممتعة ومجزية. استمتع بـ:"
+    },
     "VIPHostBenefitsDesc": "يهتم مضيفو VIP باحتياجاتك ويضمنون أن تكون تجربتك في Betalarab آمنة وممتعة ومجزية. استمتع بـ:",
     "Your personal point of contact at Betalarab": "نقطة تواصلك الشخصية في Betalarab",
     "Tailored bonuses and sports betting limits": "مكافآت وحدود رهان رياضي مخصصة",
@@ -1511,16 +1615,30 @@
     "Exclusive promotions and events": "عروض وفعاليات حصرية",
     "Learn more about being a Betalarab VIP": "اعرف المزيد عن برنامج Betalarab VIP",
     "Monthly Bonus": "المكافأة الشهرية",
-    "Released once a month.": "تُطلق مرة واحدة في الشهر.",
+    "Released once a month": {
+      "": "تُطلق مرة واحدة في الشهر."
+    },
     "MonthlyBonusShort": "تُطلق مرة واحدة في الشهر.",
-    "The Monthly Bonus is randomly released. Eligible players will be notified via email. Your bonus is based on your game play throughout the month. The more you play, the bigger the bonus.": "تُطلق المكافأة الشهرية بشكل عشوائي. سيتم إخطار اللاعبين المؤهلين عبر البريد الإلكتروني. تعتمد مكافأتك على نشاطك في اللعب خلال الشهر. كلما لعبت أكثر، كانت المكافأة أكبر.",
+    "The Monthly Bonus is randomly released": {
+      " Eligible players will be notified via email": {
+        " Your bonus is based on your game play throughout the month": {
+          " The more you play, the bigger the bonus": {
+            "": "تُطلق المكافأة الشهرية بشكل عشوائي. سيتم إخطار اللاعبين المؤهلين عبر البريد الإلكتروني. تعتمد مكافأتك على نشاطك في اللعب خلال الشهر. كلما لعبت أكثر، كانت المكافأة أكبر."
+          }
+        }
+      }
+    },
     "MonthlyBonusDetailed": "تُطلق المكافأة الشهرية بشكل عشوائي. سيتم إخطار اللاعبين المؤهلين عبر البريد الإلكتروني. تعتمد مكافأتك على نشاطك في اللعب خلال الشهر. كلما لعبت أكثر، كانت المكافأة أكبر.",
     "Rakeback": "استرداد الرسوم",
-    "Unlocked at Bronze VIP.": "يُفتح عند مستوى Bronze VIP.",
+    "Unlocked at Bronze VIP": {
+      "": "يُفتح عند مستوى Bronze VIP."
+    },
     "UnlockedBronzeVIP": "يُفتح عند مستوى Bronze VIP.",
     "Weekly Boost": "تعزيز أسبوعي",
     "Reload": "إعادة تحميل",
-    "Unlocked at Platinum VIP.": "يُفتح عند مستوى Platinum VIP.",
+    "Unlocked at Platinum VIP": {
+      "": "يُفتح عند مستوى Platinum VIP."
+    },
     "UnlockedPlatinumVIP": "يُفتح عند مستوى Platinum VIP.",
     "Guest": "ضيف",
     "Bronze": "البرونز",
@@ -1545,13 +1663,13 @@
   "ProfileMenu": {
     "Wallet": "المحفظة",
     "Vault": "الخزنة",
-    "VIP": "VIP",
+    "VIP": "كبار الشخصيات",
     "Affiliate": "الشراكة",
     "Statistics": "الإحصائيات",
     "Transactions": "المعاملات",
     "My Bets": "رهاناتي",
     "Settings": "الإعدادات",
-    "Betalarab Smart": "Betalarab Smart",
+    "Betalarab Smart": "بيتالاراب سمارت",
     "Live Support": "الدعم المباشر",
     "Logout": "تسجيل الخروج"
   },
