@@ -37,7 +37,7 @@ export const HOME_CATEGORIES: {
   {
     key: "new-games",
     name: "New Games",
-    category: "drop-wins",
+    category: "slot-new",
     icon: "/images/sidebar/drop-wins.svg",
   },
 ];
