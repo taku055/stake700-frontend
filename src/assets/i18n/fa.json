@@ -566,11 +566,11 @@
   },
   "AriesDeposit": {
     "Email": "ایمیل",
-    "Email placeholder": "you@example.com",
+    "Email placeholder": "نمونه@example.com",
     "Name": "نام",
     "Name placeholder": "نام کامل",
     "Amount": "مبلغ",
-    "Amount placeholder": "0",
+    "Amount placeholder": "۰",
     "Street address": "آدرس",
     "Street address placeholder": "خیابان اصلی ۱۲۳",
     "City": "شهر",
@@ -579,7 +579,7 @@
     "ZIP placeholder": "کد پستی",
     "Country": "کشور",
     "Phone": "تلفن",
-    "Phone placeholder": "+1 234 567 8900",
+    "Phone placeholder": "+98 912 345 6789",
     "Submit payment": "ثبت پرداخت",
     "Payment could not be created.": "پرداخت ایجاد نشد.",
     "Something went wrong.": "مشکلی پیش آمد."
@@ -1060,7 +1060,7 @@
     "< Back": "< بازگشت",
     "Create an Account": "ایجاد حساب",
     "Terms and Conditions": "شرایط و ضوابط",
-    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_title": "۱. betalarab.com",
     "terms_and_conditions_content": "betalarab.com متعلق به و توسط Medium Rare, N.V. اداره می‌شود، شرکتی که تحت قوانین Curaçao با دفتر مرکزی در Zuiderpark 6, Willemstad, Curaçao ثبت شده است. betalarab.com توسط Curaçao Gaming Authority مجوز دارد و نظارت می‌شود (شماره مجوز OGL/2024/1451/0918).\n\nپردازش پرداخت betalarab.com توسط شرکت‌های فرعی Medium Rare Limited (قبرس) و MRS Tech Ltd (قبرس) انجام می‌شود، با آدرس‌های ثبت‌شده در 28 Oktovriou 1, Limassol 4102, Cyprus و شماره‌های ثبت HE 410775 و HE 477481.\n\nبا استفاده از betalarab.com، شما موافقت می‌کنید که به این شرایط و ضوابط پایبند باشید. لطفاً قبل از استفاده از خدمات ما آن‌ها را با دقت بخوانید.",
     "I have read and agree to the Terms and Conditions": "شرایط و ضوابط را خوانده‌ام و با آن‌ها موافقم",
     "Already have an account?": "قبلاً حساب دارید؟",
@@ -1071,7 +1071,7 @@
     "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.": "از داشتن شما اینجا بسیار خوشحالیم! آماده باشید تا بازی‌های فوق‌العاده و فرصت‌های هیجان‌انگیز را کاوش کنید."
   },
   "MessagePage": {
-    "Send New": "ارسال جدید",
+    "Send New": "پیام جدید",
     "Subject": "موضوع",
     "Enter text here": "متن را اینجا وارد کنید",
     "Message": "پیام",

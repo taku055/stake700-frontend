@@ -49,7 +49,7 @@
     "Pragmatic games": "Pragmatic oyunları",
     "Roulette": "Rulet",
     "Blackjack": "Blackjack",
-    "Video Poker": "Video Poker",
+    "Video Poker": "Video poker",
     "Baccarat": "Bakkara",
     "Table Games": "Masa Oyunları",
     "Horse Racing": "At Yarışı",
@@ -189,7 +189,7 @@
     "Live Sports": "Canlı İdman",
     "Soccer": "Futbol",
     "Basketball": "Basketbol",
-    "Tennis": "Tennis",
+    "Tennis": "Tenis",
     "eSports": "eİdman",
     "Bet Bonuses": "Mərc Bonusları",
     "Sports Rules": "İdman Qaydaları",
@@ -295,7 +295,7 @@
   "HomePage": {
     "casino-games": "Kazino Oyunları",
     "live-casino": "Canlı Kazino",
-    "Hacksaw": "Hacksaw",
+    "Hacksaw": "mişar",
     "No Limit": "Hüdüd Yoxdur",
     "Deposit Methods": "Depozit Üsulları",
     "deposit_info": "Mövcud depozit üsulları burada göstəriləcək",
@@ -574,7 +574,7 @@
   },
   "AriesDeposit": {
     "Email": "E-poçt",
-    "Email placeholder": "you@example.com",
+    "Email placeholder": "nümunə@example.com",
     "Name": "Ad",
     "Name placeholder": "Tam ad",
     "Amount": "Məbləğ",
@@ -587,14 +587,10 @@
     "ZIP placeholder": "Poçt indeksi",
     "Country": "Ölkə",
     "Phone": "Telefon",
-    "Phone placeholder": "+1 234 567 8900",
+    "Phone placeholder": "+994 50 000 00 00",
     "Submit payment": "Ödənişi təsdiqlə",
-    "Payment could not be created": {
-      "": "Ödəniş yaradıla bilmədi."
-    },
-    "Something went wrong": {
-      "": "Xəta baş verdi."
-    }
+    "Payment could not be created.": "Ödəniş yaradıla bilmədi.",
+    "Something went wrong.": "Xəta baş verdi."
   },
   "SearchWidget": {
     "Search": "Axtar",
@@ -630,7 +626,7 @@
     "DEPOSIT AMOUNT": "DEPOZİT MƏBLƏĞİ",
     "WALLET ADDRESS": "CÜZDAN ÜNVANI",
     "Deposit Amount": "Depozit məbləği",
-    "Minimum Limit": "Minimum Limit",
+    "Minimum Limit": "Minimum limit",
     "Network Fee": "Şəbəkə haqqı",
     "Unknown": "Naməlum",
     "Your wallet": "Cüzdanınız",
@@ -844,9 +840,7 @@
     "email": "E-poçt",
     "recover_password": "Şifrəni Bərpa Et",
     "Password reset link was sent to": "Şifrə sıfırlama linki göndərildi",
-    "Something went wrong": {
-      " Please check your email exists in the": "Xəta baş verdi. Zəhmət olmasa e-poçtunuzun mövcud olduğunu yoxlayın"
-    },
+    "Something went wrong. Please check your email exists in the": "Xəta baş verdi. Zəhmət olmasa e-poçtunuzun mövcud olduğunu yoxlayın",
     "EmailCheckError": "Xəta baş verdi. Zəhmət olmasa e-poçtunuzun mövcud olduğunu yoxlayın"
   },
   "Setting": {
@@ -866,8 +860,8 @@
     "Messages": "Mesajlar",
     "Rewards": "Mükafatlar",
     "Demo": "Nümayiş",
-    "Demo 1": "Demo 1",
-    "Demo 2": "Demo 2",
+    "Demo 1": "Nümunə 1",
+    "Demo 2": "Nümunə 2",
     "Deposit": "Depozit",
     "Withdraw": "Çıxarış",
     "Transaction History": "Əməliyyat Tarixçəsi",
@@ -1169,7 +1163,7 @@
     "< Back": "< Geri",
     "Create an Account": "Hesab Yarat",
     "Terms and Conditions": "Şərtlər və Qaydalar",
-    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_title": "1. betalarab.com",
     "terms_and_conditions_content": "betalarab.com Curaçao qanunlarına əsasən qurulmuş, baş ofisi Zuiderpark 6, Willemstad, Curaçao ünvanında yerləşən Medium Rare, N.V. şirkətinə məxsusdur və onun tərəfindən idarə olunur. betalarab.com Curaçao Oyun Səlahiyyəti tərəfindən lisenziyalaşdırılıb və tənzimlənir (lisenziya nömrəsi OGL/2024/1451/0918).\n\nbetalarab.com üçün ödənişlərin emalı Kiprda qeydiyyatlı filiallar Medium Rare Limited və MRS Tech Ltd tərəfindən həyata keçirilir (qeydiyyat ünvanları: 28 Oktovriou 1, Limassol 4102, Kipr; qeydiyyat nömrələri: HE 410775 və HE 477481).\n\nbetalarab.com-dan istifadə etməklə bu Şərtlər və Qaydalara bağlı olduğunuzu qəbul edirsiniz. Xidmətlərimizdən istifadə etməzdən əvvəl diqqətlə oxuyun.",
     "I have read and agree to the Terms and Conditions": "Mən Şərtləri və Qaydaları oxudum və razıyam",
     "Already have an account?": "Artıq hesabınız var?",
@@ -1177,9 +1171,7 @@
   },
   "WelcomeDialog": {
     "Welcome to Betalarab!": "Betalarab-ə xoş gəlmisiniz!",
-    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities": {
-      "": "Sizi burada görməkdən çox məmnunuq! Heyrətamiz oyunları və həyəcanverici imkanları kəşf etməyə hazır olun."
-    }
+    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.": "Sizi burada görməkdən çox məmnunuq! Heyrətamiz oyunları və həyəcanverici imkanları kəşf etməyə hazır olun."
   },
   "ProvablyFair": {
     "Provably Fair": "Sübut edilə bilən ədalət",
@@ -1253,7 +1245,7 @@
     "HeroDescription": "Aşağıdakı ümumi mövzulara baxın və ya konkret sual axtarın. Kömək lazımdırsa, dəstəklə əlaqə saxlayın.",
     "ContactSupport": "Dəstəklə əlaqə",
     "ViewFaqs": "SSS-ə bax",
-    "Stat24_7": "24/7",
+    "Stat24_7": "7/24",
     "Stat24_7Label": "Söhbət dəstəyi",
     "StatSafe": "Təhlükəsiz",
     "StatSafeLabel": "Təhlükəsiz ödənişlər",
@@ -1468,10 +1460,10 @@
     "name_nz": "Qumar Köməkçisi (NZ)",
     "name_find_local": "Yerli dəstək tap",
     "hours_us": "24/7 (əlavəlilik ştata görə dəyişə bilər)",
-    "hours_uk": "24/7",
+    "hours_uk": "7/24",
     "hours_ca": "Əyalətdən asılıdır",
-    "hours_au": "24/7",
-    "hours_nz": "24/7",
+    "hours_au": "7/24",
+    "hours_nz": "7/24",
     "hours_intl": "Yerdən asılıdır",
     "text_800gam": "800GAM",
     "ThreeQuickSteps": "3 sürətli addım",
@@ -1625,7 +1617,7 @@
         }
       }
     },
-    "Rakeback": "Rakeback",
+    "Rakeback": "Rakebek",
     "Unlocked at Bronze VIP": {
       "": "Bürünc VIP-də açılır."
     },
@@ -1644,7 +1636,7 @@
     "Iron": "Dəmir",
     "Platinum": "Platin",
     "Diamond": "Almaz",
-    "Obsidian": "Obsidian",
+    "Obsidian": "obsidian",
     "Ruby": "Yaqut",
     "Loyal": "Sadiq",
     "Captain": "Kapitan",

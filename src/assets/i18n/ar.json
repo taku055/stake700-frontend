@@ -43,7 +43,7 @@
     "Fishing & Hunting": "صيد وصيد",
     "Casual Games": "ألعاب عادية",
     "Other Games": "ألعاب أخرى",
-    "bfth_Arena": "B.F.T.H. Arena",
+    "bfth_Arena": "ب.ف.ت. الساحة",
     "Tournamements": "البطولات",
     "bfth_Archives": "أرشيف B. F. T. H.",
     "Pragmatic games": "ألعاب Pragmatic",
@@ -578,7 +578,7 @@
     "Name": "الاسم",
     "Name placeholder": "الاسم الكامل",
     "Amount": "المبلغ",
-    "Amount placeholder": "0",
+    "Amount placeholder": "٠",
     "Street address": "العنوان",
     "Street address placeholder": "123 الشارع الرئيسي",
     "City": "المدينة",
@@ -587,14 +587,10 @@
     "ZIP placeholder": "الرمز البريدي",
     "Country": "الدولة",
     "Phone": "الهاتف",
-    "Phone placeholder": "+1 234 567 8900",
+    "Phone placeholder": "+966 50 000 0000",
     "Submit payment": "إرسال الدفع",
-    "Payment could not be created": {
-      "": "تعذر إنشاء الدفع."
-    },
-    "Something went wrong": {
-      "": "حدث خطأ ما."
-    }
+    "Payment could not be created.": "تعذر إنشاء الدفع.",
+    "Something went wrong.": "حدث خطأ ما."
   },
   "SearchWidget": {
     "Search": "بحث",
@@ -1145,7 +1141,7 @@
     "< Back": "< رجوع",
     "Create an Account": "إنشاء حساب",
     "Terms and Conditions": "الشروط والأحكام",
-    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_title": "١. betalarab.com",
     "terms_and_conditions_content": "betalarab.com مملوكة وتديرها Medium Rare, N.V.، وهي شركة مسجلة بموجب قوانين كوراساو ومقرها Zuiderpark 6، ويلمستاد، كوراساو. betalarab.com مرخّصة وخاضعة لرقابة هيئة كوراساو للألعاب (رقم الترخيص OGL/2024/1451/0918).\n\nتُعالَج مدفوعات betalarab.com من قبل الشركات التابعة Medium Rare Limited (قبرص) و MRS Tech Ltd (قبرص)، بعناوين مسجلة في 28 Oktovriou 1، ليماسول 4102، قبرص وأرقام التسجيل HE 410775 و HE 477481 على التوالي.\n\nباستخدامك لـ betalarab.com، فإنك توافق على الالتزام بهذه الشروط والأحكام. يرجى قراءتها بعناية قبل استخدام خدماتنا.",
     "I have read and agree to the Terms and Conditions": "لقد قرأت وأوافق على الشروط والأحكام",
     "Already have an account?": "هل لديك حساب بالفعل؟",
@@ -1153,9 +1149,7 @@
   },
   "WelcomeDialog": {
     "Welcome to Betalarab!": "مرحبًا بك في Betalarab!",
-    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities": {
-      "": "نحن سعداء جدًا لوجودك هنا! استعد لاستكشاف ألعاب رائعة وفرص مثيرة."
-    }
+    "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.": "نحن سعداء جدًا لوجودك هنا! استعد لاستكشاف ألعاب رائعة وفرص مثيرة."
   },
   "MessagePage": {
     "Send New": "رسالة جديدة",
@@ -1253,7 +1247,7 @@
     "HeroDescription": "تصفح المواضيع الشائعة أدناه أو ابحث عن سؤال محدد. إذا كنت لا تزال بحاجة إلى مساعدة، تواصل مع الدعم.",
     "ContactSupport": "تواصل مع الدعم",
     "ViewFaqs": "عرض الأسئلة الشائعة",
-    "Stat24_7": "24/7",
+    "Stat24_7": "٢٤/٧",
     "Stat24_7Label": "دعم الدردشة",
     "StatSafe": "آمن",
     "StatSafeLabel": "مدفوعات آمنة",
@@ -1462,18 +1456,18 @@
     "region_nz": "نيوزيلندا",
     "region_intl": "دولي",
     "name_ncpg": "الخط الوطني لمشكلة المقامرة (NCPG)",
-    "name_gamcare": "GamCare",
+    "name_gamcare": "غامكير",
     "name_ca_provincial": "مساعدة المقامرة في كندا (خدمات المحافظات)",
     "name_au": "مساعدة المقامرة عبر الإنترنت",
     "name_nz": "خط مساعدة المقامرة NZ",
     "name_find_local": "البحث عن دعم محلي",
     "hours_us": "24/7 (قد يختلف التوفر حسب الولاية)",
-    "hours_uk": "24/7",
+    "hours_uk": "٢٤/٧",
     "hours_ca": "يختلف حسب المحافظة",
-    "hours_au": "24/7",
-    "hours_nz": "24/7",
+    "hours_au": "٢٤/٧",
+    "hours_nz": "٢٤/٧",
     "hours_intl": "يختلف حسب الموقع",
-    "text_800gam": "800GAM",
+    "text_800gam": "800غام",
     "ThreeQuickSteps": "3 خطوات سريعة",
     "Step1Title": "توقف",
     "Step1Text": "خذ استراحة. أغلق اللعبة. تنفس.",
@@ -1781,7 +1775,7 @@
     "third_party_text_2": "قد يحتوي موقعنا على روابط لمواقع أخرى خارج سيطرتنا وغير مشمولة بهذه السياسة. إذا زرت مواقع أخرى عبر الروابط، قد يجمع مشغّلو تلك المواقع معلومات منك وفق سياساتهم الخاصة التي قد تختلف عن سياساتنا. مشغّلو المواقع المرتبطة مسؤولون عن وظائفها وأخطائها المحتملة.",
     "analytics_title": "التحليلات",
     "analytics_intro": "الخدمات في هذا القسم تتيح لمالك الموقع مراقبة وتحليل حركة المرور وتتبع سلوك المستخدم.",
-    "google_analytics_title": "Google Analytics (Google Inc.)",
+    "google_analytics_title": "تحليلات جوجل (شركة جوجل)",
     "google_analytics_text_1": "Google Analytics خدمة تحليل ويب تقدمها Google Inc. («Google»). تستخدم Google البيانات المجمعة لتتبع وفحص استخدام betalarab وإعداد تقارير ومشاركتها مع خدمات Google الأخرى.",
     "google_analytics_text_2": "قد تستخدم Google البيانات المجمعة لسياق الإعلانات وتخصيصها على شبكتها الإعلانية.",
     "google_analytics_personal_data": "البيانات الشخصية المجمعة:",
