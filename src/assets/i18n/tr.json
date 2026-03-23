@@ -590,7 +590,9 @@
     "Card number": "Kart numarası",
     "Enter card number": "Kart numarasını girin",
     "Submit withdraw": "Çekimi gönder",
-    "WAGERING_REQUIREMENT_NOT_MET": "Nakit bakiyeniz için bahis çevrim şartlarını sağlayana kadar nakit çekemezsiniz."
+    "WAGERING_REQUIREMENT_NOT_MET": "Nakit bakiyeniz için bahis çevrim şartlarını sağlayana kadar nakit çekemezsiniz.",
+    "INSUFFICIENT_BALANCE": "Nakit bakiyeniz bu çekim için yetersiz.",
+    "INVALID_AMOUNT": "Tutar sıfırdan büyük olmalıdır."
   },
   "SearchWidget": {
     "Search": "Ara",

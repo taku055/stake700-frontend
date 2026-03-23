@@ -590,7 +590,9 @@
     "Card number": "Kart nömrəsi",
     "Enter card number": "Kart nömrəsini daxil edin",
     "Submit withdraw": "Çıxarışı göndər",
-    "WAGERING_REQUIREMENT_NOT_MET": "Nağd balansınız üçün mərc tələblərini yerinə yetirməyənə qədər nağd pul çıxara bilməzsiniz."
+    "WAGERING_REQUIREMENT_NOT_MET": "Nağd balansınız üçün mərc tələblərini yerinə yetirməyənə qədər nağd pul çıxara bilməzsiniz.",
+    "INSUFFICIENT_BALANCE": "Nağd balansınız bu çıxarış üçün kifayət etmir.",
+    "INVALID_AMOUNT": "Məbləğ sıfırdan böyük olmalıdır."
   },
   "SearchWidget": {
     "Search": "Axtar",

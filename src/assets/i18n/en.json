@@ -656,7 +656,10 @@
     "Card number": "Card number",
     "Enter card number": "Enter card number",
     "Submit withdraw": "Submit withdraw",
-    "WAGERING_REQUIREMENT_NOT_MET": "You cannot withdraw cash until you have met the wagering requirements for your cash balance."
+    "WAGERING_REQUIREMENT_NOT_MET": "You cannot withdraw cash until you have met the wagering requirements for your cash balance.",
+    "INSUFFICIENT_BALANCE": "Your cash balance is insufficient for this withdrawal.",
+    "INVALID_AMOUNT": "Amount must be greater than zero."
+
   },
   "SearchWidget": {
     "Search": "Search",

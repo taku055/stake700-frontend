@@ -590,7 +590,9 @@
     "Card number": "Numero carta",
     "Enter card number": "Inserisci numero carta",
     "Submit withdraw": "Invia prelievo",
-    "WAGERING_REQUIREMENT_NOT_MET": "Non puoi prelevare denaro finché non hai soddisfatto i requisiti di puntata per il tuo saldo contante."
+    "WAGERING_REQUIREMENT_NOT_MET": "Non puoi prelevare denaro finché non hai soddisfatto i requisiti di puntata per il tuo saldo contante.",
+    "INSUFFICIENT_BALANCE": "Il tuo saldo in contanti è insufficiente per questo prelievo.",
+    "INVALID_AMOUNT": "L'importo deve essere maggiore di zero."
   },
   "SearchWidget": {
     "Search": "Cerca",

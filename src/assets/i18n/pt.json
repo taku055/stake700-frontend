@@ -590,7 +590,9 @@
     "Card number": "Número do cartão",
     "Enter card number": "Digite o número do cartão",
     "Submit withdraw": "Enviar saque",
-    "WAGERING_REQUIREMENT_NOT_MET": "Não pode levantar dinheiro até cumprir os requisitos de apostas do seu saldo em dinheiro."
+    "WAGERING_REQUIREMENT_NOT_MET": "Não pode levantar dinheiro até cumprir os requisitos de apostas do seu saldo em dinheiro.",
+    "INSUFFICIENT_BALANCE": "Seu saldo em dinheiro é insuficiente para este saque.",
+    "INVALID_AMOUNT": "O valor deve ser maior que zero."
   },
   "SearchWidget": {
     "Search": "Buscar",

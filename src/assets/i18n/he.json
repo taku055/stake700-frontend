@@ -590,7 +590,9 @@
     "Card number": "מספר כרטיס",
     "Enter card number": "הזן מספר כרטיס",
     "Submit withdraw": "שלח משיכה",
-    "WAGERING_REQUIREMENT_NOT_MET": "אינך יכול למשוך מזומן עד שתעמוד בדרישות ההימור של יתרת המזומן שלך."
+    "WAGERING_REQUIREMENT_NOT_MET": "אינך יכול למשוך מזומן עד שתעמוד בדרישות ההימור של יתרת המזומן שלך.",
+    "INSUFFICIENT_BALANCE": "יתרת המזומן שלך אינה מספיקה למשיכה זו.",
+    "INVALID_AMOUNT": "הסכום חייב להיות גדול מאפס."
   },
   "SearchWidget": {
     "Search": "חיפוש",

@@ -590,7 +590,9 @@
     "Card number": "Número de tarjeta",
     "Enter card number": "Ingresa el número de tarjeta",
     "Submit withdraw": "Enviar retiro",
-    "WAGERING_REQUIREMENT_NOT_MET": "No puedes retirar efectivo hasta que hayas cumplido los requisitos de apuesta para tu saldo en efectivo."
+    "WAGERING_REQUIREMENT_NOT_MET": "No puedes retirar efectivo hasta que hayas cumplido los requisitos de apuesta para tu saldo en efectivo.",
+    "INSUFFICIENT_BALANCE": "Tu saldo en efectivo es insuficiente para este retiro.",
+    "INVALID_AMOUNT": "El monto debe ser mayor que cero."
   },
   "SearchWidget": {
     "Search": "Buscar",

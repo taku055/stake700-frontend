@@ -590,7 +590,9 @@
     "Card number": "Kartennummer",
     "Enter card number": "Kartennummer eingeben",
     "Submit withdraw": "Auszahlung absenden",
-    "WAGERING_REQUIREMENT_NOT_MET": "Sie können kein Geld abheben, bis Sie die Umsatzanforderungen für Ihr Barguthaben erfüllt haben."
+    "WAGERING_REQUIREMENT_NOT_MET": "Sie können kein Geld abheben, bis Sie die Umsatzanforderungen für Ihr Barguthaben erfüllt haben.",
+    "INSUFFICIENT_BALANCE": "Ihr Barguthaben reicht für diese Auszahlung nicht aus.",
+    "INVALID_AMOUNT": "Der Betrag muss größer als null sein."
   },
   "SearchWidget": {
     "Search": "Suche",
