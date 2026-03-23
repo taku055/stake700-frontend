@@ -578,6 +578,19 @@
     "Payment could not be created.": "No se pudo crear el pago.",
     "Something went wrong.": "Algo salió mal."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "Por favor, inicia sesión para retirar.",
+    "Please enter a valid amount.": "Por favor, introduce un monto válido.",
+    "Insufficient balance for this withdraw amount.": "Saldo insuficiente para este monto de retiro.",
+    "Withdraw request created successfully.": "La solicitud de retiro se creó correctamente.",
+    "Withdraw could not be created.": "No se pudo crear la solicitud de retiro.",
+    "Something went wrong.": "Algo salió mal.",
+    "Amount": "Monto",
+    "Enter amount": "Ingresa el monto",
+    "Card number": "Número de tarjeta",
+    "Enter card number": "Ingresa el número de tarjeta",
+    "Submit withdraw": "Enviar retiro"
+  },
   "SearchWidget": {
     "Search": "Buscar",
     "Results": "Resultados"

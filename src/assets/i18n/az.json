@@ -578,6 +578,19 @@
     "Payment could not be created.": "Ödəniş yaradıla bilmədi.",
     "Something went wrong.": "Xəta baş verdi."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "Çıxarış üçün daxil olun.",
+    "Please enter a valid amount.": "Zəhmət olmasa düzgün məbləğ daxil edin.",
+    "Insufficient balance for this withdraw amount.": "Bu çıxarış məbləği üçün balans kifayət deyil.",
+    "Withdraw request created successfully.": "Çıxarış sorğusu uğurla yaradıldı.",
+    "Withdraw could not be created.": "Çıxarış sorğusu yaradıla bilmədi.",
+    "Something went wrong.": "Nəsə xəta baş verdi.",
+    "Amount": "Məbləğ",
+    "Enter amount": "Məbləği daxil edin",
+    "Card number": "Kart nömrəsi",
+    "Enter card number": "Kart nömrəsini daxil edin",
+    "Submit withdraw": "Çıxarışı göndər"
+  },
   "SearchWidget": {
     "Search": "Axtar",
     "Results": "Nəticələr"

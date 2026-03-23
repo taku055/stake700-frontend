@@ -578,6 +578,19 @@
     "Payment could not be created.": "Η πληρωμή δεν μπόρεσε να δημιουργηθεί.",
     "Something went wrong.": "Κάτι πήγε στραβά."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "Παρακαλώ συνδεθείτε για ανάληψη.",
+    "Please enter a valid amount.": "Παρακαλώ εισάγετε έγκυρο ποσό.",
+    "Insufficient balance for this withdraw amount.": "Ανεπαρκές υπόλοιπο για αυτό το ποσό ανάληψης.",
+    "Withdraw request created successfully.": "Το αίτημα ανάληψης δημιουργήθηκε με επιτυχία.",
+    "Withdraw could not be created.": "Δεν ήταν δυνατή η δημιουργία αιτήματος ανάληψης.",
+    "Something went wrong.": "Κάτι πήγε στραβά.",
+    "Amount": "Ποσό",
+    "Enter amount": "Εισαγάγετε ποσό",
+    "Card number": "Αριθμός κάρτας",
+    "Enter card number": "Εισαγάγετε αριθμό κάρτας",
+    "Submit withdraw": "Υποβολή ανάληψης"
+  },
   "SearchWidget": {
     "Search": "Αναζήτηση",
     "Results": "Αποτελέσματα"

@@ -578,6 +578,19 @@
     "Payment could not be created.": "تعذر إنشاء الدفع.",
     "Something went wrong.": "حدث خطأ ما."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "يرجى تسجيل الدخول للسحب.",
+    "Please enter a valid amount.": "يرجى إدخال مبلغ صالح.",
+    "Insufficient balance for this withdraw amount.": "الرصيد غير كافٍ لهذا المبلغ.",
+    "Withdraw request created successfully.": "تم إنشاء طلب السحب بنجاح.",
+    "Withdraw could not be created.": "تعذر إنشاء طلب السحب.",
+    "Something went wrong.": "حدث خطأ ما.",
+    "Amount": "المبلغ",
+    "Enter amount": "أدخل المبلغ",
+    "Card number": "رقم البطاقة",
+    "Enter card number": "أدخل رقم البطاقة",
+    "Submit withdraw": "إرسال السحب"
+  },
   "SearchWidget": {
     "Search": "بحث",
     "Results": "النتائج"

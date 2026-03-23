@@ -644,6 +644,19 @@
     "Payment could not be created.": "Payment could not be created.",
     "Something went wrong.": "Something went wrong."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "Please login to withdraw.",
+    "Please enter a valid amount.": "Please enter a valid amount.",
+    "Insufficient balance for this withdraw amount.": "Insufficient balance for this withdraw amount.",
+    "Withdraw request created successfully.": "Withdraw request created successfully.",
+    "Withdraw could not be created.": "Withdraw could not be created.",
+    "Something went wrong.": "Something went wrong.",
+    "Amount": "Amount",
+    "Enter amount": "Enter amount",
+    "Card number": "Card number",
+    "Enter card number": "Enter card number",
+    "Submit withdraw": "Submit withdraw"
+  },
   "SearchWidget": {
     "Search": "Search",
     "Results": "Results"

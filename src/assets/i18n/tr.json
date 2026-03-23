@@ -578,6 +578,19 @@
     "Payment could not be created.": "Ödeme oluşturulamadı.",
     "Something went wrong.": "Bir şeyler yanlış gitti."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "Çekim yapmak için lütfen giriş yapın.",
+    "Please enter a valid amount.": "Lütfen geçerli bir tutar girin.",
+    "Insufficient balance for this withdraw amount.": "Bu çekim tutarı için bakiye yetersiz.",
+    "Withdraw request created successfully.": "Çekim talebi başarıyla oluşturuldu.",
+    "Withdraw could not be created.": "Çekim talebi oluşturulamadı.",
+    "Something went wrong.": "Bir şeyler yanlış gitti.",
+    "Amount": "Tutar",
+    "Enter amount": "Tutar girin",
+    "Card number": "Kart numarası",
+    "Enter card number": "Kart numarasını girin",
+    "Submit withdraw": "Çekimi gönder"
+  },
   "SearchWidget": {
     "Search": "Ara",
     "Results": "Sonuçlar"

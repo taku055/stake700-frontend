@@ -578,6 +578,19 @@
     "Payment could not be created.": "לא ניתן היה ליצור את התשלום.",
     "Something went wrong.": "משהו השתבש."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "אנא התחבר כדי לבצע משיכה.",
+    "Please enter a valid amount.": "אנא הזן סכום תקין.",
+    "Insufficient balance for this withdraw amount.": "אין מספיק יתרה לסכום המשיכה הזה.",
+    "Withdraw request created successfully.": "בקשת המשיכה נוצרה בהצלחה.",
+    "Withdraw could not be created.": "לא ניתן היה ליצור בקשת משיכה.",
+    "Something went wrong.": "משהו השתבש.",
+    "Amount": "סכום",
+    "Enter amount": "הזן סכום",
+    "Card number": "מספר כרטיס",
+    "Enter card number": "הזן מספר כרטיס",
+    "Submit withdraw": "שלח משיכה"
+  },
   "SearchWidget": {
     "Search": "חיפוש",
     "Results": "תוצאות"

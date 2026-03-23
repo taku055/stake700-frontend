@@ -578,6 +578,19 @@
     "Payment could not be created.": "Impossibile creare il pagamento.",
     "Something went wrong.": "Qualcosa è andato storto."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "Effettua l'accesso per prelevare.",
+    "Please enter a valid amount.": "Inserisci un importo valido.",
+    "Insufficient balance for this withdraw amount.": "Saldo insufficiente per questo importo di prelievo.",
+    "Withdraw request created successfully.": "Richiesta di prelievo creata con successo.",
+    "Withdraw could not be created.": "Impossibile creare la richiesta di prelievo.",
+    "Something went wrong.": "Qualcosa è andato storto.",
+    "Amount": "Importo",
+    "Enter amount": "Inserisci importo",
+    "Card number": "Numero carta",
+    "Enter card number": "Inserisci numero carta",
+    "Submit withdraw": "Invia prelievo"
+  },
   "SearchWidget": {
     "Search": "Cerca",
     "Results": "Risultati"

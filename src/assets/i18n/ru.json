@@ -578,6 +578,19 @@
     "Payment could not be created.": "Не удалось создать платёж.",
     "Something went wrong.": "Что-то пошло не так."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "Пожалуйста, войдите для вывода средств.",
+    "Please enter a valid amount.": "Пожалуйста, введите корректную сумму.",
+    "Insufficient balance for this withdraw amount.": "Недостаточно средств для этой суммы вывода.",
+    "Withdraw request created successfully.": "Заявка на вывод успешно создана.",
+    "Withdraw could not be created.": "Не удалось создать заявку на вывод.",
+    "Something went wrong.": "Что-то пошло не так.",
+    "Amount": "Сумма",
+    "Enter amount": "Введите сумму",
+    "Card number": "Номер карты",
+    "Enter card number": "Введите номер карты",
+    "Submit withdraw": "Отправить вывод"
+  },
   "SearchWidget": {
     "Search": "Поиск",
     "Results": "Результаты"

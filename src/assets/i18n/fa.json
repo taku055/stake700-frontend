@@ -578,6 +578,19 @@
     "Payment could not be created.": "پرداخت ایجاد نشد.",
     "Something went wrong.": "مشکلی پیش آمد."
   },
+  "AriesWithdraw": {
+    "Please login to withdraw.": "برای برداشت لطفا وارد شوید.",
+    "Please enter a valid amount.": "لطفا مبلغ معتبری وارد کنید.",
+    "Insufficient balance for this withdraw amount.": "موجودی برای این مبلغ برداشت کافی نیست.",
+    "Withdraw request created successfully.": "درخواست برداشت با موفقیت ایجاد شد.",
+    "Withdraw could not be created.": "ایجاد درخواست برداشت ممکن نشد.",
+    "Something went wrong.": "مشکلی پیش آمد.",
+    "Amount": "مبلغ",
+    "Enter amount": "مبلغ را وارد کنید",
+    "Card number": "شماره کارت",
+    "Enter card number": "شماره کارت را وارد کنید",
+    "Submit withdraw": "ارسال برداشت"
+  },
   "SearchWidget": {
     "Search": "جستجو",
     "Results": "نتایج"

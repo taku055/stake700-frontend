@@ -1,12 +1,18 @@
 import { apiWithdrawWithAries } from "@/api/wallet/apiWithdrawWithAries";
+import { useTranslations } from "@/context/I18nContext";
 import { validateCardPan } from "@/helpers/validateCardPan";
+import { balanceState } from "@/state/balanceState";
+import { currencyState } from "@/state/currencyState";
 import { userState } from "@/state/userState";
 import { Button, Input } from "@heroui/react";
+import { Eye, EyeOff } from "lucide-preact";
 import { useCallback, useState } from "preact/hooks";
 
 const AriesWithdraw = () => {
+  const t = useTranslations("AriesWithdraw");
   const [amount, setAmount] = useState("");
   const [cardNumber, setCardNumber] = useState("");
+  const [showCardNumber, setShowCardNumber] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -15,7 +21,7 @@ const AriesWithdraw = () => {
     async (e: Event) => {
       e.preventDefault();
       if (!userState.value?.id) {
-        setError("Please login to withdraw.");
+        setError(t("Please login to withdraw."));
         return;
       }
 
@@ -24,15 +30,16 @@ const AriesWithdraw = () => {
 
       const parsedAmount = Number(amount);
       if (!parsedAmount || parsedAmount <= 0) {
-        setError("Please enter a valid amount.");
+        setError(t("Please enter a valid amount."));
         return;
       }
-      const availableBalance = (userState.value?.cashDetails ?? []).reduce(
-        (sum, item) => sum + (Number(item.amount) || 0),
-        0
+
+      const currency = currencyState.value;
+      const availableBalance = Number(
+        balanceState.value?.[currency.code]?.cash?.balance ?? 0
       );
       if (parsedAmount > availableBalance) {
-        setError("Insufficient balance for this withdraw amount.");
+        setError(t("Insufficient balance for this withdraw amount."));
         return;
       }
 
@@ -51,32 +58,39 @@ const AriesWithdraw = () => {
         });
 
         if (res.status) {
-          setSuccess(res.message || "Withdraw request created successfully.");
+          setSuccess(res.message || t("Withdraw request created successfully."));
           setAmount("");
           setCardNumber("");
           return;
         }
 
-        setError(res.message || "Withdraw could not be created.");
+        setError(res.message || t("Withdraw could not be created."));
       } catch (err: unknown) {
         const message =
           err && typeof err === "object" && "message" in err
             ? String((err as { message: unknown }).message)
-            : "Something went wrong.";
+            : t("Something went wrong.");
         setError(message);
       } finally {
         setIsSubmitting(false);
       }
     },
-    [amount, cardNumber, userState.value?.id, userState.value?.cashDetails]
+    [
+      amount,
+      cardNumber,
+      userState.value?.id,
+      currencyState.value,
+      balanceState.value,
+      t,
+    ]
   );
 
   return (
     <form className="flex flex-col w-full gap-4" onSubmit={handleSubmit}>
       <Input
         type="number"
-        label="Amount"
-        placeholder="Enter amount"
+        label={t("Amount")}
+        placeholder={t("Enter amount")}
         value={amount}
         onValueChange={(value) => setAmount(value.replace(/[^\d.]/g, ""))}
         min={0}
@@ -84,12 +98,23 @@ const AriesWithdraw = () => {
         isRequired
       />
       <Input
-        type="text"
-        label="Card number"
-        placeholder="Enter card number"
+        type={showCardNumber ? "text" : "password"}
+        label={t("Card number")}
+        placeholder={t("Enter card number")}
         value={cardNumber}
-        onValueChange={(value) =>
-          setCardNumber(value.replace(/[^\d\s-]/g, ""))
+        onValueChange={(value) => setCardNumber(value.replace(/[^\d\s-]/g, ""))}
+        endContent={
+          showCardNumber ? (
+            <EyeOff
+              className="w-5 h-5 text-default-500 transition-colors cursor-pointer"
+              onClick={() => setShowCardNumber(false)}
+            />
+          ) : (
+            <Eye
+              className="w-5 h-5 text-default-500 transition-colors cursor-pointer"
+              onClick={() => setShowCardNumber(true)}
+            />
+          )
         }
         maxLength={32}
         isRequired
@@ -107,7 +132,7 @@ const AriesWithdraw = () => {
         isLoading={isSubmitting}
         isDisabled={isSubmitting}
       >
-        Submit withdraw
+        {t("Submit withdraw")}
       </Button>
     </form>
   );
