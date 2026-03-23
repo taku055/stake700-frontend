@@ -27,7 +27,7 @@ export type tCreateAriesPaymentResponse = {
 
 export async function apiPayWithAries(params: tCreateAriesPaymentRequest) {
   const res = await instance.post<tCreateAriesPaymentResponse>(
-    "/payment/aries/create",
+    "/payment/aries/create-deposit",
     params
   );
   return res.data;

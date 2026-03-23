@@ -11,33 +11,56 @@ import { loginOpenedState } from "@/state/loginOpenedState";
 import { userState } from "@/state/userState";
 import { useEffect, useRef, useState } from "preact/hooks";
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-let sportsbookApp: any = null;
-let initializing = false;
+const waitForSportsbookSDK = (): Promise<void> => {
+  if (checkTurbostarsSDKLoaded()) {
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      waitForSportsbookSDK().then(resolve);
+    }, 300);
+  });
+};
 
 export default function Sportsbook({
   sportsBookPath,
 }: {
   sportsBookPath?: string;
 }) {
-  const [initializingState, setInitializingState] = useState(false);
+  const [initializing, setInitializing] = useState(true);
+  const [syncing, setSyncing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [updating, setUpdating] = useState(false);
+  const sportsbookAppRef = useRef<unknown>(null);
+  const initPromiseRef = useRef<Promise<void> | null>(null);
   const t = useTranslations("Sportsbook");
 
   useEffect(() => {
-    (async () => {
-      let sportsbookToken = "";
-      if (userState.value?.id) {
-        try {
-          const response = await apiStartSportsbook(currencyState.value.unit);
-          sportsbookToken = response.token;
-        } catch (ex) {
-          setError(t("failed_sportsbook_token"));
+    let cancelled = false;
+
+    initPromiseRef.current = (async () => {
+      await waitForSportsbookSDK();
+      if (cancelled) return;
+
+      if (!containerRef.current) {
+        setError(t("container_not_found"));
+        setInitializing(false);
+        return;
+      }
+
+      try {
+        const sportsbookConfig = getDefaultSportsbookConfig("en", "");
+        sportsbookAppRef.current = await (window as any).Sportsbook.init(
+          sportsbookConfig,
+        );
+      } catch {
+        setError(t("failed_initialize"));
+      } finally {
+        if (!cancelled) {
+          setInitializing(false);
         }
       }
+<<<<<<< HEAD
 
       setUpdating(true);
       while (initializing) {
@@ -130,6 +153,8 @@ export default function Sportsbook({
 
       // Start waiting for SDK
       waitForSDK();
+=======
+>>>>>>> 561a52da9167b576dee0ae0faf141231065959ac
     })();
 
     const handleMessage = (event: MessageEvent) => {
@@ -142,21 +167,84 @@ export default function Sportsbook({
           ) {
             loginOpenedState.value = true;
           }
-        } catch (error) {
-          console.error("Failed to parse message from sportsbook:", error);
+        } catch (parseError) {
+          console.error("Failed to parse message from sportsbook:", parseError);
         }
       }
     };
 
     window.addEventListener("message", handleMessage);
     return () => {
+      cancelled = true;
       window.removeEventListener("message", handleMessage);
+<<<<<<< HEAD
       if (sportsbookApp) {
         sportsbookApp.destroy();
         sportsbookApp = null;
+=======
+      const app = sportsbookAppRef.current as { destroy?: () => void } | null;
+      if (app?.destroy) {
+        app.destroy();
+>>>>>>> 561a52da9167b576dee0ae0faf141231065959ac
       }
+      sportsbookAppRef.current = null;
+      initPromiseRef.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      const initPromise = initPromiseRef.current;
+      if (!initPromise) return;
+      await initPromise;
+      if (cancelled) return;
+
+      const app = sportsbookAppRef.current as {
+        update: (opts: { token: string; lang: string }) => unknown;
+        setRoute: (path?: string) => unknown;
+      } | null;
+      if (!app) return;
+
+      setSyncing(true);
+      setError(null);
+
+      try {
+        let token = "";
+        if (userState.value?.id) {
+          try {
+            const response = await apiStartSportsbook(currencyState.value.unit);
+            token = response.token;
+          } catch {
+            setError(t("failed_sportsbook_token"));
+            return;
+          }
+        }
+
+        if (cancelled) return;
+
+        app.update({
+          token,
+          lang: localeState.value,
+        });
+        app.setRoute(sportsBookPath);
+      } finally {
+        if (!cancelled) {
+          setSyncing(false);
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    userState.value?.id,
+    localeState.value,
+    currencyState.value.unit,
+    sportsBookPath,
+  ]);
 
   if (error) {
     return (
@@ -175,7 +263,6 @@ export default function Sportsbook({
               <button
                 onClick={() => {
                   setError(null);
-                  // This will trigger the first useEffect to get the token again
                 }}
                 className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
               >
@@ -188,13 +275,15 @@ export default function Sportsbook({
     );
   }
 
+  const showOverlay = initializing || syncing;
+
   return (
     <div className="w-full bg-[var(--background)]">
-      {(initializingState || updating) && (
+      {showOverlay && (
         <div className="w-full flex items-center justify-center md:h-[calc(var(--viewport-height)-167px)] h-[calc(var(--viewport-height)-117px)] min-h-[500px]">
           <div className="text-center gap-4 flex flex-col items-center">
             <Loader />
-            {initializingState ? t("initializing") : t("updating")}
+            {initializing ? t("initializing") : t("updating")}
           </div>
         </div>
       )}
@@ -204,8 +293,8 @@ export default function Sportsbook({
         ref={containerRef}
         className="w-full"
         style={{
-          minHeight: initializingState || updating ? "600px" : "auto",
-          display: initializingState || updating ? "none" : "block",
+          minHeight: showOverlay ? "600px" : "auto",
+          display: showOverlay ? "none" : "block",
         }}
       />
     </div>
