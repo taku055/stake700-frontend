@@ -82,7 +82,7 @@ export const Footer = () => {
 
         <div className="w-full h-[2px] bg-[var(--background)]" />
 
-        <div
+        {/* <div
           className={`flex flex-col gap-[16px] w-full h-full ${
             isRTL ? "text-right" : "text-left"
           }`}
@@ -104,7 +104,7 @@ export const Footer = () => {
               {t("Responsible Gambling")}
             </Link>
           </h2>
-        </div>
+        </div> */}
 
         <div
           className={`flex w-full justify-center items-center ${
