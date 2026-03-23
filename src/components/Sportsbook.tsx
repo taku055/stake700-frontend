@@ -82,8 +82,19 @@ export default function Sportsbook({
       setInitializingState(true);
       initializing = true;
 
+      // Fetch token upfront so sportsbook initializes already authenticated
+      let initialToken = "";
+      if (userState.value?.id) {
+        try {
+          const response = await apiStartSportsbook(currencyState.value.unit);
+          initialToken = response.token;
+        } catch (ex) {
+          setError(t("failed_sportsbook_token"));
+        }
+      }
+
       // Gets sportsbook config
-      const sportsbookConfig = getDefaultSportsbookConfig("en", "");
+      const sportsbookConfig = getDefaultSportsbookConfig(localeState.value, initialToken);
 
       // Initialize the sportsbook when SDK is ready
       const initializeSportsbook = async () => {
@@ -142,6 +153,7 @@ export default function Sportsbook({
       window.removeEventListener("message", handleMessage);
       if (sportsbookApp) {
         sportsbookApp.destroy();
+        sportsbookApp = null;
       }
     };
   }, []);
