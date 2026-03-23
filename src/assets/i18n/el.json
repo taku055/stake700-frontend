@@ -229,7 +229,11 @@
     "answer_5": "Το Betalarab προσφέρει μια μεγάλη ποικιλία παιχνιδιών καζίνο όπως slots, επιτραπέζια παιχνίδια, πρωτότυπα παιχνίδια Betalarab και παιχνίδια ζωντανού dealer από κορυφαίους παρόχους παιχνιδιών.",
     "Copyright": "© 2026 betalarab.com | Όλα τα δικαιώματα διατηρούνται",
     "CompanyInfo": "Το Betalarab ανήκει και λειτουργεί από την Betalarab N.V., αριθμός εγγραφής: 145353, καταχωρημένη διεύθυνση: Seru Loraweg 17 B, Curaçao. Οι εταιρείες πρακτόρων πληρωμών είναι η Medium Rare Limited και η MRS Tech Limited. Επικοινωνήστε μαζί μας στο support@betalarab.com.",
-    "ResponsibleGamblingText": "Το Betalarab δεσμεύεται για υπεύθυνο τζόγο, για περισσότερες πληροφορίες επισκεφτείτε"
+    "ResponsibleGamblingText": "Το Betalarab δεσμεύεται για υπεύθυνο τζόγο, για περισσότερες πληροφορίες επισκεφτείτε",
+    "question_6": "Σε ποια αθλήματα μπορώ να στοιχηματίσω;",
+    "answer_6": "Μπορείτε να στοιχηματίσετε σε ευρεία γκάμα αθλημάτων, όπως ποδόσφαιρο, μπάσκετ, τένις, κρίκετ, esports, MMA, πυγμαχία και πολλά άλλα.",
+    "question_7": "Πώς παρακολουθώ ζωντανές μεταδόσεις;",
+    "answer_7": "Οι ζωντανές μεταδόσεις είναι διαθέσιμες απευθείας στην πλατφόρμα Betalarab για επιλεγμένα αθλητικά γεγονότα. Μεταβείτε στην ενότητα αθλημάτων, επιλέξτε γεγονός με ζωντανή μετάδοση και παρακολουθήστε σε πραγματικό χρόνο."
   },
   "LoginDialog": {
     "already_have_an_account": "Έχετε ήδη λογαριασμό;",
@@ -283,7 +287,8 @@
     "successfully_registered": "Εγγραφήκε επιτυχώς",
     "email_or_username_already_taken": "Το email ή το όνομα χρήστη είναι ήδη σε χρήση",
     "something_went_wrong": "Κάτι πήγε στραβά",
-    "login_an_account": "Log in"
+    "login_an_account": "Log in",
+    "already_have_an_account": "Έχετε ήδη λογαριασμό;"
   },
   "HomePage": {
     "casino-games": "Παιχνίδια Καζίνο",
@@ -341,7 +346,8 @@
     "Megaways": "Megaways",
     "Classic Slots": "Κλασικά Slots",
     "Drop Wins": "Drop Wins",
-    "New Games": "Νέα παιχνίδια"
+    "New Games": "Νέα παιχνίδια",
+    "no_games_found": "Δεν βρέθηκαν παιχνίδια σε αυτή την κατηγορία"
   },
   "AboutUs": {
     "title": "Σχετικά με το betalarab;",
@@ -378,10 +384,10 @@
     "answer_4": "Το betalarab δεσμεύεται για Υπεύθυνο Παιχνίδι και δεν επιτρέπει στους παίκτες του να ανοίξουν πολλαπλούς λογαριασμούς, ειδικά για λόγους Αυτο-αποκλεισμού. Στόχος μας είναι να παρέχουμε στους πελάτες μας ένα ασφαλές και προστατευμένο περιβάλλον που θα σας δώσει μια ευχάριστη και ανταμοιβή εμπειρία. Ενθαρρύνουμε τους πελάτες μας να χρησιμοποιούν τις υπηρεσίες μας υπεύθυνα και με λογικό τρόπο.",
     "question_5": "Υπάρχει περιορισμός ηλικίας στο betalarab?",
     "answer_5": "Πρέπει να είστε τουλάχιστον 18 ετών για να εγγραφείτε στο betalarab, με την προϋπόθεση ότι αυτή είναι η ελάχιστη απαίτηση ηλικίας για online παιχνίδια εντός της δικαιοδοσίας σας. Εάν υψηλότερη, πρέπει να πληροίτε τις απαιτήσεις της τοπικής σας δικαιοδοσίας.",
-    "question_6": "What Sports Can I Bet On?",
-    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
-    "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "question_6": "Σε ποια αθλήματα μπορώ να στοιχηματίσω;",
+    "answer_6": "Μπορείτε να στοιχηματίσετε σε ευρεία γκάμα αθλημάτων, όπως ποδόσφαιρο, μπάσκετ, τένις, κρίκετ, esports, MMA, πυγμαχία και πολλά άλλα.",
+    "question_7": "Πώς παρακολουθώ ζωντανές μεταδόσεις;",
+    "answer_7": "Οι ζωντανές μεταδόσεις είναι διαθέσιμες απευθείας στην πλατφόρμα Betalarab για επιλεγμένα αθλητικά γεγονότα. Μεταβείτε στην ενότητα αθλημάτων, επιλέξτε γεγονός με ζωντανή μετάδοση και παρακολουθήστε σε πραγματικό χρόνο."
   },
   "GameGroup": {
     "More": "Περισσότερα",
@@ -788,7 +794,12 @@
     "info": {
       "address_copied": "Η διεύθυνση πορτοφολιού αντιγράφηκε!",
       "text_copied": "Αντιγράφηκε: {text}",
-      "promotion_copied": "Αντιγράφηκε: {text}"
+      "promotion_copied": "Αντιγράφηκε: {text}",
+      "wallet_address_copied": "Η διεύθυνση πορτοφολιού αντιγράφηκε στο πρόχειρο!"
+    },
+    "aria": {
+      "copy_address": "Αντιγραφή διεύθυνσης",
+      "refresh_address": "Ανανέωση διεύθυνσης"
     }
   },
   "MoreToolDialog": {
@@ -1665,5 +1676,13 @@
     "netent_link": "here",
     "agreement_text": "If you do not agree with any statements contained within this Privacy Policy, please do not proceed any further on our website. Please be aware that registering an account on our website, placing bets and transferring funds will be deemed confirmation of your full agreement with our Terms and Conditions and our Privacy Policy. You have the right to cease using the website at any time; however we may still be legally required to retain some of your personal information.",
     "changes_text": "We may periodically make changes to this Privacy Policy and will notify you of these changes by posting the modified terms on our platforms. We recommend that you revisit this Privacy Policy regularly."
+  },
+  "Common": {
+    "Yes": "Ναι",
+    "No": "Όχι",
+    "N/A": "Δ/Υ",
+    "Change Locale": "Αλλαγή γλώσσας",
+    "Language": "Γλώσσα",
+    "Change language": "Αλλαγή γλώσσας"
   }
 }

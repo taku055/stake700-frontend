@@ -229,7 +229,11 @@
     "answer_5": "Betalarab انواع مختلفی از بازی‌های کازینو مانند اسلات‌ها، بازی‌های میزی، بازی‌های اصلی Betalarab و بازی‌های دیلر زنده از ارائه‌دهندگان پیشرو بازی ارائه می‌دهد.",
     "Copyright": "© 2026 betalarab.com | تمامی حقوق محفوظ است",
     "CompanyInfo": "Betalarab متعلق به و توسط Betalarab N.V. اداره می‌شود، شماره ثبت: 145353، آدرس ثبت شده: Seru Loraweg 17 B، Curaçao. شرکت‌های نماینده پرداخت Medium Rare Limited و MRS Tech Limited هستند. با ما در support@betalarab.com تماس بگیرید.",
-    "ResponsibleGamblingText": "Betalarab متعهد به قمار مسئولانه است، برای اطلاعات بیشتر بازدید کنید"
+    "ResponsibleGamblingText": "Betalarab متعهد به قمار مسئولانه است، برای اطلاعات بیشتر بازدید کنید",
+    "question_6": "روی چه ورزش‌هایی می‌توانم شرط ببندم؟",
+    "answer_6": "می‌توانید روی طیف گسترده‌ای از ورزش‌ها از جمله فوتبال، بسکتبال، تنیس، کریکت، ورزش‌های الکترونیکی، MMA، بوکس و بسیاری دیگر شرط ببندید.",
+    "question_7": "پخش زنده را چگونه ببینم؟",
+    "answer_7": "پخش‌های زنده برای رویدادهای ورزشی منتخب مستقیماً در پلتفرم Betalarab در دسترس است. به بخش ورزش بروید، رویدادی با پخش زنده فعال انتخاب کنید و به‌صورت لحظه‌ای تماشا کنید."
   },
   "LoginDialog": {
     "already_have_an_account": "از قبل حساب دارید؟",
@@ -283,7 +287,8 @@
     "successfully_registered": "ثبت‌نام با موفقیت انجام شد",
     "email_or_username_already_taken": "ایمیل یا نام کاربری از قبل استفاده شده است",
     "something_went_wrong": "مشکلی پیش آمد",
-    "login_an_account": "ورود"
+    "login_an_account": "ورود",
+    "already_have_an_account": "قبلاً حساب دارید؟"
   },
   "HomePage": {
     "casino-games": "بازی‌های کازینو",
@@ -341,7 +346,8 @@
     "Megaways": "Megaways",
     "Classic Slots": "اسلات‌های کلاسیک",
     "Drop Wins": "Drop Wins",
-    "New Games": "بازی‌های جدید"
+    "New Games": "بازی‌های جدید",
+    "no_games_found": "بازی‌ای برای این دسته یافت نشد"
   },
   "AboutUs": {
     "title": "درباره betalarab؟",
@@ -379,9 +385,9 @@
     "question_5": "آیا محدودیت سنی در betalarab وجود دارد؟",
     "answer_5": "برای ثبت‌نام در betalarab باید حداقل 18 سال سن داشته باشید، مشروط بر اینکه این حداقل سن مورد نیاز برای بازی آنلاین در حوزه قضایی شما باشد. اگر بالاتر است، باید الزامات حوزه قضایی محلی خود را برآورده کنید.",
     "question_6": "روی چه ورزش‌هایی می‌توانم شرط ببندم؟",
-    "answer_6": "می‌توانید روی طیف گسترده‌ای از ورزش‌ها از جمله فوتبال، بسکتبال، تنیس، کریکت، ای‌اسپورت، MMA، بوکس و بسیاری از ورزش‌های بین‌المللی محبوب شرط ببندید.",
-    "question_7": "چطور پخش زنده تماشا کنم؟",
-    "answer_7": "پخش زنده برای رویدادهای ورزشی انتخاب‌شده مستقیماً در پلتفرم Betalarab در دسترس است. به بخش ورزش بروید، رویدادی با پخش زنده فعال انتخاب کنید و به‌صورت زنده تماشا کنید."
+    "answer_6": "می‌توانید روی طیف گسترده‌ای از ورزش‌ها از جمله فوتبال، بسکتبال، تنیس، کریکت، ورزش‌های الکترونیکی، MMA، بوکس و بسیاری دیگر شرط ببندید.",
+    "question_7": "پخش زنده را چگونه ببینم؟",
+    "answer_7": "پخش‌های زنده برای رویدادهای ورزشی منتخب مستقیماً در پلتفرم Betalarab در دسترس است. به بخش ورزش بروید، رویدادی با پخش زنده فعال انتخاب کنید و به‌صورت لحظه‌ای تماشا کنید."
   },
   "GameGroup": {
     "More": "بیشتر",
@@ -788,7 +794,12 @@
     "info": {
       "address_copied": "آدرس کیف پول در کلیپ‌بورد کپی شد!",
       "text_copied": "{text} کپی شد",
-      "promotion_copied": "{text} کپی شد"
+      "promotion_copied": "{text} کپی شد",
+      "wallet_address_copied": "آدرس کیف پول در کلیپ‌بورد کپی شد!"
+    },
+    "aria": {
+      "copy_address": "کپی آدرس",
+      "refresh_address": "به‌روزرسانی آدرس"
     }
   },
   "MoreToolDialog": {
@@ -1665,5 +1676,13 @@
     "netent_link": "here",
     "agreement_text": "If you do not agree with any statements contained within this Privacy Policy, please do not proceed any further on our website. Please be aware that registering an account on our website, placing bets and transferring funds will be deemed confirmation of your full agreement with our Terms and Conditions and our Privacy Policy. You have the right to cease using the website at any time; however we may still be legally required to retain some of your personal information.",
     "changes_text": "We may periodically make changes to this Privacy Policy and will notify you of these changes by posting the modified terms on our platforms. We recommend that you revisit this Privacy Policy regularly."
+  },
+  "Common": {
+    "Yes": "بله",
+    "No": "خیر",
+    "N/A": "نامشخص",
+    "Change Locale": "تغییر زبان",
+    "Language": "زبان",
+    "Change language": "تغییر زبان"
   }
 }

@@ -229,7 +229,11 @@
     "answer_5": "Betalarab предлагает широкий выбор казино-игр, таких как слоты, настольные игры, оригинальные игры Betalarab и игры с живыми дилерами от ведущих поставщиков игр.",
     "Copyright": "© 2026 betalarab.com | Все права защищены",
     "CompanyInfo": "Betalarab принадлежит и управляется Betalarab N.V., регистрационный номер: 145353, зарегистрированный адрес: Seru Loraweg 17 B, Кюрасао. Компании-агенты по платежам: Medium Rare Limited и MRS Tech Limited. Свяжитесь с нами по адресу support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab привержен ответственной игре, для получения дополнительной информации посетите"
+    "ResponsibleGamblingText": "Betalarab привержен ответственной игре, для получения дополнительной информации посетите",
+    "question_6": "На какие виды спорта можно делать ставки?",
+    "answer_6": "Вы можете делать ставки на широкий выбор видов спорта, включая футбол, баскетбол, теннис, крикет, киберспорт, MMA, бокс и многие другие популярные международные виды спорта.",
+    "question_7": "Как смотреть прямые трансляции?",
+    "answer_7": "Прямые трансляции доступны на платформе Betalarab для выбранных спортивных событий. Перейдите в раздел спорта, выберите событие с включённой трансляцией и смотрите в реальном времени."
   },
   "LoginDialog": {
     "already_have_an_account": "Уже есть аккаунт?",
@@ -283,7 +287,8 @@
     "successfully_registered": "Успешно зарегистрирован",
     "email_or_username_already_taken": "Email или имя пользователя уже используется",
     "something_went_wrong": "Что-то пошло не так",
-    "login_an_account": "Log in"
+    "login_an_account": "Log in",
+    "already_have_an_account": "Уже есть аккаунт?"
   },
   "HomePage": {
     "casino-games": "Казино Игры",
@@ -341,7 +346,8 @@
     "Megaways": "Megaways",
     "Classic Slots": "Классические Слоты",
     "Drop Wins": "Drop Wins",
-    "New Games": "Новые игры"
+    "New Games": "Новые игры",
+    "no_games_found": "В этой категории игры не найдены"
   },
   "AboutUs": {
     "title": "О betalarab?",
@@ -378,10 +384,10 @@
     "answer_4": "betalarab привержен ответственной игре и не позволяет своим игрокам открывать несколько аккаунтов, особенно по причинам самоисключения. Мы стремимся предоставить нашим клиентам безопасную и надежную среду, которая даст вам приятный и полезный опыт. Мы поощряем наших клиентов ответственно и разумно использовать наши услуги.",
     "question_5": "Есть ли ограничение по возрасту в betalarab?",
     "answer_5": "Вам должно быть не менее 18 лет для регистрации в betalarab, при условии, что это минимальное требование к возрасту для онлайн-игр в вашей юрисдикции. Если выше, вы должны соответствовать требованиям вашей местной юрисдикции.",
-    "question_6": "What Sports Can I Bet On?",
-    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
-    "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "question_6": "На какие виды спорта можно делать ставки?",
+    "answer_6": "Вы можете делать ставки на широкий выбор видов спорта, включая футбол, баскетбол, теннис, крикет, киберспорт, MMA, бокс и многие другие популярные международные виды спорта.",
+    "question_7": "Как смотреть прямые трансляции?",
+    "answer_7": "Прямые трансляции доступны на платформе Betalarab для выбранных спортивных событий. Перейдите в раздел спорта, выберите событие с включённой трансляцией и смотрите в реальном времени."
   },
   "GameGroup": {
     "More": "Больше",
@@ -1054,7 +1060,12 @@
     "info": {
       "address_copied": "Wallet address copied to clipboard!",
       "text_copied": "Copied {text}",
-      "promotion_copied": "Copied {text}"
+      "promotion_copied": "Copied {text}",
+      "wallet_address_copied": "Адрес кошелька скопирован в буфер обмена!"
+    },
+    "aria": {
+      "copy_address": "Копировать адрес",
+      "refresh_address": "Обновить адрес"
     }
   },
   "ComingSoon": {
@@ -1665,5 +1676,13 @@
     "netent_link": "here",
     "agreement_text": "If you do not agree with any statements contained within this Privacy Policy, please do not proceed any further on our website. Please be aware that registering an account on our website, placing bets and transferring funds will be deemed confirmation of your full agreement with our Terms and Conditions and our Privacy Policy. You have the right to cease using the website at any time; however we may still be legally required to retain some of your personal information.",
     "changes_text": "We may periodically make changes to this Privacy Policy and will notify you of these changes by posting the modified terms on our platforms. We recommend that you revisit this Privacy Policy regularly."
+  },
+  "Common": {
+    "Yes": "Да",
+    "No": "Нет",
+    "N/A": "Н/Д",
+    "Change Locale": "Сменить язык",
+    "Language": "Язык",
+    "Change language": "Сменить язык"
   }
 }

@@ -229,7 +229,11 @@
     "answer_5": "Betalarab aparıcı oyun təminatçılarından slotlar, masa oyunları, orijinal Betalarab oyunları və canlı krupiye oyunları kimi müxtəlif kazino oyunları təklif edir.",
     "Copyright": "© 2026 betalarab.com | Bütün hüquqlar qorunur",
     "CompanyInfo": "Betalarab Betalarab N.V. şirkətinə məxsusdur və idarə olunur, qeydiyyat nömrəsi: 145353, qeydiyyat ünvanı: Seru Loraweg 17 B, Curaçao. Ödəniş agent şirkətləri Medium Rare Limited və MRS Tech Limited-dir. Bizimlə support@betalarab.com ünvanı ilə əlaqə saxlayın.",
-    "ResponsibleGamblingText": "Betalarab məsuliyyətli qumar oyununa sadiqdir, daha çox məlumat üçün ziyarət edin"
+    "ResponsibleGamblingText": "Betalarab məsuliyyətli qumar oyununa sadiqdir, daha çox məlumat üçün ziyarət edin",
+    "question_6": "Hansı idman növlərinə mərc edə bilərəm?",
+    "answer_6": "Futbol, basketbol, tennis, kriket, esport, MMA, boks və digər məşhur beynəlxalq idman növlərinə geniş spektrdə mərc edə bilərsiniz.",
+    "question_7": "Canlı yayımları necə izləyim?",
+    "answer_7": "Canlı yayımlar seçilmiş idman hadisələri üçün birbaşa Betalarab platformasında mövcuddur. İdman bölməsinə keçin, canlı yayımla hadisə seçin və real vaxtda izləyin."
   },
   "LoginDialog": {
     "already_have_an_account": "Artıq hesabınız var?",
@@ -283,7 +287,8 @@
     "Something went wrong": "Xəta baş verdi",
     "successfully_registered": "Uğurla qeydiyyatdan keçildi",
     "email_or_username_already_taken": "Email və ya istifadəçi adı artıq istifadə olunur",
-    "something_went_wrong": "Xəta baş verdi"
+    "something_went_wrong": "Xəta baş verdi",
+    "already_have_an_account": "Artıq hesabınız var?"
   },
   "HomePage": {
     "casino-games": "Kazino Oyunları",
@@ -341,7 +346,8 @@
     "Megaways": "Megaways",
     "Classic Slots": "Klasik Slotlar",
     "Drop Wins": "Drop Wins",
-    "New Games": "Yeni Oyunlar"
+    "New Games": "Yeni Oyunlar",
+    "no_games_found": "Bu kateqoriya üçün oyun tapılmadı"
   },
   "AboutUs": {
     "title": "betalarab haqqında?",
@@ -379,9 +385,9 @@
     "question_5": "betalarab-də yaş məhdudiyyəti varmı?",
     "answer_5": "betalarab-də qeydiyyatdan keçmək üçün ən azı 18 yaşında olmalısınız, bu, yurisdiksiyanız daxilində onlayn oyun üçün minimum yaş tələbidir. Daha yüksəkdirsə, yerli yurisdiksiyanızın tələblərinə cavab verməlisiniz.",
     "question_6": "Hansı idman növlərinə mərc edə bilərəm?",
-    "answer_6": "Futbol, basketbol, tennis, kriket, e-idman, MMA, boks və bir çox digər məşhur beynəlxalq idman növləri daxil olmaqla geniş idman çeşidinə mərc edə bilərsiniz.",
-    "question_7": "Canlı yayımları necə izləyə bilərəm?",
-    "answer_7": "Seçilmiş idman tədbirləri üçün canlı yayımlar birbaşa Betalarab platformasında mövcuddur. Sadəcə idman bölməsinə keçin, canlı yayım aktiv olan tədbiri seçin və real vaxtda izləyin."
+    "answer_6": "Futbol, basketbol, tennis, kriket, esport, MMA, boks və digər məşhur beynəlxalq idman növlərinə geniş spektrdə mərc edə bilərsiniz.",
+    "question_7": "Canlı yayımları necə izləyim?",
+    "answer_7": "Canlı yayımlar seçilmiş idman hadisələri üçün birbaşa Betalarab platformasında mövcuddur. İdman bölməsinə keçin, canlı yayımla hadisə seçin və real vaxtda izləyin."
   },
   "GameGroup": {
     "More": "Daha çox",
@@ -788,7 +794,12 @@
     "info": {
       "address_copied": "Cüzdan ünvanı panoya kopyalandı!",
       "text_copied": "{text} kopyalandı",
-      "promotion_copied": "{text} kopyalandı"
+      "promotion_copied": "{text} kopyalandı",
+      "wallet_address_copied": "Ünvan mübadilə yaddaşına kopyalandı!"
+    },
+    "aria": {
+      "copy_address": "Ünvanı kopyala",
+      "refresh_address": "Ünvanı yenilə"
     }
   },
   "MoreToolDialog": {
@@ -1665,5 +1676,13 @@
     "netent_link": "here",
     "agreement_text": "If you do not agree with any statements contained within this Privacy Policy, please do not proceed any further on our website. Please be aware that registering an account on our website, placing bets and transferring funds will be deemed confirmation of your full agreement with our Terms and Conditions and our Privacy Policy. You have the right to cease using the website at any time; however we may still be legally required to retain some of your personal information.",
     "changes_text": "We may periodically make changes to this Privacy Policy and will notify you of these changes by posting the modified terms on our platforms. We recommend that you revisit this Privacy Policy regularly."
+  },
+  "Common": {
+    "Yes": "Bəli",
+    "No": "Xeyr",
+    "N/A": "Yoxdur",
+    "Change Locale": "Dili dəyiş",
+    "Language": "Dil",
+    "Change language": "Dili dəyiş"
   }
 }

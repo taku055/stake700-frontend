@@ -229,7 +229,11 @@
     "answer_5": "Betalarab bietet eine große Auswahl an Casino-Spielen wie Slots, Tischspiele, originale Betalarab-Spiele und Live-Dealer-Spiele von führenden Spielanbietern.",
     "Copyright": "© 2026 betalarab.com | Alle Rechte vorbehalten",
     "CompanyInfo": "Betalarab gehört und wird betrieben von Betalarab N.V., Registrierungsnummer: 145353, eingetragene Adresse: Seru Loraweg 17 B, Curaçao. Die Zahlungsagenten-Unternehmen sind Medium Rare Limited und MRS Tech Limited. Kontaktieren Sie uns unter support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab ist dem verantwortungsvollen Glücksspiel verpflichtet, für weitere Informationen besuchen Sie"
+    "ResponsibleGamblingText": "Betalarab ist dem verantwortungsvollen Glücksspiel verpflichtet, für weitere Informationen besuchen Sie",
+    "question_6": "Auf welche Sportarten kann ich wetten?",
+    "answer_6": "Sie können auf eine große Auswahl an Sportarten wetten, darunter Fußball, Basketball, Tennis, Cricket, E-Sport, MMA, Boxen und viele andere beliebte internationale Sportarten.",
+    "question_7": "Wie kann ich Livestreams ansehen?",
+    "answer_7": "Livestreams sind direkt auf der Betalarab-Plattform für ausgewählte Sportereignisse verfügbar. Gehen Sie zum Sportbereich, wählen Sie ein Ereignis mit aktiviertem Livestream und sehen Sie in Echtzeit zu."
   },
   "LoginDialog": {
     "already_have_an_account": "Bereits ein Konto?",
@@ -283,7 +287,8 @@
     "Something went wrong": "Etwas ist schiefgelaufen",
     "successfully_registered": "Erfolgreich registriert",
     "email_or_username_already_taken": "E-Mail oder Benutzername ist bereits vergeben",
-    "something_went_wrong": "Etwas ist schiefgelaufen"
+    "something_went_wrong": "Etwas ist schiefgelaufen",
+    "already_have_an_account": "Haben Sie bereits ein Konto?"
   },
   "HomePage": {
     "casino-games": "Casino-Spiele",
@@ -341,7 +346,8 @@
     "Megaways": "Megaways",
     "Classic Slots": "Klassische Slots",
     "Drop Wins": "Drop Wins",
-    "New Games": "Neue Spiele"
+    "New Games": "Neue Spiele",
+    "no_games_found": "Keine Spiele in dieser Kategorie gefunden"
   },
   "AboutUs": {
     "title": "Über betalarab?",
@@ -379,9 +385,9 @@
     "question_5": "Gibt es eine Altersbeschränkung bei betalarab?",
     "answer_5": "Sie müssen mindestens 18 Jahre alt sein, um sich bei betalarab zu registrieren, vorausgesetzt, dies ist die Mindestaltersanforderung für Online-Spiele in Ihrer Gerichtsbarkeit. Wenn höher, müssen Sie die Anforderungen Ihrer örtlichen Gerichtsbarkeit erfüllen.",
     "question_6": "Auf welche Sportarten kann ich wetten?",
-    "answer_6": "Sie können auf ein breites Spektrum an Sportarten wetten, darunter Fußball, Basketball, Tennis, Cricket, E-Sport, MMA, Boxen und viele andere beliebte internationale Sportarten.",
-    "question_7": "Wie kann ich Live-Streams ansehen?",
-    "answer_7": "Live-Streams sind direkt auf der Betalarab-Plattform für ausgewählte Sportereignisse verfügbar. Gehen Sie einfach zum Sportbereich, wählen Sie ein Ereignis mit aktiviertem Live-Stream und schauen Sie in Echtzeit."
+    "answer_6": "Sie können auf eine große Auswahl an Sportarten wetten, darunter Fußball, Basketball, Tennis, Cricket, E-Sport, MMA, Boxen und viele andere beliebte internationale Sportarten.",
+    "question_7": "Wie kann ich Livestreams ansehen?",
+    "answer_7": "Livestreams sind direkt auf der Betalarab-Plattform für ausgewählte Sportereignisse verfügbar. Gehen Sie zum Sportbereich, wählen Sie ein Ereignis mit aktiviertem Livestream und sehen Sie in Echtzeit zu."
   },
   "GameGroup": {
     "More": "Mehr",
@@ -788,7 +794,12 @@
     "info": {
       "address_copied": "Wallet-Adresse in die Zwischenablage kopiert!",
       "text_copied": "{text} kopiert",
-      "promotion_copied": "{text} kopiert"
+      "promotion_copied": "{text} kopiert",
+      "wallet_address_copied": "Wallet-Adresse in die Zwischenablage kopiert!"
+    },
+    "aria": {
+      "copy_address": "Adresse kopieren",
+      "refresh_address": "Adresse aktualisieren"
     }
   },
   "MoreToolDialog": {
@@ -1665,5 +1676,13 @@
     "netent_link": "here",
     "agreement_text": "If you do not agree with any statements contained within this Privacy Policy, please do not proceed any further on our website. Please be aware that registering an account on our website, placing bets and transferring funds will be deemed confirmation of your full agreement with our Terms and Conditions and our Privacy Policy. You have the right to cease using the website at any time; however we may still be legally required to retain some of your personal information.",
     "changes_text": "We may periodically make changes to this Privacy Policy and will notify you of these changes by posting the modified terms on our platforms. We recommend that you revisit this Privacy Policy regularly."
+  },
+  "Common": {
+    "Yes": "Ja",
+    "No": "Nein",
+    "N/A": "k. A.",
+    "Change Locale": "Sprache ändern",
+    "Language": "Sprache",
+    "Change language": "Sprache ändern"
   }
 }

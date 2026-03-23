@@ -229,7 +229,11 @@
     "answer_5": "Betalarab, slotlar, masa oyunları, orijinal Betalarab oyunları ve önde gelen oyun sağlayıcılardan canlı krupiye oyunları gibi çok çeşitli kumarhane oyunları sunar.",
     "Copyright": "© 2026 betalarab.com | Tüm Hakları Saklıdır",
     "CompanyInfo": "Betalarab, Betalarab N.V. tarafından sahip olunan ve işletilen, kayıt numarası: 145353, kayıtlı adres: Seru Loraweg 17 B, Curaçao. Ödeme acente şirketleri Medium Rare Limited ve MRS Tech Limited'dir. Bize support@betalarab.com adresinden ulaşabilirsiniz.",
-    "ResponsibleGamblingText": "Betalarab sorumlu kumara bağlıdır, daha fazla bilgi için ziyaret edin"
+    "ResponsibleGamblingText": "Betalarab sorumlu kumara bağlıdır, daha fazla bilgi için ziyaret edin",
+    "question_6": "Hangi sporlara bahis yapabilirim?",
+    "answer_6": "Futbol, basketbol, tenis, kriket, espor, MMA, boks ve diğer birçok popüler uluslararası spor dahil geniş bir yelpazede bahis yapabilirsiniz.",
+    "question_7": "Canlı yayınları nasıl izlerim?",
+    "answer_7": "Canlı yayınlar, seçili spor etkinlikleri için doğrudan Betalarab platformunda mevcuttur. Spor bölümüne gidin, canlı yayını açık bir etkinlik seçin ve gerçek zamanlı izleyin."
   },
   "LoginDialog": {
     "already_have_an_account": "Zaten bir hesabınız var mı?",
@@ -283,7 +287,8 @@
     "successfully_registered": "Başarıyla kaydedildi",
     "email_or_username_already_taken": "E-posta veya kullanıcı adı zaten alınmış",
     "something_went_wrong": "Bir şeyler yanlış gitti",
-    "login_an_account": "Log in"
+    "login_an_account": "Log in",
+    "already_have_an_account": "Zaten hesabınız var mı?"
   },
   "HomePage": {
     "casino-games": "Casino Oyunları",
@@ -341,7 +346,8 @@
     "Megaways": "Megaways",
     "Classic Slots": "Klasik Slotlar",
     "Drop Wins": "Drop Wins",
-    "New Games": "Yeni Oyunlar"
+    "New Games": "Yeni Oyunlar",
+    "no_games_found": "Bu kategori için oyun bulunamadı"
   },
   "AboutUs": {
     "title": "betalarab Hakkında?",
@@ -378,10 +384,10 @@
     "answer_4": "betalarab Sorumlu Oyun'a bağlıdır ve özellikle Kendi Kendini Dışlama nedenleriyle oyuncularının birden fazla hesap açmasına izin vermez. Müşterilerimize güvenli ve güvenli bir ortam sağlamayı ve size hoş ve ödüllendirici bir deneyim sunmayı hedefliyoruz. Müşterilerimizi hizmetlerimizi sorumlu ve makul bir şekilde kullanmaya teşvik ediyoruz.",
     "question_5": "betalarab'de yaş kısıtlaması var mı?",
     "answer_5": "betalarab'de kayıt olmak için en az 18 yaşında olmalısınız, bu, yargı yetkiniz içindeki çevrimiçi oyun için minimum yaş gereksinimidir. Daha yüksekse, yerel yargı yetkiniz gereksinimlerini karşılamalısınız.",
-    "question_6": "What Sports Can I Bet On?",
-    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
-    "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "question_6": "Hangi sporlara bahis yapabilirim?",
+    "answer_6": "Futbol, basketbol, tenis, kriket, espor, MMA, boks ve diğer birçok popüler uluslararası spor dahil geniş bir yelpazede bahis yapabilirsiniz.",
+    "question_7": "Canlı yayınları nasıl izlerim?",
+    "answer_7": "Canlı yayınlar, seçili spor etkinlikleri için doğrudan Betalarab platformunda mevcuttur. Spor bölümüne gidin, canlı yayını açık bir etkinlik seçin ve gerçek zamanlı izleyin."
   },
   "GameGroup": {
     "More": "Daha Fazla",

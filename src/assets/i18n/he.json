@@ -229,7 +229,11 @@
     "answer_5": "Betalarab מציע מגוון רחב של משחקי קזינו כמו סלוטס, משחקי שולחן, משחקי Betalarab מקוריים ומשחקי דילר חי מספקי משחקים מובילים.",
     "Copyright": "© 2026 betalarab.com | כל הזכויות שמורות",
     "CompanyInfo": "Betalarab בבעלות ובתפעול של Betalarab N.V., מספר רישום: 145353, כתובת רשומה: Seru Loraweg 17 B, Curaçao. חברות סוכני התשלום הן Medium Rare Limited ו-MRS Tech Limited. צרו קשר איתנו ב-support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab מחויבת להימורים אחראיים, למידע נוסף בקרו"
+    "ResponsibleGamblingText": "Betalarab מחויבת להימורים אחראיים, למידע נוסף בקרו",
+    "question_6": "על אילו ספורט אפשר להמר?",
+    "answer_6": "ניתן להמר על מגוון רחב של ענפי ספורט, כולל כדורגל, כדורסל, טניס, קריקט, ספורט אלקטרוני, MMA, אגרוף ועוד רבים.",
+    "question_7": "איך צופים בשידורים חיים?",
+    "answer_7": "שידורים חיים זמינים ישירות בפלטפורמת Betalarab לאירועי ספורט נבחרים. עברו לקטגוריית הספורט, בחרו אירוע עם שידור חי וצפו בזמן אמת."
   },
   "LoginDialog": {
     "already_have_an_account": "כבר יש לך חשבון?",
@@ -283,7 +287,8 @@
     "successfully_registered": "נרשם בהצלחה",
     "email_or_username_already_taken": "אימייל או שם משתמש כבר בשימוש",
     "something_went_wrong": "משהו השתבש",
-    "login_an_account": "Log in"
+    "login_an_account": "Log in",
+    "already_have_an_account": "כבר יש לך חשבון?"
   },
   "HomePage": {
     "casino-games": "משחקי קזינו",
@@ -341,7 +346,8 @@
     "Megaways": "Megaways",
     "Classic Slots": "סלוטס קלאסיים",
     "Drop Wins": "Drop Wins",
-    "New Games": "משחקים חדשים"
+    "New Games": "משחקים חדשים",
+    "no_games_found": "לא נמצאו משחקים בקטגוריה זו"
   },
   "AboutUs": {
     "title": "אודות betalarab?",
@@ -378,10 +384,10 @@
     "answer_4": "betalarab מחויבת למשחק אחראי ולא מאפשרת לשחקנים שלה לפתוח חשבונות מרובים, במיוחד מסיבות של הדרה עצמית. אנו שואפים לספק ללקוחותינו סביבה בטוחה ומאובטחת שתעניק לך חוויה נעימה ומתגמלת. אנו מעודדים את הלקוחות שלנו להשתמש בשירותינו בצורה אחראית והגיונית.",
     "question_5": "האם יש הגבלת גיל ב-betalarab?",
     "answer_5": "עליך להיות לפחות בן 18 כדי להירשם ל-betalarab, בתנאי שזו דרישת הגיל המינימלית למשחקים מקוונים בתחום השיפוט שלך. אם גבוה יותר, עליך לעמוד בדרישות תחום השיפוט המקומי שלך.",
-    "question_6": "What Sports Can I Bet On?",
-    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
-    "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "question_6": "על אילו ספורט אפשר להמר?",
+    "answer_6": "ניתן להמר על מגוון רחב של ענפי ספורט, כולל כדורגל, כדורסל, טניס, קריקט, ספורט אלקטרוני, MMA, אגרוף ועוד רבים.",
+    "question_7": "איך צופים בשידורים חיים?",
+    "answer_7": "שידורים חיים זמינים ישירות בפלטפורמת Betalarab לאירועי ספורט נבחרים. עברו לקטגוריית הספורט, בחרו אירוע עם שידור חי וצפו בזמן אמת."
   },
   "GameGroup": {
     "More": "עוד",
@@ -788,7 +794,12 @@
     "info": {
       "address_copied": "כתובת הארנק הועתקה ללוח!",
       "text_copied": "הועתק: {text}",
-      "promotion_copied": "הועתק: {text}"
+      "promotion_copied": "הועתק: {text}",
+      "wallet_address_copied": "כתובת הארנק הועתקה ללוח!"
+    },
+    "aria": {
+      "copy_address": "העתק כתובת",
+      "refresh_address": "רענן כתובת"
     }
   },
   "MoreToolDialog": {
@@ -1665,5 +1676,13 @@
     "netent_link": "here",
     "agreement_text": "If you do not agree with any statements contained within this Privacy Policy, please do not proceed any further on our website. Please be aware that registering an account on our website, placing bets and transferring funds will be deemed confirmation of your full agreement with our Terms and Conditions and our Privacy Policy. You have the right to cease using the website at any time; however we may still be legally required to retain some of your personal information.",
     "changes_text": "We may periodically make changes to this Privacy Policy and will notify you of these changes by posting the modified terms on our platforms. We recommend that you revisit this Privacy Policy regularly."
+  },
+  "Common": {
+    "Yes": "כן",
+    "No": "לא",
+    "N/A": "לא זמין",
+    "Change Locale": "החלפת שפה",
+    "Language": "שפה",
+    "Change language": "החלפת שפה"
   }
 }

@@ -229,7 +229,11 @@
     "answer_5": "Betalarab oferece uma grande variedade de jogos de cassino, como slots, jogos de mesa, jogos originais Betalarab e jogos de dealer ao vivo dos principais provedores de jogos.",
     "Copyright": "© 2026 betalarab.com | Todos os direitos reservados",
     "CompanyInfo": "Betalarab é propriedade e operado por Betalarab N.V., número de registro: 145353, endereço registrado: Seru Loraweg 17 B, Curaçao. As empresas agente de pagamento são Medium Rare Limited e MRS Tech Limited. Entre em contato conosco em support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab está comprometido com o jogo responsável, para mais informações visite"
+    "ResponsibleGamblingText": "Betalarab está comprometido com o jogo responsável, para mais informações visite",
+    "question_6": "Em quais esportes posso apostar?",
+    "answer_6": "Você pode apostar em uma ampla variedade de esportes, incluindo futebol, basquete, tênis, críquete, esports, MMA, boxe e muitos outros esportes internacionais populares.",
+    "question_7": "Como assisto a transmissões ao vivo?",
+    "answer_7": "As transmissões ao vivo estão disponíveis diretamente na plataforma Betalarab para eventos esportivos selecionados. Vá à seção de esportes, escolha um evento com transmissão ao vivo e assista em tempo real."
   },
   "LoginDialog": {
     "already_have_an_account": "Já tem uma conta?",
@@ -283,7 +287,8 @@
     "successfully_registered": "Registrado com sucesso",
     "email_or_username_already_taken": "Email ou nome de usuário já está em uso",
     "something_went_wrong": "Algo deu errado",
-    "login_an_account": "Log in"
+    "login_an_account": "Log in",
+    "already_have_an_account": "Já tem uma conta?"
   },
   "HomePage": {
     "casino-games": "Jogos de cassino",
@@ -341,7 +346,8 @@
     "Megaways": "Megaways",
     "Classic Slots": "Slots Clássicos",
     "Drop Wins": "Drop Wins",
-    "New Games": "Novos jogos"
+    "New Games": "Novos jogos",
+    "no_games_found": "Nenhum jogo encontrado nesta categoria"
   },
   "AboutUs": {
     "title": "Sobre betalarab?",
@@ -378,10 +384,10 @@
     "answer_4": "betalarab está comprometido com o Jogo Responsável e não permite que seus jogadores abram múltiplas contas, especialmente por razões de Auto-exclusão. Nosso objetivo é fornecer aos nossos clientes um ambiente seguro e protegido que lhes dará uma experiência agradável e gratificante. Encorajamos nossos clientes a usar nossos serviços de forma responsável e razoável.",
     "question_5": "Há uma restrição de idade no betalarab?",
     "answer_5": "Você deve ter pelo menos 18 anos de idade para se registrar no betalarab, desde que este seja o requisito de idade mínima para jogos online dentro da sua jurisdição. Se maior, você deve atender aos requisitos da sua jurisdição local.",
-    "question_6": "What Sports Can I Bet On?",
-    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
-    "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "question_6": "Em quais esportes posso apostar?",
+    "answer_6": "Você pode apostar em uma ampla variedade de esportes, incluindo futebol, basquete, tênis, críquete, esports, MMA, boxe e muitos outros esportes internacionais populares.",
+    "question_7": "Como assisto a transmissões ao vivo?",
+    "answer_7": "As transmissões ao vivo estão disponíveis diretamente na plataforma Betalarab para eventos esportivos selecionados. Vá à seção de esportes, escolha um evento com transmissão ao vivo e assista em tempo real."
   },
   "GameGroup": {
     "More": "Mais",
@@ -788,7 +794,12 @@
     "info": {
       "address_copied": "Endereço da carteira copiado para a área de transferência!",
       "text_copied": "Copiado {text}",
-      "promotion_copied": "Copiado {text}"
+      "promotion_copied": "Copiado {text}",
+      "wallet_address_copied": "Endereço da carteira copiado para a área de transferência!"
+    },
+    "aria": {
+      "copy_address": "Copiar endereço",
+      "refresh_address": "Atualizar endereço"
     }
   },
   "MoreToolDialog": {
@@ -1665,5 +1676,13 @@
     "netent_link": "here",
     "agreement_text": "If you do not agree with any statements contained within this Privacy Policy, please do not proceed any further on our website. Please be aware that registering an account on our website, placing bets and transferring funds will be deemed confirmation of your full agreement with our Terms and Conditions and our Privacy Policy. You have the right to cease using the website at any time; however we may still be legally required to retain some of your personal information.",
     "changes_text": "We may periodically make changes to this Privacy Policy and will notify you of these changes by posting the modified terms on our platforms. We recommend that you revisit this Privacy Policy regularly."
+  },
+  "Common": {
+    "Yes": "Sim",
+    "No": "Não",
+    "N/A": "N/D",
+    "Change Locale": "Alterar idioma",
+    "Language": "Idioma",
+    "Change language": "Alterar idioma"
   }
 }
