@@ -1,4 +1,5 @@
 import { userState } from "@/state/userState";
+import { effect } from "@preact/signals";
 import { useEffect } from "preact/hooks";
 import useSocketEvent from "@/hooks/useSocketEvent";
 import { useSocket, useSocketStatus } from "@/context/SocketContext";
@@ -40,6 +41,7 @@ import SignupDialog from "@/components/Auth/SignupDialog";
 import FooterNav from "@/components/FooterNav";
 import ProfileComponent from "@/components/Profile";
 import { profileOpenedState } from "@/state/profileOpenedState";
+import { routerQueryState } from "@/state/routerQueryState";
 import { tPayment } from "@/types/tPayment";
 import {
   CURRENCY_LIST,
@@ -104,16 +106,19 @@ const i18nDefinitions = {
   it: itDefinition,
 };
 
+effect(() => {
+  const { profileTab, bonusId } = routerQueryState.value;
+  if (profileTab) {
+    profileOpenedState.value = { isOpen: true, defaultTab: profileTab, bonusId };
+  }
+});
+
 function ProfileQueryHandler() {
   const location = useLocation();
 
   useEffect(() => {
-    const profileTab = location.query?.profileTab as string | undefined;
-    const bonusId = location.query?.bonusId as string | undefined;
-    if (profileTab) {
-      profileOpenedState.value = { isOpen: true, defaultTab: profileTab, bonusId };
-    }
-  }, [location.query?.profileTab, location.query?.bonusId]);
+    routerQueryState.value = (location.query ?? {}) as Record<string, string | undefined>;
+  }, [location.query]);
 
   return null;
 }
