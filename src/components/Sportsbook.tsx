@@ -60,101 +60,6 @@ export default function Sportsbook({
           setInitializing(false);
         }
       }
-<<<<<<< HEAD
-
-      setUpdating(true);
-      while (initializing) {
-        await sleep(1000);
-      }
-      await sleep(500);
-
-      if (sportsbookApp) {
-        const res = sportsbookApp.update({
-          token: sportsbookToken,
-          lang: localeState.value,
-        });
-      }
-
-      await sleep(500);
-      setUpdating(false);
-    })();
-  }, [userState.value?.id, localeState.value, currencyState.value.unit]);
-
-  useEffect(() => {
-    (async () => {
-      console.log("sportsBookPath", sportsBookPath);
-
-      setUpdating(true);
-      while (initializing) {
-        await sleep(1000);
-      }
-      await sleep(500);
-
-      if (sportsbookApp) {
-        const res = sportsbookApp.setRoute(sportsBookPath);
-      }
-
-      await sleep(500);
-      setUpdating(false);
-    })();
-  }, [sportsBookPath]);
-
-  // Handle postMessage events for login/deposit
-  useEffect(() => {
-    (async () => {
-      setInitializingState(true);
-      initializing = true;
-
-      // Fetch token upfront so sportsbook initializes already authenticated
-      let initialToken = "";
-      if (userState.value?.id) {
-        try {
-          const response = await apiStartSportsbook(currencyState.value.unit);
-          initialToken = response.token;
-        } catch (ex) {
-          setError(t("failed_sportsbook_token"));
-        }
-      }
-
-      // Gets sportsbook config
-      const sportsbookConfig = getDefaultSportsbookConfig(localeState.value, initialToken);
-
-      // Initialize the sportsbook when SDK is ready
-      const initializeSportsbook = async () => {
-        if (!containerRef.current) {
-          setError(t("container_not_found"));
-          setInitializingState(false);
-          initializing = false;
-          return;
-        }
-
-        // Initialize the sportsbook application
-        try {
-          sportsbookApp = await (window as any).Sportsbook.init(
-            sportsbookConfig,
-          );
-        } catch (ex) {
-          setError(t("failed_initialize"));
-        }
-
-        setInitializingState(false);
-        initializing = false;
-      };
-
-      // Wait for SDK to load and then initialize
-      const waitForSDK = async () => {
-        if (checkTurbostarsSDKLoaded()) {
-          await initializeSportsbook();
-        } else {
-          // Check again after a short delay
-          setTimeout(waitForSDK, 300);
-        }
-      };
-
-      // Start waiting for SDK
-      waitForSDK();
-=======
->>>>>>> 561a52da9167b576dee0ae0faf141231065959ac
     })();
 
     const handleMessage = (event: MessageEvent) => {
@@ -177,15 +82,9 @@ export default function Sportsbook({
     return () => {
       cancelled = true;
       window.removeEventListener("message", handleMessage);
-<<<<<<< HEAD
-      if (sportsbookApp) {
-        sportsbookApp.destroy();
-        sportsbookApp = null;
-=======
       const app = sportsbookAppRef.current as { destroy?: () => void } | null;
       if (app?.destroy) {
         app.destroy();
->>>>>>> 561a52da9167b576dee0ae0faf141231065959ac
       }
       sportsbookAppRef.current = null;
       initPromiseRef.current = null;
@@ -248,14 +147,23 @@ export default function Sportsbook({
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div
+        className="flex items-center justify-center min-h-[400px]"
+        style={{ background: "#1a0e08" }}
+      >
         <div className="text-center">
-          <div className="text-red-500 text-lg mb-2">Error</div>
-          <div className="text-gray-600">{error}</div>
+          <div className="text-lg mb-2" style={{ color: "#f0a830" }}>
+            Error
+          </div>
+          <div style={{ color: "#C3A59B" }}>{error}</div>
           <div className="flex gap-2 mt-4 justify-center">
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className="px-4 py-2 rounded text-white font-semibold transition hover:opacity-90"
+              style={{
+                background: "linear-gradient(145deg, #f5c842, #c87a10)",
+                boxShadow: "0 0 16px #f0a83033",
+              }}
             >
               {t("reload_page")}
             </button>
@@ -264,7 +172,12 @@ export default function Sportsbook({
                 onClick={() => {
                   setError(null);
                 }}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                className="px-4 py-2 rounded text-white font-semibold transition hover:opacity-90"
+                style={{
+                  background: "rgba(194,126,49,0.25)",
+                  border: "1px solid #f0a83066",
+                  color: "#f0d080",
+                }}
               >
                 {t("retry")}
               </button>

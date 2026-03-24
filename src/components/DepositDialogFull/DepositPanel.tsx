@@ -12,7 +12,6 @@ import { visaOpenedState } from "@/state/visaOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
 import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID } from "@/config/constants";
-import { effect } from "@preact/signals";
 import { toast } from "@/helpers/toast";
 
 
@@ -33,26 +32,21 @@ export default function DepositPanel() {
   const tToast = useTranslations("ToastMessages");
 
   useEffect(() => {
-    const dispose = effect(() => {
-      (async () => {
-        if (userState.value?.id) {
-          try {
-            setLoadingInfo(true);
-            const tokens1 = await apiGetTokenList(0);
-            setTokens(tokens1);
-          } catch (ex) {
-            console.error(ex);
-          } finally {
-            setLoadingInfo(false);
-          }
-        }
-      })();
-    });
-
-    return () => {
-      dispose();
-    };
-  }, []);
+    if (!userState.value?.id) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        setLoadingInfo(true);
+        const tokens1 = await apiGetTokenList(0);
+        if (!cancelled) setTokens(tokens1);
+      } catch (ex) {
+        console.error(ex);
+      } finally {
+        if (!cancelled) setLoadingInfo(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [userState.value?.id]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -152,9 +146,12 @@ export default function DepositPanel() {
     if (token) {
       (async () => {
         try {
+        const promoId = new URLSearchParams(window.location.search).get("promo") ?? undefined;
+
           const res = await apiPredictDeposit(
             token.chainId,
-            token.tokenAddress
+            token.tokenAddress,
+            promoId
           );
         } catch (error) {
           console.error("Error predicting deposit:", error);

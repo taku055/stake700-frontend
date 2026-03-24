@@ -113,6 +113,7 @@ effect(() => {
   }
 });
 
+
 function ProfileQueryHandler() {
   const location = useLocation();
 
