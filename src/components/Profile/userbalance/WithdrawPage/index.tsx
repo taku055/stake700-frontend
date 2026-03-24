@@ -1,6 +1,7 @@
 import { useTranslations } from "@/context/I18nContext";
 import { Tabs, Tab } from "@heroui/react";
 import AriesWithdraw from "./AriesWithdraw";
+import WithdrawalPanel from "@/components/DepositDialogFull/WithdrawalPanel";
 
 const WithdrawPage = () => {
   const t = useTranslations("UserBalancePage");
@@ -14,6 +15,9 @@ const WithdrawPage = () => {
         <Tabs aria-label="Withdraw options" classNames={{ base: "w-full" }}>
           <Tab key="aries" title="Aries">
             <AriesWithdraw />
+          </Tab>
+          <Tab key="crypto" title="Crypto">
+            <WithdrawalPanel />
           </Tab>
         </Tabs>
       </div>
