@@ -22,6 +22,8 @@ import axios from "axios";
 import Loader from "../Loader";
 import { useTranslations } from "@/context/I18nContext";
 import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
+import { balanceState } from "@/state/balanceState";
+import { currencyState } from "@/state/currencyState";
 
 export default function WithdrawalPanel() {
   const blockchainPanelRef = useRef<HTMLDivElement | null>(null);
@@ -80,49 +82,7 @@ export default function WithdrawalPanel() {
     };
   }, [showBlockchainSelector]);
 
-  const [isWithdrawable, bonusPassed, wagerPassed, monthlyLimit, weeklyLimit] =
-    useMemo(() => {
-      if (!financeSum || !userState.value?.id) {
-        return [false, false, false, false, false];
-      }
-
-      let bonusPassed = true;
-      if (userState.value?.wantBonus && !userState.value?.bonusWithdrawPassed) {
-        bonusPassed =
-          (financeSum.totalResult.casinoBet || 0) >=
-          financeSum.bonusDepositMoney * 40;
-      }
-
-      const wagerPassed = true;
-      let monthly = true;
-      let weekly = true;
-      if (userState.value?.vipLevel < 6) {
-        // wagerPassed =
-        //   (financeSum.totalResult.casinoBet || 0) +
-        //     (financeSum.totalResult.sportBet || 0) -
-        //     (financeSum.totalResult.sportRollback || 0) >=
-        //   (financeSum.totalResult.depositCrypto || 0) +
-        //     (financeSum.totalResult.depositBonus || 0) +
-        //     (financeSum.totalResult.depositManual || 0);
-        weekly =
-          (financeSum.weeklyResult.withdrawCrypto || 0) +
-            (financeSum.weeklyResult.withdrawRequested || 0) <
-          25000;
-        monthly =
-          (financeSum.monthlyResult.withdrawCrypto || 0) +
-            (financeSum.monthlyResult.withdrawRequested || 0) <
-          100000;
-      }
-
-      const isWithdrawable = bonusPassed && wagerPassed && monthly && weekly;
-      return [isWithdrawable, bonusPassed, wagerPassed, monthly, weekly];
-    }, [financeSum, userState.value?.id]);
-
   const onRequest = useCallback(async () => {
-    if (!financeSum) {
-      return;
-    }
-
     if (selectedCryptoId < 0) {
       toast.error(tToast("error.select_balance"));
       return;
@@ -130,11 +90,6 @@ export default function WithdrawalPanel() {
 
     if (!wallet) {
       toast.error(tToast("error.input_address"));
-      return;
-    }
-
-    if (!isWithdrawable) {
-      toast.error(tToast("error.withdraw_not_allowed"));
       return;
     }
 
@@ -153,30 +108,14 @@ export default function WithdrawalPanel() {
       return;
     }
 
-    if (+amount < 1 || +amount > (userState.value?.cash || 0)) {
+    const userBalance = balanceState.value?.[currencyState.value?.code]?.cash?.balance ?? 0;
+    if (+amount < 1 || +amount > userBalance) {
       toast.error(tToast("error.withdraw_amount"));
       return;
     }
 
     if (!userState.value) {
       return;
-    }
-
-    if (userState.value?.vipLevel < 6) {
-      const weekly =
-        (financeSum.weeklyResult.withdrawCrypto || 0) +
-          (financeSum.weeklyResult.withdrawRequested || 0) +
-          Number(amount) <
-        25000;
-      const monthly =
-        (financeSum.monthlyResult.withdrawCrypto || 0) +
-          (financeSum.monthlyResult.withdrawRequested || 0) +
-          Number(amount) <
-        100000;
-      if (!weekly || !monthly) {
-        toast.error(tToast("error.withdrawal_exceeded"));
-        return;
-      }
     }
 
     setLoading(true);
@@ -201,11 +140,9 @@ export default function WithdrawalPanel() {
   }, [
     wallet,
     amount,
-    selectedCryptoType,
-    userState.value?.cash,
-    isWithdrawable,
     selectedBlockchain,
-    userState.value?.vipLevel,
+    balanceState.value?.cash,
+    currencyState.value,
   ]);
 
   return (
