@@ -46,6 +46,7 @@ const AriesDeposit = ({ bonusId }: AriesDepositProps) => {
       setError("");
       setIsSubmitting(true);
       try {
+        const promoId = new URLSearchParams(window.location.search).get("promo") ?? undefined;
         const res = await apiPayWithAries({
           amount: Number(amount) || 0,
           streetAddress,
@@ -60,6 +61,7 @@ const AriesDeposit = ({ bonusId }: AriesDepositProps) => {
           language: localeState.value,
           applePayEnabled: true,
           googlePayEnabled: true,
+          promoId,
         });
         if (res.data?.paymentUrl) {
           window.location.href = res.data.paymentUrl;
@@ -77,6 +79,7 @@ const AriesDeposit = ({ bonusId }: AriesDepositProps) => {
       }
     },
     [
+      bonusId,
       amount,
       streetAddress,
       city,

@@ -229,7 +229,11 @@
     "answer_5": "Betalarab ofrece una amplia variedad de juegos de casino como tragamonedas, juegos de mesa, juegos originales de Betalarab y juegos de crupier en vivo de los principales proveedores de juegos.",
     "Copyright": "© 2026 betalarab.com | Todos los derechos reservados",
     "CompanyInfo": "Betalarab es propiedad y está operado por Betalarab N.V., número de registro: 145353, dirección registrada: Seru Loraweg 17 B, Curaçao. Las empresas agente de pago son Medium Rare Limited y MRS Tech Limited. Contáctenos en support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab está comprometido con el juego responsable, para más información visite"
+    "ResponsibleGamblingText": "Betalarab está comprometido con el juego responsable, para más información visite",
+    "question_6": "¿En qué deportes puedo apostar?",
+    "answer_6": "Puedes apostar a una amplia gama de deportes, incluidos fútbol, baloncesto, tenis, cricket, esports, MMA, boxeo y muchos otros deportes internacionales populares.",
+    "question_7": "¿Cómo veo transmisiones en vivo?",
+    "answer_7": "Las transmisiones en vivo están disponibles directamente en la plataforma Betalarab para eventos deportivos seleccionados. Ve a la sección de deportes, elige un evento con transmisión en vivo y mira en tiempo real."
   },
   "LoginDialog": {
     "already_have_an_account": "¿Ya tienes una cuenta?",
@@ -283,7 +287,8 @@
     "Something went wrong": "Algo salió mal",
     "successfully_registered": "Registrado con éxito",
     "email_or_username_already_taken": "El correo o nombre de usuario ya está en uso",
-    "something_went_wrong": "Algo salió mal"
+    "something_went_wrong": "Algo salió mal",
+    "already_have_an_account": "¿Ya tienes una cuenta?"
   },
   "HomePage": {
     "casino-games": "Juegos de casino",
@@ -341,7 +346,8 @@
     "Megaways": "Megaways",
     "Classic Slots": "Slots Clásicos",
     "Drop Wins": "Drop Wins",
-    "New Games": "Nuevos juegos"
+    "New Games": "Nuevos juegos",
+    "no_games_found": "No se encontraron juegos en esta categoría"
   },
   "AboutUs": {
     "title": "¿Acerca de betalarab?",
@@ -378,10 +384,10 @@
     "answer_4": "betalarab está comprometido con el Juego Responsable y no permite que sus jugadores abran múltiples cuentas, especialmente por razones de Autoexclusión. Nuestro objetivo es proporcionar a nuestros clientes un entorno seguro y protegido que les brinde una experiencia agradable y gratificante. Alentamos a nuestros clientes a usar nuestros servicios de manera responsable y razonable.",
     "question_5": "¿Hay una restricción de edad en betalarab?",
     "answer_5": "Debes tener al menos 18 años de edad para registrarte en betalarab, siempre que este sea el requisito de edad mínima para juegos en línea dentro de tu jurisdicción. Si es mayor, debes cumplir con los requisitos de tu jurisdicción local.",
-    "question_6": "What Sports Can I Bet On?",
-    "answer_6": "You can bet on a wide range of sports including football, basketball, tennis, cricket, esports, MMA, boxing, and many other popular international sports.",
-    "question_7": "How Do I Watch Live Streams?",
-    "answer_7": "Live streams are available directly on the Betalarab platform for selected sports events. Simply navigate to the sports section, choose an event with live streaming enabled, and watch in real time."
+    "question_6": "¿En qué deportes puedo apostar?",
+    "answer_6": "Puedes apostar a una amplia gama de deportes, incluidos fútbol, baloncesto, tenis, cricket, esports, MMA, boxeo y muchos otros deportes internacionales populares.",
+    "question_7": "¿Cómo veo transmisiones en vivo?",
+    "answer_7": "Las transmisiones en vivo están disponibles directamente en la plataforma Betalarab para eventos deportivos seleccionados. Ve a la sección de deportes, elige un evento con transmisión en vivo y mira en tiempo real."
   },
   "GameGroup": {
     "More": "Más",
@@ -573,7 +579,7 @@
     "ZIP placeholder": "Código postal",
     "Country": "País",
     "Phone": "Teléfono",
-    "Phone placeholder": "+1 234 567 8900",
+    "Phone placeholder": "+34 612 345 678",
     "Submit payment": "Enviar pago",
     "Payment could not be created.": "No se pudo crear el pago.",
     "Something went wrong.": "Algo salió mal."
@@ -804,7 +810,12 @@
     "info": {
       "address_copied": "¡Dirección de billetera copiada al portapapeles!",
       "text_copied": "Copiado {text}",
-      "promotion_copied": "Copiado {text}"
+      "promotion_copied": "Copiado {text}",
+      "wallet_address_copied": "¡Dirección de la billetera copiada al portapapeles!"
+    },
+    "aria": {
+      "copy_address": "Copiar dirección",
+      "refresh_address": "Actualizar dirección"
     }
   },
   "MoreToolDialog": {
@@ -1057,7 +1068,7 @@
   },
   "SignupStep2": {
     "Step 2/3": "Paso 2/3",
-    "< Back": "< Back",
+    "< Back": "< Volver",
     "Create an Account": "Crear una cuenta",
     "Email": "Correo",
     "Username": "Usuario",
@@ -1073,11 +1084,11 @@
   },
   "SignupStep3": {
     "Step 3/3": "Paso 3/3",
-    "< Back": "< Back",
+    "< Back": "< Volver",
     "Create an Account": "Crear una cuenta",
     "Terms and Conditions": "Términos y condiciones",
-    "terms_and_conditions_title": "1.betalarab.com",
-    "terms_and_conditions_content": "betalarab.com is owned and operated by Medium Rare, N.V., a company incorporated under the laws of Curaçao with its head office at Zuiderpark 6, Willemstad, Curaçao. betalarab.com is licensed and regulated by the Curaçao Gaming Authority (license number OGL/2024/1451/0918).\n\nPayment processing for betalarab.com is handled by subsidiaries Medium Rare Limited (Cyprus) and MRS Tech Ltd (Cyprus), with registered addresses at 28 Oktovriou 1, Limassol 4102, Cyprus and registration numbers HE 410775 and HE 477481 respectively.\n\nBy using betalarab.com, you agree to be bound by these Terms and Conditions. Please read them carefully before using our services.",
+    "terms_and_conditions_title": "1. betalarab.com",
+    "terms_and_conditions_content": "betalarab.com es propiedad y está operado por Medium Rare, N.V., una empresa constituida bajo las leyes de Curazao con sede en Zuiderpark 6, Willemstad, Curazao. betalarab.com está licenciado y regulado por la Autoridad de Juegos de Curazao (número de licencia OGL/2024/1451/0918).\n\nEl procesamiento de pagos para betalarab.com lo realizan las filiales Medium Rare Limited (Chipre) y MRS Tech Ltd (Chipre), con domicilios registrados en 28 Oktovriou 1, Limassol 4102, Chipre y números de registro HE 410775 y HE 477481 respectivamente.\n\nAl usar betalarab.com, aceptas quedar vinculado por estos Términos y condiciones. Léelos con atención antes de usar nuestros servicios.",
     "I have read and agree to the Terms and Conditions": "He leído y acepto los Términos y condiciones",
     "Already have an account?": "¿Ya tienes una cuenta?",
     "Sign in": "Iniciar sesión"
@@ -1087,66 +1098,66 @@
     "We're thrilled to have you here! Get ready to explore amazing games and exciting opportunities.": "¡Estamos encantados de tenerte aquí! Prepárate para explorar juegos increíbles y oportunidades emocionantes."
   },
   "MessagePage": {
-    "Send New": "Send New",
-    "Subject": "Subject",
-    "Enter text here": "Enter text here",
-    "Message": "Message",
-    "Send": "Send"
+    "Send New": "Nuevo mensaje",
+    "Subject": "Asunto",
+    "Enter text here": "Escribe el texto aquí",
+    "Message": "Mensaje",
+    "Send": "Enviar"
   },
   "CardDeposit": {
-    "Card Deposit": "Card Deposit",
-    "Card Number": "Card Number",
-    "Info": "Info",
-    "Select Country": "Select Country"
+    "Card Deposit": "Depósito con tarjeta",
+    "Card Number": "Número de tarjeta",
+    "Info": "Información",
+    "Select Country": "Seleccionar país"
   },
   "LiveSupportAI": {
-    "Live Support AI": "Live Support AI",
-    "Close Chat": "Close Chat"
+    "Live Support AI": "Soporte en vivo con IA",
+    "Close Chat": "Cerrar chat"
   },
   "Sidebar": {
-    "Live Support": "Live Support",
-    "Notification": "Notification",
-    "Favorite": "Favorite",
-    "Setting": "Setting",
-    "Bet": "Bet"
+    "Live Support": "Soporte en vivo",
+    "Notification": "Notificación",
+    "Favorite": "Favoritos",
+    "Setting": "Ajustes",
+    "Bet": "Apuesta"
   },
   "ProvablyFair": {
-    "Provably Fair": "Provably Fair",
-    "Overview": "Overview",
-    "Implementation": "Implementation",
-    "Conversions": "Conversions",
-    "Game Events": "Game Events",
-    "Unhash Server Seed": "Unhash Server Seed",
-    "Calculation": "Calculation",
-    "Solving the Trust Issue with Online Gambling": "Solving the Trust Issue with Online Gambling",
-    "Provable fairness allows players to prove and verify that results are fair and unmanipulated. This is achieved through a": "Provable fairness allows players to prove and verify that results are fair and unmanipulated. This is achieved through a",
-    "commitment scheme": "commitment scheme",
-    "and": "and",
-    "cryptographic hashing": "cryptographic hashing",
-    "The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty. Together they create a": "The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty. Together they create a",
-    "trust-less environment": "trust-less environment",
-    "This is simplified in the following representation:": "This is simplified in the following representation:",
-    "fair result = operators input (hashed) + players input": "fair result = operators input (hashed) + players input",
-    "3rd Party Verification": "3rd Party Verification",
-    "Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure. You can find them via Google or community-made resources.": "Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure. You can find them via Google or community-made resources.",
+    "Provably Fair": "Demostrablemente justo",
+    "Overview": "Resumen",
+    "Implementation": "Implementación",
+    "Conversions": "Conversiones",
+    "Game Events": "Eventos del juego",
+    "Unhash Server Seed": "Descifrar semilla del servidor",
+    "Calculation": "Cálculo",
+    "Solving the Trust Issue with Online Gambling": "Resolver el problema de confianza en el juego en línea",
+    "Provable fairness allows players to prove and verify that results are fair and unmanipulated. This is achieved through a": "La equidad demostrable permite a los jugadores probar y verificar que los resultados son justos y no manipulados. Esto se logra mediante un",
+    "commitment scheme": "esquema de compromiso",
+    "and": "y",
+    "cryptographic hashing": "hash criptográfico",
+    "The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty. Together they create a": "El esquema de compromiso garantiza la influencia del jugador y el hash criptográfico garantiza la honestidad del casino. Juntos crean un",
+    "trust-less environment": "entorno sin necesidad de confianza ciega",
+    "This is simplified in the following representation:": "Esto se simplifica en la siguiente representación:",
+    "fair result = operators input (hashed) + players input": "resultado justo = entrada del operador (hasheada) + entrada del jugador",
+    "3rd Party Verification": "Verificación de terceros",
+    "Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure. You can find them via Google or community-made resources.": "Los Betalarab Originals se pueden verificar en el sitio o en sitios de terceros que han publicado el procedimiento de verificación de código abierto. Puedes encontrarlos en Google o en recursos de la comunidad.",
     "Crypto Gambling Foundation": "Crypto Gambling Foundation",
-    "Betalarab is a verified operator on the Crypto Gambling Foundation network. The foundation aims to uphold high standards of provably fair gambling. Check their website for more information.": "Betalarab is a verified operator on the Crypto Gambling Foundation network. The foundation aims to uphold high standards of provably fair gambling. Check their website for more information.",
+    "Betalarab is a verified operator on the Crypto Gambling Foundation network. The foundation aims to uphold high standards of provably fair gambling. Check their website for more information.": "Betalarab es un operador verificado en la red de Crypto Gambling Foundation. La fundación promueve altos estándares de juego demostrablemente justo. Consulta su sitio web para más información.",
     "CRYPTO GAMBLING FOUNDATION": "CRYPTO GAMBLING FOUNDATION",
-    "VERIFIED OPERATOR": "VERIFIED OPERATOR",
-    "Implementation content will be displayed here.": "Implementation content will be displayed here.",
-    "Conversions content will be displayed here.": "Conversions content will be displayed here.",
-    "Game Events content will be displayed here.": "Game Events content will be displayed here.",
-    "Unhash Server Seed content will be displayed here.": "Unhash Server Seed content will be displayed here.",
-    "Calculation content will be displayed here.": "Calculation content will be displayed here.",
-    "ProvableFairnessDesc": "Provable fairness allows players to prove and verify that results are fair and unmanipulated. This is achieved through a",
-    "CommitmentSchemeDesc": "The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty. Together they create a",
-    "3rdPartyVerificationDesc": "Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure. You can find them via Google or community-made resources.",
-    "CryptoGamblingFoundationDesc": "Betalarab is a verified operator on the Crypto Gambling Foundation network. This foundation aims to uphold the highest standard of provably fair gambling and we are proud to be a part of their network. You can find further information and insights about provable fairness and the power it has in this industry, check out the Crypto Gambling Foundation via their website: ",
-    "ImplementationPlaceholder": "Implementation content will be displayed here.",
-    "ConversionsPlaceholder": "Conversions content will be displayed here.",
-    "GameEventsPlaceholder": "Game Events content will be displayed here.",
-    "UnhashServerSeedPlaceholder": "Unhash Server Seed content will be displayed here.",
-    "CalculationPlaceholder": "Calculation content will be displayed here."
+    "VERIFIED OPERATOR": "OPERADOR VERIFICADO",
+    "Implementation content will be displayed here.": "El contenido de implementación se mostrará aquí.",
+    "Conversions content will be displayed here.": "El contenido de conversiones se mostrará aquí.",
+    "Game Events content will be displayed here.": "El contenido de eventos del juego se mostrará aquí.",
+    "Unhash Server Seed content will be displayed here.": "El contenido de descifrado de la semilla del servidor se mostrará aquí.",
+    "Calculation content will be displayed here.": "El contenido del cálculo se mostrará aquí.",
+    "ProvableFairnessDesc": "La equidad demostrable permite a los jugadores probar y verificar que los resultados son justos y no manipulados. Esto se logra mediante un",
+    "CommitmentSchemeDesc": "El esquema de compromiso garantiza la influencia del jugador y el hash criptográfico garantiza la honestidad del casino. Juntos crean un",
+    "3rdPartyVerificationDesc": "Los Betalarab Originals se pueden verificar en el sitio o en sitios de terceros que han publicado el procedimiento de verificación. Puedes encontrarlos en Google o en recursos de la comunidad.",
+    "CryptoGamblingFoundationDesc": "Betalarab es un operador verificado en la red de Crypto Gambling Foundation. Esta fundación busca el más alto estándar de juego demostrablemente justo y nos enorgullece formar parte de su red. Para más información sobre la equidad demostrable y su impacto en industria, visita Crypto Gambling Foundation en su sitio web: ",
+    "ImplementationPlaceholder": "El contenido de implementación se mostrará aquí.",
+    "ConversionsPlaceholder": "El contenido de conversiones se mostrará aquí.",
+    "GameEventsPlaceholder": "El contenido de eventos del juego se mostrará aquí.",
+    "UnhashServerSeedPlaceholder": "El contenido de descifrado de la semilla del servidor se mostrará aquí.",
+    "CalculationPlaceholder": "El contenido del cálculo se mostrará aquí."
   },
   "HelpCenter": {
     "Title": "Centro de ayuda",

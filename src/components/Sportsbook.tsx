@@ -147,14 +147,23 @@ export default function Sportsbook({
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div
+        className="flex items-center justify-center min-h-[400px]"
+        style={{ background: "#1a0e08" }}
+      >
         <div className="text-center">
-          <div className="text-red-500 text-lg mb-2">Error</div>
-          <div className="text-gray-600">{error}</div>
+          <div className="text-lg mb-2" style={{ color: "#f0a830" }}>
+            Error
+          </div>
+          <div style={{ color: "#C3A59B" }}>{error}</div>
           <div className="flex gap-2 mt-4 justify-center">
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className="px-4 py-2 rounded text-white font-semibold transition hover:opacity-90"
+              style={{
+                background: "linear-gradient(145deg, #f5c842, #c87a10)",
+                boxShadow: "0 0 16px #f0a83033",
+              }}
             >
               {t("reload_page")}
             </button>
@@ -163,7 +172,12 @@ export default function Sportsbook({
                 onClick={() => {
                   setError(null);
                 }}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                className="px-4 py-2 rounded text-white font-semibold transition hover:opacity-90"
+                style={{
+                  background: "rgba(194,126,49,0.25)",
+                  border: "1px solid #f0a83066",
+                  color: "#f0d080",
+                }}
               >
                 {t("retry")}
               </button>

@@ -20,28 +20,28 @@
     "Log in": "Anmelden",
     "Home": "Startseite",
     "Sportsbook": "Sportwetten",
-    "Casino": "Casino",
-    "Dashboard": "Dashboard",
+    "Casino": "Kasino",
+    "Dashboard": "Armaturenbrett",
     "Users": "Benutzer",
     "Menu": "Menü",
     "Sports": "Sport",
     "Live Racing": "Live-Rennen",
     "All Games": "Alle Spiele",
-    "Pragmatic Play": "Pragmatic Play",
+    "Pragmatic Play": "Pragmatisches Spiel",
     "New": "Neu",
     "Popular Games": "Beliebte Spiele",
     "Jackpots": "Jackpots",
-    "Top Slots": "Top Slots",
+    "Top Slots": "Top-Slots",
     "Buy Bonus": "Bonus kaufen",
     "Megaways": "Megaways",
     "Classic Slots": "Klassische Slots",
-    "Video Slots": "Video Slots",
+    "Video Slots": "Video-Slots",
     "Drop Wins": "Drop Wins",
-    "Video Bingo": "Video Bingo",
+    "Video Bingo": "Video-Bingo",
     "Scratch Games": "Rubbellose",
     "Instant Game": "Sofortspiel",
     "Fishing & Hunting": "Angeln & Jagen",
-    "Casual Games": "Casual Games",
+    "Casual Games": "Gelegenheitsspiele",
     "Other Games": "Andere Spiele",
     "bfth_Arena": "B.F.T.H. Arena",
     "Tournamements": "Turniere",
@@ -49,19 +49,19 @@
     "Pragmatic games": "Pragmatic Spiele",
     "Roulette": "Roulette",
     "Blackjack": "Blackjack",
-    "Video Poker": "Video Poker",
+    "Video Poker": "Videopoker",
     "Baccarat": "Baccarat",
     "Table Games": "Tischspiele",
     "Horse Racing": "Pferderennen",
     "Dog Racing": "Hunderennen",
     "My bets": "Meine Wetten",
     "Affiliate": "Partner",
-    "VIP Club": "VIP Club",
+    "VIP Club": "VIP-Club",
     "Blog": "Blog",
     "Forum": "Forum",
     "Sponsorships": "Sponsoring",
     "Responsible Gambling": "Verantwortungsvolles Spielen",
-    "Live Support": "Live Support",
+    "Live Support": "Live-Support",
     "Language": "Sprache",
     "Select Currency": "Währung auswählen",
     "Toggle navigation menu": "Navigationsmenü umschalten",
@@ -86,7 +86,9 @@
     "Swap Crypto": "Krypto tauschen",
     "Settings": "Einstellungen",
     "Your Betalarab Wallet is Currently Empty": "Ihre Betalarab-Geldbörse ist derzeit leer",
-    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped.": "Um zu starten, zahlen Sie per Krypto oder lokaler Währung ein (wo verfügbar) oder kaufen Sie Krypto sofort über MoonPay oder Swapped.",
+    "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped": {
+      "": "Um zu starten, zahlen Sie per Krypto oder lokaler Währung ein (wo verfügbar) oder kaufen Sie Krypto sofort über MoonPay oder Swapped."
+    },
     "Deposit": "Einzahlung",
     "Buy": "Kaufen",
     "Cryptocurrency": "Kryptowährung",
@@ -155,7 +157,7 @@
     "legal_text": "betalarab.com wird von Amadeus Technology B.V. betrieben, einem Unternehmen, das nach den Gesetzen von Curaçao mit der Unternehmensnummer 164694 eingetragen ist und über eine gültige Betriebserlaubnis verfügt. Diese Betriebserlaubnis unterliegt der Nationalen Verordnung über Offshore-Glücksspiele (Landsverordening buitengaatse hazardspelen, P.B. 1993, Nr. 63) (NOOGH). Die RGA und GT&C enthalten wichtige Einschränkungen und Beschränkungen, die zu Ihrem Schutz und dem Schutz anderer auferlegt wurden. Bevor Sie sich entscheiden, an einem Spiel teilzunehmen, stellen Sie bitte sicher, dass Sie die RGA und GT&C sorgfältig überprüft haben und regelmäßig auf Änderungen prüfen. Durch den Zugriff, die Registrierung oder die Nutzung der Spielumgebung bestätigen Sie, dass Sie die RGA und GT&C anerkennen, zustimmen und akzeptieren und rechtlich daran gebunden sind. Die offizielle Version der RGA und GT&C ist in englischer Sprache verfasst und hat Vorrang vor allen Übersetzungen. Änderungen oder Aktualisierungen ersetzen frühere Versionen und treten zwei Wochen nach ihrer Veröffentlichung auf der Website in Kraft. Es liegt in der Verantwortung des Benutzers, regelmäßig auf Änderungen zu prüfen. Durch die weitere Nutzung der Dienste nach Inkrafttreten der aktualisierten Bedingungen gilt der Benutzer als die Änderungen akzeptiert zu haben. Bestehende Benutzer können sich entscheiden, die Nutzung der Produkte und Dienste einzustellen, bevor das genannte Update wirksam wird",
     "Betting Dictionary": "Wettlexikon",
     "Live Casino": "Live-Casino",
-    "Casino": "Casino",
+    "Casino": "Kasino",
     "Sportsbook": "Sportwetten",
     "Games": "Spiele",
     "Promotions": "Aktionen",
@@ -175,10 +177,10 @@
     "regulations_partners": "Regelungen & Partner",
     "payment_methods": "Zahlungsmethoden",
     "Sports": "Sport",
-    "Support": "Support",
+    "Support": "Unterstützung",
     "Payment Info": "Zahlungsinformationen",
     "Casino Games": "Casino-Spiele",
-    "Slots": "Slots",
+    "Slots": "Spielautomaten",
     "Poker": "Poker",
     "Publishers": "Herausgeber",
     "Promos & Competitions": "Aktionen & Wettbewerbe",
@@ -188,7 +190,7 @@
     "Soccer": "Fußball",
     "Basketball": "Basketball",
     "Tennis": "Tennis",
-    "eSports": "eSports",
+    "eSports": "eSport",
     "Bet Bonuses": "Wettbonusse",
     "Sports Rules": "Sportregeln",
     "Racing Rules": "Rennregeln",
@@ -197,7 +199,7 @@
     "Gambling Helpline": "Spielsucht-Hotline",
     "Self Exclusion": "Selbstausschluss",
     "Law Enforcement Request": "Strafverfolgungsanfrage",
-    "VIP Club": "VIP Club",
+    "VIP Club": "VIP-Club",
     "Affiliate": "Partner",
     "AML Policy": "AML-Richtlinie",
     "Terms of Service": "Nutzungsbedingungen",
@@ -216,7 +218,7 @@
     "Roulette": "Roulette",
     "Blackjack": "Blackjack",
     "Baccarat": "Baccarat",
-    "Live Support": "Live Support",
+    "Live Support": "Live-Support",
     "question_1": "Wer ist Betalarab?",
     "answer_1": "Betalarab ist eine Online-Kryptowährungs-Casino- und Sportwetten-Plattform, die Spielern weltweit eine breite Palette von Casino-Spielen und Sportmärkten bietet.",
     "question_2": "Ist Betalarab lizenziert?",
@@ -229,7 +231,11 @@
     "answer_5": "Betalarab bietet eine große Auswahl an Casino-Spielen wie Slots, Tischspiele, originale Betalarab-Spiele und Live-Dealer-Spiele von führenden Spielanbietern.",
     "Copyright": "© 2026 betalarab.com | Alle Rechte vorbehalten",
     "CompanyInfo": "Betalarab gehört und wird betrieben von Betalarab N.V., Registrierungsnummer: 145353, eingetragene Adresse: Seru Loraweg 17 B, Curaçao. Die Zahlungsagenten-Unternehmen sind Medium Rare Limited und MRS Tech Limited. Kontaktieren Sie uns unter support@betalarab.com.",
-    "ResponsibleGamblingText": "Betalarab ist dem verantwortungsvollen Glücksspiel verpflichtet, für weitere Informationen besuchen Sie"
+    "ResponsibleGamblingText": "Betalarab ist dem verantwortungsvollen Glücksspiel verpflichtet, für weitere Informationen besuchen Sie",
+    "question_6": "Auf welche Sportarten kann ich wetten?",
+    "answer_6": "Sie können auf eine große Auswahl an Sportarten wetten, darunter Fußball, Basketball, Tennis, Cricket, E-Sport, MMA, Boxen und viele andere beliebte internationale Sportarten.",
+    "question_7": "Wie kann ich Livestreams ansehen?",
+    "answer_7": "Livestreams sind direkt auf der Betalarab-Plattform für ausgewählte Sportereignisse verfügbar. Gehen Sie zum Sportbereich, wählen Sie ein Ereignis mit aktiviertem Livestream und sehen Sie in Echtzeit zu."
   },
   "LoginDialog": {
     "already_have_an_account": "Bereits ein Konto?",
@@ -247,7 +253,7 @@
     "please_input_all_fields": "Bitte alle Felder ausfüllen",
     "successfully_logged_in": "Erfolgreich angemeldet",
     "email_or_password_is_incorrect": "E-Mail oder Passwort ist falsch",
-    "something_went_wrong": "Etwas ist schiefgelaufen",
+    "something_went_wrong": "Etwas ist schief gelaufen",
     "OR": "ODER",
     "Sign In with passkey": "Mit Passkey anmelden",
     "Sign In with Google": "Mit Google anmelden",
@@ -280,16 +286,17 @@
     "contact_support": "Support kontaktieren",
     "Successfully registered": "Erfolgreich registriert",
     "Email or username is already taken": "E-Mail oder Benutzername ist bereits vergeben",
-    "Something went wrong": "Etwas ist schiefgelaufen",
+    "Something went wrong": "Etwas ist schief gelaufen",
     "successfully_registered": "Erfolgreich registriert",
     "email_or_username_already_taken": "E-Mail oder Benutzername ist bereits vergeben",
-    "something_went_wrong": "Etwas ist schiefgelaufen"
+    "something_went_wrong": "Etwas ist schief gelaufen",
+    "already_have_an_account": "Haben Sie bereits ein Konto?"
   },
   "HomePage": {
     "casino-games": "Casino-Spiele",
     "live-casino": "Live-Casino",
-    "Hacksaw": "Hacksaw",
-    "No Limit": "No Limit",
+    "Hacksaw": "Säge",
+    "No Limit": "Kein Limit",
     "Deposit Methods": "Einzahlungsmethoden",
     "deposit_info": "Verfügbare Einzahlungsmethoden werden hier angezeigt",
     "Get": "Erhalten Sie",
@@ -306,7 +313,7 @@
     "slots_content": "Erleben Sie den Nervenkitzel von Slots mit erstaunlichen Boni und Jackpots!",
     "sports_content": "Setzen Sie Ihre Wetten auf Sport und genießen Sie wettbewerbsfähige Quoten!",
     "games_content": "Entdecken Sie aufregende Spiele und gewinnen Sie große Preise!",
-    "bet_promotion_casino_title": "Casino",
+    "bet_promotion_casino_title": "Kasino",
     "bet_promotion_casino_content": "Top-bewertete Casino-Spiele von renommierten Anbietern der Welt!\n Tauchen Sie ein in die Welt einzigartiger Live-Casino-Show-Spiele.",
     "bet_promotion_sports_title": "Sportwetten",
     "bet_promotion_sports_content": "Ultimative Abdeckung und unschlagbare Quoten auf Ihre Spiele!\n Erleben Sie Sportwetten mit den besten Angeboten und Boni.",
@@ -316,7 +323,7 @@
     "promotion_info_sports_bonus_context": "Maximieren Sie Ihre Wetten mit unserem Sport-Bonus!\nAuch wenn das Glück nicht auf Ihrer Seite ist, können wir es mit unserem innovativen Belohnungssystem in einen Sieg verwandeln",
     "promotion_info_casino_bonus_title": "Casino-Bonus",
     "promotion_info_casino_bonus_context": "Schalten Sie große Boni frei, die Ihre Spielreise verbessern. Erhöhen Sie Ihre Gewinnchancen und genießen Sie eine Welt voller Belohnungen mit unseren großzügigen Bonusangeboten.",
-    "promotion_info_community_title": "Community",
+    "promotion_info_community_title": "Gemeinschaft",
     "promotion_info_community_context": "Ein Ort zum Teilen von Erfahrungen und Ideen, wir verbessern Ihre Reise mit vielfältigen Einblicken, werden Sie Teil dieser einladenden Community. Ihre Anwesenheit kann einen echten Unterschied machen.",
     "welcome_bonus_content": "Beginnen Sie mit unserem erstaunlichen Willkommensbonus und steigern Sie Ihr Spielerlebnis!",
     "loyalty_program_content": "Treten Sie unserem Treueprogramm bei und verdienen Sie Belohnungen mit jeder Wette, die Sie platzieren!",
@@ -333,15 +340,16 @@
     "guide_card_contact_support_title": "Support 24/7 kontaktieren",
     "guide_card_contact_support_content": "Kontaktieren Sie uns bei Fragen per Live-Chat",
     "load_more": "Mehr laden",
-    "Casino": "Casino",
+    "Casino": "Kasino",
     "Search": "Suchen",
     "Lobby": "Lobby",
-    "Top Slots": "Top Slots",
+    "Top Slots": "Top-Slots",
     "Live Casino": "Live-Casino",
     "Megaways": "Megaways",
     "Classic Slots": "Klassische Slots",
     "Drop Wins": "Drop Wins",
-    "New Games": "Neue Spiele"
+    "New Games": "Neue Spiele",
+    "no_games_found": "Keine Spiele in dieser Kategorie gefunden"
   },
   "AboutUs": {
     "title": "Über betalarab?",
@@ -379,16 +387,16 @@
     "question_5": "Gibt es eine Altersbeschränkung bei betalarab?",
     "answer_5": "Sie müssen mindestens 18 Jahre alt sein, um sich bei betalarab zu registrieren, vorausgesetzt, dies ist die Mindestaltersanforderung für Online-Spiele in Ihrer Gerichtsbarkeit. Wenn höher, müssen Sie die Anforderungen Ihrer örtlichen Gerichtsbarkeit erfüllen.",
     "question_6": "Auf welche Sportarten kann ich wetten?",
-    "answer_6": "Sie können auf ein breites Spektrum an Sportarten wetten, darunter Fußball, Basketball, Tennis, Cricket, E-Sport, MMA, Boxen und viele andere beliebte internationale Sportarten.",
-    "question_7": "Wie kann ich Live-Streams ansehen?",
-    "answer_7": "Live-Streams sind direkt auf der Betalarab-Plattform für ausgewählte Sportereignisse verfügbar. Gehen Sie einfach zum Sportbereich, wählen Sie ein Ereignis mit aktiviertem Live-Stream und schauen Sie in Echtzeit."
+    "answer_6": "Sie können auf eine große Auswahl an Sportarten wetten, darunter Fußball, Basketball, Tennis, Cricket, E-Sport, MMA, Boxen und viele andere beliebte internationale Sportarten.",
+    "question_7": "Wie kann ich Livestreams ansehen?",
+    "answer_7": "Livestreams sind direkt auf der Betalarab-Plattform für ausgewählte Sportereignisse verfügbar. Gehen Sie zum Sportbereich, wählen Sie ein Ereignis mit aktiviertem Livestream und sehen Sie in Echtzeit zu."
   },
   "GameGroup": {
     "More": "Mehr",
     "Casino Games": "Casino-Spiele",
     "Live Casino": "Live-Casino",
     "View All": "Alle anzeigen",
-    "Trending": "Trending",
+    "Trending": "Im Trend",
     "Trending Games": "Trending Spiele",
     "Trending Sports": "Trending Sport",
     "Game": "Spiel",
@@ -481,7 +489,13 @@
     "Activate two-factor authentication": "Zwei-Faktor-Authentifizierung aktivieren",
     "Deactivate two-factor authentication": "Zwei-Faktor-Authentifizierung deaktivieren",
     "Set up Authenticator": "Authenticator einrichten",
-    "Get the Google Authenticator app from App Store. In the Google Authenticator App select Set up an account. Choose Scan a barcode.": "Lade die Google-Authenticator-App aus dem App Store herunter. Wähle in der App „Konto einrichten“ und dann „Barcode scannen“.",
+    "Get the Google Authenticator app from App Store": {
+      " In the Google Authenticator App select Set up an account": {
+        " Choose Scan a barcode": {
+          "": "Lade die Google-Authenticator-App aus dem App Store herunter. Wähle in der App „Konto einrichten“ und dann „Barcode scannen“."
+        }
+      }
+    },
     "Verify": "Verifizieren",
     "Date of Birth": "Geburtsdatum",
     "Select a gender": "Geschlecht auswählen",
@@ -503,7 +517,7 @@
   "Promotions": {
     "Promotions": "Aktionen",
     "Sport": "Sport",
-    "Casino": "Casino",
+    "Casino": "Kasino",
     "Live Casino": "Live-Casino",
     "TV Games": "TV-Spiele",
     "Jackpot": "Jackpot",
@@ -548,7 +562,7 @@
     "Add order_id to URL hint": "Fügen Sie order_id zur URL hinzu, um das Zahlungsergebnis zu sehen.",
     "Checking status…": "Status wird geprüft…",
     "Order ID": "Auftrags-ID",
-    "Something went wrong": "Etwas ist schiefgelaufen",
+    "Something went wrong": "Etwas ist schief gelaufen",
     "Order status": "Auftragsstatus",
     "Current balance": "Aktueller Kontostand",
     "Completed": "Abgeschlossen",
@@ -573,10 +587,10 @@
     "ZIP placeholder": "Postleitzahl",
     "Country": "Land",
     "Phone": "Telefon",
-    "Phone placeholder": "+1 234 567 8900",
+    "Phone placeholder": "+49 151 23456789",
     "Submit payment": "Zahlung absenden",
     "Payment could not be created.": "Zahlung konnte nicht erstellt werden.",
-    "Something went wrong.": "Etwas ist schiefgelaufen."
+    "Something went wrong.": "Etwas ist schief gelaufen."
   },
   "AriesWithdraw": {
     "Please login to withdraw.": "Bitte melden Sie sich zum Auszahlen an.",
@@ -616,7 +630,7 @@
     "total_history": "Gesamtverlauf: {total} Einträge",
     "Select period": "Zeitraum wählen",
     "My Bets": "Meine Wetten",
-    "Casino": "Casino",
+    "Casino": "Kasino",
     "Sports": "Sport"
   },
   "DepositDialogFull": {
@@ -771,7 +785,7 @@
       "user_details_updated": "Benutzerdetails erfolgreich aktualisiert"
     },
     "error": {
-      "something_wrong": "Etwas ist schiefgelaufen",
+      "something_wrong": "Etwas ist schief gelaufen",
       "fetch_cashback": "Fehler beim Abrufen der Cashback-Daten.",
       "claim_cashback": "Fehler beim Anfordern des Cashbacks",
       "no_cashback": "Kein Cashback verfügbar.",
@@ -804,7 +818,12 @@
     "info": {
       "address_copied": "Wallet-Adresse in die Zwischenablage kopiert!",
       "text_copied": "{text} kopiert",
-      "promotion_copied": "{text} kopiert"
+      "promotion_copied": "{text} kopiert",
+      "wallet_address_copied": "Wallet-Adresse in die Zwischenablage kopiert!"
+    },
+    "aria": {
+      "copy_address": "Adresse kopieren",
+      "refresh_address": "Adresse aktualisieren"
     }
   },
   "MoreToolDialog": {
@@ -837,8 +856,8 @@
     "email": "E-Mail",
     "recover_password": "Passwort Wiederherstellen",
     "Password reset link was sent to": "Passwort-Reset-Link wurde gesendet an",
-    "Something went wrong. Please check your email exists in the": "Etwas ist schiefgelaufen. Bitte überprüfen Sie, ob Ihre E-Mail existiert in",
-    "EmailCheckError": "Etwas ist schiefgelaufen. Bitte überprüfen Sie, ob Ihre E-Mail existiert in"
+    "Something went wrong. Please check your email exists in the": "Etwas ist schief gelaufen. Bitte überprüfen Sie, ob Ihre E-Mail existiert in",
+    "EmailCheckError": "Etwas ist schief gelaufen. Bitte überprüfen Sie, ob Ihre E-Mail existiert in"
   },
   "Setting": {
     "language": "Sprache"
@@ -866,7 +885,7 @@
     "Inbox": "Posteingang",
     "Sent": "Gesendet",
     "New": "Neu",
-    "Casino": "Casino",
+    "Casino": "Kasino",
     "Sports": "Sport",
     "Loyalty Points": "Treuepunkte",
     "Personal Details": "Persönliche Daten",
@@ -902,36 +921,68 @@
     "Referrals": "Empfehlungen",
     "Earnings": "Verdienste",
     "Affiliate Program": "Partnerprogramm",
-    "Earn commission for all bets placed by your referrals across Casino and Sportsbook.": "Verdienen Sie Provision auf alle Wetten Ihrer Empfehlungen in Casino und Sportwetten.",
+    "Earn commission for all bets placed by your referrals across Casino and Sportsbook": {
+      "": "Verdienen Sie Provision auf alle Wetten Ihrer Empfehlungen in Casino und Sportwetten."
+    },
     "Worldwide Customers": "Kunden weltweit",
     "Payment Methods": "Zahlungsmethoden",
     "Languages Supported": "Unterstützte Sprachen",
     "Affiliate Link": "Partner-Link",
     "Exclusive Advantages": "Exklusive Vorteile",
     "Instant Payout": "Sofortauszahlung",
-    "Skip the wait. See earnings instantly in your account.": "Kein Warten. Sehen Sie Ihre Einnahmen sofort auf Ihrem Konto.",
+    "Skip the wait": {
+      " See earnings instantly in your account": {
+        "": "Kein Warten. Sehen Sie Ihre Einnahmen sofort auf Ihrem Konto."
+      }
+    },
     "Lifetime Commission": "Lebenslange Provision",
-    "If the people you refer keep playing, you keep getting paid.": "Wenn Ihre Empfehlungen weiter spielen, erhalten Sie weiter Provision.",
+    "If the people you refer keep playing, you keep getting paid": {
+      "": "Wenn Ihre Empfehlungen weiter spielen, erhalten Sie weiter Provision."
+    },
     "Market Leading Player Value": "Branchenführender Spielerwert",
-    "Grow your earnings with some of the highest returns offered to players.": "Steigern Sie Ihre Einnahmen mit hohen Rückzahlungsquoten für Spieler.",
+    "Grow your earnings with some of the highest returns offered to players": {
+      "": "Steigern Sie Ihre Einnahmen mit hohen Rückzahlungsquoten für Spieler."
+    },
     "Customise Your Commission": "Provision anpassen",
-    "Tailor your commission plan to fit your unique business needs.": "Passen Sie Ihren Provisionsplan an Ihre Geschäftsbedürfnisse an.",
+    "Tailor your commission plan to fit your unique business needs": {
+      "": "Passen Sie Ihren Provisionsplan an Ihre Geschäftsbedürfnisse an."
+    },
     "Crypto & Local Currencies": "Krypto & lokale Währungen",
-    "Earn your way with support for both cryptocurrency and local currencies.": "Verdienen Sie mit Unterstützung für Kryptowährung und lokale Währungen.",
+    "Earn your way with support for both cryptocurrency and local currencies": {
+      "": "Verdienen Sie mit Unterstützung für Kryptowährung und lokale Währungen."
+    },
     "24x7 Multi Language Support": "24/7 Mehrsprachen-Support",
-    "Get the help you want in your preferred language all day, everyday.": "Erhalten Sie rund um die Uhr Hilfe in Ihrer Sprache.",
+    "Get the help you want in your preferred language all day, everyday": {
+      "": "Erhalten Sie rund um die Uhr Hilfe in Ihrer Sprache."
+    },
     "Commission Rules": "Provisionsregeln",
-    "Our default commission rate is 10% but you can calculate specific rates for our products using the formulas below.": "Die Standardprovision beträgt 10 %, Sie können mit den folgenden Formeln produktspezifische Sätze berechnen.",
-    "Casino": "Casino",
-    "All of our games have a different house edge. You can derive your commission using the following formula:": "Jedes Spiel hat einen anderen Hausvorteil. Ihre Provision lässt sich mit folgender Formel berechnen:",
+    "Our default commission rate is 10% but you can calculate specific rates for our products using the formulas below": {
+      "": "Die Standardprovision beträgt 10 %, Sie können mit den folgenden Formeln produktspezifische Sätze berechnen."
+    },
+    "Casino": "Kasino",
+    "All of our games have a different house edge": {
+      " You can derive your commission using the following formula:": "Jedes Spiel hat einen anderen Hausvorteil. Ihre Provision lässt sich mit folgender Formel berechnen:"
+    },
     "Sportsbook": "Sportwetten",
-    "All sports bets are applied at a 3% theoretical house edge. You can derive your commission using the following formula:": "Alle Sportwetten haben einen theoretischen Hausvorteil von 3 %. Ihre Provision berechnet sich mit folgender Formel:",
+    "All sports bets are applied at a 3% theoretical house edge": {
+      " You can derive your commission using the following formula:": "Alle Sportwetten haben einen theoretischen Hausvorteil von 3 %. Ihre Provision berechnet sich mit folgender Formel:"
+    },
     "Poker": "Poker",
-    "We collect a small percentage of each pot (known as Rake) as a fee for hosting the game. Your commission is calculated using Rake. You can use the formula below to derive your commission:": "Wir erheben einen kleinen Anteil jedes Pots (Rake) als Gebühr. Ihre Provision wird aus dem Rake berechnet. Nutzen Sie die folgende Formel:",
+    "We collect a small percentage of each pot (known as Rake) as a fee for hosting the game": {
+      " Your commission is calculated using Rake": {
+        " You can use the formula below to derive your commission:": "Wir erheben einen kleinen Anteil jedes Pots (Rake) als Gebühr. Ihre Provision wird aus dem Rake berechnet. Nutzen Sie die folgende Formel:"
+      }
+    },
     "Templates to Help Your Campaign Stand Out": "Vorlagen für auffällige Kampagnen",
-    "We've created digital banner templates to make it easier for you to promote your campaigns online.": "Wir haben Banner-Vorlagen erstellt, damit Sie Ihre Kampagnen online einfacher bewerben können.",
+    "We've created digital banner templates to make it easier for you to promote your campaigns online": {
+      "": "Wir haben Banner-Vorlagen erstellt, damit Sie Ihre Kampagnen online einfacher bewerben können."
+    },
     "Browse Templates": "Vorlagen durchsuchen",
-    "View and track the earnings you've generated through your referrals. This section provides a clear breakdown of your commissions and payouts — keeping you in control of your earnings.": "Sehen und verfolgen Sie die Einnahmen aus Ihren Empfehlungen. Diese Übersicht zeigt Ihre Provisionen und Auszahlungen – Sie behalten die Kontrolle.",
+    "View and track the earnings you've generated through your referrals": {
+      " This section provides a clear breakdown of your commissions and payouts — keeping you in control of your earnings": {
+        "": "Sehen und verfolgen Sie die Einnahmen aus Ihren Empfehlungen. Diese Übersicht zeigt Ihre Provisionen und Auszahlungen – Sie behalten die Kontrolle."
+      }
+    },
     "Sort": "Sortieren",
     "Lifetime Commission: High to Low": "Lebenslang-Provision: Hoch nach Niedrig",
     "Lifetime Commission: Low to High": "Lebenslang-Provision: Niedrig nach Hoch",
@@ -943,7 +994,9 @@
     "Withdrawn Commission": "Ausgezahlte Provision",
     "Campaigns page coming soon": "Kampagnen-Seite demnächst",
     "Referred Users page coming soon": "Empfohlene Nutzer-Seite demnächst",
-    "See the performance of all your campaigns in one simple view below.": "Die Leistung aller Kampagnen in einer Übersicht unten.",
+    "See the performance of all your campaigns in one simple view below": {
+      "": "Die Leistung aller Kampagnen in einer Übersicht unten."
+    },
     "Campaign Hits": "Kampagnen-Treffer",
     "First Time Deposits (FTD)": "Ersteinzahlungen (FTD)",
     "Total Deposits": "Gesamteinzahlungen",
@@ -967,7 +1020,11 @@
     "Export CSV": "CSV exportieren",
     "Previous": "Zurück",
     "Next": "Weiter",
-    "Track all the users who joined through your referral link. Here you can see their activity and gameplay - making it easy to monitor the growth of your network and the benefits you're gaining from referrals.": "Verfolgen Sie alle Nutzer, die über Ihren Empfehlungslink gekommen sind. Hier sehen Sie ihre Aktivität und ihr Spiel – so behalten Sie Netzwerk-Wachstum und Vorteile aus Empfehlungen im Blick.",
+    "Track all the users who joined through your referral link": {
+      " Here you can see their activity and gameplay - making it easy to monitor the growth of your network and the benefits you're gaining from referrals": {
+        "": "Verfolgen Sie alle Nutzer, die über Ihren Empfehlungslink gekommen sind. Hier sehen Sie ihre Aktivität und ihr Spiel – so behalten Sie Netzwerk-Wachstum und Vorteile aus Empfehlungen im Blick."
+      }
+    },
     "Campaign": "Kampagne",
     "Total Referred Users": "Gesamt empfolene Nutzer",
     "Monthly FTD": "Monatliche FTD",
@@ -978,18 +1035,34 @@
     "Date Joined: Old to New": "Beitrittsdatum: Alt nach Neu",
     "Name: A to Z": "Name: A bis Z",
     "Name: Z to A": "Name: Z bis A",
-    "Loading...": "Wird geladen...",
-    "No Referred Users.": "Keine empfolenen Nutzer.",
+    "Loading": {
+      "": {
+        "": {
+          "": "Wird geladen..."
+        }
+      }
+    },
+    "No Referred Users": {
+      "": "Keine empfolenen Nutzer."
+    },
     "N/A": "k. A.",
     "General": "Allgemein",
     "What is the Betalarab Affiliate Program?": "Was ist das Betalarab-Partnerprogramm?",
-    "The Betalarab Affiliate Program allows you to earn commissions by referring new players.": "Das Betalarab-Partnerprogramm ermöglicht Provisionen durch die Empfehlung neuer Spieler.",
+    "The Betalarab Affiliate Program allows you to earn commissions by referring new players": {
+      "": "Das Betalarab-Partnerprogramm ermöglicht Provisionen durch die Empfehlung neuer Spieler."
+    },
     "Who can join the Betalarab Affiliate Program?": "Wer kann am Betalarab-Partnerprogramm teilnehmen?",
-    "Anyone can join the Betalarab Affiliate Program.": "Jeder kann am Betalarab-Partnerprogramm teilnehmen.",
+    "Anyone can join the Betalarab Affiliate Program": {
+      "": "Jeder kann am Betalarab-Partnerprogramm teilnehmen."
+    },
     "How do I join the Betalarab Affiliate Program?": "Wie nehme ich am Betalarab-Partnerprogramm teil?",
-    "You can join by signing up and getting your referral link.": "Registrieren Sie sich und erhalten Sie Ihren Empfehlungslink.",
+    "You can join by signing up and getting your referral link": {
+      "": "Registrieren Sie sich und erhalten Sie Ihren Empfehlungslink."
+    },
     "What are the benefits of joining the Betalarab Affiliate Program?": "Welche Vorteile hat die Teilnahme am Betalarab-Partnerprogramm?",
-    "You earn commissions on all bets placed by your referrals.": "Sie erhalten Provision auf alle Wetten Ihrer Empfehlungen.",
+    "You earn commissions on all bets placed by your referrals": {
+      "": "Sie erhalten Provision auf alle Wetten Ihrer Empfehlungen."
+    },
     "Affiliate Overview": "Partnerübersicht",
     "Total Referrals": "Gesamtempfehlungen",
     "Total Earnings": "Gesamtverdienste",
@@ -1049,7 +1122,11 @@
   "SignupStep1": {
     "Step 1/3": "Schritt 1/3",
     "Select Your Preferred Language": "Wählen Sie Ihre bevorzugte Sprache",
-    "Betalarab is available is several languages. Feel free to personalise your language across our site from the options below.": "Wir sind in mehreren Sprachen verfügbar. Fühlen Sie sich frei, Ihre Sprache auf unserer Website aus den folgenden Optionen anzupassen.",
+    "Betalarab is available is several languages": {
+      " Feel free to personalise your language across our site from the options below": {
+        "": "Wir sind in mehreren Sprachen verfügbar. Fühlen Sie sich frei, Ihre Sprache auf unserer Website aus den folgenden Optionen anzupassen."
+      }
+    },
     "Confirm": "Bestätigen",
     "Already have an account?": "Bereits ein Konto?",
     "Sign in": "Anmelden",
@@ -1061,7 +1138,9 @@
     "Create an Account": "Konto erstellen",
     "Email": "E-Mail",
     "Username": "Benutzername",
-    "Your username must be 3-14 characters long.": "Ihr Benutzername muss 3-14 Zeichen lang sein.",
+    "Your username must be 3-14 characters long": {
+      "": "Ihr Benutzername muss 3-14 Zeichen lang sein."
+    },
     "Password": "Passwort",
     "Date of Birth": "Geburtsdatum",
     "Phone (Optional)": "Telefon (Optional)",
@@ -1076,7 +1155,7 @@
     "< Back": "< Zurück",
     "Create an Account": "Konto erstellen",
     "Terms and Conditions": "Allgemeine Geschäftsbedingungen",
-    "terms_and_conditions_title": "1.betalarab.com",
+    "terms_and_conditions_title": "1. betalarab.com",
     "terms_and_conditions_content": "betalarab.com gehört der Medium Rare, N.V. und wird von ihr betrieben, einer nach den Gesetzen von Curaçao eingetragenen Gesellschaft mit Sitz in Zuiderpark 6, Willemstad, Curaçao. betalarab.com ist von der Curaçao Gaming Authority lizenziert und reguliert (Lizenznummer OGL/2024/1451/0918).\n\nDie Zahlungsabwicklung für betalarab.com wird von den Tochtergesellschaften Medium Rare Limited (Zypern) und MRS Tech Ltd (Zypern) durchgeführt, mit eingetragenen Adressen in 28 Oktovriou 1, Limassol 4102, Zypern und Registernummern HE 410775 bzw. HE 477481.\n\nMit der Nutzung von betalarab.com erklären Sie sich mit diesen Allgemeinen Geschäftsbedingungen einverstanden. Bitte lesen Sie diese vor der Nutzung unserer Dienste sorgfältig.",
     "I have read and agree to the Terms and Conditions": "Ich habe die Allgemeinen Geschäftsbedingungen gelesen und stimme ihnen zu",
     "Already have an account?": "Bereits ein Konto?",
@@ -1096,7 +1175,7 @@
   "CardDeposit": {
     "Card Deposit": "Karten-Einzahlung",
     "Card Number": "Kartennummer",
-    "Info": "Info",
+    "Info": "Informationen",
     "Select Country": "Land auswählen"
   },
   "LiveSupportAI": {
@@ -1119,25 +1198,49 @@
     "Unhash Server Seed": "Server-Seed entschlüsseln",
     "Calculation": "Berechnung",
     "Solving the Trust Issue with Online Gambling": "Das Vertrauensproblem beim Online-Glücksspiel lösen",
-    "Provable fairness allows players to prove and verify that results are fair and unmanipulated. This is achieved through a": "Nachweisliche Fairness ermöglicht es Spielern, zu überprüfen, dass Ergebnisse fair und nicht manipuliert sind. Dies wird erreicht durch ein",
+    "Provable fairness allows players to prove and verify that results are fair and unmanipulated": {
+      " This is achieved through a": "Nachweisliche Fairness ermöglicht es Spielern, zu überprüfen, dass Ergebnisse fair und nicht manipuliert sind. Dies wird erreicht durch ein"
+    },
     "commitment scheme": "Commitment-Schema",
     "and": "und",
     "cryptographic hashing": "kryptografisches Hashing",
-    "The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty. Together they create a": "Das Commitment-Schema stellt den Einfluss des Spielers sicher, und kryptografisches Hashing garantiert die Ehrlichkeit des Casinos. Zusammen schaffen sie eine",
+    "The commitment scheme ensures player influence, and cryptographic hashing ensures casino honesty": {
+      " Together they create a": "Das Commitment-Schema stellt den Einfluss des Spielers sicher, und kryptografisches Hashing garantiert die Ehrlichkeit des Casinos. Zusammen schaffen sie eine"
+    },
     "trust-less environment": "vertrauenslose Umgebung",
     "This is simplified in the following representation:": "Dies lässt sich in folgender Darstellung vereinfachen:",
     "fair result = operators input (hashed) + players input": "faires Ergebnis = Eingabe des Betreibers (gehasht) + Eingabe des Spielers",
     "3rd Party Verification": "Verifizierung durch Dritte",
-    "Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure. You can find them via Google or community-made resources.": "Betalarab Originals können auf der Website oder über Drittanbieter-Websites verifiziert werden, die den Verifizierungsprozess offen gelegt haben. Du findest sie über Google oder Community-Ressourcen.",
-    "Crypto Gambling Foundation": "Crypto Gambling Foundation",
-    "Betalarab is a verified operator on the Crypto Gambling Foundation network. The foundation aims to uphold high standards of provably fair gambling. Check their website for more information.": "Betalarab ist ein verifizierter Betreiber im Netzwerk der Crypto Gambling Foundation. Die Stiftung setzt sich für hohe Standards beim nachweislich fairen Glücksspiel ein. Weitere Informationen findest du auf ihrer Website.",
+    "Betalarab Originals can be verified on the site or via 3rd party websites that have open-sourced the verification procedure": {
+      " You can find them via Google or community-made resources": {
+        "": "Betalarab Originals können auf der Website oder über Drittanbieter-Websites verifiziert werden, die den Verifizierungsprozess offen gelegt haben. Du findest sie über Google oder Community-Ressourcen."
+      }
+    },
+    "Crypto Gambling Foundation": "Krypto-Glücksspiel-Stiftung",
+    "Betalarab is a verified operator on the Crypto Gambling Foundation network": {
+      " The foundation aims to uphold high standards of provably fair gambling": {
+        " Check their website for more information": {
+          "": "Betalarab ist ein verifizierter Betreiber im Netzwerk der Crypto Gambling Foundation. Die Stiftung setzt sich für hohe Standards beim nachweislich fairen Glücksspiel ein. Weitere Informationen findest du auf ihrer Website."
+        }
+      }
+    },
     "CRYPTO GAMBLING FOUNDATION": "CRYPTO GAMBLING FOUNDATION",
     "VERIFIED OPERATOR": "VERIFIZIERTER BETREIBER",
-    "Implementation content will be displayed here.": "Der Inhalt zur Implementierung wird hier angezeigt.",
-    "Conversions content will be displayed here.": "Der Inhalt zu Umwandlungen wird hier angezeigt.",
-    "Game Events content will be displayed here.": "Der Inhalt zu Spielereignissen wird hier angezeigt.",
-    "Unhash Server Seed content will be displayed here.": "Der Inhalt zum Entschlüsseln des Server-Seeds wird hier angezeigt.",
-    "Calculation content will be displayed here.": "Der Inhalt zur Berechnung wird hier angezeigt.",
+    "Implementation content will be displayed here": {
+      "": "Der Inhalt zur Implementierung wird hier angezeigt."
+    },
+    "Conversions content will be displayed here": {
+      "": "Der Inhalt zu Umwandlungen wird hier angezeigt."
+    },
+    "Game Events content will be displayed here": {
+      "": "Der Inhalt zu Spielereignissen wird hier angezeigt."
+    },
+    "Unhash Server Seed content will be displayed here": {
+      "": "Der Inhalt zum Entschlüsseln des Server-Seeds wird hier angezeigt."
+    },
+    "Calculation content will be displayed here": {
+      "": "Der Inhalt zur Berechnung wird hier angezeigt."
+    },
     "ProvableFairnessDesc": "Nachweisliche Fairness ermöglicht es Spielern, zu überprüfen, dass Ergebnisse fair und nicht manipuliert sind. Dies wird erreicht durch ein",
     "CommitmentSchemeDesc": "Das Commitment-Schema stellt den Einfluss des Spielers sicher, und kryptografisches Hashing garantiert die Ehrlichkeit des Casinos. Zusammen schaffen sie eine",
     "3rdPartyVerificationDesc": "Betalarab Originals können auf der Website oder über Drittanbieter-Websites verifiziert werden, die den Verifizierungsprozess offen gelegt haben. Du findest sie über Google oder Community-Ressourcen.",
@@ -1366,11 +1469,11 @@
     "region_au": "Australien",
     "region_nz": "Neuseeland",
     "region_intl": "International",
-    "name_ncpg": "National Problem Gambling Helpline (NCPG)",
+    "name_ncpg": "Nationale Hotline für problematisches Glücksspiel (NCPG)",
     "name_gamcare": "GamCare",
     "name_ca_provincial": "Kanada Glücksspiel-Hilfe (regionale Dienste)",
-    "name_au": "Gambling Help Online",
-    "name_nz": "Gambling Helpline NZ",
+    "name_au": "Online-Glücksspielhilfe",
+    "name_nz": "Glücksspiel-Helpline NZ",
     "name_find_local": "Lokale Beratung finden",
     "hours_us": "24/7 (je nach Bundesstaat)",
     "hours_uk": "24/7",
@@ -1456,7 +1559,7 @@
     "Check6": "Bin ich gestresst oder unruhig, wenn ich nicht spielen kann?",
     "IWantHelp": "Ich brauche Hilfe",
     "SetLimitsNow": "Jetzt Limits setzen",
-    "FaqsTitle": "FAQs",
+    "FaqsTitle": "Häufige Fragen",
     "FaqsDesc": "Häufige Fragen zu sicherem Spielen und Kontrollen.",
     "Faq1Q": "Was ist verantwortungsvolles Spielen?",
     "Faq1A": "Verantwortungsvolles Spielen heißt zum Spaß spielen, innerhalb des Machbaren, und Schaden vorzubeugen. Dazu gehören Grenzen setzen, Pausen machen und früh um Hilfe bitten, wenn Spielen keinen Spaß mehr macht.",
@@ -1505,40 +1608,58 @@
     "Bonus from VIP host in currency of your choice": "Bonus vom VIP-Host in Ihrer Währung",
     "Weekly & monthly bonuses increased": "Wochen- und Monatsboni erhöht",
     "Exclusively customised benefits": "Exklusiv angepasste Vorteile",
-    "Reach Platinum IV or above and receive your own dedicated VIP host who will support and cater to your betting needs.": "Erreichen Sie Platin IV oder höher und erhalten Sie einen persönlichen VIP-Host für Ihre Wünsche.",
+    "Reach Platinum IV or above and receive your own dedicated VIP host who will support and cater to your betting needs": {
+      "": "Erreichen Sie Platin IV oder höher und erhalten Sie einen persönlichen VIP-Host für Ihre Wünsche."
+    },
     "VIP Host benefits": "VIP-Host-Vorteile",
-    "VIP Hosts cater to your needs and ensure your time at Betalarab is safe, entertaining and rewarding. Enjoy:": "VIP-Hosts kümmern sich um Sie und sorgen für sicheres, unterhaltsames und lohnendes Spielen. Genießen Sie:",
+    "VIP Hosts cater to your needs and ensure your time at Betalarab is safe, entertaining and rewarding": {
+      " Enjoy:": "VIP-Hosts kümmern sich um Sie und sorgen für sicheres, unterhaltsames und lohnendes Spielen. Genießen Sie:"
+    },
     "Your personal point of contact at Betalarab": "Ihr persönlicher Ansprechpartner bei Betalarab",
     "Tailored bonuses and sports betting limits": "Individuelle Boni und Sportwetten-Limits",
     "Insight into gameplay statistics": "Einblick in Ihre Spielstatistiken",
     "Exclusive promotions and events": "Exklusive Aktionen und Events",
     "Learn more about being a Betalarab VIP": "Mehr über Betalarab VIP erfahren",
     "Monthly Bonus": "Monatsbonus",
-    "Released once a month.": "Einmal monatlich.",
-    "The Monthly Bonus is randomly released. Eligible players will be notified via email. Your bonus is based on your game play throughout the month. The more you play, the bigger the bonus.": "Der Monatsbonus wird zufällig ausgezahlt. Berechtigte Spieler werden per E-Mail benachrichtigt. Ihre Bonushöhe hängt von Ihrem Spiel im Laufe des Monats ab. Je mehr Sie spielen, desto größer der Bonus.",
+    "Released once a month": {
+      "": "Einmal monatlich."
+    },
+    "The Monthly Bonus is randomly released": {
+      " Eligible players will be notified via email": {
+        " Your bonus is based on your game play throughout the month": {
+          " The more you play, the bigger the bonus": {
+            "": "Der Monatsbonus wird zufällig ausgezahlt. Berechtigte Spieler werden per E-Mail benachrichtigt. Ihre Bonushöhe hängt von Ihrem Spiel im Laufe des Monats ab. Je mehr Sie spielen, desto größer der Bonus."
+          }
+        }
+      }
+    },
     "Rakeback": "Rakeback",
-    "Unlocked at Bronze VIP.": "Freigeschaltet ab Bronze VIP.",
+    "Unlocked at Bronze VIP": {
+      "": "Freigeschaltet ab Bronze VIP."
+    },
     "Weekly Boost": "Wochen-Boost",
-    "Reload": "Reload",
-    "Unlocked at Platinum VIP.": "Freigeschaltet ab Platin VIP.",
+    "Reload": "Neu laden",
+    "Unlocked at Platinum VIP": {
+      "": "Freigeschaltet ab Platin VIP."
+    },
     "Guest": "Gast",
     "Bronze": "Bronze",
-    "Silver": "Silver",
+    "Silver": "Silber",
     "Gold": "Gold",
-    "Platinum I - III": "Platinum I - III",
-    "Platinum IV - VI": "Platinum IV - VI",
-    "Diamond I - V": "Diamond I - V",
+    "Platinum I - III": "Platin I - III",
+    "Platinum IV - VI": "Platin IV – VI",
+    "Diamond I - V": "Diamant I - V",
     "Iron": "Eisen",
     "Platinum": "Platin",
     "Diamond": "Diamant",
     "Obsidian": "Obsidian",
     "Ruby": "Rubin",
-    "Loyal": "Loyal",
+    "Loyal": "Treu",
     "Captain": "Kapitän",
     "Legend": "Legende",
-    "Roller": "Roller",
+    "Roller": "Rolle",
     "Gatos": "Gatos",
-    "Based": "Based",
+    "Based": "Basierend",
     "Certified": "Zertifiziert",
     "MonthlyBonusShort": "Einmal monatlich.",
     "MonthlyBonusDetailed": "Der Monatsbonus wird zufällig ausgezahlt. Berechtigte Spieler werden per E-Mail benachrichtigt. Ihre Bonushöhe hängt von Ihrem Spiel im Laufe des Monats ab. Je mehr Sie spielen, desto größer der Bonus.",
@@ -1556,7 +1677,7 @@
     "Transactions": "Transaktionen",
     "My Bets": "Meine Wetten",
     "Settings": "Einstellungen",
-    "Betalarab Smart": "Betalarab Smart",
+    "Betalarab Smart": "Betaarab Smart",
     "Live Support": "Live-Support",
     "Logout": "Abmelden"
   },
