@@ -173,13 +173,13 @@ export default function PromoPage() {
                 </div>
 
                 <p
-                  className="text-sm leading-relaxed line-clamp-3"
+                  className="text-sm leading-relaxed line-clamp-3 mb-auto"
                   style={{ color: "#8aab96" }}
                 >
                   {promo.description}
                 </p>
 
-                <div className="mt-4 text-xs mb-auto" style={{ color: "#4a6a56" }}>
+                <div className="mt-4 text-xs" style={{ color: "#4a6a56" }}>
                   Valid {promo.validFrom} – {promo.validTo}
                 </div>
 
