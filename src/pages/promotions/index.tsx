@@ -179,7 +179,13 @@ export default function PromoPage() {
                   {promo.description}
                 </p>
 
-                <div className="mt-4 text-xs" style={{ color: "#4a6a56" }}>
+                {promo.wageringMultiplier > 0 && (
+                  <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold" style={{ color: "#4caf78" }}>
+                    <span>{promo.wageringMultiplier}x Wagering Requirement</span>
+                  </div>
+                )}
+
+                <div className="mt-1 text-xs" style={{ color: "#4a6a56" }}>
                   Valid {promo.validFrom} – {promo.validTo}
                 </div>
 

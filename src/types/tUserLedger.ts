@@ -13,6 +13,7 @@ export interface tLedgerPromotion {
   isPercentBonus: boolean;
   bonusValue: number;
   maxBonusLimit: number;
+  wageringMultiplier: number;
   freeSpins: number;
   perSpinCost: number;
   currency: string;
