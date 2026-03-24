@@ -4,7 +4,7 @@ import { RTL_LANGUAGES } from "@/config/constants";
 export default function PrivacyPolicy() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("PrivacyPolicy");
-  return <div className={`w-full px-4 py-8 md:px-24 md:py-12 max-w-6xl mx-auto ${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>
+  return <div className="w-full px-4 py-8 md:px-24 md:py-12 max-w-6xl mx-auto text-start" dir={isRTL ? "rtl" : "ltr"}>
       <h1 className="text-[var(--primary-color)] text-3xl md:text-4xl font-semibold mb-8">{t("tag_001", undefined, "PRIVACY POLICY")}</h1>
 
       <div className="text-[var(--passive-color)] text-base md:text-lg leading-relaxed space-y-6">
@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
 
                 <p className="mb-4">{t("tag_008", undefined, "You provide this information to us in the process of setting up an account, placing bets and using the services of the website. This information is required to give you access to certain parts of our website and related services. This data is collected when you:")}</p>
 
-                <ul className="list-disc list-inside ml-4 space-y-2">
+                <ul className="list-disc list-inside ms-4 space-y-2">
                   <li>{t("tag_009", undefined, "Register an account with betalarab")}</li>
                   <li>{t("tag_010", undefined, "Voluntarily provide it when using the website")}</li>
                   <li>{t("tag_011", undefined, "Personally disclose the information in public areas of the website")}</li>
@@ -37,7 +37,7 @@ export default function PrivacyPolicy() {
 
                 <p className="mt-4 mb-2">{t("tag_013", undefined, "The information includes your:")}</p>
 
-                <ul className="list-disc list-inside ml-4 space-y-2">
+                <ul className="list-disc list-inside ms-4 space-y-2">
                   <li>{t("tag_014", undefined, "Username")}</li>
                   <li>{t("tag_015", undefined, "First and surname")}</li>
                   <li>{t("tag_016", undefined, "Date of birth")}</li>
@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
 
             <p className="mb-4">{t("tag_033", undefined, "We use your personal information in a range of ways that fall into the following categories:")}</p>
 
-            <ul className="list-disc list-inside ml-4 space-y-2 mb-4">
+            <ul className="list-disc list-inside ms-4 space-y-2 mb-4">
               <li>{t("tag_034", undefined, "To provide you with the products or services you have requested;")}</li>
               <li>{t("tag_035", undefined, "To meet our legal or regulatory obligations;")}</li>
               <li>{t("tag_036", undefined, "To monitor our website performance; and")}</li>
@@ -166,7 +166,7 @@ export default function PrivacyPolicy() {
 
             <p className="mb-4">{t("tag_069", undefined, "We may disclose your Personal Data to third parties:")}</p>
 
-            <ul className="list-disc list-inside ml-4 space-y-2 mb-4">
+            <ul className="list-disc list-inside ms-4 space-y-2 mb-4">
               <li>{t("tag_070", undefined, "if we are under a duty to disclose or share your personal information in order to comply with any legal or regulatory obligation;")}</li>
               <li>{t("tag_071", undefined, "in order to enforce or apply the terms of this policy or any other agreements;")}</li>
               <li>{t("tag_072", undefined, "to assist us in providing you with the products and services you request, including but not limited to third party software providers;")}</li>
@@ -178,7 +178,7 @@ export default function PrivacyPolicy() {
 
             <p className="mb-2">{t("tag_077", undefined, "Personal Information collected on the services may be stored and processed in any country in which we or our affiliates, suppliers or agents maintain facilities. By using our services, you expressly consent to any transfer of information outside of your country. When we transfer any part of your Personal Data outside the EEA or adequate jurisdictions we will take reasonable steps to ensure that it is treated as securely as it is within the EEA or adequate jurisdictions. These steps include but are not limited to the following:")}</p>
 
-            <ul className="list-disc list-inside ml-4 space-y-2">
+            <ul className="list-disc list-inside ms-4 space-y-2">
               <li>{t("tag_078", undefined, "Binding corporate rules;")}</li>
               <li>{t("tag_079", undefined, "Model contracts; or")}</li>
               <li>{t("tag_080", undefined, "US/EU privacy shield.")}</li>
@@ -210,7 +210,7 @@ export default function PrivacyPolicy() {
 
             <p className="mb-2">{t("tag_089", undefined, "The services contained in this section enable the Owner to monitor and analyse web traffic and can be used to keep track of user behaviour.")}</p>
 
-            <div className="ml-4">
+            <div className="ms-4">
               <h4 className="text-[var(--primary-color)] text-base font-semibold mb-2">{t("tag_090", undefined, "Google Analytics (Google Inc.)")}</h4>
 
               <p className="mb-2">{t("tag_091", undefined, "Google Analytics is a web analysis service provided by Google Inc. (\"Google\"). Google utilizes the Data collected to track and examine the use of betalarab, to prepare reports on its activities and share them with other Google services.")}</p>
