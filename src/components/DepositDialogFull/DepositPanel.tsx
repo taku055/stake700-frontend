@@ -194,7 +194,7 @@ export default function DepositPanel() {
           <h3 className="text-md font-semibold text-white">
             {t("Crypto Payments")}
           </h3>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             {Object.entries(
               tokens
                 .filter((token) => token.chainId !== 0)
