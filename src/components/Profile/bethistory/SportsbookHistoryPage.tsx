@@ -2,64 +2,12 @@ import { useTranslations } from "@/context/I18nContext";
 import { apiGetSportsbookTransaction } from "@/api/transaction/apiGetSportsbookTransaction";
 import { useEffect, useState } from "preact/hooks";
 import { tMergedTransaction } from "@/types/tTransaction";
-import moment from "moment";
 import {
   SortDescriptor,
-  TableCell,
-  TableRow,
-  TableBody,
-  Table,
-  Chip,
-  TableHeader,
-  TableColumn,
   Pagination,
 } from "@heroui/react";
-import { numberRound } from "@/helpers/numberRound";
 import Loader from "@/components/Loader";
-import TextWithCopy from "@/components/TextWithCopy";
-import { CURRENCY_LIST, DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
-
-const columns: {
-  title: string;
-  key: string;
-  sotable: boolean;
-}[] = [
-  {
-    title: "Match",
-    key: "context.game.name",
-    sotable: false,
-  },
-  {
-    title: "RoundId",
-    key: "eventId",
-    sotable: false,
-  },
-  {
-    title: "Bet",
-    key: "bet_amount",
-    sotable: true,
-  },
-  {
-    title: "Win",
-    key: "win_amount",
-    sotable: true,
-  },
-  {
-    title: "Type",
-    key: "eventType",
-    sotable: false,
-  },
-  {
-    title: "Start Date",
-    key: "first_tx_at",
-    sotable: true,
-  },
-  {
-    title: "End Date",
-    key: "last_tx_at",
-    sotable: true,
-  },
-];
+import SportsbookHistoryTable from "./SportsbookHistoryTable";
 
 const SportsbookHistoryPage = () => {
   const t = useTranslations("BetHistory");
@@ -126,74 +74,7 @@ const SportsbookHistoryPage = () => {
             {loading ? (
               <Loader />
             ) : (
-              <Table
-                removeWrapper
-                aria-label="Sportsbook subuser history"
-                classNames={{
-                  th: "text-[10px] md:text-[14px] md:py-3",
-                  td: "text-[12px] md:text-[14px] md:py-3",
-                }}
-                sortDescriptor={sortDescriptor}
-                onSortChange={handleSortChange}
-              >
-                <TableHeader>
-                  {columns.map((e) => (
-                    <TableColumn key={e.key} allowsSorting={e.sotable}>
-                      {e.title}
-                    </TableColumn>
-                  ))}
-                </TableHeader>
-                <TableBody>
-                  {data.map((e) => (
-                    <TableRow key={e.first_tx_at + e.eventId}>
-                      <TableCell>
-                        {e.context?.metadata?.[0]?.event || ""}
-                      </TableCell>
-                      <TableCell>
-                        {e.eventId && <TextWithCopy text={e.eventId} />}
-                      </TableCell>
-                      <TableCell>
-                        <Chip color="primary" size="sm">
-                          {
-                            CURRENCY_LIST.find(
-                              (currency) => currency.unit === e.currency
-                            )?.symbol
-                          }
-                          {numberRound(e.bet_amount, 100)}
-                        </Chip>
-                      </TableCell>
-                      <TableCell>
-                        {e.eventType && (
-                          <Chip color="danger" size="sm">
-                            {
-                              CURRENCY_LIST.find(
-                                (currency) => currency.unit === e.currency
-                              )?.symbol
-                            }
-                            {numberRound(e.win_amount, 100)}
-                          </Chip>
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        {e.eventType && (
-                          <Chip
-                            size="sm"
-                            color={e.eventType === "win" ? "danger" : "success"}
-                          >
-                            {e.eventType}
-                          </Chip>
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        {moment(e.first_tx_at).format("YYYY-MM-DD hh:mm A")}
-                      </TableCell>
-                      <TableCell>
-                        {moment(e.last_tx_at).format("YYYY-MM-DD hh:mm A")}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+              <SportsbookHistoryTable data={data as any} />
             )}
           </div>
         </div>

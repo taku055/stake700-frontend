@@ -98,84 +98,75 @@ const CasinoHistoryPage = () => {
       </div>
       <div className="flex flex-col w-full p-5 gap-5">
         <div className="px-5 py-3 bg-[#FFFFFF26] rounded-md">
-          <div className="flex flex-row gap-2">
-            <button className="bg-[#2A8038] text-[#FFFFFF] px-4 py-2 rounded-md">
-              {t("Show")}
-            </button>
+          <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
+            <div className="flex text-[12px]">Total History: {total} items</div>
+            <Pagination
+              showControls
+              total={Math.ceil(total / 10)}
+              color="success"
+              radius="full"
+              page={currentPage}
+              onChange={setCurrentPage}
+              isCompact
+            />
           </div>
-          <div>
-            <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
-              <div className="flex text-[12px]">
-                Total History: {total} items
-              </div>
-              <Pagination
-                showControls
-                total={Math.ceil(total / 10)}
-                color="success"
-                radius="full"
-                page={currentPage}
-                onChange={setCurrentPage}
-                isCompact
-              />
-            </div>
-            {loading ? (
-              <Loader />
-            ) : (
-              <Table
-                removeWrapper
-                aria-label="Casino subuser history"
-                className="overflow-x-auto"
-                classNames={{
-                  th: "text-[10px] md:text-[14px] md:py-3",
-                  td: "text-[12px] md:text-[14px] md:py-3",
-                }}
-                sortDescriptor={sortDescriptor}
-                onSortChange={handleSortChange}
-              >
-                <TableHeader>
-                  {columns.map((e) => (
-                    <TableColumn key={e.key} allowsSorting={e.sotable}>
-                      {e.title}
-                    </TableColumn>
-                  ))}
-                </TableHeader>
-                <TableBody>
-                  {data.map((e) => (
-                    <TableRow key={e.first_tx_at + e.eventId}>
-                      <TableCell>{e.context?.game?.name || ""}</TableCell>
-                      <TableCell>{e.provider}</TableCell>
-                      <TableCell>
-                        {e.eventId && <TextWithCopy text={e.eventId} />}
-                      </TableCell>
-                      <TableCell>
-                        <Chip color="primary" size="sm">
-                          {
-                            CURRENCY_LIST.find(
-                              (currency) => currency.unit === e.currency
-                            )?.symbol
-                          }
-                          {numberRound(e.bet_amount, 100)}
-                        </Chip>
-                      </TableCell>
-                      <TableCell>
-                        <Chip color="danger">
-                          {
-                            CURRENCY_LIST.find(
-                              (currency) => currency.unit === e.currency
-                            )?.symbol
-                          }
-                          {numberRound(e.win_amount, 100)}
-                        </Chip>
-                      </TableCell>
-                      <TableCell>
-                        {moment(e.last_tx_at).format("YYYY-MM-DD hh:mm A")}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            )}
-          </div>
+          {loading ? (
+            <Loader />
+          ) : (
+            <Table
+              removeWrapper
+              aria-label="Casino subuser history"
+              className="overflow-x-auto"
+              classNames={{
+                th: "text-[10px] md:text-[14px] md:py-3",
+                td: "text-[12px] md:text-[14px] md:py-3",
+              }}
+              sortDescriptor={sortDescriptor}
+              onSortChange={handleSortChange}
+            >
+              <TableHeader>
+                {columns.map((e) => (
+                  <TableColumn key={e.key} allowsSorting={e.sotable}>
+                    {e.title}
+                  </TableColumn>
+                ))}
+              </TableHeader>
+              <TableBody>
+                {data.map((e) => (
+                  <TableRow key={e.first_tx_at + e.eventId}>
+                    <TableCell>{e.context?.game?.name || ""}</TableCell>
+                    <TableCell>{e.provider}</TableCell>
+                    <TableCell>
+                      {e.eventId && <TextWithCopy text={e.eventId} />}
+                    </TableCell>
+                    <TableCell>
+                      <Chip color="primary" size="sm">
+                        {
+                          CURRENCY_LIST.find(
+                            (currency) => currency.unit === e.currency
+                          )?.symbol
+                        }
+                        {numberRound(e.bet_amount, 100)}
+                      </Chip>
+                    </TableCell>
+                    <TableCell>
+                      <Chip color="danger">
+                        {
+                          CURRENCY_LIST.find(
+                            (currency) => currency.unit === e.currency
+                          )?.symbol
+                        }
+                        {numberRound(e.win_amount, 100)}
+                      </Chip>
+                    </TableCell>
+                    <TableCell>
+                      {moment(e.last_tx_at).format("YYYY-MM-DD hh:mm A")}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </div>
       </div>
     </div>
