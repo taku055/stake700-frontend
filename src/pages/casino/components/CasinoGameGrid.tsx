@@ -39,7 +39,9 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
       let data: tGame[] = [];
       if (isCustom) {
         const totalGames = customGamesState.value.filter(
-          (c) => c.category === category
+          (c) =>
+            c.category === category &&
+            (provider ? c.Game?.providerId === provider : true)
         );
         data = totalGames
           .slice(offset1, offset1 + GAME_LOAD_COUNT)
@@ -64,7 +66,14 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
       setGames((p) => (offset1 === 0 ? data : [...p, ...data]));
       setLoading(false);
     },
-    [category, isCustom, customGamesState.value, provider, gameType, GAME_LOAD_COUNT]
+    [
+      category,
+      isCustom,
+      customGamesState.value,
+      provider,
+      gameType,
+      GAME_LOAD_COUNT,
+    ]
   );
 
   useEffect(() => {
