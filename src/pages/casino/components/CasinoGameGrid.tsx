@@ -41,7 +41,9 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
         const totalGames = customGamesState.value.filter(
           (c) =>
             c.category === category &&
-            (provider ? c.Game?.providerId === provider : true)
+            (provider && c.Game?.providerId
+              ? provider.includes(c.Game?.providerId)
+              : true)
         );
         data = totalGames
           .slice(offset1, offset1 + GAME_LOAD_COUNT)
