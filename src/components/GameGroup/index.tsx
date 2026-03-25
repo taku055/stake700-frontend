@@ -151,7 +151,7 @@ export default function GameGroup({
         dir={isRTL ? "rtl" : "ltr"}
         loop={false}
         loopAddBlankSlides={false}
-        spaceBetween={isMobilePortrait ? 10 : 16}
+        spaceBetween={isMobilePortrait ? 6 : 12}
         slidesPerView={
           isMobilePortrait ? (bigMode ? 2 : 3) : bigMode ? 6 : "auto"
         }

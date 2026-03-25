@@ -56,69 +56,67 @@ export default function TransactionsPage({
 
   return (
     <div>
-      <div>
-        <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
-          <div className="flex text-[12px]">
-            {t("Total History")}: {total} {t("items")}
-          </div>
-          <Pagination
-            showControls
-            total={Math.ceil(total / 10)}
-            color="success"
-            radius="full"
-            page={currentPage}
-            onChange={setCurrentPage}
-            isCompact
-          />
+      <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
+        <div className="flex text-[12px]">
+          {t("Total History")}: {total} {t("items")}
         </div>
-        {loading ? (
-          <Loader />
-        ) : (
-          <Table
-            removeWrapper
-            aria-label="Subuser deposit history"
-            classNames={{
-              th: "text-[10px] md:text-[14px] md:py-3",
-              td: "text-[12px] md:text-[14px] md:py-3",
-            }}
-          >
-            <TableHeader>
-              <TableColumn>{t("Id")}</TableColumn>
-              <TableColumn>{t("Type")}</TableColumn>
-              <TableColumn>{t("Currency")}</TableColumn>
-              <TableColumn>{t("Amount")}</TableColumn>
-              <TableColumn>{t("Created At")}</TableColumn>
-              <TableColumn>{t("Note")}</TableColumn>
-            </TableHeader>
-            <TableBody>
-              {data.map((e, index) => (
-                <TableRow key={e.id}>
-                  <TableCell>
-                    <TextWithCopy text={e.id} />
-                  </TableCell>
-                  <TableCell>
-                    {e.type === eTransactionType.deposit ? (
-                      <span className="text-white bg-primary rounded-xl p-1 text-[10px]">
-                        {t(e.type)}
-                      </span>
-                    ) : (
-                      <span className="text-black bg-success rounded-xl p-1 text-[10px]">
-                        {t(e.type)}
-                      </span>
-                    )}
-                  </TableCell>
-                  <TableCell>{e.currency}</TableCell>
-                  <TableCell>{e.cash}</TableCell>
-                  <TableCell>
-                    {moment(e.createdAt).format("YYYY-MM-DD hh:mm A")}
-                  </TableCell>
-                  <TableCell>{e.note}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        )}
+        <Pagination
+          showControls
+          total={Math.ceil(total / 10)}
+          color="success"
+          radius="full"
+          page={currentPage}
+          onChange={setCurrentPage}
+          isCompact
+        />
       </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Table
+          removeWrapper
+          aria-label="Subuser deposit history"
+          classNames={{
+            th: "text-[10px] md:text-[14px] md:py-3",
+            td: "text-[12px] md:text-[14px] md:py-3",
+          }}
+        >
+          <TableHeader>
+            <TableColumn>{t("Id")}</TableColumn>
+            <TableColumn>{t("Type")}</TableColumn>
+            <TableColumn>{t("Currency")}</TableColumn>
+            <TableColumn>{t("Amount")}</TableColumn>
+            <TableColumn>{t("Created At")}</TableColumn>
+            <TableColumn>{t("Note")}</TableColumn>
+          </TableHeader>
+          <TableBody>
+            {data.map((e, index) => (
+              <TableRow key={e.id}>
+                <TableCell>
+                  <TextWithCopy text={e.id} />
+                </TableCell>
+                <TableCell>
+                  {e.type === eTransactionType.deposit ? (
+                    <span className="text-white bg-primary rounded-xl p-1 text-[10px]">
+                      {t(e.type)}
+                    </span>
+                  ) : (
+                    <span className="text-black bg-success rounded-xl p-1 text-[10px]">
+                      {t(e.type)}
+                    </span>
+                  )}
+                </TableCell>
+                <TableCell>{e.currency}</TableCell>
+                <TableCell>{e.cash}</TableCell>
+                <TableCell>
+                  {moment(e.createdAt).format("YYYY-MM-DD hh:mm A")}
+                </TableCell>
+                <TableCell>{e.note}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </div>
   );
 }

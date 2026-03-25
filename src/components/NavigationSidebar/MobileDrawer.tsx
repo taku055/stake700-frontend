@@ -13,9 +13,8 @@ import {
 } from "@/config/constants";
 import { useLocation } from "preact-iso";
 import { options } from "@/components/LocaleSelection";
-import { useMediaQuery } from "usehooks-ts";
-import { useCategoryCounts } from "@/hooks/useCatigoryCounts";
 import { useSelectedTab } from "@/hooks/useSelectedTab";
+import { sidebarDataState } from "@/state/sidebarData";
 
 interface MobileDrawerProps {
   mainNavItems: Array<{
@@ -67,8 +66,7 @@ export default function MobileDrawer({
   const [isExpanded, setIsExpanded] = useState<Record<string, boolean>>({});
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
-  const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } =
-    useCategoryCounts();
+  const casinoCategoriesWithCounts = sidebarDataState.value;
   const location = useLocation();
 
   // Get categories based on selected tab

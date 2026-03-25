@@ -11,7 +11,7 @@ const WithdrawPage = () => {
       <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">
         {t("Withdraw")}
       </div>
-      <div className="flex flex-col w-full p-5 gap-5">
+      <div className="flex flex-col w-full py-5 gap-5">
         <Tabs aria-label="Withdraw options" classNames={{ base: "w-full" }}>
           <Tab key="aries" title="Aries">
             <AriesWithdraw />

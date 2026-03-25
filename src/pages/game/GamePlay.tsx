@@ -235,7 +235,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
             <div className="w-full h-full bg-[#0E1224E5] top-[0px] absolute" />
             <div className="w-full  absolute left-[0px]  my-auto flex flex-col gap-[18px] z-[3] items-center justify-center">
               <div className="flex gap-2 h-[24px] w-full items-center justify-center p-2">
-                {game?.demo && (
+                {/* {game?.demo && (
                   <>
                     <Button
                       className="py-2 px-4 text-[#FFFFFFB7] bg-[var(--background-secondary)]"
@@ -245,7 +245,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
                       {t("fun-play")}
                     </Button>
                   </>
-                )}
+                )} */}
                 <Button
                   className="py-2 px-4 bg-[var(--green-color)] text-[#05080A]"
                   onPress={() => onPlay(false)}

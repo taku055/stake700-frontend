@@ -10,7 +10,6 @@ import AcceptPromoCode from "./AcceptPromoCode";
 import { useCallback, useState, useEffect } from "preact/hooks";
 import PersonalDetailsPage from "./myprofile/PersonalDetails";
 import ChangePasswordPage from "./myprofile/ChangePassword";
-import TimeoutPage from "./myprofile/TimeOutPage";
 import DepositPage from "./userbalance/DepositPage";
 import WithdrawPage from "./userbalance/WithdrawPage";
 import WithdrawStatusPage from "./userbalance/WithdrawStatusPage";
@@ -126,11 +125,11 @@ const ProfileComponent = ({
           Title: t("Change Password"),
           Content: <ChangePasswordPage />,
         },
-        {
-          TabKey: "/my-profile/timeout",
-          Title: t("Time-Out"),
-          Content: <TimeoutPage />,
-        },
+        // {
+        //   TabKey: "/my-profile/timeout",
+        //   Title: t("Time-Out"),
+        //   Content: <TimeoutPage />,
+        // },
         // {
         //   TabKey: "/my-profile/verify-account",
         //   Title: t("Verify Account"),
@@ -262,7 +261,7 @@ const ProfileComponent = ({
         wrapper: "z-[100]",
       }}
     >
-      <ModalContent className={`md:max-w-[80vw]! md:min-w-[70vw] w-full flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} bg-[var(--background)] max-h-[80vh]! min-h-[60vh]!`}>
+      <ModalContent className={`md:max-w-[1280px]! md:min-w-[1000px]! w-full flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} bg-[var(--background)] max-h-[80vh]! min-h-[60vh]!`}>
         {(!isMobile || (isMobile && !selectedTab)) && (
           <div className={`w-full flex flex-col overflow-y-auto md:max-w-[320px]! gap-3 scrollbar-hide p-4 bg-[var(--bar-background-color)] ${isRTL ? 'md:border-l md:border-gray-700' : 'md:border-r md:border-gray-700'}`}>
             <div className="flex flex-col gap-3">

@@ -218,11 +218,11 @@ export default function WalletBox() {
         // pill / glass like the header widgets
         "relative inline-flex items-center gap-2 select-none",
         "rounded-full px-2.5 py-1.5",
-        "bg-[#2a0b3b]/65 backdrop-blur-md",
+        "bg-[var(--green-color)]/20 backdrop-blur-md",
         "border border-white/10",
         "shadow-[0_10px_30px_rgba(0,0,0,0.35)]",
         "transition",
-        "hover:bg-[#2a0b3b]/80 hover:border-white/15",
+        "hover:bg-[var(--green-color)]/40 hover:border-white/15",
       ].join(" ")}
     >
       {/* Balance trigger */}
@@ -307,7 +307,7 @@ export default function WalletBox() {
             className={[
               "z-[9999]",
               "rounded-xl overflow-hidden",
-              "bg-[#12061c]/95 backdrop-blur-md",
+              "bg-[var(--green-color)]/10 backdrop-blur-md",
               "border border-white/10",
               "shadow-[0_18px_60px_rgba(0,0,0,0.55)]",
             ].join(" ")}

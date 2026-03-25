@@ -3,13 +3,10 @@ import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { localeState } from "@/state/localeState";
 import { useMemo } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
-import { useCasinoCategories } from "@/hooks/useCasinoCategories";
-import { useLiveCasinoCategories } from "@/hooks/useLiveCasinoCategories";
 import { ASSET_BASE_URL, RTL_LANGUAGES } from "@/config/constants";
 import { Link } from "../common";
-import { useLocation } from "preact-iso";
-import { useCategoryCounts } from "@/hooks/useCatigoryCounts";
 import { useSelectedTab } from "@/hooks/useSelectedTab";
+import { sidebarDataState } from "@/state/sidebarData";
 
 interface CollapsedSidebarProps {
   mainNavItems: Array<{
@@ -38,19 +35,11 @@ export default function CollapsedSidebar({
   mainNavItems,
   ExtraNavItems,
   selectedMainNavKey,
-  categories,
 }: CollapsedSidebarProps) {
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
-  const t = useTranslations("Header");
-  const tCommon = useTranslations("Common");
   const selectedTab = useSelectedTab();
-  const { casinoCategoriesWithCounts, liveCasinoCategoriesWithCounts } =
-    useCategoryCounts();
-  // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
-  // const topNavItems = mainNavItems.filter((item) =>
-  //   ["slots", "live-casino", "sport", "promotions"].includes(item.key)
-  // );
+
   const topNavItems = useMemo(() => {
     return mainNavItems;
   }, [mainNavItems]);
@@ -58,19 +47,8 @@ export default function CollapsedSidebar({
   // Get categories based on selected tab
   const categoriesWithIcons = useMemo(() => {
     // return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
-    return selectedTab === "casino" ? casinoCategoriesWithCounts : [];
-  }, [selectedTab, casinoCategoriesWithCounts]);
-
-  // useEffect(() => {
-  //   if (location.path.includes("/casino")) {
-  //     selectedTabState.value = "casino";
-  //   } else if (location.path.includes("/live-casino")) {
-  //     selectedTabState.value = "sports";
-  //   } else {
-  //     selectedTabState.value = null;
-  //   }
-
-  // }, [location.path]);
+    return selectedTab === "casino" ? sidebarDataState.value : [];
+  }, [selectedTab, sidebarDataState.value]);
 
   return (
     <div

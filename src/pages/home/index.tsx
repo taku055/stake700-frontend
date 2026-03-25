@@ -54,7 +54,7 @@ export default function HomePage() {
                   alt={category.name}
                   className="w-4 h-4 grayscale object-contain"
                 />
-                {t(category.name) || category.name}
+                {t(category.name)}
               </Link>
             ))}
           </div>

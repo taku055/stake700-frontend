@@ -153,12 +153,12 @@ export default function WithdrawalPanel() {
       <Loader />
     </div>
   ) : (
-    <div className="flex flex-col gap-2 p-2 md:p-6 md:gap-6 md:pt-15">
-      <div className="space-y-4">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-6 p-2 md:p-6 overflow-y-auto">
+      <div className="md:col-span-3 space-y-4">
         <h3 className="text-md font-semibold text-white">
           {t("Crypto Withdrawals")}
         </h3>
-        <div className="grid md:grid-cols-3 grid-cols-2 gap-3">
+        <div className="grid grid-cols-3 gap-3">
           {Object.entries(
             tokens
               .filter((token) => token.chainId !== 0)
@@ -243,7 +243,7 @@ export default function WithdrawalPanel() {
         </div>
       </div>
 
-      <div className="flex flex-col md:col-span-2 bg-[#21211C] border-1 border-[#515778] rounded-xl p-6 space-y-6">
+      <div className="md:col-span-2 bg-[#21211C] border-1 border-[#515778] rounded-xl p-6 space-y-6">
         <div>
           <label className="text-sm">{t("WITHDRAW AMOUNT")}</label>
           <Input

@@ -196,14 +196,14 @@ export default function PromoPage() {
                 </div>
 
                 {/* Description */}
-                <div className="px-5 py-3 border-b" style={{ borderColor: "#1e3328" }}>
+                <div className="px-5 py-3">
                   <p className="text-xs leading-relaxed line-clamp-3" style={{ color: "#7a9a88" }}>
                     {promo.description}
                   </p>
                 </div>
 
                 {/* Bonus highlights */}
-                <div className="px-5 py-3 border-b grid grid-cols-2 gap-x-4 gap-y-2" style={{ borderColor: "#1e3328" }}>
+                <div className="px-5 py-3 border-b border-t grid grid-cols-2 gap-x-4 gap-y-2 mt-auto" style={{ borderColor: "#1e3328" }}>
                   {promo.isPercentBonus && (
                     <div>
                       <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Bonus</div>
