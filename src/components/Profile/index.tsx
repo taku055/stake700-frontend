@@ -10,7 +10,6 @@ import AcceptPromoCode from "./AcceptPromoCode";
 import { useCallback, useState, useEffect } from "preact/hooks";
 import PersonalDetailsPage from "./myprofile/PersonalDetails";
 import ChangePasswordPage from "./myprofile/ChangePassword";
-import TimeoutPage from "./myprofile/TimeOutPage";
 import DepositPage from "./userbalance/DepositPage";
 import WithdrawPage from "./userbalance/WithdrawPage";
 import WithdrawStatusPage from "./userbalance/WithdrawStatusPage";
@@ -126,11 +125,11 @@ const ProfileComponent = ({
           Title: t("Change Password"),
           Content: <ChangePasswordPage />,
         },
-        {
-          TabKey: "/my-profile/timeout",
-          Title: t("Time-Out"),
-          Content: <TimeoutPage />,
-        },
+        // {
+        //   TabKey: "/my-profile/timeout",
+        //   Title: t("Time-Out"),
+        //   Content: <TimeoutPage />,
+        // },
         // {
         //   TabKey: "/my-profile/verify-account",
         //   Title: t("Verify Account"),

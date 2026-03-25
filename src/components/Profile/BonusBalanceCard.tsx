@@ -9,7 +9,7 @@ const BonusBalanceCard = (props: { onClick?: () => void }) => {
 
   return (
     <div
-      className="w-full flex flex-col px-5 py-3 gap-2 relative bg-[var(--yellow-color)] rounded-sm bg-no-repeat shadow-[0_1px_4px_0_#1B1B1B80]"
+      className="w-full flex flex-col px-5 py-3 gap-2 relative bg-[var(--green-color-transparent)] rounded-sm bg-no-repeat shadow-[0_1px_4px_0_#1B1B1B80]"
       onClick={onClick}
     >
       <div className="flex flex-col gap-1 border-b border-white/30 pb-2">

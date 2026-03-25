@@ -17,9 +17,9 @@ const UserComponent = () => {
 
   return (
     <div className="w-full flex flex-col items-center gap-3 py-2">
-      <div className="w-full flex flex-row items-center gap-3 px-2 py-3 pb-10 bg-[var(--primary-color)] rounded-md relative">
-        <InfoIcon size={16} color="black" />
-        <span className="text-[16px] leading-[16px] text-black">
+      <div className="w-full flex flex-row items-center gap-3 px-2 py-3 pb-10 bg-[var(--green-color)] rounded-md relative">
+        <InfoIcon size={16} color="white" />
+        <span className="text-[16px] leading-[16px] text-white">
           ID : {userState.value?.id || "324722652"}
         </span>
         <button className="outline-none" onClick={() => setCopied(true)}>
@@ -29,7 +29,7 @@ const UserComponent = () => {
             <Check width={16} height={16} color="black" />
           )}
         </button>
-        <div className="absolute top-0 left-0 bg-[var(--background)] border-1 bottom-0 left-[50%] translate-y-1/2 -translate-x-1/2 border-white rounded-full p-2 w-[64px] h-[64px] flex items-center justify-center">
+        <div className="absolute top-0 bg-[var(--background)] border-1 bottom-0 left-[50%] translate-y-1/2 -translate-x-1/2 border-white rounded-full p-2 w-[64px] h-[64px] flex items-center justify-center">
           <span className="text-[24px] leading-[24px] text-white">
             {userState.value?.userName.substring(0, 2)?.toUpperCase()}
           </span>
