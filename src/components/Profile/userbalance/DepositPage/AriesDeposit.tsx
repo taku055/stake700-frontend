@@ -6,6 +6,7 @@ import { apiPayWithAries } from "@/api/wallet/apiPayWithAries";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 import { localeState } from "@/state/localeState";
+import { toast } from "@/helpers/toast";
 
 export interface AriesDepositProps {
   bonusId?: string;
@@ -66,7 +67,10 @@ const AriesDeposit = ({ bonusId }: AriesDepositProps) => {
         if (res.data?.paymentUrl) {
           window.location.href = res.data.paymentUrl;
         } else {
-          setError(res.message || t("Payment could not be created."));
+          const message = res.message || t("Payment could not be created.");
+          const toastMessage = `${t("Deposit request failed.")} ${message}`.trim();
+          setError(message);
+          toast.error(toastMessage);
         }
       } catch (err: unknown) {
         const message =
@@ -74,6 +78,7 @@ const AriesDeposit = ({ bonusId }: AriesDepositProps) => {
             ? String((err as { message: unknown }).message)
             : t("Something went wrong.");
         setError(message);
+        toast.error(`${t("Deposit request failed.")} ${message}`.trim());
       } finally {
         setIsSubmitting(false);
       }

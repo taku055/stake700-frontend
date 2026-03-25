@@ -17,7 +17,6 @@ function formatMoney(n: number | string | null | undefined) {
   return v.toLocaleString("tr-TR", { maximumFractionDigits: 2 });
 }
 
-
 type WageringCardProps = {
   title: string;
   balanceLabel: string;
@@ -44,25 +43,54 @@ function WageringCard({
           <div className="text-white font-semibold">{title}</div>
           <div className="mt-1 text-sm text-slate-300">
             {balanceLabel}:{" "}
-            <span className="text-slate-100 font-medium">{formatMoney(balanceValue)}</span>
+            <span className="text-slate-100 font-medium">
+              {formatMoney(balanceValue)}
+            </span>
           </div>
         </div>
         <div className="flex items-center gap-2">
           {rightChip}
-          <Chip size="sm" variant="flat" className={wagering.isMet ? "bg-emerald-500/15 text-emerald-300" : "bg-slate-700/40 text-slate-200"}>
+          <Chip
+            size="sm"
+            variant="flat"
+            className={
+              wagering.isMet
+                ? "bg-emerald-500/15 text-emerald-300"
+                : "bg-slate-700/40 text-slate-200"
+            }
+          >
             {wagering.isMet ? t("Completed") : t("In progress")}
           </Chip>
         </div>
       </div>
       <div className="mt-4">
         <div className="flex justify-between text-xs text-slate-300 mb-2">
-          <span>{t("Completed")}: <span className="text-slate-100">{formatMoney(wagering.completed)}</span></span>
-          <span>{t("Required")}: <span className="text-slate-100">{formatMoney(wagering.required)}</span></span>
+          <span>
+            {t("Completed")}:{" "}
+            <span className="text-slate-100">
+              {formatMoney(wagering.completed)}
+            </span>
+          </span>
+          <span>
+            {t("Required")}:{" "}
+            <span className="text-slate-100">
+              {formatMoney(wagering.required)}
+            </span>
+          </span>
         </div>
-        <Progress aria-label={`${title} progress`} value={wagering.progress} className="w-full" />
+        <Progress
+          aria-label={`${title} progress`}
+          value={wagering.progress}
+          className="w-full"
+        />
         <div className="flex justify-between text-xs text-slate-400 mt-2">
           <span>{wagering.progress.toFixed(0)}%</span>
-          <span>{t("Remaining")}: <span className="text-slate-200">{formatMoney(wagering.remaining)}</span></span>
+          <span>
+            {t("Remaining")}:{" "}
+            <span className="text-slate-200">
+              {formatMoney(wagering.remaining)}
+            </span>
+          </span>
         </div>
       </div>
     </>
@@ -71,10 +99,11 @@ function WageringCard({
   if (bare) return <div>{inner}</div>;
 
   return (
-    <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4">{inner}</div>
+    <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4">
+      {inner}
+    </div>
   );
 }
-
 
 type CancelWageringModalProps = {
   open: boolean;
@@ -100,7 +129,9 @@ function CancelWageringModal({
         onClick={loading ? undefined : onClose}
       />
       <div className="relative z-10 w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-xl">
-        <h2 className="text-lg font-semibold text-white">{t("Cancel wagering?")}</h2>
+        <h2 className="text-lg font-semibold text-white">
+          {t("Cancel wagering?")}
+        </h2>
         <p className="mt-2 text-sm text-slate-300">
           {t("cancel_wagering_confirm")}
         </p>
@@ -150,7 +181,9 @@ export default function WageringPage() {
   if (!userId) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-semibold text-white mb-6">{t("Wagering")}</h1>
+        <h1 className="text-2xl font-semibold text-white mb-6">
+          {t("Wagering")}
+        </h1>
         <LoginRequest />
       </div>
     );
@@ -186,8 +219,12 @@ export default function WageringPage() {
             <WageringCard
               title={t("Cash Wagering")}
               balanceLabel={t("Cash Balance")}
-              balanceValue={balanceState.value[currencyState.value.code].cash.balance}
-              wagering={balanceState.value[currencyState.value.code].cash.wagering}
+              balanceValue={
+                balanceState.value[currencyState.value.code].cash.balance
+              }
+              wagering={
+                balanceState.value[currencyState.value.code].cash.wagering
+              }
             />
 
             {/* Freespins row like screenshot */}
@@ -233,10 +270,19 @@ export default function WageringPage() {
                 return (
                   <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4 flex items-center justify-between gap-3">
                     <div>
-                      <div className="text-white font-semibold">{t("Bonus")}</div>
-                      <div className="mt-1 text-sm text-slate-300">{t("No active bonus right now")}</div>
+                      <div className="text-white font-semibold">
+                        {t("Bonus")}
+                      </div>
+                      <div className="mt-1 text-sm text-slate-300">
+                        {t("No active bonus right now")}
+                      </div>
                     </div>
-                    <Button size="sm" variant="flat" className="bg-slate-800/60 text-slate-100" onPress={() => toast.info("Redeem flow here")}>
+                    <Button
+                      size="sm"
+                      variant="flat"
+                      className="bg-slate-800/60 text-slate-100"
+                      onPress={() => toast.info("Redeem flow here")}
+                    >
                       {t("Redeem")}
                     </Button>
                   </div>
@@ -248,25 +294,77 @@ export default function WageringPage() {
                   {promo && (
                     <div
                       className="px-5 py-3 border-b flex flex-wrap items-center justify-between gap-3"
-                      style={{ borderColor: "#2e7d4f44", background: "rgba(46,125,79,0.08)" }}
+                      style={{
+                        borderColor: "#2e7d4f44",
+                        background: "rgba(46,125,79,0.08)",
+                      }}
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="shrink-0 rounded-full w-2 h-2" style={{ background: "#4caf78", boxShadow: "0 0 6px #4caf78" }} />
+                        <div
+                          className="shrink-0 rounded-full w-2 h-2"
+                          style={{
+                            background: "#4caf78",
+                            boxShadow: "0 0 6px #4caf78",
+                          }}
+                        />
                         <div className="min-w-0">
-                          <div className="text-sm font-semibold truncate" style={{ color: "#a0c8b0" }}>
+                          <div
+                            className="text-sm font-semibold truncate"
+                            style={{ color: "#a0c8b0" }}
+                          >
                             {promo.name}
-                            {promo.isPercentBonus && <span className="ml-1.5" style={{ color: "#4caf78" }}>{promo.bonusValue}%</span>}
-                            {promo.maxBonusLimit && <span className="ml-1 text-xs font-normal" style={{ color: "#4a6a56" }}>up to {promo.maxBonusLimit} {promo.currency}</span>}
+                            {promo.isPercentBonus && (
+                              <span
+                                className="ml-1.5"
+                                style={{ color: "#4caf78" }}
+                              >
+                                {promo.bonusValue}%
+                              </span>
+                            )}
+                            {promo.maxBonusLimit && (
+                              <span
+                                className="ml-1 text-xs font-normal"
+                                style={{ color: "#4a6a56" }}
+                              >
+                                up to {promo.maxBonusLimit} {promo.currency}
+                              </span>
+                            )}
                           </div>
-                          <div className="flex flex-wrap gap-x-3 text-xs mt-0.5" style={{ color: "#4a6a56" }}>
-                            <span>Code: <span style={{ color: "#6b8c78" }}>{promo.code}</span></span>
-                            {promo.wageringMultiplier > 0 && <span>{promo.wageringMultiplier}× wagering ({promo.wageringBase})</span>}
-                            {promo.wageringMaxWithdrawMultiplier > 0 && <span>max withdraw {promo.wageringMaxWithdrawMultiplier}× bonus</span>}
-                            {promo.expiresAfterhours > 0 && <span>expires in {promo.expiresAfterhours}h</span>}
+                          <div
+                            className="flex flex-wrap gap-x-3 text-xs mt-0.5"
+                            style={{ color: "#4a6a56" }}
+                          >
+                            <span>
+                              Code:{" "}
+                              <span style={{ color: "#6b8c78" }}>
+                                {promo.code}
+                              </span>
+                            </span>
+                            {promo.wageringMultiplier > 0 && (
+                              <span>
+                                {promo.wageringMultiplier}× wagering (
+                                {promo.wageringBase})
+                              </span>
+                            )}
+                            {promo.wageringMaxWithdrawMultiplier > 0 && (
+                              <span>
+                                max withdraw{" "}
+                                {promo.wageringMaxWithdrawMultiplier}× bonus
+                              </span>
+                            )}
+                            {promo.expiresAfterhours > 0 && (
+                              <span>expires in {promo.expiresAfterhours}h</span>
+                            )}
                           </div>
                         </div>
                       </div>
-                      <Chip size="sm" variant="flat" className="bg-emerald-500/15 text-emerald-300 shrink-0">{promo.type}</Chip>
+                      <Chip
+                        size="sm"
+                        variant="flat"
+                        className="bg-emerald-500/15 text-emerald-300 shrink-0"
+                      >
+                        {promo.type}
+                      </Chip>
                     </div>
                   )}
                   <div className="px-5 py-4">
@@ -277,9 +375,15 @@ export default function WageringPage() {
                       wagering={bal.bonus.wagering}
                       bare
                       rightChip={
-                        bal.bonus.wageringMultiplier > 0
-                          ? <Chip size="sm" variant="flat" className="bg-slate-700/40 text-slate-200">x{bal.bonus.wageringMultiplier}</Chip>
-                          : undefined
+                        bal.bonus.wageringMultiplier > 0 ? (
+                          <Chip
+                            size="sm"
+                            variant="flat"
+                            className="bg-slate-700/40 text-slate-200"
+                          >
+                            x{bal.bonus.wageringMultiplier}
+                          </Chip>
+                        ) : undefined
                       }
                     />
                   </div>

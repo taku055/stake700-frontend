@@ -20,7 +20,7 @@ import { toast } from "@/helpers/toast";
 export default function DepositPanel() {
   const blockchainPanelRef = useRef<HTMLDivElement | null>(null);
   const [selectedCryptoType, setSelectedCryptoType] = useState<string | null>(
-    null
+    null,
   );
   const [selectedTokenId, setSelectedTokenId] = useState(-1);
   const [selectedBlockchain, setSelectedBlockchain] = useState(0);
@@ -111,7 +111,7 @@ export default function DepositPanel() {
       }
       setLoadingWantBonus(false);
     },
-    [userState.value?.id]
+    [userState.value?.id],
   );
 
   const copyWallet = () => {
@@ -136,7 +136,7 @@ export default function DepositPanel() {
       }
       setShowBlockchainSelector(true);
     },
-    [selectedCryptoType, showBlockchainSelector]
+    [selectedCryptoType, showBlockchainSelector],
   );
 
   const onSelectChain = (token: tToken) => {
@@ -157,10 +157,24 @@ export default function DepositPanel() {
           const res = await apiPredictDeposit(
             token.chainId,
             token.tokenAddress,
-            promoId
+            promoId,
           );
         } catch (error) {
           console.error("Error predicting deposit:", error);
+          const errorMessage =
+            typeof error === "object" &&
+            error !== null &&
+            "response" in error &&
+            typeof (error as { response?: { data?: { message?: unknown } } })
+              .response?.data?.message === "string"
+              ? (error as { response: { data: { message: string } } }).response
+                  .data.message
+              : error instanceof Error
+                ? error.message
+                : "Failed to load deposit details";
+          toast.error(
+            errorMessage,
+          );
         }
       })();
     }
@@ -184,13 +198,16 @@ export default function DepositPanel() {
             {Object.entries(
               tokens
                 .filter((token) => token.chainId !== 0)
-                .reduce((acc, token) => {
-                  if (!acc[token.tokenSymbol]) {
-                    acc[token.tokenSymbol] = [];
-                  }
-                  acc[token.tokenSymbol].push(token);
-                  return acc;
-                }, {} as Record<string, tToken[]>)
+                .reduce(
+                  (acc, token) => {
+                    if (!acc[token.tokenSymbol]) {
+                      acc[token.tokenSymbol] = [];
+                    }
+                    acc[token.tokenSymbol].push(token);
+                    return acc;
+                  },
+                  {} as Record<string, tToken[]>,
+                ),
             ).map(([tokenSymbol, tokenGroup]) => (
               <div key={tokenSymbol} className="relative">
                 <Card

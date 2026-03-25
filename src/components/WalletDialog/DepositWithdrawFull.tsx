@@ -214,6 +214,20 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
           );
         } catch (error) {
           console.error("Error predicting deposit:", error);
+          const errorMessage =
+            typeof error === "object" &&
+            error !== null &&
+            "response" in error &&
+            typeof (error as { response?: { data?: { message?: unknown } } })
+              .response?.data?.message === "string"
+              ? (error as { response: { data: { message: string } } }).response
+                  .data.message
+              : error instanceof Error
+                ? error.message
+                : "Failed to load deposit details";
+          toast.error(
+            errorMessage
+          );
         }
       })();
     }
