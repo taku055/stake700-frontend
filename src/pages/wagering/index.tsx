@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useCallback, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import Loader from "@/components/Loader";
 import LoginRequest from "@/components/LoginRequest";
 import { userState } from "@/state/userState";
-import { tUserBalance } from "@/types/tUserLedger";
+import { WageringProgress } from "@/types/tUserLedger";
 import { Progress, Chip, Button } from "@heroui/react";
 import { toast } from "@/helpers/toast";
 import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
@@ -17,102 +17,64 @@ function formatMoney(n: number | string | null | undefined) {
   return v.toLocaleString("tr-TR", { maximumFractionDigits: 2 });
 }
 
-function clampPct(value: number) {
-  if (!Number.isFinite(value)) return 0;
-  if (value < 0) return 0;
-  if (value > 100) return 100;
-  return value;
-}
 
 type WageringCardProps = {
   title: string;
   balanceLabel: string;
   balanceValue: number;
-  completed: number;
-  required: number;
+  wagering: WageringProgress;
   rightChip?: preact.ComponentChildren;
+  bare?: boolean;
 };
 
 function WageringCard({
   title,
   balanceLabel,
   balanceValue,
-  completed,
-  required,
+  wagering,
   rightChip,
+  bare,
 }: WageringCardProps) {
   const t = useTranslations("Wagering");
 
-  const pct = useMemo(() => {
-    if (!required || required <= 0) return 100;
-    return clampPct((completed / required) * 100);
-  }, [completed, required]);
-
-  const remaining = useMemo(() => {
-    const r = (required ?? 0) - (completed ?? 0);
-    return r > 0 ? r : 0;
-  }, [completed, required]);
-
-  const isDone = required <= 0 || completed >= required;
-
-  return (
-    <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4">
+  const inner = (
+    <>
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="text-white font-semibold">{title}</div>
           <div className="mt-1 text-sm text-slate-300">
             {balanceLabel}:{" "}
-            <span className="text-slate-100 font-medium">
-              {formatMoney(balanceValue)}
-            </span>
+            <span className="text-slate-100 font-medium">{formatMoney(balanceValue)}</span>
           </div>
         </div>
-
         <div className="flex items-center gap-2">
           {rightChip}
-          <Chip
-            size="sm"
-            variant="flat"
-            className={
-              isDone
-                ? "bg-emerald-500/15 text-emerald-300"
-                : "bg-slate-700/40 text-slate-200"
-            }
-          >
-            {isDone ? t("Completed") : t("In progress")}
+          <Chip size="sm" variant="flat" className={wagering.isMet ? "bg-emerald-500/15 text-emerald-300" : "bg-slate-700/40 text-slate-200"}>
+            {wagering.isMet ? t("Completed") : t("In progress")}
           </Chip>
         </div>
       </div>
-
       <div className="mt-4">
         <div className="flex justify-between text-xs text-slate-300 mb-2">
-          <span>
-            {t("Completed")}:{" "}
-            <span className="text-slate-100">{formatMoney(completed)}</span>
-          </span>
-          <span>
-            {t("Required")}:{" "}
-            <span className="text-slate-100">{formatMoney(required)}</span>
-          </span>
+          <span>{t("Completed")}: <span className="text-slate-100">{formatMoney(wagering.completed)}</span></span>
+          <span>{t("Required")}: <span className="text-slate-100">{formatMoney(wagering.required)}</span></span>
         </div>
-
-        <Progress
-          aria-label={`${title} progress`}
-          value={pct}
-          className="w-full"
-        />
-
+        <Progress aria-label={`${title} progress`} value={wagering.progress} className="w-full" />
         <div className="flex justify-between text-xs text-slate-400 mt-2">
-          <span>{pct.toFixed(0)}%</span>
-          <span>
-            {t("Remaining")}:{" "}
-            <span className="text-slate-200">{formatMoney(remaining)}</span>
-          </span>
+          <span>{wagering.progress.toFixed(0)}%</span>
+          <span>{t("Remaining")}: <span className="text-slate-200">{formatMoney(wagering.remaining)}</span></span>
         </div>
       </div>
-    </div>
+    </>
+  );
+
+  if (bare) return <div>{inner}</div>;
+
+  return (
+    <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4">{inner}</div>
   );
 }
+
 
 type CancelWageringModalProps = {
   open: boolean;
@@ -224,17 +186,8 @@ export default function WageringPage() {
             <WageringCard
               title={t("Cash Wagering")}
               balanceLabel={t("Cash Balance")}
-              balanceValue={
-                balanceState.value[currencyState.value.code].cash.balance
-              }
-              completed={
-                balanceState.value[currencyState.value.code].cash
-                  .wageringCompleted
-              }
-              required={
-                balanceState.value[currencyState.value.code].cash
-                  .wageringRequired
-              }
+              balanceValue={balanceState.value[currencyState.value.code].cash.balance}
+              wagering={balanceState.value[currencyState.value.code].cash.wagering}
             />
 
             {/* Freespins row like screenshot */}
@@ -271,55 +224,68 @@ export default function WageringPage() {
             </div>
             */}
 
-            {/* Bonus row like screenshot */}
-            {balanceState.value[currencyState.value.code].bonus.isActive ? (
-              <WageringCard
-                title={t("Bonus")}
-                balanceLabel={t("Bonus Balance")}
-                balanceValue={
-                  balanceState.value[currencyState.value.code].bonus.balance
-                }
-                completed={
-                  balanceState.value[currencyState.value.code].bonus
-                    .wageringCompleted
-                }
-                required={
-                  balanceState.value[currencyState.value.code].bonus
-                    .wageringRequired
-                }
-                rightChip={
-                  <Chip
-                    size="sm"
-                    variant="flat"
-                    className="bg-slate-700/40 text-slate-200"
-                  >
-                    x
-                    {
-                      balanceState.value[currencyState.value.code].bonus
-                        .wageringMultiplier
-                    }
-                  </Chip>
-                }
-              />
-            ) : (
-              <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4 flex items-center justify-between gap-3">
-                <div>
-                  <div className="text-white font-semibold">{t("Bonus")}</div>
-                  <div className="mt-1 text-sm text-slate-300">
-                    {t("No active bonus right now")}
+            {/* Bonus row */}
+            {(() => {
+              const bal = balanceState.value[currencyState.value.code];
+              const promo = bal.promotion;
+
+              if (!bal.bonus.isActive) {
+                return (
+                  <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4 flex items-center justify-between gap-3">
+                    <div>
+                      <div className="text-white font-semibold">{t("Bonus")}</div>
+                      <div className="mt-1 text-sm text-slate-300">{t("No active bonus right now")}</div>
+                    </div>
+                    <Button size="sm" variant="flat" className="bg-slate-800/60 text-slate-100" onPress={() => toast.info("Redeem flow here")}>
+                      {t("Redeem")}
+                    </Button>
+                  </div>
+                );
+              }
+
+              return (
+                <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 overflow-hidden">
+                  {promo && (
+                    <div
+                      className="px-5 py-3 border-b flex flex-wrap items-center justify-between gap-3"
+                      style={{ borderColor: "#2e7d4f44", background: "rgba(46,125,79,0.08)" }}
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="shrink-0 rounded-full w-2 h-2" style={{ background: "#4caf78", boxShadow: "0 0 6px #4caf78" }} />
+                        <div className="min-w-0">
+                          <div className="text-sm font-semibold truncate" style={{ color: "#a0c8b0" }}>
+                            {promo.name}
+                            {promo.isPercentBonus && <span className="ml-1.5" style={{ color: "#4caf78" }}>{promo.bonusValue}%</span>}
+                            {promo.maxBonusLimit && <span className="ml-1 text-xs font-normal" style={{ color: "#4a6a56" }}>up to {promo.maxBonusLimit} {promo.currency}</span>}
+                          </div>
+                          <div className="flex flex-wrap gap-x-3 text-xs mt-0.5" style={{ color: "#4a6a56" }}>
+                            <span>Code: <span style={{ color: "#6b8c78" }}>{promo.code}</span></span>
+                            {promo.wageringMultiplier > 0 && <span>{promo.wageringMultiplier}× wagering ({promo.wageringBase})</span>}
+                            {promo.wageringMaxWithdrawMultiplier > 0 && <span>max withdraw {promo.wageringMaxWithdrawMultiplier}× bonus</span>}
+                            {promo.expiresAfterhours > 0 && <span>expires in {promo.expiresAfterhours}h</span>}
+                          </div>
+                        </div>
+                      </div>
+                      <Chip size="sm" variant="flat" className="bg-emerald-500/15 text-emerald-300 shrink-0">{promo.type}</Chip>
+                    </div>
+                  )}
+                  <div className="px-5 py-4">
+                    <WageringCard
+                      title={t("Bonus")}
+                      balanceLabel={t("Bonus Balance")}
+                      balanceValue={bal.bonus.balance}
+                      wagering={bal.bonus.wagering}
+                      bare
+                      rightChip={
+                        bal.bonus.wageringMultiplier > 0
+                          ? <Chip size="sm" variant="flat" className="bg-slate-700/40 text-slate-200">x{bal.bonus.wageringMultiplier}</Chip>
+                          : undefined
+                      }
+                    />
                   </div>
                 </div>
-
-                <Button
-                  size="sm"
-                  variant="flat"
-                  className="bg-slate-800/60 text-slate-100"
-                  onPress={() => toast.info("Redeem flow here")}
-                >
-                  {t("Redeem")}
-                </Button>
-              </div>
-            )}
+              );
+            })()}
           </div>
         )}
       </div>
