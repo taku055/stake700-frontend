@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useTranslations } from "@/context/I18nContext";
 
 export type BetLeg = {
   event: string;
@@ -58,7 +59,13 @@ function fmtDT(iso: string) {
   });
 }
 
-function Badge({ value }: { value: string }) {
+function Badge({
+  value,
+  t,
+}: {
+  value: string;
+  t: (key: string, values?: Record<string, unknown>, fallback?: string) => string;
+}) {
   const v = value?.toLowerCase() ?? "";
   const cls =
     v === "won"
@@ -67,11 +74,14 @@ function Badge({ value }: { value: string }) {
       ? "bg-rose-100 text-rose-800 ring-rose-200"
       : "bg-neutral-100 text-neutral-800 ring-neutral-200";
 
+  const key = `sb_result_${v.replace(/[^a-z0-9]+/g, "_")}`;
+  const label = t(key, undefined, value);
+
   return (
     <span
       className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs ring-1 ${cls}`}
     >
-      {value}
+      {label}
     </span>
   );
 }
@@ -89,6 +99,7 @@ export default function SportsbookHistoryTable({
 }: {
   data: BetRecord[];
 }) {
+  const t = useTranslations("BetHistory");
   const [query, setQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<"all" | string>("all");
   const [open, setOpen] = useState<Set<string>>(() => new Set());
@@ -195,25 +206,31 @@ export default function SportsbookHistoryTable({
       <div className="flex flex-col gap-3 border-b border-neutral-800 p-4 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-3 md:flex-row md:items-center">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-neutral-300">Search</span>
+            <span className="text-sm text-neutral-300">{t("sb_search")}</span>
             <input
               value={query}
               onChange={(e: any) => setQuery(e.target.value)}
-              placeholder="event, market, outcome, tournament..."
+              placeholder={t("sb_search_placeholder")}
               className="w-full rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-500 outline-none focus:border-neutral-600 focus:ring-1 focus:ring-neutral-700 md:w-96"
             />
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-sm text-neutral-300">Result</span>
+            <span className="text-sm text-neutral-300">{t("sb_result")}</span>
             <select
               value={typeFilter}
               onChange={(e: any) => setTypeFilter(e.target.value)}
               className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 outline-none focus:border-neutral-600 focus:ring-1 focus:ring-neutral-700"
             >
-              {types.map((t) => (
-                <option key={t} value={t}>
-                  {t === "all" ? "All" : t}
+              {types.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt === "all"
+                    ? t("sb_all")
+                    : t(
+                        `sb_result_${opt.toLowerCase().replace(/[^a-z0-9]+/g, "_")}`,
+                        undefined,
+                        opt
+                      )}
                 </option>
               ))}
             </select>
@@ -221,9 +238,7 @@ export default function SportsbookHistoryTable({
         </div>
 
         <div className="text-xs text-neutral-400">
-          Rows:{" "}
-          <span className="font-medium text-neutral-100">{sorted.length}</span>{" "}
-          / <span className="font-medium text-neutral-100">{data.length}</span>
+          {t("sb_rows", { shown: sorted.length, total: data.length })}
         </div>
       </div>
 
@@ -234,46 +249,45 @@ export default function SportsbookHistoryTable({
             <tr className="text-left text-xs text-neutral-400">
               <th className="w-10 border-b border-neutral-800 px-4 py-3" />
               <th className="border-b border-neutral-800 px-4 py-3">
-                Event ID
+                {t("sb_event_id")}
               </th>
 
-              {/* ThSort stays as-is; only its internal classes would need dark variants if it renders borders/text */}
               <ThSort
-                label="Last Tx"
+                label={t("sb_last_tx")}
                 active={sortKey === "last_tx_at"}
                 dir={sortDir}
                 onClick={() => toggleSort("last_tx_at")}
               />
               <ThSort
-                label="First Tx"
+                label={t("sb_first_tx")}
                 active={sortKey === "first_tx_at"}
                 dir={sortDir}
                 onClick={() => toggleSort("first_tx_at")}
               />
 
               <ThSort
-                label="Bet"
+                label={t("Bet")}
                 active={sortKey === "bet_amount"}
                 dir={sortDir}
                 onClick={() => toggleSort("bet_amount")}
                 right
               />
               <ThSort
-                label="Win"
+                label={t("Win")}
                 active={sortKey === "win_amount"}
                 dir={sortDir}
                 onClick={() => toggleSort("win_amount")}
                 right
               />
               <ThSort
-                label="Slip Coef"
+                label={t("sb_slip_coef")}
                 active={sortKey === "slip_coef"}
                 dir={sortDir}
                 onClick={() => toggleSort("slip_coef")}
                 right
               />
               <ThSort
-                label="Legs"
+                label={t("sb_legs")}
                 active={sortKey === "legs"}
                 dir={sortDir}
                 onClick={() => toggleSort("legs")}
@@ -281,7 +295,7 @@ export default function SportsbookHistoryTable({
               />
 
               <ThSort
-                label="Result"
+                label={t("sb_result")}
                 active={sortKey === "eventType"}
                 dir={sortDir}
                 onClick={() => toggleSort("eventType")}
@@ -303,7 +317,9 @@ export default function SportsbookHistoryTable({
                         type="button"
                         onClick={() => toggleOpen(r.eventId)}
                         className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-950 text-sm text-neutral-200 hover:bg-neutral-900"
-                        aria-label={isOpen ? "Collapse" : "Expand"}
+                        aria-label={
+                          isOpen ? t("aria_collapse") : t("aria_expand")
+                        }
                       >
                         {isOpen ? "–" : "+"}
                       </button>
@@ -314,7 +330,7 @@ export default function SportsbookHistoryTable({
                         {r.eventId}
                       </div>
                       <div className="mt-1 text-xs text-neutral-400">
-                        Net:{" "}
+                        {t("sb_net")}{" "}
                         <span
                           className={
                             net >= 0 ? "text-emerald-400" : "text-rose-400"
@@ -346,7 +362,7 @@ export default function SportsbookHistoryTable({
                     </td>
 
                     <td className="border-b border-neutral-800/60 px-4 py-3 align-top">
-                      <Badge value={r.eventType} />
+                      <Badge value={r.eventType} t={t} />
                     </td>
                   </tr>
 
@@ -360,10 +376,10 @@ export default function SportsbookHistoryTable({
                         <div className="rounded-xl bg-neutral-950 p-3 ring-1 ring-neutral-800">
                           <div className="flex items-baseline justify-between">
                             <div className="text-sm font-semibold text-neutral-100">
-                              Legs
+                              {t("sb_legs")}
                             </div>
                             <div className="text-xs text-neutral-400">
-                              Slip coefficient:{" "}
+                              {t("sb_slip_coefficient")}{" "}
                               <span className="font-medium text-neutral-100">
                                 {fmtMoney(r.context?.coefficient ?? 0)}
                               </span>
@@ -375,25 +391,25 @@ export default function SportsbookHistoryTable({
                               <thead>
                                 <tr className="text-left text-xs text-neutral-400">
                                   <th className="border-b border-neutral-800 px-3 py-2">
-                                    Event
+                                    {t("sb_event")}
                                   </th>
                                   <th className="border-b border-neutral-800 px-3 py-2">
-                                    Market
+                                    {t("sb_market")}
                                   </th>
                                   <th className="border-b border-neutral-800 px-3 py-2">
-                                    Outcome
+                                    {t("sb_outcome")}
                                   </th>
                                   <th className="border-b border-neutral-800 px-3 py-2">
-                                    Tournament
+                                    {t("sb_tournament")}
                                   </th>
                                   <th className="border-b border-neutral-800 px-3 py-2">
-                                    Discipline
+                                    {t("sb_discipline")}
                                   </th>
                                   <th className="border-b border-neutral-800 px-3 py-2 text-right">
-                                    Coef
+                                    {t("sb_coef")}
                                   </th>
                                   <th className="border-b border-neutral-800 px-3 py-2">
-                                    Event Date
+                                    {t("sb_event_date")}
                                   </th>
                                 </tr>
                               </thead>
@@ -408,7 +424,10 @@ export default function SportsbookHistoryTable({
                                         {m.event}
                                       </div>
                                       <div className="text-xs text-neutral-500">
-                                        stage {m.stage} • eventId {m.eventId}
+                                        {t("sb_leg_meta", {
+                                          stage: String(m.stage),
+                                          eventId: m.eventId,
+                                        })}
                                       </div>
                                     </td>
                                     <td className="border-b border-neutral-800 px-3 py-2 text-sm text-neutral-200">
@@ -437,7 +456,7 @@ export default function SportsbookHistoryTable({
 
                           <details className="mt-3">
                             <summary className="cursor-pointer text-xs text-neutral-400 hover:text-neutral-300">
-                              View raw context JSON
+                              {t("sb_view_raw_json")}
                             </summary>
                             <pre className="mt-2 max-h-72 overflow-auto rounded-xl bg-black/60 p-3 text-xs text-neutral-100 ring-1 ring-white/10">
                               {JSON.stringify(r.context, null, 2)}
@@ -455,8 +474,7 @@ export default function SportsbookHistoryTable({
       </div>
 
       <div className="border-t border-neutral-800 p-3 text-xs text-neutral-400">
-        Tip: click the <span className="font-medium text-neutral-200">+</span>{" "}
-        to expand a bet and see its legs.
+        {t("sb_expand_tip")}
       </div>
     </div>
   );

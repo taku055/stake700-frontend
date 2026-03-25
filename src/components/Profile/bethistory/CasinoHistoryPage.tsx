@@ -17,7 +17,7 @@ import {
 import { numberRound } from "@/helpers/numberRound";
 import Loader from "@/components/Loader";
 import TextWithCopy from "@/components/TextWithCopy";
-import { CURRENCY_LIST, DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
+import { CURRENCY_LIST } from "@/config/constants";
 
 const columns: {
   title: string;
@@ -99,7 +99,9 @@ const CasinoHistoryPage = () => {
       <div className="flex flex-col w-full p-5 gap-5">
         <div className="px-5 py-3 bg-[#FFFFFF26] rounded-md">
           <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
-            <div className="flex text-[12px]">Total History: {total} items</div>
+            <div className="flex text-[12px]">
+              {t("total_history", { total })}
+            </div>
             <Pagination
               showControls
               total={Math.ceil(total / 10)}
@@ -115,7 +117,7 @@ const CasinoHistoryPage = () => {
           ) : (
             <Table
               removeWrapper
-              aria-label="Casino subuser history"
+              aria-label={t("casino_history_table_aria")}
               className="overflow-x-auto"
               classNames={{
                 th: "text-[10px] md:text-[14px] md:py-3",
@@ -127,7 +129,7 @@ const CasinoHistoryPage = () => {
               <TableHeader>
                 {columns.map((e) => (
                   <TableColumn key={e.key} allowsSorting={e.sotable}>
-                    {e.title}
+                    {t(e.title)}
                   </TableColumn>
                 ))}
               </TableHeader>

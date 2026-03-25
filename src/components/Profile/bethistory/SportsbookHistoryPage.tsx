@@ -2,10 +2,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { apiGetSportsbookTransaction } from "@/api/transaction/apiGetSportsbookTransaction";
 import { useEffect, useState } from "preact/hooks";
 import { tMergedTransaction } from "@/types/tTransaction";
-import {
-  SortDescriptor,
-  Pagination,
-} from "@heroui/react";
+import { SortDescriptor, Pagination } from "@heroui/react";
 import Loader from "@/components/Loader";
 import SportsbookHistoryTable from "./SportsbookHistoryTable";
 
@@ -51,32 +48,21 @@ const SportsbookHistoryPage = () => {
       </div>
       <div className="flex flex-col w-full p-5 gap-5">
         <div className="px-5 py-3 bg-[#FFFFFF26] rounded-md">
-          <div className="flex flex-row gap-2">
-            <button className="bg-[#2A8038] text-[#FFFFFF] px-4 py-2 rounded-md">
-              {t("Show")}
-            </button>
-          </div>
-          <div>
-            <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
-              <div className="flex text-[12px]">
-                Total History: {total} items
-              </div>
-              <Pagination
-                showControls
-                total={Math.ceil(total / 10)}
-                color="success"
-                radius="full"
-                page={currentPage}
-                onChange={setCurrentPage}
-                isCompact
-              />
+          <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
+            <div className="flex text-[12px]">
+              {t("total_history", { total })}
             </div>
-            {loading ? (
-              <Loader />
-            ) : (
-              <SportsbookHistoryTable data={data as any} />
-            )}
+            <Pagination
+              showControls
+              total={Math.ceil(total / 10)}
+              color="success"
+              radius="full"
+              page={currentPage}
+              onChange={setCurrentPage}
+              isCompact
+            />
           </div>
+          {loading ? <Loader /> : <SportsbookHistoryTable data={data as any} />}
         </div>
       </div>
     </div>
