@@ -71,6 +71,22 @@ export default function ExpandedDrawer({
     return selectedTab === "casino" ? casinoCategoriesWithCounts : [];
   }, [selectedTab, casinoCategoriesWithCounts]);
 
+  const renderItem = (item: {
+    icon?: any;
+    navIcon?: string;
+    title: string;
+  }) => {
+    item.icon ? (
+      item.icon
+    ) : (
+      <img
+        src={item.navIcon || `${ASSET_BASE_URL}/images/icons/casino.svg`}
+        alt={item.title}
+        className="w-6 h-6 flex-shrink-0 object-contain"
+      />
+    );
+  };
+
   return (
     <div className="relative inset-0 z-100 h-full overflow-y-auto scrollbar-hide w-[260px] overflow-x-hidden px-[16px] pb-[60px]">
       <div
@@ -156,19 +172,8 @@ export default function ExpandedDrawer({
                           : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
                       }`}
                     >
-                      {item.icon ? (
-                        item.icon
-                      ) : (
-                        <img
-                          src={
-                            item.navIcon ||
-                            `${ASSET_BASE_URL}/images/icons/casino.svg`
-                          }
-                          alt={item.title}
-                          className="w-6 h-6 flex-shrink-0 object-contain"
-                        />
-                      )}
-                      <span className="flex-1">{item.title}</span>
+                      {renderItem(item)}
+                      <span className="flex-1">{t(item.title)}</span>
                       {isExpanded[item.key] ? (
                         <ChevronUp
                           size={16}
@@ -196,19 +201,8 @@ export default function ExpandedDrawer({
                           : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
                       }`}
                     >
-                      {item.icon ? (
-                        item.icon
-                      ) : (
-                        <img
-                          src={
-                            item.navIcon ||
-                            `${ASSET_BASE_URL}/images/icons/casino.svg`
-                          }
-                          alt={item.title}
-                          className="w-6 h-6 flex-shrink-0 object-contain"
-                        />
-                      )}
-                      <span>{item.title}</span>
+                      {renderItem(item)}
+                      <span>{t(item.title)}</span>
                     </button>
                   )}
 

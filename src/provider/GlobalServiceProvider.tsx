@@ -275,7 +275,6 @@ export default function GlobalServiceProvider({
         });
 
         const res = await apiGetCategoryCount(data);
-        console.log(res);
         sidebarDataState.value = res;
       } catch (ex) {
         console.error(ex);
