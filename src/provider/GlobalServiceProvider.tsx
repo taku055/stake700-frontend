@@ -70,9 +70,7 @@ import Loading from "@/components/Loading";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
 import { useRTL } from "@/hooks/useRTL";
 import Maintenance from "@/components/Maintenance";
-import {
-  welcomeDialogOpenedState,
-} from "@/state/registerOpenedState";
+import { welcomeDialogOpenedState } from "@/state/registerOpenedState";
 import WelcomeDialog from "@/components/Auth/Signup/Welcom";
 import VipClub from "@/components/Vip-club";
 import { vipOpenedState } from "@/state/vipOpenedState";
@@ -89,6 +87,8 @@ import { liveCasinoGamesState } from "@/state/liveCasinogamesState";
 import { tUserBalance } from "@/types/tUserLedger";
 import { balanceState } from "@/state/balanceState";
 import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
+import { STATIC_CATEGORIES, sidebarDataState } from "@/state/sidebarData";
+import { apiGetCategoryCount } from "@/api/common/apiGetCategoryCount";
 
 const i18nDefinitions = {
   tr: trDefinition,
@@ -109,16 +109,22 @@ const i18nDefinitions = {
 effect(() => {
   const { profileTab, bonusId } = routerQueryState.value;
   if (profileTab) {
-    profileOpenedState.value = { isOpen: true, defaultTab: profileTab, bonusId };
+    profileOpenedState.value = {
+      isOpen: true,
+      defaultTab: profileTab,
+      bonusId,
+    };
   }
 });
-
 
 function ProfileQueryHandler() {
   const location = useLocation();
 
   useEffect(() => {
-    routerQueryState.value = (location.query ?? {}) as Record<string, string | undefined>;
+    routerQueryState.value = (location.query ?? {}) as Record<
+      string,
+      string | undefined
+    >;
   }, [location.query]);
 
   return null;
@@ -243,12 +249,36 @@ export default function GlobalServiceProvider({
               // Keep original URL if loading fails
               imageMap[url] = url;
             }
-          }),
+          })
         );
 
         gameCategoryImagesState.value = imageMap;
       } catch (ex) {
         console.error("Failed to load game category images:", ex);
+      }
+    };
+
+    const getSidebarData = async () => {
+      try {
+        const origin = window.location.origin;
+        const data = STATIC_CATEGORIES.map((item) => {
+          const url = new URL(item.path, origin);
+          const segments = url.pathname.split("/").filter(Boolean);
+          const pathSegment = segments[1] ?? "";
+          const queryParams = Object.fromEntries(url.searchParams.entries());
+          return {
+            ...item,
+            pathSegment,
+            ...queryParams,
+            custom: queryParams.custom === "1",
+          };
+        });
+
+        const res = await apiGetCategoryCount(data);
+        console.log(res);
+        sidebarDataState.value = res;
+      } catch (ex) {
+        console.error(ex);
       }
     };
 
@@ -275,6 +305,7 @@ export default function GlobalServiceProvider({
         getMaintenance(),
         getAccount(),
         getBanners(),
+        getSidebarData(),
         // loadGameCategoryImages(),
       ]);
       setTimeout(() => {
@@ -286,7 +317,7 @@ export default function GlobalServiceProvider({
     const onResizeViewport = () => {
       setViewportCss(
         window.visualViewport?.width || -1,
-        window.visualViewport?.height || -1,
+        window.visualViewport?.height || -1
       );
     };
 
@@ -327,7 +358,7 @@ export default function GlobalServiceProvider({
     (async () => {
       try {
         const balances = await Promise.all(
-          CURRENCY_LIST.map((cur) => apiGetUserBalance(userId, cur.code)),
+          CURRENCY_LIST.map((cur) => apiGetUserBalance(userId, cur.code))
         );
 
         if (cancelled) return;
@@ -420,7 +451,9 @@ export default function GlobalServiceProvider({
 
           <div>
             <ProfileComponent
-              isOpen={profileOpenedState.value.isOpen && userState.value != null}
+              isOpen={
+                profileOpenedState.value.isOpen && userState.value != null
+              }
               onClose={() => (profileOpenedState.value = { isOpen: false })}
               defaultTab={profileOpenedState.value.defaultTab}
               bonusId={profileOpenedState.value.bonusId}
