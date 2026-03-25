@@ -805,7 +805,9 @@
       "withdrawal_exceeded": "Υπερβήκατε το όριο ανάληψης. Ελέγξτε την πολιτική.",
       "insufficient_balance_requests": "Δεν έχετε αρκετό υπόλοιπο για ανάληψη. Ελέγξτε τα αιτήματα ανάληψης που υποβάλατε",
       "failed_update_details": "Failed to update user details",
-      "password_changed_failed": "Password changed failed"
+      "password_changed_failed": "Password changed failed",
+      "cash_wagering_active": "Δεν μπορείτε να αναλάβετε μετρητά μέχρι να εκπληρώσετε τις απαιτήσεις στοιχηματισμού για το υπόλοιπο μετρητών σας.",
+      "bonus_wagering_active": "Δεν μπορείτε να αναλάβετε μπόνους μέχρι να εκπληρώσετε τις απαιτήσεις στοιχηματισμού για το υπόλοιπο μπόνους σας."
     },
     "info": {
       "address_copied": "Η διεύθυνση πορτοφολιού αντιγράφηκε!",

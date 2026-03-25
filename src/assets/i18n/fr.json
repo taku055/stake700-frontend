@@ -805,7 +805,9 @@
       "withdrawal_exceeded": "Montant de retrait dépassé. Veuillez consulter la politique.",
       "insufficient_balance_requests": "Solde insuffisant pour le retrait. Veuillez vérifier vos demandes de retrait",
       "failed_update_details": "Failed to update user details",
-      "password_changed_failed": "Password changed failed"
+      "password_changed_failed": "Password changed failed",
+      "cash_wagering_active": "Vous ne pouvez pas retirer en espèces tant que vous n'avez pas rempli les exigences de mise pour votre solde en espèces.",
+      "bonus_wagering_active": "Vous ne pouvez pas retirer le bonus tant que vous n'avez pas rempli les exigences de mise pour votre solde bonus."
     },
     "info": {
       "address_copied": "Adresse du portefeuille copiée dans le presse-papiers !",

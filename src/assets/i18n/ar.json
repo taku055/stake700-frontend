@@ -813,7 +813,9 @@
       "withdrawal_exceeded": "تجاوزت حدّ السحب. يرجى مراجعة السياسة.",
       "insufficient_balance_requests": "رصيدك غير كافٍ للسحب. يرجى مراجعة طلبات السحب التي قدّمتها",
       "failed_update_details": "فشل تحديث بيانات المستخدم",
-      "password_changed_failed": "فشل تغيير كلمة المرور"
+      "password_changed_failed": "فشل تغيير كلمة المرور",
+      "cash_wagering_active": "لا يمكنك سحب النقد حتى تستوفي متطلبات الرهان لرصيدك النقدي.",
+      "bonus_wagering_active": "لا يمكنك سحب المكافأة حتى تستوفي متطلبات الرهان لرصيد المكافأة."
     },
     "info": {
       "wallet_address_copied": "تم نسخ عنوان المحفظة إلى الحافظة!",

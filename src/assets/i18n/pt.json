@@ -805,7 +805,9 @@
       "withdrawal_exceeded": "Você excedeu o valor de saque. Por favor verifique a política.",
       "insufficient_balance_requests": "Você não tem saldo suficiente para sacar. Por favor verifique as solicitações de saque enviadas",
       "failed_update_details": "Falha ao atualizar os dados do usuário",
-      "password_changed_failed": "Falha ao alterar a senha"
+      "password_changed_failed": "Falha ao alterar a senha",
+      "cash_wagering_active": "Não pode levantar dinheiro até cumprir os requisitos de apostas do seu saldo em dinheiro.",
+      "bonus_wagering_active": "Não pode levantar o bónus até cumprir os requisitos de apostas do seu saldo de bónus."
     },
     "info": {
       "address_copied": "Endereço da carteira copiado para a área de transferência!",

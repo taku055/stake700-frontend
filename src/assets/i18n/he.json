@@ -805,7 +805,9 @@
       "withdrawal_exceeded": "חרגת ממגבלת המשיכה. בדוק/י את המדיניות.",
       "insufficient_balance_requests": "אין לך מספיק יתרה למשיכה. בדוק/י את בקשות המשיכה שהגשת",
       "failed_update_details": "Failed to update user details",
-      "password_changed_failed": "Password changed failed"
+      "password_changed_failed": "Password changed failed",
+      "cash_wagering_active": "לא ניתן למשוך מזומן עד שתעמוד בדרישות ההימור על יתרת המזומן שלך.",
+      "bonus_wagering_active": "לא ניתן למשוך בונוס עד שתעמוד בדרישות ההימור על יתרת הבונוס שלך."
     },
     "info": {
       "address_copied": "כתובת הארנק הועתקה ללוח!",

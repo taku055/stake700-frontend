@@ -805,7 +805,9 @@
       "withdrawal_exceeded": "Çekim limitinizi aştınız. Lütfen politikayı kontrol edin.",
       "insufficient_balance_requests": "Çekim için yeterli bakiyeniz yok. Lütfen mevcut çekim taleplerinizi kontrol edin.",
       "failed_update_details": "Kullanıcı bilgileri güncellenemedi",
-      "password_changed_failed": "Şifre değiştirilemedi"
+      "password_changed_failed": "Şifre değiştirilemedi",
+      "cash_wagering_active": "Nakit bakiyeniz için bahis şartlarını yerine getirene kadar nakit çekemezsiniz.",
+      "bonus_wagering_active": "Bonus bakiyeniz için bahis şartlarını yerine getirene kadar bonus çekemezsiniz."
     },
     "info": {
       "wallet_address_copied": "Cüzdan adresi panoya kopyalandı!",

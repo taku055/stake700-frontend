@@ -813,7 +813,9 @@
       "withdrawal_exceeded": "Çıxarış limiti aşılıb. Siyasəti yoxlayın.",
       "insufficient_balance_requests": "Çıxarış üçün kifayət qədər balansınız yoxdur. Zəhmət olmasa təqdim etdiyiniz çıxarış sorğularını yoxlayın",
       "failed_update_details": "İstifadəçi məlumatları yenilənə bilmədi",
-      "password_changed_failed": "Şifrə dəyişdirilə bilmədi"
+      "password_changed_failed": "Şifrə dəyişdirilə bilmədi",
+      "cash_wagering_active": "Nağd balansınız üçün mərc tələblərini yerinə yetirmədən nağd pul çıxara bilməzsiniz.",
+      "bonus_wagering_active": "Bonus balansınız üçün mərc tələblərini yerinə yetirmədən bonus çıxara bilməzsiniz."
     },
     "info": {
       "address_copied": "Cüzdan ünvanı panoya kopyalandı!",

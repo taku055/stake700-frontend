@@ -805,7 +805,9 @@
       "withdrawal_exceeded": "Has excedido el monto de retiro. Por favor revisa la política.",
       "insufficient_balance_requests": "No tienes suficiente saldo para retirar. Por favor revisa las solicitudes de retiro que enviaste",
       "failed_update_details": "Failed to update user details",
-      "password_changed_failed": "Password changed failed"
+      "password_changed_failed": "Password changed failed",
+      "cash_wagering_active": "No puede retirar efectivo hasta cumplir los requisitos de apuesta de su saldo en efectivo.",
+      "bonus_wagering_active": "No puede retirar el bono hasta cumplir los requisitos de apuesta de su saldo de bono."
     },
     "info": {
       "address_copied": "¡Dirección de billetera copiada al portapapeles!",

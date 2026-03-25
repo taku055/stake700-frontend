@@ -868,7 +868,9 @@
       "withdrawal_exceeded": "You have exceeded the withdrawal amount. Please check the policy.",
       "insufficient_balance_requests": "You don't have enough balance to witdhraw. Please check the withdraw requests you submitted",
       "failed_update_details": "Failed to update user details",
-      "password_changed_failed": "Password changed failed"
+      "password_changed_failed": "Password changed failed",
+      "cash_wagering_active": "You cannot withdraw cash until you have met the wagering requirements for your cash balance.",
+      "bonus_wagering_active": "You cannot withdraw bonus until you have met the wagering requirements for your bonus balance."
     },
     "info": {
       "wallet_address_copied": "Wallet address copied to clipboard!",

@@ -805,7 +805,9 @@
       "withdrawal_exceeded": "Hai superato l'importo massimo di prelievo. Controlla la policy.",
       "insufficient_balance_requests": "Non hai abbastanza saldo per il prelievo. Controlla le richieste di prelievo inviate",
       "failed_update_details": "Impossibile aggiornare i dettagli utente",
-      "password_changed_failed": "Modifica password non riuscita"
+      "password_changed_failed": "Modifica password non riuscita",
+      "cash_wagering_active": "Non puoi prelevare contanti finché non hai soddisfatto i requisiti di scommessa sul saldo contanti.",
+      "bonus_wagering_active": "Non puoi prelevare il bonus finché non hai soddisfatto i requisiti di scommessa sul saldo bonus."
     },
     "info": {
       "address_copied": "Indirizzo wallet copiato negli appunti!",

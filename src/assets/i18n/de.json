@@ -813,7 +813,9 @@
       "withdrawal_exceeded": "Auszahlungslimit überschritten. Bitte Richtlinien prüfen.",
       "insufficient_balance_requests": "Nicht genug Saldo für die Auszahlung. Prüfe deine gesendeten Auszahlungsanträge",
       "failed_update_details": "Aktualisierung der Benutzerdetails fehlgeschlagen",
-      "password_changed_failed": "Passwortänderung fehlgeschlagen"
+      "password_changed_failed": "Passwortänderung fehlgeschlagen",
+      "cash_wagering_active": "Sie können kein Geld abheben, bis Sie die Umsatzanforderungen für Ihr Guthaben erfüllt haben.",
+      "bonus_wagering_active": "Sie können keinen Bonus abheben, bis Sie die Umsatzanforderungen für Ihr Bonusguthaben erfüllt haben."
     },
     "info": {
       "address_copied": "Wallet-Adresse in die Zwischenablage kopiert!",

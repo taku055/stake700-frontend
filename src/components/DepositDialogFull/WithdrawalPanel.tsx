@@ -126,12 +126,14 @@ export default function WithdrawalPanel() {
     } catch (ex) {
       if (axios.isAxiosError(ex)) {
         console.log(ex.response?.data.message);
-        if (ex.response?.data.message === "low.balance") {
+        if (ex.response?.data.message === "cash.low.balance") {
           toast.error(tToast("error.insufficient_balance"));
-        } else if (ex.response?.data.message === "low.balance.requests") {
-          toast.error(tToast("error.insufficient_balance_requests"));
+        } else if (ex.response?.data.message === "cash.wagering.active") {
+          toast.error(tToast("error.cash_wagering_active"));
+        } else if (ex.response?.data.message === "bonus.wagering.active") {
+          toast.error(tToast("error.bonus_wagering_active"));
         } else {
-          toast.error(tToast("error.something_wrong"));
+          toast.error(ex.response?.data.message);
         }
       } else {
         toast.error(tToast("error.something_wrong"));
