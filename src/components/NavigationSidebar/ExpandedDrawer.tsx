@@ -76,7 +76,7 @@ export default function ExpandedDrawer({
     navIcon?: string;
     title: string;
   }) => {
-    item.icon ? (
+    return item.icon ? (
       item.icon
     ) : (
       <img
