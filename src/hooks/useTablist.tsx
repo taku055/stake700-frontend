@@ -72,33 +72,15 @@ export const useTablist = () => {
           ),
           navIcon: getNavIcon("live-casino"),
         },
-        // {
-        //   title: t("Promotions"),
-        //   href: "/promotions",
-        //   key: "promotions",
-        //   icon: (
-        //     <img src={`${ASSET_BASE_URL}/images/icons/promotions.svg`} alt="Promotions" />
-        //   ),
-        //   navIcon: getNavIcon("promotions"),
-        //   expandable: true,
-        //   expandableItems: [
-        //     {
-        //       title: "Sorteo Semanal d...",
-        //       // href: "/promotions/15",
-        //       icon: `${ASSET_BASE_URL}/images/icons/reward.svg`,
-        //     },
-        //     {
-        //       title: "Carrera de $100k",
-        //       // href: "/promotions/12",
-        //       icon: `${ASSET_BASE_URL}/images/icons/live-icon.svg`,
-        //     },
-        //     {
-        //       title: "Pragmatic Drops ...",
-        //       // href: "/promotions/13",
-        //       icon: `${ASSET_BASE_URL}/images/icons/promotions.svg`,
-        //     },
-        //   ],
-        // },
+        {
+          title: t("Promotions"),
+          href: "/promotions",
+          key: "promotions",
+          icon: (
+            <img src={`${ASSET_BASE_URL}/images/icons/promotions.svg`} alt="Promotions" />
+          ),
+          navIcon: getNavIcon("promotions"),
+        },
         {
           title: t("Games"),
           href: "/casino/games",

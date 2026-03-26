@@ -13,6 +13,11 @@ export interface ISidebarItem {
 // Static categories list - always shown
 export const STATIC_CATEGORIES: ISidebarItem[] = [
   {
+    name: "Promotions",
+    path: "/promotions",
+    icon: "/images/sidebar/promotions.png",
+  },
+  {
     name: "All Slots",
     path: "/casino/slots",
     icon: "/images/sidebar/all-games.svg",
