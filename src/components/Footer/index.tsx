@@ -82,30 +82,6 @@ export const Footer = () => {
 
         <div className="w-full h-[2px] bg-[var(--background)]" />
 
-        {/* <div
-          className={`flex flex-col gap-[16px] w-full h-full ${
-            isRTL ? "text-right" : "text-left"
-          }`}
-          dir={isRTL ? "rtl" : "ltr"}
-        >
-          <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
-            {t("Copyright")}
-          </h2>
-          <p className=" text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
-            {t("CompanyInfo")}
-          </p>
-          <h2 className="text-[14px] font-normal leading-[20px] text-[var(--passive-color)]">
-            {t("ResponsibleGamblingText")}&nbsp;
-            <Link
-              href="/support/responsible-gambling"
-              className="text-[var(--passive-color)] text-[14px] font-semibold"
-              scrollToTop={true}
-            >
-              {t("Responsible Gambling")}
-            </Link>
-          </h2>
-        </div> */}
-
         <div
           className={`flex w-full justify-center items-center ${
             isRTL ? "text-right" : "text-left"
