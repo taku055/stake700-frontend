@@ -3,6 +3,7 @@ export const HOME_CATEGORIES: {
   name: string;
   category: string;
   icon: string;
+  provider?: string;
 }[] = [
   {
     key: "lobby",
@@ -22,12 +23,12 @@ export const HOME_CATEGORIES: {
     category: "trending-games",
     icon: "/images/category_logo/popular.png",
   },
-  {
-    key: "hacksaw",
-    name: "Hacksaw",
-    category: "hacksaw",
-    icon: "/images/category_logo/hacksaw.png",
-  },
+  // {
+  //   key: "hacksaw",
+  //   name: "Hacksaw",
+  //   category: "hacksaw",
+  //   icon: "/images/category_logo/hacksaw.png",
+  // },
   {
     key: "game-shows",
     name: "Game Shows",
@@ -39,6 +40,7 @@ export const HOME_CATEGORIES: {
     name: "Pragmatic",
     category: "pragmatic",
     icon: "/images/category_logo/pragmatic.png",
+    provider: "5af8ec20d4b1198738df2967a01b0d7c52246b97",
   },
   {
     key: "megaways",
