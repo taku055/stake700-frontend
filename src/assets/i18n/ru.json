@@ -437,6 +437,8 @@
     "Amount": "Сумма",
     "Card": "Карта",
     "Crypto": "Крипто",
+    "Aries": "Aries",
+    "Withdraw tab options": "Варианты вывода",
     "XGateway": "XGateway",
     "XGateway_invalid_amount": "Введите сумму больше нуля.",
     "XGateway_invoice_failed": "Не удалось создать счёт. Попробуйте снова.",

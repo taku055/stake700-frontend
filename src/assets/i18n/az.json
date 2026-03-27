@@ -439,6 +439,8 @@
     "Amount": "Məbləğ",
     "Card": "Kart",
     "Crypto": "Kripto",
+    "Aries": "Aries",
+    "Withdraw tab options": "Çıxarış seçimləri",
     "XGateway": "XGateway",
     "XGateway_invalid_amount": "Sıfırdan böyük düzgün məbləğ daxil edin.",
     "XGateway_invoice_failed": "Faktura yaradıla bilmədi. Yenidən cəhd edin.",

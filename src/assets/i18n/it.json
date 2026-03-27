@@ -437,6 +437,8 @@
     "Amount": "Importo",
     "Card": "Carta",
     "Crypto": "Cripto",
+    "Aries": "Aries",
+    "Withdraw tab options": "Opzioni di prelievo",
     "XGateway": "XGateway",
     "XGateway_invalid_amount": "Inserisci un importo valido maggiore di zero.",
     "XGateway_invoice_failed": "Impossibile creare la fattura. Riprova.",

@@ -499,6 +499,8 @@
     "Amount": "Amount",
     "Card": "Card",
     "Crypto": "Crypto",
+    "Aries": "Aries",
+    "Withdraw tab options": "Withdraw options",
     "XGateway": "XGateway",
     "XGateway_invalid_amount": "Enter a valid amount greater than zero.",
     "XGateway_invoice_failed": "Could not create the invoice. Please try again.",

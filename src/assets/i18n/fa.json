@@ -437,6 +437,8 @@
     "Amount": "مبلغ",
     "Card": "کارت",
     "Crypto": "کریپتو",
+    "Aries": "آریس",
+    "Withdraw tab options": "گزینه‌های برداشت",
     "XGateway": "XGateway",
     "XGateway_invalid_amount": "مبلغ معتبر بزرگ‌تر از صفر وارد کنید.",
     "XGateway_invoice_failed": "ایجاد فاکتور ممکن نشد. دوباره تلاش کنید.",
