@@ -69,8 +69,9 @@ export default function HomePage() {
                   key={category.key}
                   category={category.category}
                   title={t(category.name) || category.name}
-                  isCustom={true}
-                  viewallLink={`/?category=${category.category}`}
+                  isCustom={category.provider ? false : true}
+                  provider={category.provider}
+                  viewallLink={category.provider ? `/gallery/all?providerId=${category.provider}` : `/?category=${category.category}`}
                 />
               )
             )}
@@ -82,9 +83,10 @@ export default function HomePage() {
             } gap-6`}
           >
             <CasinoGameGrid
-              isCustom={true}
+              isCustom={activeCategory === "pragmatic" ? false : true}
               category={activeCategory}
               gameType="SLOT"
+              provider={activeCategory === "pragmatic" ? "5af8ec20d4b1198738df2967a01b0d7c52246b97" : undefined}
             />
           </div>
         )}
