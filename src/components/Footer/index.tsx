@@ -44,42 +44,39 @@ export const Footer = () => {
         }`}
         dir={isRTL ? "rtl" : "ltr"}
       >
-        {!isMobile && (
-          <div
-            className={`flex gap-[16px] justify-between w-full ${
-              isRTL ? "text-right" : "text-left"
-            }`}
-            dir={isRTL ? "rtl" : "ltr"}
-          >
-            {FOOTER_LINK_DATA.map((item) => (
-              <div className="flex flex-col gap-[8px] max-w-[187px]">
-                <h2 className="text-[16px] font-semibold uppercase text-[var(--text-footer-title-color)]">
-                  {t(item.title)}
-                </h2>
-                <div className="flex flex-col gap-[6px]">
-                  {item.links.map((link) => (
-                    <Link
-                      scrollToTop={true}
-                      href={link?.href || "#"}
-                      onClick={link?.onClick}
-                      className="flex items-center gap-2 text-[var(--passive-color)] text-[14px] font-semibold"
-                    >
-                      {t(link.title)}
-                      {link?.icon && (
-                        <img
-                          src={link.icon}
-                          alt={link.title}
-                          className="w-4 h-4"
-                        />
-                      )}
-                    </Link>
-                  ))}
-                </div>
+        <div
+          className={`flex md:flex-row flex-col md:gap-[16px] gap-[32px] justify-between w-full ${
+            isRTL ? "text-right" : "text-left"
+          }`}
+          dir={isRTL ? "rtl" : "ltr"}
+        >
+          {FOOTER_LINK_DATA.map((item) => (
+            <div className="flex flex-col gap-[8px] md:max-w-[187px] w-full">
+              <h2 className="text-[16px] font-semibold uppercase text-[var(--text-footer-title-color)]">
+                {t(item.title)}
+              </h2>
+              <div className="flex flex-col gap-[6px]">
+                {item.links.map((link) => (
+                  <Link
+                    scrollToTop={true}
+                    href={link?.href || "#"}
+                    onClick={link?.onClick}
+                    className="flex items-center gap-2 text-[var(--passive-color)] text-[14px] font-semibold"
+                  >
+                    {t(link.title)}
+                    {link?.icon && (
+                      <img
+                        src={link.icon}
+                        alt={link.title}
+                        className="w-4 h-4"
+                      />
+                    )}
+                  </Link>
+                ))}
               </div>
-            ))}
-          </div>
-        )}
-
+            </div>
+          ))}
+        </div>
         <div className="w-full h-[2px] bg-[var(--background)]" />
 
         <div
