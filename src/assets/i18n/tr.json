@@ -139,7 +139,10 @@
   "ProviderGroup": {
     "Providers": "Sağlayıcılar",
     "all_providers": "Tüm Sağlayıcılar",
-    "Publishers": "Yayıncılar"
+    "Publishers": "Yayıncılar",
+    "Filter": "Filtre",
+    "Clear all": "Tümünü temizle",
+    "Provider selection": "Sağlayıcı seçimi"
   },
   "Footer": {
     "About Us": "Hakkımızda",

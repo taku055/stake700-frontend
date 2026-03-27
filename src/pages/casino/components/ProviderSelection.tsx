@@ -8,6 +8,7 @@ import {
 } from "@/components/common/Dropdown";
 import { tProvider } from "@/types/tProvider";
 import { Filter, ChevronUp, ChevronDown } from "lucide-preact";
+import { useTranslations } from "@/context/I18nContext";
 
 interface ProviderSelectionProps {
   providers: tProvider[];
@@ -21,6 +22,7 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
   onChange,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const t = useTranslations("ProviderGroup");
   const providerList = useMemo(() => {
     return providers.sort((a, b) => (a.name < b.name ? -1 : 1));
   }, [providers]);
@@ -44,7 +46,7 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
       {/* Filter Label with Icon */}
       <div className="flex items-center gap-2">
         <Filter size={16} className="text-gray-300" />
-        <span className="text-gray-300 text-sm font-semibold">Filter</span>
+        <span className="text-gray-300 text-sm font-semibold">{t("Filter")}</span>
       </div>
 
       {/* Publishers Dropdown Button */}
@@ -54,7 +56,7 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
             className="flex items-center gap-2 px-4 py-2 bg-[var(--background-secondary)] hover:bg-[var(--background-btn-hover)] text-gray-300 rounded-lg transition-colors font-semibold"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            <span>Publishers</span>
+            <span>{t("Publishers")}</span>
             {value.length > 0 && (
               <span className="flex items-center justify-center min-w-[20px] h-5 px-1 rounded-full bg-blue-600 text-white text-xs font-semibold">
                 {value.length}
@@ -69,7 +71,7 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
         </DropdownTrigger>
         <DropdownMenu
           className="!bg-white min-w-[240px] max-h-[400px] z-2000 overflow-y-auto rounded-lg shadow-lg"
-          ariaLabel="Provider selection"
+          ariaLabel={t("Provider selection")}
         >
           {/* Provider Items */}
           {providerList.map((provider) => {
@@ -130,7 +132,7 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
               className="!px-3 !py-2.5 text-center hover:!bg-gray-50 !bg-white"
             >
               <span className="text-gray-800 text-sm font-semibold">
-                Clear All
+                {t("Clear all")}
               </span>
             </DropdownItem>
           </div>

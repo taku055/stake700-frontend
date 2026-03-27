@@ -139,7 +139,10 @@
   "ProviderGroup": {
     "Providers": "ספקים",
     "all_providers": "כל הספקים",
-    "Publishers": "מוציאים לאור"
+    "Publishers": "מוציאים לאור",
+    "Filter": "סינון",
+    "Clear all": "נקה הכל",
+    "Provider selection": "בחירת ספק"
   },
   "Footer": {
     "About Us": "אודות",

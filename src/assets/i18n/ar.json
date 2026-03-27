@@ -141,7 +141,10 @@
   "ProviderGroup": {
     "Providers": "المزوّدون",
     "all_providers": "جميع المزوّدين",
-    "Publishers": "الناشرون"
+    "Publishers": "الناشرون",
+    "Filter": "تصفية",
+    "Clear all": "مسح الكل",
+    "Provider selection": "اختيار المزوّد"
   },
   "Footer": {
     "About Us": "من نحن",

@@ -139,7 +139,10 @@
   "ProviderGroup": {
     "Providers": "Provider",
     "all_providers": "Tutti i provider",
-    "Publishers": "Editori"
+    "Publishers": "Editori",
+    "Filter": "Filtro",
+    "Clear all": "Cancella tutto",
+    "Provider selection": "Selezione provider"
   },
   "Footer": {
     "About Us": "Chi siamo",
