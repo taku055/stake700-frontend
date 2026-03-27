@@ -71,7 +71,7 @@ export default function HomePage() {
                   title={t(category.name) || category.name}
                   isCustom={category.provider ? false : true}
                   provider={category.provider}
-                  viewallLink={category.provider ? `/gallery/all?providerId=${category.provider}` : `/?category=${category.category}`}
+                  viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
                 />
               )
             )}
