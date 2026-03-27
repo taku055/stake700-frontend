@@ -230,7 +230,7 @@ export default function WalletBox() {
                   "rounded-lg px-3 py-2.5",
                   "text-[13px] text-white",
                   "transition",
-                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2",
+                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2 flex justify-between",
                 ].join(" ")}
               >
                 <span className="opacity-80">{t("Cash")}</span>
@@ -242,7 +242,7 @@ export default function WalletBox() {
                   "rounded-lg px-3 py-2.5",
                   "text-[13px] text-white",
                   "transition",
-                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2",
+                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2 flex justify-between",
                 ].join(" ")}
               >
                 <span className="opacity-80">{t("Bonus")}</span>
