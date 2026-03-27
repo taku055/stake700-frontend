@@ -141,7 +141,10 @@
   "ProviderGroup": {
     "Providers": "Anbieter",
     "all_providers": "Alle Anbieter",
-    "Publishers": "Herausgeber"
+    "Publishers": "Herausgeber",
+    "Filter": "Filter",
+    "Clear all": "Alle löschen",
+    "Provider selection": "Anbieterauswahl"
   },
   "Footer": {
     "About Us": "Über uns",

@@ -201,7 +201,10 @@
   "ProviderGroup": {
     "Providers": "Providers",
     "all_providers": "All Providers",
-    "Publishers": "Publishers"
+    "Publishers": "Publishers",
+    "Filter": "Filter",
+    "Clear all": "Clear all",
+    "Provider selection": "Provider selection"
   },
   "Footer": {
     "About Us": "About Us",

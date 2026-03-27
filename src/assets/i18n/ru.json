@@ -139,7 +139,10 @@
   "ProviderGroup": {
     "Providers": "Провайдеры",
     "all_providers": "Все провайдеры",
-    "Publishers": "Издатели"
+    "Publishers": "Издатели",
+    "Filter": "Фильтр",
+    "Clear all": "Сбросить всё",
+    "Provider selection": "Выбор провайдера"
   },
   "Footer": {
     "About Us": "О нас",

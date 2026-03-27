@@ -139,7 +139,10 @@
   "ProviderGroup": {
     "Providers": "Πάροχοι",
     "all_providers": "Όλοι οι πάροχοι",
-    "Publishers": "Εκδότες"
+    "Publishers": "Εκδότες",
+    "Filter": "Φίλτρο",
+    "Clear all": "Εκκαθάριση όλων",
+    "Provider selection": "Επιλογή παρόχου"
   },
   "Footer": {
     "About Us": "Σχετικά με εμάς",

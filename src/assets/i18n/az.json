@@ -141,7 +141,10 @@
   "ProviderGroup": {
     "Providers": "Təminatçılar",
     "all_providers": "Bütün təminatçılar",
-    "Publishers": "Nəşriyyatçılar"
+    "Publishers": "Nəşriyyatçılar",
+    "Filter": "Filtr",
+    "Clear all": "Hamısını təmizlə",
+    "Provider selection": "Təminatçı seçimi"
   },
   "Footer": {
     "About Us": "Haqqımızda",

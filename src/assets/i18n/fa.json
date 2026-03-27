@@ -139,7 +139,10 @@
   "ProviderGroup": {
     "Providers": "ارائه‌دهندگان",
     "all_providers": "همه ارائه‌دهندگان",
-    "Publishers": "ناشران"
+    "Publishers": "ناشران",
+    "Filter": "فیلتر",
+    "Clear all": "پاک کردن همه",
+    "Provider selection": "انتخاب ارائه‌دهنده"
   },
   "Footer": {
     "About Us": "درباره ما",
