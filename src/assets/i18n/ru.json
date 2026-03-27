@@ -262,7 +262,12 @@
     "register_an_account": "Зарегистрироваться",
     "sign_in_with_passkey": "Войти с passkey",
     "sign_in_with_google": "Войти с Google",
-    "sign_in_another_way": "Войти другим способом"
+    "sign_in_another_way": "Войти другим способом",
+    "select_user_type": "Выберите тип пользователя",
+    "login_role_user": "Пользователь",
+    "login_role_agent": "Агент",
+    "login_role_super_agent": "Суперагент",
+    "login_role_area_manager": "Региональный менеджер"
   },
   "SignupDialog": {
     "please_input_all_fields": "Пожалуйста, заполните все поля",

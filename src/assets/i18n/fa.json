@@ -262,7 +262,12 @@
     "register_an_account": "ایجاد حساب",
     "sign_in_with_passkey": "ورود با passkey",
     "sign_in_with_google": "ورود با Google",
-    "sign_in_another_way": "ورود به روش دیگر"
+    "sign_in_another_way": "ورود به روش دیگر",
+    "select_user_type": "نوع کاربر را انتخاب کنید",
+    "login_role_user": "کاربر",
+    "login_role_agent": "نماینده",
+    "login_role_super_agent": "سوپر نماینده",
+    "login_role_area_manager": "مدیر منطقه"
   },
   "SignupDialog": {
     "please_input_all_fields": "لطفاً همه فیلدها را پر کنید",

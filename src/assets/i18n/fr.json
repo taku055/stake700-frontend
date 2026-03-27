@@ -262,7 +262,12 @@
     "register_an_account": "S'inscrire",
     "sign_in_with_passkey": "Se connecter avec passkey",
     "sign_in_with_google": "Se connecter avec Google",
-    "sign_in_another_way": "Se connecter d'une autre manière"
+    "sign_in_another_way": "Se connecter d'une autre manière",
+    "select_user_type": "Sélectionnez le type d'utilisateur",
+    "login_role_user": "Utilisateur",
+    "login_role_agent": "Agent",
+    "login_role_super_agent": "Super agent",
+    "login_role_area_manager": "Responsable de zone"
   },
   "SignupDialog": {
     "please_input_all_fields": "Veuillez remplir tous les champs",

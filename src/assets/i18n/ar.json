@@ -264,7 +264,12 @@
     "register_an_account": "إنشاء حساب",
     "sign_in_with_passkey": "تسجيل الدخول باستخدام مفتاح المرور",
     "sign_in_with_google": "تسجيل الدخول باستخدام Google",
-    "sign_in_another_way": "تسجيل الدخول بطريقة أخرى"
+    "sign_in_another_way": "تسجيل الدخول بطريقة أخرى",
+    "select_user_type": "اختر نوع المستخدم",
+    "login_role_user": "مستخدم",
+    "login_role_agent": "وكيل",
+    "login_role_super_agent": "وكيل رئيسي",
+    "login_role_area_manager": "مدير منطقة"
   },
   "SignupDialog": {
     "please_input_all_fields": "يرجى إدخال جميع الحقول",
