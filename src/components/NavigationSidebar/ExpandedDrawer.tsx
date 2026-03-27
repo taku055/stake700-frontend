@@ -173,7 +173,7 @@ export default function ExpandedDrawer({
                       }`}
                     >
                       {renderItem(item)}
-                      <span className="flex-1">{t(item.title)}</span>
+                      <span className="flex-1">{item.title}</span>
                       {isExpanded[item.key] ? (
                         <ChevronUp
                           size={16}
@@ -202,7 +202,7 @@ export default function ExpandedDrawer({
                       }`}
                     >
                       {renderItem(item)}
-                      <span>{t(item.title)}</span>
+                      <span>{item.title}</span>
                     </button>
                   )}
 
