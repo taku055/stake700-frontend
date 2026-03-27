@@ -101,8 +101,12 @@ export default function WalletBox() {
   }, [currencyState.value, balanceState.value, userState.value]);
 
   const symbol = currencyState.value.symbol ?? "";
-  const cash = Number(balanceState.value?.[currencyState.value.code]?.cash?.balance ?? 0);
-  const bonus = Number(balanceState.value?.[currencyState.value.code]?.bonus?.balance ?? 0);
+  const cash = Number(
+    balanceState.value?.[currencyState.value.code]?.cash?.balance ?? 0
+  );
+  const bonus = Number(
+    balanceState.value?.[currencyState.value.code]?.bonus?.balance ?? 0
+  );
 
   return (
     <div
@@ -220,40 +224,32 @@ export default function WalletBox() {
             <div className="h-px bg-white/10" />
 
             <div className="flex flex-col p-1">
-              <button
-                type="button"
-                role="menuitem"
+              <div
                 className={[
                   "w-full text-left",
                   "rounded-lg px-3 py-2.5",
                   "text-[13px] text-white",
                   "transition",
                   "hover:bg-white/10",
-                  "focus:outline-none focus:ring-2 focus:ring-white/20",
+                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2",
                 ].join(" ")}
               >
-                <span className="inline-flex items-center gap-2">
-                  <span className="opacity-80">{t("Cash")}</span>
-                  <span className="font-semibold">{cash.toFixed(2)}</span>
-                </span>
-              </button>
-              <button
-                type="button"
-                role="menuitem"
+                <span className="opacity-80">{t("Cash")}</span>
+                <span className="font-semibold">{cash.toFixed(2)}</span>
+              </div>
+              <div
                 className={[
                   "w-full text-left",
                   "rounded-lg px-3 py-2.5",
                   "text-[13px] text-white",
                   "transition",
                   "hover:bg-white/10",
-                  "focus:outline-none focus:ring-2 focus:ring-white/20",
+                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2",
                 ].join(" ")}
               >
-                <span className="inline-flex items-center gap-2">
-                  <span className="opacity-80">{t("Bonus")}</span>
-                  <span className="font-semibold">{bonus.toFixed(2)}</span>
-                </span>
-              </button>
+                <span className="opacity-80">{t("Bonus")}</span>
+                <span className="font-semibold">{bonus.toFixed(2)}</span>
+              </div>
             </div>
           </div>
         </Portal>
