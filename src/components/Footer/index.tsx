@@ -30,7 +30,7 @@ export const Footer = () => {
   const { price } = useBtcUsdPrice();
 
   return (
-    <footer className="flex flex-col w-full items-center justify-center pb-16 md:pb-8 mt-[60px] pt-8 gap-5 bg-[var(--footer-background)] overflow-x-hidden scrollbar-hide">
+    <footer className="flex flex-col w-full items-center justify-center pb-[100px] md:pb-8 mt-[60px] pt-8 gap-5 bg-[var(--footer-background)] overflow-x-hidden scrollbar-hide">
       <div className="flex w-full md:justify-center items-center overflow-x-auto scrollbar-hide gap-4 px-4 mb-4">
         {visaImages.map((src, index) => (
           <div key={index} className="h-[40px] flex-shrink-0">
