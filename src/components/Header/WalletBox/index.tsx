@@ -204,7 +204,7 @@ export default function WalletBox() {
             className={[
               "z-[9999]",
               "rounded-xl overflow-hidden",
-              "bg-[var(--green-color)]/10 backdrop-blur-md",
+              "bg-[var(--green-color)]/20 backdrop-blur-md",
               "border border-white/10",
               "shadow-[0_18px_60px_rgba(0,0,0,0.55)]",
             ].join(" ")}
@@ -230,7 +230,6 @@ export default function WalletBox() {
                   "rounded-lg px-3 py-2.5",
                   "text-[13px] text-white",
                   "transition",
-                  "hover:bg-white/10",
                   "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2",
                 ].join(" ")}
               >
@@ -243,7 +242,6 @@ export default function WalletBox() {
                   "rounded-lg px-3 py-2.5",
                   "text-[13px] text-white",
                   "transition",
-                  "hover:bg-white/10",
                   "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2",
                 ].join(" ")}
               >
