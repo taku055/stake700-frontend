@@ -260,7 +260,7 @@ export default function WithdrawalPanel() {
             }
           />
           <p className="text-xs text-gray-400 mt-1">
-            {t("Withdraw Amount")}:{" "}
+            {t("WITHDRAW AMOUNT")}:{" "}
             {(
               +amount /
               tokens.filter((token) => token.id === selectedCryptoId)[0]
