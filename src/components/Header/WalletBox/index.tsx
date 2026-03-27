@@ -106,7 +106,14 @@
 //   );
 // }
 
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+} from "react";
 import { Portal } from "./Portal";
 import { userState } from "@/state/userState";
 import { profileOpenedState } from "@/state/profileOpenedState";
@@ -117,6 +124,23 @@ import { ASSET_BASE_URL, CURRENCY_LIST } from "@/config/constants";
 
 const SUPPORTED_CURRENCIES = ["USD"] as const;
 type Pos = { top: number; left: number; width: number };
+
+const VIEWPORT_MARGIN = 8;
+
+function clampDropdownLeft(
+  triggerRect: DOMRect,
+  panelWidth: number,
+): number {
+  const vw = window.innerWidth;
+  let left = triggerRect.left;
+  if (left + panelWidth > vw - VIEWPORT_MARGIN) {
+    left = Math.max(VIEWPORT_MARGIN, triggerRect.right - panelWidth);
+  }
+  if (left < VIEWPORT_MARGIN) {
+    left = VIEWPORT_MARGIN;
+  }
+  return left;
+}
 
 export default function WalletBox() {
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
@@ -131,11 +155,17 @@ export default function WalletBox() {
     const el = triggerRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
+    const d = dropdownRef.current;
+    const panelW = d
+      ? d.offsetWidth
+      : Math.max(210, r.width);
+    const left = clampDropdownLeft(r, panelW);
+    const width = Math.max(210, r.width);
 
     setPos({
       top: r.bottom + 10,
-      left: r.left,
-      width: Math.max(210, r.width),
+      left,
+      width,
     });
   }, []);
 
@@ -180,6 +210,26 @@ export default function WalletBox() {
       window.removeEventListener("resize", onResize);
     };
   }, [isSelectorOpen, updatePos]);
+
+  useLayoutEffect(() => {
+    if (!isSelectorOpen || !pos) return;
+    const el = triggerRef.current;
+    const d = dropdownRef.current;
+    if (!el || !d) return;
+    const r = el.getBoundingClientRect();
+    const left = clampDropdownLeft(r, d.offsetWidth);
+    const top = r.bottom + 10;
+    setPos((prev) => {
+      if (!prev) return prev;
+      if (
+        Math.abs(prev.left - left) < 0.5 &&
+        Math.abs(prev.top - top) < 0.5
+      ) {
+        return prev;
+      }
+      return { ...prev, left, top };
+    });
+  }, [isSelectorOpen, pos]);
 
   useEffect(() => {
     if (!isSelectorOpen) return;
@@ -316,6 +366,7 @@ export default function WalletBox() {
               top: pos.top,
               left: pos.left,
               minWidth: pos.width,
+              maxWidth: `calc(100vw - ${VIEWPORT_MARGIN * 2}px)`,
             }}
           >
             <div className="px-4 py-3">
