@@ -43,9 +43,9 @@ export default function AppRoute() {
       <Route path="/other-rules" component={OtherRules} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/faq" component={FAQ} />
-
+{/* 
       <Route path="/support/fairness" component={ProvablyFairLayout} />
-      <Route path="/support/fairness/*" component={ProvablyFairLayout} />
+      <Route path="/support/fairness/*" component={ProvablyFairLayout} /> */}
       <Route path="/support/help-center" component={HelpCenterPage} />
       <Route path="/support/responsible-gambling" component={ResponsibleGamblingPage} />
       <Route path="/support/gambling-helpline" component={GamblingHelplinePage} />
