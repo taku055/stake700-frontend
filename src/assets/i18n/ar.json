@@ -108,7 +108,9 @@
     "Fiat Currency": "العملة النقدية",
     "Improve your account security with Two-Factor Authentication": "حسّن أمان حسابك باستخدام المصادقة الثنائية",
     "Enable 2FA": "تفعيل المصادقة الثنائية",
-    "Coming Soon": "قريباً"
+    "Coming Soon": "قريباً",
+    "Cash": "نقدي",
+    "Bonus": "مكافأة"
   },
   "PromotionCard": {
     "daily_promotion_title": "عرض يومي",
