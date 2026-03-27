@@ -262,7 +262,12 @@
     "register_an_account": "Δημιουργία λογαριασμού",
     "sign_in_with_passkey": "Σύνδεση με passkey",
     "sign_in_with_google": "Σύνδεση με Google",
-    "sign_in_another_way": "Σύνδεση με άλλο τρόπο"
+    "sign_in_another_way": "Σύνδεση με άλλο τρόπο",
+    "select_user_type": "Επιλέξτε τύπο χρήστη",
+    "login_role_user": "Χρήστης",
+    "login_role_agent": "Πράκτορας",
+    "login_role_super_agent": "Ανώτερος πράκτορας",
+    "login_role_area_manager": "Περιφερειακός διευθυντής"
   },
   "SignupDialog": {
     "please_input_all_fields": "Παρακαλώ συμπληρώστε όλα τα πεδία",

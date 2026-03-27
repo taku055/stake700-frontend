@@ -262,7 +262,12 @@
     "register_an_account": "Registrar una cuenta",
     "sign_in_with_passkey": "Iniciar sesión con passkey",
     "sign_in_with_google": "Iniciar sesión con Google",
-    "sign_in_another_way": "Iniciar sesión de otra manera"
+    "sign_in_another_way": "Iniciar sesión de otra manera",
+    "select_user_type": "Selecciona el tipo de usuario",
+    "login_role_user": "Usuario",
+    "login_role_agent": "Agente",
+    "login_role_super_agent": "Super agente",
+    "login_role_area_manager": "Gerente de área"
   },
   "SignupDialog": {
     "please_input_all_fields": "Por favor completa todos los campos",

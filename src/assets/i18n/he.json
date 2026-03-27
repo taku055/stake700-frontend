@@ -262,7 +262,12 @@
     "register_an_account": "הרשמה",
     "sign_in_with_passkey": "התחברות עם passkey",
     "sign_in_with_google": "התחברות עם Google",
-    "sign_in_another_way": "התחברות בדרך אחרת"
+    "sign_in_another_way": "התחברות בדרך אחרת",
+    "select_user_type": "בחר סוג משתמש",
+    "login_role_user": "משתמש",
+    "login_role_agent": "סוכן",
+    "login_role_super_agent": "סוכן על",
+    "login_role_area_manager": "מנהל אזור"
   },
   "SignupDialog": {
     "please_input_all_fields": "אנא מלא את כל השדות",

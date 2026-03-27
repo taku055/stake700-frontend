@@ -324,7 +324,12 @@
     "register_an_account": "Register an Account",
     "sign_in_with_passkey": "Sign In with passkey",
     "sign_in_with_google": "Sign In with Google",
-    "sign_in_another_way": "Sign In another way"
+    "sign_in_another_way": "Sign In another way",
+    "select_user_type": "Select user type",
+    "login_role_user": "User",
+    "login_role_agent": "Agent",
+    "login_role_super_agent": "Super Agent",
+    "login_role_area_manager": "Area Manager"
   },
   "SignupDialog": {
     "please_input_all_fields": "Please input all fields",

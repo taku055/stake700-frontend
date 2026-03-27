@@ -264,7 +264,12 @@
     "register_an_account": "Hesab yaradın",
     "sign_in_with_passkey": "Açar ilə daxil ol",
     "sign_in_with_google": "Google ilə daxil ol",
-    "sign_in_another_way": "Başqa bir yolla daxil ol"
+    "sign_in_another_way": "Başqa bir yolla daxil ol",
+    "select_user_type": "İstifadəçi növünü seçin",
+    "login_role_user": "İstifadəçi",
+    "login_role_agent": "Agent",
+    "login_role_super_agent": "Super agent",
+    "login_role_area_manager": "Ərazi meneceri"
   },
   "SignupDialog": {
     "please_input_all_fields": "Bütün sahələri doldurun",

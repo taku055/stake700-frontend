@@ -262,7 +262,12 @@
     "register_an_account": "Kayıt Ol",
     "sign_in_with_passkey": "Passkey ile giriş yap",
     "sign_in_with_google": "Google ile giriş yap",
-    "sign_in_another_way": "Başka bir yolla giriş yap"
+    "sign_in_another_way": "Başka bir yolla giriş yap",
+    "select_user_type": "Kullanıcı türünü seçin",
+    "login_role_user": "Kullanıcı",
+    "login_role_agent": "Acente",
+    "login_role_super_agent": "Süper acente",
+    "login_role_area_manager": "Bölge müdürü"
   },
   "SignupDialog": {
     "please_input_all_fields": "Lütfen tüm alanları doldurun",

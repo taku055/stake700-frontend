@@ -187,10 +187,10 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                     shouldBlockScroll: true,
                   }}
                 >
-                  <SelectItem key="NORMAL">User</SelectItem>
-                  <SelectItem key="AGENT">Agent</SelectItem>
-                  <SelectItem key="SUPERAGENT">Super Agent</SelectItem>
-                  <SelectItem key="AREA_MANAGER">Area Manager</SelectItem>
+                  <SelectItem key="NORMAL">{t("login_role_user")}</SelectItem>
+                  <SelectItem key="AGENT">{t("login_role_agent")}</SelectItem>
+                  <SelectItem key="SUPERAGENT">{t("login_role_super_agent")}</SelectItem>
+                  <SelectItem key="AREA_MANAGER">{t("login_role_area_manager")}</SelectItem>
                 </Select></div>
               <button
                 type="button"
