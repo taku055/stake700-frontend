@@ -23,12 +23,12 @@ export const HOME_CATEGORIES: {
     category: "trending-games",
     icon: "/images/category_logo/popular.png",
   },
-  {
-    key: "hacksaw",
-    name: "Hacksaw",
-    category: "hacksaw",
-    icon: "/images/category_logo/hacksaw.png",
-  },
+  // {
+  //   key: "hacksaw",
+  //   name: "Hacksaw",
+  //   category: "hacksaw",
+  //   icon: "/images/category_logo/hacksaw.png",
+  // },
   {
     key: "game-shows",
     name: "Game Shows",
