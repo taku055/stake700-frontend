@@ -300,7 +300,11 @@
   "HomePage": {
     "casino-games": "ألعاب الكازينو",
     "live-casino": "كازينو مباشر",
-    "Hacksaw": "منشار يدوي",
+    "Hacksaw": "Hacksaw",
+    "Top Games": "أفضل الألعاب",
+    "Trending Games": "الألعاب الرائجة",
+    "Game Shows": "عروض الألعاب",
+    "Pragmatic": "Pragmatic",
     "No Limit": "بلا حدود",
     "Deposit Methods": "طرق الإيداع",
     "deposit_info": "ستُعرض طرق الإيداع المتاحة هنا",

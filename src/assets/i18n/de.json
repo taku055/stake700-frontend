@@ -300,7 +300,11 @@
   "HomePage": {
     "casino-games": "Casino-Spiele",
     "live-casino": "Live-Casino",
-    "Hacksaw": "Säge",
+    "Hacksaw": "Hacksaw",
+    "Top Games": "Top-Spiele",
+    "Trending Games": "Trend-Spiele",
+    "Game Shows": "Game Shows",
+    "Pragmatic": "Pragmatic",
     "No Limit": "Kein Limit",
     "Deposit Methods": "Einzahlungsmethoden",
     "deposit_info": "Verfügbare Einzahlungsmethoden werden hier angezeigt",

@@ -300,7 +300,11 @@
   "HomePage": {
     "casino-games": "Kazino Oyunları",
     "live-casino": "Canlı Kazino",
-    "Hacksaw": "mişar",
+    "Hacksaw": "Hacksaw",
+    "Top Games": "Ən yaxşı oyunlar",
+    "Trending Games": "Trend oyunlar",
+    "Game Shows": "Oyun şouları",
+    "Pragmatic": "Pragmatic",
     "No Limit": "Hüdüd Yoxdur",
     "Deposit Methods": "Depozit Üsulları",
     "deposit_info": "Mövcud depozit üsulları burada göstəriləcək",
