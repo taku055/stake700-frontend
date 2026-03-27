@@ -8,6 +8,9 @@ import { useTranslations } from "@/context/I18nContext";
 
 type Pos = { top: number; left: number; width: number };
 
+const VIEWPORT_MARGIN = 8;
+const BELOW_TRIGGER_GAP = 10;
+
 export default function WalletBox() {
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
 
@@ -22,12 +25,31 @@ export default function WalletBox() {
     const el = triggerRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const maxPanelW = Math.max(0, vw - VIEWPORT_MARGIN * 2);
 
-    setPos({
-      top: r.bottom + 10,
-      left: r.left,
-      width: Math.max(210, r.width),
-    });
+    let width = Math.max(210, r.width);
+    width = Math.min(width, maxPanelW);
+
+    let left = r.left;
+    if (left + width > vw - VIEWPORT_MARGIN) {
+      left = vw - VIEWPORT_MARGIN - width;
+    }
+    if (left < VIEWPORT_MARGIN) {
+      left = VIEWPORT_MARGIN;
+    }
+
+    const estHeight = 220;
+    let top = r.bottom + BELOW_TRIGGER_GAP;
+    if (top + estHeight > vh - VIEWPORT_MARGIN) {
+      top = Math.max(
+        VIEWPORT_MARGIN,
+        r.top - estHeight - BELOW_TRIGGER_GAP
+      );
+    }
+
+    setPos({ top, left, width });
   }, []);
 
   useEffect(() => {
@@ -207,12 +229,16 @@ export default function WalletBox() {
               "bg-[var(--green-color)]/20 backdrop-blur-md",
               "border border-white/10",
               "shadow-[0_18px_60px_rgba(0,0,0,0.55)]",
+              "max-w-[calc(100vw-1rem)]",
+              "max-h-[min(85vh,calc(100dvh-2rem))] overflow-y-auto",
+              "box-border",
             ].join(" ")}
             style={{
               position: "fixed",
               top: pos.top,
               left: pos.left,
-              minWidth: pos.width,
+              width: pos.width,
+              maxWidth: "calc(100vw - 1rem)",
             }}
           >
             <div className="px-4 py-3">
