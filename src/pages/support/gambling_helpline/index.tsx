@@ -111,7 +111,7 @@ const GamblingHelplinePage: FunctionalComponent = () => {
                 {t("ResponsibleGaming")}
               </a>
               <a
-                href="/help"
+                href="/support/help-center"
                 class="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
                 {t("HelpCenter")}
