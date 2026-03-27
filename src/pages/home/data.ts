@@ -20,7 +20,7 @@ export const HOME_CATEGORIES: {
   {
     key: "trending-games",
     name: "Trending Games",
-    category: "trending-games",
+    category: "trending",
     icon: "/images/category_logo/popular.png",
   },
   // {
