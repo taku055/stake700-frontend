@@ -437,6 +437,8 @@
     "Amount": "סכום",
     "Card": "כרטיס",
     "Crypto": "קריפטו",
+    "Aries": "אריאס",
+    "Withdraw tab options": "אפשרויות משיכה",
     "XGateway": "XGateway",
     "XGateway_invalid_amount": "הזן סכום חוקי גדול מאפס.",
     "XGateway_invoice_failed": "לא ניתן ליצור חשבונית. נסה שוב.",

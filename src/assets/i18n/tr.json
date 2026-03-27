@@ -437,6 +437,8 @@
     "Amount": "Tutar",
     "Card": "Kart",
     "Crypto": "Kripto",
+    "Aries": "Aries",
+    "Withdraw tab options": "Çekim seçenekleri",
     "XGateway": "XGateway",
     "XGateway_invalid_amount": "Sıfırdan büyük geçerli bir tutar girin.",
     "XGateway_invoice_failed": "Fatura oluşturulamadı. Lütfen tekrar deneyin.",

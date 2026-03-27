@@ -439,6 +439,8 @@
     "Amount": "المبلغ",
     "Card": "بطاقة",
     "Crypto": "كريبتو",
+    "Aries": "أريس",
+    "Withdraw tab options": "خيارات السحب",
     "XGateway": "XGateway",
     "XGateway_invalid_amount": "أدخل مبلغاً صالحاً أكبر من صفر.",
     "XGateway_invoice_failed": "تعذر إنشاء الفاتورة. حاول مرة أخرى.",
