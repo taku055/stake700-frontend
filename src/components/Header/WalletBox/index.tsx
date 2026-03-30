@@ -1,111 +1,3 @@
-// import { userState } from "@/state/userState";
-// import { walletDialogOpenedState } from "@/state/walletDialogState";
-// import { currencyState } from "@/state/currencyState";
-// import { ASSET_BASE_URL, CURRENCY_LIST } from "@/config/constants";
-// import { ChevronDown, Wallet } from "lucide-preact";
-// import {
-//   Dropdown,
-//   DropdownItem,
-//   DropdownMenu,
-//   DropdownTrigger,
-// } from "@/components/common/Dropdown";
-// import { useTranslations } from "@/context/I18nContext";
-// import { useMediaQuery } from "usehooks-ts";
-// import { mobileMediaQuery } from "@/config/constants";
-
-// export default function WalletBox() {
-//   const t = useTranslations("Header");
-//   const isMobile = useMediaQuery(mobileMediaQuery);
-//   const balance =
-//     userState.value?.cashDetails?.find(
-//       (c) => c.currency === currencyState.value.unit
-//     )?.amount || 0;
-
-//   const handleWalletClick = () => {
-//     walletDialogOpenedState.value = true;
-//   };
-
-//   return (
-//     <div className="flex items-center h-[48px] bg-[var(--bar-background-color)] rounded-lg overflow-hidden">
-//       {/* Balance and Currency Dropdown */}
-//       <Dropdown
-//         backdrop="blur"
-//         className="flex h-[full] justify-center items-center py-3 px-5 overflow-y-auto bg-[var(--bar-background-color)]"
-//       >
-//         <DropdownTrigger>
-//           <div className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
-//             {/* Balance Amount */}
-//             <span className="text-white text-[14px] font-medium">
-//               {balance.toFixed(2)}
-//             </span>
-
-//             {/* Currency Icon (Orange Circle with Bitcoin Symbol) */}
-//             <img
-//               src={`${ASSET_BASE_URL}/images/currencies/${currencyState.value.code}.png`}
-//               alt="Currency"
-//               className="w-6 h-6"
-//             />
-
-//             {/* Dropdown Chevron */}
-//             <ChevronDown size={14} color="white" />
-//           </div>
-//         </DropdownTrigger>
-//         <DropdownMenu
-//           aria-label={t("Select Currency")}
-//           align="end"
-//           className="bg-[var(--bar-background-color)]"
-//         >
-//           {CURRENCY_LIST.map((currency) => (
-//             <DropdownItem
-//               key={currency.unit}
-//               value={currency.unit}
-//               onPress={() => {
-//                 currencyState.value = currency;
-//                 window.localStorage.setItem(
-//                   "currency",
-//                   JSON.stringify(currency)
-//                 );
-//               }}
-//             >
-//               <div className="flex items-center gap-2">
-//                 <span className="font-semibold">{currency.symbol}</span>
-//                 <span>
-//                   {(
-//                     userState.value?.cashDetails?.find(
-//                       (c) => c.currency === currency.unit
-//                     )?.amount || 0
-//                   ).toFixed(2)}
-//                 </span>
-//               </div>
-//             </DropdownItem>
-//           ))}
-//         </DropdownMenu>
-//       </Dropdown>
-
-//       {/* Wallet Button */}
-//       {isMobile ? (
-//         <button
-//           onClick={handleWalletClick}
-//           className="px-4 h-full bg-[var(--green-color)] text-white font-medium text-[16px] leading-[24px] hover:opacity-90 transition-opacity whitespace-nowrap"
-//         >
-//           <img
-//             src={`${ASSET_BASE_URL}/images/icons/wallet.svg`}
-//             alt="Wallet"
-//             className="w-5 h-5"
-//           />
-//         </button>
-//       ) : (
-//         <button
-//           onClick={handleWalletClick}
-//           className="px-5 py-3 h-full bg-[var(--green-color)] text-white font-medium text-[16px] leading-[24px] hover:opacity-90 transition-opacity whitespace-nowrap"
-//         >
-//           {t("Wallet")}
-//         </button>
-//       )}
-//     </div>
-//   );
-// }
-
 import {
   useEffect,
   useLayoutEffect,
@@ -119,13 +11,12 @@ import { userState } from "@/state/userState";
 import { profileOpenedState } from "@/state/profileOpenedState";
 import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";
-import { ASSET_BASE_URL, CURRENCY_LIST } from "@/config/constants";
-// import { CURRENCY_SYMBOL } from "@/config/constants";
+import { useTranslations } from "@/context/I18nContext";
 
-const SUPPORTED_CURRENCIES = ["USD"] as const;
 type Pos = { top: number; left: number; width: number };
 
 const VIEWPORT_MARGIN = 8;
+const BELOW_TRIGGER_GAP = 10;
 
 function clampDropdownLeft(
   triggerRect: DOMRect,
@@ -148,6 +39,7 @@ export default function WalletBox() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("WalletBox");
 
   const [pos, setPos] = useState<Pos | null>(null);
 
@@ -155,18 +47,31 @@ export default function WalletBox() {
     const el = triggerRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    const d = dropdownRef.current;
-    const panelW = d
-      ? d.offsetWidth
-      : Math.max(210, r.width);
-    const left = clampDropdownLeft(r, panelW);
-    const width = Math.max(210, r.width);
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const maxPanelW = Math.max(0, vw - VIEWPORT_MARGIN * 2);
 
-    setPos({
-      top: r.bottom + 10,
-      left,
-      width,
-    });
+    let width = Math.max(210, r.width);
+    width = Math.min(width, maxPanelW);
+
+    let left = r.left;
+    if (left + width > vw - VIEWPORT_MARGIN) {
+      left = vw - VIEWPORT_MARGIN - width;
+    }
+    if (left < VIEWPORT_MARGIN) {
+      left = VIEWPORT_MARGIN;
+    }
+
+    const estHeight = 220;
+    let top = r.bottom + BELOW_TRIGGER_GAP;
+    if (top + estHeight > vh - VIEWPORT_MARGIN) {
+      top = Math.max(
+        VIEWPORT_MARGIN,
+        r.top - estHeight - BELOW_TRIGGER_GAP
+      );
+    }
+
+    setPos({ top, left, width });
   }, []);
 
   useEffect(() => {
@@ -218,16 +123,12 @@ export default function WalletBox() {
     if (!el || !d) return;
     const r = el.getBoundingClientRect();
     const left = clampDropdownLeft(r, d.offsetWidth);
-    const top = r.bottom + 10;
     setPos((prev) => {
       if (!prev) return prev;
-      if (
-        Math.abs(prev.left - left) < 0.5 &&
-        Math.abs(prev.top - top) < 0.5
-      ) {
+      if (Math.abs(prev.left - left) < 0.5) {
         return prev;
       }
-      return { ...prev, left, top };
+      return { ...prev, left };
     });
   }, [isSelectorOpen, pos]);
 
@@ -249,7 +150,7 @@ export default function WalletBox() {
     } else {
       total = Number(
         userState.value.cashDetails?.find((c) => c.currency === cur.unit)
-          ?.amount ?? 0,
+          ?.amount ?? 0
       );
     }
 
@@ -260,6 +161,12 @@ export default function WalletBox() {
   }, [currencyState.value, balanceState.value, userState.value]);
 
   const symbol = currencyState.value.symbol ?? "";
+  const cash = Number(
+    balanceState.value?.[currencyState.value.code]?.cash?.balance ?? 0
+  );
+  const bonus = Number(
+    balanceState.value?.[currencyState.value.code]?.bonus?.balance ?? 0
+  );
 
   return (
     <div
@@ -357,9 +264,12 @@ export default function WalletBox() {
             className={[
               "z-[9999]",
               "rounded-xl overflow-hidden",
-              "bg-[var(--green-color)]/10 backdrop-blur-md",
+              "bg-[var(--green-color)]/20 backdrop-blur-md",
               "border border-white/10",
               "shadow-[0_18px_60px_rgba(0,0,0,0.55)]",
+              "max-w-[calc(100vw-1rem)]",
+              "max-h-[min(85vh,calc(100dvh-2rem))] overflow-y-auto",
+              "box-border",
             ].join(" ")}
             style={{
               position: "fixed",
@@ -371,46 +281,37 @@ export default function WalletBox() {
           >
             <div className="px-4 py-3">
               <div className="text-[11px] uppercase tracking-[0.14em] text-white/55">
-                Currency
+                {t("Currency")}
               </div>
             </div>
 
             <div className="h-px bg-white/10" />
 
             <div className="flex flex-col p-1">
-              {CURRENCY_LIST.map((cur) => {
-                const active = cur === currencyState.value;
-                return (
-                  <button
-                    key={cur}
-                    type="button"
-                    role="menuitem"
-                    className={[
-                      "w-full text-left",
-                      "rounded-lg px-3 py-2.5",
-                      "text-[13px] text-white",
-                      "transition",
-                      "hover:bg-white/10",
-                      active ? "bg-white/10" : "",
-                      "focus:outline-none focus:ring-2 focus:ring-white/20",
-                    ].join(" ")}
-                    onClick={() => {
-                      currencyState.value = cur;
-                      setIsSelectorOpen(false);
-                    }}
-                  >
-                    <span className="inline-flex items-center gap-2">
-                      <span className="opacity-80">{cur.symbol}</span>
-                      <span className="font-semibold">{cur.code}</span>
-                      {active && (
-                        <span className="ml-auto text-[11px] text-white/60">
-                          Selected
-                        </span>
-                      )}
-                    </span>
-                  </button>
-                );
-              })}
+              <div
+                className={[
+                  "w-full text-left",
+                  "rounded-lg px-3 py-2.5",
+                  "text-[13px] text-white",
+                  "transition",
+                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2 flex justify-between",
+                ].join(" ")}
+              >
+                <span className="opacity-80">{t("Cash")}</span>
+                <span className="font-semibold">{cash.toFixed(2)}</span>
+              </div>
+              <div
+                className={[
+                  "w-full text-left",
+                  "rounded-lg px-3 py-2.5",
+                  "text-[13px] text-white",
+                  "transition",
+                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2 flex justify-between",
+                ].join(" ")}
+              >
+                <span className="opacity-80">{t("Bonus")}</span>
+                <span className="font-semibold">{bonus.toFixed(2)}</span>
+              </div>
             </div>
           </div>
         </Portal>

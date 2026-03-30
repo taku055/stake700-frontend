@@ -278,9 +278,9 @@ const ProfileComponent = ({
                 }
               />
               <BonusBalanceCard />
-              <LoyaltyPoints
+              {/* <LoyaltyPoints
                 onClick={() => setSelectedTab("/loyalty-points")}
-              />
+              /> */}
               {userState.value?.isCallGroup && (
                 <a
                   className="flex bg-yellow-600 gap-3 p-4 rounded-md items-center"

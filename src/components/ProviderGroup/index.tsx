@@ -64,7 +64,7 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
       <div className={styles.titleBar}>
         <div className={styles.title}>
           <div className={styles.text}>
-            <img src={`${ASSET_BASE_URL}/images/icons/providers.png`} alt="Publishers" width={20} height={20} />
+            <img src={`${ASSET_BASE_URL}/images/icons/providers.png`} alt={t("Publishers")} width={20} height={20} />
             {t("Publishers")}</div>
         </div>
         <div className={styles.action}>

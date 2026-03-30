@@ -40,7 +40,7 @@ export const FOOTER_LINK_DATA : Array<{
     title: "Support",
     links: [
       { title: "Help Center", href: "/support/help-center" },
-      { title: "Fairness", href: "/support/fairness" },
+      // { title: "Fairness", href: "/support/fairness" },
       { title: "Responsible Gambling", href: "/support/responsible-gambling" },
       { title: "Gambling Helpline", href: "/support/gambling-helpline" },
       { title: "Live Support", onClick: () => {

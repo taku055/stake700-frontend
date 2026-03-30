@@ -48,6 +48,10 @@
       gap: 4px;
       height: 42px;
 
+      [dir="rtl"] & {
+        flex-direction: row-reverse;
+      }
+
       @media (max-width: 768px) {
         height: 32px;
       }

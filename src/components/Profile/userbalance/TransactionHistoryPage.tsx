@@ -23,6 +23,20 @@ const today = new Date();
 /** Single request: backend may cap; adjust if needed. */
 const FETCH_ALL_LENGTH = 100_000;
 
+const transactionTypeLabel = (
+  t: ReturnType<typeof useTranslations>,
+  type: eTransactionType
+) => t(`txn_type_${type}`, undefined, String(type));
+
+/** Platform IDs use dots (e.g. deposit.crypto); keys use underscores to avoid nested i18n paths. */
+const transactionPlatformLabel = (
+  t: ReturnType<typeof useTranslations>,
+  platform: string
+) => {
+  const slug = platform.replace(/\./g, "_");
+  return t(`txn_platform_${slug}`, undefined, platform);
+};
+
 const TransactionHistoryPage = () => {
   const t = useTranslations("UserBalancePage");
   const tBet = useTranslations("BetHistory");
@@ -108,21 +122,21 @@ const TransactionHistoryPage = () => {
                       {e.type === eTransactionType.deposit ||
                       e.type === eTransactionType.user_deposit ? (
                         <span className="text-white bg-primary rounded-xl p-1 text-[10px]">
-                          {e.type}
+                          {transactionTypeLabel(t, e.type)}
                         </span>
                       ) : e.type === eTransactionType.withdrawal ||
                         e.type === eTransactionType.user_withdrawal ? (
                         <span className="text-black bg-success rounded-xl p-1 text-[10px]">
-                          {e.type}
+                          {transactionTypeLabel(t, e.type)}
                         </span>
                       ) : (
                         <span className="text-default-600 bg-default-100 rounded-xl p-1 text-[10px]">
-                          {e.type}
+                          {transactionTypeLabel(t, e.type)}
                         </span>
                       )}
                     </TableCell>
                     <TableCell className="max-w-[140px] truncate text-[12px]">
-                      {e.platform}
+                      {transactionPlatformLabel(t, e.platform)}
                     </TableCell>
                     <TableCell>{e.cash}</TableCell>
                     <TableCell>

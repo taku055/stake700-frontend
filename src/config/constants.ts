@@ -18,7 +18,7 @@ export const mobileLandscapeMediaQuery =
 export const mobilePortraitMediaQuery =
   "screen and ((max-width: 1023px) and (orientation: portrait))";
 
-export const placeholderGameImage = "/images/placeholder-gamecard.png";
+export const placeholderGameImage = "/images/img-placeholder-dark.jpg";
 
 export const OFFICIAL_LINKS = {
   telegram: "https://t.me/Betalarabofc",

@@ -227,7 +227,7 @@ export default function SportsbookHistoryTable({
                   {opt === "all"
                     ? t("sb_all")
                     : t(
-                        `sb_result_${opt.toLowerCase().replace(/[^a-z0-9]+/g, "_")}`,
+                        `sb_result_${opt?.toLowerCase().replace(/[^a-z0-9]+/g, "_") || ""}`,
                         undefined,
                         opt
                       )}
