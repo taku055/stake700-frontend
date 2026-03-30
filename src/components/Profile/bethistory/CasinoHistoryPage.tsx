@@ -24,37 +24,37 @@ const columns: {
   key: string;
   sotable: boolean;
 }[] = [
-  {
-    title: "Game",
-    key: "context.game.name",
-    sotable: false,
-  },
-  {
-    title: "Provider",
-    key: "provider",
-    sotable: false,
-  },
-  {
-    title: "RoundId",
-    key: "eventId",
-    sotable: false,
-  },
-  {
-    title: "Bet",
-    key: "bet_amount",
-    sotable: true,
-  },
-  {
-    title: "Win",
-    key: "win_amount",
-    sotable: true,
-  },
-  {
-    title: "Date",
-    key: "first_tx_at",
-    sotable: true,
-  },
-];
+    {
+      title: "Game",
+      key: "context.game.name",
+      sotable: false,
+    },
+    {
+      title: "Provider",
+      key: "provider",
+      sotable: false,
+    },
+    {
+      title: "RoundId",
+      key: "eventId",
+      sotable: false,
+    },
+    {
+      title: "Bet",
+      key: "bet_amount",
+      sotable: true,
+    },
+    {
+      title: "Win",
+      key: "win_amount",
+      sotable: true,
+    },
+    {
+      title: "Date",
+      key: "first_tx_at",
+      sotable: true,
+    },
+  ];
 
 const CasinoHistoryPage = () => {
   const t = useTranslations("BetHistory");
@@ -150,15 +150,31 @@ const CasinoHistoryPage = () => {
                         }
                         {numberRound(e.bet_amount, 100)}
                       </Chip>
+                      <Chip color="success" size="sm">
+                        {
+                          CURRENCY_LIST.find(
+                            (currency) => currency.unit === e.currency
+                          )?.symbol
+                        }
+                        {numberRound(e.bet_bonus_amount, 100)}
+                      </Chip>
                     </TableCell>
                     <TableCell>
-                      <Chip color="danger">
+                      <Chip color="danger" size="sm">
                         {
                           CURRENCY_LIST.find(
                             (currency) => currency.unit === e.currency
                           )?.symbol
                         }
                         {numberRound(e.win_amount, 100)}
+                      </Chip>
+                      <Chip color="warning" size="sm">
+                        {
+                          CURRENCY_LIST.find(
+                            (currency) => currency.unit === e.currency
+                          )?.symbol
+                        }
+                        {numberRound(e.win_bonus_amount, 100)}
                       </Chip>
                     </TableCell>
                     <TableCell>

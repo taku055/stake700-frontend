@@ -71,6 +71,9 @@ export type tTransaction = {
 
 export type tMergedTransaction = {
   bet_amount: number;
+  win_amount: number;
+  bet_bonus_amount: number;
+  win_bonus_amount: number;
   context: any;
   eventId: string;
   first_tx_at: Date;
@@ -78,7 +81,6 @@ export type tMergedTransaction = {
   last_tx_at: Date;
   provider: string;
   providerId: string;
-  win_amount: number;
   eventType?: string;
   currency: eTransactionCurrency;
 };

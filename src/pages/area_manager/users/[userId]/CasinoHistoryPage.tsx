@@ -29,42 +29,42 @@ const columns: {
   key: string;
   sotable: boolean;
 }[] = [
-  {
-    title: "Game",
-    key: "context.game.name",
-    sotable: false,
-  },
-  {
-    title: "Provider",
-    key: "provider",
-    sotable: false,
-  },
-  {
-    title: "RoundId",
-    key: "eventId",
-    sotable: false,
-  },
-  {
-    title: "Currency",
-    key: "currency",
-    sotable: false,
-  },
-  {
-    title: "Bet",
-    key: "bet_amount",
-    sotable: true,
-  },
-  {
-    title: "Win",
-    key: "win_amount",
-    sotable: true,
-  },
-  {
-    title: "Date",
-    key: "first_tx_at",
-    sotable: true,
-  },
-];
+    {
+      title: "Game",
+      key: "context.game.name",
+      sotable: false,
+    },
+    {
+      title: "Provider",
+      key: "provider",
+      sotable: false,
+    },
+    {
+      title: "RoundId",
+      key: "eventId",
+      sotable: false,
+    },
+    {
+      title: "Currency",
+      key: "currency",
+      sotable: false,
+    },
+    {
+      title: "Bet",
+      key: "bet_amount",
+      sotable: true,
+    },
+    {
+      title: "Win",
+      key: "win_amount",
+      sotable: true,
+    },
+    {
+      title: "Date",
+      key: "first_tx_at",
+      sotable: true,
+    },
+  ];
 
 const translatedColumns = (t: (k: string) => string) =>
   columns.map((c) => ({ ...c, title: t(c.title) }));
@@ -180,10 +180,12 @@ export default function CasinoHistoryPage({ userId }: { userId: string }) {
                 </TableCell>
                 <TableCell>{e.currency}</TableCell>
                 <TableCell>
-                  <Chip color="primary">{numberRound(e.bet_amount, 100)}</Chip>
+                  <Chip color="primary" size="sm">{numberRound(e.bet_amount, 100)}</Chip>
+                  <Chip color="success" size="sm">{numberRound(e.bet_bonus_amount, 100)}</Chip>
                 </TableCell>
                 <TableCell>
-                  <Chip color="danger">{numberRound(e.win_amount, 100)}</Chip>
+                  <Chip color="danger" size="sm">{numberRound(e.win_amount, 100)}</Chip>
+                  <Chip color="warning" size="sm">{numberRound(e.win_bonus_amount, 100)}</Chip>
                 </TableCell>
                 <TableCell>
                   {moment(e.last_tx_at).format("YYYY-MM-DD hh:mm A")}
