@@ -29,7 +29,7 @@ export default function WalletBox() {
     const vh = window.innerHeight;
     const maxPanelW = Math.max(0, vw - VIEWPORT_MARGIN * 2);
 
-    let width = Math.max(210, r.width);
+    let width = Math.max(160, r.width);
     width = Math.min(width, maxPanelW);
 
     let left = r.left;
@@ -135,8 +135,8 @@ export default function WalletBox() {
       ref={wrapperRef}
       className={[
         // pill / glass like the header widgets
-        "relative inline-flex items-center gap-2 select-none",
-        "rounded-full px-2.5 py-1.5",
+        "relative inline-flex items-center gap-1 select-none",
+        "rounded-full p-1",
         "bg-[var(--green-color)]/20 backdrop-blur-md",
         "border border-white/10",
         "shadow-[0_10px_30px_rgba(0,0,0,0.35)]",
@@ -155,8 +155,8 @@ export default function WalletBox() {
         aria-haspopup="menu"
         aria-expanded={isSelectorOpen}
         className={[
-          "flex items-center gap-2",
-          "rounded-full px-3 py-1",
+          "flex items-center gap-1",
+          "rounded-full pl-2 py-1",
           "text-white",
           "transition",
           "hover:bg-white/10",
