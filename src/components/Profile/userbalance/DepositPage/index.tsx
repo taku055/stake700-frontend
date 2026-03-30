@@ -24,9 +24,9 @@ const DepositPage = ({ bonusId }: DepositPageProps) => {
           <Tab key="crypto" title={t("Crypto")}>
             <DepositPanel />
           </Tab>
-          <Tab key="XGateway" title={t("XGateway")}>
+          {/* <Tab key="XGateway" title={t("XGateway")}>
             <XGatewayDeposit />
-          </Tab>
+          </Tab> */}
         </Tabs>
       </div>
     </div>
