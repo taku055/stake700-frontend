@@ -37,9 +37,7 @@ export default function LocaleSelection({
       <button
         type="button"
         onClick={() => setIsOpen((v) => !v)}
-        className={`flex items-center gap-[10px] h-full rounded-sm p-2 cursor-pointer ${
-          !headerMode ? "bg-[var(--background)]" : "bg-[var(--footer-background)]"
-        }`}
+        className={`flex items-center gap-[10px] h-full rounded-sm p-2 cursor-pointer`}
       >
         <span className={`fi fi-${currentOption?.flag || "us"}`}></span>
         {!headerMode && (
