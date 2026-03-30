@@ -3,19 +3,11 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { ChevronDown } from "lucide-preact";
 
 export const options = [
-  { label: "Türkçe", value: "tr", flag: "tr" },
-  { label: "Azərbaycanca", value: "az", flag: "az" },
   { label: "Русский", value: "ru", flag: "ru" },
   { label: "English", value: "en", flag: "us" },
-  { label: "Ελληνικά", value: "el", flag: "gr" },
-  { label: "Español", value: "es", flag: "es" },
-  { label: "Português", value: "pt", flag: "pt" },
-  { label: "Italiano", value: "it", flag: "it" },
   { label: "Deutsch", value: "de", flag: "de" },
   { label: "Français", value: "fr", flag: "fr" },
-  // { label: "עברית", value: "he", flag: "il", dir: "rtl" },
-  { label: "فارسی", value: "fa", flag: "ir", dir: "rtl" },
-  { label: "العربية", value: "ar", flag: "sa", dir: "rtl" },
+  { label: "العربية", value: "ar", flag: "ae", dir: "rtl" },
 ];
 
 interface LocaleSelectionProps {
@@ -45,9 +37,7 @@ export default function LocaleSelection({
       <button
         type="button"
         onClick={() => setIsOpen((v) => !v)}
-        className={`flex items-center gap-[10px] h-full rounded-sm p-2 cursor-pointer ${
-          !headerMode ? "bg-[var(--background)]" : "bg-[var(--footer-background)]"
-        }`}
+        className={`flex items-center gap-[10px] h-full rounded-sm p-2 cursor-pointer`}
       >
         <span className={`fi fi-${currentOption?.flag || "us"}`}></span>
         {!headerMode && (

@@ -61,25 +61,15 @@ export default function Header() {
               <>
                 <Button
                   variant="light"
-                  className="btn text-[16px] leading-[24px]"
+                  className="btn bg-white! text-[16px] leading-[24px] text-[#232323]! md:w-[110px] w-[80px] h-[44px] rounded-[8px] px-[20px] py-[10px]"
                   size="sm"
-                  style={{
-                    background: "#ffffff",
-                    fontSize: "16px",
-                    leading: "24px",
-                    color: "#232323",
-                    width: "80px",
-                    height: "44px",
-                    borderRadius: "8px",
-                    padding: "10px 20px",
-                  }}
                   onPress={() => (loginOpenedState.value = true)}
                 >
                   {t("login")}
                 </Button>
                 <Button
                   variant="light"
-                  className="btn text-[16px]! leading-[24px] w-[100px] h-[44px] bg-[#339933]! px-[20px] py-[10px] text-white rounded-[8px]"
+                  className="btn text-[16px] leading-[24px] md:w-[110px] w-[80px] h-[44px] bg-[#339933]! px-[20px] py-[10px] text-white rounded-[8px]"
                   size="sm"
                   onPress={() => (registerOpenedState.value = true)}
                 >

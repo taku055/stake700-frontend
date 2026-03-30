@@ -12,8 +12,6 @@ import { Select, SelectItem } from "@heroui/react";
 import GameCard from "@/components/GameCard";
 import { useLocation } from "preact-iso";
 import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
-import GameGroup from "@/components/GameGroup";
-import { sportsState } from "@/state/sportsState";
 
 export default function SearchWidget() {
   const [keyword, setKeyword] = useState("");
@@ -248,16 +246,6 @@ export function SearchWidgetHeader() {
 
   return (
     <>
-      {/* {!isMobile && (
-        <div className="relative">
-          <button
-            type="button"
-            className="flex w-[44px] h-[44px] items-center justify-center"
-            onClick={togglePanel}
-          >
-            <img src={`${BASE_URL}/images/icons/search.svg`} alt={t("Search")} className="w-[20px] h-[20px]" />
-          </button>
-        </div>)} */}
       {searchWidgetStateHeader.value && (
         <>
           {/* Backdrop with blur */}
@@ -342,24 +330,13 @@ export function SearchWidgetHeader() {
 
                 {showSearchResult && (
                   <div className="flex flex-col rounded-lg h-[450px] overflow-y-auto scrollbar-hide py-[10px] bg-[var(--background)] border-none px-[10px] border-1 border-[#333]">
-                    <div className="grid md:grid-cols-8 grid-cols-3">
+                    <div className="grid md:grid-cols-8 grid-cols-3 gap-2">
                       {searchResult.map((game, index) => (
                         <div key={index}>
                           <GameCard data={game} />
                         </div>
                       ))}
                     </div>
-                    <GameGroup
-                      title="Suggested Games"
-                      category="suggested"
-                      isCustom={true}
-                    />
-                    <GameGroup
-                      title="Suggested Sports"
-                      category="suggested"
-                      isCustom={true}
-                      gameList={sportsState.value}
-                    />
                   </div>
                 )}
               </div>
