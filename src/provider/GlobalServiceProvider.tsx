@@ -42,10 +42,8 @@ import FooterNav from "@/components/FooterNav";
 import ProfileComponent from "@/components/Profile";
 import { profileOpenedState } from "@/state/profileOpenedState";
 import { routerQueryState } from "@/state/routerQueryState";
-import { tPayment } from "@/types/tPayment";
 import {
   CURRENCY_LIST,
-  PAYMENT_METHOD_LIST,
   PRELOAD_IMAGE_URLS,
 } from "@/config/constants";
 import Sidebar from "@/components/Sidebar";
@@ -53,18 +51,10 @@ import NavigationSidebar from "@/components/NavigationSidebar";
 import { favoritesGameState } from "@/state/favoritesGameState";
 import { apiGetFavoritesGame } from "@/api/favorites/apiGetFavoritesGame";
 import arDefinition from "@/assets/i18n/ar.json";
-import azDefinition from "@/assets/i18n/az.json";
 import deDefinition from "@/assets/i18n/de.json";
-import elDefinition from "@/assets/i18n/el.json";
 import enDefinition from "@/assets/i18n/en.json";
-import esDefinition from "@/assets/i18n/es.json";
-import faDefinition from "@/assets/i18n/fa.json";
 import frDefinition from "@/assets/i18n/fr.json";
-import heDefinition from "@/assets/i18n/he.json";
-import itDefinition from "@/assets/i18n/it.json";
-import ptDefinition from "@/assets/i18n/pt.json";
 import ruDefinition from "@/assets/i18n/ru.json";
-import trDefinition from "@/assets/i18n/tr.json";
 import { globalLoadingState } from "@/state/globalLoadingState";
 import Loading from "@/components/Loading";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
@@ -74,8 +64,6 @@ import { welcomeDialogOpenedState } from "@/state/registerOpenedState";
 import WelcomeDialog from "@/components/Auth/Signup/Welcom";
 import VipClub from "@/components/Vip-club";
 import { vipOpenedState } from "@/state/vipOpenedState";
-// import DepositDialogFull from "@/components/DepositDialogFull";
-// import DepositPanel from "@/components/WalletDialog/DepositPanel";
 import DepositPanel from "@/components/WalletDialog/DepositWithdrawFull";
 import { depositDialogOpenedState } from "@/state/walletDialogState";
 import Support from "@/components/Chat/Support";
@@ -91,19 +79,11 @@ import { STATIC_CATEGORIES, sidebarDataState } from "@/state/sidebarData";
 import { apiGetCategoryCount } from "@/api/common/apiGetCategoryCount";
 
 const i18nDefinitions = {
-  tr: trDefinition,
-  az: azDefinition,
   ru: ruDefinition,
   en: enDefinition,
-  es: esDefinition,
-  pt: ptDefinition,
   fr: frDefinition,
   ar: arDefinition,
   de: deDefinition,
-  el: elDefinition,
-  fa: faDefinition,
-  he: heDefinition,
-  it: itDefinition,
 };
 
 effect(() => {
