@@ -12,6 +12,7 @@ export const apiChangeAvatar = async (file: File) => {
       headers: {
         Authorization:
           instance.defaults.headers["Authorization"]?.toString() || "",
+        "ngrok-skip-browser-warning": "true",
       },
     }
   );

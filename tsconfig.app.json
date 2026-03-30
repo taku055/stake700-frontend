@@ -30,5 +30,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "LoginDialog.tsx"]
+  "include": ["src", "LoginDialog.tsx", "config"]
 }

@@ -5,7 +5,6 @@ import { userState } from "@/state/userState";
 import { WageringProgress } from "@/types/tUserLedger";
 import { Progress, Chip, Button } from "@heroui/react";
 import { toast } from "@/helpers/toast";
-import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
 import { apiCancelWagering } from "@/api/ledger/apiCancelUserWagering";
 import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";

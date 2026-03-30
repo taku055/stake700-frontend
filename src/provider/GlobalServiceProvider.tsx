@@ -74,6 +74,8 @@ import { apiGetGames } from "@/api/common/apiGetGames";
 import { liveCasinoGamesState } from "@/state/liveCasinogamesState";
 import { tUserBalance } from "@/types/tUserLedger";
 import { balanceState } from "@/state/balanceState";
+import { apiGetAgentMeBalance } from "@/api/agent/apiGetAgentMeBalance";
+import { agentToUserBalanceMap } from "@/helpers/agentToUserBalanceMap";
 import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
 import { STATIC_CATEGORIES, sidebarDataState } from "@/state/sidebarData";
 import { apiGetCategoryCount } from "@/api/common/apiGetCategoryCount";
@@ -329,10 +331,18 @@ export default function GlobalServiceProvider({
     if (!userState.value?.id) return;
 
     const userId = userState.value.id;
+    const role = userState.value.role;
     let cancelled = false;
 
     (async () => {
       try {
+        if (role === "AGENT" || role === "SUPERAGENT") {
+          const agent = await apiGetAgentMeBalance();
+          if (cancelled) return;
+          balanceState.value = agentToUserBalanceMap(agent);
+          return;
+        }
+
         const balances = await Promise.all(
           CURRENCY_LIST.map((cur) => apiGetUserBalance(userId, cur.code))
         );
@@ -353,7 +363,7 @@ export default function GlobalServiceProvider({
     return () => {
       cancelled = true;
     };
-  }, [userState.value?.id]);
+  }, [userState.value?.id, userState.value?.role]);
 
   useEffect(() => {
     if (userState.value?.email && socket && socketConnected) {

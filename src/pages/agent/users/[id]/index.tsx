@@ -23,7 +23,6 @@ import { useLocation } from "preact-iso";
 import SportsbookHistoryPage from "./SportsbookHistoryPage";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import CurrencySelector from "@/components/CurrencySelector";
-import { tCurrencyBalance } from "@/types/tCurrencyBalance";
 import BackButton from "@/components/BackButton";
 import { multipleBalance } from "@/helpers/multipleBalance";
 
