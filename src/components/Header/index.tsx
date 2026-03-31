@@ -52,11 +52,25 @@ export default function Header() {
             <div className="flex flex-row items-center gap-2 w-[60px]">
               <LocaleSelection headerMode={true} />
             </div>
-            {userState.value?.id && (
-              <div className="flex flex-row justify-center items-center gap-2">
-                <WalletBox />
+            <div className="flex flex-row items-center">
+                <div>
+                  <button
+                    type="button"
+                    className="flex md:w-[44px] md:h-[44px] w-[32px] h-[32px] items-center justify-center"
+                    onClick={() =>
+                      (searchWidgetStateHeader.value =
+                        !searchWidgetStateHeader.value)
+                    }
+                  >
+                    <img
+                      src={`${ASSET_BASE_URL}/images/icons/search.svg`}
+                      alt={t("Search")}
+                      className="w-[20px] h-[20px]"
+                    />
+                  </button>
+                  <SearchWidgetHeader />
+                </div>
               </div>
-            )}
             {!userState.value?.id ? (
               <>
                 <Button
@@ -77,25 +91,9 @@ export default function Header() {
                 </Button>
               </>
             ) : (
-              <div className="flex flex-row items-center">
-                <div>
-                  <button
-                    type="button"
-                    className="flex md:w-[44px] md:h-[44px] w-[32px] h-[32px] items-center justify-center"
-                    onClick={() =>
-                      (searchWidgetStateHeader.value =
-                        !searchWidgetStateHeader.value)
-                    }
-                  >
-                    <img
-                      src={`${ASSET_BASE_URL}/images/icons/search.svg`}
-                      alt={t("Search")}
-                      className="w-[20px] h-[20px]"
-                    />
-                  </button>
-                  <SearchWidgetHeader />
-                </div>
-              </div>
+              <div className="flex flex-row justify-center items-center gap-2">
+                <WalletBox />
+              </div>              
             )}
           </div>
         </div>
