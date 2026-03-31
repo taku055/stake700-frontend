@@ -10,6 +10,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 import { capitalize } from "@/helpers/capitalize";
+import { getRootDomain } from "@/helpers/getRootDomain";
 
 export const BRAND_NAME = capitalize(import.meta.env.VITE_SITE_NAME);
 
@@ -152,12 +153,12 @@ const AMLPolicyPage: FunctionalComponent = () => {
             <div class="mt-2 text-base leading-relaxed text-zinc-300">
               {t("footer_compliance_label")}{" "}
               <span class="font-extrabold text-zinc-100">
-                compliance@betalarab.com
+                compliance@{getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}
               </span>
             </div>
             <div class="mt-1 text-base leading-relaxed text-zinc-300">
               {t("footer_mlro_label")}{" "}
-              <span class="font-extrabold text-zinc-100">mlro@betalarab.com</span>
+              <span class="font-extrabold text-zinc-100">mlro@{getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}</span>
             </div>
             <div class="mt-1 text-sm text-zinc-400">{t("footer_tip")}</div>
           </div>

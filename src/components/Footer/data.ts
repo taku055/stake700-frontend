@@ -74,17 +74,17 @@ export const FOOTER_SOCIAL_DATA = [
   {
     title: "Blog",
     icon: `${ASSET_BASE_URL}/images/icons/blog.svg`,
-    href: "https://betalarab.com/blog",
+    href: `https://${import.meta.env.VITE_SITE_DOMAIN}/blog`,
   },
   {
     title: "Forum",
     icon: `${ASSET_BASE_URL}/images/icons/forum.svg`,
-    href: "https://betalarab.com/forum",
+    href: `https://${import.meta.env.VITE_SITE_DOMAIN}/forum`,
   },
   {
     title: "Facebook",
     icon: `${ASSET_BASE_URL}/images/icons/facebook.svg`,
-    // href: "https://www.facebook.com/betalarab",
+    // href: `https://www.facebook.com/${import.meta.env.VITE_SITE_NAME}`,
     href: "#"
   },
   {
@@ -105,6 +105,6 @@ export const FOOTER_SOCIAL_DATA = [
   {
     title: "Shop",
     icon: `${ASSET_BASE_URL}/images/icons/shop.svg`,
-    href: "https://betalarab.com/shop"
+    href: `https://${import.meta.env.VITE_SITE_DOMAIN}/shop`
   },
 ];

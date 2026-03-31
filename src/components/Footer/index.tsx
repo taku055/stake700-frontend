@@ -11,6 +11,7 @@ import {
 import { useMediaQuery } from "usehooks-ts";
 import { useBtcUsdPrice } from "@/hooks/useBtcUsdPrice";
 import { numberRound } from "@/helpers/numberRound";
+import { capitalize } from "@/helpers/capitalize";
 
 const visaImages = [
   `https://upload.wikimedia.org/wikipedia/commons/7/72/MasterCard_early_1990s_logo.png`,
@@ -104,7 +105,7 @@ export const Footer = () => {
         <div className="w-full h-[36px] flex justify-center items-center">
           <img
             src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
-            alt="Betalarab"
+            alt={capitalize(import.meta.env.VITE_SITE_NAME)}
             className="w-full h-full"
           />
         </div>

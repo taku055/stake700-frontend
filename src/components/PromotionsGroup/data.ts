@@ -1,3 +1,5 @@
+import { capitalize } from "@/helpers/capitalize";
+
 export interface tPromotionInformation {
   title: string;
   description: string;
@@ -11,7 +13,7 @@ export const promotionsData : Array<tPromotionInformation> = [
     title: "Blackjack Boost",
     description: "Get a 10% bonus",
     image: "buffer/promotion1.png",
-    label: "Only on Betalarab",
+    label: `Only on ${capitalize(import.meta.env.VITE_SITE_NAME)}`,
     readMoreLink: "#",
   },
   {
