@@ -17,7 +17,7 @@ import {
 import { numberRound } from "@/helpers/numberRound";
 import Loader from "@/components/Loader";
 import TextWithCopy from "@/components/TextWithCopy";
-import { CURRENCY_LIST, DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
+import { CURRENCY_LIST } from "@/config/constants";
 
 const columns: {
   title: string;

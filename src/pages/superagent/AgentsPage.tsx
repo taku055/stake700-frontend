@@ -17,7 +17,6 @@ import { abbr } from "@/helpers/abbr";
 import { useMediaQuery } from "usehooks-ts";
 import { userState } from "@/state/userState";
 import { apiAdminGetSubagents } from "@/api/agent/apiAdminGetSubagents";
-import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 import PlatformAnalysis from "@/components/PlatformAnalysis/PlatformAnalysis";
 import { apiAgentGetProviderAnalysis } from "@/api/agent/apiAgentGetProviderAnalysis";
 import { multipleBalance } from "@/helpers/multipleBalance";

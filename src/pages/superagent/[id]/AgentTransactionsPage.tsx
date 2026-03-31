@@ -16,10 +16,9 @@ import { tAgentTransaction } from "@/types/tAgentTransaction";
 import { eTransactionType } from "@/types/tTransaction";
 import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
 import { useMediaQuery } from "usehooks-ts";
-import { CURRENCY_LIST, DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
+import { CURRENCY_LIST } from "@/config/constants";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import CurrencySelector from "@/components/CurrencySelector";
-import { tCurrencyBalance } from "@/types/tCurrencyBalance";
 
 const today = new Date();
 

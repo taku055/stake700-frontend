@@ -3,9 +3,9 @@ import { numberRound } from "./numberRound";
 import { CURRENCY_LIST } from "@/config/constants";
 
 export const multipleBalance = (cashDetails: tCurrencyBalance[]) =>
-  cashDetails
+  CURRENCY_LIST
     .map(
       (e) =>
-        `${CURRENCY_LIST.find((c) => c.unit === e.currency)?.symbol}${numberRound(e.amount, 100)}`
+        `${e.unit}${numberRound(cashDetails.find((c) => e.unit === c.currency)?.amount ?? 0, 100)}`
     )
     .join(" ");
