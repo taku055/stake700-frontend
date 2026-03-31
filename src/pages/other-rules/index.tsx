@@ -1,5 +1,6 @@
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
+import { capitalize } from "@/helpers/capitalize";
 
 export default function OtherRules() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
@@ -21,12 +22,12 @@ export default function OtherRules() {
 
       <div className="text-[var(--passive-color)] text-base md:text-lg leading-relaxed space-y-6">
         <p>
-          betalarab may update, amend, edit and supplement the betalarab Rules at
-          any time. Any substantial amendment to the betalarab Rules shall be
-          notified in advance by betalarab to the Account Holder, before coming
+          {capitalize(import.meta.env.VITE_SITE_NAME)} may update, amend, edit and supplement the {capitalize(import.meta.env.VITE_SITE_NAME)} Rules at
+          any time. Any substantial amendment to the {capitalize(import.meta.env.VITE_SITE_NAME)} Rules shall be
+          notified in advance by {capitalize(import.meta.env.VITE_SITE_NAME)} to the Account Holder, before coming
           into effect and will require your consent. If you do not agree with
-          the amendment(s) to the betalarab rules, you will not be permitted to
-          continue using the Services. All references in the betalarab Rules to the
+          the amendment(s) to the {capitalize(import.meta.env.VITE_SITE_NAME)} rules, you will not be permitted to
+          continue using the Services. All references in the {capitalize(import.meta.env.VITE_SITE_NAME)} Rules to the
           singular shall include the plural and vice versa. All references to
           "the" shall include "a/an" and vice versa.
         </p>
@@ -40,36 +41,36 @@ export default function OtherRules() {
             <div className="space-y-4">
               <p>
                 <strong>1.1</strong> An "Account Holder" is an individual having
-                a contractual relationship with betalarab by creating a betalarab
+                a contractual relationship with {capitalize(import.meta.env.VITE_SITE_NAME)} by creating a {capitalize(import.meta.env.VITE_SITE_NAME)}
                 Account on the Website.
               </p>
 
               <p>
-                <strong>1.2</strong> A "betalarab Account" is an account held by
+                <strong>1.2</strong> A "{capitalize(import.meta.env.VITE_SITE_NAME)} Account" is an account held by
                 an Account Holder, for bona fide transactions, with a strict aim
-                to establish a normal commercial relationship with betalarab and
+                to establish a normal commercial relationship with {capitalize(import.meta.env.VITE_SITE_NAME)} and
                 with the strict purpose of conducting betting and other gaming
                 and gambling transactions.
               </p>
 
               <p>
                 <strong>1.3</strong> The "Contract" is the contractual
-                relationship between betalarab and an Account Holder and shall be
-                constituted under and governed by the betalarab Rules, i.e. the
+                relationship between {capitalize(import.meta.env.VITE_SITE_NAME)} and an Account Holder and shall be
+                constituted under and governed by the {capitalize(import.meta.env.VITE_SITE_NAME)} Rules, i.e. the
                 "Terms and Conditions".
               </p>
 
               <p>
                 <strong>1.4</strong> The "Website" is the internet gateway
-                accessible through the internet address www.betalarab.com where
-                all current and relevant information regarding betalarab
+                accessible through the internet address {import.meta.env.VITE_SITE_DOMAIN} where
+                all current and relevant information regarding {capitalize(import.meta.env.VITE_SITE_NAME)}
                 operations is published, and through which the Services are
                 provided to the Account Holders.
               </p>
 
               <p>
                 <strong>1.5</strong> The "Services" are the gaming and betting
-                offers provided by betalarab to the Account Holder through the
+                offers provided by {capitalize(import.meta.env.VITE_SITE_NAME)} to the Account Holder through the
                 Website.
               </p>
 
@@ -95,7 +96,7 @@ export default function OtherRules() {
                 <strong>1.9</strong> "Force Majeure" refers to any occurrence or
                 condition beyond one's reasonable control which leads to a delay
                 or default in the performance of the affected party's contractual
-                obligation and shall, for the purposes of the betalarab Rules,
+                obligation and shall, for the purposes of the {capitalize(import.meta.env.VITE_SITE_NAME)} Rules,
                 include Acts of God, government restrictions (including the denial
                 or cancellation of any necessary license where such denial or
                 cancellation is made through no fault of the affected party),
@@ -114,7 +115,7 @@ export default function OtherRules() {
 
               <p>
                 <strong>1.11</strong> "Software" shall mean all software used by
-                betalarab to offer and/or operate the Services and/or run the Client
+                {capitalize(import.meta.env.VITE_SITE_NAME)} to offer and/or operate the Services and/or run the Client
                 Application.
               </p>
 
@@ -124,7 +125,7 @@ export default function OtherRules() {
               </p>
 
               <p>
-                <strong>1.13</strong> An "Inactive Account" is a betalarab Account
+                <strong>1.13</strong> An "Inactive Account" is a {capitalize(import.meta.env.VITE_SITE_NAME)} Account
                 which has not recorded any log-in and/or log-out for a period
                 exceeding 12 consecutive months.
               </p>
@@ -141,7 +142,7 @@ export default function OtherRules() {
                 names as well as images, graphics, text, concepts or methodologies
                 (collectively the "Intellectual Assets") found on the Website,
                 the Client Application and the material contained therein are the
-                exclusive property of betalarab and/or betalarab's suppliers and
+                exclusive property of {capitalize(import.meta.env.VITE_SITE_NAME)} and/or {capitalize(import.meta.env.VITE_SITE_NAME)}'s suppliers and
                 partners. The Account Holder is not entitled to exploit or
                 otherwise use any Intellectual Asset for whatever purpose, except
                 for what is allowed by law.
@@ -156,7 +157,7 @@ export default function OtherRules() {
 
             <div className="space-y-4">
               <h4 className="text-[var(--primary-color)] text-lg font-semibold mt-6 mb-3">
-                2.1 Creation of a betalarab Bet Account
+                2.1 Creation of a {capitalize(import.meta.env.VITE_SITE_NAME)} Bet Account
               </h4>
 
               <p>
@@ -176,9 +177,9 @@ export default function OtherRules() {
                 <strong>2.1.2</strong> An individual applying to become an
                 Account Holder warrants and represents not to be under the age of
                 eighteen (18) years. Minors cannot register as a player and
-                cannot hold a betalarab Account. betalarab reserves the right to
+                cannot hold a {capitalize(import.meta.env.VITE_SITE_NAME)} Account. {capitalize(import.meta.env.VITE_SITE_NAME)} reserves the right to
                 request additional proof of age and perform additional checks in
-                order to verify the information provided. A betalarab Account may
+                order to verify the information provided. A {capitalize(import.meta.env.VITE_SITE_NAME)} Account may
                 be suspended until satisfactory proof of age is provided.
               </p>
 
@@ -207,13 +208,13 @@ export default function OtherRules() {
                   St. Eustatius, St. Maarten, Sudan, Sweden, Switzerland, Syria,
                   Turkey, Uganda, United Kingdom, United States, Vatican City,
                   Yemen (please be aware of particular country exclusions for
-                  Casino – Games – Live Casino, Poker and Bingo); betalarab
-                  reserves the right to block the access to betalarab.com and not
+                  Casino – Games – Live Casino, Poker and Bingo); {capitalize(import.meta.env.VITE_SITE_NAME)}
+                  reserves the right to block the access to {import.meta.env.VITE_SITE_DOMAIN} and not
                   to pay the winning to the players from the mentioned countries;
                 </li>
                 <li>
                   not to be a professional player in any sport, competition or
-                  league where betalarab offers betting;
+                  league where {capitalize(import.meta.env.VITE_SITE_NAME)} offers betting;
                 </li>
                 <li>not to be restricted by limited legal capacity;</li>
                 <li>not to be acting on behalf of another party;</li>
@@ -232,20 +233,20 @@ export default function OtherRules() {
                   jurisdiction in which betting and gaming are prohibited;
                 </li>
                 <li>
-                  not to be conducting criminal activities whereby a betalarab
+                  not to be conducting criminal activities whereby a {capitalize(import.meta.env.VITE_SITE_NAME)}
                   Account is directly or indirectly involved;
                 </li>
                 <li>
                   not to use the Services if it is illegal in his/her country of
                   residence or otherwise restricted for him/her to open a gaming
-                  account, purchase or use services from betalarab and/or otherwise
+                  account, purchase or use services from {capitalize(import.meta.env.VITE_SITE_NAME)} and/or otherwise
                   participate in the games offered. It is the Account Holder's
-                  responsibility to ensure his/her use of betalarab's Website and
+                  responsibility to ensure his/her use of {capitalize(import.meta.env.VITE_SITE_NAME)}'s Website and
                   Services is legal;
                 </li>
                 <li>
                   not to find the Website or the Services offensive, objectionable,
-                  unfair, nor indecent; and to maintain his/her betalarab Account
+                  unfair, nor indecent; and to maintain his/her {capitalize(import.meta.env.VITE_SITE_NAME)} Account
                   details up-to-date in terms of the following: first and last
                   name, country of residence, valid email address and phone
                   number.
@@ -253,21 +254,21 @@ export default function OtherRules() {
               </ul>
 
               <p>
-                <strong>2.1.4</strong> An individual applying for a betalarab
+                <strong>2.1.4</strong> An individual applying for a {capitalize(import.meta.env.VITE_SITE_NAME)}
                 Account acknowledges and accepts:
               </p>
 
               <ul className="list-disc list-inside ml-4 space-y-2">
                 <li>
-                  all definitions and stipulations as stated under the betalarab
+                  all definitions and stipulations as stated under the {capitalize(import.meta.env.VITE_SITE_NAME)}
                   Rules;
                 </li>
                 <li>
-                  the betalarab Rules as currently published on the Website, as well
-                  as any possible future changes to the betalarab Rules;
+                  the {capitalize(import.meta.env.VITE_SITE_NAME)} Rules as currently published on the Website, as well
+                  as any possible future changes to the {capitalize(import.meta.env.VITE_SITE_NAME)} Rules;
                 </li>
                 <li>
-                  that the Contract is governed by: (i) the betalarab Rules as
+                  that the Contract is governed by: (i) the {capitalize(import.meta.env.VITE_SITE_NAME)} Rules as
                   published in English; (ii) any regulatory provisions or other
                   decisions made from time to time by the Governing Authorities;
                   and (iii) the Governing Law of the Place of the Contract.
@@ -332,17 +333,17 @@ export default function OtherRules() {
               </p>
 
               <p>
-                <strong>3.3</strong> betalarab has the right to make any changes
+                <strong>3.3</strong> {capitalize(import.meta.env.VITE_SITE_NAME)} has the right to make any changes
                 and additions to the rules set forth herein, the provisions and
                 procedures of payments without an individual prior written notice.
                 Users are notified about this with appropriate announcements. The
-                conditions of previously Betalarabd (placed) bets remain unchanged,
+                conditions of previously {capitalize(import.meta.env.VITE_SITE_NAME)} (placed) bets remain unchanged,
                 and bets which are accepted are subject to the posted rules at the
                 time of acceptance.
               </p>
 
               <p>
-                <strong>3.4</strong> betalarab reserves the right to refuse service
+                <strong>3.4</strong> {capitalize(import.meta.env.VITE_SITE_NAME)} reserves the right to refuse service
                 to any person without disclosing the reason(s).
               </p>
             </div>
@@ -355,7 +356,7 @@ export default function OtherRules() {
 
             <div className="space-y-4">
               <p>
-                <strong>4.1</strong> betalarab does not bear any responsibility for
+                <strong>4.1</strong> {capitalize(import.meta.env.VITE_SITE_NAME)} does not bear any responsibility for
                 any losses or damages claimed as resulting from the use of this
                 site or from its content. This provision equally applies to the
                 use or misuse of the content of the site by any person, inability
@@ -372,7 +373,7 @@ export default function OtherRules() {
               </p>
 
               <p>
-                <strong>4.3</strong> betalarab monitors traffic of its website
+                <strong>4.3</strong> {capitalize(import.meta.env.VITE_SITE_NAME)} monitors traffic of its website
                 actively, and reserves the right to block access in cases of
                 suspected automated betting (bots).
               </p>
@@ -391,11 +392,11 @@ export default function OtherRules() {
               </p>
 
               <p>
-                <strong>"Single"</strong> – a bet on a single event;
+                <strong>"Single"</strong> - a bet on a single event;
               </p>
 
               <p>
-                <strong>"Express"</strong> – this is a bet on the outcome of
+                <strong>"Express"</strong> - this is a bet on the outcome of
                 several different events simultaneously. When you place a bet on
                 the outcome of two or more events (for example, two different
                 football matches), you can unite them in "Express". To win an
@@ -430,11 +431,11 @@ export default function OtherRules() {
               </p>
 
               <p>
-                <strong>"Chain"</strong> – bet which is a combination of "single"
+                <strong>"Chain"</strong> - bet which is a combination of "single"
                 bets including events independent from each other. The sum of
                 single bet of chain's each event is equal to the sum of chain. The
                 client is given a chance to determine independently the order of
-                the bets included in the chain and Betalarab only on the first event
+                the bets included in the chain and {capitalize(import.meta.env.VITE_SITE_NAME)} only on the first event
                 of the chain. Thus the concept of "chain account" is imported.
                 After the tournament of each single bet included in the chain the
                 sum of that account is calculated. Initially it is equal to the
@@ -539,14 +540,14 @@ export default function OtherRules() {
               </p>
 
               <p>
-                In case 200 euro Betalarab is made on "Real" and "Real" won: two
+                In case 200 euro {capitalize(import.meta.env.VITE_SITE_NAME)} is made on "Real" and "Real" won: two
                 common bets with the half of sum won and the winning is equal to
                 100*2.0 + 100*2.0 = 400 euros.The match was over in drawn: one
                 common bet with the half of sum lost, and the other won with the
                 odd "1" and the winning is equal to 100*0.0 + 100*1.0 = 100
                 euros. "Real" lost: two common bets with the half of sum lost and
                 the winning is equal to 100*0.0 + 100*0.0 = 0 euro. In case 200
-                euros Betalarab is made on "Barcelona" and "Barcelona" won: two
+                euros {capitalize(import.meta.env.VITE_SITE_NAME)} is made on "Barcelona" and "Barcelona" won: two
                 common bets with the half of sum won and the winning is equal to
                 100*1.8 + 100*1.8 = 360 euros. The match was over in draw: one
                 common bet with the half of sum lost, and the other won with the
@@ -600,7 +601,7 @@ export default function OtherRules() {
                 handicaps, totals) and coefficients of the events specified in
                 the line of the current day may change after any bet, but
                 conditions before bets are the same, except in cases of technical
-                and obvious miBetalarabs in the line.
+                and obvious mi{capitalize(import.meta.env.VITE_SITE_NAME)}s in the line.
               </p>
 
               <p>
@@ -611,7 +612,7 @@ export default function OtherRules() {
               <p>
                 <strong>6.3</strong> The User is the only person who is
                 responsible for the bet. Once a bet is made and its acceptance is
-                confirmed, it cannot be changed or canceled by the User. betalarab
+                confirmed, it cannot be changed or canceled by the User. {capitalize(import.meta.env.VITE_SITE_NAME)}
                 does not provide any guarantees with respect to the "lost" or
                 "double" bets made by customers. Please carefully check all the
                 bets you have made.

@@ -1,6 +1,8 @@
 import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
+import { capitalize } from "@/helpers/capitalize";
+import { getRootDomain } from "@/helpers/getRootDomain";
 export default function PrivacyPolicy() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("PrivacyPolicy");
@@ -8,14 +10,14 @@ export default function PrivacyPolicy() {
       <h1 className="text-[var(--primary-color)] text-3xl md:text-4xl font-semibold mb-8">{t("tag_001", undefined, "PRIVACY POLICY")}</h1>
 
       <div className="text-[var(--passive-color)] text-base md:text-lg leading-relaxed space-y-6">
-        <p>{t("tag_002", undefined, "Your privacy is important to us, and we are committed to protecting your personal information. We will be clear and open about why we collect your personal information and how we use it. Where you have choices or rights, we will explain these to you. This Privacy Policy explains how betalarab uses your personal information when you're using one of our website.")}</p>
+        <p>{t("tag_002", undefined, `Your privacy is important to us, and we are committed to protecting your personal information. We will be clear and open about why we collect your personal information and how we use it. Where you have choices or rights, we will explain these to you. This Privacy Policy explains how ${capitalize(import.meta.env.VITE_SITE_NAME)} uses your personal information when you're using one of our website.`)}</p>
 
         <div className="space-y-8 mt-12">
           <section>
             <h3 className="text-[var(--primary-color)] text-xl md:text-2xl font-semibold mb-4">{t("tag_003", undefined, "Our Data Protection Officer")}</h3>
 
-            <p>{t("tag_004", undefined, "If you have concerns or would like any further information about how betalarab handles your personal information, you can contact our Data Protection Officer at")}{" "}
-              <a href="mailto:dpo@betalarab.com" className="text-[var(--primary-color)] hover:underline">{t("tag_005", undefined, "dpo@betalarab.com")}</a>
+            <p>{t("tag_004", undefined, `If you have concerns or would like any further information about how ${capitalize(import.meta.env.VITE_SITE_NAME)} handles your personal information, you can contact our Data Protection Officer at`)}{" "}
+              <a href={`mailto:dpo@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`} className="text-[var(--primary-color)] hover:underline">{t("tag_005", undefined, `dpo@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`)}</a>
             </p>
           </section>
 

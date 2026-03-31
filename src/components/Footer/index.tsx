@@ -15,12 +15,12 @@ import { numberRound } from "@/helpers/numberRound";
 const visaImages = [
   `https://upload.wikimedia.org/wikipedia/commons/7/72/MasterCard_early_1990s_logo.png`,
   `https://static.vecteezy.com/system/resources/thumbnails/020/975/570/small/visa-logo-visa-icon-transparent-free-png.png`,
-  `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/bnb-bnb-logo.png`,
-  `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/ethereum-eth-logo.png`,
-  `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/litecoin-ltc-logo.png`,
-  `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/bitcoin-btc-logo.png`,
-  `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/polygon-matic-logo.png`,
-  `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/solana-sol-logo.png`,
+  `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME}/images/tokens/bnb-bnb-logo.png`,
+  `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME}/images/tokens/ethereum-eth-logo.png`,
+  `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME}/images/tokens/litecoin-ltc-logo.png`,
+  `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME}/images/tokens/bitcoin-btc-logo.png`,
+  `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME}/images/tokens/polygon-matic-logo.png`,
+  `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME}/images/tokens/solana-sol-logo.png`,
 ];
 
 export const Footer = () => {

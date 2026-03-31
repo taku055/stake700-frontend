@@ -6,6 +6,7 @@ import { FunctionalComponent, h } from "preact";
 import { useMemo, useState } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
 import { BRAND_NAME, HELP_CATEGORY_DATA, HelpArticle } from "./data";
+import { getRootDomain } from "@/helpers/getRootDomain";
 
 const HelpCenterPage: FunctionalComponent = () => {
   const t = useTranslations("HelpCenter");
@@ -341,12 +342,12 @@ const HelpCenterPage: FunctionalComponent = () => {
                     </div>
                     <a
                       class="mt-3 inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-xs font-extrabold hover:bg-zinc-900/70"
-                      href="mailto:support@betalarab.com"
+                      href={`mailto:support@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`}
                     >
                       {t("EmailSupport")}
                     </a>
                     <div class="mt-2 text-[11px] text-zinc-500">
-                      support@betalarab.com
+                      support@{getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}
                     </div>
                   </div>
 

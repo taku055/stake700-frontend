@@ -9,8 +9,9 @@ import { FunctionalComponent, h } from "preact";
 import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
+import { capitalize } from "@/helpers/capitalize";
 
-export const BRAND_NAME = "Betalarab";
+export const BRAND_NAME = capitalize(import.meta.env.VITE_SITE_NAME);
 
 type SectionDef = { key: string; bulletCount: number };
 

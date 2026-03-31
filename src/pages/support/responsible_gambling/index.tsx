@@ -5,8 +5,9 @@
 import { FunctionalComponent, h } from "preact";
 import { useMemo, useState } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
+import { capitalize } from "@/helpers/capitalize";
 
-export const BRAND_NAME = "Betalarab";
+export const BRAND_NAME = capitalize(import.meta.env.VITE_SITE_NAME);
 
 type ToolConfig = {
   id: string;
