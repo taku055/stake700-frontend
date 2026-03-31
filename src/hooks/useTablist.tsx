@@ -1,6 +1,6 @@
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
-import { Users, Crown, ChartArea, Shield, Globe, Headphones, Handshake, MessageSquare, FileText, Trophy } from "lucide-preact";
+import { Users, Crown, ChartArea, Shield, Globe, Headphones, Handshake, MessageSquare, FileText, Trophy, Gift } from "lucide-preact";
 import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
 import { ASSET_BASE_URL } from "@/config/constants";
@@ -124,7 +124,7 @@ export const useTablist = () => {
           href: "/promotions",
           key: "promotions",
           icon: (
-            <img src={`${ASSET_BASE_URL}/images/icons/promotions.svg`} alt="Promotions" />
+            <Gift aria-hidden="true" className="w-[20px] h-[20px]" />
           ),
           navIcon: getNavIcon("promotions"),
         },
@@ -132,13 +132,13 @@ export const useTablist = () => {
           title: t("Responsible Gambling") || "Responsible Gambling",
           href: "/support/responsible-gambling",
           key: "responsible-gambling",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/responsible-gambling.png`} alt="Responsible-gambling" />,
+          icon: <Shield aria-hidden="true" className="w-[20px] h-[20px]" />,
           navIcon: getNavIcon("responsible-gambling"),
         },
         {
           title: t("Live Support") || "Live Support",
           key: "live-support",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/live-support.svg`} alt="Live Support" />,
+          icon: <Headphones aria-hidden="true" className="w-[20px] h-[20px]" />,
           navIcon: getNavIcon("live-support"),
           onclick: () => {
             liveSupportExpandedState.value = !liveSupportExpandedState.value;
@@ -148,7 +148,7 @@ export const useTablist = () => {
           title: t("Language") || "Language",
           href: "#",
           key: "language",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/language.svg`} alt="Language" />,
+          icon: <Globe aria-hidden="true" className="w-[20px] h-[20px]" />,
           navIcon: getNavIcon("language"),
           expandable: true,
         },
