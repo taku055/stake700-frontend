@@ -142,31 +142,52 @@ export default function WalletBox() {
   const formattedTotal = useMemo(() => {
     const cur = currencyState.value;
     if (userState.value == null || cur == null) return "0.00";
-    let total = 0;
-    if (userState.value.role === "NORMAL") {
-      const cash = Number(balanceState.value?.[cur.code]?.cash?.balance ?? 0);
-      const bonus = Number(balanceState.value?.[cur.code]?.bonus?.balance ?? 0);
-      total = cash + bonus;
-    } else {
-      total = Number(
-        userState.value.cashDetails?.find((c) => c.currency === cur.unit)
-          ?.amount ?? 0
-      );
-    }
+    const { cash, bonus } = (() => {
+      if (userState.value.role === "NORMAL") {
+        return {
+          cash: Number(balanceState.value?.[cur.code]?.cash?.balance ?? 0),
+          bonus: Number(balanceState.value?.[cur.code]?.bonus?.balance ?? 0),
+        };
+      }
 
-    return total.toLocaleString("tr-TR", {
+      return {
+        cash: Number(
+          userState.value.cashDetails?.find(
+            (c) => String(c.currency) === String(cur.unit),
+          )?.amount ?? 0,
+        ),
+        bonus: 0,
+      };
+    })();
+
+    return (cash + bonus).toLocaleString("tr-TR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
   }, [currencyState.value, balanceState.value, userState.value]);
 
   const symbol = currencyState.value.symbol ?? "";
-  const cash = Number(
-    balanceState.value?.[currencyState.value.code]?.cash?.balance ?? 0
-  );
-  const bonus = Number(
-    balanceState.value?.[currencyState.value.code]?.bonus?.balance ?? 0
-  );
+  const { cash, bonus } = useMemo(() => {
+    const cur = currencyState.value;
+    const user = userState.value;
+    if (!cur || !user) return { cash: 0, bonus: 0 };
+
+    if (user.role === "NORMAL") {
+      return {
+        cash: Number(balanceState.value?.[cur.code]?.cash?.balance ?? 0),
+        bonus: Number(balanceState.value?.[cur.code]?.bonus?.balance ?? 0),
+      };
+    }
+
+    return {
+      cash: Number(
+        user.cashDetails?.find(
+          (c) => String(c.currency) === String(cur.unit),
+        )?.amount ?? 0,
+      ),
+      bonus: 0,
+    };
+  }, [balanceState.value, currencyState.value, userState.value]);
 
   return (
     <div

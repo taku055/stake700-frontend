@@ -67,10 +67,12 @@ export default function CreateTransactionModal({
     }
 
     const superagentCurrencyBalance =
-      userState.value.cashDetails.find((b) => b.currency === currency)
-        ?.amount || 0;
+      Number(
+        userState.value.cashDetails?.find((b) => b.currency === currency)
+          ?.amount ?? 0
+      );
     const agentCurrencyBalance =
-      agentBalance.find((b) => b.currency === currency)?.amount || 0;
+      Number(agentBalance.find((b) => b.currency === currency)?.amount ?? 0);
 
     if (!isDeposit && agentCurrencyBalance < +cash) {
       toast.error(toastT("validation.balance_low"));
