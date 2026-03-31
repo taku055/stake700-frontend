@@ -15,6 +15,7 @@ import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { SearchWidgetHeader } from "./SearchWidget";
 import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 import LocaleSelection from "../LocaleSelection";
+import { Search } from "lucide-preact";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
@@ -57,16 +58,13 @@ export default function Header() {
                   <button
                     type="button"
                     className="flex md:w-[44px] md:h-[44px] w-[32px] h-[32px] items-center justify-center"
+                    aria-label={t("Search")}
                     onClick={() =>
                       (searchWidgetStateHeader.value =
                         !searchWidgetStateHeader.value)
                     }
                   >
-                    <img
-                      src={`${ASSET_BASE_URL}/images/icons/search.svg`}
-                      alt={t("Search")}
-                      className="w-[20px] h-[20px]"
-                    />
+                    <Search aria-hidden="true" className="w-[20px] h-[20px]" />
                   </button>
                   <SearchWidgetHeader />
                 </div>

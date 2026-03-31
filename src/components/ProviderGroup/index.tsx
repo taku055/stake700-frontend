@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "preact/hooks";
 import { useMediaQuery } from "usehooks-ts";
-import { ASSET_BASE_URL, mobilePortraitMediaQuery } from "@/config/constants";
+import { mobilePortraitMediaQuery } from "@/config/constants";
 import { providerState } from "@/state/providerState";
 import { Link } from "@/components/common";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,7 +15,7 @@ import { Button } from "@heroui/react";
 import { useSignal } from "@preact/signals";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
-import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { ChevronLeft, ChevronRight, Users } from "lucide-preact";
 
 interface IProviderGroupProps {
   category?: string;
@@ -64,8 +64,9 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
       <div className={styles.titleBar}>
         <div className={styles.title}>
           <div className={styles.text}>
-            <img src={`${ASSET_BASE_URL}/images/icons/providers.png`} alt={t("Publishers")} width={20} height={20} />
-            {t("Publishers")}</div>
+            <Users aria-hidden="true" className="w-[20px] h-[20px]" />
+            {t("Publishers")}
+          </div>
         </div>
         <div className={styles.action}>
           <Button onPress={goToPrevSlide} className={`${styles.moveButton} rounded-l-full ${!isBeginning ? "border-[#ffffff55] text-[#FFFFFF55]" : "border-[#ffffff22] text-[#FFFFFF22]"}`}>

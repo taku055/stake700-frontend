@@ -2,7 +2,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
 import { useEffect, useMemo, useState } from "preact/hooks";
-import { Home, ChartArea, Crown, Users } from "lucide-preact";
+import { Home, ChartArea, Crown, Users, Menu } from "lucide-preact";
 
 import { Sports } from "@/components/icons";
 
@@ -155,12 +155,7 @@ export default function FooterNav() {
           <span
             className={`text-sm h-full flex flex-1 flex-col justify-center items-center text-white bg-transparent`}
           >
-            <img
-              src={`${ASSET_BASE_URL}/images/icons/menu.svg`}
-              width={20}
-              height={20}
-              className="brightness-0 invert"
-            />
+            <Menu aria-hidden="true" className="w-[20px] h-[20px] text-white" />
           </span>
           <span className="text-xs text-white">{t("Menu")}</span>
         </a>

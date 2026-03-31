@@ -1,5 +1,5 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ChevronUp, ChevronDown } from "lucide-preact";
+import { ChevronUp, ChevronDown, Menu } from "lucide-preact";
 import { Link } from "../common";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
@@ -101,10 +101,9 @@ export default function ExpandedDrawer({
               navigationSidebarExpandedState.value = false;
             }}
           >
-            <img
-              src={`${ASSET_BASE_URL}/images/icons/menu.svg`}
-              alt="sidebararrow"
-              className={`w-[16px] h-[16px] duration-300 brightness-0 invert transition-transform ${
+            <Menu
+              aria-hidden="true"
+              className={`w-[16px] h-[16px] duration-300 text-white transition-transform ${
                 isRTL ? "scale-x-[-1]" : ""
               }`}
             />

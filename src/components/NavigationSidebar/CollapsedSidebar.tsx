@@ -7,6 +7,7 @@ import { ASSET_BASE_URL, RTL_LANGUAGES } from "@/config/constants";
 import { Link } from "../common";
 import { useSelectedTab } from "@/hooks/useSelectedTab";
 import { sidebarDataState } from "@/state/sidebarData";
+import { Menu } from "lucide-preact";
 
 interface CollapsedSidebarProps {
   mainNavItems: Array<{
@@ -62,10 +63,9 @@ export default function CollapsedSidebar({
             navigationSidebarExpandedState.value = true;
           }}
         >
-          <img
-            src={`${ASSET_BASE_URL}/images/icons/menu.svg`}
-            alt="sidebararrow"
-            className={`w-[16px] h-[16px] duration-300 brightness-0 invert transition-transform ${
+          <Menu
+            aria-hidden="true"
+            className={`w-[16px] h-[16px] duration-300 text-white transition-transform ${
               isRTL ? "scale-x-[-1]" : ""
             }`}
           />
