@@ -1,4 +1,4 @@
-const baseUrl = "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/promotion_cards/";
+const baseUrl = `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME}/promotion_cards/`;
 
 export const promotionData = [
   // { id: 1, title: "10% Cashback", image: `${baseUrl}10% Cashback.png` },

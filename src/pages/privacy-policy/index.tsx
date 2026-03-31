@@ -1,6 +1,8 @@
 import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
+import { capitalize } from "@/helpers/capitalize";
+import { getRootDomain } from "@/helpers/getRootDomain";
 export default function PrivacyPolicy() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("PrivacyPolicy");
@@ -8,14 +10,14 @@ export default function PrivacyPolicy() {
       <h1 className="text-[var(--primary-color)] text-3xl md:text-4xl font-semibold mb-8">{t("tag_001", undefined, "PRIVACY POLICY")}</h1>
 
       <div className="text-[var(--passive-color)] text-base md:text-lg leading-relaxed space-y-6">
-        <p>{t("tag_002", undefined, "Your privacy is important to us, and we are committed to protecting your personal information. We will be clear and open about why we collect your personal information and how we use it. Where you have choices or rights, we will explain these to you. This Privacy Policy explains how betalarab uses your personal information when you're using one of our website.")}</p>
+        <p>{t("tag_002", undefined, `Your privacy is important to us, and we are committed to protecting your personal information. We will be clear and open about why we collect your personal information and how we use it. Where you have choices or rights, we will explain these to you. This Privacy Policy explains how ${capitalize(import.meta.env.VITE_SITE_NAME)} uses your personal information when you're using one of our website.`)}</p>
 
         <div className="space-y-8 mt-12">
           <section>
             <h3 className="text-[var(--primary-color)] text-xl md:text-2xl font-semibold mb-4">{t("tag_003", undefined, "Our Data Protection Officer")}</h3>
 
-            <p>{t("tag_004", undefined, "If you have concerns or would like any further information about how betalarab handles your personal information, you can contact our Data Protection Officer at")}{" "}
-              <a href="mailto:dpo@betalarab.com" className="text-[var(--primary-color)] hover:underline">{t("tag_005", undefined, "dpo@betalarab.com")}</a>
+            <p>{t("tag_004", undefined, `If you have concerns or would like any further information about how ${capitalize(import.meta.env.VITE_SITE_NAME)} handles your personal information, you can contact our Data Protection Officer at`)}{" "}
+              <a href={`mailto:dpo@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`} className="text-[var(--primary-color)] hover:underline">{t("tag_005", undefined, `dpo@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`)}</a>
             </p>
           </section>
 
@@ -29,7 +31,7 @@ export default function PrivacyPolicy() {
                 <p className="mb-4">{t("tag_008", undefined, "You provide this information to us in the process of setting up an account, placing bets and using the services of the website. This information is required to give you access to certain parts of our website and related services. This data is collected when you:")}</p>
 
                 <ul className="list-disc list-inside ms-4 space-y-2">
-                  <li>{t("tag_009", undefined, "Register an account with betalarab")}</li>
+                  <li>{t("tag_009", undefined, `Register an account with ${capitalize(import.meta.env.VITE_SITE_NAME)}`)}</li>
                   <li>{t("tag_010", undefined, "Voluntarily provide it when using the website")}</li>
                   <li>{t("tag_011", undefined, "Personally disclose the information in public areas of the website")}</li>
                   <li>{t("tag_012", undefined, "Provide it when you contact our customer support team.")}</li>
@@ -59,13 +61,13 @@ export default function PrivacyPolicy() {
               <div>
                 <h4 className="text-[var(--primary-color)] text-lg font-semibold mb-3">{t("tag_028", undefined, "Non-personally identifiable information and traffic analysis")}</h4>
 
-                <p>{t("tag_029", undefined, "betalarab strives to make our website as user friendly as possible and easy to find on the internet. betalarab collects data on how you use the site, which does not identify you personally. When you interact with the services, our servers keep an activity log unique to you that collects certain administrative and traffic information including: source IP address, time of access, date of access, web page(s) visited, language use, software crash reports and type of browser used. This information is essential for the provision and quality of our services.")}</p>
+                <p>{t("tag_029", undefined, `${capitalize(import.meta.env.VITE_SITE_NAME)} strives to make our website as user friendly as possible and easy to find on the internet. ${capitalize(import.meta.env.VITE_SITE_NAME)} collects data on how you use the site, which does not identify you personally. When you interact with the services, our servers keep an activity log unique to you that collects certain administrative and traffic information including: source IP address, time of access, date of access, web page(s) visited, language use, software crash reports and type of browser used. This information is essential for the provision and quality of our services.`)}</p>
               </div>
 
               <div>
                 <h4 className="text-[var(--primary-color)] text-lg font-semibold mb-3">{t("tag_030", undefined, "Cookies")}</h4>
 
-                <p>{t("tag_031", undefined, "betalarab uses cookies to ensure our website works efficiently and to enhance your visits to our platforms. Further information can be found in our Cookie Policy.")}</p>
+                <p>{t("tag_031", undefined, `${capitalize(import.meta.env.VITE_SITE_NAME)} uses cookies to ensure our website works efficiently and to enhance your visits to our platforms. Further information can be found in our Cookie Policy.`)}</p>
               </div>
             </div>
           </section>
@@ -96,7 +98,7 @@ export default function PrivacyPolicy() {
               <div>
                 <h4 className="text-[var(--primary-color)] text-lg font-semibold mb-3">{t("tag_042", undefined, "Legal and Regulatory Requirements")}</h4>
 
-                <p className="mb-2">{t("tag_043", undefined, "betalarab will use your identificationn document and/or proof of address to check your details in order for us to protect our users from fraudulent behaviour and to promote responsible gambling.")}</p>
+                <p className="mb-2">{t("tag_043", undefined, `${capitalize(import.meta.env.VITE_SITE_NAME)} will use your identificationn document and/or proof of address to check your details in order for us to protect our users from fraudulent behaviour and to promote responsible gambling.`)}</p>
 
                 <p className="mb-2">{t("tag_044", undefined, "We may conduct a security review at any time to validate the registration data provided by you and to verify your use of the services and your financial transactions for potential breach of our Terms and Conditions and of applicable law. Security reviews may include but are not limited to ordering a credit report and/or otherwise verifying the information you provide against third-party databases.")}</p>
 
@@ -131,7 +133,7 @@ export default function PrivacyPolicy() {
                 <h4 className="text-[var(--primary-color)] text-lg font-semibold mb-3">{t("tag_053", undefined, "Your rights to rectification")}</h4>
 
                 <p>{t("tag_054", undefined, "If you believe the personal information we hold on you is incorrect, you have the right for this to be rectified. For any information that cannot be updated through My Account, please contact")}{" "}
-                  <a href="mailto:support@betalarab.com" className="text-[var(--primary-color)] hover:underline">{t("tag_055", undefined, "support@betalarab.com")}</a>
+                  <a href={`mailto:support@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`} className="text-[var(--primary-color)] hover:underline">{t("tag_055", undefined, `support@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`)}</a>
                 </p>
               </div>
 
@@ -139,7 +141,7 @@ export default function PrivacyPolicy() {
                 <h4 className="text-[var(--primary-color)] text-lg font-semibold mb-3">{t("tag_056", undefined, "Your right to request a copy of your personal information")}</h4>
 
                 <p>{t("tag_057", undefined, "If you would like a copy of the personal information we hold about you, you should request it through live chat or by emailing")}{" "}
-                  <a href="mailto:dpo@betalarab.com" className="text-[var(--primary-color)] hover:underline">{t("tag_058", undefined, "dpo@betalarab.com")}</a>{" "}{t("tag_059", undefined, "and we will provide you with a form to complete. The form is not compulsory but helps us to provide you with the information you are looking for in a timely manner. To ensure the security of your personal information, we will ask you for valid proof of identity and once we've received it we will provide our response within one month. If your request is unusually complex and likely to take longer than a month, we will let you know as soon as we can and tell you how long we think it will take, such request may also incur an administration cost.")}</p>
+                  <a href={`mailto:dpo@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`} className="text-[var(--primary-color)] hover:underline">{t("tag_058", undefined, `dpo@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`)}</a>{" "}{t("tag_059", undefined, "and we will provide you with a form to complete. The form is not compulsory but helps us to provide you with the information you are looking for in a timely manner. To ensure the security of your personal information, we will ask you for valid proof of identity and once we've received it we will provide our response within one month. If your request is unusually complex and likely to take longer than a month, we will let you know as soon as we can and tell you how long we think it will take, such request may also incur an administration cost.")}</p>
               </div>
 
               <div>
@@ -194,7 +196,7 @@ export default function PrivacyPolicy() {
           <section>
             <h3 className="text-[var(--primary-color)] text-xl md:text-2xl font-semibold mb-4">{t("tag_083", undefined, "Retention")}</h3>
 
-            <p>{t("tag_084", undefined, "We retain personal information for as long as we reasonably require it for legal or business purposes. In determining data retention periods, betalarab takes into consideration local laws, contractual obligations, and the expectations and requirements of our customers. When we no longer need your personal information, we securely delete or destroy it.")}</p>
+            <p>{t("tag_084", undefined, `We retain personal information for as long as we reasonably require it for legal or business purposes. In determining data retention periods, ${capitalize(import.meta.env.VITE_SITE_NAME)} takes into consideration local laws, contractual obligations, and the expectations and requirements of our customers. When we no longer need your personal information, we securely delete or destroy it.`)}</p>
           </section>
 
           <section>
@@ -213,7 +215,7 @@ export default function PrivacyPolicy() {
             <div className="ms-4">
               <h4 className="text-[var(--primary-color)] text-base font-semibold mb-2">{t("tag_090", undefined, "Google Analytics (Google Inc.)")}</h4>
 
-              <p className="mb-2">{t("tag_091", undefined, "Google Analytics is a web analysis service provided by Google Inc. (\"Google\"). Google utilizes the Data collected to track and examine the use of betalarab, to prepare reports on its activities and share them with other Google services.")}</p>
+              <p className="mb-2">{t("tag_091", undefined, `Google Analytics is a web analysis service provided by Google Inc. (\"Google\"). Google utilizes the Data collected to track and examine the use of ${capitalize(import.meta.env.VITE_SITE_NAME)}, to prepare reports on its activities and share them with other Google services.`)}</p>
 
               <p className="mb-2">{t("tag_092", undefined, "Google may use the Data collected to contextualize and personalize the ads of its own advertising network.")}</p>
 

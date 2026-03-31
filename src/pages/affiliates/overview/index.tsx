@@ -1,9 +1,10 @@
 import { useState, useEffect } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
-import { Copy, Zap, DollarSign, Percent, Settings, Coins, Globe, ExternalLink, Play, Volume2, Maximize, MoreVertical, PictureInPicture } from "lucide-preact";
+import { Copy, Settings, ExternalLink, Play, Volume2, Maximize, MoreVertical, PictureInPicture } from "lucide-preact";
 import { toast } from "@/helpers/toast";
 import { ASSET_BASE_URL } from "@/config/constants";
+import { capitalize } from "@/helpers/capitalize";
 
 export default function Overview() {
   const t = useTranslations("Affiliate");
@@ -116,7 +117,7 @@ export default function Overview() {
                   <img src={`${ASSET_BASE_URL}/images/icons/face.png`} alt="user" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-white bg-[var(--background)] text-[14px] font-medium">betalarab.com Affiliate Program</span>
+                  <span className="text-white bg-[var(--background)] text-[14px] font-medium">{capitalize(import.meta.env.VITE_SITE_NAME)} Affiliate Program</span>
                   <span className="text-white/60 bg-[var(--background)] text-[12px]">Creative Department</span>
                 </div>
               </div>

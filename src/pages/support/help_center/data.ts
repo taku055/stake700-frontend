@@ -1,3 +1,5 @@
+import { capitalize } from "@/helpers/capitalize";
+
 export type HelpArticle = {
   id: string;
   titleKey: string;
@@ -13,7 +15,7 @@ export type HelpCategory = {
   articles: HelpArticle[];
 };
 
-export const BRAND_NAME = "Betalarab";
+export const BRAND_NAME = capitalize(import.meta.env.VITE_SITE_NAME);
 
 export const HELP_CATEGORY_DATA: HelpCategory[] = [
   {

@@ -1,3 +1,4 @@
+import { getRootDomain } from "@/helpers/getRootDomain";
 import { eTransactionCurrency } from "@/types/tTransaction";
 
 export const SOLANA_CHAIN_ID = 900;
@@ -21,17 +22,17 @@ export const mobilePortraitMediaQuery =
 export const placeholderGameImage = "/images/img-placeholder-dark.jpg";
 
 export const OFFICIAL_LINKS = {
-  telegram: "https://t.me/Betalarabofc",
+  telegram: `https://t.me/${import.meta.env.VITE_SITE_NAME}ofc`,
   whatsapp: "#",
-  instagram: "https://www.instagram.com/Betalarabofc",
-  facebook: "https://www.facebook.com/Betalarabofc",
-  twitter: "https://x.com/Betalarabofc",
-  youtube: "https://www.youtube.com/Betalarabofc",
-  tiktok: "https://www.tiktok.com/@Betalarabofc",
-  twitch: "https://www.twitch.tv/Betalarabofc",
-  discord: "https://discord.gg/Betalarabofc",
-  officialWebsite: "https://www.betalarab.com",
-  supportEmail: "support@betalarab.com",
+  instagram: `https://www.instagram.com/${import.meta.env.VITE_SITE_NAME}ofc`,
+  facebook: `https://www.facebook.com/${import.meta.env.VITE_SITE_NAME}ofc`,
+  twitter: `https://x.com/${import.meta.env.VITE_SITE_NAME}ofc`,
+  youtube: `https://www.youtube.com/${import.meta.env.VITE_SITE_NAME}ofc`,
+  tiktok: `https://www.tiktok.com/@${import.meta.env.VITE_SITE_NAME}ofc`,
+  twitch: `https://www.twitch.tv/${import.meta.env.VITE_SITE_NAME}ofc`,
+  discord: `https://discord.gg/${import.meta.env.VITE_SITE_NAME}ofc`,
+  officialWebsite: `https://www.${import.meta.env.VITE_SITE_DOMAIN}`,
+  supportEmail: `support@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`,
 };
 
 export const PAYMENT_METHOD_LIST = [

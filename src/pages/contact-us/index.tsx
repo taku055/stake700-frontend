@@ -4,6 +4,7 @@ import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
 import { toast } from "@/helpers/toast";
+import { getRootDomain } from "@/helpers/getRootDomain";
 
 export default function ContactUs() {
   const t = useTranslations("ContactUs");
@@ -60,19 +61,19 @@ export default function ContactUs() {
             {t("customer_queries_text") ||
               "For customer queries, write to us at"}{" "}
             <a
-              href="mailto:support@betalarab.com"
+              href={`mailto:support@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`}
               className="text-[var(--primary-color)] hover:underline"
             >
-              support@betalarab.com
+              support@{getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}
             </a>
             .{" "}
             {t("other_questions_text") ||
               "For other questions or offers, drop us a line at"}{" "}
             <a
-              href="mailto:info@betalarab.com"
+              href={`mailto:info@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`}
               className="text-[var(--primary-color)] hover:underline"
             >
-              info@betalarab.com
+              info@{getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}
             </a>{" "}
             {t("email_receipt_text") ||
               "and we will make sure the right person receives your email."}
