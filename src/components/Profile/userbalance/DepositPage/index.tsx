@@ -2,7 +2,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { Tabs, Tab } from "@heroui/react";
 import AriesDeposit from "./AriesDeposit";
 import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
-import XGatewayDeposit from "./XGatewayDeposit";
+import NeonpayDeposit from "./NeonpayDeposit";
 
 interface DepositPageProps {
   bonusId?: string;
@@ -24,9 +24,9 @@ const DepositPage = ({ bonusId }: DepositPageProps) => {
           <Tab key="crypto" title={t("Crypto")}>
             <DepositPanel />
           </Tab>
-          {/* <Tab key="XGateway" title={t("XGateway")}>
-            <XGatewayDeposit />
-          </Tab> */}
+          <Tab key="neonpay" title={t("Neonpay")}>
+            <NeonpayDeposit />
+          </Tab>
         </Tabs>
       </div>
     </div>
