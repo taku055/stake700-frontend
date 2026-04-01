@@ -19,10 +19,11 @@ import { useTranslations } from "@/context/I18nContext";
 import CurrencySelector from "@/components/CurrencySelector";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import { tCurrencyBalance, tLedger } from "@/types/tCurrencyBalance";
+import { cashDetailAmountForUnit } from "@/helpers/multipleBalance";
 
 interface CreateTransactionModalProps {
   userBalance: tLedger[];
-  agentBalance: tCurrencyBalance[];
+  agentBalance: (tCurrencyBalance | tLedger)[];
   userId: string;
   isDeposit: boolean;
   isOpen: boolean;
@@ -59,8 +60,10 @@ export default function CreateTransactionModal({
       return;
     }
 
-    const agentCurrencyBalance =
-      agentBalance.find((b) => b.currency === currency)?.amount || 0;
+    const agentCurrencyBalance = cashDetailAmountForUnit(
+      agentBalance,
+      currency
+    );
     const userCurrencyBalance = Number(
       userBalance.find((b) => b.currencyCode === currency)?.cashBalance ?? 0
     );

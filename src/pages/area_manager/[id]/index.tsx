@@ -10,8 +10,8 @@ import { apiAdminChangePasswordAgent } from "@/api/agent/apiAdminChangePasswordA
 import { apiAdminGetSubAgent } from "@/api/agent/area_manager/apiAdminGetSubAgent";
 import { useTranslations } from "@/context/I18nContext";
 import { useLocation } from "preact-iso";
-import { tCurrencyBalance } from "@/types/tCurrencyBalance";
-import { multipleBalance } from "@/helpers/multipleBalance";
+import { tCurrencyBalance, tLedger } from "@/types/tCurrencyBalance";
+import { multipleBalanceRows } from "@/helpers/multipleBalance";
 import BackButton from "@/components/BackButton";
 import { tSuperAgentTransaction } from "@/types/tSuperAgentTransaction";
 import PlatformAnalysis from "@/components/PlatformAnalysis/PlatformAnalysis";
@@ -22,10 +22,14 @@ interface IAgentDetailPageProps {
 }
 
 const upsertCashDetail = (
-  details: tCurrencyBalance[],
+  details: (tCurrencyBalance | tLedger)[],
   newItem: tCurrencyBalance
-): tCurrencyBalance[] => {
-  const i = details.findIndex((c) => c.currency === newItem.currency);
+): (tCurrencyBalance | tLedger)[] => {
+  const i = details.findIndex((c) =>
+    "currencyCode" in c
+      ? c.currencyCode === newItem.currency
+      : c.currency === newItem.currency
+  );
   return i !== -1
     ? details.map((c, idx) => (idx === i ? newItem : c))
     : [...details, newItem];
@@ -83,7 +87,15 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
     transaction: tSuperAgentTransaction
   ) => {
     setAgent((prev) =>
-      prev ? { ...prev, cashDetails: upsertCashDetail(prev.cashDetails, newSuperAgent) } : prev
+      prev
+        ? {
+            ...prev,
+            cashDetails: upsertCashDetail(
+              prev.cashDetails,
+              newSuperAgent
+            ) as tCurrencyBalance[],
+          }
+        : prev
     );
 
     if (userState.value?.id) {
@@ -126,7 +138,7 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
         <div className="flex">
           <label className="mr-1">Balance</label>
           <span className="text-white">
-            {multipleBalance(agent?.cashDetails || [])}
+            {multipleBalanceRows(agent?.cashDetails || [])}
           </span>
         </div>
         <div className="flex items-center">

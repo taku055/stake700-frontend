@@ -15,7 +15,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { useLocation } from "preact-iso";
 import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 import { tCurrencyBalance } from "@/types/tCurrencyBalance";
-import { multipleBalance } from "@/helpers/multipleBalance";
+import { multipleBalanceRows } from "@/helpers/multipleBalance";
 import BackButton from "@/components/BackButton";
 import PlatformAnalysis from "@/components/PlatformAnalysis/PlatformAnalysis";
 import { apiSuperagentGetProviderAnalysis } from "@/api/agent/apiSuperagentGetProviderAnalysis";
@@ -91,8 +91,10 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
 
     if (userState.value?.id) {
       const newCashDetails = [...userState.value.cashDetails];
-      const i = newCashDetails.findIndex(
-        (c) => c.currency === newSuperagent.currency
+      const i = newCashDetails.findIndex((c) =>
+        "currencyCode" in c
+          ? c.currencyCode === newSuperagent.currency
+          : c.currency === newSuperagent.currency
       );
       if (i !== -1) {
         newCashDetails[i] = newSuperagent;
@@ -140,7 +142,7 @@ export default function AgentDetailPage({ agentId }: IAgentDetailPageProps) {
         <div className="flex">
           <label className="mr-1">Balance</label>
           <span className="text-white">
-            {multipleBalance(agent?.cashDetails || [])}
+            {multipleBalanceRows(agent?.cashDetails || [])}
           </span>
         </div>
         <div className="flex">

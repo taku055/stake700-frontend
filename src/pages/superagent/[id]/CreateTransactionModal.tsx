@@ -20,6 +20,7 @@ import { Button } from "@heroui/react";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import CurrencySelector from "@/components/CurrencySelector";
 import { tCurrencyBalance } from "@/types/tCurrencyBalance";
+import { cashDetailAmountForUnit } from "@/helpers/multipleBalance";
 
 interface CreateTransactionModalProps {
   agentId: string;
@@ -66,11 +67,10 @@ export default function CreateTransactionModal({
       return;
     }
 
-    const superagentCurrencyBalance =
-      Number(
-        userState.value.cashDetails?.find((b) => b.currency === currency)
-          ?.amount ?? 0
-      );
+    const superagentCurrencyBalance = cashDetailAmountForUnit(
+      userState.value.cashDetails,
+      currency
+    );
     const agentCurrencyBalance =
       Number(agentBalance.find((b) => b.currency === currency)?.amount ?? 0);
 

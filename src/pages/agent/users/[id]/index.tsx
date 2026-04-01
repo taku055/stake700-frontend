@@ -138,8 +138,10 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
 
     if (userState.value?.id) {
       const newCashDetails = [...userState.value.cashDetails];
-      const i = newCashDetails.findIndex(
-        (c) => c.currency === balance.agent.currency
+      const i = newCashDetails.findIndex((c) =>
+        "currencyCode" in c
+          ? c.currencyCode === balance.agent.currency
+          : c.currency === balance.agent.currency
       );
 
       if (i !== -1) {

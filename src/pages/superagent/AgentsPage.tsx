@@ -19,7 +19,7 @@ import { userState } from "@/state/userState";
 import { apiAdminGetSubagents } from "@/api/agent/apiAdminGetSubagents";
 import PlatformAnalysis from "@/components/PlatformAnalysis/PlatformAnalysis";
 import { apiAgentGetProviderAnalysis } from "@/api/agent/apiAgentGetProviderAnalysis";
-import { multipleBalance } from "@/helpers/multipleBalance";
+import { multipleBalanceRows } from "@/helpers/multipleBalance";
 
 export default function AgentsPage() {
   const [data, setData] = useState<tAgent[]>([]);
@@ -108,7 +108,7 @@ export default function AgentsPage() {
                 >
                   <TableCell>{abbr(e.id, isMobile ? 2 : 5)}</TableCell>
                   <TableCell>{e.userName}</TableCell>
-                  <TableCell>{multipleBalance(e.cashDetails)}</TableCell>
+                  <TableCell>{multipleBalanceRows(e.cashDetails)}</TableCell>
                   <TableCell>
                     {moment(e.createdAt).format("YYYY-MM-DD HH:mm")}
                   </TableCell>

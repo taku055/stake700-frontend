@@ -1,6 +1,7 @@
 import { tCurrencyBalance, tLedger } from "./tCurrencyBalance";
 import { tPromotionInstance } from "./tPromotionInstance";
 import { tUserRole } from "./tUserRole";
+import { tUserSummarized } from "./tUserSummarized";
 
 export type tUser = {
   id: string;
@@ -13,6 +14,7 @@ export type tUser = {
   country: string | null;
   city: string | null;
   address: string | null;
+  identityNumber?: string | null;
   gender: number | null;
   zipCode: string | null;
   state: string | null;
@@ -56,9 +58,14 @@ export type tUser = {
   referralBonusPercent: number;
   lastLoginAt: Date | null;
   isCallGroup: boolean;
-  cashDetails: tCurrencyBalance[];
-  /** Per-currency ledger rows from `/agent/user/:id` and similar. */
+  /**
+   * Agent wallet rows use `currency` + `amount`.
+   * Subuser list/detail may return per-currency ledger rows (`currencyCode` + `cashBalance`).
+   */
+  cashDetails: (tCurrencyBalance | tLedger)[];
+  /** Per-currency ledger rows from `/agent/user/:id` when returned separately from API. */
   ledgers?: tLedger[];
+  summarized?: tUserSummarized;
 
   PromotionInstance?: tPromotionInstance | null;
 

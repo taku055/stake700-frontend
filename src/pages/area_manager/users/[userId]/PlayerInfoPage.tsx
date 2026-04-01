@@ -7,7 +7,7 @@ import UserInfoField from "@/components/UserInfoField";
 import { checkSum } from "@/helpers/checkSum";
 import { Checkbox } from "@heroui/checkbox";
 import { apiAdminUpdateUser } from "@/api/agent/area_manager/apiAdminUpdateUser";
-import { multipleBalance } from "@/helpers/multipleBalance";
+import { multipleBalanceRows } from "@/helpers/multipleBalance";
 import { tUser } from "@/types/tUser";
 import { userState } from "@/state/userState";
 import { apiAdminGetUser } from "@/api/agent/area_manager/apiAdminGetUser";
@@ -131,7 +131,7 @@ export default function PlayerInfoPage({ userId }: {userId: string}) {
             </label>
             <div className="flex items-center gap-2">
               <span className="text-sm">
-                {multipleBalance(user?.cashDetails || [])}
+                {multipleBalanceRows(user?.cashDetails || [])}
               </span>
               <Button
                 size="sm"

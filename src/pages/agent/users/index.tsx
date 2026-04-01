@@ -17,10 +17,9 @@ import CreateSubuserModal from "./CreateSubuserModal";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 import TextWithCopy from "@/components/TextWithCopy";
-import { numberRound } from "@/helpers/numberRound";
 import { userState } from "@/state/userState";
 import { useTranslations } from "@/context/I18nContext";
-import { multipleBalance } from "@/helpers/multipleBalance";
+import { multipleBalanceRows } from "@/helpers/multipleBalance";
 import BackButton from "@/components/BackButton";
 
 export default function UsersPage() {
@@ -118,7 +117,7 @@ export default function UsersPage() {
                       {e.userName}
                     </a>
                   </TableCell>
-                  <TableCell>{multipleBalance(e.cashDetails)}</TableCell>
+                  <TableCell>{multipleBalanceRows(e.cashDetails)}</TableCell>
                   <TableCell>
                     {moment(e.createdAt).format("YYYY-MM-DD HH:mm")}
                   </TableCell>

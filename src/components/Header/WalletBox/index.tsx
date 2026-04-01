@@ -12,6 +12,7 @@ import { profileOpenedState } from "@/state/profileOpenedState";
 import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";
 import { useTranslations } from "@/context/I18nContext";
+import { cashDetailAmountForUnit } from "@/helpers/multipleBalance";
 
 type Pos = { top: number; left: number; width: number };
 
@@ -151,11 +152,7 @@ export default function WalletBox() {
       }
 
       return {
-        cash: Number(
-          userState.value.cashDetails?.find(
-            (c) => String(c.currency) === String(cur.unit),
-          )?.amount ?? 0,
-        ),
+        cash: cashDetailAmountForUnit(userState.value.cashDetails, cur.unit),
         bonus: 0,
       };
     })();
@@ -180,11 +177,7 @@ export default function WalletBox() {
     }
 
     return {
-      cash: Number(
-        user.cashDetails?.find(
-          (c) => String(c.currency) === String(cur.unit),
-        )?.amount ?? 0,
-      ),
+      cash: cashDetailAmountForUnit(user.cashDetails, cur.unit),
       bonus: 0,
     };
   }, [balanceState.value, currencyState.value, userState.value]);

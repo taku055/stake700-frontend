@@ -79,7 +79,11 @@ export default function HistoryPanel() {
           const balance = await apiCancelLazyWithdraw(requestId);
           if (userState.value) {
             const cashDetails = [...userState.value.cashDetails];
-            const i = cashDetails.findIndex(c => c.currency === balance.currency);
+            const i = cashDetails.findIndex((c) =>
+              "currencyCode" in c
+                ? c.currencyCode === balance.currency
+                : c.currency === balance.currency
+            );
             if (i !== -1) {
               cashDetails[i] = balance;
             } else {

@@ -1,0 +1,30 @@
+/** Aggregated deposit/withdraw stats returned on agent subuser list/detail. */
+export type tUserSummarized = {
+  userId: string;
+  depositVisa: number;
+  depositCrypto: number;
+  depositManual: number;
+  depositAgent: number;
+  depositBonus: number;
+  depositCashback: number;
+  cashback: number;
+  withdrawCrypto: number;
+  withdrawManual: number;
+  withdrawAgent: number;
+  withdrawBonus: number;
+  withdrawCashback: number;
+  withdrawBanned: number;
+  withdrawRequested: number;
+  withdrawCancelled: number;
+  levelupBonus: number;
+  referralBonus: number;
+  leaderboardBonus: number;
+  rakeback: number;
+  transferIn: number;
+  transferOut: number;
+  casinoBet: number;
+  casinoWin: number;
+  sportBet: number;
+  sportWin: number;
+  sportRollback: number;
+};
