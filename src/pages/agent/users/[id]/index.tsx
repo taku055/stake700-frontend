@@ -6,25 +6,23 @@ import { apiAgentGetSubuser } from "@/api/agent/apiAgentGetSubuser";
 import { apiAgentDeleteSubuser } from "@/api/agent/apiAgentDeleteSubuser";
 import CreateTransactionModal from "./CreateTransactionModal";
 import { userState } from "@/state/userState";
-import { tSubuserCreateTxRes } from "@/api/agent/apiAgentCreateUserTransaction";
+import {
+  mapSubuserCreateTxUserToLedger,
+  tSubuserCreateTxRes,
+} from "@/api/agent/apiAgentCreateUserTransaction";
 import TransactionsPage from "./TransactionsPage";
 import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
 import { apiAgentGetSubuserTransactionSum } from "@/api/agent/apiAgentGetSubuserTransactionSum";
 import { useMediaQuery } from "usehooks-ts";
-import {
-  CURRENCY_LIST,
-  DEFAULT_CURRENCY_SYMBOL,
-  mobileMediaQuery,
-} from "@/config/constants";
+import { CURRENCY_LIST, mobileMediaQuery } from "@/config/constants";
 import CasinoHistoryPage from "./CasinoHistoryPage";
-import { numberRound } from "@/helpers/numberRound";
 import { useTranslations } from "@/context/I18nContext";
 import { useLocation } from "preact-iso";
 import SportsbookHistoryPage from "./SportsbookHistoryPage";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import CurrencySelector from "@/components/CurrencySelector";
 import BackButton from "@/components/BackButton";
-import { multipleBalance } from "@/helpers/multipleBalance";
+import { multipleBalanceLedger } from "@/helpers/multipleBalance";
 
 const today = new Date();
 
@@ -119,20 +117,22 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
     setSubuser((prev) => {
       if (!prev) return prev;
 
-      const newCashDetails = [...prev.cashDetails];
-      const i = newCashDetails.findIndex(
-        (c) => c.currency === balance.user.currency
+      const nextLedgers = [...(prev.ledgers ?? [])];
+      const i = nextLedgers.findIndex(
+        (c) => c.currencyCode === balance.user.currencyCode
       );
+      const existing = i !== -1 ? nextLedgers[i] : null;
+      const ledger = mapSubuserCreateTxUserToLedger(balance.user, existing);
 
       if (i !== -1) {
-        newCashDetails[i] = balance.user;
+        nextLedgers[i] = ledger;
       } else {
-        newCashDetails.push(balance.user);
+        nextLedgers.push(ledger);
       }
 
       return {
         ...prev,
-        cashDetails: newCashDetails,
+        ledgers: nextLedgers,
       };
     });
 
@@ -154,6 +154,9 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
       };
     }
 
+    setTotalDeposit(balance.userStatistics.totalDeposit);
+    setTotalWithdraw(balance.userStatistics.totalWithdraw);
+
     setOpenModal(false);
   };
 
@@ -172,7 +175,7 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
         <div className="flex">
           <label className="mr-1">{t("Balance")}</label>
           <span className="text-white">
-            {multipleBalance(subuser?.cashDetails ?? [])}
+            {multipleBalanceLedger(subuser?.ledgers ?? [])}
           </span>
         </div>
         <DateRangePicker
@@ -249,7 +252,7 @@ export default function UserDetailPage({ userId }: IUserDetailPageProps) {
       </Tabs>
 
       <CreateTransactionModal
-        userBalance={subuser?.cashDetails ?? []}
+        userBalance={subuser?.ledgers ?? []}
         agentBalance={userState.value?.cashDetails ?? []}
         userId={userId}
         isDeposit={isDeposit}

@@ -18,10 +18,10 @@ import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
 import CurrencySelector from "@/components/CurrencySelector";
 import { eTransactionCurrency } from "@/types/tTransaction";
-import { tCurrencyBalance } from "@/types/tCurrencyBalance";
+import { tCurrencyBalance, tLedger } from "@/types/tCurrencyBalance";
 
 interface CreateTransactionModalProps {
-  userBalance: tCurrencyBalance[];
+  userBalance: tLedger[];
   agentBalance: tCurrencyBalance[];
   userId: string;
   isDeposit: boolean;
@@ -61,8 +61,9 @@ export default function CreateTransactionModal({
 
     const agentCurrencyBalance =
       agentBalance.find((b) => b.currency === currency)?.amount || 0;
-    const userCurrencyBalance =
-      userBalance.find((b) => b.currency === currency)?.amount || 0;
+    const userCurrencyBalance = Number(
+      userBalance.find((b) => b.currencyCode === currency)?.cashBalance ?? 0
+    );
 
     if (
       (isDeposit && agentCurrencyBalance < +cash) ||

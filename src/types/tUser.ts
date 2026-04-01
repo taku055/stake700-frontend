@@ -1,4 +1,4 @@
-import { tCurrencyBalance } from "./tCurrencyBalance";
+import { tCurrencyBalance, tLedger } from "./tCurrencyBalance";
 import { tPromotionInstance } from "./tPromotionInstance";
 import { tUserRole } from "./tUserRole";
 
@@ -57,6 +57,8 @@ export type tUser = {
   lastLoginAt: Date | null;
   isCallGroup: boolean;
   cashDetails: tCurrencyBalance[];
+  /** Per-currency ledger rows from `/agent/user/:id` and similar. */
+  ledgers?: tLedger[];
 
   PromotionInstance?: tPromotionInstance | null;
 
