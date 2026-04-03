@@ -5,6 +5,8 @@ import { apiGetNeonpaySaleForm } from "@/api/wallet/apiGetNeonpaySaleForm";
 import { localeState } from "@/state/localeState";
 import { toast } from "@/helpers/toast";
 import axios from "axios";
+import { useMediaQuery } from "usehooks-ts";
+import { mobileMediaQuery } from "@/config/constants";
 
 function NeonpayLogo() {
   return (
@@ -24,6 +26,7 @@ function NeonpayLogo() {
 
 export default function NeonpayDeposit() {
   const t = useTranslations("UserBalancePage");
+  const isMobile = useMediaQuery(mobileMediaQuery);
   const [amount, setAmount] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -36,17 +39,33 @@ export default function NeonpayDeposit() {
       return;
     }
 
+    // Mobile: never open a new window after async work — browsers block that.
+    // Navigate in the same tab instead (same as Aries deposit).
+    // Desktop: open a blank tab synchronously on tap, then set location after API returns.
+    let openedTab: Window | null = null;
+    if (!isMobile) {
+      openedTab = window.open("about:blank", "_blank", "noopener,noreferrer");
+    }
+
     setIsSubmitting(true);
     try {
       const res = await apiGetNeonpaySaleForm(num, localeState.value || "en");
       if (res.success && res.redirect_url) {
-        window.open(res.redirect_url, "_blank", "noopener,noreferrer");
+        if (isMobile) {
+          window.location.assign(res.redirect_url);
+        } else if (openedTab) {
+          openedTab.location.href = res.redirect_url;
+        } else {
+          window.location.assign(res.redirect_url);
+        }
       } else {
+        openedTab?.close();
         const msg = t("Neonpay_redirect_failed");
         setError(msg);
         toast.error(msg);
       }
     } catch (err: unknown) {
+      openedTab?.close();
       let message = t("Neonpay_error");
       if (axios.isAxiosError(err)) {
         const d = err.response?.data as { message?: string } | undefined;
@@ -59,7 +78,7 @@ export default function NeonpayDeposit() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [amount, t]);
+  }, [amount, isMobile, t]);
 
   return (
     <div className="flex flex-col w-full max-w-md mx-auto gap-6 py-2">
