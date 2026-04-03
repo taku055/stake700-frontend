@@ -19,9 +19,10 @@ import { Link } from "../common";
 
 interface GameCardProps {
   data: tGame;
+  onClick?: () => void;
 }
 
-export default function GameCard({ data }: GameCardProps) {
+export default function GameCard({ data, onClick }: GameCardProps) {
   const [isTouchLike, setIsTouchLike] = useState(false);
   const [open, setOpen] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -147,6 +148,9 @@ export default function GameCard({ data }: GameCardProps) {
             scrollToTop={true}
             className={styles.play}
             href={`/game/${data.id}`}
+            preventDefaultOnClick={false}
+            stopPropagationOnClick={false}
+            onClick={onClick}
           >
             <FaPlay size={24} color="white" />
           </Link>

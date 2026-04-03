@@ -46,8 +46,8 @@ export const FOOTER_LINK_DATA : Array<{
       { title: "Live Support", onClick: () => {
         liveSupportExpandedState.value = true;
       } },
-      { title: "Self Exclusion", href: "/support/self-exclusion" },
-      { title: "Law Enforcement Request", href: "/support/law-enforcement-request" },
+      // { title: "Self Exclusion", href: "/support/self-exclusion" },
+      // { title: "Law Enforcement Request", href: "/support/law-enforcement-request" },
     ],
   },
   {

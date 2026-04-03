@@ -164,7 +164,14 @@ export default function SearchWidget() {
                 <div className="grid md:grid-cols-8 grid-cols-3 gap-2">
                   {searchResult.map((game, index) => (
                     <div key={index}>
-                      <GameCard data={game} />
+                      <GameCard
+                        data={game}
+                        onClick={() => {
+                          searchWidgetStateHeader.value = false;
+                          setShowSearchResult(false);
+                          setKeyword("");
+                        }}
+                      />
                     </div>
                   ))}
                 </div>
@@ -333,7 +340,14 @@ export function SearchWidgetHeader() {
                     <div className="grid md:grid-cols-8 grid-cols-3 gap-2">
                       {searchResult.map((game, index) => (
                         <div key={index}>
-                          <GameCard data={game} />
+                          <GameCard
+                            data={game}
+                            onClick={() => {
+                              searchWidgetStateHeader.value = false;
+                              setShowSearchResult(false);
+                              setKeyword("");
+                            }}
+                          />
                         </div>
                       ))}
                     </div>
