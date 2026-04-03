@@ -188,7 +188,6 @@ export function SearchWidgetHeader() {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState<tGame[]>([]);
   const t = useTranslations("SearchWidget");
-  const isMobile = useMediaQuery(mobileMediaQuery);
   const widgetRefHeader = useRef<HTMLDivElement>(null);
   const [showSelection, setShowSelection] = useState(true);
   const location = useLocation();
