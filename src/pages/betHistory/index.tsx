@@ -69,7 +69,7 @@ export default function MyBetsLayout() {
 
   return (
     <>
-      <div className="max-w-[1200px] mx-auto flex flex-col p-2 md:px-0 gap-6">
+      <div className="mx-auto flex flex-col p-2 md:px-0 gap-6">
         {/* Header */}
         <div className="flex w-full items-center gap-3 pt-[24px]">
           <img src={`/images/icons/icons/my-bet.png`} alt="My Bets" className="w-5 h-5 text-white brightness-0 invert" />

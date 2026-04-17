@@ -39,7 +39,7 @@ export default function GamePageComponent({ gameId }: IGamePageComponentProps) {
   }
 
   return (
-    <div className="flex flex-col max-w-[1200px] w-full mx-auto gap-[40px]">
+    <div className="flex flex-col w-full mx-auto gap-[40px]">
       <GamePlay game={game} />
       <EmulateBetting />
       <ProviderGroup />

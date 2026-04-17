@@ -272,7 +272,7 @@ export function SearchWidgetHeader() {
             className="absolute right-0 top-[60px] left-0 items-center justify-center z-[5] pointer-events-none"
           >
             <div
-              className="w-full max-w-[1200px] mx-auto h-auto overflow-y-auto pointer-events-auto"
+              className="w-full mx-auto h-auto overflow-y-auto pointer-events-auto"
               dir={"ltr"}
             >
               <div className="flex flex-col md:py-6 gap-[10px] shadow-lg overflow-y-auto rounded-[8px] h-full">

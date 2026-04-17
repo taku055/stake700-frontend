@@ -27,7 +27,7 @@ export default function CasinoLayout(props: { pageType: tPageType }) {
   return (
     <div className="flex flex-col items-center justify-center gap-3">
       <EmblaBanner />
-      <div className="max-w-[1200px] w-full">
+      <div className="w-full">
         <Router>
           <Route path="/" component={CasinoPageComponent} pageType={props.pageType} />
           <Route path="/*" component={CasinoPageComponent} pageType={props.pageType} />

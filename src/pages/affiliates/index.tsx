@@ -90,7 +90,7 @@ export default function AffiliatesLayout() {
 
   return (
     <>
-      <div className="max-w-[1200px] mx-auto flex flex-col p-2 md:px-0 gap-6">
+      <div className="mx-auto flex flex-col p-2 md:px-0 gap-6">
         {/* Header */}
         <div className="flex w-full items-center gap-3 pt-[24px]">
           <img src={`${ASSET_BASE_URL}/images/icons/affiliate.svg`} alt="affiliate" className="w-5 h-5 text-white" />

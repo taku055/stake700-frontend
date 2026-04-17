@@ -64,7 +64,7 @@ export default function CasinoPageComponent({
   return (
     <div className="w-full flex flex-col gap-3 p-2">
       <div className="flex gap-3">
-        <div className="max-w-[1200px] w-full h-full flex flex-col mx-auto">
+        <div className="w-full h-full flex flex-col mx-auto">
           <SearchWidget />
 
           <div className={`w-full flex flex-col gap-6 mt-[20px]`}>

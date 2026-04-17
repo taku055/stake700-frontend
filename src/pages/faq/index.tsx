@@ -11,7 +11,7 @@ export default function FAQ() {
 
   return (
     <div
-      className={`w-full max-w-[1200px] font-["Proxima Nova"] py-8 px-3 md:px-0 md:py-12 mx-auto ${
+      className={`w-full font-["Proxima Nova"] py-8 px-3 md:px-0 md:py-12 mx-auto ${
         isRTL ? "text-right" : "text-left"
       }`}
       dir={isRTL ? "rtl" : "ltr"}

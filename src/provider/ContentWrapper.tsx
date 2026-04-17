@@ -7,7 +7,7 @@ export default function ContentWrapper({
 }) {
   return (
     <div className="w-full flex p-2">
-      <div className="max-w-[1200px] w-full mx-auto">{children}</div>
+      <div className="w-full mx-auto">{children}</div>
     </div>
   );
 }
