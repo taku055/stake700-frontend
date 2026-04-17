@@ -65,17 +65,17 @@ export default function GameGroup({
 
       const data = isCustom
         ? customGamesState.value
-            .filter((c) => c.category === category)
-            .slice(0, 30)
-            .map((e) => e.Game as tGame)
+          .filter((c) => c.category === category)
+          .slice(0, 30)
+          .map((e) => e.Game as tGame)
         : (
-            await apiGetGames({
-              category: category,
-              limit: 30,
-              provider: provider,
-              randomOrderby: true,
-            })
-          ).data;
+          await apiGetGames({
+            category: category,
+            limit: 30,
+            provider: provider,
+            randomOrderby: true,
+          })
+        ).data;
       setGames(data.filter((e) => e.id !== exceptGameId));
     })();
   }, [
@@ -106,17 +106,17 @@ export default function GameGroup({
                 onPress={goToNextSlide}
                 size="sm"
                 isIconOnly
-                className={styles.moveButton + " rounded-r-full"}
+                className={styles.moveButton + " rounded-lg"}
               >
-                <ChevronRight color="#FFFFFF99" size={16} />
+                <ChevronRight color="white" size={16} />
               </Button>
               <Button
                 onPress={goToPrevSlide}
                 size="sm"
                 isIconOnly
-                className={styles.moveButton + " rounded-l-full"}
+                className={styles.moveButton + " rounded-lg"}
               >
-                <ChevronLeft color="#FFFFFF99" size={16} />
+                <ChevronLeft color="white" size={16} />
               </Button>
             </>
           ) : (
@@ -125,22 +125,22 @@ export default function GameGroup({
                 onPress={goToPrevSlide}
                 size="sm"
                 isIconOnly
-                className={styles.moveButton + " rounded-l-full"}
+                className={styles.moveButton + " rounded-lg"}
               >
-                <ChevronLeft color="#FFFFFF99" size={16} />
+                <ChevronLeft color="white" size={16} />
               </Button>
               <Button
                 onPress={goToNextSlide}
                 size="sm"
                 isIconOnly
-                className={styles.moveButton + " rounded-r-full"}
+                className={styles.moveButton + " rounded-r-lg"}
               >
-                <ChevronRight color="#FFFFFF99" size={16} />
+                <ChevronRight color="white" size={16} />
               </Button>
             </>
           )}
           <a href={viewallLink || "#"} className={styles.view}>
-            {t("More")}
+            {t("More")} <ChevronRight color="white" size={16} />
           </a>
         </div>
       </div>

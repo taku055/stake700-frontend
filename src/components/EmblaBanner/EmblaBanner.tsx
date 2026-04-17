@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import EmblaCarousel, { EmblaCarouselType } from "embla-carousel";
 import "./embla.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -40,48 +40,73 @@ export const EmblaBanner = () => {
     };
   }, [isRTL]);
 
-  const scrollPrev = useCallback(() => {
-    emblaApi.current?.scrollPrev();
-  }, []);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const scrollNext = useCallback(() => {
-    emblaApi.current?.scrollNext();
-  }, []);
+  const slides = bannerState.value.filter((banner) => banner.size === (isMobile ? "sm" : "lg"));
+
+  useEffect(() => {
+    if (!viewportRef.current) return;
+
+    const api = EmblaCarousel(
+      viewportRef.current,
+      {
+        loop: true,
+        align: "center",
+        direction: isRTL ? "rtl" : "ltr",
+      },
+      [Autoplay({ delay: 5000, stopOnInteraction: false })]
+    );
+    emblaApi.current = api;
+
+    const onSelect = () => {
+      setSelectedIndex(api.selectedScrollSnap());
+    };
+    api.on("select", onSelect);
+    onSelect();
+
+    return () => {
+      api.destroy();
+    };
+  }, [isRTL, isMobile]);
 
   return (
     <div class="embla">
       <div class="embla__viewport" ref={viewportRef}>
         <div class="embla__container">
-          {bannerState.value
-            .filter((banner) => banner.size === (isMobile ? "sm" : "lg"))
-            .map((slide) => {
-              return (
-                <div key={slide.id} class="embla__slide relative">
-                  <img
-                    src={slide.img}
-                    className="w-full h-full object-cover [object-position:right_bottom]"
-                    alt={slide.buttonTitle || "Banner"}
-                  />
-                </div>
-              );
-            })}
+          {slides.map((slide) => {
+            return (
+              <div key={slide.id} class="embla__slide relative">
+                <img
+                  src={slide.img}
+                  className="w-full h-full object-cover [object-position:right_bottom]"
+                  alt={slide.buttonTitle || "Banner"}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
-
-      <button
-        type="button"
-        class="embla__button embla__button--prev items-center justify-center w-8 h-8 rounded-full text-[13px]"
-        onClick={scrollPrev}
-      >
-        <FaChevronLeft color="#ffffff" size={16} />
-      </button>
-      <button
-        type="button"
-        class="embla__button embla__button--next items-center justify-center w-8 h-8 rounded-full text-[13px]"
-        onClick={scrollNext}
-      >
-        <FaChevronRight color="#ffffff" size={16} />
-      </button>
+      <div class="flex justify-center items-center gap-3 mt-4">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            aria-label={`Go to slide ${idx + 1}`}
+            onClick={() => {
+              emblaApi.current?.scrollTo(idx);
+            }}
+            style={{ outline: 'none', border: 'none', padding: 0, margin: 0, background: 'none', cursor: 'pointer' }}
+          >
+            <span
+              className={
+                selectedIndex === idx
+                  ? "w-6 md:w-10 h-1.5 md:h-[9px] rounded-full bg-[#01A825] inline-block transition-all"
+                  : "w-6 md:w-10 h-1.5 md:h-[9px] rounded-full bg-white inline-block transition-all"
+              }
+            />
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

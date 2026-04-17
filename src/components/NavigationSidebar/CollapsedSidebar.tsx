@@ -63,47 +63,38 @@ export default function CollapsedSidebar({
             navigationSidebarExpandedState.value = true;
           }}
         >
-          <Menu
-            aria-hidden="true"
-            className={`w-[16px] h-[16px] duration-300 text-white transition-transform ${
-              isRTL ? "scale-x-[-1]" : ""
-            }`}
-          />
+          <img src={`/images/icons/menu.svg`} alt="Expand" className={`w-6 h-6 ${isRTL ? "scale-x-[-1]" : ""}`} />
         </button>
         <Link
           href="/"
-          className={`flex items-center rounded-[8px]  justify-center  min-w-[50px] min-h-[50px] ${
-            selectedTab === "casino"
-              ? "bg-[url('/buffer/active-casino-mini.svg')]"
-              : "bg-[url('/buffer/default-casino-mini.svg')]"
-          } hover:bg-[url('/buffer/active-casino-mini.svg')] bg-cover`}
+          className={`flex items-center rounded-[8px]  justify-center  min-w-[50px] min-h-[50px] ${selectedTab === "casino"
+            ? "bg-[url('/buffer/active-casino-mini.svg')]"
+            : "bg-[url('/buffer/default-casino-mini.svg')]"
+            } hover:bg-[url('/buffer/active-casino-mini.svg')] bg-cover`}
         >
           <img
             src={`${ASSET_BASE_URL}/images/icons/casino.png`}
             alt="casino"
-            className={`w-6 h-6 ${
-              selectedTab === "casino"
-                ? ""
-                : "brightness-80 hover:brightness-100"
-            }`}
+            className={`w-6 h-6 ${selectedTab === "casino"
+              ? ""
+              : "brightness-80 hover:brightness-100"
+              }`}
           />
         </Link>
         <Link
           href="/sports"
-          className={`flex items-center rounded-[8px] justify-center min-w-[50px] min-h-[50px]  ${
-            selectedTab === "sports"
-              ? "bg-[url('/buffer/active-sports-mini.svg')]"
-              : "bg-[url('/buffer/default-sports-mini.svg')]"
-          } hover:bg-[url('/buffer/active-sports-mini.svg')] bg-cover`}
+          className={`flex items-center rounded-[8px] justify-center min-w-[50px] min-h-[50px]  ${selectedTab === "sports"
+            ? "bg-[url('/buffer/active-sports-mini.svg')]"
+            : "bg-[url('/buffer/default-sports-mini.svg')]"
+            } hover:bg-[url('/buffer/active-sports-mini.svg')] bg-cover`}
         >
           <img
             src={`${ASSET_BASE_URL}/images/icons/sportsbook.png`}
             alt="sports"
-            className={`w-6 h-6 ${
-              selectedTab === "sports"
-                ? ""
-                : "brightness-80 hover:brightness-100"
-            }`}
+            className={`w-6 h-6 ${selectedTab === "sports"
+              ? ""
+              : "brightness-80 hover:brightness-100"
+              }`}
           />
         </Link>
       </div>
@@ -139,11 +130,10 @@ export default function CollapsedSidebar({
                 e.stopPropagation();
                 handleNavigate(modifyHref(item.href));
               }}
-              className={`flex items-center justify-center w-6 h-6 py-4 rounded-lg transition-colors ${
-                selectedMainNavKey === item.key
-                  ? "bg-[var(--bar-background-color-hover)] text-white"
-                  : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
-              }`}
+              className={`flex items-center justify-center w-6 h-6 py-4 rounded-lg transition-colors ${selectedMainNavKey === item.key
+                ? "bg-[var(--bar-background-color-hover)] text-white"
+                : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
+                }`}
               title={item.title}
             >
               {item.icon ? (
@@ -174,11 +164,10 @@ export default function CollapsedSidebar({
                 e.stopPropagation();
                 handleNavigate(modifyHref(item.href));
               }}
-              className={`flex items-center justify-center w-6 h-6 py-4 rounded-lg transition-colors ${
-                selectedMainNavKey === item.key
-                  ? "bg-[var(--bar-background-color-hover)] text-white"
-                  : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
-              }`}
+              className={`flex items-center justify-center w-6 h-6 py-4 rounded-lg transition-colors ${selectedMainNavKey === item.key
+                ? "bg-[var(--bar-background-color-hover)] text-white"
+                : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
+                }`}
               title={item.title}
             >
               {item.icon ? (
@@ -186,7 +175,7 @@ export default function CollapsedSidebar({
               ) : (
                 <img
                   src={
-                    item.navIcon || `${ASSET_BASE_URL}/images/icons/menu.png`
+                    item.navIcon || `${ASSET_BASE_URL}/images/icons/menu.svg`
                   }
                   alt={item.title}
                   className="w-6 h-6 flex-shrink-0 object-contain"

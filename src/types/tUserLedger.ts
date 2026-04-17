@@ -43,6 +43,7 @@ export interface tLedgerPromotion {
   validDays: string[];
   eligibility: string;
   available: boolean;
+  imageUrl: string;
 }
 
 export interface WageringProgress {

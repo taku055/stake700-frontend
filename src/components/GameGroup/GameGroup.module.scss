@@ -1,4 +1,4 @@
-@use "/src/styles/mixins" as *;
+@use "/src/styles/mixins"as *;
 
 .gameGroup {
   display: flex;
@@ -52,13 +52,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--bar-background-secondary);
-        height: 100%;
-        width: 58px;
-        min-width: 0;
-        padding: 11px 19px;
+        background: #36302B;
+        padding: 5.5px 7.5px;
         color: #FFFFFF55;
-        border: 1px solid #ffffff55;
 
         &:disabled {
           color: #FFFFFF22;
@@ -75,24 +71,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50px;;
-        color: #FFFFFF55;
+        border-radius: 8px;
+        background: #36302B;
+        color: white;
         font-family: Roboto;
         font-size: 12px;
         font-weight: 600;
         line-height: 12px;
         text-align: left;
-        background: var(--bar-background-secondary);
         width: max-content;
-        height: 100%;
-        border: 1px solid #ffffff55;
-        padding: 11px 19px;
+        padding: 10px;
+        margin-left: 10px;
       }
     }
   }
 
   .games {
     width: 100%;
+
     .game {
       width: 136px;
       height: 182px;
@@ -101,7 +97,7 @@
         width: unset;
         height: unset;
       }
-      
+
       @include for-mobile-landscape-only {
         width: 120px;
         height: 120px;

@@ -5,7 +5,6 @@ import { tGame } from "@/types/tGame";
 import Loader from "../../components/Loader";
 import EmulateBetting from "@/components/EmulateBetting";
 import ProviderGroup from "@/components/ProviderGroup";
-import GameGroup from "@/components/GameGroup";
 
 interface IGamePageComponentProps {
   gameId: string;
