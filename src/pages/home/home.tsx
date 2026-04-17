@@ -39,7 +39,7 @@ export default function PageComponent() {
         <EmblaBanner />
       </div>
 
-      <div className="flex flex-col max-w-[1200px] w-full gap-6">
+      <div className="flex flex-col w-full gap-6">
         <SearchWidget />
         <GameGroup
           title="Trending Games"

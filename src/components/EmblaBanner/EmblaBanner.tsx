@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import EmblaCarousel, { EmblaCarouselType } from "embla-carousel";
 import "./embla.css";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Autoplay from "embla-carousel-autoplay";
 import {
   mobilePortraitMediaQuery,
@@ -21,25 +20,6 @@ export const EmblaBanner = () => {
     setIsRTL(RTL_LANGUAGES.includes(localeState.value));
   }, [localeState.value]);
 
-  useEffect(() => {
-    if (!viewportRef.current) return;
-
-    const api = EmblaCarousel(
-      viewportRef.current,
-      {
-        loop: true,
-        align: "center",
-        direction: isRTL ? "rtl" : "ltr",
-      },
-      [Autoplay({ delay: 5000, stopOnInteraction: false })]
-    );
-    emblaApi.current = api;
-
-    return () => {
-      api.destroy();
-    };
-  }, [isRTL]);
-
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const slides = bannerState.value.filter((banner) => banner.size === (isMobile ? "sm" : "lg"));
@@ -51,7 +31,7 @@ export const EmblaBanner = () => {
       viewportRef.current,
       {
         loop: true,
-        align: "center",
+        align: "start",
         direction: isRTL ? "rtl" : "ltr",
       },
       [Autoplay({ delay: 5000, stopOnInteraction: false })]

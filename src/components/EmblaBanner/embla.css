@@ -12,7 +12,12 @@
   display: flex;
   padding: 30px 0px 30px 0px;
   height: 100%;
-  
+}
+
+@media (min-width: 1024px) {
+  .embla__container {
+    gap: 18px;
+  }
 }
 
 .embla__container_matche {
@@ -20,7 +25,9 @@
 }
 
 .embla__slide {
+  /* Mobile: one banner per view */
   flex: 0 0 100%;
+  min-width: 0;
   max-width: 1200px;
   /* background-image: url("https://tekio.s3.eu-north-1.amazonaws.com/sportsbook/assets/images/banner/imgi_66_soccer.png"); */
   background-size: cover;
@@ -29,13 +36,22 @@
   overflow: hidden;
   max-height: 418px;
   justify-content: center;
-  margin: 0 18px 18px 0;
-  @media (max-width: 768px) {
-    flex: 0 0 90%;
-    /* height: 178px; */
+  margin: 0 0 18px 0;
+}
+
+@media (max-width: 1023px) {
+  .embla__slide {
     height: 100%;
-    margin: 0 8px 8px 0;
+    margin: 0 0 8px 0;
     justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop: three banners visible */
+  .embla__slide {
+    flex: 0 0 calc((100% - 36px) / 3);
+    max-width: none;
   }
 }
 

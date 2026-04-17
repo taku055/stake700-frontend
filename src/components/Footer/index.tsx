@@ -40,7 +40,7 @@ export const Footer = () => {
         ))}
       </div>
       <div
-        className={`max-w-[1200px] px-4 md:px-0 overflow-x-hidden scrollbar-hide mx-auto gap-[32px] flex flex-col items-center${
+        className={`px-4 md:px-0 overflow-x-hidden scrollbar-hide mx-auto gap-[32px] flex flex-col items-center${
           isRTL ? "text-right" : "text-left"
         }`}
         dir={isRTL ? "rtl" : "ltr"}
