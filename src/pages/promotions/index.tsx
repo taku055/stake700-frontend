@@ -150,7 +150,7 @@ export default function PromoPage() {
                 <div key={promo.id} className="overflow-hidden max-w-[561px] mx-auto shadow-lg">
                   <div className="w-full">
                     <img
-                      src={promo.imageUrl || "/public/images/new-promo.svg"}
+                      src={promo.imageUrl || "/images/new-promo.svg"}
                       alt="Promo"
                       className="w-full h-full object-contain block"
                     />
