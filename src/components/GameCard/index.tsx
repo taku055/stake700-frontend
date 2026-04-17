@@ -100,7 +100,8 @@ export default function GameCard({ data, onClick }: GameCardProps) {
 
   const imgSrc = imgError
     ? placeholderGameImage
-    : data.img_custom || data.img_vertical || data.img || placeholderGameImage;
+    // : data.img_custom || data.img_vertical || data.img || placeholderGameImage;
+    : data.img || placeholderGameImage;
 
   return (
     <div
