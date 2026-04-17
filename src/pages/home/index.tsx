@@ -10,6 +10,9 @@ import { Link } from "@/components/common";
 import { EmblaBanner } from "@/components/EmblaBanner/EmblaBanner";
 import ContentWrapper from "@/provider/ContentWrapper.tsx";
 import { userState } from "@/state/userState.ts";
+import TopGamesGroup from "@/components/TopGamesGroup/index.tsx";
+import TrendingGamesGroup from "@/components/TrendingGamesGroup/index.tsx";
+import Megaways from "@/components/Megaways/index.tsx";
 
 export default function HomePage() {
   const location = useLocation();
@@ -43,11 +46,10 @@ export default function HomePage() {
               <Link
                 href={`/?category=${category.category}`}
                 key={category.key}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors flex-shrink-0 ${
-                  activeCategory === category.category
-                    ? "bg-[var(--background-secondary)] text-white"
-                    : "text-[var(--text-color)] hover:bg-[var(--background-secondary)]"
-                }`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors flex-shrink-0 ${activeCategory === category.category
+                  ? "bg-[var(--background-secondary)] text-white"
+                  : "text-[var(--text-color)] hover:bg-[var(--background-secondary)]"
+                  }`}
               >
                 <img
                   src={category.icon}
@@ -64,23 +66,62 @@ export default function HomePage() {
         {activeCategory === "" ? (
           <div className="flex flex-col gap-4">
             {HOME_CATEGORIES.filter((category) => category.category !== "").map(
-              (category) => (
-                <GameGroup
-                  key={category.key}
-                  category={category.category}
-                  title={t(category.name) || category.name}
-                  isCustom={category.provider ? false : true}
-                  provider={category.provider}
-                  viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
-                />
-              )
+              (category) => {
+                if (category.category == 'top-games') {
+                  return (
+                    <TopGamesGroup
+                      key={category.key}
+                      category={category.category}
+                      title={t(category.name) || category.name}
+                      isCustom={category.provider ? false : true}
+                      provider={category.provider}
+                      viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
+                    />
+                  )
+                }
+                if (category.category == 'trending') {
+                  return (
+                    <TrendingGamesGroup
+                      key={category.key}
+                      category={category.category}
+                      title={t(category.name) || category.name}
+                      isCustom={category.provider ? false : true}
+                      provider={category.provider}
+                      viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
+                    />
+                  )
+                }
+                if (category.category == 'megaways') {
+                  return (
+                    <Megaways
+                      key={category.key}
+                      category={category.category}
+                      title={t(category.name) || category.name}
+                      isCustom={category.provider ? false : true}
+                      provider={category.provider}
+                      viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
+                    />
+                  )
+                }
+
+                return (
+                  <GameGroup
+                    key={category.key}
+                    category={category.category}
+                    title={t(category.name) || category.name}
+                    isCustom={category.provider ? false : true}
+                    provider={category.provider}
+                    viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
+                  />)
+              }
+
+
             )}
           </div>
         ) : (
           <div
-            className={`w-full flex ${
-              isMobile ? "flex-col" : "flex-row"
-            } gap-6`}
+            className={`w-full flex ${isMobile ? "flex-col" : "flex-row"
+              } gap-6`}
           >
             <CasinoGameGrid
               isCustom={activeCategory === "pragmatic" ? false : true}

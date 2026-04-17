@@ -90,9 +90,8 @@ export default function ExpandedDrawer({
   return (
     <div className="relative inset-0 z-100 h-full overflow-y-auto scrollbar-hide w-[260px] overflow-x-hidden px-[16px] pb-[60px]">
       <div
-        className={`fixed ${
-          isRTL ? "right-0" : "left-0"
-        } top-0 z-5500 flex bg-[var(--sidebar-background)] w-[260px] h-[60px] items-center`}
+        className={`fixed ${isRTL ? "right-0" : "left-0"
+          } top-0 z-5500 flex bg-[var(--sidebar-background)] w-[260px] h-[60px] items-center`}
       >
         <div className="flex bg-[#ffffff02] w-full h-full px-[16px] items-center justify-between">
           <button
@@ -101,32 +100,25 @@ export default function ExpandedDrawer({
               navigationSidebarExpandedState.value = false;
             }}
           >
-            <Menu
-              aria-hidden="true"
-              className={`w-[16px] h-[16px] duration-300 text-white transition-transform ${
-                isRTL ? "scale-x-[-1]" : ""
-              }`}
-            />
+            <img src={`/images/icons/menu.svg`} alt="Expand" className={`w-6 h-6 ${isRTL ? "scale-x-[-1]" : ""}`} />
           </button>
           {/* Casino Button */}
           <Link
             href="/"
-            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${
-              selectedTab === "casino"
+            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "casino"
                 ? "bg-[url('/buffer/active-casino.svg')]"
                 : "bg-[url('/images/icons/icons/default-casino.svg')]"
-            } hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
+              } hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
           >
             <span className="text-white text-[14px]">{t("Casino")}</span>
           </Link>
           {/* Sports Button */}
           <Link
             href="/sports"
-            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${
-              selectedTab === "sports"
+            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "sports"
                 ? "bg-[url('/buffer/active-sports.svg')]"
                 : "bg-[url('/images/icons/icons/default-sports.svg')]"
-            } hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
+              } hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
           >
             <span className="text-white text-[14px]">{t("Sports")}</span>
           </Link>
@@ -135,9 +127,8 @@ export default function ExpandedDrawer({
 
       {/* Panel */}
       <div
-        className={`sticky inset-y-0 rounded-[10px] mt-[60px] ${
-          isRTL ? "right-0" : "left-0"
-        } bg-[var(--background-secondary)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform`}
+        className={`sticky inset-y-0 rounded-[10px] mt-[60px] ${isRTL ? "right-0" : "left-0"
+          } bg-[var(--background-secondary)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Content */}
@@ -165,11 +156,10 @@ export default function ExpandedDrawer({
                           [item.key]: !prev[item.key],
                         }));
                       }}
-                      className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${
-                        selectedMainNavKey === item.key
+                      className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
                           : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                      }`}
+                        }`}
                     >
                       {renderItem(item)}
                       <span className="flex-1">{item.title}</span>
@@ -194,11 +184,10 @@ export default function ExpandedDrawer({
                         item.onclick?.();
                         handleNavigate(item.href || "");
                       }}
-                      className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${
-                        selectedMainNavKey === item.key
+                      className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
                           : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                      }`}
+                        }`}
                     >
                       {renderItem(item)}
                       <span>{item.title}</span>
@@ -255,11 +244,10 @@ export default function ExpandedDrawer({
                           [item.key]: !prev[item.key],
                         }));
                       }}
-                      className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${
-                        selectedMainNavKey === item.key
+                      className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
                           : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                      }`}
+                        }`}
                     >
                       {item.icon ? (
                         item.icon
@@ -297,11 +285,10 @@ export default function ExpandedDrawer({
                         item.onclick?.();
                         handleNavigate(modifyHref(item.href || ""));
                       }}
-                      className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${
-                        selectedMainNavKey === item.key
+                      className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
                           ? "bg-[var(--background-btn-hover)] text-white"
                           : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                      }`}
+                        }`}
                     >
                       {item.icon ? (
                         item.icon
@@ -361,11 +348,10 @@ export default function ExpandedDrawer({
                               window.localStorage.setItem("locale", lang.value);
                               isExpanded[item.key] = false;
                             }}
-                            className={`flex items-center ${
-                              localeState.value === lang.value
+                            className={`flex items-center ${localeState.value === lang.value
                                 ? "bg-[var(--background-btn-hover)] text-white"
                                 : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                            } gap-3 px-3 py-2 transition-colors w-full text-left`}
+                              } gap-3 px-3 py-2 transition-colors w-full text-left`}
                           >
                             <span className={`fi fi-${lang.flag}`}></span>
                             <span className="flex-1 text-sm">{lang.label}</span>
