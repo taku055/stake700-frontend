@@ -18,9 +18,9 @@ const DepositPage = ({ bonusId }: DepositPageProps) => {
       </div>
       <div className="flex flex-col w-full py-5 gap-5">
         <Tabs aria-label="Deposit methods">
-          <Tab key="card" title={t("Card")}>
+          {/* <Tab key="card" title={t("Card")}>
             <AriesDeposit bonusId={bonusId} />
-          </Tab>
+          </Tab> */}
           <Tab key="crypto" title={t("Crypto")}>
             <DepositPanel />
           </Tab>
