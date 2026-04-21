@@ -66,7 +66,7 @@ export const EmblaBanner = () => {
           })}
         </div>
       </div>
-      <div class="flex justify-center items-center gap-3 mt-4">
+      <div class="flex justify-center items-center gap-[6px] ">
         {slides.map((_, idx) => (
           <button
             key={idx}
@@ -80,8 +80,8 @@ export const EmblaBanner = () => {
             <span
               className={
                 selectedIndex === idx
-                  ? "w-6 md:w-10 h-1.5 md:h-[9px] rounded-full bg-[#01A825] inline-block transition-all"
-                  : "w-6 md:w-10 h-1.5 md:h-[9px] rounded-full bg-white inline-block transition-all"
+                  ? "w-5 md:w-10 h-[4px] rounded-sm bg-white inline-block transition-all duration-300"
+                  : "w-5 md:w-10 h-[4px] rounded-sm bg-white/30 inline-block transition-all duration-300"
               }
             />
           </button>

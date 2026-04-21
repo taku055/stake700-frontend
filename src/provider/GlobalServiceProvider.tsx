@@ -427,15 +427,17 @@ export default function GlobalServiceProvider({
             i18nDefinitions[localeState.value as keyof typeof i18nDefinitions]
           }
         >
-          <div className="flex max-h-dvh flex-col p-0 md:flex-row md:h-screen">
-            <NavigationSidebar />
-            <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
-              <Header />
-              <div className="flex-1 overflow-y-auto h-full max-h-full overflow-x-hidden md:pr-0 body-content">
-                {children}
-                <Footer />
+          <div className="flex flex-col max-h-dvh md:h-screen">
+            <Header />
+            <div className="flex flex-1 min-h-0 overflow-hidden">
+              <NavigationSidebar />
+              <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+                <div className="flex-1 overflow-y-auto h-full max-h-full overflow-x-hidden md:pr-0 body-content">
+                  {children}
+                  <Footer />
+                </div>
+                <FooterNav />
               </div>
-              <FooterNav />
             </div>
           </div>
 

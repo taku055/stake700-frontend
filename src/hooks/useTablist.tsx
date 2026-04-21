@@ -38,118 +38,82 @@ export const useTablist = () => {
     if (!userState.value?.isAgent) {
       return [
         {
-          title: t("Live"),
-          href: "/live?sportsBookPath=%2Flive",
-          key: "live",
-          icon: (
-            <img
-              src={`${ASSET_BASE_URL}/images/icons/live-icon.svg`}
-              alt="Live"
-              className="w-[24px] h-[24px]"
-            />
-          ),
-          navIcon: getNavIcon("live"),
-        },
-        {
-          title: t("Sports"),
-          href: "/sport",
-          key: "sport",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/sport-icon.svg`} alt="Sport" />,
-          navIcon: getNavIcon("sport"),
-        },
-        {
-          title: t("Casino"),
-          key: "slots",
-          extra: ["/casino"],
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/slot-icon.svg`} alt="Slot" />,
-          navIcon: getNavIcon("slots"),
-        },
-        {
-          title: t("Live Casino"),
-          key: "live-casino",
-          icon: (
-            <img src={`${ASSET_BASE_URL}/images/icons/livecasino-icon.svg`} alt="Live Casino" />
-          ),
-          navIcon: getNavIcon("live-casino"),
-        },
-        {
-          title: t("Games"),
-          href: "/casino/games",
-          key: "games",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/games-icon.svg`} alt="Games" />,
-          navIcon: getNavIcon("games"),
-        },
-        {
-          title: t("Live Racing"),
-          href: "/casino/live-racing?sportsBookPath=/horse-racing",
-          key: "live-racing",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/live-racing.svg`} alt="Live Racing" />,
-          navIcon: getNavIcon("live-racing"),
-        },
-        {
-          title: t("Virtual Sports"),
-          href: "/casino/virtual-sports",
-          key: "virtual-sports",
-          icon: (
-            <img
-              src={`${ASSET_BASE_URL}/images/icons/virtualsports-icon.svg`}
-              alt="Virtual Sports"
-            />
-          ),
-          navIcon: getNavIcon("virtual-sports"),
-        },
-        {
-          title: t("Jackpot"),
-          href: "/casino/jackpot",
-          key: "jackpot",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/jackpot-icon.svg`} alt="Jackpot" />,
-          navIcon: getNavIcon("jackpot"),
-        },
-        {
-          title: t("TV Games"),
-          href: "/casino/tv-games",
-          key: "tv-games",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/tv-games.svg`} alt="TV Games" />,
-          navIcon: getNavIcon("tv-games"),
-        },
-        {
-          title: t("Trebuchet"),
-          href: "/trebuchet",
-          key: "trebuchet",
-          icon: <img src={`${ASSET_BASE_URL}/images/icons/trebuchet.svg`} alt="Trebuchet" />,
-          navIcon: getNavIcon("trebuchet"),
+          title: t("Home"),
+          href: "/",
+          key: "home",
+          navIcon: "/images/sidebar/home.png",
         },
         {
           title: t("Promotions"),
           href: "/promotions",
           key: "promotions",
-          icon: (
-            <Gift aria-hidden="true" className="w-[20px] h-[20px]" />
-          ),
-          navIcon: getNavIcon("promotions"),
+          navIcon: "/images/sidebar/promotions.png",
         },
         {
-          title: t("Responsible Gambling") || "Responsible Gambling",
-          href: "/support/responsible-gambling",
-          key: "responsible-gambling",
-          icon: <Shield aria-hidden="true" className="w-[20px] h-[20px]" />,
-          navIcon: getNavIcon("responsible-gambling"),
+          title: "Missions",
+          href: "/missions",
+          key: "missions",
+          navIcon: "/images/sidebar/missions.png",
         },
         {
-          title: t("Live Support") || "Live Support",
-          key: "live-support",
-          icon: <Headphones aria-hidden="true" className="w-[20px] h-[20px]" />,
-          navIcon: getNavIcon("live-support"),
-          onclick: () => {
-            liveSupportExpandedState.value = !liveSupportExpandedState.value;
-          },
+          title: t("Casino"),
+          key: "slots",
+          navIcon: "/images/sidebar/casino.png",
+          expandable: true,
+          expandableItems: [
+            { title: "Lobby", href: "/casino", icon: "/images/category_logo/lobby.png" },
+            { title: "Top", href: "/casino/top", icon: "/images/category_logo/top.png" },
+            { title: "New", href: "/casino/new", icon: "/images/category_logo/new.png" },
+            { title: "Popular", href: "/casino/popular", icon: "/images/category_logo/popular.png" },
+            { title: "Jackpots", href: "/casino/jackpots", icon: "/images/category_logo/jackpots.png" },
+            { title: "Megaways", href: "/casino/megaways", icon: "/images/category_logo/megaways.png" },
+            { title: "Buy Bonus", href: "/casino/buy-bonus", icon: "/images/category_logo/buy-bonus.png" },
+          ],
+        },
+        {
+          title: t("Live Casino"),
+          key: "live-casino",
+          navIcon: "/images/sidebar/live-casino.png",
+          expandable: true,
+          expandableItems: [
+            { title: "Lobby", href: "/live-casino", icon: "/images/category_logo/lobby.png" },
+            { title: "Top Live Games", href: "/live-casino/top", icon: "/images/category_logo/top-live-games.png" },
+            { title: "Roulette", href: "/live-casino/roulette", icon: "/images/category_logo/roulette.png" },
+            { title: "Blackjack", href: "/live-casino/blackjack", icon: "/images/category_logo/blackjack.png" },
+            { title: "Baccarat", href: "/live-casino/baccarat", icon: "/images/category_logo/baccarat.png" },
+            { title: "Shows", href: "/live-casino/shows", icon: "/images/category_logo/shows.png" },
+          ],
+        },
+        {
+          title: "Evolution Live",
+          href: "/live-casino/evolution",
+          key: "evolution-live",
+          navIcon: "/images/sidebar/evolution-live.png",
+        },
+        {
+          title: "Playtech Live",
+          href: "/live-casino/playtech",
+          key: "playtech-live",
+          navIcon: "/images/sidebar/playtech-live.png",
+        },
+        {
+          title: t("Table Games"),
+          href: "/live-casino/table-games",
+          key: "table-games",
+          navIcon: "/images/sidebar/table-games.png",
+        },
+        {
+          title: t("Jackpots"),
+          href: "/casino/jackpots",
+          key: "jackpots",
+          navIcon: "/images/category_logo/jackpots.png",
         },
         {
           title: t("Language") || "Language",
           href: "#",
           key: "language",
-          icon: <Globe aria-hidden="true" className="w-[20px] h-[20px]" />,
-          navIcon: getNavIcon("language"),
+          // icon: <Globe aria-hidden="true" className="w-5 h-5" />,
+          navIcon: "/images/sidebar/language.png",
           expandable: true,
         },
       ];

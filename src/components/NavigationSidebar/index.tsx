@@ -3,7 +3,6 @@ import { mobileMediaQuery } from "@/config/constants";
 import { useMemo, useState, useEffect } from "preact/hooks";
 import {
   navigationSidebarExpandedState,
-  navigationSidebarOpenState,
 } from "@/state/navigationSidebarState";
 import { useLocation } from "preact-iso";
 import { useTablist } from "@/hooks/useTablist";
@@ -35,7 +34,6 @@ export default function NavigationSidebar() {
   const [isExpanded, setIsExpanded] = useState(
     navigationSidebarExpandedState.value
   );
-  const [isOpen, setIsOpen] = useState(navigationSidebarOpenState.value);
   const { tabList } = useTablist();
   const location = useLocation();
   const hideSidebar = useMemo(
@@ -56,21 +54,17 @@ export default function NavigationSidebar() {
         setIsExpanded(value);
       }
     );
-    const unsubscribeOpen = navigationSidebarOpenState.subscribe((value) => {
-      setIsOpen(value);
-    });
 
     return () => {
       unsubscribeExpanded();
-      unsubscribeOpen();
     };
   }, [isMobile]);
 
-  // Filter main navigation items (Casino, Live Casino, Sports, etc.)
+  // Filter main navigation items
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["promotions", "affiliate", "vip-club", "blog", "forum"].includes(
+        ["home", "promotions", "missions", "slots", "live-casino", "evolution-live", "playtech-live", "table-games", "jackpots"].includes(
           item.key
         )
       )
@@ -83,8 +77,7 @@ export default function NavigationSidebar() {
           navIcon: item.navIcon,
           onclick: item.onclick,
           expandable: item.expandable,
-          // expandableItems: item.expandableItems || [],
-          expandableItems: [],
+          expandableItems: item.expandableItems || [],
         };
       });
   }, [tabList]);
@@ -107,9 +100,6 @@ export default function NavigationSidebar() {
     return tabList
       .filter((item) =>
         [
-          "sponsorships",
-          "responsible-gambling",
-          "live-support",
           "language",
         ].includes(item.key)
       )
@@ -122,8 +112,7 @@ export default function NavigationSidebar() {
         onclick: item.onclick,
         pageType: undefined,
         expandable: item.expandable,
-        expandableItems: [],
-        // expandableItems: item.expandableItems || [],
+        expandableItems: item.expandableItems || [],
       }));
   }, [tabList]);
 
@@ -131,17 +120,12 @@ export default function NavigationSidebar() {
   const selectedMainNav = useMemo(() => {
     return mainNavItems.find((item) => {
       const path = location.path.split("?")[0];
-      if (item.key === "slots") {
-        return path.startsWith("/casino/slots");
-      } else if (item.key === "live-casino") {
-        return path.startsWith("/live-casino");
-      } else if (item.key === "sport") {
-        return path.startsWith("/sport");
-      } else if (item.key === "promotions") {
-        return path.startsWith("/promotions");
-      } else if (item.key === "live") {
-        return path.startsWith("/live");
-      }
+      if (item.key === "home") return path === "/" || path === "";
+      if (item.key === "slots") return path.startsWith("/casino");
+      if (item.key === "live-casino") return path.startsWith("/live-casino");
+      if (item.key === "promotions") return path.startsWith("/promotions");
+      if (item.key === "missions") return path.startsWith("/missions");
+      if (item.href) return path.startsWith(item.href.split("?")[0]);
       return false;
     });
   }, [mainNavItems, location.path]);
@@ -167,7 +151,7 @@ export default function NavigationSidebar() {
   return (
     <>
       <div className="bg-[var(--bar-background-color)] relative top-0 p-0 m-0">
-        {navigationSidebarExpandedState.value && selectedTab === "casino" ? (
+        {navigationSidebarExpandedState.value ? (
           <ExpandedDrawer
             mainNavItems={mainNavItems}
             ExtraNavItems={ExtraNavItems}

@@ -13,6 +13,7 @@ import { userState } from "@/state/userState.ts";
 import TopGamesGroup from "@/components/TopGamesGroup/index.tsx";
 import TrendingGamesGroup from "@/components/TrendingGamesGroup/index.tsx";
 import Megaways from "@/components/Megaways/index.tsx";
+import { searchWidgetState } from "@/state/searchWidgetState";
 
 export default function HomePage() {
   const location = useLocation();
@@ -40,23 +41,34 @@ export default function HomePage() {
     <>
       <EmblaBanner />
       <ContentWrapper>
-        <div className="flex flex-col gap-4 mt-[20px] overflow-x-auto mb-4 scrollbar-hide bg-[var(--bar-background-color)] rounded-full">
-          <div className="flex gap-2 p-2">
+        <div className="flex justify-center overflow-x-auto scrollbar-hide mb-4 mt-4">
+          <div className="flex gap-1 min-w-max">
+            {/* Search */}
+            <button
+              type="button"
+              onClick={() => (searchWidgetState.value = !searchWidgetState.value)}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-sm font-medium text-[#aaaaaa] hover:text-white hover:bg-[#1e1e1e]"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#FFD700]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              Search
+            </button>
             {HOME_CATEGORIES.map((category) => (
               <Link
                 href={`/?category=${category.category}`}
                 key={category.key}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors flex-shrink-0 ${activeCategory === category.category
-                  ? "bg-[var(--background-secondary)] text-white"
-                  : "text-[var(--text-color)] hover:bg-[var(--background-secondary)]"
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-sm font-medium ${activeCategory === category.category
+                    ? "bg-[#2a2a2a] text-white"
+                    : "text-[#aaaaaa] hover:text-white hover:bg-[#1e1e1e]"
                   }`}
               >
                 <img
                   src={category.icon}
                   alt={category.name}
-                  className="w-4 h-4 grayscale object-contain"
+                  className="w-4 h-4 object-contain"
                 />
-                {t(category.name)}
+                {category.name}
               </Link>
             ))}
           </div>

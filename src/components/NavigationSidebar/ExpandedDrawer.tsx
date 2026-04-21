@@ -1,5 +1,5 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ChevronUp, ChevronDown, Menu } from "lucide-preact";
+import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-preact";
 import { Link } from "../common";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
@@ -62,309 +62,156 @@ export default function ExpandedDrawer({
   const casinoCategoriesWithCounts = sidebarDataState.value;
   const selectedTab = useSelectedTab();
 
-  // Filter main nav items for top section (Casino, Live Casino, Sportsbook)
-  const topNavItems = useMemo(() => {
-    return mainNavItems;
-  }, [mainNavItems]);
+  const topNavItems = useMemo(() => mainNavItems, [mainNavItems]);
 
   const currentCategories = useMemo(() => {
     return selectedTab === "casino" ? casinoCategoriesWithCounts : [];
   }, [selectedTab, casinoCategoriesWithCounts]);
 
-  const renderItem = (item: {
-    icon?: any;
-    navIcon?: string;
-    title: string;
-  }) => {
-    return item.icon ? (
+  const renderIcon = (item: { icon?: any; navIcon?: string; title: string }) =>
+    item.icon ? (
       item.icon
     ) : (
       <img
         src={item.navIcon || `${ASSET_BASE_URL}/images/icons/casino.svg`}
         alt={item.title}
-        className="w-6 h-6 flex-shrink-0 object-contain"
+        className="w-6 h-6 shrink-0 object-contain"
       />
     );
-  };
+
+  const itemCard = (active: boolean) =>
+    `flex items-center gap-3 px-4 py-[13px] rounded-xl transition-colors w-full text-left ${active
+      ? "bg-[var(--sidebar-card-active)] text-white"
+      : "bg-[var(--sidebar-card-bg)] text-white hover:bg-[var(--sidebar-card-hover)]"
+    }`;
 
   return (
-    <div className="relative inset-0 z-100 h-full overflow-y-auto scrollbar-hide w-[260px] overflow-x-hidden px-[16px] pb-[60px]">
-      <div
-        className={`fixed ${isRTL ? "right-0" : "left-0"
-          } top-0 z-5500 flex bg-[var(--sidebar-background)] w-[260px] h-[60px] items-center`}
-      >
-        <div className="flex bg-[#ffffff02] w-full h-full px-[16px] items-center justify-between">
-          <button
-            className={`rounded-full h-full p-2 ratio-1/1 flex items-center justify-center`}
-            onClick={() => {
-              navigationSidebarExpandedState.value = false;
-            }}
-          >
-            <img src={`/images/icons/menu.svg`} alt="Expand" className={`w-6 h-6 ${isRTL ? "scale-x-[-1]" : ""}`} />
-          </button>
-          {/* Casino Button */}
-          <Link
-            href="/"
-            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "casino"
-                ? "bg-[url('/buffer/active-casino.svg')]"
-                : "bg-[url('/images/icons/icons/default-casino.svg')]"
-              } hover:bg-[url('/buffer/active-casino.svg')] bg-cover`}
-          >
-            <span className="text-white text-[14px]">{t("Casino")}</span>
-          </Link>
-          {/* Sports Button */}
-          <Link
-            href="/sports"
-            className={`flex items-center rounded-[8px] justify-center w-[88px] h-[40px] ${selectedTab === "sports"
-                ? "bg-[url('/buffer/active-sports.svg')]"
-                : "bg-[url('/images/icons/icons/default-sports.svg')]"
-              } hover:bg-[url('/buffer/active-sports.svg')] bg-cover`}
-          >
-            <span className="text-white text-[14px]">{t("Sports")}</span>
-          </Link>
-        </div>
-      </div>
+    <div
+      className={`relative z-100 h-full overflow-y-auto scrollbar-hide w-65 overflow-x-hidden bg-(--sidebar-background) pb-15`}
+    >
+      {/* Nav content */}
+      <div className="px-3 flex flex-col gap-2 pt-3">
+        {/* Main nav items */}
+        {topNavItems.map((item) => (
+          <div key={item.key} className="flex flex-col">
+            {item.expandable ? (
+              <div className="rounded-xl bg-(--sidebar-card-bg) overflow-hidden">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsExpanded((prev) => ({ ...prev, [item.key]: !prev[item.key] }));
+                  }}
+                  className="flex items-center gap-3 px-4 py-[13px] w-full text-left text-white hover:bg-(--sidebar-card-hover) transition-colors"
+                >
+                  {renderIcon(item)}
+                  <span className="flex-1 text-sm font-medium">{item.title}</span>
+                  {isExpanded[item.key]
+                    ? <div className="w-7 h-7 flex items-center justify-center rounded-lg bg-(--sidebar-card-hover) shrink-0"><ChevronUp size={14} className="text-[#8a8070]" /></div>
+                    : <div className="w-7 h-7 flex items-center justify-center rounded-lg bg-(--sidebar-card-hover) shrink-0"><ChevronDown size={14} className="text-[#8a8070]" /></div>}
+                </button>
 
-      {/* Panel */}
-      <div
-        className={`sticky inset-y-0 rounded-[10px] mt-[60px] ${isRTL ? "right-0" : "left-0"
-          } bg-[var(--background-secondary)] shadow-2xl flex flex-col transition-transform duration-300 ease-out will-change-transform`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Content */}
-        <div className="flex-1 overflow-y-auto sidebar-scrollbar pb-6">
-          {/* Top Navigation Items (Casino, Live Casino, Sportsbook) */}
-
-          <div className="flex flex-col gap-2 pt-4">
-            {/* Categories Section - Always shown */}
-            {selectedTab === "casino" && (
-              <CategoryItems
-                categories={currentCategories}
-                title={selectedMainNavTitle || t("Categories")}
-              />
+                {/* Sub-items */}
+                {isExpanded[item.key] && item.key !== "language" && (
+                  <div className="flex flex-col border-t border-dashed border-[#8a807040]">
+                    {item.expandableItems?.map((subItem, index) => (
+                      <Link
+                        key={index}
+                        href={modifyHref(subItem.href || "")}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleNavigate(modifyHref(subItem.href || ""));
+                        }}
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-(--sidebar-card-hover) transition-colors text-white"
+                      >
+                        <img src={subItem.icon} alt={subItem.title} className="w-5 h-5 shrink-0 object-contain" />
+                        <span className="flex-1 text-sm">{subItem.title}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  item.onclick?.();
+                  handleNavigate(item.href || "");
+                }}
+                className={itemCard(selectedMainNavKey === item.key)}
+              >
+                {renderIcon(item)}
+                <span className="text-sm font-medium">{item.title}</span>
+              </button>
             )}
-            {topNavItems.map((item) => {
-              return (
-                <div key={item.key} className="flex flex-col">
-                  {item.expandable ? (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setIsExpanded((prev) => ({
-                          ...prev,
-                          [item.key]: !prev[item.key],
-                        }));
-                      }}
-                      className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${selectedMainNavKey === item.key
-                          ? "bg-[var(--background-btn-hover)] text-white"
-                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                        }`}
-                    >
-                      {renderItem(item)}
-                      <span className="flex-1">{item.title}</span>
-                      {isExpanded[item.key] ? (
-                        <ChevronUp
-                          size={16}
-                          className="transition-transform duration-200"
-                        />
-                      ) : (
-                        <ChevronDown
-                          size={16}
-                          className="transition-transform duration-200"
-                        />
-                      )}
-                    </button>
-                  ) : (
-                    <button
-                      // href={modifyHref(item.href)}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        item.onclick?.();
-                        handleNavigate(item.href || "");
-                      }}
-                      className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
-                          ? "bg-[var(--background-btn-hover)] text-white"
-                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                        }`}
-                    >
-                      {renderItem(item)}
-                      <span>{item.title}</span>
-                    </button>
-                  )}
-
-                  {/* Expandable Sub-items */}
-                  {item.expandable &&
-                    isExpanded[item.key] &&
-                    item.key !== "language" && (
-                      <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
-                        {item.expandableItems?.map((subItem, index) => (
-                          <Link
-                            key={index}
-                            href={modifyHref(subItem.href || "")}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              handleNavigate(modifyHref(subItem.href || ""));
-                            }}
-                            className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                          >
-                            <img
-                              src={subItem.icon}
-                              alt={subItem.title}
-                              className="w-5 h-5 flex-shrink-0 object-contain"
-                            />
-                            <span className="flex-1 text-sm">
-                              {subItem.title}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                </div>
-              );
-            })}
           </div>
+        ))}
 
-          {/* Divider */}
-          {/* <div className="border-b-2 border-[var(--bar-background-color)] w-[calc(100% - 46px)] mx-4" /> */}
+        {/* Extra nav items */}
+        {ExtraNavItems.map((item) => (
+          <div key={item.key} className="flex flex-col">
+            {item.expandable ? (
+              <div className="rounded-xl bg-(--sidebar-card-bg) overflow-hidden">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsExpanded((prev) => ({ ...prev, [item.key]: !prev[item.key] }));
+                  }}
+                  className={`flex items-center gap-3 px-4 py-[13px] w-full text-left text-white hover:bg-(--sidebar-card-hover) transition-colors`}
+                >
+                  {renderIcon(item)}
+                  <span className="flex-1 text-sm font-medium">
+                    {item.key === "language"
+                      ? (options.find((o) => o.value === localeState.value)?.label || item.title)
+                      : item.title}
+                  </span>
+                  {isExpanded[item.key]
+                    ? <div className="w-7 h-7 flex items-center justify-center rounded-lg bg-(--sidebar-card-hover) shrink-0"><ChevronUp size={14} className="text-[#8a8070]" /></div>
+                    : <div className="w-7 h-7 flex items-center justify-center rounded-lg bg-(--sidebar-card-hover) shrink-0"><ChevronDown size={14} className="text-[#8a8070]" /></div>}
+                </button>
 
-          <div className="flex flex-col gap-2">
-            {ExtraNavItems.map((item) => {
-              return (
-                <div key={item.key} className="flex flex-col">
-                  {item.expandable ? (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setIsExpanded((prev) => ({
-                          ...prev,
-                          [item.key]: !prev[item.key],
-                        }));
-                      }}
-                      className={`flex items-center gap-3 px-4 py-2 transition-colors w-full text-left ${selectedMainNavKey === item.key
-                          ? "bg-[var(--background-btn-hover)] text-white"
-                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                        }`}
-                    >
-                      {item.icon ? (
-                        item.icon
-                      ) : (
-                        <img
-                          src={
-                            item.navIcon ||
-                            `${ASSET_BASE_URL}/images/icons/casino.svg`
-                          }
-                          alt={item.title}
-                          className="w-6 h-6 flex-shrink-0 object-contain"
-                        />
-                      )}
-                      <span className="flex-1">{item.title}</span>
-                      {isExpanded[item.key] ? (
-                        <ChevronUp
-                          width={16}
-                          height={16}
-                          className="min-w-[16px]!important min-h-[16px]!important transition-transform duration-200"
-                        />
-                      ) : (
-                        <ChevronDown
-                          width={16}
-                          height={16}
-                          className="min-w-[16px]!important min-h-[16px]!important transition-transform duration-200"
-                        />
-                      )}
-                    </button>
-                  ) : (
-                    <button
-                      // href={modifyHref(item.href || "")}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        item.onclick?.();
-                        handleNavigate(modifyHref(item.href || ""));
-                      }}
-                      className={`flex items-center justify-start gap-3 px-4 py-2 transition-colors ${selectedMainNavKey === item.key
-                          ? "bg-[var(--background-btn-hover)] text-white"
-                          : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                        }`}
-                    >
-                      {item.icon ? (
-                        item.icon
-                      ) : (
-                        <img
-                          src={
-                            item.navIcon ||
-                            `${ASSET_BASE_URL}/images/icons/casino.svg`
-                          }
-                          alt={item.title}
-                          className="w-6 h-6 flex-shrink-0 object-contain"
-                        />
-                      )}
-                      <span>{item.title}</span>
-                    </button>
-                  )}
-
-                  {/* Expandable Sub-items */}
-                  {item.expandable &&
-                    isExpanded[item.key] &&
-                    item.key !== "language" && (
-                      <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
-                        {item.expandableItems?.map((subItem, index) => (
-                          <Link
-                            key={index}
-                            href={modifyHref(subItem.href || "")}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              item.onclick?.();
-                              handleNavigate(modifyHref(subItem.href || ""));
-                            }}
-                            className="flex items-center gap-3 px-3 py-2 transition-colors text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                          >
-                            <img
-                              src={subItem.icon}
-                              alt={subItem.title}
-                              className="w-6 h-6 flex-shrink-0 object-contain"
-                            />
-                            <span className="flex-1 text-sm">
-                              {subItem.title}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  {/* Language Selection */}
-                  {item.expandable &&
-                    isExpanded[item.key] &&
-                    item.key === "language" && (
-                      <div className="ml-7 mt-1 flex flex-col gap-1 border-l-[2px] border-[var(--bar-background-color)] ">
-                        {options.map((lang) => (
-                          <button
-                            key={lang.value}
-                            onClick={() => {
-                              localeState.value = lang.value;
-                              window.localStorage.setItem("locale", lang.value);
-                              isExpanded[item.key] = false;
-                            }}
-                            className={`flex items-center ${localeState.value === lang.value
-                                ? "bg-[var(--background-btn-hover)] text-white"
-                                : "text-gray-300 hover:bg-[var(--background-btn-hover)]"
-                              } gap-3 px-3 py-2 transition-colors w-full text-left`}
-                          >
-                            <span className={`fi fi-${lang.flag}`}></span>
-                            <span className="flex-1 text-sm">{lang.label}</span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                </div>
-              );
-            })}
+                {/* Language options */}
+                {item.key === "language" && isExpanded[item.key] && (
+                  <div className="flex flex-col border-t border-dashed border-[#8a807040]">
+                    {options
+                      .filter((lang) => ["ar", "en"].includes(lang.value))
+                      .map((lang) => (
+                        <button
+                          key={lang.value}
+                          onClick={() => {
+                            localeState.value = lang.value;
+                            window.localStorage.setItem("locale", lang.value);
+                          }}
+                          className={`flex items-center gap-3 px-4 py-3 transition-colors w-full text-left ${localeState.value === lang.value
+                            ? "text-white bg-(--sidebar-card-active)"
+                            : "text-white hover:bg-(--sidebar-card-hover)"
+                            }`}
+                        >
+                          <span className="flex-1 text-sm">{lang.label}</span>
+                        </button>
+                      ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  item.onclick?.();
+                  handleNavigate(modifyHref(item.href || ""));
+                }}
+                className={itemCard(selectedMainNavKey === item.key)}
+              >
+                {renderIcon(item)}
+                <span className="text-sm font-medium">{item.title}</span>
+              </button>
+            )}
           </div>
-          {/* <div className="border-b-2 border-[var(--bar-background-color)] w-[calc(100% - 46px)] mx-4" /> */}
-        </div>
+        ))}
       </div>
     </div>
   );
