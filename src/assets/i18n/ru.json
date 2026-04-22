@@ -72,7 +72,13 @@
     "ring": "Уведомления",
     "logout": "Выйти",
     "Wallet": "Кошелёк",
-    "All Slots": "Все Слоты"
+    "All Slots": "Все Слоты",
+    "Evolution Live": "Эволюшн Лайв",
+    "Playtech Live": "Плейтек Лайв",
+    "Area Manager": "Региональный менеджер",
+    "Superagent": "Суперагент",
+    "Categories": "Категории",
+    "Close menu": "Закрыть меню"
   },
   "ProviderSidebar": {
     "Providers": "Провайдеры",
@@ -357,6 +363,8 @@
     "Lobby": "Лобби",
     "Top Slots": "Топ Слоты",
     "Live Casino": "Живое Казино",
+    "Baccarat": "Баккара",
+    "Jackpots": "Джекпоты",
     "Megaways": "Megaways",
     "Classic Slots": "Классические Слоты",
     "Drop Wins": "Drop Wins",
@@ -1840,5 +1848,28 @@
     "footer_compliance_label": "Комплаенс:",
     "footer_mlro_label": "MLRO:",
     "footer_tip": "Совет: используйте адреса в своём домене и сохраняйте единообразие во всех политиках."
+  },
+  "CasinoPage": {
+    "Search": "Поиск",
+    "Lobby": "Лобби",
+    "Casino": "Казино",
+    "Slots": "Слоты",
+    "Top": "Топ",
+    "New": "Новые",
+    "Popular": "Популярные",
+    "Buy Bonus": "Купить бонус",
+    "Megaways": "Мегавэйс",
+    "Table Games": "Настольные игры",
+    "Jackpots": "Джекпоты",
+    "Favorites": "Избранное",
+    "Recently": "Недавно сыграно",
+    "No games found": "Игры не найдены",
+    "Top Live Games": "Топ живых игр",
+    "Live Casino": "Живое Казино",
+    "Roulette": "Рулетка",
+    "Video Poker": "Видео покер",
+    "Blackjack": "Блэкджек",
+    "Baccarat": "Баккара",
+    "Shows": "Шоу"
   }
 }

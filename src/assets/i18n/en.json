@@ -72,7 +72,13 @@
     "ring": "Notifications",
     "logout": "Logout",
     "Wallet": "Wallet",
-    "All Slots": "All Slots"
+    "All Slots": "All Slots",
+    "Evolution Live": "Evolution Live",
+    "Playtech Live": "Playtech Live",
+    "Area Manager": "Area Manager",
+    "Superagent": "Superagent",
+    "Categories": "Categories",
+    "Close menu": "Close menu"
   },
   "ProviderSidebar": {
     "Providers": "Providers",
@@ -419,6 +425,8 @@
     "Lobby": "Lobby",
     "Top Slots": "Top Slots",
     "Live Casino": "Live Casino",
+    "Baccarat": "Baccarat",
+    "Jackpots": "Jackpots",
     "Megaways": "Megaways",
     "Classic Slots": "Classic Slots",
     "Drop Wins": "Drop Wins",
@@ -1848,5 +1856,28 @@
     "footer_compliance_label": "Compliance:",
     "footer_mlro_label": "MLRO:",
     "footer_tip": "Tip: Use addresses under your domain and keep them consistent across policies."
+  },
+  "CasinoPage": {
+    "Search": "Search",
+    "Lobby": "Lobby",
+    "Casino": "Casino",
+    "Slots": "Slots",
+    "Top": "Top",
+    "New": "New",
+    "Popular": "Popular",
+    "Buy Bonus": "Buy Bonus",
+    "Megaways": "Megaways",
+    "Table Games": "Table Games",
+    "Jackpots": "Jackpots",
+    "Favorites": "Favorites",
+    "Recently": "Recently Played",
+    "No games found": "No games found",
+    "Top Live Games": "Top Live Games",
+    "Live Casino": "Live Casino",
+    "Roulette": "Roulette",
+    "Video Poker": "Video Poker",
+    "Blackjack": "Blackjack",
+    "Baccarat": "Baccarat",
+    "Shows": "Shows"
   }
 }

@@ -1,4 +1,4 @@
-export const HOME_CATEGORIES: {
+export const HOME_TABS: {
   key: string;
   name: string;
   category: string;
@@ -9,38 +9,37 @@ export const HOME_CATEGORIES: {
       key: "lobby",
       name: "Lobby",
       category: "",
-      icon: "/images/category_logo/lobby.svg",
+      icon: "/images/category_logo/lobby.png",
     },
     {
-      key: "top-games",
-      name: "Top Games",
-      category: "top-games",
-      icon: "/images/category_logo/top-games.png",
+      key: "casino",
+      name: "Casino",
+      category: "casino",
+      icon: "/images/sidebar/casino.png",
     },
     {
-      key: "trending-games",
-      name: "Trending Games",
-      category: "trending",
-      icon: "/images/category_logo/popular.png",
-    },
-    // {
-    //   key: "hacksaw",
-    //   name: "Hacksaw",
-    //   category: "hacksaw",
-    //   icon: "/images/category_logo/hacksaw.png",
-    // },
-    {
-      key: "game-shows",
-      name: "Game Shows",
-      category: "game-shows",
-      icon: "/images/category_logo/roulette.png",
+      key: "live-casino",
+      name: "Live Casino",
+      category: "live-casino",
+      icon: "/images/sidebar/live-casino.png",
     },
     {
-      key: "pragmatic",
-      name: "Pragmatic",
-      category: "pragmatic",
-      icon: "/images/category_logo/pragmatic.png",
-      provider: "5af8ec20d4b1198738df2967a01b0d7c52246b97",
+      key: "jackpots",
+      name: "Jackpots",
+      category: "jackpots",
+      icon: "/images/category_logo/jackpots.png",
+    },
+    {
+      key: "table-games",
+      name: "Table Games",
+      category: "table-games",
+      icon: "/images/sidebar/table-games.svg",
+    },
+    {
+      key: "new-games",
+      name: "New Games",
+      category: "new-games",
+      icon: "/images/category_logo/new.png",
     },
     {
       key: "megaways",

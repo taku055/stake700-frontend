@@ -4,13 +4,10 @@ import { useTranslations } from "@/context/I18nContext";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { Home, ChartArea, Crown, Users, Menu } from "lucide-preact";
 
-import { Sports } from "@/components/icons";
-
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
 import {
   navigationSidebarExpandedState,
-  navigationSidebarOpenState,
 } from "@/state/navigationSidebarState";
 
 export default function FooterNav() {
@@ -18,12 +15,12 @@ export default function FooterNav() {
   const pathname = useLocation();
   const t = useTranslations("Header");
   const [isMenuOpen, setIsMenuOpen] = useState(
-    navigationSidebarOpenState.value
+    navigationSidebarExpandedState.value
   );
 
   // Sync with signal state
   useEffect(() => {
-    const unsubscribe = navigationSidebarOpenState.subscribe((value) => {
+    const unsubscribe = navigationSidebarExpandedState.subscribe((value) => {
       setIsMenuOpen(value);
     });
     return () => {
@@ -39,12 +36,6 @@ export default function FooterNav() {
           href: "/",
           key: "home",
           icon: <Home width={20} height={20} />,
-        },
-        {
-          title: t("Sports"),
-          href: "/sports",
-          key: "sports",
-          icon: <Sports />,
         },
         {
           title: t("Casino"),
@@ -100,7 +91,7 @@ export default function FooterNav() {
     }
   }, [userState.value, t]);
 
-  useEffect(() => {}, [userState.value, tabList]);
+  useEffect(() => { }, [userState.value, tabList]);
 
   const selectedKey = useMemo(() => {
     // if you use i18n like /en/..., strip the locale prefix here if needed
@@ -128,11 +119,10 @@ export default function FooterNav() {
               e.preventDefault();
               navigationSidebarExpandedState.value = false;
             }}
-            className={`flex flex-col items-center justify-center py-2 gap-1 h-full min-w-0 ${
-              selectedKey === tab.key
-                ? "text-[var(--primary-color)] border-t-2 border-[var(--primary-color)]"
-                : "text-white"
-            } bg-transparent`}
+            className={`flex flex-col items-center justify-center py-2 gap-1 h-full min-w-0 ${selectedKey === tab.key
+              ? "text-[var(--primary-color)] border-t-2 border-[var(--primary-color)]"
+              : "text-white"
+              } bg-transparent`}
           >
             <span className="text-sm my-auto h-full flex flex-col justify-center items-center">
               {tab.icon}
@@ -148,16 +138,15 @@ export default function FooterNav() {
             navigationSidebarExpandedState.value =
               !navigationSidebarExpandedState.value;
           }}
-          className={`flex flex-col items-center justify-between py-2 min-w-0 h-full ${
-            isMenuOpen ? "text-[var(--primary-color)]" : "text-white"
-          } bg-transparent`}
+          className={`flex flex-col items-center justify-between py-2 min-w-0 h-full ${isMenuOpen ? "text-[var(--primary-color)]" : "text-white"
+            } bg-transparent`}
         >
           <span
-            className={`text-sm h-full flex flex-1 flex-col justify-center items-center text-white bg-transparent`}
+            className={`text-sm h-full flex flex-1 flex-col justify-center items-center bg-transparent`}
           >
-            <Menu aria-hidden="true" className="w-[20px] h-[20px] text-white" />
+            <Menu aria-hidden="true" className="w-[20px] h-[20px]" />
           </span>
-          <span className="text-xs text-white">{t("Menu")}</span>
+          <span className="text-xs">{t("Menu")}</span>
         </a>
       </div>
     </footer>

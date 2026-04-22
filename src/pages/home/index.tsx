@@ -1,18 +1,24 @@
-import { useMemo } from "preact/hooks";
-import { useMediaQuery } from "usehooks-ts";
-import { mobileMediaQuery } from "@/config/constants";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import { CasinoGameGrid } from "@/pages/casino/components/CasinoGameGrid";
-import { HOME_CATEGORIES } from "./data.ts";
 import { useTranslations } from "@/context/I18nContext";
-import GameGroup from "@/components/GameGroup";
 import { useLocation } from "preact-iso";
-import { Link } from "@/components/common";
 import { EmblaBanner } from "@/components/EmblaBanner/EmblaBanner";
 import ContentWrapper from "@/provider/ContentWrapper.tsx";
 import { userState } from "@/state/userState.ts";
-import TopGamesGroup from "@/components/TopGamesGroup/index.tsx";
-import TrendingGamesGroup from "@/components/TrendingGamesGroup/index.tsx";
-import Megaways from "@/components/Megaways/index.tsx";
+import { searchWidgetState } from "@/state/searchWidgetState";
+import LobbyGames from "./LobbyGames.tsx";
+import LiveCasinoGames from "./LiveCasinoGames.tsx";
+import CasinoGames from "./CasinoGames.tsx";
+import { HOME_PAGE_TABS, type HomePageMode } from "./tabData";
+import { HOME_PAGE_CATEGORIES, HOME_PAGE_DEFAULT_TAB } from "./categoryData";
+
+const HOME_PAGE_MODE_QUERY_KEY = "page";
+
+const HOME_PAGE_MODE_BY_PATH: Record<string, HomePageMode> = {
+  "/": "home",
+  "/lobby-casino": "lobby-casino",
+  "/lobby-live-casino": "lobby-live-casino",
+};
 
 export default function HomePage() {
   const location = useLocation();
@@ -27,110 +33,100 @@ export default function HomePage() {
     return null;
   }
 
-  const isMobile = useMediaQuery(mobileMediaQuery);
-  const t = useTranslations("HomePage");
-  const activeCategory = useMemo(() => {
-    return (
-      HOME_CATEGORIES.find((cat) => cat.category === location.query.category)
-        ?.category || HOME_CATEGORIES[0].category
-    );
-  }, [location.query.category]);
+  const activeMode = useMemo<HomePageMode>(() => {
+    const modeFromQuery = location.query?.[HOME_PAGE_MODE_QUERY_KEY];
+    if (
+      modeFromQuery === "home" ||
+      modeFromQuery === "lobby-casino" ||
+      modeFromQuery === "lobby-live-casino"
+    ) {
+      return modeFromQuery;
+    }
+    return HOME_PAGE_MODE_BY_PATH[location.path] ?? "home";
+  }, [location.path, location.query]);
+
+  const tabs = useMemo(() => HOME_PAGE_TABS[activeMode], [activeMode]);
+  const defaultTab = useMemo(() => HOME_PAGE_DEFAULT_TAB[activeMode], [activeMode]);
+  const categories = useMemo(() => HOME_PAGE_CATEGORIES[activeMode], [activeMode]);
+  const t = useTranslations(activeMode === "home" ? "HomePage" : "CasinoPage");
+  const [activeTab, setActiveTab] = useState(defaultTab);
+
+  useEffect(() => {
+    setActiveTab(defaultTab);
+  }, [defaultTab, activeMode]);
+
+  const renderCategory = () => {
+    const categoryConfig = categories[activeTab];
+    if (!categoryConfig || categoryConfig.type === "empty") {
+      return null;
+    }
+
+    if (categoryConfig.type === "component") {
+      if (categoryConfig.component === "lobby-games") {
+        return <LobbyGames />;
+      }
+      if (categoryConfig.component === "casino-games") {
+        return <CasinoGames />;
+      }
+      if (categoryConfig.component === "live-casino-games") {
+        return <LiveCasinoGames />;
+      }
+      return null;
+    }
+
+    if (categoryConfig.type === "grid") {
+      return (
+        <CasinoGameGrid
+          isCustom={categoryConfig.isCustom}
+          category={categoryConfig.category}
+          gameType={categoryConfig.gameType}
+        />
+      );
+    }
+
+    return null;
+  };
 
   return (
     <>
-      <EmblaBanner />
-      <ContentWrapper>
-        <div className="flex flex-col gap-4 mt-[20px] overflow-x-auto mb-4 scrollbar-hide bg-[var(--bar-background-color)] rounded-full">
-          <div className="flex gap-2 p-2">
-            {HOME_CATEGORIES.map((category) => (
-              <Link
-                href={`/?category=${category.category}`}
-                key={category.key}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors flex-shrink-0 ${activeCategory === category.category
-                  ? "bg-[var(--background-secondary)] text-white"
-                  : "text-[var(--text-color)] hover:bg-[var(--background-secondary)]"
+      {activeMode === "home" && <EmblaBanner />}
+      <ContentWrapper className="px-4 md:px-20">
+        <div className="flex overflow-x-auto scrollbar-hide mb-4 mt-4">
+          <div className="flex gap-1 min-w-max">
+            {/* Search */}
+            <button
+              type="button"
+              onClick={() => (searchWidgetState.value = !searchWidgetState.value)}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg font-medium text-[#99897a] hover:text-white hover:bg-[rgb(54,48,43)]"
+            >
+              <img src="/images/search.png"
+                className="w-5 h-5 object-contain"
+              />
+              {t("Search") || "Search"}
+            </button>
+            {tabs.map((tab) => (
+              <button
+                onClick={() => {
+                  setActiveTab(tab.key)
+                }}
+                key={tab.key}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg  font-medium ${activeTab === tab.key
+                  ? "bg-[rgb(54,48,43)] text-[#f0d9c6]"
+                  : "text-[#99897a] hover:text-white hover:bg-[#1e1e1e]"
                   }`}
               >
                 <img
-                  src={category.icon}
-                  alt={category.name}
-                  className="w-4 h-4 grayscale object-contain"
+                  src={tab.icon}
+                  alt={t(tab.name) || tab.name}
+                  className="w-5 h-5 object-contain"
                 />
-                {t(category.name)}
-              </Link>
+                {t(tab.name) || tab.name}
+              </button>
             ))}
           </div>
         </div>
 
-        {/* Content based on activeTab */}
-        {activeCategory === "" ? (
-          <div className="flex flex-col gap-4">
-            {HOME_CATEGORIES.filter((category) => category.category !== "").map(
-              (category) => {
-                if (category.category == 'top-games') {
-                  return (
-                    <TopGamesGroup
-                      key={category.key}
-                      category={category.category}
-                      title={t(category.name) || category.name}
-                      isCustom={category.provider ? false : true}
-                      provider={category.provider}
-                      viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
-                    />
-                  )
-                }
-                if (category.category == 'trending') {
-                  return (
-                    <TrendingGamesGroup
-                      key={category.key}
-                      category={category.category}
-                      title={t(category.name) || category.name}
-                      isCustom={category.provider ? false : true}
-                      provider={category.provider}
-                      viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
-                    />
-                  )
-                }
-                if (category.category == 'megaways') {
-                  return (
-                    <Megaways
-                      key={category.key}
-                      category={category.category}
-                      title={t(category.name) || category.name}
-                      isCustom={category.provider ? false : true}
-                      provider={category.provider}
-                      viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
-                    />
-                  )
-                }
-
-                return (
-                  <GameGroup
-                    key={category.key}
-                    category={category.category}
-                    title={t(category.name) || category.name}
-                    isCustom={category.provider ? false : true}
-                    provider={category.provider}
-                    viewallLink={category.provider ? `/casino/slots?providerId=${category.provider}` : `/?category=${category.category}`}
-                  />)
-              }
-
-
-            )}
-          </div>
-        ) : (
-          <div
-            className={`w-full flex ${isMobile ? "flex-col" : "flex-row"
-              } gap-6`}
-          >
-            <CasinoGameGrid
-              isCustom={activeCategory === "pragmatic" ? false : true}
-              category={activeCategory}
-              gameType="SLOT"
-              provider={activeCategory === "pragmatic" ? "5af8ec20d4b1198738df2967a01b0d7c52246b97" : undefined}
-            />
-          </div>
-        )}
+        {renderCategory()}
       </ContentWrapper>
     </>
   );

@@ -72,7 +72,13 @@
     "ring": "Notifications",
     "logout": "Déconnexion",
     "Wallet": "Wallet",
-    "All Slots": "Tous les Slots"
+    "All Slots": "Tous les Slots",
+    "Evolution Live": "Evolution en direct",
+    "Playtech Live": "Playtech en direct",
+    "Area Manager": "Responsable régional",
+    "Superagent": "Super-agent",
+    "Categories": "Catégories",
+    "Close menu": "Fermer le menu"
   },
   "ProviderSidebar": {
     "Providers": "Fournisseurs",
@@ -357,6 +363,8 @@
     "Lobby": "Hall",
     "Top Slots": "Top Slots",
     "Live Casino": "Casino en direct",
+    "Baccarat": "Baccarat",
+    "Jackpots": "Jackpots",
     "Megaways": "Megaways",
     "Classic Slots": "Slots Classiques",
     "Drop Wins": "Drop Wins",
@@ -1840,5 +1848,28 @@
     "footer_compliance_label": "Conformité :",
     "footer_mlro_label": "MLRO :",
     "footer_tip": "Conseil : utilisez des adresses sous votre domaine et gardez la cohérence entre les politiques."
+  },
+  "CasinoPage": {
+    "Search": "Recherche",
+    "Lobby": "Lobby",
+    "Casino": "Casino",
+    "Slots": "Machines à sous",
+    "Top": "Top",
+    "New": "Nouveau",
+    "Popular": "Populaire",
+    "Buy Bonus": "Acheter Bonus",
+    "Megaways": "Megaways",
+    "Table Games": "Jeux de Table",
+    "Jackpots": "Jackpots",
+    "Favorites": "Favoris",
+    "Recently": "Joué récemment",
+    "No games found": "Aucun jeu trouvé",
+    "Top Live Games": "Meilleurs Jeux en Direct",
+    "Live Casino": "Casino en direct",
+    "Roulette": "Roulette",
+    "Video Poker": "Video Poker",
+    "Blackjack": "Blackjack",
+    "Baccarat": "Baccarat",
+    "Shows": "Émissions"
   }
 }
