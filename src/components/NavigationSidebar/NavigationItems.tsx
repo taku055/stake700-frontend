@@ -1,6 +1,6 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { useTranslations } from "@/context/I18nContext";
-
+import { localeState } from "@/state/localeState";
+import { RTL_LANGUAGES } from "@/config/constants";
 interface NavigationItemsProps {
   items: Array<{
     title: string;
@@ -16,7 +16,7 @@ export default function NavigationItems({
   selectedKey,
 }: NavigationItemsProps) {
   const { modifyHref } = useAffiliateNavigation();
-  const t = useTranslations("Header");
+  const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
   return (
     <div className="p-4 border-b border-gray-700">
@@ -25,7 +25,7 @@ export default function NavigationItems({
           <a
             key={item.key}
             href={modifyHref(item.href)}
-            className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${isRTL ? "flex-row-reverse text-right" : ""} ${
               selectedKey === item.key
                 ? 'bg-[var(--pink-color)] text-white'
                 : 'text-gray-300 hover:bg-gray-700'

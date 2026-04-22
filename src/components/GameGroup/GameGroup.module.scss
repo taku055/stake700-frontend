@@ -29,6 +29,7 @@
         line-height: 18px;
         text-align: left;
         color: #FFF;
+        text-transform: uppercase;
 
         @include for-mobile-only {
           font-size: 14px;

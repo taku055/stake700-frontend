@@ -73,8 +73,12 @@
     "logout": "تسجيل الخروج",
     "Wallet": "المحفظة",
     "All Slots": "جميع السلوتات",
-    "Evolution Live": "Evolution Live",
-    "Playtech Live": "Playtech Live"
+    "Evolution Live": "إيفولوشن لايف",
+    "Playtech Live": "بلايتك لايف",
+    "Area Manager": "مدير المنطقة",
+    "Superagent": "سوبر وكيل",
+    "Categories": "التصنيفات",
+    "Close menu": "إغلاق القائمة"
   },
   "ProviderSidebar": {
     "Providers": "المزوّدون",
@@ -361,6 +365,8 @@
     "Lobby": "الردهة",
     "Top Slots": "أفضل السلوتات",
     "Live Casino": "كازينو مباشر",
+    "Baccarat": "باكارات",
+    "Jackpots": "جاكبوتات",
     "Megaways": "ميجاوي",
     "Classic Slots": "السلوتات الكلاسيكية",
     "Drop Wins": "باراواسيل",
@@ -1958,6 +1964,7 @@
   "CasinoPage": {
     "Search": "بحث",
     "Lobby": "اللوبي",
+    "Casino": "كازينو",
     "Slots": "سلوتات",
     "Top": "الأفضل",
     "New": "جديد",
@@ -1972,6 +1979,7 @@
     "Top Live Games": "أفضل الألعاب المباشرة",
     "Live Casino": "كازينو مباشر",
     "Roulette": "روليت",
+    "Video Poker": "فيديو بوكر",
     "Blackjack": "بلاك جاك",
     "Baccarat": "باكارات",
     "Shows": "عروض"

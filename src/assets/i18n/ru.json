@@ -73,8 +73,12 @@
     "logout": "Выйти",
     "Wallet": "Кошелёк",
     "All Slots": "Все Слоты",
-    "Evolution Live": "Evolution Live",
-    "Playtech Live": "Playtech Live"
+    "Evolution Live": "Эволюшн Лайв",
+    "Playtech Live": "Плейтек Лайв",
+    "Area Manager": "Региональный менеджер",
+    "Superagent": "Суперагент",
+    "Categories": "Категории",
+    "Close menu": "Закрыть меню"
   },
   "ProviderSidebar": {
     "Providers": "Провайдеры",
@@ -359,6 +363,8 @@
     "Lobby": "Лобби",
     "Top Slots": "Топ Слоты",
     "Live Casino": "Живое Казино",
+    "Baccarat": "Баккара",
+    "Jackpots": "Джекпоты",
     "Megaways": "Megaways",
     "Classic Slots": "Классические Слоты",
     "Drop Wins": "Drop Wins",
@@ -1846,6 +1852,7 @@
   "CasinoPage": {
     "Search": "Поиск",
     "Lobby": "Лобби",
+    "Casino": "Казино",
     "Slots": "Слоты",
     "Top": "Топ",
     "New": "Новые",
@@ -1860,6 +1867,7 @@
     "Top Live Games": "Топ живых игр",
     "Live Casino": "Живое Казино",
     "Roulette": "Рулетка",
+    "Video Poker": "Видео покер",
     "Blackjack": "Блэкджек",
     "Baccarat": "Баккара",
     "Shows": "Шоу"

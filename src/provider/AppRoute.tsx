@@ -23,37 +23,13 @@ import AMLPolicyPage from "@/pages/about-us/aml_policy";
 import HomePage from "@/pages/home";
 import SportPage from "@/pages/sport";
 import AriesPaymentResult from "@/pages/payment/aries/AriesPaymentResult";
-import LobbyCasino from "@/pages/lobby-casino";
-import LobbyLiveCasino from "@/pages/lobby-livecasino";
-import TopCasino from "@/pages/top-casino";
-import NewCasino from "@/pages/new-casino";
-import PopularCasino from "@/pages/popular-casino";
-import JackpotsCasino from "@/pages/jackpots-casino";
-import MegawaysCasino from "@/pages/megaways-casino";
-import BuyBonusCasino from "@/pages/buy-bonus-casino";
-import TopLiveCasino from "@/pages/top-livecasino";
-import RouletteLiveCasino from "@/pages/roulette-livecasino";
-import BlackjackLiveCasino from "@/pages/blackjack-livecasino";
-import BaccaratLiveCasino from "@/pages/baccarat-livecasino";
-import ShowsLiveCasino from "@/pages/shows-livecasino";
+import CasinoCategoryPage from "@/pages/casino-category";
 
 export default function AppRoute() {
   return (
     <Router>
       <Route path="/" component={HomePage} />
-      <Route path="/lobby-casino" component={LobbyCasino} />
-      <Route path="/lobby-live-casino" component={LobbyLiveCasino} />
-      <Route path="/top-casino" component={TopCasino} />
-      <Route path="/new-casino" component={NewCasino} />
-      <Route path="/popular-casino" component={PopularCasino} />
-      <Route path="/jackpots-casino" component={JackpotsCasino} />
-      <Route path="/megaways-casino" component={MegawaysCasino} />
-      <Route path="/buy-bonus-casino" component={BuyBonusCasino} />
-      <Route path="/top-livecasino" component={TopLiveCasino} />
-      <Route path="/roulette-livecasino" component={RouletteLiveCasino} />
-      <Route path="/blackjack-livecasino" component={BlackjackLiveCasino} />
-      <Route path="/baccarat-livecasino" component={BaccaratLiveCasino} />
-      <Route path="/shows-livecasino" component={ShowsLiveCasino} />
+      <Route path="/casino-category" component={CasinoCategoryPage} />
       <Route path="/provably-fair" component={ProvablyFairLayout} />
 
       <Route path="/sports" component={SportPage} />

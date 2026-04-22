@@ -1,14 +1,7 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
-import { localeState } from "@/state/localeState";
 import { useMemo } from "preact/hooks";
-import { useTranslations } from "@/context/I18nContext";
-import { ASSET_BASE_URL, RTL_LANGUAGES } from "@/config/constants";
+import { ASSET_BASE_URL } from "@/config/constants";
 import { Link } from "../common";
-import { useSelectedTab } from "@/hooks/useSelectedTab";
-import { sidebarDataState } from "@/state/sidebarData";
-import { Menu } from "lucide-preact";
-
 interface CollapsedSidebarProps {
   mainNavItems: Array<{
     title: string;
@@ -16,6 +9,7 @@ interface CollapsedSidebarProps {
     key: string;
     icon: any;
     navIcon?: string;
+    expandable?: boolean;
   }>;
   ExtraNavItems: Array<{
     title: string;
@@ -23,6 +17,7 @@ interface CollapsedSidebarProps {
     key: string;
     icon: any;
     navIcon?: string;
+    expandable?: boolean;
   }>;
   selectedMainNavKey?: string;
   categories: Array<{
@@ -30,26 +25,21 @@ interface CollapsedSidebarProps {
     path: string;
     icon?: string;
   }>;
+  /** Expandable rail icons: parent expands the drawer and opens this nav accordion. */
+  onExpandableNavClick?: (navKey: string) => void;
 }
 
 export default function CollapsedSidebar({
   mainNavItems,
   ExtraNavItems,
   selectedMainNavKey,
+  onExpandableNavClick,
 }: CollapsedSidebarProps) {
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
-  const isRTL = RTL_LANGUAGES.includes(localeState.value);
-  const selectedTab = useSelectedTab();
 
   const topNavItems = useMemo(() => {
     return mainNavItems;
   }, [mainNavItems]);
-
-  // Get categories based on selected tab
-  const categoriesWithIcons = useMemo(() => {
-    // return selectedTab === "casino" ? casinoCategories : selectedTab === "live-casino" ? liveCasinoCategories : [];
-    return selectedTab === "casino" ? sidebarDataState.value : [];
-  }, [selectedTab, sidebarDataState.value]);
 
   return (
     <div
@@ -62,10 +52,14 @@ export default function CollapsedSidebar({
           {topNavItems.map((item) => (
             <Link
               key={item.key}
-              href={modifyHref(item.href)}
+              href={modifyHref(item.href || "#")}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                if (item.expandable) {
+                  onExpandableNavClick?.(item.key);
+                  return;
+                }
                 handleNavigate(modifyHref(item.href));
               }}
               className={`flex items-center justify-center w-10 h-10 p-2 rounded-lg transition-colors ${selectedMainNavKey === item.key
@@ -94,10 +88,14 @@ export default function CollapsedSidebar({
           {ExtraNavItems.map((item) => (
             <Link
               key={item.key}
-              href={modifyHref(item.href)}
+              href={modifyHref(item.href || "#")}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                if (item.expandable) {
+                  onExpandableNavClick?.(item.key);
+                  return;
+                }
                 handleNavigate(modifyHref(item.href));
               }}
               className={`flex items-center justify-center w-10 h-10 p-2 rounded-lg transition-colors ${selectedMainNavKey === item.key

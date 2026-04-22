@@ -1,18 +1,23 @@
-import Megaways from "@/components/Megaways";
+import GridGameGroup from "@/components/GridGameGroup";
+import TwoRowGameGroup from "@/components/TwoRowGameGroup";
 import { useTranslations } from "@/context/I18nContext";
 
 export default function CasinoGames() {
-    const t = useTranslations("HomePage");
+    const t = useTranslations("CasinoPage");
 
     return (
         <div className="flex flex-col gap-4">
-            <Megaways
-                key={'category.key'}
-                category={'megaways'}
-                title={t('Megaways') || 'Megaways'}
+            <GridGameGroup
+                category={"videopoker"}
+                title={t("Video Poker") || "Video Poker"}
                 isCustom={true}
-                provider={''}
-                viewallLink={`/?category=${'megaways'}`}
+                viewallLink={`/?category=${"video-poker"}`}
+            />
+            <TwoRowGameGroup
+                category={"rouletteglobal"}
+                title={t("Roulette") || "Roulette"}
+                isCustom={true}
+                viewallLink={`/?category=${"rouletteglobal"}`}
             />
         </div>
     )

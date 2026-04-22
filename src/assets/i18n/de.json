@@ -74,8 +74,12 @@
     "Wallet": "Geldbörse",
     "All Slots": "Alle Slots",
     "Missions": "Missionen",
-    "Evolution Live": "Evolution Live",
-    "Playtech Live": "Playtech Live"
+    "Evolution Live": "Evolution Live-Casino",
+    "Playtech Live": "Playtech Live-Casino",
+    "Area Manager": "Gebietsleiter",
+    "Superagent": "Superagent",
+    "Categories": "Kategorien",
+    "Close menu": "Menü schließen"
   },
   "ProviderSidebar": {
     "Providers": "Anbieter",
@@ -362,6 +366,8 @@
     "Lobby": "Lobby",
     "Top Slots": "Top-Slots",
     "Live Casino": "Live-Casino",
+    "Baccarat": "Baccarat",
+    "Jackpots": "Jackpots",
     "Megaways": "Megaways",
     "Classic Slots": "Klassische Slots",
     "Drop Wins": "Drop Wins",
@@ -1957,6 +1963,7 @@
   "CasinoPage": {
     "Search": "Suche",
     "Lobby": "Lobby",
+    "Casino": "Kasino",
     "Slots": "Slots",
     "Top": "Top",
     "New": "Neu",
@@ -1971,6 +1978,7 @@
     "Top Live Games": "Top Live-Spiele",
     "Live Casino": "Live-Casino",
     "Roulette": "Roulette",
+    "Video Poker": "Videopoker",
     "Blackjack": "Blackjack",
     "Baccarat": "Baccarat",
     "Shows": "Shows"

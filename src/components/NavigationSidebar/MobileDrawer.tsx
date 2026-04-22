@@ -1,18 +1,22 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-preact";
+import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-preact";
 import { Link } from "../common";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
-import CategoryItems from "./CategoryItems";
 import { useState, useMemo } from "preact/hooks";
 import { localeState } from "@/state/localeState";
 import {
   ASSET_BASE_URL,
   RTL_LANGUAGES,
 } from "@/config/constants";
-import { options } from "@/components/LocaleSelection";
-import { useSelectedTab } from "@/hooks/useSelectedTab";
-import { sidebarDataState } from "@/state/sidebarData";
+
+const supportedLanguageOptions = [
+  { label: "English", value: "en", flag: "us" },
+  { label: "العربية", value: "ar", flag: "ae" },
+  { label: "Deutsch", value: "de", flag: "de" },
+  { label: "Français", value: "fr", flag: "fr" },
+  { label: "Русский", value: "ru", flag: "ru" },
+];
 
 interface MobileDrawerProps {
   mainNavItems: Array<{
@@ -56,19 +60,12 @@ export default function MobileDrawer({
   mainNavItems,
   ExtraNavItems,
   selectedMainNavKey,
-  selectedMainNavTitle,
+  selectedMainNavTitle: _selectedMainNavTitle,
 }: MobileDrawerProps) {
   const t = useTranslations("Header");
-  const selectedTab = useSelectedTab();
   const [isExpanded, setIsExpanded] = useState<Record<string, boolean>>({});
   const { modifyHref, handleNavigate } = useAffiliateNavigation();
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
-  const casinoCategoriesWithCounts = sidebarDataState.value;
-
-  const currentCategories = useMemo(
-    () => (selectedTab === "casino" ? casinoCategoriesWithCounts : []),
-    [selectedTab, casinoCategoriesWithCounts]
-  );
 
   const topNavItems = useMemo(() => mainNavItems, [mainNavItems]);
 
@@ -84,7 +81,7 @@ export default function MobileDrawer({
     );
 
   const itemCard = (active: boolean) =>
-    `flex items-center gap-3 px-4 py-[13px] rounded-xl transition-colors w-full text-left ${active
+    `flex items-center gap-3 px-4 py-[13px] rounded-xl transition-colors w-full ${isRTL ? "flex-row-reverse text-right" : "text-left"} ${active
       ? "bg-[var(--sidebar-card-active)] text-white"
       : "bg-[var(--sidebar-card-bg)] text-white hover:bg-[var(--sidebar-card-hover)]"
     }`;
@@ -93,12 +90,15 @@ export default function MobileDrawer({
 
   return (
     <div
+      dir={isRTL ? "rtl" : "ltr"}
       className={`fixed ${isRTL ? "right-0" : "left-0"} top-0 z-5500 h-full w-full bg-(--sidebar-background) overflow-y-auto scrollbar-hide overflow-x-hidden`}
     >
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 h-15 bg-(--sidebar-background) sticky top-0 z-10">
+      <div className={`flex items-center gap-3 px-4 h-15 bg-(--sidebar-background) sticky top-0 z-10 ${isRTL ? "flex-row-reverse" : ""}`}>
         <button
+          type="button"
           onClick={close}
+          aria-label={t("Close menu")}
           className="w-9 h-9 flex items-center justify-center rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors shrink-0"
         >
           {isRTL
@@ -108,7 +108,7 @@ export default function MobileDrawer({
         <Link href="/" className="flex items-center" onClick={close}>
           <img
             src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
-            alt="Logo"
+            alt={t("Logo")}
             className="h-8 object-contain"
             onError={(e: any) => { e.currentTarget.src = `${ASSET_BASE_URL}/logo-mini.png`; }}
           />
@@ -155,7 +155,7 @@ export default function MobileDrawer({
             )}
 
             {item.expandable && isExpanded[item.key] && item.key !== "language" && (
-              <div className="flex flex-col gap-1 pl-2">
+              <div className={`flex flex-col gap-1 ${isRTL ? "pr-2" : "pl-2"}`}>
                 {item.expandableItems?.map((subItem, index) => (
                   <Link
                     key={index}
@@ -166,7 +166,7 @@ export default function MobileDrawer({
                       handleNavigate(modifyHref(subItem.href || ""));
                       close();
                     }}
-                    className="flex items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white"
+                    className={`flex items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white ${isRTL ? "flex-row-reverse text-right" : ""}`}
                   >
                     <img src={subItem.icon} alt={subItem.title} className="w-5 h-5 shrink-0 object-contain" />
                     <span className="flex-1 text-sm">{subItem.title}</span>
@@ -212,7 +212,7 @@ export default function MobileDrawer({
             )}
 
             {item.expandable && isExpanded[item.key] && item.key !== "language" && (
-              <div className="flex flex-col gap-1 pl-2">
+              <div className={`flex flex-col gap-1 ${isRTL ? "pr-2" : "pl-2"}`}>
                 {item.expandableItems?.map((subItem, index) => (
                   <Link
                     key={index}
@@ -224,7 +224,7 @@ export default function MobileDrawer({
                       handleNavigate(modifyHref(subItem.href || ""));
                       close();
                     }}
-                    className="flex items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white"
+                    className={`flex items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white ${isRTL ? "flex-row-reverse text-right" : ""}`}
                   >
                     <img src={subItem.icon} alt={subItem.title} className="w-5 h-5 shrink-0 object-contain" />
                     <span className="flex-1 text-sm">{subItem.title}</span>
@@ -234,15 +234,15 @@ export default function MobileDrawer({
             )}
 
             {item.expandable && isExpanded[item.key] && item.key === "language" && (
-              <div className="flex flex-col gap-1 pl-2">
-                {options.map((lang) => (
+              <div className={`flex flex-col gap-1 ${isRTL ? "pr-2" : "pl-2"}`}>
+                {supportedLanguageOptions.map((lang) => (
                   <button
                     key={lang.value}
                     onClick={() => {
                       localeState.value = lang.value;
                       window.localStorage.setItem("locale", lang.value);
                     }}
-                    className={`flex items-center gap-3 px-4 py-2.75 rounded-xl transition-colors w-full text-left ${localeState.value === lang.value
+                    className={`flex items-center gap-3 px-4 py-2.75 rounded-xl transition-colors w-full ${isRTL ? "flex-row-reverse text-right" : "text-left"} ${localeState.value === lang.value
                       ? "bg-(--sidebar-card-active) text-white"
                       : "bg-(--sidebar-card-bg) text-white hover:bg-(--sidebar-card-hover)"
                       }`}
