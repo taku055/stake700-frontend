@@ -23,11 +23,15 @@ import AMLPolicyPage from "@/pages/about-us/aml_policy";
 import HomePage from "@/pages/home";
 import SportPage from "@/pages/sport";
 import AriesPaymentResult from "@/pages/payment/aries/AriesPaymentResult";
+import LobbyCasino from "@/pages/lobby-casino";
+import LobbyLiveCasino from "@/pages/lobby-livecasino";
 
 export default function AppRoute() {
   return (
     <Router>
       <Route path="/" component={HomePage} />
+      <Route path="/lobby-casino" component={LobbyCasino} />
+      <Route path="/lobby-live-casino" component={LobbyLiveCasino} />
       <Route path="/provably-fair" component={ProvablyFairLayout} />
 
       <Route path="/sports" component={SportPage} />
@@ -43,7 +47,7 @@ export default function AppRoute() {
       <Route path="/other-rules" component={OtherRules} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/faq" component={FAQ} />
-{/* 
+      {/* 
       <Route path="/support/fairness" component={ProvablyFairLayout} />
       <Route path="/support/fairness/*" component={ProvablyFairLayout} /> */}
       <Route path="/support/help-center" component={HelpCenterPage} />

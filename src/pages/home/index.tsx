@@ -1,8 +1,8 @@
-import { useMemo } from "preact/hooks";
+import { useMemo, useState } from "preact/hooks";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 import { CasinoGameGrid } from "@/pages/casino/components/CasinoGameGrid";
-import { HOME_CATEGORIES } from "./data.ts";
+import { HOME_TABS } from "./data.ts";
 import { useTranslations } from "@/context/I18nContext";
 import GameGroup from "@/components/GameGroup";
 import { useLocation } from "preact-iso";
@@ -12,8 +12,13 @@ import ContentWrapper from "@/provider/ContentWrapper.tsx";
 import { userState } from "@/state/userState.ts";
 import TopGamesGroup from "@/components/TopGamesGroup/index.tsx";
 import TrendingGamesGroup from "@/components/TrendingGamesGroup/index.tsx";
-import Megaways from "@/components/Megaways/index.tsx";
+// import Megaways from "@/components/Megaways/index.tsx";
 import { searchWidgetState } from "@/state/searchWidgetState";
+import LobbyGames from "./LobbyGames.tsx";
+import LiveCasinoGames from "./LiveCasinoGames.tsx";
+import CasinoGames from "./CasinoGames.tsx";
+import Jackpots from "./Jackpots.tsx";
+import Megaways from "./Megaways.tsx";
 
 export default function HomePage() {
   const location = useLocation();
@@ -30,54 +35,57 @@ export default function HomePage() {
 
   const isMobile = useMediaQuery(mobileMediaQuery);
   const t = useTranslations("HomePage");
-  const activeCategory = useMemo(() => {
-    return (
-      HOME_CATEGORIES.find((cat) => cat.category === location.query.category)
-        ?.category || HOME_CATEGORIES[0].category
-    );
-  }, [location.query.category]);
+  const [activeTab, setActiveTab] = useState('')
 
   return (
     <>
       <EmblaBanner />
-      <ContentWrapper>
-        <div className="flex justify-center overflow-x-auto scrollbar-hide mb-4 mt-4">
+      <ContentWrapper className="px-4 md:px-20">
+        <div className="flex overflow-x-auto scrollbar-hide mb-4 mt-4">
           <div className="flex gap-1 min-w-max">
             {/* Search */}
             <button
               type="button"
               onClick={() => (searchWidgetState.value = !searchWidgetState.value)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-sm font-medium text-[#aaaaaa] hover:text-white hover:bg-[#1e1e1e]"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg font-medium text-[#99897a] hover:text-white hover:bg-[rgb(54,48,43)]"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#FFD700]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
+              <img src="/images/search.png"
+                className="w-5 h-5 object-contain"
+              />
               Search
             </button>
-            {HOME_CATEGORIES.map((category) => (
-              <Link
-                href={`/?category=${category.category}`}
-                key={category.key}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-sm font-medium ${activeCategory === category.category
-                    ? "bg-[#2a2a2a] text-white"
-                    : "text-[#aaaaaa] hover:text-white hover:bg-[#1e1e1e]"
+            {HOME_TABS.map((tab) => (
+              <button
+                onClick={() => {
+                  setActiveTab(tab.category)
+                }}
+                key={tab.key}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg  font-medium ${activeTab === tab.category
+                  ? "bg-[rgb(54,48,43)] text-[#f0d9c6]"
+                  : "text-[#99897a] hover:text-white hover:bg-[#1e1e1e]"
                   }`}
               >
                 <img
-                  src={category.icon}
-                  alt={category.name}
-                  className="w-4 h-4 object-contain"
+                  src={tab.icon}
+                  alt={tab.name}
+                  className="w-5 h-5 object-contain"
                 />
-                {category.name}
-              </Link>
+                {tab.name}
+              </button>
             ))}
           </div>
         </div>
 
         {/* Content based on activeTab */}
-        {activeCategory === "" ? (
+        {activeTab === "" && <LobbyGames />}
+        {activeTab === "casino" && <CasinoGames />}
+        {activeTab === "live-casino" && <LiveCasinoGames />}
+        {activeTab === "jackpots" && <Jackpots />}
+        {activeTab === "megaways" && <Megaways />}
+
+        {/* {activeTab === "" ? (
           <div className="flex flex-col gap-4">
-            {HOME_CATEGORIES.filter((category) => category.category !== "").map(
+            {HOME_TABS.filter((category) => category.category !== "").map(
               (category) => {
                 if (category.category == 'top-games') {
                   return (
@@ -136,13 +144,13 @@ export default function HomePage() {
               } gap-6`}
           >
             <CasinoGameGrid
-              isCustom={activeCategory === "pragmatic" ? false : true}
-              category={activeCategory}
+              isCustom={activeTab === "pragmatic" ? false : true}
+              category={activeTab}
               gameType="SLOT"
-              provider={activeCategory === "pragmatic" ? "5af8ec20d4b1198738df2967a01b0d7c52246b97" : undefined}
+              provider={activeTab === "pragmatic" ? "5af8ec20d4b1198738df2967a01b0d7c52246b97" : undefined}
             />
           </div>
-        )}
+        )} */}
       </ContentWrapper>
     </>
   );

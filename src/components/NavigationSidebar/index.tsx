@@ -68,7 +68,7 @@ export default function NavigationSidebar() {
           item.key
         )
       )
-      .map((item) => {
+      .map((item: any) => {
         return {
           title: item.title,
           href: item.href || "",
@@ -103,7 +103,7 @@ export default function NavigationSidebar() {
           "language",
         ].includes(item.key)
       )
-      .map((item) => ({
+      .map((item: any) => ({
         title: item.title,
         href: item.href || "",
         key: item.key,

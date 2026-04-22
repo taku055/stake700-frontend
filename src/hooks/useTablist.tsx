@@ -61,7 +61,7 @@ export const useTablist = () => {
           navIcon: "/images/sidebar/casino.png",
           expandable: true,
           expandableItems: [
-            { title: "Lobby", href: "/casino", icon: "/images/category_logo/lobby.png" },
+            { title: "Lobby", href: "/lobby-casino", icon: "/images/category_logo/lobby.png" },
             { title: "Top", href: "/casino/top", icon: "/images/category_logo/top.png" },
             { title: "New", href: "/casino/new", icon: "/images/category_logo/new.png" },
             { title: "Popular", href: "/casino/popular", icon: "/images/category_logo/popular.png" },
@@ -76,7 +76,7 @@ export const useTablist = () => {
           navIcon: "/images/sidebar/live-casino.png",
           expandable: true,
           expandableItems: [
-            { title: "Lobby", href: "/live-casino", icon: "/images/category_logo/lobby.png" },
+            { title: "Lobby", href: "/lobby-live-casino", icon: "/images/category_logo/lobby.png" },
             { title: "Top Live Games", href: "/live-casino/top", icon: "/images/category_logo/top-live-games.png" },
             { title: "Roulette", href: "/live-casino/roulette", icon: "/images/category_logo/roulette.png" },
             { title: "Blackjack", href: "/live-casino/blackjack", icon: "/images/category_logo/blackjack.png" },

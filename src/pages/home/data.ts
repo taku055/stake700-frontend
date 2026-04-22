@@ -1,4 +1,4 @@
-export const HOME_CATEGORIES: {
+export const HOME_TABS: {
   key: string;
   name: string;
   category: string;
@@ -15,13 +15,13 @@ export const HOME_CATEGORIES: {
       key: "casino",
       name: "Casino",
       category: "casino",
-      icon: "/images/category_logo/top-slots.png",
+      icon: "/images/sidebar/casino.png",
     },
     {
       key: "live-casino",
       name: "Live Casino",
       category: "live-casino",
-      icon: "/images/category_logo/top-live-games.png",
+      icon: "/images/sidebar/live-casino.png",
     },
     {
       key: "jackpots",
@@ -33,7 +33,7 @@ export const HOME_CATEGORIES: {
       key: "table-games",
       name: "Table Games",
       category: "table-games",
-      icon: "/images/category_logo/table-games.svg",
+      icon: "/images/sidebar/table-games.svg",
     },
     {
       key: "new-games",
