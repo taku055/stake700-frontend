@@ -1,7 +1,7 @@
 import Megaways from "@/components/Megaways";
 import { useTranslations } from "@/context/I18nContext";
 
-export default function LobbyGames() {
+export default function LobbyGames({ setActiveTab }: { setActiveTab: (tab: string) => void }) {
     const t = useTranslations("HomePage");
 
     return (
@@ -13,6 +13,7 @@ export default function LobbyGames() {
                 isCustom={true}
                 provider={''}
                 viewallLink={`/?category=${'megaways'}`}
+                setActiveTab={setActiveTab}
             />
         </div>
     )

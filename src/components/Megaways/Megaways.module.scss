@@ -92,10 +92,10 @@
     display: flex;
 
     .gameSlide {
-      width: 360px !important;
+      width: 630px !important;
 
       @include for-mobile-portrait-only {
-        width: 190px !important;
+        width: 400px !important;
       }
 
       @include for-mobile-landscape-only {
@@ -108,8 +108,8 @@
       display: grid;
       gap: 10px;
       width: max-content;
-      grid-template-columns: repeat(8, 169px);
-      grid-template-rows: repeat(2, 145px);
+      grid-template-columns: repeat(8, 150px);
+      grid-template-rows: repeat(2, 155px);
 
       @include for-mobile-portrait-only {
         grid-template-columns: repeat(8, 90px);
@@ -119,22 +119,27 @@
       .gameCard {
 
         &:nth-child(1) {
-          grid-column: 1;
-          grid-row: 1;
+          grid-column: 1 / span 2;
+          grid-row: 1 / span 2;
         }
 
         &:nth-child(2) {
-          grid-column: 2;
+          grid-column: 3;
           grid-row: 1;
         }
 
         &:nth-child(3) {
-          grid-column: 1;
-          grid-row: 2;
+          grid-column: 4;
+          grid-row: 1;
         }
 
         &:nth-child(4) {
-          grid-column: 2;
+          grid-column: 3;
+          grid-row: 2;
+        }
+
+        &:nth-child(5) {
+          grid-column: 4;
           grid-row: 2;
         }
       }

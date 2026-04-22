@@ -77,7 +77,7 @@ export default function HomePage() {
         </div>
 
         {/* Content based on activeTab */}
-        {activeTab === "" && <LobbyGames />}
+        {activeTab === "" && <LobbyGames setActiveTab={setActiveTab} />}
         {activeTab === "casino" && <CasinoGames />}
         {activeTab === "live-casino" && <LiveCasinoGames />}
         {activeTab === "jackpots" && <Jackpots />}

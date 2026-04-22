@@ -72,7 +72,10 @@
     "ring": "Benachrichtigungen",
     "logout": "Abmelden",
     "Wallet": "Geldbörse",
-    "All Slots": "Alle Slots"
+    "All Slots": "Alle Slots",
+    "Missions": "Missionen",
+    "Evolution Live": "Evolution Live",
+    "Playtech Live": "Playtech Live"
   },
   "ProviderSidebar": {
     "Providers": "Anbieter",
@@ -1950,5 +1953,26 @@
     "footer_compliance_label": "Compliance:",
     "footer_mlro_label": "MLRO:",
     "footer_tip": "Hinweis: Verwenden Sie Adressen unter Ihrer Domain und halten Sie sie in allen Richtlinien konsistent."
+  },
+  "CasinoPage": {
+    "Search": "Suche",
+    "Lobby": "Lobby",
+    "Slots": "Slots",
+    "Top": "Top",
+    "New": "Neu",
+    "Popular": "Beliebt",
+    "Buy Bonus": "Bonus kaufen",
+    "Megaways": "Megaways",
+    "Table Games": "Tischspiele",
+    "Jackpots": "Jackpots",
+    "Favorites": "Favoriten",
+    "Recently": "Zuletzt gespielt",
+    "No games found": "Keine Spiele gefunden",
+    "Top Live Games": "Top Live-Spiele",
+    "Live Casino": "Live-Casino",
+    "Roulette": "Roulette",
+    "Blackjack": "Blackjack",
+    "Baccarat": "Baccarat",
+    "Shows": "Shows"
   }
 }

@@ -12,7 +12,6 @@ import ContentWrapper from "@/provider/ContentWrapper.tsx";
 import { userState } from "@/state/userState.ts";
 import TopGamesGroup from "@/components/TopGamesGroup/index.tsx";
 import TrendingGamesGroup from "@/components/TrendingGamesGroup/index.tsx";
-// import Megaways from "@/components/Megaways/index.tsx";
 import { searchWidgetState } from "@/state/searchWidgetState";
 import LobbyGames from "./LobbyGames.tsx";
 import LiveCasinoGames from "./LiveCasinoGames.tsx";
@@ -20,7 +19,11 @@ import CasinoGames from "./CasinoGames.tsx";
 import Jackpots from "./Jackpots.tsx";
 import Megaways from "./Megaways.tsx";
 
-export default function LobbyCasino() {
+interface LobbyCasinoProps {
+  defaultTab?: string;
+}
+
+export default function LobbyCasino({ defaultTab = '' }: LobbyCasinoProps) {
   const location = useLocation();
   if (userState.value?.role === "SUPERAGENT") {
     location.route("/superagent");
@@ -34,8 +37,8 @@ export default function LobbyCasino() {
   }
 
   const isMobile = useMediaQuery(mobileMediaQuery);
-  const t = useTranslations("HomePage");
-  const [activeTab, setActiveTab] = useState('')
+  const t = useTranslations("CasinoPage");
+  const [activeTab, setActiveTab] = useState(defaultTab)
 
   return (
     <>
@@ -51,7 +54,7 @@ export default function LobbyCasino() {
               <img src="/images/search.png"
                 className="w-5 h-5 object-contain"
               />
-              Search
+              {t("Search")}
             </button>
             {HOME_TABS.map((tab) => (
               <button
@@ -66,21 +69,25 @@ export default function LobbyCasino() {
               >
                 <img
                   src={tab.icon}
-                  alt={tab.name}
+                  alt={t(tab.name)}
                   className="w-5 h-5 object-contain"
                 />
-                {tab.name}
+                {t(tab.name)}
               </button>
             ))}
           </div>
         </div>
 
         {/* Content based on activeTab */}
-        {activeTab === "" && <LobbyGames />}
-        {activeTab === "casino" && <CasinoGames />}
-        {activeTab === "live-casino" && <LiveCasinoGames />}
-        {activeTab === "jackpots" && <Jackpots />}
+        {activeTab === "" && <LobbyGames setActiveTab={setActiveTab} />}
+        {activeTab === "slots" && <CasinoGameGrid isCustom={false} category="casino" gameType="SLOT" />}
+        {activeTab === "top" && <CasinoGameGrid isCustom={true} category="top" gameType="SLOT" />}
+        {activeTab === "new" && <CasinoGameGrid isCustom={true} category="new" gameType="SLOT" />}
+        {activeTab === "popular" && <CasinoGameGrid isCustom={true} category="popular" gameType="SLOT" />}
+        {activeTab === "buy-bonus" && <CasinoGameGrid isCustom={true} category="buy-bonus" gameType="SLOT" />}
         {activeTab === "megaways" && <Megaways />}
+        {activeTab === "table-games" && <CasinoGameGrid isCustom={true} category="table-games" gameType="SLOT" />}
+        {activeTab === "jackpots" && <Jackpots />}
 
         {/* {activeTab === "" ? (
           <div className="flex flex-col gap-4">

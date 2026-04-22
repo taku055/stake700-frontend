@@ -33,6 +33,7 @@ const getNavIcon = (key: string): string => {
 
 export const useTablist = () => {
   const t = useTranslations("Header");
+  const tc = useTranslations("CasinoPage");
   const pathname = useLocation();
   const tabList = useMemo(() => {
     if (!userState.value?.isAgent) {
@@ -50,24 +51,18 @@ export const useTablist = () => {
           navIcon: "/images/sidebar/promotions.png",
         },
         {
-          title: "Missions",
-          href: "/missions",
-          key: "missions",
-          navIcon: "/images/sidebar/missions.png",
-        },
-        {
           title: t("Casino"),
           key: "slots",
           navIcon: "/images/sidebar/casino.png",
           expandable: true,
           expandableItems: [
-            { title: "Lobby", href: "/lobby-casino", icon: "/images/category_logo/lobby.png" },
-            { title: "Top", href: "/casino/top", icon: "/images/category_logo/top.png" },
-            { title: "New", href: "/casino/new", icon: "/images/category_logo/new.png" },
-            { title: "Popular", href: "/casino/popular", icon: "/images/category_logo/popular.png" },
-            { title: "Jackpots", href: "/casino/jackpots", icon: "/images/category_logo/jackpots.png" },
-            { title: "Megaways", href: "/casino/megaways", icon: "/images/category_logo/megaways.png" },
-            { title: "Buy Bonus", href: "/casino/buy-bonus", icon: "/images/category_logo/buy-bonus.png" },
+            { title: tc("Lobby"), href: "/lobby-casino", icon: "/images/category_logo/lobby.png" },
+            { title: tc("Top"), href: "/top-casino", icon: "/images/category_logo/top.png" },
+            { title: tc("New"), href: "/new-casino", icon: "/images/category_logo/new.png" },
+            { title: tc("Popular"), href: "/popular-casino", icon: "/images/category_logo/popular.png" },
+            { title: tc("Jackpots"), href: "/jackpots-casino", icon: "/images/category_logo/jackpots.png" },
+            { title: tc("Megaways"), href: "/megaways-casino", icon: "/images/category_logo/megaways.png" },
+            { title: tc("Buy Bonus"), href: "/buy-bonus-casino", icon: "/images/category_logo/buy-bonus.png" },
           ],
         },
         {
@@ -76,22 +71,22 @@ export const useTablist = () => {
           navIcon: "/images/sidebar/live-casino.png",
           expandable: true,
           expandableItems: [
-            { title: "Lobby", href: "/lobby-live-casino", icon: "/images/category_logo/lobby.png" },
-            { title: "Top Live Games", href: "/live-casino/top", icon: "/images/category_logo/top-live-games.png" },
-            { title: "Roulette", href: "/live-casino/roulette", icon: "/images/category_logo/roulette.png" },
-            { title: "Blackjack", href: "/live-casino/blackjack", icon: "/images/category_logo/blackjack.png" },
-            { title: "Baccarat", href: "/live-casino/baccarat", icon: "/images/category_logo/baccarat.png" },
-            { title: "Shows", href: "/live-casino/shows", icon: "/images/category_logo/shows.png" },
+            { title: tc("Lobby"), href: "/lobby-live-casino", icon: "/images/category_logo/lobby.png" },
+            { title: tc("Top Live Games"), href: "/top-livecasino", icon: "/images/category_logo/top-live-games.png" },
+            { title: tc("Roulette"), href: "/roulette-livecasino", icon: "/images/category_logo/roulette.png" },
+            { title: tc("Blackjack"), href: "/blackjack-livecasino", icon: "/images/category_logo/blackjack.png" },
+            { title: tc("Baccarat"), href: "/baccarat-livecasino", icon: "/images/category_logo/baccarat.png" },
+            { title: tc("Shows"), href: "/shows-livecasino", icon: "/images/category_logo/shows.png" },
           ],
         },
         {
-          title: "Evolution Live",
+          title: t("Evolution Live"),
           href: "/live-casino/evolution",
           key: "evolution-live",
           navIcon: "/images/sidebar/evolution-live.png",
         },
         {
-          title: "Playtech Live",
+          title: t("Playtech Live"),
           href: "/live-casino/playtech",
           key: "playtech-live",
           navIcon: "/images/sidebar/playtech-live.png",

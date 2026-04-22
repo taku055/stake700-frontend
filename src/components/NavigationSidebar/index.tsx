@@ -64,7 +64,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["home", "promotions", "missions", "slots", "live-casino", "evolution-live", "playtech-live", "table-games", "jackpots"].includes(
+        ["home", "promotions", "slots", "live-casino", "evolution-live", "playtech-live", "table-games", "jackpots"].includes(
           item.key
         )
       )
@@ -124,7 +124,6 @@ export default function NavigationSidebar() {
       if (item.key === "slots") return path.startsWith("/casino");
       if (item.key === "live-casino") return path.startsWith("/live-casino");
       if (item.key === "promotions") return path.startsWith("/promotions");
-      if (item.key === "missions") return path.startsWith("/missions");
       if (item.href) return path.startsWith(item.href.split("?")[0]);
       return false;
     });

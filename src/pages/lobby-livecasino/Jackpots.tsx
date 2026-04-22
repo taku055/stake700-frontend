@@ -1,4 +1,3 @@
-import Megaways from "@/components/Megaways";
 import { useTranslations } from "@/context/I18nContext";
 
 export default function Jackpots() {

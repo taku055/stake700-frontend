@@ -4,8 +4,6 @@ import { useTranslations } from "@/context/I18nContext";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { Home, ChartArea, Crown, Users, Menu } from "lucide-preact";
 
-import { Sports } from "@/components/icons";
-
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
 import {
@@ -38,12 +36,6 @@ export default function FooterNav() {
           href: "/",
           key: "home",
           icon: <Home width={20} height={20} />,
-        },
-        {
-          title: t("Sports"),
-          href: "/sports",
-          key: "sports",
-          icon: <Sports />,
         },
         {
           title: t("Casino"),
@@ -128,8 +120,8 @@ export default function FooterNav() {
               navigationSidebarExpandedState.value = false;
             }}
             className={`flex flex-col items-center justify-center py-2 gap-1 h-full min-w-0 ${selectedKey === tab.key
-                ? "text-[var(--primary-color)] border-t-2 border-[var(--primary-color)]"
-                : "text-white"
+              ? "text-[var(--primary-color)] border-t-2 border-[var(--primary-color)]"
+              : "text-white"
               } bg-transparent`}
           >
             <span className="text-sm my-auto h-full flex flex-col justify-center items-center">

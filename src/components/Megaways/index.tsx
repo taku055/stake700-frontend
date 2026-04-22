@@ -26,6 +26,7 @@ interface IGameGroupProps {
   template?: number;
   icon?: string;
   gameList?: tGame[];
+  setActiveTab?: (key: string) => void;
 }
 
 
@@ -41,6 +42,7 @@ export default function Megaways({
   icon,
   template = 0,
   gameList,
+  setActiveTab
 }: IGameGroupProps) {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
   const [games, setGames] = useState<tGame[]>([]);
@@ -81,8 +83,8 @@ export default function Megaways({
   }, [category, isCustom, customGamesState.value, provider, exceptGameId, gameList]);
 
   const groupedGames = [];
-  for (let i = 0; i < games.length; i += 4) {
-    groupedGames.push(games.slice(i, i + 4));
+  for (let i = 0; i < games.length; i += 5) {
+    groupedGames.push(games.slice(i, i + 5));
   }
 
   return (
@@ -132,9 +134,13 @@ export default function Megaways({
               </Button>
             </>
           )}
-          <a href={viewallLink || "#"} className={styles.view}>
+          <button onClick={() => {
+            if (setActiveTab != undefined) {
+              setActiveTab('megaways')
+            }
+          }} className={styles.view}>
             {t("More")} <ChevronRight color="white" size={16} />
-          </a>
+          </button>
         </div>
       </div>
       <Swiper
@@ -145,9 +151,7 @@ export default function Megaways({
         loop={false}
         loopAddBlankSlides={false}
         spaceBetween={isMobilePortrait ? 6 : 12}
-        slidesPerView={
-          isMobilePortrait ? (bigMode ? 2 : 2) : bigMode ? 2 : 3
-        }
+        slidesPerView={isMobilePortrait ? 1 : "auto"}
         slidesPerGroup={1}
         onSwiper={setSwiper}
         autoplay={animated ? { delay: 5000, disableOnInteraction: false } : undefined}
