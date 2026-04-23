@@ -20,13 +20,11 @@ export const HOME_PAGE_TABS: Record<HomePageMode, HomeTabConfig[]> = {
   ],
   "lobby-casino": [
     { key: "", name: "Lobby", icon: "/images/category_logo/lobby.png" },
-    { key: "slots", name: "Casino", icon: "/images/sidebar/casino.png" },
     { key: "top", name: "Top", icon: "/images/category_logo/top.png" },
     { key: "new", name: "New", icon: "/images/category_logo/new.png" },
     { key: "popular", name: "Popular", icon: "/images/category_logo/popular.png" },
     { key: "jackpots", name: "Jackpots", icon: "/images/category_logo/jackpots.png" },
     { key: "megaways", name: "Megaways", icon: "/images/category_logo/megaways.png" },
-    { key: "buy-bonus", name: "Buy Bonus", icon: "/images/category_logo/buy-bonus.png" },
   ],
   "lobby-live-casino": [
     { key: "", name: "Live Casino", icon: "/images/category_logo/lobby.png" },

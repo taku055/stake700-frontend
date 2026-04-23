@@ -4,7 +4,6 @@ export type CasinoCategoryPageKey =
   | "popular-casino"
   | "jackpots-casino"
   | "megaways-casino"
-  | "buy-bonus-casino"
   | "top-livecasino"
   | "roulette-livecasino"
   | "blackjack-livecasino"
@@ -73,16 +72,6 @@ export const CASINO_CATEGORY_PAGES: Record<
     tab: { key: "megaways", name: "Megaways", icon: "/images/category_logo/megaways.png" },
     render: { type: "component", component: "megaways" },
   },
-  "buy-bonus-casino": {
-    section: "slots",
-    tab: { key: "buy-bonus", name: "Buy Bonus", icon: "/images/category_logo/buy-bonus.png" },
-    render: {
-      type: "grid",
-      category: "buy-bonus",
-      gameType: "SLOT",
-      isCustom: true,
-    },
-  },
   "top-livecasino": {
     section: "live-casino",
     tab: { key: "top-live", name: "Top Live Games", icon: "/images/category_logo/top-live-games.png" },
@@ -131,7 +120,6 @@ export const CASINO_CATEGORY_PAGE_BY_PATH: Record<string, CasinoCategoryPageKey>
   "/popular-casino": "popular-casino",
   "/jackpots-casino": "jackpots-casino",
   "/megaways-casino": "megaways-casino",
-  "/buy-bonus-casino": "buy-bonus-casino",
   "/top-livecasino": "top-livecasino",
   "/roulette-livecasino": "roulette-livecasino",
   "/blackjack-livecasino": "blackjack-livecasino",
@@ -145,7 +133,6 @@ export const SLOTS_CATEGORY_PAGES: CasinoCategoryPageKey[] = [
   "popular-casino",
   "jackpots-casino",
   "megaways-casino",
-  "buy-bonus-casino",
 ];
 
 export const LIVE_CATEGORY_PAGES: CasinoCategoryPageKey[] = [

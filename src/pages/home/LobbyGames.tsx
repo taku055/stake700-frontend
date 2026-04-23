@@ -12,31 +12,31 @@ export default function LobbyGames() {
                 category={"trending"}
                 title={t("Trending Games") || "Trending Games"}
                 isCustom={true}
-                viewallLink={`/casino/slots/?category=${"trending"}`}
+                viewallLink={`/casino/slots/?custom=1&category=${"trending"}`}
             />
             <GridGameGroup
                 category={"slot-new"}
                 title={t("New Games") || "New Games"}
                 isCustom={true}
-                viewallLink={`/casino/slots/?category=${"slot-new"}`}
+                viewallLink={`/casino/slots/?custom=1&category=${"slot-new"}`}
             />
             <GameGroup
                 category={"live-tables"}
                 title={t("Live Tables") || "Live Tables"}
                 isCustom={true}
-                viewallLink={`/casino/live/?category=${"home-live-casino"}`}
+                viewallLink={`/casino/live-casino/?custom=1&category=${"live-tables"}`}
             />
             <TwoRowGameGroup
                 category={"megaways"}
                 title={t("Megaways") || "Megaways"}
                 isCustom={true}
-                viewallLink={`/casino/slots/?category=${"megaways"}`}
+                viewallLink={`/casino/slots/?custom=1&category=${"megaways"}`}
             />
             <GameGroup
                 category={"jackpots"}
                 title={t("Jackpots") || "Jackpots"}
                 isCustom={true}
-                viewallLink={`/casino/slots/?category=${"jackpots"}`}
+                viewallLink={`/casino/slots/?custom=1&category=${"jackpots"}`}
             />
         </div>
     )
