@@ -12,25 +12,25 @@ export default function CasinoGames() {
                 category={"show"}
                 title={t("Game Shows") || "Game Shows"}
                 isCustom={true}
-                viewallLink={`/?category=${"show"}`}
+                viewallLink={`/casino/slots?custom=1&category=${"show"}`}
             />
             <TwoRowGameGroup
                 category={"top-games"}
                 title={t("Top Games") || "Top Games"}
                 isCustom={true}
-                viewallLink={`/?category=${"top-games"}`}
+                viewallLink={`/casino/slots?custom=1&category=${"top-games"}`}
             />
             <GameGroup
                 category={"slot-popular"}
                 title={t("Popular Games") || "Popular Games"}
                 isCustom={true}
-                viewallLink={`/?category=${"slot-popular"}`}
+                viewallLink={`/casino/slots?custom=1&category=${"slot-popular"}`}
             />
             <GameGroup
                 category={"classic-slots"}
                 title={t("Classics") || "Classics"}
                 isCustom={true}
-                viewallLink={`/?category=${"classic-slots"}`}
+                viewallLink={`/casino/slots?custom=1&category=${"classic-slots"}`}
             />
         </div>
     )

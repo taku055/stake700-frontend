@@ -26,7 +26,6 @@ interface IGameGroupProps {
   template?: number;
   icon?: string;
   gameList?: tGame[];
-  setActiveTab?: (key: string) => void;
 }
 
 export default function TwoRowGameGroup({
@@ -41,7 +40,6 @@ export default function TwoRowGameGroup({
   icon,
   template = 0,
   gameList,
-  setActiveTab
 }: IGameGroupProps) {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
   const [games, setGames] = useState<tGame[]>([]);
@@ -133,13 +131,9 @@ export default function TwoRowGameGroup({
               </Button>
             </>
           )}
-          <button onClick={() => {
-            if (setActiveTab != undefined) {
-              setActiveTab('megaways')
-            }
-          }} className={styles.view}>
+          <a href={viewallLink || "#"} className={styles.view}>
             {t("More")} <ChevronRight color="white" size={16} />
-          </button>
+          </a>
         </div>
       </div>
       <Swiper

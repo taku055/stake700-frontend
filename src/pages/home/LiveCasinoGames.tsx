@@ -12,25 +12,25 @@ export default function LiveCasinoGames() {
                 category={"rouletteglobal"}
                 title={t("International Roulette") || "International Roulette"}
                 isCustom={true}
-                viewallLink={`/?category=${"rouletteglobal"}`}
+                viewallLink={`/casino/live-casino?custom=1&category=${"rouletteglobal"}`}
             />
-            <TwoRowGameGroup
+            <GridGameGroup
                 category={"toptables"}
                 title={t("Top Tables") || "Top Tables"}
                 isCustom={true}
-                viewallLink={`/?category=${"toptables"}`}
+                viewallLink={`/casino/live-casino?custom=1&category=${"toptables"}`}
             />
             <GameGroup
                 category={"highstakes"}
                 title={t("High Stakes") || "High Stakes"}
                 isCustom={true}
-                viewallLink={`/?category=${"highstakes"}`}
+                viewallLink={`/casino/live-casino?custom=1&category=${"highstakes"}`}
             />
             <GameGroup
                 category={"tablegames"}
                 title={t("All Tables") || "All Tables"}
                 isCustom={true}
-                viewallLink={`/?category=${"tablegames"}`}
+                viewallLink={`/casino/live-casino?custom=1&category=${"tablegames"}`}
             />
         </div>
     )
