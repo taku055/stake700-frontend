@@ -20,13 +20,13 @@ export default function LobbyGames() {
                 isCustom={true}
                 viewallLink={`/casino/slots/?category=${"slot-new"}`}
             />
-            <TwoRowGameGroup
+            <GameGroup
                 category={"live-tables"}
-                title={t("Live Casino") || "Live Casino"}
+                title={t("Live Tables") || "Live Tables"}
                 isCustom={true}
                 viewallLink={`/casino/live/?category=${"home-live-casino"}`}
             />
-            <GameGroup
+            <TwoRowGameGroup
                 category={"megaways"}
                 title={t("Megaways") || "Megaways"}
                 isCustom={true}
