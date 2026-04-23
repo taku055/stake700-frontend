@@ -87,11 +87,6 @@ export default function GridGameGroup({
     <div className={styles.gameGroup}>
       <div className={styles.titleBar}>
         <div className={styles.title}>
-          <img
-            src={icon || `${ASSET_BASE_URL}/images/icons/trending-game.png`}
-            alt={title}
-            className={styles.icon}
-          />
           <div className={styles.text}>{title}</div>
         </div>
         <div className={styles.action}>
