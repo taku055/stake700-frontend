@@ -147,9 +147,7 @@ export default function GameGroup({
         loop={false}
         loopAddBlankSlides={false}
         spaceBetween={isMobilePortrait ? 6 : 12}
-        slidesPerView={
-          isMobilePortrait ? (bigMode ? 2 : 3) : bigMode ? 6 : "auto"
-        }
+        slidesPerView="auto"
         slidesPerGroup={isMobilePortrait ? 3 : 4}
         onSwiper={setSwiper}
         autoplay={
@@ -158,7 +156,12 @@ export default function GameGroup({
       >
         {games.map((e) => (
           <SwiperSlide key={e.id} className={styles.game}>
-            <GameCard data={e} useImgCustom />
+            <GameCard
+              data={e}
+              useImgCustom
+              fitImageRatio
+              onImageLoad={() => swiper?.update()}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

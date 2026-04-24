@@ -88,14 +88,20 @@
   }
 
   .games {
+    --game-grid-gap: 10px;
+    --game-card-height: 108px;
+
     width: 100%;
     display: flex;
 
     .gameSlide {
-      width: 364px !important;
+      width: fit-content !important;
+      height: calc(var(--game-card-height) * 2 + var(--game-grid-gap));
+      box-sizing: border-box;
+      flex-shrink: 0;
 
       @include for-mobile-portrait-only {
-        width: 278px !important;
+        --game-card-height: 64px;
       }
 
       @include for-mobile-landscape-only {
@@ -106,17 +112,24 @@
 
     .groupedGames {
       display: grid;
-      gap: 10px;
-      width: max-content;
-      grid-template-columns: repeat(2, 177px);
+      gap: var(--game-grid-gap);
+      width: fit-content;
+      height: 100%;
+      box-sizing: border-box;
+      grid-template-columns: repeat(2, max-content);
+      grid-auto-rows: var(--game-card-height);
 
       @include for-mobile-portrait-only {
-        grid-template-columns: repeat(2, 132px);
+        --game-card-height: 64px;
       }
 
       .gameCard {
         grid-column: auto;
         grid-row: auto;
+        min-width: 0;
+        min-height: 0;
+        height: 100%;
+        width: max-content;
       }
     }
   }

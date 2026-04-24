@@ -88,20 +88,22 @@
   }
 
   .games {
+    --game-card-height: 198px;
+
     width: 100%;
 
     .game {
-      width: 177px;
-      height: auto;
+      width: fit-content !important;
+      height: var(--game-card-height);
+      box-sizing: border-box;
+      flex-shrink: 0;
 
       @include for-mobile-portrait-only {
-        width: unset;
-        height: unset;
+        --game-card-height: 110px;
       }
 
       @include for-mobile-landscape-only {
-        width: 132px;
-        height: auto;
+        --game-card-height: 132px;
       }
     }
   }
