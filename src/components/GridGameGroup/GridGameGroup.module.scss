@@ -119,11 +119,9 @@
       box-sizing: border-box;
       /* repeat(8) inflated max-content (~1270px) vs 630px slide → huge swiper scroll / end gap */
       grid-template-columns: repeat(4, 150px);
-      grid-template-rows: repeat(2, 155px);
 
       @include for-mobile-portrait-only {
         grid-template-columns: repeat(4, 90px);
-        grid-template-rows: repeat(2, 100px);
       }
 
       .gameCard {

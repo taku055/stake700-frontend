@@ -91,8 +91,8 @@
     width: 100%;
 
     .game {
-      width: 136px;
-      height: 182px;
+      width: 177px;
+      height: auto;
 
       @include for-mobile-portrait-only {
         width: unset;
@@ -100,8 +100,8 @@
       }
 
       @include for-mobile-landscape-only {
-        width: 120px;
-        height: 120px;
+        width: 132px;
+        height: auto;
       }
     }
   }
