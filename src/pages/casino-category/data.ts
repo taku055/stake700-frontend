@@ -45,19 +45,19 @@ export const CASINO_CATEGORY_PAGES: Record<
   "top-casino": {
     section: "slots",
     tab: { key: "top", name: "Top", icon: "/images/category_logo/top.png" },
-    render: { type: "grid", category: "top", gameType: "SLOT", isCustom: true },
+    render: { type: "grid", category: "top-games", gameType: "SLOT", isCustom: true },
   },
   "new-casino": {
     section: "slots",
     tab: { key: "new", name: "New", icon: "/images/category_logo/new.png" },
-    render: { type: "grid", category: "new", gameType: "SLOT", isCustom: true },
+    render: { type: "grid", category: "slot-new", gameType: "SLOT", isCustom: true },
   },
   "popular-casino": {
     section: "slots",
     tab: { key: "popular", name: "Popular", icon: "/images/category_logo/popular.png" },
     render: {
       type: "grid",
-      category: "popular",
+      category: "slot-popular",
       gameType: "SLOT",
       isCustom: true,
     },
@@ -65,26 +65,26 @@ export const CASINO_CATEGORY_PAGES: Record<
   "jackpots-casino": {
     section: "slots",
     tab: { key: "jackpots", name: "Jackpots", icon: "/images/category_logo/jackpots.png" },
-    render: { type: "component", component: "jackpots" },
+    render: { type: "grid", category: "jackpots", gameType: "SLOT", isCustom: true },
   },
   "megaways-casino": {
     section: "slots",
     tab: { key: "megaways", name: "Megaways", icon: "/images/category_logo/megaways.png" },
-    render: { type: "component", component: "megaways" },
+    render: { type: "grid", category: "megaways", gameType: "SLOT", isCustom: true },
   },
   "top-livecasino": {
     section: "live-casino",
     tab: { key: "top-live", name: "Top Live Games", icon: "/images/category_logo/top-live-games.png" },
-    render: { type: "grid", category: "top", gameType: "LIVECASINO", isCustom: false },
+    render: { type: "grid", category: "toptables", gameType: "LIVECASINO", isCustom: true },
   },
   "roulette-livecasino": {
     section: "live-casino",
     tab: { key: "roulette", name: "Roulette", icon: "/images/category_logo/roulette.png" },
     render: {
       type: "grid",
-      category: "roulette",
+      category: "rouletteglobal",
       gameType: "LIVECASINO",
-      isCustom: false,
+      isCustom: true,
     },
   },
   "blackjack-livecasino": {
@@ -92,9 +92,9 @@ export const CASINO_CATEGORY_PAGES: Record<
     tab: { key: "blackjack", name: "Blackjack", icon: "/images/category_logo/blackjack.png" },
     render: {
       type: "grid",
-      category: "blackjack",
+      category: "blackjacks",
       gameType: "LIVECASINO",
-      isCustom: false,
+      isCustom: true,
     },
   },
   "baccarat-livecasino": {
@@ -102,15 +102,15 @@ export const CASINO_CATEGORY_PAGES: Record<
     tab: { key: "baccarat", name: "Baccarat", icon: "/images/category_logo/baccarat.png" },
     render: {
       type: "grid",
-      category: "baccarat",
+      category: "baccaratglobal",
       gameType: "LIVECASINO",
-      isCustom: false,
+      isCustom: true,
     },
   },
   "shows-livecasino": {
     section: "live-casino",
     tab: { key: "shows", name: "Shows", icon: "/images/category_logo/shows.png" },
-    render: { type: "grid", category: "shows", gameType: "LIVECASINO", isCustom: false },
+    render: { type: "grid", category: "show", gameType: "LIVECASINO", isCustom: true },
   },
 };
 

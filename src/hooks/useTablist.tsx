@@ -63,11 +63,11 @@ export const useTablist = () => {
           expandable: true,
           expandableItems: [
             { title: tc("Lobby"), href: "/?page=lobby-casino", icon: "/images/category_logo/lobby.png" },
-            { title: tc("Top"), href: "/casino-category?page=top-games", icon: "/images/category_logo/top.png" },
-            { title: tc("New"), href: "/casino-category?page=slot-new", icon: "/images/category_logo/new.png" },
-            { title: tc("Popular"), href: "/casino-category?page=slot-popular", icon: "/images/category_logo/popular.png" },
-            { title: tc("Jackpots"), href: "/casino-category?page=jackpots", icon: "/images/category_logo/jackpots.png" },
-            { title: tc("Megaways"), href: "/casino-category?page=megaways", icon: "/images/category_logo/megaways.png" },
+            { title: tc("Top"), href: "/casino-category?page=top-casino", icon: "/images/category_logo/top.png" },
+            { title: tc("New"), href: "/casino-category?page=new-casino", icon: "/images/category_logo/new.png" },
+            { title: tc("Popular"), href: "/casino-category?page=popular-casino", icon: "/images/category_logo/popular.png" },
+            { title: tc("Jackpots"), href: "/casino-category?page=jackpots-casino", icon: "/images/category_logo/jackpots.png" },
+            { title: tc("Megaways"), href: "/casino-category?page=megaways-casino", icon: "/images/category_logo/megaways.png" },
           ],
         },
         {
@@ -77,11 +77,11 @@ export const useTablist = () => {
           expandable: true,
           expandableItems: [
             { title: tc("Lobby"), href: "/?page=lobby-live-casino", icon: "/images/category_logo/lobby.png" },
-            { title: tc("Top Live Games"), href: "/casino-category?page=toptables", icon: "/images/category_logo/top-live-games.png" },
-            { title: tc("Roulette"), href: "/casino-category?page=rouletteglobal", icon: "/images/category_logo/roulette.png" },
-            { title: tc("Blackjack"), href: "/casino-category?page=blackjacks", icon: "/images/category_logo/blackjack.png" },
-            { title: tc("Baccarat"), href: "/casino-category?page=baccaratglobal", icon: "/images/category_logo/baccarat.png" },
-            { title: tc("Shows"), href: "/casino-category?page=show", icon: "/images/category_logo/shows.png" },
+            { title: tc("Top Live Games"), href: "/casino-category?page=top-livecasino", icon: "/images/category_logo/top-live-games.png" },
+            { title: tc("Roulette"), href: "/casino-category?page=roulette-livecasino", icon: "/images/category_logo/roulette.png" },
+            { title: tc("Blackjack"), href: "/casino-category?page=blackjack-livecasino", icon: "/images/category_logo/blackjack.png" },
+            { title: tc("Baccarat"), href: "/casino-category?page=baccarat-livecasino", icon: "/images/category_logo/baccarat.png" },
+            { title: tc("Shows"), href: "/casino-category?page=shows-livecasino", icon: "/images/category_logo/shows.png" },
           ],
         },
         {
