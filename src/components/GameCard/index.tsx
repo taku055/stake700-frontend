@@ -20,17 +20,13 @@ import { Link } from "../common";
 interface GameCardProps {
   data: tGame;
   onClick?: () => void;
-  onImageLoad?: () => void;
   useImgCustom?: boolean;
-  fitImageRatio?: boolean;
 }
 
 export default function GameCard({
   data,
   onClick,
-  onImageLoad,
   useImgCustom = false,
-  fitImageRatio = false,
 }: GameCardProps) {
   const [isTouchLike, setIsTouchLike] = useState(false);
   const [open, setOpen] = useState(false);
@@ -116,7 +112,7 @@ export default function GameCard({
   return (
     <div
       ref={ref}
-      className={`${styles.game} ${fitImageRatio ? styles.fitImageRatio : ""} ${open ? styles.is_open : ""}`}
+      className={`${styles.game} ${open ? styles.is_open : ""}`}
       onPointerEnter={onCardPointerEnter}
       onPointerLeave={onCardPointerLeave}
       onClick={onCardClick}
@@ -136,10 +132,7 @@ export default function GameCard({
           src={imgSrc}
           alt={data.name || data.id}
           loading="lazy"
-          onLoad={() => {
-            setImgLoaded(true);
-            onImageLoad?.();
-          }}
+          onLoad={() => setImgLoaded(true)}
           onError={() => {
             setImgError(true);
             setImgLoaded(true); // still show fallback

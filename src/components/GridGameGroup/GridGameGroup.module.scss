@@ -88,21 +88,21 @@
   }
 
   .games {
-    --game-grid-gap: 10px;
-    --game-card-height: 108px;
-
     width: 100%;
     overflow: hidden;
     box-sizing: border-box;
 
     .gameSlide {
-      width: fit-content !important;
-      height: calc(var(--game-card-height) * 2 + var(--game-grid-gap));
+      /* 4 cols × 150px + 3 gaps × 10px = 630 — must match .groupedGames track count (mosaic uses cols 1–4 only) */
+      width: 630px !important;
+      max-width: 100%;
       box-sizing: border-box;
       flex-shrink: 0;
+      height: auto;
 
       @include for-mobile-portrait-only {
-        --game-card-height: 64px;
+        /* 4×90 + 3×10 = 390 */
+        width: 390px !important;
       }
 
       @include for-mobile-landscape-only {
@@ -113,45 +113,41 @@
 
     .groupedGames {
       display: grid;
-      gap: var(--game-grid-gap);
+      gap: 10px;
       width: fit-content;
-      height: 100%;
+      max-width: 100%;
       box-sizing: border-box;
-      grid-template-columns: repeat(3, max-content);
-      grid-auto-rows: var(--game-card-height);
+      /* repeat(8) inflated max-content (~1270px) vs 630px slide → huge swiper scroll / end gap */
+      grid-template-columns: repeat(4, 150px);
 
       @include for-mobile-portrait-only {
-        --game-card-height: 64px;
+        grid-template-columns: repeat(4, 90px);
       }
 
       .gameCard {
-        min-width: 0;
-        min-height: 0;
-        height: 100%;
-        width: max-content;
 
         &:nth-child(1) {
-          grid-column: 1;
+          grid-column: 1 / span 2;
           grid-row: 1 / span 2;
         }
 
         &:nth-child(2) {
-          grid-column: 2;
+          grid-column: 3;
           grid-row: 1;
         }
 
         &:nth-child(3) {
-          grid-column: 3;
+          grid-column: 4;
           grid-row: 1;
         }
 
         &:nth-child(4) {
-          grid-column: 2;
+          grid-column: 3;
           grid-row: 2;
         }
 
         &:nth-child(5) {
-          grid-column: 3;
+          grid-column: 4;
           grid-row: 2;
         }
       }

@@ -154,11 +154,7 @@ export default function TwoRowGameGroup({
             <div className={styles.groupedGames}>
               {group.map((game) => (
                 <div className={styles.gameCard} key={game.id}>
-                  <GameCard
-                    data={game}
-                    fitImageRatio
-                    onImageLoad={() => swiper?.update()}
-                  />
+                  <GameCard data={game} useImgCustom />
                 </div>
               ))}
             </div>
