@@ -15,6 +15,23 @@
     width: unset;
   }
 
+  &.fitImageRatio {
+    display: inline-flex;
+    width: max-content;
+
+    .imgWrapper {
+      flex: none;
+      width: auto;
+      height: 100%;
+
+      .gameImage {
+        display: block;
+        width: auto;
+        max-width: none;
+      }
+    }
+  }
+
   .imgWrapper {
     position: relative;
     overflow: hidden;
