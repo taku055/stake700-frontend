@@ -2,6 +2,7 @@ import GameGroup from "@/components/GameGroup";
 import GridGameGroup from "@/components/GridGameGroup";
 import TwoRowGameGroup from "@/components/TwoRowGameGroup";
 import { useTranslations } from "@/context/I18nContext";
+import { Grid } from "lucide-preact";
 
 export default function LobbyGames() {
     const t = useTranslations("HomePage");

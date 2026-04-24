@@ -20,9 +20,14 @@ import { Link } from "../common";
 interface GameCardProps {
   data: tGame;
   onClick?: () => void;
+  useImgCustom?: boolean;
 }
 
-export default function GameCard({ data, onClick }: GameCardProps) {
+export default function GameCard({
+  data,
+  onClick,
+  useImgCustom = false,
+}: GameCardProps) {
   const [isTouchLike, setIsTouchLike] = useState(false);
   const [open, setOpen] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -100,8 +105,9 @@ export default function GameCard({ data, onClick }: GameCardProps) {
 
   const imgSrc = imgError
     ? placeholderGameImage
-    // : data.img_custom || data.img_vertical || data.img || placeholderGameImage;
-    : data.img || placeholderGameImage;
+    : useImgCustom
+      ? data.img_custom || data.img || placeholderGameImage
+      : data.img || placeholderGameImage;
 
   return (
     <div
