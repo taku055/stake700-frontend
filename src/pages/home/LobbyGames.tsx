@@ -21,7 +21,7 @@ export default function LobbyGames() {
                 isCustom={true}
                 viewallLink={`/casino/slots/?custom=1&category=${"slot-new"}`}
             />
-            <GridGameGroup
+            <GameGroup
                 category={"live-tables"}
                 title={t("Live Tables") || "Live Tables"}
                 isCustom={true}
