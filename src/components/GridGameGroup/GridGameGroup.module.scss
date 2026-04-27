@@ -111,44 +111,66 @@
       }
     }
 
-    .groupedGames {
-      display: grid;
+    .mosaic5 {
+      display: flex;
       gap: 10px;
-      width: fit-content;
+      width: 100%;
       max-width: 100%;
       box-sizing: border-box;
-      /* repeat(8) inflated max-content (~1270px) vs 630px slide → huge swiper scroll / end gap */
-      grid-template-columns: repeat(4, 150px);
+      /*
+        Flex layout mosaic:
+        - left big card takes half width (flex-1)
+        - right side takes half width (flex-1) and wraps 4 cards into 2×2 equal quadrants
+        The wrapper's aspect-ratio keeps the overall height stable; the big card fills it.
+      */
+      aspect-ratio: 630 / 320;
+      align-items: stretch;
 
       @include for-mobile-portrait-only {
-        grid-template-columns: repeat(4, 90px);
+        aspect-ratio: 390 / 210;
       }
 
-      .gameCard {
+      .mosaicBig {
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+        flex: 1 1 0;
+        display: flex;
 
-        &:nth-child(1) {
-          grid-column: 1 / span 2;
-          grid-row: 1 / span 2;
+        > * {
+          width: 100%;
+          height: 100%;
         }
+      }
 
-        &:nth-child(2) {
-          grid-column: 3;
-          grid-row: 1;
-        }
+      .mosaicRight {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 0;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-content: stretch;
+      }
 
-        &:nth-child(3) {
-          grid-column: 4;
-          grid-row: 1;
-        }
+      .mosaicSmall {
+        /*
+          2 columns:
+          - two items per row, same width
+          - two rows, same height
+          subtract half the gap from each side so total fits exactly
+        */
+        flex: 0 0 calc(50% - 5px);
+        height: calc(50% - 5px);
+        min-width: 0;
+        min-height: 0;
+        display: flex;
 
-        &:nth-child(4) {
-          grid-column: 3;
-          grid-row: 2;
-        }
-
-        &:nth-child(5) {
-          grid-column: 4;
-          grid-row: 2;
+        > * {
+          width: 100%;
+          height: 100%;
         }
       }
 

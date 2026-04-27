@@ -13,6 +13,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
+import Mosaic5Games from "./Mosaic5Games";
 
 interface IGameGroupProps {
   title: string;
@@ -150,13 +151,7 @@ export default function GridGameGroup({
       >
         {groupedGames.map((group) => (
           <SwiperSlide key={group[0].id} className={styles.gameSlide}>
-            <div className={styles.groupedGames}>
-              {group.map((game) => (
-                <div className={styles.gameCard} key={game.id}>
-                  <GameCard data={game} useImgCustom />
-                </div>
-              ))}
-            </div>
+            <Mosaic5Games games={group} />
           </SwiperSlide>))}
       </Swiper>
     </div>

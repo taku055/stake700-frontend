@@ -104,19 +104,38 @@
       }
     }
 
-    .groupedGames {
-      display: grid;
+    .groupedGames,
+    .mosaic4 {
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
-      width: max-content;
-      grid-template-columns: repeat(2, 177px);
+      width: 100%;
+      height: auto;
+      box-sizing: border-box;
+      /*
+        2×2 flex mosaic.
+        Using aspect-ratio to stabilize the height and ensure all 4 tiles are equal.
+        2×177 + 1×10 gap = 364 (matches slide width)
+      */
+      aspect-ratio: 364 / 320;
 
       @include for-mobile-portrait-only {
-        grid-template-columns: repeat(2, 132px);
+        /* 2×132 + 10 gap = 274; slide is 278, keep ratio close */
+        aspect-ratio: 278 / 240;
       }
 
-      .gameCard {
-        grid-column: auto;
-        grid-row: auto;
+      .gameCard,
+      .mosaicCard {
+        flex: 0 0 calc(50% - 5px);
+        height: calc(50% - 5px);
+        min-width: 0;
+        min-height: 0;
+        display: flex;
+
+        > * {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }
