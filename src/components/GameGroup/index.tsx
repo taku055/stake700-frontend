@@ -158,7 +158,7 @@ export default function GameGroup({
       >
         {games.map((e) => (
           <SwiperSlide key={e.id} className={styles.game}>
-            <GameCard data={e} useImgCustom />
+            <GameCard data={e} />
           </SwiperSlide>
         ))}
       </Swiper>
