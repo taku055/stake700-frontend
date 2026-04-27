@@ -55,7 +55,7 @@ export default function PageComponent() {
           icon={`${ASSET_BASE_URL}/images/icons/sportsbook.png`}
         />
         <PromotionsGroup />
-        <EmulateBetting />
+        {/* <EmulateBetting /> */}
         <FAQ />
       </div>
     </div>

@@ -87,9 +87,9 @@ export default function CasinoPageComponent({
             />
           </div>
           <ProviderGroup />
-          <div className="flex flex-col pb-4">
+          {/* <div className="flex flex-col pb-4">
             <EmulateBetting />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
