@@ -23,6 +23,15 @@ interface GameCardProps {
   useImgCustom?: boolean;
 }
 
+const FORCE_CUSTOM_IMAGE_GAME_IDS = new Set<string>([
+  "129614017fcaf209c4782e7a41b742f6e702bd68",
+  "78a1587cc5cb4772c4ff0ae7cda6028d8e807dc1",
+  "a49e5e628df01b1dcfb6a3d121feb9835b97c1e9",
+  "daa5bc031cb921242db100c4b36e57d5da02e64b",
+  "71d8c9f3e750c39c19b6122787f13113baa8e4fd",
+  "5e56d2330f1e66863bd953db53f85b4c5476d699",
+]);
+
 export default function GameCard({
   data,
   onClick,
@@ -105,9 +114,9 @@ export default function GameCard({
 
   const imgSrc = imgError
     ? placeholderGameImage
-    : useImgCustom
-      ? data.img_custom || data.img || placeholderGameImage
-      : data.img || placeholderGameImage;
+    : (useImgCustom || FORCE_CUSTOM_IMAGE_GAME_IDS.has(data.id))
+        ? data.img_custom || data.img || placeholderGameImage
+        : data.img || placeholderGameImage;
 
   return (
     <div
