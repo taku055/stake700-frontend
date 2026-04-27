@@ -91,6 +91,10 @@
     width: 100%;
     overflow: hidden;
     box-sizing: border-box;
+    /* Make all slides take the height of the tallest slide */
+    :global(.swiper-wrapper) {
+      align-items: stretch;
+    }
 
     .gameSlide {
       /* 4 cols × 150px + 3 gaps × 10px = 630 — must match .groupedGames track count (mosaic uses cols 1–4 only) */
@@ -99,6 +103,7 @@
       box-sizing: border-box;
       flex-shrink: 0;
       height: auto;
+      display: flex;
 
       @include for-mobile-portrait-only {
         /* 4×90 + 3×10 = 390 */

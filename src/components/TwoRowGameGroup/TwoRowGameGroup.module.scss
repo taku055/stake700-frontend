@@ -90,9 +90,15 @@
   .games {
     width: 100%;
     display: flex;
+    /* Make all slides take the height of the tallest slide */
+    :global(.swiper-wrapper) {
+      align-items: stretch;
+    }
 
     .gameSlide {
       width: 364px !important;
+      display: flex;
+      height: auto;
 
       @include for-mobile-portrait-only {
         width: 278px !important;
