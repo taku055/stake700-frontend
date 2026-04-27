@@ -153,7 +153,7 @@ export default function GridGameGroup({
             <div className={styles.groupedGames}>
               {group.map((game) => (
                 <div className={styles.gameCard} key={game.id}>
-                  <GameCard data={game} />
+                  <GameCard data={game} useImgCustom />
                 </div>
               ))}
             </div>
