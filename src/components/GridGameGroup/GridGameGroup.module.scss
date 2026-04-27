@@ -97,8 +97,7 @@
     }
 
     .gameSlide {
-      /* 4 cols × 150px + 3 gaps × 10px = 630 — must match .groupedGames track count (mosaic uses cols 1–4 only) */
-      width: 630px !important;
+      width: 600px !important;
       max-width: 100%;
       box-sizing: border-box;
       flex-shrink: 0;
@@ -106,7 +105,6 @@
       display: flex;
 
       @include for-mobile-portrait-only {
-        /* 4×90 + 3×10 = 390 */
         width: 390px !important;
       }
 
@@ -128,11 +126,12 @@
         - right side takes half width (flex-1) and wraps 4 cards into 2×2 equal quadrants
         The wrapper's aspect-ratio keeps the overall height stable; the big card fills it.
       */
-      aspect-ratio: 630 / 320;
+      aspect-ratio: 600 / 260;
       align-items: stretch;
 
       @include for-mobile-portrait-only {
-        aspect-ratio: 390 / 210;
+        /* Keep same ratio as 600×260 */
+        aspect-ratio: 390 / 169;
       }
 
       .mosaicBig {
