@@ -30,6 +30,14 @@ const FORCE_CUSTOM_IMAGE_GAME_IDS = new Set<string>([
   "daa5bc031cb921242db100c4b36e57d5da02e64b",
   "71d8c9f3e750c39c19b6122787f13113baa8e4fd",
   "5e56d2330f1e66863bd953db53f85b4c5476d699",
+  "440133d570de1b35b304f4102eddbafb20346463",
+  "85bfaeb077d40c9c5a414a0a145368f9b222ca9b",
+  "36eaa9fa999c9814f16812af80d59a69c193a0d7",
+  "5cefdc317ea814dfb1ebc3d00730877fc8002f6b",
+  "43ea56ac9bb8a716029bda902cd54dbdafdf45ff",
+  "12ebb9302483f783aacf034844208e33dd2136b1",
+  "d3b96e5a8d48e637c6bf453c9eb539322cdbbf85",
+  "4756da36fd6774a76012328d842b6ccd01ba6c97",
 ]);
 
 export default function GameCard({
