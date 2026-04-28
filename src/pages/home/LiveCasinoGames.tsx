@@ -32,6 +32,24 @@ export default function LiveCasinoGames() {
                 isCustom={true}
                 viewallLink={`/casino/live-casino?custom=1&category=${"tablegames"}`}
             />
+            <GameGroup
+                category={"blackjacks"}
+                title={t("Blackjack") || "Blackjack"}
+                isCustom={true}
+                viewallLink={`/casino/live-casino?custom=1&category=${"blackjacks"}`}
+            />
+            <GameGroup
+                category={"baccaratglobal"}
+                title={t("Baccarat") || "Baccarat"}
+                isCustom={true}
+                viewallLink={`/casino/live-casino?custom=1&category=${"baccaratglobal"}`}
+            />
+            <GameGroup
+                category={"sic-bo"}
+                title={t("Sic Bo") || "Sic Bo"}
+                isCustom={true}
+                viewallLink={`/casino/live-casino?custom=1&category=${"sic-bo"}`}
+            />
         </div>
     )
 }
