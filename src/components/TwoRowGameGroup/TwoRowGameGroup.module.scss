@@ -123,11 +123,11 @@
         Using aspect-ratio to stabilize the height and ensure all 4 tiles are equal.
         2×177 + 1×10 gap = 364 (matches slide width)
       */
-      aspect-ratio: 364 / 320;
+      aspect-ratio: 640 / 480;
 
       @include for-mobile-portrait-only {
         /* 2×132 + 10 gap = 274; slide is 278, keep ratio close */
-        aspect-ratio: 278 / 240;
+        aspect-ratio: 640 / 480;
       }
 
       .gameCard,

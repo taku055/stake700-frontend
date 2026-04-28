@@ -126,12 +126,12 @@
         - right side takes half width (flex-1) and wraps 4 cards into 2×2 equal quadrants
         The wrapper's aspect-ratio keeps the overall height stable; the big card fills it.
       */
-      aspect-ratio: 600 / 260;
+      /* Two-part layout (left + right): (2×640):480 */
+      aspect-ratio: 1280 / 480;
       align-items: stretch;
 
       @include for-mobile-portrait-only {
-        /* Keep same ratio as 600×260 */
-        aspect-ratio: 390 / 169;
+        aspect-ratio: 1280 / 480;
       }
 
       .mosaicBig {
