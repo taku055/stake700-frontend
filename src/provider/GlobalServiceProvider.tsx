@@ -516,7 +516,7 @@ export default function GlobalServiceProvider({
 
             <Sidebar />
             <Support />
-            <LiveSupport />
+            {/* <LiveSupport /> */}
           </div>
 
           <ToastProvider

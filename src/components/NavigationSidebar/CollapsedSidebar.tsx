@@ -48,7 +48,7 @@ export default function CollapsedSidebar({
       {/* Scrollable Content Area */}
       <div className="flex-1 flex flex-col overflow-y-auto min-h-0 scrollbar-hide">
         {/* Navigation Icons */}
-        <div className="flex flex-col items-center py-2 gap-1 flex-shrink-0">
+        <div className="flex flex-col items-center py-2 gap-2 flex-shrink-0">
           {topNavItems.map((item) => (
             <Link
               key={item.key}
@@ -63,7 +63,7 @@ export default function CollapsedSidebar({
                 handleNavigate(modifyHref(item.href));
               }}
               className={`flex items-center justify-center w-10 h-10 p-2 rounded-lg transition-colors ${selectedMainNavKey === item.key
-                ? "bg-[var(--bar-background-color-hover)] text-white"
+                ? "bg-[var(--green-color)] text-white"
                 : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
                 }`}
               title={item.title}
@@ -84,7 +84,7 @@ export default function CollapsedSidebar({
         {/* Divider */}
         <div className="border-b-2 border-[var(--bar-background-color)] flex-shrink-0" />
 
-        <div className="flex flex-col items-center py-2 gap-1 flex-shrink-0">
+        <div className="flex flex-col items-center py-2 gap-2 flex-shrink-0">
           {ExtraNavItems.map((item) => (
             <Link
               key={item.key}
@@ -99,7 +99,7 @@ export default function CollapsedSidebar({
                 handleNavigate(modifyHref(item.href));
               }}
               className={`flex items-center justify-center w-10 h-10 p-2 rounded-lg transition-colors ${selectedMainNavKey === item.key
-                ? "bg-[var(--bar-background-color-hover)] text-white"
+                ? "bg-[var(--green-color)] text-white"
                 : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
                 }`}
               title={item.title}

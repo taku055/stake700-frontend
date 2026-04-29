@@ -80,8 +80,8 @@ export const EmblaBanner = () => {
             <span
               className={
                 selectedIndex === idx
-                  ? "w-5 md:w-10 h-[4px] rounded-sm bg-white inline-block transition-all duration-300"
-                  : "w-5 md:w-10 h-[4px] rounded-sm bg-white/30 inline-block transition-all duration-300"
+                  ? "w-5 md:w-10 h-[4px] rounded-sm bg-[var(--green-color)] inline-block transition-all duration-300"
+                  : "w-5 md:w-10 h-[4px] rounded-sm bg-white inline-block transition-all duration-300"
               }
             />
           </button>

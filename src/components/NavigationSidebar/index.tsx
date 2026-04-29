@@ -62,9 +62,11 @@ export default function NavigationSidebar() {
     return null;
   }
 
-  // Sync with signal state
+  // Sync local state with signal; on mobile, drawer stays closed until opened from header/footer
   useEffect(() => {
-    navigationSidebarExpandedState.value = !isMobile;
+    if (isMobile) {
+      navigationSidebarExpandedState.value = false;
+    }
     const unsubscribeExpanded = navigationSidebarExpandedState.subscribe(
       (value) => {
         setIsExpanded(value);

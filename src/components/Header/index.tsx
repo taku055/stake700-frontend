@@ -46,7 +46,7 @@ export default function Header() {
               <img
                 src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
                 alt="Logo"
-                className="h-[36px] object-contain"
+                className={`h-[36px] object-contain ${isRTL ? "mr-[20px]" : "ml-[20px]"}`}
               />
             </Link>
           </div>

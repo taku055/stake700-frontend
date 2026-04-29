@@ -82,7 +82,7 @@ export default function MobileDrawer({
 
   const itemCard = (active: boolean) =>
     `flex items-center gap-3 px-4 py-[13px] rounded-xl transition-colors w-full ${isRTL ? "flex-row-reverse text-right" : "text-left"} ${active
-      ? "bg-[var(--sidebar-card-active)] text-white"
+      ? "bg-[var(--green-color)] text-white"
       : "bg-[var(--sidebar-card-bg)] text-white hover:bg-[var(--sidebar-card-hover)]"
     }`;
 
