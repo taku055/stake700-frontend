@@ -4,57 +4,63 @@ import TwoRowGameGroup from "@/components/TwoRowGameGroup";
 import { useTranslations } from "@/context/I18nContext";
 
 export default function LiveCasinoGames() {
-    const t = useTranslations("CasinoPage");
+  const t = useTranslations("CasinoPage");
 
-    return (
-        <div className="flex flex-col gap-4">
-            <GridGameGroup
-                category={"rouletteglobal"}
-                title={t("International Roulette") || "International Roulette"}
-                isCustom={true}
-                viewallLink={`/casino/live-casino?custom=1&category=${"rouletteglobal"}`}
-            />
-            <GridGameGroup
-                category={"toptables"}
-                title={t("Top Tables") || "Top Tables"}
-                isCustom={true}
-                viewallLink={`/casino/live-casino?custom=1&category=${"toptables"}`}
-            />
-            <GameGroup
-                category={"highstakes"}
-                title={t("High Stakes") || "High Stakes"}
-                useImgCustom={false}
-                isCustom={true}
-                viewallLink={`/casino/live-casino?custom=1&category=${"highstakes"}`}
-            />
-            <GameGroup
-                category={"tablegames"}
-                title={t("All Tables") || "All Tables"}
-                useImgCustom={false}
-                isCustom={true}
-                viewallLink={`/casino/live-casino?custom=1&category=${"tablegames"}`}
-            />
-            <GameGroup
-                category={"blackjacks"}
-                title={t("Blackjack") || "Blackjack"}
-                useImgCustom={false}
-                isCustom={true}
-                viewallLink={`/casino/live-casino?custom=1&category=${"blackjacks"}`}
-            />
-            <GameGroup
-                category={"baccaratglobal"}
-                title={t("Baccarat") || "Baccarat"}
-                useImgCustom={false}
-                isCustom={true}
-                viewallLink={`/casino/live-casino?custom=1&category=${"baccaratglobal"}`}
-            />
-            <GameGroup
-                category={"sic-bo"}
-                title={t("Sic Bo") || "Sic Bo"}
-                useImgCustom={false}
-                isCustom={true}
-                viewallLink={`/casino/live-casino?custom=1&category=${"sic-bo"}`}
-            />
-        </div>
-    )
+  return (
+    <div className="flex flex-col gap-4">
+      <GridGameGroup
+        category={"rouletteglobal"}
+        title={t("International Roulette") || "International Roulette"}
+        isCustom={true}
+        viewallLink={`/casino/live-casino?custom=1&category=${"rouletteglobal"}`}
+      />
+      <GameGroup
+        category={"live-tables"}
+        title={t("Live Tables") || "Live Tables"}
+        isCustom={true}
+        viewallLink={`/casino/live-casino/?custom=1&category=${"live-tables"}`}
+      />
+      <GridGameGroup
+        category={"toptables"}
+        title={t("Top Tables") || "Top Tables"}
+        isCustom={true}
+        viewallLink={`/casino/live-casino?custom=1&category=${"toptables"}`}
+      />
+      <GameGroup
+        category={"highstakes"}
+        title={t("High Stakes") || "High Stakes"}
+        useImgCustom={false}
+        isCustom={true}
+        viewallLink={`/casino/live-casino?custom=1&category=${"highstakes"}`}
+      />
+      <GameGroup
+        category={"tablegames"}
+        title={t("All Tables") || "All Tables"}
+        useImgCustom={false}
+        isCustom={true}
+        viewallLink={`/casino/live-casino?custom=1&category=${"tablegames"}`}
+      />
+      <GameGroup
+        category={"blackjacks"}
+        title={t("Blackjack") || "Blackjack"}
+        useImgCustom={false}
+        isCustom={true}
+        viewallLink={`/casino/live-casino?custom=1&category=${"blackjacks"}`}
+      />
+      <GameGroup
+        category={"baccaratglobal"}
+        title={t("Baccarat") || "Baccarat"}
+        useImgCustom={false}
+        isCustom={true}
+        viewallLink={`/casino/live-casino?custom=1&category=${"baccaratglobal"}`}
+      />
+      <GameGroup
+        category={"sic-bo"}
+        title={t("Sic Bo") || "Sic Bo"}
+        useImgCustom={false}
+        isCustom={true}
+        viewallLink={`/casino/live-casino?custom=1&category=${"sic-bo"}`}
+      />
+    </div>
+  );
 }
