@@ -120,7 +120,7 @@ export default function FooterNav() {
               navigationSidebarExpandedState.value = false;
             }}
             className={`flex flex-col items-center justify-center py-2 gap-1 h-full min-w-0 ${selectedKey === tab.key
-              ? "text-[var(--primary-color)] border-t-2 border-[var(--primary-color)]"
+              ? "text-[var(--green-color)] border-t-2 border-[var(--green-color)]"
               : "text-white"
               } bg-transparent`}
           >

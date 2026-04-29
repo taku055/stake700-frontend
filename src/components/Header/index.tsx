@@ -1,6 +1,7 @@
 import { userState } from "@/state/userState";
 import {
   ASSET_BASE_URL,
+  mobileMediaQuery,
   RTL_LANGUAGES,
 } from "@/config/constants";
 import { Button } from "@heroui/react";
@@ -18,11 +19,13 @@ import {
   navigationSidebarExpandedState,
 } from "@/state/navigationSidebarState";
 import { Link } from "@/components/common";
+import { useMediaQuery } from "usehooks-ts";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("Header");
   const { modifyHref } = useAffiliateNavigation();
+  const isMobile = useMediaQuery(mobileMediaQuery);
 
   return (
     <header className="relative z-[200] bg-[#171412] w-full mx-auto h-[60px] flex items-center justify-center shadow-[0_4px_24px_0_#252525]">
@@ -46,7 +49,7 @@ export default function Header() {
               <img
                 src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
                 alt="Logo"
-                className={`h-[36px] object-contain ${isRTL ? "mr-[20px]" : "ml-[20px]"}`}
+                className={`h-[36px] object-contain ${isMobile ? "" : isRTL ? "mr-[20px]" : "ml-[20px]"}`}
               />
             </Link>
           </div>
