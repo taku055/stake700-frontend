@@ -203,13 +203,13 @@
     "Reset": "Reset",
     "All Providers": "All Providers",
     "Filter": "Filter",
-    "Publishers": "Publishers",
+    "Publishers": "Providers",
     "Clear All": "Clear All"
   },
   "ProviderGroup": {
     "Providers": "Providers",
     "all_providers": "All Providers",
-    "Publishers": "Publishers",
+    "Publishers": "Providers",
     "Filter": "Filter",
     "Clear all": "Clear all",
     "Provider selection": "Provider selection"
@@ -256,7 +256,7 @@
     "Roulette": "Roulette",
     "Blackjack": "Blackjack",
     "Baccarat": "Baccarat",
-    "Publishers": "Publishers",
+    "Publishers": "Providers",
     "Promos & Competitions": "Promos & Competitions",
     "Betalarab Engine": "Betalarab Engine",
     "Betalarab Vendors": "Betalarab Vendors",
@@ -1898,6 +1898,10 @@
     "Top Tables": "Top Tables",
     "Live Tables": "Live Tables",
     "High Stakes": "High Stakes",
-    "All Tables": "All Tables"
+    "All Tables": "All Tables",
+    "Filter": "Filter",
+    "Providers": "Providers",
+    "Provider selection": "Provider selection",
+    "Clear all": "Clear all"
   }
 }

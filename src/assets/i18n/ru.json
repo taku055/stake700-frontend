@@ -1890,6 +1890,10 @@
     "Top Tables": "Топ Столы",
     "Live Tables": "Живые столы",
     "High Stakes": "Высокие Ставки",
-    "All Tables": "Все Столы"
+    "All Tables": "Все Столы",
+    "Filter": "Фильтр",
+    "Providers": "Провайдеры",
+    "Provider selection": "Выбор провайдера",
+    "Clear all": "Сбросить всё"
   }
 }

@@ -22,7 +22,7 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
   onChange,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const t = useTranslations("ProviderGroup");
+  const t = useTranslations("CasinoPage");
   const providerList = useMemo(() => {
     return providers.sort((a, b) => (a.name < b.name ? -1 : 1));
   }, [providers]);
@@ -49,14 +49,14 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
         <span className="text-gray-300 text-sm font-semibold">{t("Filter")}</span>
       </div>
 
-      {/* Publishers Dropdown Button */}
+      {/* Providers dropdown */}
       <Dropdown open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
         <DropdownTrigger>
           <button
             className="flex items-center gap-2 px-4 py-2 bg-[var(--background-secondary)] hover:bg-[var(--background-btn-hover)] text-gray-300 rounded-lg transition-colors font-semibold"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            <span>{t("Publishers")}</span>
+            <span>{t("Providers")}</span>
             {value.length > 0 && (
               <span className="flex items-center justify-center min-w-[20px] h-5 px-1 rounded-full bg-blue-600 text-white text-xs font-semibold">
                 {value.length}

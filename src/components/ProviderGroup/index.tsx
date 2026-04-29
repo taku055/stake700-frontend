@@ -56,7 +56,7 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
     }
   };
 
-  const t = useTranslations("ProviderGroup");
+  const t = useTranslations("CasinoPage");
   const isRTL = RTL_LANGUAGES.includes(localeState.value as string);
 
   return (
@@ -65,7 +65,7 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
         <div className={styles.title}>
           <div className={styles.text}>
             <Users aria-hidden="true" className="w-[20px] h-[20px]" />
-            {t("Publishers")}
+            {t("Providers")}
           </div>
         </div>
         <div className={styles.action}>
@@ -103,7 +103,6 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
                   src={p.img}
                   alt={p.name}
                   className="w-full h-full object-contain"
-                  loading="lazy"
                 />
               ) : (
                 <span>{p.name}</span>

@@ -1890,6 +1890,10 @@
     "Top Tables": "Meilleures Tables",
     "Live Tables": "Tables en direct",
     "High Stakes": "Gros Enjeux",
-    "All Tables": "Toutes les Tables"
+    "All Tables": "Toutes les Tables",
+    "Filter": "Filtre",
+    "Providers": "Fournisseurs",
+    "Provider selection": "Sélection du fournisseur",
+    "Clear all": "Tout effacer"
   }
 }
