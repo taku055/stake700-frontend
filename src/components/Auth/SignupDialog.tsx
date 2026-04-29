@@ -17,7 +17,12 @@ import {
 } from "@/components/common";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { Eye, EyeOff } from "lucide-preact";
-import { parseDate, CalendarDate } from "@internationalized/date";
+import {
+  parseDate,
+  CalendarDate,
+  today,
+  getLocalTimeZone,
+} from "@internationalized/date";
 import { useLocation } from "preact-iso";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { ASSET_BASE_URL } from "@/config/constants";
@@ -260,10 +265,17 @@ export default function SignupDialog({
                 </label>
                 <DatePicker
                   value={birthday}
-                  onChange={(value: CalendarDate | null) => setBirthday(value!)}
+                  onChange={(value: CalendarDate | null) => {
+                    if (value) setBirthday(value);
+                  }}
+                  showMonthAndYearPickers
+                  minValue={new CalendarDate(1900, 1, 1)}
+                  maxValue={today(getLocalTimeZone())}
+                  calendarWidth={320}
                   popoverProps={{
                     shouldCloseOnScroll: false,
                     shouldBlockScroll: true,
+                    placement: "bottom-start",
                   }}
                   classNames={{
                     input: "text-white",
