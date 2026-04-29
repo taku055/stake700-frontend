@@ -4,24 +4,38 @@
   display: flex;
   flex-direction: column;
   padding: 0 0 12px 0;
+  position: relative;
+  z-index: 1;
+
+  &.isExpanded {
+    z-index: 4;
+    padding-bottom: 16px;
+  }
 
   @media (max-width: 768px) {
     border-radius: 0px;
     border-left: none;
     border-right: none;
     padding: 0 8px 12px 8px;
+
+    &.isExpanded {
+      padding-bottom: 16px;
+    }
   }
 
   .titleBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     margin: 0 0 14px 0;
+    min-height: 42px;
 
     .title {
       display: flex;
       align-items: center;
       gap: 8px;
+      min-width: 0;
 
       .text {
         display: flex;
@@ -46,6 +60,7 @@
       flex-direction: row;
       align-items: center;
       gap: 4px;
+      flex-shrink: 0;
       height: 42px;
 
       [dir="rtl"] & {
@@ -55,23 +70,91 @@
       @media (max-width: 768px) {
         height: 32px;
       }
+    }
 
-      .moveButton {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-width: 1px;
-        // color: var(--text-transparent-color);
-        background: (var(--bar-background-secondary));
-        height: 100%;
-        width: 58px;
-        min-width: 0;
-        padding: 11px 19px;
+    .viewAllButton {
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 14px;
+      margin: 0;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      background: var(--bar-background-secondary);
+      font-family: Roboto, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+      cursor: pointer;
+      white-space: nowrap;
 
-        @media (max-width: 768px) {
-          width: 32px;
-          padding: 0;
-        }
+      @media (max-width: 768px) {
+        padding: 0 10px;
+        font-size: 11px;
+      }
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.06);
+      }
+    }
+
+    .backButton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      background: var(--bar-background-secondary);
+      font-family: Roboto, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+      cursor: pointer;
+
+      @media (max-width: 768px) {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+    }
+
+    .backIconRtl {
+      transform: scaleX(-1);
+    }
+
+    .moveButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-width: 1px;
+      border-style: solid;
+      background: var(--bar-background-secondary);
+      height: 100%;
+      width: 58px;
+      min-width: 0;
+      padding: 11px 19px;
+      cursor: pointer;
+      margin: 0;
+      font: inherit;
+      color: inherit;
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+      }
+
+      @media (max-width: 768px) {
+        width: 32px;
+        padding: 0;
       }
     }
 
@@ -92,55 +175,145 @@
     }
   }
 
-  .providers {
+  /* Shared tile — used in swiper + grid */
+  .provider {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(45, 69, 82, 0.95) 0%,
+      rgba(22, 28, 36, 0.98) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: 6px;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 10px 12px;
+    width: 148px;
+    height: 76px;
+    overflow: hidden;
+    transition: background 0.2s ease, border-color 0.2s ease;
+
     @media (max-width: 768px) {
-      gap: 12px;
+      padding: 8px 10px;
+      width: 112px;
+      height: 58px;
+      border-radius: 8px;
     }
+
+    @media (min-width: 768px) {
+      &:hover:not(:active) {
+        background: #141c22;
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+    }
+  }
+
+  .providerGridTile {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: auto;
+    min-height: 76px;
+    aspect-ratio: 148 / 76;
+
+    @media (max-width: 768px) {
+      min-height: 58px;
+      aspect-ratio: 112 / 58;
+    }
+  }
+
+  .logoWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .logoImg {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+  }
+
+  .providerName {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: rgba(255, 255, 255, 0.88);
+    word-break: break-word;
+
+    @media (max-width: 768px) {
+      font-size: 10px;
+      line-clamp: 2;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  .gridPanel {
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 14, 18, 0.65);
+    animation: providerGridReveal 0.35s ease-out;
+    transform-origin: center top;
+  }
+
+  .providerGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    gap: 10px;
+    padding: 12px;
+    max-height: min(72vh, 680px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+      gap: 8px;
+      padding: 10px;
+      max-height: min(70vh, 560px);
+    }
+  }
+
+  @keyframes providerGridReveal {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.99);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Swiper handles spacing via spaceBetween — avoid CSS gap here */
+  .providers {
+    width: 100%;
 
     .providerSlider {
-      width: fit-content;
-      border-radius: 3px;
-      @media (max-width: 768px) {
-        width: unset;
-      }
-    }
-
-    .provider {
-      background: #2d4552;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px;
-      height: 55px;
-      width: 140px;
-      gap: 10px;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      width: 148px;
 
       @media (max-width: 768px) {
-        padding: 0 12px;
-        height: 48px;
-        width: 95%;
-        gap: 6px;
-        margin: 0 auto;
-      }
-
-      @media (min-width: 768px) {
-        &:hover:not(:active) {
-          background: #101418;
-        }
-      }
-
-      .providerName {
-        font-size: 16px;
-        line-height: 18px;
-
-          @media (max-width: 768px) {
-          font-size: 12px;
-        }
+        width: 112px;
       }
     }
 

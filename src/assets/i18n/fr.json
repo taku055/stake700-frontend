@@ -1894,6 +1894,8 @@
     "Filter": "Filtre",
     "Providers": "Fournisseurs",
     "Provider selection": "Sélection du fournisseur",
-    "Clear all": "Tout effacer"
+    "Clear all": "Tout effacer",
+    "view_all": "Tout voir",
+    "providers_back": "Retour"
   }
 }

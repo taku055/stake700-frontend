@@ -1902,6 +1902,8 @@
     "Filter": "Filter",
     "Providers": "Providers",
     "Provider selection": "Provider selection",
-    "Clear all": "Clear all"
+    "Clear all": "Clear all",
+    "view_all": "View all",
+    "providers_back": "Back"
   }
 }

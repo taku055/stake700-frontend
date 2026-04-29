@@ -1894,6 +1894,8 @@
     "Filter": "Фильтр",
     "Providers": "Провайдеры",
     "Provider selection": "Выбор провайдера",
-    "Clear all": "Сбросить всё"
+    "Clear all": "Сбросить всё",
+    "view_all": "Показать все",
+    "providers_back": "Назад"
   }
 }

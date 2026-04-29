@@ -67,7 +67,7 @@ export default function CasinoPageComponent({
         <div className="w-full h-full flex flex-col mx-auto">
           <SearchWidget />
 
-          <div className={`w-full flex flex-col gap-6 mt-[20px]`}>
+          <div className={`w-full flex flex-col gap-6 mt-[20px] mb-[20px]`}>
             <ProviderSelection
               providers={providers}
               value={selectedProviders}

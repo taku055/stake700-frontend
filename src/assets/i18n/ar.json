@@ -2006,6 +2006,8 @@
     "Filter": "تصفية",
     "Providers": "المزوّدون",
     "Provider selection": "اختيار المزوّد",
-    "Clear all": "مسح الكل"
+    "Clear all": "مسح الكل",
+    "view_all": "عرض الكل",
+    "providers_back": "رجوع"
   }
 }

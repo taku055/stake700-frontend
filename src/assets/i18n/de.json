@@ -2005,6 +2005,8 @@
     "Filter": "Filter",
     "Providers": "Anbieter",
     "Provider selection": "Anbieterauswahl",
-    "Clear all": "Alle löschen"
+    "Clear all": "Alle löschen",
+    "view_all": "Alle anzeigen",
+    "providers_back": "Zurück"
   }
 }

@@ -11,6 +11,7 @@ import LiveCasinoGames from "./LiveCasinoGames.tsx";
 import CasinoGames from "./CasinoGames.tsx";
 import { HOME_PAGE_TABS, type HomePageMode } from "./tabData";
 import { HOME_PAGE_CATEGORIES, HOME_PAGE_DEFAULT_TAB } from "./categoryData";
+import ProviderGroup from "@/components/ProviderGroup/index.tsx";
 
 const HOME_PAGE_MODE_QUERY_KEY = "page";
 
@@ -46,8 +47,14 @@ export default function HomePage() {
   }, [location.path, location.query]);
 
   const tabs = useMemo(() => HOME_PAGE_TABS[activeMode], [activeMode]);
-  const defaultTab = useMemo(() => HOME_PAGE_DEFAULT_TAB[activeMode], [activeMode]);
-  const categories = useMemo(() => HOME_PAGE_CATEGORIES[activeMode], [activeMode]);
+  const defaultTab = useMemo(
+    () => HOME_PAGE_DEFAULT_TAB[activeMode],
+    [activeMode],
+  );
+  const categories = useMemo(
+    () => HOME_PAGE_CATEGORIES[activeMode],
+    [activeMode],
+  );
   const t = useTranslations(activeMode === "home" ? "HomePage" : "CasinoPage");
   const [activeTab, setActiveTab] = useState(defaultTab);
 
@@ -96,10 +103,13 @@ export default function HomePage() {
             {/* Search */}
             <button
               type="button"
-              onClick={() => (searchWidgetState.value = !searchWidgetState.value)}
+              onClick={() =>
+                (searchWidgetState.value = !searchWidgetState.value)
+              }
               className="flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg font-medium text-[#99897a] hover:text-white hover:bg-[rgb(54,48,43)]"
             >
-              <img src="/images/search.png"
+              <img
+                src="/images/search.png"
                 className="w-5 h-5 object-contain"
               />
               {t("Search") || "Search"}
@@ -107,13 +117,14 @@ export default function HomePage() {
             {tabs.map((tab) => (
               <button
                 onClick={() => {
-                  setActiveTab(tab.key)
+                  setActiveTab(tab.key);
                 }}
                 key={tab.key}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg  font-medium ${activeTab === tab.key
-                  ? "bg-[rgb(54,48,43)] text-[#f0d9c6]"
-                  : "text-[#99897a] hover:text-white hover:bg-[#1e1e1e]"
-                  }`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg  font-medium ${
+                  activeTab === tab.key
+                    ? "bg-[rgb(54,48,43)] text-[#f0d9c6]"
+                    : "text-[#99897a] hover:text-white hover:bg-[#1e1e1e]"
+                }`}
               >
                 <img
                   src={tab.icon}
@@ -127,6 +138,9 @@ export default function HomePage() {
         </div>
 
         {renderCategory()}
+        <div className="mt-[20px] w-full">
+          <ProviderGroup />
+        </div>
       </ContentWrapper>
     </>
   );
