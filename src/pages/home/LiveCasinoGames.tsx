@@ -23,30 +23,35 @@ export default function LiveCasinoGames() {
             <GameGroup
                 category={"highstakes"}
                 title={t("High Stakes") || "High Stakes"}
+                useImgCustom={false}
                 isCustom={true}
                 viewallLink={`/casino/live-casino?custom=1&category=${"highstakes"}`}
             />
             <GameGroup
                 category={"tablegames"}
                 title={t("All Tables") || "All Tables"}
+                useImgCustom={false}
                 isCustom={true}
                 viewallLink={`/casino/live-casino?custom=1&category=${"tablegames"}`}
             />
             <GameGroup
                 category={"blackjacks"}
                 title={t("Blackjack") || "Blackjack"}
+                useImgCustom={false}
                 isCustom={true}
                 viewallLink={`/casino/live-casino?custom=1&category=${"blackjacks"}`}
             />
             <GameGroup
                 category={"baccaratglobal"}
                 title={t("Baccarat") || "Baccarat"}
+                useImgCustom={false}
                 isCustom={true}
                 viewallLink={`/casino/live-casino?custom=1&category=${"baccaratglobal"}`}
             />
             <GameGroup
                 category={"sic-bo"}
                 title={t("Sic Bo") || "Sic Bo"}
+                useImgCustom={false}
                 isCustom={true}
                 viewallLink={`/casino/live-casino?custom=1&category=${"sic-bo"}`}
             />

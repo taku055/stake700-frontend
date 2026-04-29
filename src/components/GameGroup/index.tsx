@@ -18,6 +18,7 @@ interface IGameGroupProps {
   title: string;
   category?: string;
   isCustom?: boolean;
+  useImgCustom?: boolean;
   viewallLink?: string;
   provider?: string;
   exceptGameId?: string;
@@ -32,6 +33,7 @@ export default function GameGroup({
   title,
   category,
   isCustom,
+  useImgCustom = true,
   viewallLink,
   provider,
   exceptGameId,
@@ -158,7 +160,7 @@ export default function GameGroup({
       >
         {games.map((e) => (
           <SwiperSlide key={e.id} className={styles.game}>
-            <GameCard data={e} useImgCustom />
+            <GameCard data={e} {...(useImgCustom ? { useImgCustom: true } : {})} />
           </SwiperSlide>
         ))}
       </Swiper>
