@@ -510,7 +510,8 @@
     "txn_platform_rakeback": "Rakeback",
     "txn_platform_cashback": "استرداد نقدي",
     "Unknown": "غير معروف",
-    "Status": "الحالة"
+    "Status": "الحالة",
+    "Pay with card": "الدفع بالبطاقة"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "نقاط الولاء",

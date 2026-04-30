@@ -24,7 +24,7 @@ const DepositPage = ({ bonusId }: DepositPageProps) => {
           <Tab key="crypto" title={t("Crypto")}>
             <DepositPanel />
           </Tab>
-          <Tab key="neonpay" title={t("Neonpay")}>
+          <Tab key="neonpay" title={t("Pay with card")}>
             <NeonpayDeposit />
           </Tab>
         </Tabs>

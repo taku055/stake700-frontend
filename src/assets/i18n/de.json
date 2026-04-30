@@ -511,7 +511,8 @@
     "txn_platform_rakeback": "Rakeback",
     "txn_platform_cashback": "Cashback",
     "Unknown": "Unbekannt",
-    "Status": "Status"
+    "Status": "Status",
+    "Pay with card": "Mit Karte bezahlen"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Treuepunkte",

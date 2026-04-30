@@ -13,9 +13,9 @@ const WithdrawPage = () => {
       </div>
       <div className="flex flex-col w-full py-5 gap-5">
         <Tabs aria-label={t("Withdraw tab options")} classNames={{ base: "w-full" }}>
-          <Tab key="aries" title={t("Aries")}>
+          {/* <Tab key="aries" title={t("Aries")}>
             <AriesWithdraw />
-          </Tab>
+          </Tab> */}
           <Tab key="crypto" title={t("Crypto")}>
             <WithdrawalPanel />
           </Tab>
