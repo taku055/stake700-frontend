@@ -29,7 +29,6 @@ export default function LiveCasinoGames() {
       <GameGroup
         category={"highstakes"}
         title={t("High Stakes") || "High Stakes"}
-        useImgCustom={false}
         isCustom={true}
         viewallLink={`/casino/live-casino?custom=1&category=${"highstakes"}`}
       />
