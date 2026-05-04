@@ -63,30 +63,33 @@ export default function NeonpayDeposit({
       return;
     }
 
-    let openedTab: Window | null = null;
-    if (!isMobile) {
-      openedTab = window.open("about:blank", "_blank", "noopener,noreferrer");
-    }
-
     setIsSubmitting(true);
     try {
-      const res = await apiGetNeonpaySaleForm(num, type,  localeState.value || "en");
+      const res = await apiGetNeonpaySaleForm(
+        num,
+        type,
+        localeState.value || "en",
+      );
       if (res.success && res.redirect_url) {
+        const url = res.redirect_url;
         if (isMobile) {
-          window.location.assign(res.redirect_url);
-        } else if (openedTab) {
-          openedTab.location.href = res.redirect_url;
+          window.location.assign(url);
         } else {
-          window.location.assign(res.redirect_url);
+          const paymentTab = window.open(
+            url,
+            "_blank",
+            "noopener,noreferrer",
+          );
+          if (!paymentTab) {
+            window.location.assign(url);
+          }
         }
       } else {
-        openedTab?.close();
         const msg = t("Neonpay_redirect_failed");
         setError(msg);
         toast.error(msg);
       }
     } catch (err: unknown) {
-      openedTab?.close();
       let message = t("Neonpay_error");
       if (axios.isAxiosError(err)) {
         const d = err.response?.data as { message?: string } | undefined;
@@ -99,7 +102,7 @@ export default function NeonpayDeposit({
     } finally {
       setIsSubmitting(false);
     }
-  }, [amount, isMobile, t]);
+  }, [amount, isMobile, t, type]);
 
   return (
     <div className="flex flex-col w-full max-w-md mx-auto gap-6 py-2">
