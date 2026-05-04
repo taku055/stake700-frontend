@@ -8,9 +8,10 @@ export type tNeonpaySaleFormResponse = {
   serial_number?: string;
 };
 
-export async function apiGetNeonpaySaleForm(amount: number, locale: string) {
+export async function apiGetNeonpaySaleForm(amount: number, type: "card" | "googlepay" | "applepay", locale: string) {
   const res = await instance.post<tNeonpaySaleFormResponse>("/neonpay/sale-form", {
     amount,
+    type,
     locale,
   });
   return res.data;

@@ -571,7 +571,9 @@
     "txn_platform_cashback": "Cashback",
     "Unknown": "Unknown",
     "Status": "Status",
-    "Pay with card": "Pay with card"
+    "Pay with card": "Pay with card",
+    "Pay with Google Pay": "Pay with Google Pay",
+    "Pay with Apple Pay": "Pay with Apple Pay"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Loyalty Points",

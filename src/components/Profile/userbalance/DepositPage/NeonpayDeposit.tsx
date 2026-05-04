@@ -8,23 +8,47 @@ import axios from "axios";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 
-function NeonpayLogo() {
+function NeonpayLogo({
+  type = "card",
+}: {
+  type?: "card" | "googlepay" | "applepay";
+}) {
+  const t = useTranslations("UserBalancePage");
+  const methodLabel =
+    type === "googlepay"
+      ? t("Pay with Google Pay")
+      : type === "applepay"
+        ? t("Pay with Apple Pay")
+        : t("Pay with card");
+
   return (
-    <div
-      className="flex justify-center select-none"
-      aria-hidden
-    >
-      <div className="relative flex items-center justify-center rounded-xl px-8 py-2.5 border border-cyan-400/45 bg-gradient-to-br from-[#0c1628]/90 to-[#0a1220]/95 shadow-[0_0_24px_rgba(34,211,238,0.28),inset_0_1px_0_rgba(255,255,255,0.06)]">
-        <span className="text-[22px] font-bold tracking-tight leading-none font-sans">
-          <span className="text-cyan-300 drop-shadow-[0_0_10px_rgba(34,211,238,0.75)]">Neon</span>
-          <span className="text-white/95">pay</span>
-        </span>
+    <div className="flex flex-col items-center gap-2.5 w-full select-none">
+      <div className="flex justify-center w-full">
+        <div className="relative flex flex-col items-stretch justify-center rounded-xl border border-cyan-400/45 bg-gradient-to-br from-[#0c1628]/90 to-[#0a1220]/95 shadow-[0_0_24px_rgba(34,211,238,0.28),inset_0_1px_0_rgba(255,255,255,0.06)] min-w-[min(100%,280px)]">
+          <div className="flex items-center justify-center px-8 py-2.5">
+            <span className="text-[22px] font-bold tracking-tight leading-none font-sans">
+              <span className="text-cyan-300 drop-shadow-[0_0_10px_rgba(34,211,238,0.75)]">
+                Neon
+              </span>
+              <span className="text-white/95">pay</span>
+            </span>
+          </div>
+          <div className="border-t border-white/10 px-4 py-2.5 text-center">
+            <span className="text-[13px] sm:text-sm font-semibold text-white/90 leading-snug">
+              {methodLabel}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-export default function NeonpayDeposit() {
+export default function NeonpayDeposit({
+  type = "card",
+}: {
+  type?: "card" | "googlepay" | "applepay";
+}) {
   const t = useTranslations("UserBalancePage");
   const isMobile = useMediaQuery(mobileMediaQuery);
   const [amount, setAmount] = useState("");
@@ -39,9 +63,6 @@ export default function NeonpayDeposit() {
       return;
     }
 
-    // Mobile: never open a new window after async work — browsers block that.
-    // Navigate in the same tab instead (same as Aries deposit).
-    // Desktop: open a blank tab synchronously on tap, then set location after API returns.
     let openedTab: Window | null = null;
     if (!isMobile) {
       openedTab = window.open("about:blank", "_blank", "noopener,noreferrer");
@@ -49,7 +70,7 @@ export default function NeonpayDeposit() {
 
     setIsSubmitting(true);
     try {
-      const res = await apiGetNeonpaySaleForm(num, localeState.value || "en");
+      const res = await apiGetNeonpaySaleForm(num, type,  localeState.value || "en");
       if (res.success && res.redirect_url) {
         if (isMobile) {
           window.location.assign(res.redirect_url);
@@ -82,7 +103,7 @@ export default function NeonpayDeposit() {
 
   return (
     <div className="flex flex-col w-full max-w-md mx-auto gap-6 py-2">
-      <NeonpayLogo />
+      <NeonpayLogo type={type} />
 
       <Input
         type="number"

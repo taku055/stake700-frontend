@@ -511,7 +511,9 @@
     "txn_platform_cashback": "استرداد نقدي",
     "Unknown": "غير معروف",
     "Status": "الحالة",
-    "Pay with card": "الدفع بالبطاقة"
+    "Pay with card": "الدفع بالبطاقة",
+    "Pay with Google Pay": "الدفع عبر Google Pay",
+    "Pay with Apple Pay": "الدفع عبر Apple Pay"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "نقاط الولاء",
