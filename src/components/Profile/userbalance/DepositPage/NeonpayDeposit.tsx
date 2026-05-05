@@ -72,18 +72,7 @@ export default function NeonpayDeposit({
       );
       if (res.success && res.redirect_url) {
         const url = res.redirect_url;
-        if (isMobile) {
-          window.location.assign(url);
-        } else {
-          const paymentTab = window.open(
-            url,
-            "_blank",
-            "noopener,noreferrer",
-          );
-          if (!paymentTab) {
-            window.location.assign(url);
-          }
-        }
+        window.location.assign(url);
       } else {
         const msg = t("Neonpay_redirect_failed");
         setError(msg);
