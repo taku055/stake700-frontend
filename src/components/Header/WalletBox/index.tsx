@@ -8,11 +8,11 @@ import {
 } from "react";
 import { Portal } from "./Portal";
 import { userState } from "@/state/userState";
-import { profileOpenedState } from "@/state/profileOpenedState";
 import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";
 import { useTranslations } from "@/context/I18nContext";
 import { cashDetailAmountForUnit } from "@/helpers/multipleBalance";
+import { profileOpenedState } from "@/state/profileOpenedState";
 
 type Pos = { top: number; left: number; width: number };
 
@@ -182,6 +182,17 @@ export default function WalletBox() {
     };
   }, [balanceState.value, currencyState.value, userState.value]);
 
+  const freeSpins = useMemo(() => {
+    const cur = currencyState.value;
+    const user = userState.value;
+    if (!cur || !user) return 0;
+    if (user.role !== "NORMAL") return 0;
+    return Number(balanceState.value?.[cur.code]?.freespin?.count ?? 0);
+  }, [balanceState.value, currencyState.value, userState.value]);
+
+  const userInitial =
+    userState.value?.userName?.trim()?.at(0)?.toUpperCase() ?? "?";
+
   return (
     <div
       ref={wrapperRef}
@@ -208,7 +219,7 @@ export default function WalletBox() {
         aria-expanded={isSelectorOpen}
         className={[
           "flex items-center gap-1",
-          "rounded-full pl-2 py-1",
+          "rounded-full px-2 py-1",
           "text-white",
           "transition",
           "hover:bg-white/10",
@@ -237,38 +248,6 @@ export default function WalletBox() {
         </span>
       </button>
 
-      {/* Divider (subtle, like header separators) */}
-      <div className="h-7 w-px bg-white/10" />
-
-      {/* Avatar */}
-      <button
-        type="button"
-        className={[
-          "relative",
-          "w-8 h-8 rounded-full",
-          "grid place-items-center",
-          "text-white font-bold",
-          "bg-white/10",
-          "border border-white/10",
-          "transition",
-          "hover:bg-white/15 hover:border-white/15",
-          "active:scale-[0.98]",
-        ].join(" ")}
-        onClick={(e) => {
-          e.stopPropagation();
-          profileOpenedState.value = { isOpen: true };
-          setIsSelectorOpen(false);
-        }}
-        aria-label="Open profile"
-      >
-        <span className="text-[13px]">
-          {userState.value?.userName?.at(0)?.toUpperCase()}
-        </span>
-
-        {/* tiny status dot (optional vibe) */}
-        <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-[#2a0b3b]" />
-      </button>
-
       {/* Dropdown rendered in a Portal so it won't be clipped */}
       {isSelectorOpen && pos && (
         <Portal>
@@ -293,38 +272,100 @@ export default function WalletBox() {
               maxWidth: `calc(100vw - ${VIEWPORT_MARGIN * 2}px)`,
             }}
           >
-            <div className="px-4 py-3">
-              <div className="text-[11px] uppercase tracking-[0.14em] text-white/55">
-                {t("Currency")}
+            <div className="flex flex-col gap-3 p-4">
+              {/* Top row: avatar */}
+              <div className="flex items-center gap-3">
+                <div
+                  className={[
+                    "w-10 h-10 rounded-full",
+                    "grid place-items-center",
+                    "bg-white/10 border border-white/10",
+                    "text-white font-bold",
+                  ].join(" ")}
+                  aria-hidden="true"
+                >
+                  {userInitial}
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[11px] tracking-[0.14em] text-white/55">
+                    {userState.value?.email}
+                  </div>
+                  <div className="text-[13px] text-white font-semibold truncate">
+                    {userState.value?.userName}
+                  </div>
+                </div>
               </div>
-            </div>
 
-            <div className="h-px bg-white/10" />
-
-            <div className="flex flex-col p-1">
+              {/* Total balance card + deposit */}
               <div
                 className={[
-                  "w-full text-left",
-                  "rounded-lg px-3 py-2.5",
-                  "text-[13px] text-white",
-                  "transition",
-                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2 flex justify-between",
+                  "rounded-xl",
+                  "bg-white/10 border border-white/10",
+                  "px-4 py-3",
+                  "flex items-center justify-between gap-3",
                 ].join(" ")}
               >
-                <span className="opacity-80">{t("Cash")}</span>
-                <span className="font-semibold">{cash.toFixed(2)}</span>
+                <div className="min-w-0">
+                  <div className="text-[11px] uppercase tracking-[0.14em] text-white/55">
+                    {t("Balance")}
+                  </div>
+                  <div className="text-[18px] leading-[22px] font-bold text-white tabular-nums truncate">
+                    {symbol} {formattedTotal}
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className={[
+                    "shrink-0",
+                    "w-10 h-10 rounded-lg",
+                    "grid place-items-center",
+                    "bg-[var(--green-color)]/30 hover:bg-[var(--green-color)]/45",
+                    "border border-white/10",
+                    "text-white text-[20px] leading-none font-semibold",
+                    "transition",
+                    "focus:outline-none focus:ring-2 focus:ring-white/20",
+                  ].join(" ")}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    profileOpenedState.value = {
+                      isOpen: true,
+                      defaultTab: "/balance-management/deposit",
+                    };
+                    setIsSelectorOpen(false);
+                  }}
+                  aria-label={t("Deposit") || "Deposit"}
+                >
+                  +
+                </button>
               </div>
-              <div
-                className={[
-                  "w-full text-left",
-                  "rounded-lg px-3 py-2.5",
-                  "text-[13px] text-white",
-                  "transition",
-                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2 flex justify-between",
-                ].join(" ")}
-              >
-                <span className="opacity-80">{t("Bonus")}</span>
-                <span className="font-semibold">{bonus.toFixed(2)}</span>
+
+              {/* Balances */}
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
+                  <span className="text-[13px] text-white/80">
+                    {t("Cash")}
+                  </span>
+                  <span className="text-[13px] font-semibold text-white tabular-nums">
+                    {symbol} {cash.toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
+                  <span className="text-[13px] text-white/80">
+                    {t("Bonus")}
+                  </span>
+                  <span className="text-[13px] font-semibold text-white tabular-nums">
+                    {symbol} {bonus.toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
+                  <span className="text-[13px] text-white/80">
+                    {t("Available spins") || "Available spins"}
+                  </span>
+                  <span className="text-[13px] font-semibold text-white tabular-nums">
+                    {freeSpins}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
