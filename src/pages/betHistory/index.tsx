@@ -1,7 +1,7 @@
 import { Router, Route, useLocation } from "preact-iso";
 import Overview from "./casino";
 import NotFound404 from "../not-found";
-import { t, useTranslations } from "@/context/I18nContext";
+import { useTranslations } from "@/context/I18nContext";
 import { useMemo } from "preact/hooks";
 import { userState } from "@/state/userState";
 import { Archive, Users } from "lucide-preact";
@@ -58,6 +58,7 @@ function HistorySidebar() {
 }
 
 export default function MyBetsLayout() {
+  const t = useTranslations("BetHistory");
   const isMobile = useMediaQuery(mobileMediaQuery);
   if (
     !userState.value?.id ||
@@ -72,8 +73,14 @@ export default function MyBetsLayout() {
       <div className="mx-auto flex flex-col p-2 md:px-0 gap-6">
         {/* Header */}
         <div className="flex w-full items-center gap-3 pt-[24px]">
-          <img src={`/images/icons/icons/my-bet.png`} alt="My Bets" className="w-5 h-5 text-white brightness-0 invert" />
-          <span className="text-white text-[24px] leading-[36px] font-semibold">{t("My Bets")}</span>
+          <img
+            src={`/images/icons/icons/my-bet.png`}
+            alt={t("My Bets")}
+            className="w-5 h-5 text-white brightness-0 invert"
+          />
+          <span className="text-white text-[24px] leading-[36px] font-semibold">
+            {t("My Bets")}
+          </span>
         </div >
         <div className="flex flex-row min-h-screen gap-6">
           {isMobile ? (<></>) : (<HistorySidebar />)}
