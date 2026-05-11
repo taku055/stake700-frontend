@@ -8,7 +8,7 @@ import { userState } from "@/state/userState";
 import { accessTokenState } from "@/state/accessTokenState";
 import { setAxiosAuthToken } from "@/api/instance";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { X } from "lucide-preact";
+import { LogOut, X } from "lucide-preact";
 import {
   PROFILE_MENU_ITEMS,
   isProfileMenuHrefItem,
@@ -265,7 +265,6 @@ export default function ProfileMenu() {
             <div className="p-2">
               <div className="grid grid-cols-2 gap-2">
                 {PROFILE_MENU_ITEMS.map((item) => {
-                  const Icon = item.icon;
                   const label = tHeader(item.labelKey) || item.labelKey;
                   const isLogout = item.id === "logout";
                   const baseBtn = [
@@ -276,6 +275,23 @@ export default function ProfileMenu() {
                       ? "text-red-200 hover:bg-red-500/10"
                       : "text-white hover:bg-white/10",
                   ].join(" ");
+
+                  const menuIcon = isLogout ? (
+                    <LogOut
+                      className="w-4 h-4 shrink-0 opacity-90"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
+                  ) : (
+                    <img
+                      src={item.iconSrc!}
+                      alt=""
+                      width={16}
+                      height={16}
+                      className="w-4 h-4 shrink-0 opacity-90 object-contain"
+                      aria-hidden
+                    />
+                  );
 
                   if (isProfileMenuHrefItem(item)) {
                     return (
@@ -290,7 +306,7 @@ export default function ProfileMenu() {
                           setOpen(false);
                         }}
                       >
-                        <Icon className="w-4 h-4 shrink-0 opacity-90" aria-hidden />
+                        {menuIcon}
                         <span className="min-w-0 leading-snug">{label}</span>
                       </Link>
                     );
@@ -311,7 +327,7 @@ export default function ProfileMenu() {
                         });
                       }}
                     >
-                      <Icon className="w-4 h-4 shrink-0 opacity-90" aria-hidden />
+                      {menuIcon}
                       <span className="min-w-0 leading-snug text-left">{label}</span>
                     </button>
                   );

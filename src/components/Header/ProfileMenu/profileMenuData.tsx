@@ -1,12 +1,5 @@
-import {
-  BadgeCheck,
-  Gamepad2,
-  Gift,
-  Landmark,
-  LogOut,
-  Receipt,
-  UserCircle,
-} from "lucide-preact";
+/** Public URL under `public/images/profile/`. */
+export type ProfileMenuIconSrc = `/images/profile/${string}`;
 
 /** Keys must exist under i18n `Header` (e.g. t("ProfileMenuPersonalBalance")). */
 export type ProfileMenuLabelKey =
@@ -20,20 +13,19 @@ export type ProfileMenuLabelKey =
 
 export type ProfileMenuActionKey = "openProfile" | "logout";
 
-/** Same component shape as any `lucide-preact` icon (package does not export `LucideIcon`). */
-export type ProfileMenuIcon = typeof UserCircle;
-
 type ProfileMenuItemHref = {
   id: string;
   labelKey: ProfileMenuLabelKey;
-  icon: ProfileMenuIcon;
+  /** PNG under `/images/profile/` (logout uses Lucide `LogOut` in the menu, not `iconSrc`). */
+  iconSrc?: ProfileMenuIconSrc;
   href: string;
 };
 
 type ProfileMenuItemAction = {
   id: string;
   labelKey: ProfileMenuLabelKey;
-  icon: ProfileMenuIcon;
+  /** Omit on `action: "logout"` — menu renders Lucide `LogOut`. */
+  iconSrc?: ProfileMenuIconSrc;
   action: ProfileMenuActionKey;
   /** Used with `action: "openProfile"` — same tab keys as `ProfileComponent`. */
   defaultTab?: string;
@@ -51,46 +43,45 @@ export const PROFILE_MENU_ITEMS: ProfileMenuItem[] = [
   {
     id: "personal-balance",
     labelKey: "ProfileMenuPersonalBalance",
-    icon: UserCircle,
+    iconSrc: "/images/profile/user-info.png",
     action: "openProfile",
     defaultTab: "/my-profile/personal-details",
   },
-  {
-    id: "kyc",
-    labelKey: "ProfileMenuKyc",
-    icon: BadgeCheck,
-    href: "/support/help-center",
-  },
+  // {
+  //   id: "kyc",
+  //   labelKey: "ProfileMenuKyc",
+  //   iconSrc: "/images/profile/kyc.png",
+  //   href: "/support/help-center",
+  // },
   {
     id: "promotions",
     labelKey: "ProfileMenuPromotions",
-    icon: Gift,
+    iconSrc: "/images/profile/promotion.png",
     href: "/promotions",
   },
   {
     id: "game-history",
     labelKey: "ProfileMenuGameHistory",
-    icon: Gamepad2,
+    iconSrc: "/images/profile/game-history.png",
     href: "/my-bets/casino",
   },
   {
     id: "transaction-history",
     labelKey: "ProfileMenuTransactionHistory",
-    icon: Receipt,
+    iconSrc: "/images/profile/transaction-history.png",
     action: "openProfile",
     defaultTab: "/balance-management/transaction-history",
   },
   {
     id: "withdrawals",
     labelKey: "ProfileMenuWithdrawals",
-    icon: Landmark,
+    iconSrc: "/images/profile/withdrawals.png",
     action: "openProfile",
     defaultTab: "/balance-management/withdraw",
   },
   {
     id: "logout",
     labelKey: "ProfileMenuLogout",
-    icon: LogOut,
     action: "logout",
   },
 ];
