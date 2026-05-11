@@ -78,7 +78,14 @@
     "Area Manager": "Area Manager",
     "Superagent": "Superagent",
     "Categories": "Categories",
-    "Close menu": "Close menu"
+    "Close menu": "Close menu",
+    "ProfileMenuPersonalBalance": "Personal Info & Balance",
+    "ProfileMenuKyc": "KYC",
+    "ProfileMenuPromotions": "My Promotions",
+    "ProfileMenuGameHistory": "Game History",
+    "ProfileMenuTransactionHistory": "Transaction History",
+    "ProfileMenuWithdrawals": "Withdrawals",
+    "ProfileMenuLogout": "Log out"
   },
   "ProviderSidebar": {
     "Providers": "Providers",
@@ -114,7 +121,9 @@
     "Fiat Currency": "Fiat Currency",
     "Coming Soon": "Coming Soon",
     "Cash": "Cash",
-    "Bonus": "Bonus"
+    "Bonus": "Bonus",
+    "Available spins": "Available spins",
+    "Total Balance": "Total Balance"
   },
   "VipClub": {
     "VIP": "VIP",

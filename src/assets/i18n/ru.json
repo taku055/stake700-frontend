@@ -78,7 +78,14 @@
     "Area Manager": "Региональный менеджер",
     "Superagent": "Суперагент",
     "Categories": "Категории",
-    "Close menu": "Закрыть меню"
+    "Close menu": "Закрыть меню",
+    "ProfileMenuPersonalBalance": "Личные данные и баланс",
+    "ProfileMenuKyc": "Верификация (KYC)",
+    "ProfileMenuPromotions": "Мои акции",
+    "ProfileMenuGameHistory": "История игр",
+    "ProfileMenuTransactionHistory": "История операций",
+    "ProfileMenuWithdrawals": "Выводы",
+    "ProfileMenuLogout": "Выйти"
   },
   "ProviderSidebar": {
     "Providers": "Провайдеры",
@@ -114,6 +121,8 @@
     "Coming Soon": "Скоро",
     "Cash": "Наличные",
     "Bonus": "Бонус",
+    "Available spins": "Available spins",
+    "Total Balance": "Общий баланс",
     "WalletGetStartedDesc": "Чтобы начать, пополните счёт криптовалютой или местной валютой (где доступно) или купите криптовалюту мгновенно через MoonPay или Swapped."
   },
   "PromotionCard": {

@@ -20,6 +20,7 @@ import {
 } from "@/state/navigationSidebarState";
 import { Link } from "@/components/common";
 import { useMediaQuery } from "usehooks-ts";
+import ProfileMenu from "./ProfileMenu";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
@@ -99,6 +100,7 @@ export default function Header() {
             ) : (
               <div className="flex flex-row justify-center items-center gap-2">
                 <WalletBox />
+                <ProfileMenu />
               </div>
             )}
           </div>

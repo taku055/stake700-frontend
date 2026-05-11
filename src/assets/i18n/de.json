@@ -79,7 +79,14 @@
     "Area Manager": "Gebietsleiter",
     "Superagent": "Superagent",
     "Categories": "Kategorien",
-    "Close menu": "Menü schließen"
+    "Close menu": "Menü schließen",
+    "ProfileMenuPersonalBalance": "Persönliche Daten & Guthaben",
+    "ProfileMenuKyc": "KYC",
+    "ProfileMenuPromotions": "Meine Aktionen",
+    "ProfileMenuGameHistory": "Spielverlauf",
+    "ProfileMenuTransactionHistory": "Transaktionsverlauf",
+    "ProfileMenuWithdrawals": "Auszahlungen",
+    "ProfileMenuLogout": "Abmelden"
   },
   "ProviderSidebar": {
     "Providers": "Anbieter",
@@ -117,6 +124,8 @@
     "Coming Soon": "Demnächst",
     "Cash": "Bargeld",
     "Bonus": "Bonus",
+    "Available spins": "Available spins",
+    "Total Balance": "Gesamtguthaben",
     "WalletGetStartedDesc": "Um zu starten, zahlen Sie per Krypto oder lokaler Währung ein (wo verfügbar) oder kaufen Sie Krypto sofort über MoonPay oder Swapped."
   },
   "PromotionCard": {

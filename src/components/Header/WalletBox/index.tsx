@@ -8,11 +8,11 @@ import {
 } from "react";
 import { Portal } from "./Portal";
 import { userState } from "@/state/userState";
-import { profileOpenedState } from "@/state/profileOpenedState";
 import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";
 import { useTranslations } from "@/context/I18nContext";
 import { cashDetailAmountForUnit } from "@/helpers/multipleBalance";
+import { profileOpenedState } from "@/state/profileOpenedState";
 
 type Pos = { top: number; left: number; width: number };
 
@@ -24,14 +24,38 @@ function clampDropdownLeft(
   panelWidth: number,
 ): number {
   const vw = window.innerWidth;
+  const clampedW = Math.min(panelWidth, vw - VIEWPORT_MARGIN * 2);
   let left = triggerRect.left;
-  if (left + panelWidth > vw - VIEWPORT_MARGIN) {
-    left = Math.max(VIEWPORT_MARGIN, triggerRect.right - panelWidth);
+  if (left + clampedW > vw - VIEWPORT_MARGIN) {
+    left = Math.max(VIEWPORT_MARGIN, triggerRect.right - clampedW);
   }
   if (left < VIEWPORT_MARGIN) {
     left = VIEWPORT_MARGIN;
   }
   return left;
+}
+
+function computePosFromTrigger(triggerRect: DOMRect): Pos {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const maxPanelW = Math.max(0, vw - VIEWPORT_MARGIN * 2);
+
+  let width = Math.max(160, triggerRect.width);
+  width = Math.min(width, maxPanelW);
+
+  const estPanelW = Math.min(Math.max(width, 260), maxPanelW);
+  const estHeight = 260;
+  let left = clampDropdownLeft(triggerRect, estPanelW);
+
+  let top = triggerRect.bottom + BELOW_TRIGGER_GAP;
+  if (top + estHeight > vh - VIEWPORT_MARGIN) {
+    top = Math.max(
+      VIEWPORT_MARGIN,
+      triggerRect.top - estHeight - BELOW_TRIGGER_GAP,
+    );
+  }
+
+  return { top, left, width };
 }
 
 export default function WalletBox() {
@@ -44,36 +68,53 @@ export default function WalletBox() {
 
   const [pos, setPos] = useState<Pos | null>(null);
 
-  const updatePos = useCallback(() => {
+  const applyClampFromDropdown = useCallback(() => {
     const el = triggerRef.current;
-    if (!el) return;
+    const d = dropdownRef.current;
+    if (!el || !d) return;
+
     const r = el.getBoundingClientRect();
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const maxPanelW = Math.max(0, vw - VIEWPORT_MARGIN * 2);
 
-    let width = Math.max(160, r.width);
-    width = Math.min(width, maxPanelW);
+    let width = Math.max(160, Math.min(r.width, maxPanelW));
+    const panelW = d.getBoundingClientRect().width;
+    const panelH = d.getBoundingClientRect().height;
 
-    let left = r.left;
-    if (left + width > vw - VIEWPORT_MARGIN) {
-      left = vw - VIEWPORT_MARGIN - width;
-    }
-    if (left < VIEWPORT_MARGIN) {
-      left = VIEWPORT_MARGIN;
-    }
+    const left = clampDropdownLeft(r, panelW);
 
-    const estHeight = 220;
     let top = r.bottom + BELOW_TRIGGER_GAP;
-    if (top + estHeight > vh - VIEWPORT_MARGIN) {
+    if (top + panelH > vh - VIEWPORT_MARGIN) {
       top = Math.max(
         VIEWPORT_MARGIN,
-        r.top - estHeight - BELOW_TRIGGER_GAP
+        r.top - panelH - BELOW_TRIGGER_GAP,
       );
     }
 
-    setPos({ top, left, width });
+    setPos((prev) => {
+      if (!prev) return { top, left, width };
+      if (
+        Math.abs(prev.left - left) < 0.5 &&
+        Math.abs(prev.top - top) < 0.5 &&
+        Math.abs(prev.width - width) < 0.5
+      ) {
+        return prev;
+      }
+      return { top, left, width };
+    });
   }, []);
+
+  const updatePos = useCallback(() => {
+    const el = triggerRef.current;
+    if (!el) return;
+    const d = dropdownRef.current;
+    if (d) {
+      applyClampFromDropdown();
+      return;
+    }
+    setPos(computePosFromTrigger(el.getBoundingClientRect()));
+  }, [applyClampFromDropdown]);
 
   useEffect(() => {
     if (!isSelectorOpen) return;
@@ -100,10 +141,18 @@ export default function WalletBox() {
     };
   }, [isSelectorOpen]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isSelectorOpen) return;
 
-    updatePos();
+    const d = dropdownRef.current;
+    if (!d) return;
+
+    applyClampFromDropdown();
+
+    const ro = new ResizeObserver(() => {
+      applyClampFromDropdown();
+    });
+    ro.observe(d);
 
     const onScroll = () => updatePos();
     const onResize = () => updatePos();
@@ -112,26 +161,11 @@ export default function WalletBox() {
     window.addEventListener("resize", onResize);
 
     return () => {
+      ro.disconnect();
       window.removeEventListener("scroll", onScroll, true);
       window.removeEventListener("resize", onResize);
     };
-  }, [isSelectorOpen, updatePos]);
-
-  useLayoutEffect(() => {
-    if (!isSelectorOpen || !pos) return;
-    const el = triggerRef.current;
-    const d = dropdownRef.current;
-    if (!el || !d) return;
-    const r = el.getBoundingClientRect();
-    const left = clampDropdownLeft(r, d.offsetWidth);
-    setPos((prev) => {
-      if (!prev) return prev;
-      if (Math.abs(prev.left - left) < 0.5) {
-        return prev;
-      }
-      return { ...prev, left };
-    });
-  }, [isSelectorOpen, pos]);
+  }, [isSelectorOpen, applyClampFromDropdown, updatePos]);
 
   useEffect(() => {
     if (!isSelectorOpen) return;
@@ -182,6 +216,17 @@ export default function WalletBox() {
     };
   }, [balanceState.value, currencyState.value, userState.value]);
 
+  const freeSpins = useMemo(() => {
+    const cur = currencyState.value;
+    const user = userState.value;
+    if (!cur || !user) return 0;
+    if (user.role !== "NORMAL") return 0;
+    return Number(balanceState.value?.[cur.code]?.freespin?.count ?? 0);
+  }, [balanceState.value, currencyState.value, userState.value]);
+
+  const userInitial =
+    userState.value?.userName?.trim()?.at(0)?.toUpperCase() ?? "?";
+
   return (
     <div
       ref={wrapperRef}
@@ -202,13 +247,28 @@ export default function WalletBox() {
         type="button"
         onClick={(e) => {
           e.stopPropagation();
-          setIsSelectorOpen((v) => !v);
+          if (isSelectorOpen) {
+            setIsSelectorOpen(false);
+            setPos(null);
+            return;
+          }
+          const el = triggerRef.current;
+          if (el) {
+            setPos(computePosFromTrigger(el.getBoundingClientRect()));
+          } else {
+            setPos({
+              top: VIEWPORT_MARGIN,
+              left: VIEWPORT_MARGIN,
+              width: 160,
+            });
+          }
+          setIsSelectorOpen(true);
         }}
         aria-haspopup="menu"
         aria-expanded={isSelectorOpen}
         className={[
           "flex items-center gap-1",
-          "rounded-full pl-2 py-1",
+          "rounded-full px-2 py-1",
           "text-white",
           "transition",
           "hover:bg-white/10",
@@ -237,38 +297,6 @@ export default function WalletBox() {
         </span>
       </button>
 
-      {/* Divider (subtle, like header separators) */}
-      <div className="h-7 w-px bg-white/10" />
-
-      {/* Avatar */}
-      <button
-        type="button"
-        className={[
-          "relative",
-          "w-8 h-8 rounded-full",
-          "grid place-items-center",
-          "text-white font-bold",
-          "bg-white/10",
-          "border border-white/10",
-          "transition",
-          "hover:bg-white/15 hover:border-white/15",
-          "active:scale-[0.98]",
-        ].join(" ")}
-        onClick={(e) => {
-          e.stopPropagation();
-          profileOpenedState.value = { isOpen: true };
-          setIsSelectorOpen(false);
-        }}
-        aria-label="Open profile"
-      >
-        <span className="text-[13px]">
-          {userState.value?.userName?.at(0)?.toUpperCase()}
-        </span>
-
-        {/* tiny status dot (optional vibe) */}
-        <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-[#2a0b3b]" />
-      </button>
-
       {/* Dropdown rendered in a Portal so it won't be clipped */}
       {isSelectorOpen && pos && (
         <Portal>
@@ -278,7 +306,7 @@ export default function WalletBox() {
             className={[
               "z-[9999]",
               "rounded-xl overflow-hidden",
-              "bg-[var(--green-color)]/20 backdrop-blur-md",
+              "bg-[#323232] backdrop-blur-md",
               "border border-white/10",
               "shadow-[0_18px_60px_rgba(0,0,0,0.55)]",
               "max-w-[calc(100vw-1rem)]",
@@ -293,38 +321,100 @@ export default function WalletBox() {
               maxWidth: `calc(100vw - ${VIEWPORT_MARGIN * 2}px)`,
             }}
           >
-            <div className="px-4 py-3">
-              <div className="text-[11px] uppercase tracking-[0.14em] text-white/55">
-                {t("Currency")}
+            <div className="flex flex-col gap-3 p-4">
+              {/* Top row: avatar */}
+              <div className="flex items-center gap-3">
+                <div
+                  className={[
+                    "w-10 h-10 rounded-[4px]",
+                    "grid place-items-center",
+                    "bg-white border border-white/10",
+                    "text-black font-bold",
+                  ].join(" ")}
+                  aria-hidden="true"
+                >
+                  {userInitial}
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[11px] tracking-[0.14em] text-white/55">
+                    {userState.value?.email}
+                  </div>
+                  <div className="text-[13px] text-white font-semibold truncate">
+                    {userState.value?.userName}
+                  </div>
+                </div>
               </div>
-            </div>
 
-            <div className="h-px bg-white/10" />
-
-            <div className="flex flex-col p-1">
+              {/* Total balance card + deposit */}
               <div
                 className={[
-                  "w-full text-left",
-                  "rounded-lg px-3 py-2.5",
-                  "text-[13px] text-white",
-                  "transition",
-                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2 flex justify-between",
+                  "rounded-xl",
+                  "bg-white/10 border border-white/10",
+                  "px-4 py-3",
+                  "flex items-center justify-between gap-[100px] md:gap-[150px]",
                 ].join(" ")}
               >
-                <span className="opacity-80">{t("Cash")}</span>
-                <span className="font-semibold">{cash.toFixed(2)}</span>
+                <div className="min-w-0">
+                  <div className="text-[11px] tracking-[0.14em] text-white/55">
+                    {t("Total Balance")}
+                  </div>
+                  <div className="text-[18px] leading-[22px] font-bold text-white tabular-nums truncate">
+                    {symbol} {formattedTotal}
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className={[
+                    "shrink-0",
+                    "w-10 h-10 rounded-lg",
+                    "grid place-items-center",
+                    "bg-[var(--green-color)]/30 hover:bg-[var(--green-color)]/45",
+                    "border border-white/10",
+                    "text-white text-[20px] leading-none font-semibold",
+                    "transition",
+                    "focus:outline-none focus:ring-2 focus:ring-white/20",
+                  ].join(" ")}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    profileOpenedState.value = {
+                      isOpen: true,
+                      defaultTab: "/balance-management/deposit",
+                    };
+                    setIsSelectorOpen(false);
+                  }}
+                  aria-label={t("Deposit") || "Deposit"}
+                >
+                  +
+                </button>
               </div>
-              <div
-                className={[
-                  "w-full text-left",
-                  "rounded-lg px-3 py-2.5",
-                  "text-[13px] text-white",
-                  "transition",
-                  "focus:outline-none focus:ring-2 focus:ring-white/20 items-center gap-2 flex justify-between",
-                ].join(" ")}
-              >
-                <span className="opacity-80">{t("Bonus")}</span>
-                <span className="font-semibold">{bonus.toFixed(2)}</span>
+
+              {/* Balances */}
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
+                  <span className="text-[13px] text-white/80">
+                    {t("Cash")}
+                  </span>
+                  <span className="text-[13px] font-semibold text-white tabular-nums">
+                    {symbol} {cash.toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
+                  <span className="text-[13px] text-white/80">
+                    {t("Bonus")}
+                  </span>
+                  <span className="text-[13px] font-semibold text-white tabular-nums">
+                    {symbol} {bonus.toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
+                  <span className="text-[13px] text-white/80">
+                    {t("Available spins") || "Available spins"}
+                  </span>
+                  <span className="text-[13px] font-semibold text-white tabular-nums">
+                    {freeSpins}
+                  </span>
+                </div>
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@ function HistorySidebar() {
 
   const navItems = [
     { name: "Casino", path: "/my-bets/casino" },
-    { name: "Sports", path: "/my-bets/" },
+    { name: "Sports", path: "/my-bets/sports" },
     // { name: "Archive", path: "/my-bets/archive" },
   ];
 

@@ -78,7 +78,14 @@
     "Area Manager": "Responsable régional",
     "Superagent": "Super-agent",
     "Categories": "Catégories",
-    "Close menu": "Fermer le menu"
+    "Close menu": "Fermer le menu",
+    "ProfileMenuPersonalBalance": "Infos personnelles et solde",
+    "ProfileMenuKyc": "Vérification d'identité",
+    "ProfileMenuPromotions": "Mes promotions",
+    "ProfileMenuGameHistory": "Historique des jeux",
+    "ProfileMenuTransactionHistory": "Historique des transactions",
+    "ProfileMenuWithdrawals": "Retraits",
+    "ProfileMenuLogout": "Déconnexion"
   },
   "ProviderSidebar": {
     "Providers": "Fournisseurs",
@@ -114,6 +121,8 @@
     "Coming Soon": "Bientôt",
     "Cash": "Espèces",
     "Bonus": "Bonus",
+    "Available spins": "Available spins",
+    "Total Balance": "Solde total",
     "WalletGetStartedDesc": "To get started, make a deposit using crypto or local currency (where available), or purchase crypto instantly through MoonPay or Swapped."
   },
   "PromotionCard": {

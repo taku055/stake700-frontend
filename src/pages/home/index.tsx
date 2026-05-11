@@ -97,7 +97,7 @@ export default function HomePage() {
   return (
     <>
       {activeMode === "home" && <EmblaBanner />}
-      <ContentWrapper className="px-4 md:px-20">
+      <ContentWrapper className="px-4">
         <div className="flex overflow-x-auto scrollbar-hide mb-4 mt-4">
           <div className="flex gap-1 min-w-max">
             {/* Search */}
