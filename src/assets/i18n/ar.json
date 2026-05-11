@@ -78,7 +78,14 @@
     "Area Manager": "مدير المنطقة",
     "Superagent": "سوبر وكيل",
     "Categories": "التصنيفات",
-    "Close menu": "إغلاق القائمة"
+    "Close menu": "إغلاق القائمة",
+    "ProfileMenuPersonalBalance": "المعلومات الشخصية والرصيد",
+    "ProfileMenuKyc": "التحقق من الهوية",
+    "ProfileMenuPromotions": "عروضي",
+    "ProfileMenuGameHistory": "سجل الألعاب",
+    "ProfileMenuTransactionHistory": "سجل المعاملات",
+    "ProfileMenuWithdrawals": "السحوبات",
+    "ProfileMenuLogout": "تسجيل الخروج"
   },
   "ProviderSidebar": {
     "Providers": "المزوّدون",
@@ -117,7 +124,8 @@
     "Coming Soon": "قريباً",
     "Cash": "نقدي",
     "Bonus": "مكافأة",
-    "Available spins": "Available spins"
+    "Available spins": "Available spins",
+    "Total Balance": "الرصيد الإجمالي"
   },
   "PromotionCard": {
     "daily_promotion_title": "عرض يومي",

@@ -94,6 +94,25 @@ export const allChainsMap: tChain[] = [
 ];
 allChains.forEach((c) => (allChainsMap[c.chainId] = c));
 
+const chainIconFallbacks: Record<number, string> = {
+  10: `${ASSET_BASE_URL}/images/tokens/optimism-ethereum-op-logo.svg`,
+  42161: `${ASSET_BASE_URL}/images/tokens/arbitrum-arb-logo.svg`,
+  100: `${ASSET_BASE_URL}/images/tokens/gnosis-gno-gno-logo.svg`,
+  [TRON_CHAIN_ID]: `${ASSET_BASE_URL}/images/tokens/tron-trx-logo.svg`,
+};
+
+/** Icon URL for a network `chainId`; extends `allChainsMap` with known fallbacks. */
+export function getChainIconUrl(chainId: number): string {
+  const mapped = (allChainsMap as unknown as Record<number, tChain | undefined>)[
+    chainId
+  ];
+  if (mapped?.icon) return mapped.icon;
+  return (
+    chainIconFallbacks[chainId] ??
+    `${ASSET_BASE_URL}/images/tokens/ethereum-eth-logo.png`
+  );
+}
+
 export const ethSignatureTypes = {
   Person: [
     { name: "name", type: "string" },

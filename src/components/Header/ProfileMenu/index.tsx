@@ -1,11 +1,19 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocation } from "preact-iso";
 import { Portal } from "../WalletBox/Portal";
+import { Link } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";
 import { profileOpenedState } from "@/state/profileOpenedState";
 import { userState } from "@/state/userState";
 import { accessTokenState } from "@/state/accessTokenState";
 import { setAxiosAuthToken } from "@/api/instance";
+import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
+import { X } from "lucide-preact";
+import {
+  PROFILE_MENU_ITEMS,
+  isProfileMenuHrefItem,
+  type ProfileMenuActionKey,
+} from "./profileMenuData";
 
 type Pos = { top: number; left: number; width: number };
 
@@ -14,14 +22,37 @@ const BELOW_TRIGGER_GAP = 10;
 
 function clampDropdownLeft(triggerRect: DOMRect, panelWidth: number): number {
   const vw = window.innerWidth;
+  const clampedW = Math.min(panelWidth, vw - VIEWPORT_MARGIN * 2);
   let left = triggerRect.left;
-  if (left + panelWidth > vw - VIEWPORT_MARGIN) {
-    left = Math.max(VIEWPORT_MARGIN, triggerRect.right - panelWidth);
+  if (left + clampedW > vw - VIEWPORT_MARGIN) {
+    left = Math.max(VIEWPORT_MARGIN, triggerRect.right - clampedW);
   }
   if (left < VIEWPORT_MARGIN) {
     left = VIEWPORT_MARGIN;
   }
   return left;
+}
+
+function dispatchProfileMenuAction(
+  action: ProfileMenuActionKey,
+  ctx: {
+    defaultTab?: string;
+    openProfile: (defaultTab?: string) => void;
+    onLogout: () => void;
+  },
+): void {
+  switch (action) {
+    case "openProfile":
+      ctx.openProfile(ctx.defaultTab);
+      return;
+    case "logout":
+      ctx.onLogout();
+      return;
+    default: {
+      const _never: never = action;
+      return _never;
+    }
+  }
 }
 
 export default function ProfileMenu() {
@@ -31,6 +62,7 @@ export default function ProfileMenu() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState<Pos | null>(null);
   const location = useLocation();
+  const { handleNavigate } = useAffiliateNavigation();
 
   const tHeader = useTranslations("Header");
   const tCommon = useTranslations("Common");
@@ -43,7 +75,7 @@ export default function ProfileMenu() {
     const vh = window.innerHeight;
     const maxPanelW = Math.max(0, vw - VIEWPORT_MARGIN * 2);
 
-    let width = Math.max(180, r.width);
+    let width = Math.max(280, r.width);
     width = Math.min(width, maxPanelW);
 
     let left = r.left;
@@ -54,7 +86,7 @@ export default function ProfileMenu() {
       left = VIEWPORT_MARGIN;
     }
 
-    const estHeight = 220;
+    const estHeight = 320;
     let top = r.bottom + BELOW_TRIGGER_GAP;
     if (top + estHeight > vh - VIEWPORT_MARGIN) {
       top = Math.max(VIEWPORT_MARGIN, r.top - estHeight - BELOW_TRIGGER_GAP);
@@ -116,13 +148,13 @@ export default function ProfileMenu() {
     });
   }, [open, pos]);
 
-  const openProfile = useCallback(
-    (defaultTab?: string) => {
-      profileOpenedState.value = { isOpen: true, ...(defaultTab ? { defaultTab } : {}) };
-      setOpen(false);
-    },
-    [],
-  );
+  const openProfile = useCallback((defaultTab?: string) => {
+    profileOpenedState.value = {
+      isOpen: true,
+      ...(defaultTab ? { defaultTab } : {}),
+    };
+    setOpen(false);
+  }, []);
 
   const onLogout = useCallback(() => {
     userState.value = null;
@@ -134,7 +166,8 @@ export default function ProfileMenu() {
     }
   }, [location.path]);
 
-  const initial = userState.value?.userName?.at(0)?.toUpperCase() ?? "?";
+  const userInitial =
+    userState.value?.userName?.trim()?.at(0)?.toUpperCase() ?? "?";
 
   return (
     <div ref={wrapperRef} className="relative inline-flex items-center select-none">
@@ -161,7 +194,7 @@ export default function ProfileMenu() {
           setOpen((v) => !v);
         }}
       >
-        <span className="text-[14px]">{initial}</span>
+        <span className="text-[14px]">{userInitial}</span>
         <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-[#2a0b3b]" />
       </button>
 
@@ -173,7 +206,7 @@ export default function ProfileMenu() {
             className={[
               "z-[9999]",
               "rounded-xl overflow-hidden",
-              "bg-[#171412]/95 backdrop-blur-md",
+              "bg-[#323232] backdrop-blur-md",
               "border border-white/10",
               "shadow-[0_18px_60px_rgba(0,0,0,0.55)]",
               "max-w-[calc(100vw-1rem)]",
@@ -188,50 +221,102 @@ export default function ProfileMenu() {
               maxWidth: `calc(100vw - ${VIEWPORT_MARGIN * 2}px)`,
             }}
           >
-            <div className="px-4 py-3">
-              <div className="text-[11px] uppercase tracking-[0.14em] text-white/55">
-                {userState.value?.userName ?? tHeader("User avatar") ?? "User"}
+            <div className="p-4 border-b border-white/10">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                  <div
+                    className={[
+                      "w-10 h-10 shrink-0 rounded-[4px]",
+                      "grid place-items-center",
+                      "bg-white border border-white/10",
+                      "text-black font-bold",
+                    ].join(" ")}
+                    aria-hidden="true"
+                  >
+                    {userInitial}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[11px] tracking-[0.14em] text-white/55 truncate">
+                      {userState.value?.email}
+                    </div>
+                    <div className="text-[13px] text-white font-semibold truncate">
+                      {userState.value?.userName}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  className={[
+                    "shrink-0 rounded-lg p-1.5",
+                    "text-white/70 hover:bg-white/10 hover:text-white",
+                    "transition focus:outline-none focus:ring-2 focus:ring-white/25",
+                  ].join(" ")}
+                  aria-label={tHeader("Close menu")}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpen(false);
+                  }}
+                >
+                  <X className="h-5 w-5" strokeWidth={2} aria-hidden />
+                </button>
               </div>
             </div>
 
-            <div className="h-px bg-white/10" />
+            <div className="p-2">
+              <div className="grid grid-cols-2 gap-2">
+                {PROFILE_MENU_ITEMS.map((item) => {
+                  const Icon = item.icon;
+                  const label = tHeader(item.labelKey) || item.labelKey;
+                  const isLogout = item.id === "logout";
+                  const baseBtn = [
+                    "flex items-center gap-2 w-full rounded-lg px-2.5 py-2.5",
+                    "text-left text-[12px] sm:text-[13px] font-medium transition",
+                    "focus:outline-none focus:ring-2 focus:ring-white/20",
+                    isLogout
+                      ? "text-red-200 hover:bg-red-500/10"
+                      : "text-white hover:bg-white/10",
+                  ].join(" ");
 
-            <div className="flex flex-col p-1">
-              <button
-                type="button"
-                role="menuitem"
-                className="w-full text-left rounded-lg px-3 py-2.5 text-[13px] text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"
-                onClick={() => openProfile()}
-              >
-                {tHeader("Open profile") || "Open profile"}
-              </button>
-              <button
-                type="button"
-                role="menuitem"
-                className="w-full text-left rounded-lg px-3 py-2.5 text-[13px] text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"
-                onClick={() => openProfile("/balance-management/deposit")}
-              >
-                {tCommon("Deposit") || "Deposit"}
-              </button>
-              <button
-                type="button"
-                role="menuitem"
-                className="w-full text-left rounded-lg px-3 py-2.5 text-[13px] text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"
-                onClick={() => openProfile("/balance-management/withdraw")}
-              >
-                {tCommon("Withdraw") || "Withdraw"}
-              </button>
+                  if (isProfileMenuHrefItem(item)) {
+                    return (
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        role="menuitem"
+                        className={baseBtn}
+                        scrollToTop
+                        onClick={() => {
+                          handleNavigate(item.href);
+                          setOpen(false);
+                        }}
+                      >
+                        <Icon className="w-4 h-4 shrink-0 opacity-90" aria-hidden />
+                        <span className="min-w-0 leading-snug">{label}</span>
+                      </Link>
+                    );
+                  }
 
-              <div className="my-1 h-px bg-white/10" />
-
-              <button
-                type="button"
-                role="menuitem"
-                className="w-full text-left rounded-lg px-3 py-2.5 text-[13px] text-red-200 transition hover:bg-red-500/10 focus:outline-none focus:ring-2 focus:ring-white/20"
-                onClick={onLogout}
-              >
-                {tHeader("logout") || "Logout"}
-              </button>
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      role="menuitem"
+                      className={baseBtn}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        dispatchProfileMenuAction(item.action, {
+                          defaultTab: item.defaultTab,
+                          openProfile,
+                          onLogout,
+                        });
+                      }}
+                    >
+                      <Icon className="w-4 h-4 shrink-0 opacity-90" aria-hidden />
+                      <span className="min-w-0 leading-snug text-left">{label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </Portal>
@@ -239,4 +324,3 @@ export default function ProfileMenu() {
     </div>
   );
 }
-

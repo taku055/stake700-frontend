@@ -1,6 +1,6 @@
 import { useTranslations } from "@/context/I18nContext";
 import { Tabs, Tab } from "@heroui/react";
-import AriesWithdraw from "./AriesWithdraw";
+import { Bitcoin } from "lucide-preact";
 import WithdrawalPanel from "@/components/DepositDialogFull/WithdrawalPanel";
 
 const WithdrawPage = () => {
@@ -12,11 +12,30 @@ const WithdrawPage = () => {
         {t("Withdraw")}
       </div>
       <div className="flex flex-col w-full py-5 gap-5">
-        <Tabs aria-label={t("Withdraw tab options")} classNames={{ base: "w-full" }}>
-          {/* <Tab key="aries" title={t("Aries")}>
-            <AriesWithdraw />
-          </Tab> */}
-          <Tab key="crypto" title={t("Crypto")}>
+        <Tabs
+          aria-label={t("Withdraw tab options")}
+          variant="light"
+          classNames={{
+            base: "w-full",
+            tabList: "gap-2",
+            tab: "min-w-[56px] h-[44px] px-3 rounded-xl border-2 border-transparent data-[selected=true]:border-green-500",
+            tabContent:
+              "text-white/70 data-[selected=true]:text-green-500 flex items-center justify-center",
+            cursor: "bg-transparent",
+          }}
+        >
+          <Tab
+            key="crypto"
+            title={
+              <div
+                className="flex items-center justify-center"
+                title={t("Crypto")}
+              >
+                <Bitcoin className="w-5 h-5" />
+                <span className="sr-only">{t("Crypto")}</span>
+              </div>
+            }
+          >
             <WithdrawalPanel />
           </Tab>
         </Tabs>

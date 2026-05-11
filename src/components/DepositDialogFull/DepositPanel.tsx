@@ -1,10 +1,10 @@
-import { Button, Input, Card, CardBody } from "@heroui/react";
-import { useEffect, useRef, useCallback, useState } from "preact/hooks";
+import { Input } from "@heroui/react";
+import { useEffect, useCallback, useState, useMemo } from "preact/hooks";
 import { tToken } from "@/types/tToken";
 import { apiGetTokenList } from "@/api/common/apiGetTokenList";
-import { ChevronDown, Copy } from "lucide-preact";
+import { Copy } from "lucide-preact";
 import { userState } from "@/state/userState";
-import { chainNames } from "@/config/chains";
+import { CryptoCurrencySelects } from "./CryptoCurrencySelects";
 import { apiSetWantBonus } from "@/api/account/apiSetWantBonus";
 import Loader from "../Loader";
 import { visaOpenedState } from "@/state/visaOpenedState";
@@ -16,9 +16,13 @@ import {
   TRON_CHAIN_ID,
 } from "@/config/constants";
 import { toast } from "@/helpers/toast";
+import {
+  buildTokenGroups,
+  getPreferredDefaultCryptoSymbol,
+  sortTokenSymbols,
+} from "./tokenGroupUtils";
 
 export default function DepositPanel() {
-  const blockchainPanelRef = useRef<HTMLDivElement | null>(null);
   const [selectedCryptoType, setSelectedCryptoType] = useState<string | null>(
     null,
   );
@@ -26,8 +30,8 @@ export default function DepositPanel() {
   const [selectedBlockchain, setSelectedBlockchain] = useState(0);
   const [amount, setAmount] = useState("0");
   const [wallet, setWallet] = useState("");
-  const [showBlockchainSelector, setShowBlockchainSelector] = useState(false);
   const [tokens, setTokens] = useState<tToken[]>([]);
+  const [selectionInitialized, setSelectionInitialized] = useState(false);
   const [loadingWantBonus, setLoadingWantBonus] = useState(false);
   const [loadingInfo, setLoadingInfo] = useState(false);
   const t = useTranslations("DepositDialogFull");
@@ -52,24 +56,27 @@ export default function DepositPanel() {
     };
   }, [userState.value?.id]);
 
+  const tokenGroups = useMemo(() => buildTokenGroups(tokens), [tokens]);
+  const sortedSymbols = useMemo(
+    () => sortTokenSymbols(Object.keys(tokenGroups)),
+    [tokenGroups],
+  );
+
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        blockchainPanelRef.current &&
-        !blockchainPanelRef.current.contains(event.target as Node)
-      ) {
-        setShowBlockchainSelector(false);
-      }
-    }
-
-    if (showBlockchainSelector) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showBlockchainSelector]);
+    if (selectionInitialized || sortedSymbols.length === 0) return;
+    const preferred = getPreferredDefaultCryptoSymbol(
+      sortedSymbols,
+      tokenGroups,
+    );
+    if (!preferred) return;
+    const group = tokenGroups[preferred];
+    if (!group?.length) return;
+    const first = group[0];
+    setSelectedCryptoType(preferred);
+    setSelectedBlockchain(first.chainId);
+    setSelectedTokenId(first.id ?? 0);
+    setSelectionInitialized(true);
+  }, [sortedSymbols, tokenGroups, selectionInitialized]);
 
   useEffect(() => {
     if (
@@ -120,30 +127,28 @@ export default function DepositPanel() {
     toast.info(tToast("info.wallet_address_copied"));
   };
 
-  const onSelectToken = useCallback(
-    (tokenSymbol: string, tokenGroup: tToken[]) => {
-      if (
-        selectedCryptoType === tokenSymbol &&
-        showBlockchainSelector === true
-      ) {
-        setShowBlockchainSelector(false);
-        return;
-      }
-      if (selectedCryptoType !== tokenSymbol) {
-        setSelectedCryptoType(tokenSymbol);
-        setSelectedBlockchain(tokenGroup[0]?.chainId || 0);
-        setSelectedTokenId(tokenGroup[0]?.id || 0);
-      }
-      setShowBlockchainSelector(true);
+  const onCryptoChange = useCallback(
+    (symbol: string) => {
+      const group = tokenGroups[symbol];
+      if (!group?.length) return;
+      setSelectedCryptoType(symbol);
+      const first = group[0];
+      setSelectedBlockchain(first.chainId);
+      setSelectedTokenId(first.id ?? 0);
     },
-    [selectedCryptoType, showBlockchainSelector],
+    [tokenGroups],
   );
 
-  const onSelectChain = (token: tToken) => {
-    setSelectedBlockchain(token.chainId);
-    setSelectedTokenId(token.id || 0);
-    setShowBlockchainSelector(false);
-  };
+  const onBlockchainChange = useCallback(
+    (chainId: number) => {
+      const group = selectedCryptoType ? tokenGroups[selectedCryptoType] : [];
+      const token = group.find((t) => t.chainId === chainId);
+      if (!token) return;
+      setSelectedBlockchain(chainId);
+      setSelectedTokenId(token.id ?? 0);
+    },
+    [selectedCryptoType, tokenGroups],
+  );
 
   useEffect(() => {
     const token = tokens.find((t) => t.id === selectedTokenId);
@@ -194,76 +199,16 @@ export default function DepositPanel() {
           <h3 className="text-md font-semibold text-white">
             {t("Crypto Payments")}
           </h3>
-          <div className="grid grid-cols-3 gap-3">
-            {Object.entries(
-              tokens
-                .filter((token) => token.chainId !== 0)
-                .reduce(
-                  (acc, token) => {
-                    if (!acc[token.tokenSymbol]) {
-                      acc[token.tokenSymbol] = [];
-                    }
-                    acc[token.tokenSymbol].push(token);
-                    return acc;
-                  },
-                  {} as Record<string, tToken[]>,
-                ),
-            ).map(([tokenSymbol, tokenGroup]) => (
-              <div key={tokenSymbol} className="relative">
-                <Card
-                  isPressable
-                  className={`p-0 flex items-center justify-between md:h-[59px] h-[56px] md:w-[150px] w-[120px]  bg-[#21211C] hover:bg-[#2d324a] ${
-                    selectedCryptoType === tokenSymbol
-                      ? "border border-[#D6B33E]"
-                      : "border border-transparent"
-                  }`}
-                  onPress={() => onSelectToken(tokenSymbol, tokenGroup)}
-                >
-                  <CardBody className="flex flex-row items-center gap-2 text-sm font-medium text-white">
-                    {tokenGroup[0]?.tokenIcon && (
-                      <img
-                        src={tokenGroup[0].tokenIcon}
-                        alt={tokenSymbol}
-                        width="27px"
-                        height="27px"
-                      />
-                    )}
-                    {tokenSymbol}
-                    {tokenGroup.length > 1 && (
-                      <ChevronDown className="ml-auto" />
-                    )}
-                  </CardBody>
-                </Card>
-                {selectedCryptoType === tokenSymbol &&
-                  showBlockchainSelector &&
-                  tokenGroup.length > 1 && (
-                    <div
-                      ref={blockchainPanelRef}
-                      className="absolute top-full left-0 mt-2 z-20 bg-[#21211C] p-3 rounded-lg shadow-lg border border-white/10 w-max"
-                    >
-                      <label className="text-xs text-gray-300">
-                        {t("BLOCKCHAIN")}
-                      </label>
-                      <div className="flex flex-col md:flex-row gap-2 mt-2">
-                        {tokenGroup.map((token) => (
-                          <div
-                            key={token.chainId}
-                            className={`px-2.5 py-1 rounded-lg cursor-pointer text-xs font-medium ${
-                              selectedBlockchain === token.chainId
-                                ? "bg-teal-500 text-white"
-                                : "bg-[#2d324a] text-gray-300"
-                            }`}
-                            onClick={() => onSelectChain(token)}
-                          >
-                            {chainNames[token.chainId]}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-              </div>
-            ))}
-          </div>
+          <CryptoCurrencySelects
+            tokenGroups={tokenGroups}
+            sortedSymbols={sortedSymbols}
+            selectedCryptoType={selectedCryptoType}
+            selectedBlockchain={selectedBlockchain}
+            onCryptoChange={onCryptoChange}
+            onBlockchainChange={onBlockchainChange}
+            currencyLabel={t("Currency")}
+            blockchainLabel={t("BLOCKCHAIN")}
+          />
         </div>
         {/* Right Side: Deposit Form */}
         <div className="md:col-span-2 bg-[#21211C] border-1 border-[#515778] rounded-xl p-6 space-y-6">

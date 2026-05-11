@@ -24,14 +24,38 @@ function clampDropdownLeft(
   panelWidth: number,
 ): number {
   const vw = window.innerWidth;
+  const clampedW = Math.min(panelWidth, vw - VIEWPORT_MARGIN * 2);
   let left = triggerRect.left;
-  if (left + panelWidth > vw - VIEWPORT_MARGIN) {
-    left = Math.max(VIEWPORT_MARGIN, triggerRect.right - panelWidth);
+  if (left + clampedW > vw - VIEWPORT_MARGIN) {
+    left = Math.max(VIEWPORT_MARGIN, triggerRect.right - clampedW);
   }
   if (left < VIEWPORT_MARGIN) {
     left = VIEWPORT_MARGIN;
   }
   return left;
+}
+
+function computePosFromTrigger(triggerRect: DOMRect): Pos {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const maxPanelW = Math.max(0, vw - VIEWPORT_MARGIN * 2);
+
+  let width = Math.max(160, triggerRect.width);
+  width = Math.min(width, maxPanelW);
+
+  const estPanelW = Math.min(Math.max(width, 260), maxPanelW);
+  const estHeight = 260;
+  let left = clampDropdownLeft(triggerRect, estPanelW);
+
+  let top = triggerRect.bottom + BELOW_TRIGGER_GAP;
+  if (top + estHeight > vh - VIEWPORT_MARGIN) {
+    top = Math.max(
+      VIEWPORT_MARGIN,
+      triggerRect.top - estHeight - BELOW_TRIGGER_GAP,
+    );
+  }
+
+  return { top, left, width };
 }
 
 export default function WalletBox() {
@@ -44,36 +68,53 @@ export default function WalletBox() {
 
   const [pos, setPos] = useState<Pos | null>(null);
 
-  const updatePos = useCallback(() => {
+  const applyClampFromDropdown = useCallback(() => {
     const el = triggerRef.current;
-    if (!el) return;
+    const d = dropdownRef.current;
+    if (!el || !d) return;
+
     const r = el.getBoundingClientRect();
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const maxPanelW = Math.max(0, vw - VIEWPORT_MARGIN * 2);
 
-    let width = Math.max(160, r.width);
-    width = Math.min(width, maxPanelW);
+    let width = Math.max(160, Math.min(r.width, maxPanelW));
+    const panelW = d.getBoundingClientRect().width;
+    const panelH = d.getBoundingClientRect().height;
 
-    let left = r.left;
-    if (left + width > vw - VIEWPORT_MARGIN) {
-      left = vw - VIEWPORT_MARGIN - width;
-    }
-    if (left < VIEWPORT_MARGIN) {
-      left = VIEWPORT_MARGIN;
-    }
+    const left = clampDropdownLeft(r, panelW);
 
-    const estHeight = 220;
     let top = r.bottom + BELOW_TRIGGER_GAP;
-    if (top + estHeight > vh - VIEWPORT_MARGIN) {
+    if (top + panelH > vh - VIEWPORT_MARGIN) {
       top = Math.max(
         VIEWPORT_MARGIN,
-        r.top - estHeight - BELOW_TRIGGER_GAP
+        r.top - panelH - BELOW_TRIGGER_GAP,
       );
     }
 
-    setPos({ top, left, width });
+    setPos((prev) => {
+      if (!prev) return { top, left, width };
+      if (
+        Math.abs(prev.left - left) < 0.5 &&
+        Math.abs(prev.top - top) < 0.5 &&
+        Math.abs(prev.width - width) < 0.5
+      ) {
+        return prev;
+      }
+      return { top, left, width };
+    });
   }, []);
+
+  const updatePos = useCallback(() => {
+    const el = triggerRef.current;
+    if (!el) return;
+    const d = dropdownRef.current;
+    if (d) {
+      applyClampFromDropdown();
+      return;
+    }
+    setPos(computePosFromTrigger(el.getBoundingClientRect()));
+  }, [applyClampFromDropdown]);
 
   useEffect(() => {
     if (!isSelectorOpen) return;
@@ -100,10 +141,18 @@ export default function WalletBox() {
     };
   }, [isSelectorOpen]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isSelectorOpen) return;
 
-    updatePos();
+    const d = dropdownRef.current;
+    if (!d) return;
+
+    applyClampFromDropdown();
+
+    const ro = new ResizeObserver(() => {
+      applyClampFromDropdown();
+    });
+    ro.observe(d);
 
     const onScroll = () => updatePos();
     const onResize = () => updatePos();
@@ -112,26 +161,11 @@ export default function WalletBox() {
     window.addEventListener("resize", onResize);
 
     return () => {
+      ro.disconnect();
       window.removeEventListener("scroll", onScroll, true);
       window.removeEventListener("resize", onResize);
     };
-  }, [isSelectorOpen, updatePos]);
-
-  useLayoutEffect(() => {
-    if (!isSelectorOpen || !pos) return;
-    const el = triggerRef.current;
-    const d = dropdownRef.current;
-    if (!el || !d) return;
-    const r = el.getBoundingClientRect();
-    const left = clampDropdownLeft(r, d.offsetWidth);
-    setPos((prev) => {
-      if (!prev) return prev;
-      if (Math.abs(prev.left - left) < 0.5) {
-        return prev;
-      }
-      return { ...prev, left };
-    });
-  }, [isSelectorOpen, pos]);
+  }, [isSelectorOpen, applyClampFromDropdown, updatePos]);
 
   useEffect(() => {
     if (!isSelectorOpen) return;
@@ -213,7 +247,22 @@ export default function WalletBox() {
         type="button"
         onClick={(e) => {
           e.stopPropagation();
-          setIsSelectorOpen((v) => !v);
+          if (isSelectorOpen) {
+            setIsSelectorOpen(false);
+            setPos(null);
+            return;
+          }
+          const el = triggerRef.current;
+          if (el) {
+            setPos(computePosFromTrigger(el.getBoundingClientRect()));
+          } else {
+            setPos({
+              top: VIEWPORT_MARGIN,
+              left: VIEWPORT_MARGIN,
+              width: 160,
+            });
+          }
+          setIsSelectorOpen(true);
         }}
         aria-haspopup="menu"
         aria-expanded={isSelectorOpen}
@@ -257,7 +306,7 @@ export default function WalletBox() {
             className={[
               "z-[9999]",
               "rounded-xl overflow-hidden",
-              "bg-[var(--green-color)]/20 backdrop-blur-md",
+              "bg-[#323232] backdrop-blur-md",
               "border border-white/10",
               "shadow-[0_18px_60px_rgba(0,0,0,0.55)]",
               "max-w-[calc(100vw-1rem)]",
@@ -277,10 +326,10 @@ export default function WalletBox() {
               <div className="flex items-center gap-3">
                 <div
                   className={[
-                    "w-10 h-10 rounded-full",
+                    "w-10 h-10 rounded-[4px]",
                     "grid place-items-center",
-                    "bg-white/10 border border-white/10",
-                    "text-white font-bold",
+                    "bg-white border border-white/10",
+                    "text-black font-bold",
                   ].join(" ")}
                   aria-hidden="true"
                 >
@@ -302,12 +351,12 @@ export default function WalletBox() {
                   "rounded-xl",
                   "bg-white/10 border border-white/10",
                   "px-4 py-3",
-                  "flex items-center justify-between gap-3",
+                  "flex items-center justify-between gap-[100px] md:gap-[150px]",
                 ].join(" ")}
               >
                 <div className="min-w-0">
-                  <div className="text-[11px] uppercase tracking-[0.14em] text-white/55">
-                    {t("Balance")}
+                  <div className="text-[11px] tracking-[0.14em] text-white/55">
+                    {t("Total Balance")}
                   </div>
                   <div className="text-[18px] leading-[22px] font-bold text-white tabular-nums truncate">
                     {symbol} {formattedTotal}
