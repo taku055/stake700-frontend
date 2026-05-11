@@ -1,7 +1,5 @@
-/** Public URL under `public/images/profile/`. */
 export type ProfileMenuIconSrc = `/images/profile/${string}`;
 
-/** Keys must exist under i18n `Header` (e.g. t("ProfileMenuPersonalBalance")). */
 export type ProfileMenuLabelKey =
   | "ProfileMenuPersonalBalance"
   | "ProfileMenuKyc"
@@ -16,7 +14,6 @@ export type ProfileMenuActionKey = "openProfile" | "logout";
 type ProfileMenuItemHref = {
   id: string;
   labelKey: ProfileMenuLabelKey;
-  /** PNG under `/images/profile/` (logout uses Lucide `LogOut` in the menu, not `iconSrc`). */
   iconSrc?: ProfileMenuIconSrc;
   href: string;
 };
@@ -24,10 +21,8 @@ type ProfileMenuItemHref = {
 type ProfileMenuItemAction = {
   id: string;
   labelKey: ProfileMenuLabelKey;
-  /** Omit on `action: "logout"` — menu renders Lucide `LogOut`. */
   iconSrc?: ProfileMenuIconSrc;
   action: ProfileMenuActionKey;
-  /** Used with `action: "openProfile"` — same tab keys as `ProfileComponent`. */
   defaultTab?: string;
 };
 
