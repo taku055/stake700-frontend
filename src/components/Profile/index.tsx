@@ -225,12 +225,9 @@ const ProfileComponent = ({
   }, [BalanceManagementTab, MyProfileTab, BetHistoryTabList]);
 
   const onModalClose = useCallback(() => {
-    if (isMobile && selectedTab !== "") {
-      setSelectedTab("");
-    } else {
-      onClose();
-    }
-  }, [selectedTab]);
+    setSelectedTab("");
+    onClose();
+  }, [onClose]);
 
   const onLogout = useCallback(async () => {
     try {
