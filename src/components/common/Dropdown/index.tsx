@@ -297,22 +297,53 @@ function MenuContent({
 }) {
   const styleRef = useRef<JSX.CSSProperties>({ position: "fixed" });
 
+  const getDirectionContext = (anchor: Element | null): "rtl" | "ltr" => {
+    if (typeof document === "undefined") return "ltr";
+    let node: Element | null = anchor;
+    while (node) {
+      const d = node.getAttribute("dir");
+      if (d === "rtl") return "rtl";
+      if (d === "ltr") return "ltr";
+      node = node.parentElement;
+    }
+    const root = document.documentElement.getAttribute("dir");
+    if (root === "rtl") return "rtl";
+    if (root === "ltr") return "ltr";
+    return getComputedStyle(document.documentElement).direction === "rtl"
+      ? "rtl"
+      : "ltr";
+  };
+
   const computePosition = () => {
     const trig = triggerRef.current;
     const menu = menuRef.current;
     if (!trig || !menu) return;
 
     const rect = trig.getBoundingClientRect();
+    const rtl = getDirectionContext(trig) === "rtl";
 
-    // horizontal anchor
+    // horizontal anchor: logical start/end follow document direction
     let left = rect.left;
     let transform = "";
-    if (align === "end") {
-      left = rect.right;
-      transform = "translateX(-100%)";
-    } else if (align === "center") {
+    if (align === "center") {
       left = rect.left + rect.width / 2;
       transform = "translateX(-50%)";
+    } else if (align === "start") {
+      if (rtl) {
+        left = rect.right;
+        transform = "translateX(-100%)";
+      } else {
+        left = rect.left;
+        transform = "";
+      }
+    } else if (align === "end") {
+      if (rtl) {
+        left = rect.left;
+        transform = "";
+      } else {
+        left = rect.right;
+        transform = "translateX(-100%)";
+      }
     }
 
     // vertical placement (simple: under the trigger)
@@ -334,7 +365,6 @@ function MenuContent({
     if (widthMatchTrigger) {
       next.minWidth = rect.width;
     }
-    //console.log(next);
 
     styleRef.current = next;
 

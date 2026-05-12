@@ -51,10 +51,10 @@ export const ProviderSelection: FunctionalComponent<ProviderSelectionProps> = ({
 
       {/* Providers dropdown */}
       <Dropdown open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button
+            type="button"
             className="flex items-center gap-2 px-4 py-2 bg-[var(--background-secondary)] hover:bg-[var(--background-btn-hover)] text-gray-300 rounded-lg transition-colors font-semibold"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             <span>{t("Providers")}</span>
             {value.length > 0 && (
