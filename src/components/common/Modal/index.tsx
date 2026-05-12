@@ -339,7 +339,7 @@ export function ModalContent({
       role="dialog"
       aria-modal="true"
       tabIndex={-1}
-      dir={dir}
+      dir={dir === "auto" ? undefined : dir}
       className={[
         "relative w-full rounded-xl shadow-xl outline-none focus:outline-none",
         classNames?.content,
@@ -376,7 +376,7 @@ export function ModalClose({ className, label = "Close" }: ModalCloseProps) {
       aria-label={label}
       onClick={close}
       className={[
-        "absolute top-3 right-3 inline-flex h-7 w-7 items-center justify-center rounded-md",
+        "absolute top-3 end-3 inline-flex h-7 w-7 items-center justify-center rounded-md",
         "bg-transparent hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-black/20",
         className,
       ]

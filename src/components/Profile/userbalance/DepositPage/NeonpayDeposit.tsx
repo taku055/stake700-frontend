@@ -116,8 +116,7 @@ export default function NeonpayDeposit({
       ) : null}
 
       <Button
-        color="primary"
-        className="w-full"
+        className="w-full bg-[var(--green-color)] text-white hover:bg-[var(--green-color)]/90"
         isLoading={isSubmitting}
         isDisabled={isSubmitting}
         onPress={handleDeposit}
