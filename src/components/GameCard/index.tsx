@@ -78,7 +78,7 @@ export default function GameCard({
     };
   }, [open]);
 
-  // Desktop: open overlay on hover. Touch: overlay stays visible (see showOverlap).
+  // Desktop: open overlay on hover (see showOverlap). Mobile: image only (overlap/star hidden in SCSS).
   const onCardPointerEnter = () => {
     if (!isTouchLike) setOpen(true);
   };
@@ -123,7 +123,7 @@ export default function GameCard({
         ? data.img_custom || data.img || placeholderGameImage
         : data.img || placeholderGameImage;
 
-  const showOverlap = open || isTouchLike;
+  const showOverlap = open;
 
   return (
     <div

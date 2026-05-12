@@ -59,6 +59,10 @@
       left: 10px;
       z-index: 4;
       cursor: pointer;
+
+      @include for-mobile-only {
+        display: none;
+      }
     }
 
     .overlap {
@@ -78,6 +82,10 @@
       z-index: 3;
       gap: 10px;
       padding: 10px;
+
+      @include for-mobile-only {
+        display: none;
+      }
 
       .text {
         font-family: var(--primary-font);
