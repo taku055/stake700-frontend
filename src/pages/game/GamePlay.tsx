@@ -1,5 +1,6 @@
 import { tGame } from "@/types/tGame";
 import { userState } from "@/state/userState";
+import { sessionHydratedState } from "@/state/sessionHydratedState";
 import { Spinner } from "@heroui/spinner";
 import { apiStartGame } from "@/api/game/apiStartGame";
 import { useMediaQuery } from "usehooks-ts";
@@ -33,6 +34,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
   const [showReloadModal, setShowReloadModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const userId = userState.value?.id;
+  const sessionReady = sessionHydratedState.value;
 
   useEffect(() => {
     if (currencyState.value.unit !== currency && isPlaying) {
@@ -41,6 +43,9 @@ export default function GamePlay({ game }: IGamePlayProps) {
   }, [currencyState.value.unit, isPlaying]);
 
   const onPlay = useCallback(async () => {
+      if (!sessionHydratedState.value) {
+        return;
+      }
       if (!userId) {
         console.error("User not logged in");
         loginOpenedState.value = true;
@@ -153,8 +158,9 @@ export default function GamePlay({ game }: IGamePlayProps) {
 
   useEffect(() => {
     if (!game?.id) return;
+    if (!sessionReady) return;
     void onPlay();
-  }, [game?.id, userId, onPlay]);
+  }, [game?.id, userId, onPlay, sessionReady]);
 
   return (
     <div

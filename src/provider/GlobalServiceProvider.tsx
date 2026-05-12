@@ -56,6 +56,7 @@ import enDefinition from "@/assets/i18n/en.json";
 import frDefinition from "@/assets/i18n/fr.json";
 import ruDefinition from "@/assets/i18n/ru.json";
 import { globalLoadingState } from "@/state/globalLoadingState";
+import { sessionHydratedState } from "@/state/sessionHydratedState";
 import Loading from "@/components/Loading";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
 import { useRTL } from "@/hooks/useRTL";
@@ -286,6 +287,7 @@ export default function GlobalServiceProvider({
         getSidebarData(),
         // loadGameCategoryImages(),
       ]);
+      sessionHydratedState.value = true;
       setTimeout(() => {
         globalLoadingState.value = false;
       }, 2000);
