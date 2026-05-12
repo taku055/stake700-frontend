@@ -55,8 +55,8 @@ const PersonalDetailsPage = () => {
   const t = useTranslations("PersonalDetails");
 
   const genders = [
-    { label: t("Male"), value: "male" },
-    { label: t("Female"), value: "female" },
+    { labelKey: "Male" as const, value: "male" },
+    { labelKey: "Female" as const, value: "female" },
   ];
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
@@ -197,7 +197,9 @@ const PersonalDetailsPage = () => {
             }}
           >
             {genders.map((gender) => (
-              <SelectItem key={gender.value}>{t(gender.label)}</SelectItem>
+              <SelectItem key={gender.value} textValue={t(gender.labelKey)}>
+                {t(gender.labelKey)}
+              </SelectItem>
             ))}
           </Select>
           <Select
