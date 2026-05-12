@@ -8,7 +8,7 @@ import { userState } from "@/state/userState";
 import { accessTokenState } from "@/state/accessTokenState";
 import { setAxiosAuthToken } from "@/api/instance";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { LogOut, X } from "lucide-preact";
+import { KeyRound, LogOut, X } from "lucide-preact";
 import {
   PROFILE_MENU_ITEMS,
   isProfileMenuHrefItem,
@@ -278,6 +278,12 @@ export default function ProfileMenu() {
 
                   const menuIcon = isLogout ? (
                     <LogOut
+                      className="w-4 h-4 shrink-0 opacity-90"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
+                  ) : item.id === "change-password" ? (
+                    <KeyRound
                       className="w-4 h-4 shrink-0 opacity-90"
                       strokeWidth={2}
                       aria-hidden

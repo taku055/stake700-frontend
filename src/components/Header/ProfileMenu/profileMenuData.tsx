@@ -2,6 +2,7 @@ export type ProfileMenuIconSrc = `/images/profile/${string}`;
 
 export type ProfileMenuLabelKey =
   | "ProfileMenuPersonalBalance"
+  | "ProfileMenuChangePassword"
   | "ProfileMenuKyc"
   | "ProfileMenuPromotions"
   | "ProfileMenuGameHistory"
@@ -41,6 +42,12 @@ export const PROFILE_MENU_ITEMS: ProfileMenuItem[] = [
     iconSrc: "/images/profile/user-info.png",
     action: "openProfile",
     defaultTab: "/my-profile/personal-details",
+  },
+  {
+    id: "change-password",
+    labelKey: "ProfileMenuChangePassword",
+    action: "openProfile",
+    defaultTab: "/my-profile/change-password",
   },
   // {
   //   id: "kyc",
