@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from "preact/hooks";
-import { FaPlay, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { favoritesGameState } from "@/state/favoritesGameState";
 import { apiAddFavoritesGame } from "@/api/favorites/apiAddFavoritesGame";
 import { apiDeleteFavoritesGame } from "@/api/favorites/apiDeleteFavoritesGame";
@@ -78,15 +78,12 @@ export default function GameCard({
     };
   }, [open]);
 
-  // Desktop: open on hover. Mobile: toggle on tap.
+  // Desktop: open overlay on hover. Touch: overlay stays visible (see showOverlap).
   const onCardPointerEnter = () => {
     if (!isTouchLike) setOpen(true);
   };
   const onCardPointerLeave = () => {
     if (!isTouchLike) setOpen(false);
-  };
-  const onCardClick = () => {
-    if (isTouchLike) setOpen(true);
   };
 
   const isFavorite = useMemo(
@@ -126,60 +123,63 @@ export default function GameCard({
         ? data.img_custom || data.img || placeholderGameImage
         : data.img || placeholderGameImage;
 
+  const showOverlap = open || isTouchLike;
+
   return (
     <div
       ref={ref}
-      className={`${styles.game} ${open ? styles.is_open : ""}`}
+      className={styles.cardRoot}
       onPointerEnter={onCardPointerEnter}
       onPointerLeave={onCardPointerLeave}
-      onClick={onCardClick}
-      role="group"
     >
-      <div className={styles.imgWrapper}>
-        {/* Placeholder shown until image loads */}
-        {!imgLoaded && (
+      <Link
+        scrollToTop={true}
+        className={`${styles.game} ${showOverlap ? styles.is_open : ""}`}
+        href={`/game/${data.id}`}
+        preventDefaultOnClick={false}
+        stopPropagationOnClick={false}
+        onClick={() => onClick?.()}
+      >
+        <div className={styles.imgWrapper}>
+          {/* Placeholder shown until image loads */}
+          {!imgLoaded && (
+            <img
+              src={placeholderGameImage}
+              aria-hidden="true"
+              className={styles.gamePlaceholderImage}
+            />
+          )}
           <img
-            src={placeholderGameImage}
-            aria-hidden="true"
-            className={styles.gamePlaceholderImage}
+            className={styles.gameImage}
+            src={imgSrc}
+            alt={data.name || data.id}
+            loading="lazy"
+            onLoad={() => setImgLoaded(true)}
+            onError={() => {
+              setImgError(true);
+              setImgLoaded(true); // still show fallback
+            }}
+            style={{ opacity: imgLoaded ? 1 : 0, transition: "opacity 0.3s" }}
           />
-        )}
-        <img
-          className={styles.gameImage}
-          src={imgSrc}
-          alt={data.name || data.id}
-          loading="lazy"
-          onLoad={() => setImgLoaded(true)}
-          onError={() => {
-            setImgError(true);
-            setImgLoaded(true); // still show fallback
-          }}
-          style={{ opacity: imgLoaded ? 1 : 0, transition: "opacity 0.3s" }}
-        />
-        <div className={styles.overlap}>
-          <span title={data.providerId} className={styles.text}>
-            {data.name}
-          </span>
           {userState.value?.id && (
             <FaStar
               size={20}
               color={isFavorite ? "yellow" : "white"}
               className={styles.star}
-              onClick={() => setFavorite(data.id)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                void setFavorite(data.id);
+              }}
             />
           )}
-          <Link
-            scrollToTop={true}
-            className={styles.play}
-            href={`/game/${data.id}`}
-            preventDefaultOnClick={false}
-            stopPropagationOnClick={false}
-            onClick={onClick}
-          >
-            <FaPlay size={24} color="white" />
-          </Link>
+          <div className={styles.overlap}>
+            <span title={data.providerId} className={styles.text}>
+              {data.name}
+            </span>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

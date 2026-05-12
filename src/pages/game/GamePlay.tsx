@@ -1,23 +1,11 @@
 import { tGame } from "@/types/tGame";
 import { userState } from "@/state/userState";
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@heroui/react";
+import { Spinner } from "@heroui/spinner";
 import { apiStartGame } from "@/api/game/apiStartGame";
 import { useMediaQuery } from "usehooks-ts";
-import {
-  ASSET_BASE_URL,
-  mobileMediaQuery,
-  placeholderGameImage,
-} from "@/config/constants";
-import { FaPlay } from "react-icons/fa";
+import { mobileMediaQuery, placeholderGameImage } from "@/config/constants";
 import styles from "./GamePlay.module.scss";
 import { MdFullscreen } from "react-icons/md";
-import { apiStartGameDemo } from "@/api/game/apiStartGameDemo";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
@@ -26,9 +14,6 @@ import { localeState } from "@/state/localeState";
 import { currencyState } from "@/state/currencyState";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import ConfirmModal from "./ConfirmModal";
-import { ChevronDown } from "lucide-preact";
-import { Select, SelectItem } from "@heroui/react";
-import { CURRENCY_LIST } from "@/config/constants";
 
 interface IGamePlayProps {
   game?: tGame;
@@ -47,6 +32,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
   );
   const [showReloadModal, setShowReloadModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const userId = userState.value?.id;
 
   useEffect(() => {
     if (currencyState.value.unit !== currency && isPlaying) {
@@ -54,9 +40,8 @@ export default function GamePlay({ game }: IGamePlayProps) {
     }
   }, [currencyState.value.unit, isPlaying]);
 
-  const onPlay = useCallback(
-    async (demo: boolean) => {
-      if (!userState.value?.id) {
+  const onPlay = useCallback(async () => {
+      if (!userId) {
         console.error("User not logged in");
         loginOpenedState.value = true;
         return;
@@ -67,96 +52,80 @@ export default function GamePlay({ game }: IGamePlayProps) {
       let iframeSrc1 = "";
 
       try {
-        if (demo) {
-          try {
-            const session = await apiStartGameDemo({
-              gameId: game?.id || "",
-              isMobile,
-              language: localeState.value || "en",
-            });
+        const session = await apiStartGame({
+          gameId: game?.id || "",
+          isMobile,
+          language: localeState.value || "en",
+          currency: currencyState.value.unit,
+        });
 
-            iframeSrc1 = session.url;
-            setIsPlaying(true);
-          } catch (ex) {
-            console.error(ex);
+        if (typeof session === "string") {
+          console.log({ game });
+          // cleanup old html nodes and script
+          if (containerRef.current) {
+            containerRef.current
+              .querySelectorAll('[data-game-injected="true"]')
+              .forEach((el) => el.remove());
           }
-        } else {
-          const session = await apiStartGame({
-            gameId: game?.id || "",
-            isMobile,
-            language: localeState.value || "en",
-            currency: currencyState.value.unit,
-          });
 
-          if (typeof session === "string") {
-            console.log({ game });
-            // cleanup old html nodes and script
-            if (containerRef.current) {
-              containerRef.current
-                .querySelectorAll('[data-game-injected="true"]')
-                .forEach((el) => el.remove());
-            }
+          document
+            .querySelectorAll('script[data-game-injected="true"]')
+            .forEach((script) => script.remove());
 
-            document
-              .querySelectorAll('script[data-game-injected="true"]')
-              .forEach((script) => script.remove());
+          if (game?.gameSource === "SOFT") {
+            if (session.startsWith("1,")) {
+              const html = session.substring(2);
+              setHtmlCode(html);
 
-            if (game?.gameSource === "SOFT") {
-              if (session.startsWith("1,")) {
-                const html = session.substring(2);
-                setHtmlCode(html);
-
-                // Create a temporary container and append HTML
-                const temp = document.createElement("div");
-                temp.innerHTML =
-                  html + `<script>console.log("Game script loaded");</script>`;
-
-                Array.from(temp.childNodes).forEach((node) => {
-                  if (node.nodeName.toLowerCase() === "script") {
-                    const scriptTag = document.createElement("script");
-                    scriptTag.setAttribute("data-game-injected", "true");
-                    // Copy attributes (optional)
-                    for (const attr of (node as any).attributes ?? []) {
-                      scriptTag.setAttribute(attr.name, attr.value);
-                    }
-                    // Copy content
-                    scriptTag.text = node.textContent ?? "";
-                    document.body.appendChild(scriptTag); // Script now runs
-                  } else {
-                    if (node.nodeType === Node.ELEMENT_NODE) {
-                      (node as HTMLElement).setAttribute(
-                        "data-game-injected",
-                        "true"
-                      );
-                    }
-                    containerRef.current?.appendChild(node);
-                  }
-                });
-                setIsPlaying(true);
-              } else {
-                const temp = session.split(",");
-                throw new Error(temp[temp.length - 1]);
-              }
-            } else if (game?.gameSource === "GSS") {
-              setHtmlCode(session);
+              // Create a temporary container and append HTML
               const temp = document.createElement("div");
-              temp.innerHTML = session;
+              temp.innerHTML =
+                html + `<script>console.log("Game script loaded");</script>`;
+
               Array.from(temp.childNodes).forEach((node) => {
-                if (node.nodeType === Node.ELEMENT_NODE) {
-                  (node as HTMLElement).setAttribute(
-                    "data-game-injected",
-                    "true"
-                  );
+                if (node.nodeName.toLowerCase() === "script") {
+                  const scriptTag = document.createElement("script");
+                  scriptTag.setAttribute("data-game-injected", "true");
+                  // Copy attributes (optional)
+                  for (const attr of (node as any).attributes ?? []) {
+                    scriptTag.setAttribute(attr.name, attr.value);
+                  }
+                  // Copy content
+                  scriptTag.text = node.textContent ?? "";
+                  document.body.appendChild(scriptTag); // Script now runs
+                } else {
+                  if (node.nodeType === Node.ELEMENT_NODE) {
+                    (node as HTMLElement).setAttribute(
+                      "data-game-injected",
+                      "true"
+                    );
+                  }
+                  containerRef.current?.appendChild(node);
                 }
-                containerRef.current?.appendChild(node);
               });
               setIsPlaying(true);
+            } else {
+              const temp = session.split(",");
+              throw new Error(temp[temp.length - 1]);
             }
-          } else {
-            //
-            iframeSrc1 = session.url;
+          } else if (game?.gameSource === "GSS") {
+            setHtmlCode(session);
+            const temp = document.createElement("div");
+            temp.innerHTML = session;
+            Array.from(temp.childNodes).forEach((node) => {
+              if (node.nodeType === Node.ELEMENT_NODE) {
+                (node as HTMLElement).setAttribute(
+                  "data-game-injected",
+                  "true"
+                );
+              }
+              containerRef.current?.appendChild(node);
+            });
             setIsPlaying(true);
           }
+        } else {
+          iframeSrc1 = session.url;
+          setIsPlaying(true);
         }
 
         setIframeSrc(iframeSrc1);
@@ -173,14 +142,19 @@ export default function GamePlay({ game }: IGamePlayProps) {
     },
     [
       game?.id,
+      game?.gameSource,
       isMobile,
-      userState.value?.id,
+      userId,
       t,
-      containerRef.current,
       localeState.value,
       currencyState.value.unit,
     ]
   );
+
+  useEffect(() => {
+    if (!game?.id) return;
+    void onPlay();
+  }, [game?.id, userId, onPlay]);
 
   return (
     <div
@@ -233,28 +207,15 @@ export default function GamePlay({ game }: IGamePlayProps) {
               />
             )}
             <div className="w-full h-full bg-[#0E1224E5] top-[0px] absolute" />
-            <div className="w-full  absolute left-[0px]  my-auto flex flex-col gap-[18px] z-[3] items-center justify-center">
-              <div className="flex gap-2 h-[24px] w-full items-center justify-center p-2">
-                {/* {game?.demo && (
-                  <>
-                    <Button
-                      className="py-2 px-4 text-[#FFFFFFB7] bg-[var(--background-secondary)]"
-                      onPress={() => onPlay(true)}
-                      isLoading={loading || !game?.name}
-                    >
-                      {t("fun-play")}
-                    </Button>
-                  </>
-                )} */}
-                <Button
-                  className="py-2 px-4 bg-[var(--green-color)] text-[#05080A]"
-                  onPress={() => onPlay(false)}
-                  isLoading={loading || !game?.name}
-                >
-                  {t("Real play")}
-                </Button>
+            {(loading || !game?.name) && (
+              <div className="absolute inset-0 z-[3] flex items-center justify-center">
+                <Spinner
+                  classNames={{ wrapper: "w-14 h-14" }}
+                  variant="gradient"
+                  color="success"
+                />
               </div>
-            </div>
+            )}
           </>
         ))}
       <button
@@ -269,7 +230,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
       <ConfirmModal
         isOpen={showReloadModal}
         onClose={() => setShowReloadModal(false)}
-        onConfirm={() => onPlay(false)}
+        onConfirm={() => onPlay()}
         currentCurrency={currency}
         newCurrency={currencyState.value.unit}
       />
