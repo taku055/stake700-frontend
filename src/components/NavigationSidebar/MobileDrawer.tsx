@@ -81,7 +81,7 @@ export default function MobileDrawer({
     );
 
   const itemCard = (active: boolean) =>
-    `flex items-center gap-3 px-4 py-[13px] rounded-xl transition-colors w-full ${isRTL ? "flex-row-reverse text-right" : "text-left"} ${active
+    `flex flex-row items-center gap-3 px-4 py-[13px] rounded-xl transition-colors w-full text-start ${active
       ? "bg-[var(--green-color)] text-white"
       : "bg-[var(--sidebar-card-bg)] text-white hover:bg-[var(--sidebar-card-hover)]"
     }`;
@@ -94,7 +94,7 @@ export default function MobileDrawer({
       className={`fixed ${isRTL ? "right-0" : "left-0"} top-0 z-5500 h-full w-full bg-(--sidebar-background) overflow-y-auto scrollbar-hide overflow-x-hidden`}
     >
       {/* Header */}
-      <div className={`flex items-center gap-3 px-4 h-15 bg-(--sidebar-background) sticky top-0 z-10 ${isRTL ? "flex-row-reverse" : ""}`}>
+      <div className="flex flex-row items-center gap-3 px-4 h-15 bg-(--sidebar-background) sticky top-0 z-10">
         <button
           type="button"
           onClick={close}
@@ -133,7 +133,7 @@ export default function MobileDrawer({
                 className={itemCard(selectedMainNavKey === item.key)}
               >
                 {renderIcon(item)}
-                <span className="flex-1 text-sm font-medium">{item.title}</span>
+                <span className="min-w-0 flex-1 text-sm font-medium">{item.title}</span>
                 {isExpanded[item.key]
                   ? <ChevronUp size={16} className="text-[#8a8070] shrink-0" />
                   : <ChevronDown size={16} className="text-[#8a8070] shrink-0" />}
@@ -150,12 +150,12 @@ export default function MobileDrawer({
                 className={itemCard(selectedMainNavKey === item.key)}
               >
                 {renderIcon(item)}
-                <span className="text-sm font-medium">{item.title}</span>
+                <span className="min-w-0 flex-1 text-sm font-medium">{item.title}</span>
               </button>
             )}
 
             {item.expandable && isExpanded[item.key] && item.key !== "language" && (
-              <div className={`flex flex-col gap-1 ${isRTL ? "pr-2" : "pl-2"}`}>
+              <div className="flex flex-col gap-1 ps-2">
                 {item.expandableItems?.map((subItem, index) => (
                   <Link
                     key={index}
@@ -166,10 +166,10 @@ export default function MobileDrawer({
                       handleNavigate(modifyHref(subItem.href || ""));
                       close();
                     }}
-                    className={`flex items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white ${isRTL ? "flex-row-reverse text-right" : ""}`}
+                    className="flex flex-row items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white text-start"
                   >
                     <img src={subItem.icon} alt={subItem.title} className="w-5 h-5 shrink-0 object-contain" />
-                    <span className="flex-1 text-sm">{subItem.title}</span>
+                    <span className="min-w-0 flex-1 text-sm">{subItem.title}</span>
                   </Link>
                 ))}
               </div>
@@ -190,7 +190,7 @@ export default function MobileDrawer({
                 className={itemCard(selectedMainNavKey === item.key)}
               >
                 {renderIcon(item)}
-                <span className="flex-1 text-sm font-medium">{item.title}</span>
+                <span className="min-w-0 flex-1 text-sm font-medium">{item.title}</span>
                 {isExpanded[item.key]
                   ? <ChevronUp size={16} className="text-[#8a8070] shrink-0" />
                   : <ChevronDown size={16} className="text-[#8a8070] shrink-0" />}
@@ -207,12 +207,12 @@ export default function MobileDrawer({
                 className={itemCard(selectedMainNavKey === item.key)}
               >
                 {renderIcon(item)}
-                <span className="text-sm font-medium">{item.title}</span>
+                <span className="min-w-0 flex-1 text-sm font-medium">{item.title}</span>
               </button>
             )}
 
             {item.expandable && isExpanded[item.key] && item.key !== "language" && (
-              <div className={`flex flex-col gap-1 ${isRTL ? "pr-2" : "pl-2"}`}>
+              <div className="flex flex-col gap-1 ps-2">
                 {item.expandableItems?.map((subItem, index) => (
                   <Link
                     key={index}
@@ -224,17 +224,17 @@ export default function MobileDrawer({
                       handleNavigate(modifyHref(subItem.href || ""));
                       close();
                     }}
-                    className={`flex items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white ${isRTL ? "flex-row-reverse text-right" : ""}`}
+                    className="flex flex-row items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white text-start"
                   >
                     <img src={subItem.icon} alt={subItem.title} className="w-5 h-5 shrink-0 object-contain" />
-                    <span className="flex-1 text-sm">{subItem.title}</span>
+                    <span className="min-w-0 flex-1 text-sm">{subItem.title}</span>
                   </Link>
                 ))}
               </div>
             )}
 
             {item.expandable && isExpanded[item.key] && item.key === "language" && (
-              <div className={`flex flex-col gap-1 ${isRTL ? "pr-2" : "pl-2"}`}>
+              <div className="flex flex-col gap-1 ps-2">
                 {supportedLanguageOptions.map((lang) => (
                   <button
                     key={lang.value}
@@ -242,13 +242,13 @@ export default function MobileDrawer({
                       localeState.value = lang.value;
                       window.localStorage.setItem("locale", lang.value);
                     }}
-                    className={`flex items-center gap-3 px-4 py-2.75 rounded-xl transition-colors w-full ${isRTL ? "flex-row-reverse text-right" : "text-left"} ${localeState.value === lang.value
+                    className={`flex flex-row items-center gap-3 px-4 py-2.75 rounded-xl transition-colors w-full text-start ${localeState.value === lang.value
                       ? "bg-(--sidebar-card-active) text-white"
                       : "bg-(--sidebar-card-bg) text-white hover:bg-(--sidebar-card-hover)"
                       }`}
                   >
-                    <span className={`fi fi-${lang.flag}`}></span>
-                    <span className="flex-1 text-sm">{lang.label}</span>
+                    <span className={`fi fi-${lang.flag} shrink-0`}></span>
+                    <span className="min-w-0 flex-1 text-sm">{lang.label}</span>
                   </button>
                 ))}
               </div>
