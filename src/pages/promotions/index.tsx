@@ -165,8 +165,15 @@ export default function PromoPage() {
                     </div>
                     <div className="flex gap-3 mt-5">
                       <button
-                        className="flex-1 bg-[#01A825] text-white font-bold text-[16px] rounded-lg py-3 cursor-pointer shadow-md shadow-[#01A825] transition hover:brightness-110 font-serif"
+                        type="button"
+                        className={[
+                          "flex-1 font-bold text-[16px] rounded-lg py-3 font-serif transition shadow-md",
+                          promo.available
+                            ? "bg-[#01A825] text-white cursor-pointer shadow-[#01A825] hover:brightness-110"
+                            : "bg-[#1e2520] text-white/35 cursor-not-allowed border border-white/10 opacity-80 shadow-none",
+                        ].join(" ")}
                         disabled={!promo.available}
+                        aria-disabled={!promo.available}
                         onClick={() => {
                           if (!promo.available) return;
                           history.pushState(null, "", `?promo=${promo.id}`);
