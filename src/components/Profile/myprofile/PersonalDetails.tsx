@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState, useMemo } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { apiUpdateUserDetails } from "@/api/account/apiUpdateUserDetails";
@@ -6,19 +6,50 @@ import { toast } from "@/helpers/toast";
 import { LoaderCircle } from "lucide-preact";
 import { DatePicker, Select, SelectItem, Input } from "@heroui/react";
 import { parseDate } from "@internationalized/date";
-import * as countryCodes from "country-codes-list";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 
-const myCountryCodesObject = countryCodes.customList(
-  "countryCode",
-  "{countryNameEn}({countryCode})"
+/** Allowed countries (stored value = ISO 3166-1 alpha-2). */
+const COUNTRY_OPTIONS = [
+  { value: "SA", label: "Saudi Arabia", dial: "+966" },
+  { value: "AE", label: "United Arab Emirates", dial: "+971" },
+  { value: "KW", label: "Kuwait", dial: "+965" },
+  { value: "QA", label: "Qatar", dial: "+974" },
+  { value: "OM", label: "Oman", dial: "+968" },
+  { value: "BH", label: "Bahrain", dial: "+973" },
+  { value: "LB", label: "Lebanon", dial: "+961" },
+  { value: "JO", label: "Jordan", dial: "+962" },
+  { value: "IQ", label: "Iraq", dial: "+964" },
+  { value: "GB", label: "United Kingdom", dial: "+44" },
+  { value: "US", label: "United States", dial: "+1" },
+];
+
+const ALLOWED_COUNTRY_VALUES = new Set(
+  COUNTRY_OPTIONS.map((c) => c.value),
 );
 
-const countries = Object.keys(myCountryCodesObject).map((key) => ({
-  value: key,
-  label: myCountryCodesObject[key],
-}));
+const DIAL_PREFIXES = COUNTRY_OPTIONS.map((c) => c.dial)
+  .filter((d) => d.length > 0)
+  .sort((a, b) => b.length - a.length);
+
+function resolveInitialCountry(saved: string | null | undefined): string {
+  if (saved && ALLOWED_COUNTRY_VALUES.has(saved)) return saved;
+  return "SA";
+}
+
+function parseInitialNationalNumber(
+  fullPhone: string | null | undefined,
+): string {
+  const raw = (fullPhone ?? "").trim();
+  if (!raw) return "";
+  for (const prefix of DIAL_PREFIXES) {
+    if (raw.startsWith(prefix)) {
+      return raw.slice(prefix.length).trim();
+    }
+  }
+  if (raw.startsWith("+")) return raw;
+  return raw;
+}
 
 const PersonalDetailsPage = () => {
   const t = useTranslations("PersonalDetails");
@@ -44,16 +75,30 @@ const PersonalDetailsPage = () => {
   const [userZipCode, setUserZipCode] = useState(
     userState.value?.zipCode || ""
   );
-  const [userPhone, setUserPhone] = useState(userState.value?.phone || "");
   const [birthDay, setBirthDay] = useState(
     parseDate(userState.value?.birthDay || "2000-01-01")
   );
   const [userGender, setUserGender] = useState(
     userState.value?.gender === 0 ? "male" : "female"
   );
-  const [country, setCountry] = useState(userState.value?.country || "en");
+  const initialCountry = useMemo(
+    () => resolveInitialCountry(userState.value?.country),
+    [],
+  );
+  const [country, setCountry] = useState(initialCountry);
+  const phoneDial = useMemo(
+    () => COUNTRY_OPTIONS.find((c) => c.value === country)?.dial ?? "",
+    [country],
+  );
+  const [phoneNational, setPhoneNational] = useState(() =>
+    parseInitialNationalNumber(userState.value?.phone),
+  );
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const fullPhoneNumber = phoneDial
+    ? `${phoneDial}${phoneNational.replace(/^\+/, "")}`
+    : phoneNational;
 
   const handleUpdateUserDetails = async () => {
     setIsLoading(true);
@@ -69,7 +114,7 @@ const PersonalDetailsPage = () => {
         gender: userGender || "male",
         dateOfBirth: birthDay.toString() || "2000-01-01",
         zipCode: userZipCode || "",
-        phoneNumber: userPhone || "",
+        phoneNumber: fullPhoneNumber || "",
       });
       userState.value = { ...userState.value, ...res };
 
@@ -171,8 +216,10 @@ const PersonalDetailsPage = () => {
               shouldBlockScroll: true,
             }}
           >
-            {countries.map((country) => (
-              <SelectItem key={country.value}>{country.label}</SelectItem>
+            {COUNTRY_OPTIONS.map((c) => (
+              <SelectItem key={c.value} textValue={c.label}>
+                {c.label}
+              </SelectItem>
             ))}
           </Select>
           <Input
@@ -216,13 +263,24 @@ const PersonalDetailsPage = () => {
             }}
           />
           <Input
-            type="text"
-            value={userPhone}
-            onChange={(e: any) => setUserPhone(e.target.value)}
+            type="tel"
+            className="col-span-2 min-w-0"
+            dir="ltr"
+            startContent={
+              phoneDial ? (
+                <span className="text-[#FFFFFF99] text-sm font-medium tabular-nums shrink-0 pointer-events-none select-none">
+                  {phoneDial}
+                </span>
+              ) : undefined
+            }
+            value={phoneNational}
+            onChange={(e: any) => setPhoneNational(e.target.value)}
             label={t("Phone")}
             classNames={{
-              inputWrapper: "bg-[#fff1] border-none rounded-sm!",
-              input: "text-[#FFFFFF99]",
+              inputWrapper: `bg-[#fff1] border-none rounded-sm!${
+                isRTL ? " [&_input]:text-right" : " [&_input]:text-left"
+              }`,
+              input: `text-[#FFFFFF99]${isRTL ? " text-right" : " text-left"}`,
             }}
           />
         </div>
