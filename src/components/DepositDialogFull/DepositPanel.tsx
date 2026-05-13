@@ -124,7 +124,7 @@ export default function DepositPanel() {
   const copyWallet = () => {
     if (wallet === "") return;
     navigator.clipboard.writeText(wallet);
-    toast.info(tToast("info.wallet_address_copied"));
+    toast.success(tToast("info.wallet_address_copied"));
   };
 
   const onCryptoChange = useCallback(
