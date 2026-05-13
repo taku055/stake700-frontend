@@ -535,7 +535,8 @@ export default function GlobalServiceProvider({
               hideIcon: false,
               classNames: {
                 closeButton:
-                  "opacity-100 absolute right-4 top-1/2 -translate-y-1/2",
+                  // Theme pins close with physical -right-*; override for RTL.
+                  "opacity-100 absolute !top-1/2 -translate-y-1/2 ltr:!right-4 rtl:!left-4 rtl:!right-auto",
                 motionDiv: "max-w-[400px] w-full",
               },
             }}
