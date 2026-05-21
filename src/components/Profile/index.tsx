@@ -65,7 +65,7 @@ const ProfileComponent = ({
         {
           TabKey: "/balance-management/deposit",
           Title: t("Deposit"),
-          Content: <DepositPage bonusId={bonusId} />,
+          Content: <DepositPage />,
         },
         {
           TabKey: "/balance-management/withdraw",

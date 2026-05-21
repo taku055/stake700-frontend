@@ -8,11 +8,29 @@ export type tNeonpaySaleFormResponse = {
   serial_number?: string;
 };
 
-export async function apiGetNeonpaySaleForm(amount: number, type: "card" | "googlepay" | "applepay", locale: string) {
-  const res = await instance.post<tNeonpaySaleFormResponse>("/neonpay/sale-form", {
+export async function apiGetNeonpaySaleForm(
+  amount: number,
+  type: "card" | "googlepay" | "applepay",
+  locale: string,
+  promoId?: string,
+) {
+  const body: {
+    amount: number;
+    type: "card" | "googlepay" | "applepay";
+    locale: string;
+    promoId?: string;
+  } = {
     amount,
     type,
-    locale,
-  });
+    locale: locale.slice(0, 16),
+  };
+  if (promoId) {
+    body.promoId = promoId;
+  }
+
+  const res = await instance.post<tNeonpaySaleFormResponse>(
+    "/neonpay/sale-form",
+    body,
+  );
   return res.data;
 }

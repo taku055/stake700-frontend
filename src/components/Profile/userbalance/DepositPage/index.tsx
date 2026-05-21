@@ -4,11 +4,7 @@ import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
 import NeonpayDeposit from "./NeonpayDeposit";
 import { PROFILE_PAY_TAB, ProfilePayTabTitle } from "../profilePayTabImages";
 
-interface DepositPageProps {
-  bonusId?: string;
-}
-
-const DepositPage = ({ bonusId: _bonusId }: DepositPageProps) => {
+const DepositPage = () => {
   const t = useTranslations("UserBalancePage");
 
   return (

@@ -5,8 +5,6 @@ import { apiGetNeonpaySaleForm } from "@/api/wallet/apiGetNeonpaySaleForm";
 import { localeState } from "@/state/localeState";
 import { toast } from "@/helpers/toast";
 import axios from "axios";
-import { useMediaQuery } from "usehooks-ts";
-import { mobileMediaQuery } from "@/config/constants";
 
 function NeonpayLogo({
   type = "card",
@@ -50,7 +48,6 @@ export default function NeonpayDeposit({
   type?: "card" | "googlepay" | "applepay";
 }) {
   const t = useTranslations("UserBalancePage");
-  const isMobile = useMediaQuery(mobileMediaQuery);
   const [amount, setAmount] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -65,10 +62,14 @@ export default function NeonpayDeposit({
 
     setIsSubmitting(true);
     try {
+      const promoId =
+        new URLSearchParams(window.location.search).get("promo") ??
+        undefined;
       const res = await apiGetNeonpaySaleForm(
         num,
         type,
         localeState.value || "en",
+        promoId,
       );
       if (res.success && res.redirect_url) {
         const url = res.redirect_url;
@@ -91,7 +92,7 @@ export default function NeonpayDeposit({
     } finally {
       setIsSubmitting(false);
     }
-  }, [amount, isMobile, t, type]);
+  }, [amount, t, type]);
 
   return (
     <div className="flex flex-col w-full max-w-md mx-auto gap-6 py-2">
