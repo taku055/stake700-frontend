@@ -82,11 +82,11 @@ const ProfileComponent = ({
           Title: t("Withdraw Status"),
           Content: <WithdrawStatusPage />,
         },
-        // {
-        //   TabKey: "/balance-management/bonus",
-        //   Title: t("Bonus"),
-        //   Content: <BonusPage />,
-        // },
+        {
+          TabKey: "/balance-management/bonus",
+          Title: t("Bonus"),
+          Content: <BonusPage />,
+        },
       ],
     }),
     [t]
