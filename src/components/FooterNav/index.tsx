@@ -62,8 +62,20 @@ export default function FooterNav() {
           ),
         },
       ];
-    } else {
-      if (userState.value?.isSuperAgent) {
+    } else {      
+      if (userState.value?.role === "AREA_MANAGER") {
+        return [
+          {
+            title: t("Dashboard"),
+            href: "/area_manager",
+            key: "area_manager",
+            icon: <Crown className="w-[24px] h-[24px]" />,
+            titleShow: true,
+            link: "/area_manager",
+            startWithPath: false,
+          },
+        ];
+      } else if (userState.value?.isSuperAgent) {
         return [
           {
             title: t("Dashboard"),
