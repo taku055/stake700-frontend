@@ -161,7 +161,7 @@ const Overview = () => {
 
                 <ul className="flex flex-col gap-2 ml-4">
                   <li className="flex items-start gap-2">
-                    <span className="text-white/70 text-[14px]">{t("Your personal point of contact at Betalarab")}</span>
+                    <span className="text-white/70 text-[14px]">{t("Your personal point of contact at Mirage888")}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-white/70 text-[14px]">{t("Tailored bonuses and sports betting limits")}</span>
@@ -178,7 +178,7 @@ const Overview = () => {
           )}
         </div>
         <button className="text-[#FFFFFF] text-[14px] font-medium hover:underline py-4 text-left">
-          {t("Learn more about being a Betalarab VIP")}
+          {t("Learn more about being a Mirage888 VIP")}
         </button>
       </div>
     </div>

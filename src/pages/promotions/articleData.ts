@@ -790,7 +790,7 @@ export const promotionArticles: Record<number, PromotionArticle> = {
   15: {
     id: 15,
     title: `Upgraded & Modernised ${capitalize(import.meta.env.VITE_SITE_NAME)} app`,
-    image: `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME}/promotion_cards/Upgraded & Modernised betalarab app.png`,
+    image: `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME}/promotion_cards/Upgraded & Modernised mirage888 app.png`,
     category: "SPORTS",
     content: `
       <h2>We are excited to announce the release of an upgraded <b>${capitalize(import.meta.env.VITE_SITE_NAME)}</b> app version.</h2>

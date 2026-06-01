@@ -20,7 +20,7 @@ const Overview = ({ onDepositClick, onBuyCryptoClick }: IOverviewProps) => {
       {/* Empty Wallet Message */}
       <div className="flex flex-col justify-between px-4 gap-2">
         <h3 className="text-white text-[20px] leading-[28px] font-semibold">
-          {t("Your Betalarab Wallet is Currently Empty")}
+          {t("Your Mirage888 Wallet is Currently Empty")}
         </h3>
         <p className="text-white/70 text-[16px] leading-[24px]">
           {t("WalletGetStartedDesc")}

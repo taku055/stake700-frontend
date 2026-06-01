@@ -5,7 +5,7 @@ import { apiXGatewayCreateInvoice } from "@/api/wallet/apiXGatewayCreateInvoice"
 import { toast } from "@/helpers/toast";
 import axios from "axios";
 
-const PAYMENT_LOGO_URL = "https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/payment_logos/xgateway_logo.svg";
+const PAYMENT_LOGO_URL = "https://tekio.s3.eu-north-1.amazonaws.com/mirage888/images/payment_logos/xgateway_logo.svg";
 
 export default function XGatewayDeposit() {
   const t = useTranslations("UserBalancePage");
