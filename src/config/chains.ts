@@ -35,49 +35,49 @@ export const ZERO_ADDRESS = "0x";
 
 export const allChains: tChain[] = [
   {
-    icon: `${ASSET_BASE_URL}/images/tokens/bitcoin-btc-logo.png`,
+    icon: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/bitcoin-btc-logo.png`,
     name: "BTC",
     symbol: "BTC",
     chainId: 8086,
   },
   {
-    icon: `${ASSET_BASE_URL}/images/tokens/solana-sol-logo.png`,
+    icon: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/solana-sol-logo.png`,
     name: "Solana",
     symbol: "SOL",
     chainId: 900,
   },
   {
-    icon: `${ASSET_BASE_URL}/images/tokens/ethereum-eth-logo.png`,
+    icon: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/ethereum-eth-logo.png`,
     name: "Ethereum",
     symbol: "ETH",
     chainId: 1,
   },
   {
-    icon: `${ASSET_BASE_URL}/images/tokens/polygon-matic-logo.png`,
+    icon: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/polygon-matic-logo.png`,
     name: "Polygon",
     symbol: "POL",
     chainId: 137,
   },
   {
-    icon: `${ASSET_BASE_URL}/images/tokens/bnb-bnb-logo.png`,
+    icon: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/bnb-bnb-logo.png`,
     name: "BSC",
     symbol: "BNB",
     chainId: 56,
   },
   {
-    icon: `${ASSET_BASE_URL}/images/tokens/base-logo.svg`,
+    icon: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/base-logo.svg`,
     name: "Base",
     symbol: "BASE",
     chainId: 8453,
   },
   {
-    icon: `${ASSET_BASE_URL}/images/tokens/avalanche-avax-logo.png`,
+    icon: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/avalanche-avax-logo.png`,
     name: "Avalanche",
     symbol: "AVAX",
     chainId: 43114,
   },
   {
-    icon: `${ASSET_BASE_URL}/images/tokens/fantom-ftm-logo.png`,
+    icon: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/fantom-ftm-logo.png`,
     name: "Fantom",
     chainId: 250,
     symbol: "FTM",
@@ -86,7 +86,7 @@ export const allChains: tChain[] = [
 
 export const allChainsMap: tChain[] = [
   {
-    icon: `${ASSET_BASE_URL}/images/tokens/usd.png`,
+    icon: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/usd.png`,
     name: "USD",
     chainId: 0,
     symbol: "USD",
@@ -95,10 +95,10 @@ export const allChainsMap: tChain[] = [
 allChains.forEach((c) => (allChainsMap[c.chainId] = c));
 
 const chainIconFallbacks: Record<number, string> = {
-  10: `${ASSET_BASE_URL}/images/tokens/optimism-ethereum-op-logo.svg`,
-  42161: `${ASSET_BASE_URL}/images/tokens/arbitrum-arb-logo.svg`,
-  100: `${ASSET_BASE_URL}/images/tokens/gnosis-gno-gno-logo.svg`,
-  [TRON_CHAIN_ID]: `${ASSET_BASE_URL}/images/tokens/tron-trx-logo.svg`,
+  10: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/optimism-ethereum-op-logo.svg`,
+  42161: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/arbitrum-arb-logo.svg`,
+  100: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/gnosis-gno-gno-logo.svg`,
+  [TRON_CHAIN_ID]: `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/tron-trx-logo.svg`,
 };
 
 /** Icon URL for a network `chainId`; extends `allChainsMap` with known fallbacks. */
@@ -109,7 +109,7 @@ export function getChainIconUrl(chainId: number): string {
   if (mapped?.icon) return mapped.icon;
   return (
     chainIconFallbacks[chainId] ??
-    `${ASSET_BASE_URL}/images/tokens/ethereum-eth-logo.png`
+    `https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/tokens/ethereum-eth-logo.png`
   );
 }
 
