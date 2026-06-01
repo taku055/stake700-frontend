@@ -106,7 +106,7 @@ export const Footer = () => {
           <img
             src={`${ASSET_BASE_URL}/logo.png`}
             alt={capitalize(import.meta.env.VITE_SITE_NAME)}
-            className="object-cover"
+            className="object-cover w-full h-full"
           />
         </div>
       </div>
