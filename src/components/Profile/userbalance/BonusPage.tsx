@@ -1,5 +1,4 @@
 import WageringPage from "@/pages/wagering";
-import { userState } from "@/state/userState";
 
 export const BonusPage = () => {
   return (
