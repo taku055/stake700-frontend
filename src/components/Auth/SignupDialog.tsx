@@ -148,7 +148,7 @@ export default function SignupDialog({
       >
         <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
           <img
-            src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
+            src={`${ASSET_BASE_URL}/logo.png`}
             className="h-[36px] md:h-[36px] md:max-w-[180px]"
             alt={import.meta.env.VITE_SITE_NAME as string}
           />

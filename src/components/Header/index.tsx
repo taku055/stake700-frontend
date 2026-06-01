@@ -48,7 +48,7 @@ export default function Header() {
             </button>
             <Link href="/">
               <img
-                src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
+                src={`${ASSET_BASE_URL}/logo.png`}
                 alt="Logo"
                 className={`h-[36px] object-contain ${isMobile ? "" : isRTL ? "mr-[20px]" : "ml-[20px]"}`}
               />

@@ -107,7 +107,7 @@ export default function MobileDrawer({
         </button>
         <Link href="/" className="flex items-center" onClick={close}>
           <img
-            src={`${ASSET_BASE_URL}/images/icons/logo.svg`}
+            src={`${ASSET_BASE_URL}/logo.png`}
             alt={t("Logo")}
             className="h-8 object-contain"
             onError={(e: any) => { e.currentTarget.src = `${ASSET_BASE_URL}/logo-mini.png`; }}
