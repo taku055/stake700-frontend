@@ -102,7 +102,7 @@ export const Footer = () => {
             <LocaleSelection headerMode={false} />
           </div>
         </div>
-        <div className="w-full h-[36px] flex justify-center items-center">
+        <div className="w-full h-[64px] flex justify-center items-center">
           <img
             src={`${ASSET_BASE_URL}/logo.png`}
             alt={capitalize(import.meta.env.VITE_SITE_NAME)}
