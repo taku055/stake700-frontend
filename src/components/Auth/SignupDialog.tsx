@@ -175,7 +175,7 @@ export default function SignupDialog({
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("first_name")}</span>
                   <img
-                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    src={`/images/icons/mark.svg`}
                     alt="*"
                     className="h-[20px] pl-[4px]"
                   />
@@ -196,7 +196,7 @@ export default function SignupDialog({
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("middle_name")}</span>
                   <img
-                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    src={`/images/icons/mark.svg`}
                     alt="*"
                     className="h-[20px] pl-[4px]"
                   />
@@ -216,7 +216,7 @@ export default function SignupDialog({
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("last_name")}</span>
                   <img
-                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    src={`/images/icons/mark.svg`}
                     alt="*"
                     className="h-[20px] pl-[4px]"
                   />
@@ -258,7 +258,7 @@ export default function SignupDialog({
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("birthday")}</span>
                   <img
-                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    src={`/images/icons/mark.svg`}
                     alt="*"
                     className="h-[20px] pl-[4px]"
                   />
@@ -287,7 +287,7 @@ export default function SignupDialog({
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("email")}</span>
                   <img
-                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    src={`/images/icons/mark.svg`}
                     alt="*"
                     className="h-[20px] pl-[4px]"
                   />
@@ -308,7 +308,7 @@ export default function SignupDialog({
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("password")}</span>
                   <img
-                    src={`${ASSET_BASE_URL}/images/icons/mark.svg`}
+                    src={`/images/icons/mark.svg`}
                     alt="*"
                     className="h-[20px] pl-[4px]"
                   />
