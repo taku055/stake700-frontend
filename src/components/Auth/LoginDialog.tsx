@@ -101,7 +101,6 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
     },
     [remember, email, password, userType, t]
   );
-  
   return (
     <Modal
       backdrop="blur"
@@ -129,7 +128,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Email or Username")}</span>
-                  <img src={`/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type="text"
@@ -145,7 +144,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
               <div className="h-[84px] w-full flex flex-col pt-[16px]">
                 <label className="text-[#FFFFFF] flex text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("Password")}</span>
-                  <img src={`/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
+                  <img src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
                 </label>
                 <Input
                   type={showPassword ? "text" : "password"}
