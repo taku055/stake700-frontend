@@ -43,7 +43,7 @@ export default function FooterNav() {
           key: "casino",
           icon: (
             <img
-              src={`${ASSET_BASE_URL}/images/icons/casino.png`}
+              src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/casino.png`}
               width={20}
               height={20}
             />
@@ -55,7 +55,7 @@ export default function FooterNav() {
           key: "live-casino",
           icon: (
             <img
-              src={`${ASSET_BASE_URL}/images/icons/live-casino.svg`}
+              src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/live-casino.svg`}
               width={20}
               height={20}
             />
