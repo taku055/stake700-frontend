@@ -24,6 +24,7 @@ import HomePage from "@/pages/home";
 import SportPage from "@/pages/sport";
 import AriesPaymentResult from "@/pages/payment/aries/AriesPaymentResult";
 import CasinoCategoryPage from "@/pages/casino-category";
+import VipPage from "@/pages/vip";
 
 export default function AppRoute() {
   return (
@@ -40,6 +41,7 @@ export default function AppRoute() {
 
       <Route path="/promotions" component={PromotionsPage} />
       <Route path="/promotions/:articleId" component={ArticlePage} />
+      <Route path="/vip" component={VipPage} />
       <Route path="/about-us/aml-policy" component={AMLPolicyPage} />
       <Route path="/contact-us" component={ContactUs} />
       <Route path="/other-rules" component={OtherRules} />

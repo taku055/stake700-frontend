@@ -4,7 +4,6 @@ import { Users, Crown, ChartArea, Shield, Globe, Headphones, Handshake, MessageS
 import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
 import { ASSET_BASE_URL } from "@/config/constants";
-import { vipOpenedState } from "@/state/vipOpenedState";
 import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
 
 /** Sidebar + `/casino/live-casino` deep links — keep in sync with active-state logic in NavigationSidebar. */
@@ -55,6 +54,12 @@ export const useTablist = () => {
           href: "/promotions",
           key: "promotions",
           navIcon: "/images/sidebar/promotions.png",
+        },
+        {
+          title: t("VIP"),
+          href: "/vip",
+          key: "vip",
+          navIcon: "/images/sidebar/missions.png",
         },
         {
           title: t("Casino"),

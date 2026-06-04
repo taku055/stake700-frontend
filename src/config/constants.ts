@@ -10,6 +10,20 @@ export const RTL_LANGUAGES = ["ar", "fa"];
 
 export const ASSET_BASE_URL = `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}`;
 
+const VIP_OTHERS_BASE =
+  "https://tekio.s3.eu-north-1.amazonaws.com/mallow/images/others";
+
+/** VIP page hero artwork (site-specific). */
+export const VIP_LOTTERY_IMAGE = `${VIP_OTHERS_BASE}/lottery_mallow.png`;
+
+/** VIP tier icons: backend id 0 → mallow_vip_1.png … id 6 → mallow_vip_7.png */
+export const VIP_LEVEL_COUNT = 7;
+
+export function getVipLevelIconUrl(levelId: number): string {
+  const clamped = Math.min(Math.max(Math.floor(levelId), 0), VIP_LEVEL_COUNT - 1);
+  return `${VIP_OTHERS_BASE}/mallow_vip_${clamped + 1}.png`;
+}
+
 export const mobileMediaQuery =
   "screen and ((max-width: 599px) or ((max-width: 1023px) and (orientation: landscape)))";
 

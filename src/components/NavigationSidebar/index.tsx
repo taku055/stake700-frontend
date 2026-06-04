@@ -82,7 +82,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["home", "promotions", "slots", "live-casino", "evolution-live", "playtech-live", "table-games", "jackpots"].includes(
+        ["home", "promotions", "vip", "slots", "live-casino", "evolution-live", "playtech-live", "table-games", "jackpots"].includes(
           item.key
         )
       )
@@ -162,6 +162,8 @@ export default function NavigationSidebar() {
     }
 
     if (path.startsWith("/promotions")) return byKey("promotions");
+
+    if (path.startsWith("/vip")) return byKey("vip");
 
     if (path === "/casino-category") {
       if (isSlotsCategoryPath) return byKey("slots");
