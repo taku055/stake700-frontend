@@ -223,17 +223,6 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
           <div className="text-slate-300 text-sm">{t("No balance data")}</div>
         ) : (
           <div className="space-y-4">
-            <WageringCard
-              title={t("Cash Wagering")}
-              balanceLabel={t("Cash Balance")}
-              balanceValue={
-                balanceState.value[currencyState.value.code].cash.balance
-              }
-              wagering={
-                balanceState.value[currencyState.value.code].cash.wagering
-              }
-            />
-
             {/* Freespins row like screenshot */}
             {/* <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4">
               <div className="flex items-center justify-between gap-3">
