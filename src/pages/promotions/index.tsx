@@ -1,4 +1,10 @@
 import { apiGetPromotions } from "@/api/ledger/apiPromotions";
+import { apiGetGameById } from "@/api/common/apiGetGameById";
+import {
+  formatEligibility,
+  formatVipRange,
+  isDepositSequenceEligibility,
+} from "@/config/promoConstants";
 import { currencyState } from "@/state/currencyState";
 import { userState } from "@/state/userState";
 import { tLedgerPromotion } from "@/types/tUserLedger";
@@ -27,6 +33,27 @@ export default function PromoPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [modalPromo, setModalPromo] = useState<tLedgerPromotion | null>(null);
+  const [freeSpinGameName, setFreeSpinGameName] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!modalPromo?.freeSpinGameId || modalPromo.freeSpins <= 0) {
+      setFreeSpinGameName(null);
+      return;
+    }
+
+    let alive = true;
+    apiGetGameById(modalPromo.freeSpinGameId)
+      .then((game) => {
+        if (alive) setFreeSpinGameName(game.name);
+      })
+      .catch(() => {
+        if (alive) setFreeSpinGameName(null);
+      });
+
+    return () => {
+      alive = false;
+    };
+  }, [modalPromo?.id, modalPromo?.freeSpinGameId, modalPromo?.freeSpins]);
 
   useEffect(() => {
     let alive = true;
@@ -163,6 +190,11 @@ export default function PromoPage() {
                     <div className="text-white font-semibold text-[16px] mb-2 ">
                       DEPOSIT CODE : <span className="text-[#CEA30E]">{promo.code}</span>
                     </div>
+                    {!promo.available && promo.ineligibleReason && (
+                      <p className="text-xs leading-relaxed text-amber-200/80 mb-2">
+                        {promo.ineligibleReason}
+                      </p>
+                    )}
                     <div className="flex gap-3 mt-5">
                       <button
                         type="button"
@@ -261,7 +293,12 @@ export default function PromoPage() {
                         </span>
                         {modalPromo.eligibility && modalPromo.eligibility !== "ALL" && (
                           <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase" style={{ background: "rgba(180,130,20,0.2)", color: "#c8a84a" }}>
-                            {modalPromo.eligibility}
+                            {formatEligibility(modalPromo.eligibility)}
+                          </span>
+                        )}
+                        {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel) && (
+                          <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase" style={{ background: "rgba(120,80,200,0.25)", color: "#c4a8f0" }}>
+                            {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel)}
                           </span>
                         )}
                         {modalPromo.forWhom && modalPromo.forWhom !== "ALL" && (
@@ -272,6 +309,27 @@ export default function PromoPage() {
                       </div>
                     </div>
                   </div>
+
+                  {!modalPromo.available && modalPromo.ineligibleReason && (
+                    <div
+                      className="mx-5 mb-3 rounded-lg border px-3 py-2.5 text-xs leading-relaxed"
+                      style={{
+                        borderColor: "#5a4020",
+                        background: "rgba(180,130,20,0.12)",
+                        color: "#e8c878",
+                      }}
+                    >
+                      {modalPromo.ineligibleReason}
+                      {isDepositSequenceEligibility(modalPromo.eligibility) &&
+                        modalPromo.requiredDepositNumber != null &&
+                        modalPromo.userQualifyingDepositCount != null && (
+                          <span className="mt-1 block opacity-80">
+                            Qualifying deposits: {modalPromo.userQualifyingDepositCount} / need{" "}
+                            {modalPromo.requiredDepositNumber}
+                          </span>
+                        )}
+                    </div>
+                  )}
 
                   {/* Scrollable body */}
                   <div className="overflow-y-auto overscroll-contain">
@@ -311,7 +369,36 @@ export default function PromoPage() {
                       {modalPromo.freeSpins > 0 && (
                         <div>
                           <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Free Spins</div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>{modalPromo.freeSpins} <span className="text-[10px] font-normal" style={{ color: "#4a6a56" }}>@ {modalPromo.perSpinCost} {modalPromo.currency}</span></div>
+                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
+                            {modalPromo.freeSpins}{" "}
+                            <span className="text-[10px] font-normal" style={{ color: "#4a6a56" }}>
+                              @ {modalPromo.perSpinCost} {modalPromo.currency}
+                            </span>
+                          </div>
+                          {modalPromo.freeSpinGameId && (
+                            <div className="mt-0.5 text-[10px]" style={{ color: "#4a6a56" }}>
+                              Game:{" "}
+                              <span style={{ color: "#6b8c78" }}>
+                                {freeSpinGameName ?? modalPromo.freeSpinGameId}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel) && (
+                        <div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>VIP range</div>
+                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
+                            {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel)}
+                          </div>
+                        </div>
+                      )}
+                      {isDepositSequenceEligibility(modalPromo.eligibility) && (
+                        <div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Deposit tier</div>
+                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
+                            {formatEligibility(modalPromo.eligibility)}
+                          </div>
                         </div>
                       )}
                       {modalPromo.expiresAfterhours > 0 && (

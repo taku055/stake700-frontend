@@ -4,6 +4,7 @@ export interface ActivePromotion {
   name: string;
   code: string;
   description: string;
+  imageUrl?: string | null;
   type: string;
   isPercentBonus: boolean;
   bonusValue: number;
@@ -13,10 +14,14 @@ export interface ActivePromotion {
   wageringMaxWithdrawMultiplier: number;
   freeSpins: number;
   perSpinCost: number;
+  freeSpinGameId?: string | null;
   validFrom: string;
   validTo: string;
   expiresAfterhours: number;
   currency: string;
+  eligibility?: string;
+  minVipLevel?: number;
+  maxVipLevel?: number;
 }
 
 export interface tLedgerPromotion {
@@ -42,7 +47,13 @@ export interface tLedgerPromotion {
   createdBy: string;
   validDays: string[];
   eligibility: string;
+  minVipLevel?: number;
+  maxVipLevel?: number;
+  freeSpinGameId?: string | null;
   available: boolean;
+  ineligibleReason?: string | null;
+  requiredDepositNumber?: number | null;
+  userQualifyingDepositCount?: number | null;
   imageUrl: string;
 }
 
