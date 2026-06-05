@@ -1,13 +1,14 @@
-import WageringPage from "@/pages/wagering";
+import { useEffect } from "preact/hooks";
+import { useLocation } from "preact-iso";
+import { profileOpenedState } from "@/state/profileOpenedState";
 
 export const BonusPage = () => {
-  return (
-    <div className="w-full h-full relative min-h-[90vh]!">
-      {/* <iframe
-        src={`https://betwaytrbonus.com/?userID=${userState.value?.id}`}
-        className="w-full h-full absolute top-0 left-0"
-      ></iframe> */}
-      <WageringPage />
-    </div>
-  );
+  const location = useLocation();
+
+  useEffect(() => {
+    profileOpenedState.value = { isOpen: false };
+    location.route("/promotions?tab=active");
+  }, []);
+
+  return null;
 };

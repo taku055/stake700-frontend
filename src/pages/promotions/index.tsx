@@ -9,7 +9,16 @@ import { currencyState } from "@/state/currencyState";
 import { userState } from "@/state/userState";
 import { tLedgerPromotion } from "@/types/tUserLedger";
 import { useEffect, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { profileOpenedState } from "@/state/profileOpenedState";
+import WageringPage from "@/pages/wagering";
+
+type PromoTab = "offers" | "active";
+
+function getTabFromQuery(tab: string | string[] | undefined): PromoTab {
+  const value = Array.isArray(tab) ? tab[0] : tab;
+  return value === "active" ? "active" : "offers";
+}
 
 type PromoResponse = {
   promotions: tLedgerPromotion[];
@@ -29,11 +38,24 @@ function ctaLabel(type: string) {
 }
 
 export default function PromoPage() {
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState<PromoTab>(() =>
+    getTabFromQuery(location.query?.tab)
+  );
   const [data, setData] = useState<PromoResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [modalPromo, setModalPromo] = useState<tLedgerPromotion | null>(null);
   const [freeSpinGameName, setFreeSpinGameName] = useState<string | null>(null);
+
+  useEffect(() => {
+    setActiveTab(getTabFromQuery(location.query?.tab));
+  }, [location.query?.tab]);
+
+  const switchTab = (tab: PromoTab) => {
+    setActiveTab(tab);
+    location.route(tab === "active" ? "/promotions?tab=active" : "/promotions");
+  };
 
   useEffect(() => {
     if (!modalPromo?.freeSpinGameId || modalPromo.freeSpins <= 0) {
@@ -56,6 +78,8 @@ export default function PromoPage() {
   }, [modalPromo?.id, modalPromo?.freeSpinGameId, modalPromo?.freeSpins]);
 
   useEffect(() => {
+    if (activeTab !== "offers") return;
+
     let alive = true;
 
     (async () => {
@@ -82,7 +106,7 @@ export default function PromoPage() {
     return () => {
       alive = false;
     };
-  }, [userState.value?.id, currencyState.value.unit]);
+  }, [activeTab, userState.value?.id, currencyState.value.unit]);
 
   const promos = data?.promotions ?? [];
 
@@ -119,9 +143,47 @@ export default function PromoPage() {
         </div>
 
         <p className="text-center text-sm mb-6 -mt-2" style={{ color: "#6b8c78" }}>
-          Grab limited-time offers and boost your play.
+          {activeTab === "offers"
+            ? "Grab limited-time offers and boost your play."
+            : "Track your active bonus and wagering progress."}
         </p>
 
+        <div className="mb-6 flex justify-center">
+          <div
+            className="inline-flex rounded-full border p-1"
+            style={{ borderColor: "#1e3328", background: "rgba(15,26,19,0.9)" }}
+          >
+            {(
+              [
+                { key: "offers" as const, label: "All Promotions" },
+                { key: "active" as const, label: "Active Promotion" },
+              ] as const
+            ).map((tab) => (
+              <button
+                key={tab.key}
+                type="button"
+                onClick={() => switchTab(tab.key)}
+                className="rounded-full px-4 py-2 text-sm font-semibold transition"
+                style={
+                  activeTab === tab.key
+                    ? {
+                        background: "linear-gradient(145deg, #2e7d4f, #1a4d30)",
+                        color: "#d4f5e2",
+                        boxShadow: "0 0 16px #2e7d4f44",
+                      }
+                    : { color: "#6b8c78" }
+                }
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {activeTab === "active" && <WageringPage embedded />}
+
+        {activeTab === "offers" && (
+          <>
         <div className="hidden md:flex justify-center mb-4">
           <span
             className="rounded-full px-3 py-1 text-xs"
@@ -448,6 +510,8 @@ export default function PromoPage() {
                 </div>
               </div>
             )}
+          </>
+        )}
           </>
         )}
       </div>

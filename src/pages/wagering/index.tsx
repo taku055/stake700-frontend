@@ -156,7 +156,12 @@ function CancelWageringModal({
   );
 }
 
-export default function WageringPage() {
+type WageringPageProps = {
+  /** When true, renders without standalone page chrome (for promotions tab). */
+  embedded?: boolean;
+};
+
+export default function WageringPage({ embedded = false }: WageringPageProps) {
   const t = useTranslations("Wagering");
   const userId = userState.value?.id ?? null;
 
@@ -179,21 +184,24 @@ export default function WageringPage() {
 
   if (!userId) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-semibold text-white mb-6">
-          {t("Wagering")}
-        </h1>
+      <div className={embedded ? "py-4" : "container mx-auto px-4 py-8"}>
+        {!embedded && (
+          <h1 className="text-2xl font-semibold text-white mb-6">
+            {t("Wagering")}
+          </h1>
+        )}
         <LoginRequest />
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      {/* Top bar like screenshot */}
+    <div className={embedded ? "" : "container mx-auto px-4 py-6"}>
       <div className="mb-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-semibold text-white">{t("Wagering")}</h1>
+          {!embedded && (
+            <h1 className="text-2xl font-semibold text-white">{t("Wagering")}</h1>
+          )}
 
           <Button
             size="sm"
