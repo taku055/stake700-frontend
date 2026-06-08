@@ -483,6 +483,8 @@ export default function WalletBox() {
                               key={item.gameId}
                               href={`/game/${game.id}`}
                               scrollToTop
+                              preventDefaultOnClick={false}
+                              stopPropagationOnClick={false}
                               className={[
                                 "shrink-0 block",
                                 "w-7 h-7 rounded-md overflow-hidden",
