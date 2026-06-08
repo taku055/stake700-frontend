@@ -235,7 +235,7 @@ export default function PromoPage() {
         {!loading && !error && promos.length > 0 && (
           <>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 font-serif">
-              {promos.map((promo) => (
+              {promos.filter(promo => promo.isActive).map((promo) => (
                 <div key={promo.id} className="overflow-hidden max-w-[561px] mx-auto shadow-lg">
                   <div className="w-full">
                     <img
