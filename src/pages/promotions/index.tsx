@@ -145,7 +145,7 @@ export default function PromoPage() {
         <p className="text-center text-sm mb-6 -mt-2" style={{ color: "#6b8c78" }}>
           {activeTab === "offers"
             ? "Grab limited-time offers and boost your play."
-            : "Track your active bonus and wagering progress."}
+            : "Track your active bonus, free spins, and wagering progress."}
         </p>
 
         <div className="mb-6 flex justify-center">

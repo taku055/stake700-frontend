@@ -1733,7 +1733,15 @@
     "No, keep it": "No, keep it",
     "Yes, cancel": "Yes, cancel",
     "Wagering cancelled": "Wagering cancelled and balance updated.",
-    "Failed to cancel wagering": "Failed to cancel wagering."
+    "Failed to cancel wagering": "Failed to cancel wagering.",
+    "Free Spins": "Free Spins",
+    "Per spin": "Per spin",
+    "Expires": "Expires",
+    "Available": "Available",
+    "Available games": "Available games",
+    "Loading games": "Loading games…",
+    "spin left": "spin left",
+    "spins left": "spins left"
   },
   "PrivacyPolicy": {
     "tag_001": "PRIVACY POLICY",

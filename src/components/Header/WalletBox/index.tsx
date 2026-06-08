@@ -13,6 +13,11 @@ import { currencyState } from "@/state/currencyState";
 import { useTranslations } from "@/context/I18nContext";
 import { cashDetailAmountForUnit } from "@/helpers/multipleBalance";
 import { profileOpenedState } from "@/state/profileOpenedState";
+import { Loader } from "lucide-preact";
+import { Link } from "@/components/common";
+import { placeholderGameImage } from "@/config/constants";
+import { apiGetFreespinAvailableGames } from "@/api/ledger/apiGetFreespinAvailableGames";
+import type { tFreespinAvailableGame } from "@/types/tFreespinAvailableGame";
 
 type Pos = { top: number; left: number; width: number };
 
@@ -60,6 +65,10 @@ function computePosFromTrigger(triggerRect: DOMRect): Pos {
 
 export default function WalletBox() {
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
+  const [freespinGames, setFreespinGames] = useState<tFreespinAvailableGame[]>(
+    [],
+  );
+  const [freespinGamesLoading, setFreespinGamesLoading] = useState(false);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -223,6 +232,46 @@ export default function WalletBox() {
     if (user.role !== "NORMAL") return 0;
     return Number(balanceState.value?.[cur.code]?.freespin?.count ?? 0);
   }, [balanceState.value, currencyState.value, userState.value]);
+
+  useEffect(() => {
+    if (!isSelectorOpen) {
+      setFreespinGames([]);
+      setFreespinGamesLoading(false);
+      return;
+    }
+
+    const user = userState.value;
+    const cur = currencyState.value;
+    if (!user || user.role !== "NORMAL" || !cur || freeSpins <= 0) {
+      setFreespinGames([]);
+      setFreespinGamesLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+    setFreespinGamesLoading(true);
+
+    (async () => {
+      try {
+        const games = await apiGetFreespinAvailableGames(user.id, cur.code);
+        if (!cancelled) {
+          setFreespinGames(games);
+        }
+      } catch {
+        if (!cancelled) {
+          setFreespinGames([]);
+        }
+      } finally {
+        if (!cancelled) {
+          setFreespinGamesLoading(false);
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isSelectorOpen, freeSpins, currencyState.value?.code, userState.value?.id, userState.value?.role]);
 
   const userInitial =
     userState.value?.userName?.trim()?.at(0)?.toUpperCase() ?? "?";
@@ -411,9 +460,53 @@ export default function WalletBox() {
                   <span className="text-[13px] text-white/80">
                     {t("Available spins") || "Available spins"}
                   </span>
-                  <span className="text-[13px] font-semibold text-white tabular-nums">
-                    {freeSpins}
-                  </span>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="text-[13px] font-semibold text-white tabular-nums shrink-0">
+                      {freeSpins}
+                    </span>
+                    {freeSpins > 0 && freespinGamesLoading && (
+                      <Loader
+                        size={14}
+                        className="animate-spin text-white/60 shrink-0"
+                        aria-hidden="true"
+                      />
+                    )}
+                    {!freespinGamesLoading && freespinGames.length > 0 && (
+                      <div className="flex items-center gap-1">
+                        {freespinGames.map((item) => {
+                          const game = item.game;
+                          if (!game) return null;
+                          const imgSrc =
+                            game.img_custom || game.img || placeholderGameImage;
+                          return (
+                            <Link
+                              key={item.gameId}
+                              href={`/game/${game.id}`}
+                              scrollToTop
+                              className={[
+                                "shrink-0 block",
+                                "w-7 h-7 rounded-md overflow-hidden",
+                                "border border-white/15",
+                                "hover:border-white/35 transition",
+                              ].join(" ")}
+                              title={game.name}
+                              onClick={() => setIsSelectorOpen(false)}
+                            >
+                              <img
+                                src={imgSrc}
+                                alt={game.name}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  (e.currentTarget as HTMLImageElement).src =
+                                    placeholderGameImage;
+                                }}
+                              />
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

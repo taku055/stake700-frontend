@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import Loader from "@/components/Loader";
 import LoginRequest from "@/components/LoginRequest";
 import { userState } from "@/state/userState";
@@ -6,9 +6,14 @@ import { WageringProgress } from "@/types/tUserLedger";
 import { Progress, Chip, Button } from "@heroui/react";
 import { toast } from "@/helpers/toast";
 import { apiCancelWagering } from "@/api/ledger/apiCancelUserWagering";
+import { apiGetFreespinAvailableGames } from "@/api/ledger/apiGetFreespinAvailableGames";
 import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";
 import { useTranslations } from "@/context/I18nContext";
+import { Loader as LoaderIcon } from "lucide-preact";
+import { Link } from "@/components/common";
+import { placeholderGameImage } from "@/config/constants";
+import type { tFreespinAvailableGame } from "@/types/tFreespinAvailableGame";
 
 function formatMoney(n: number | string | null | undefined) {
   const v = typeof n === "string" ? Number(n) : (n ?? 0);
@@ -156,6 +161,103 @@ function CancelWageringModal({
   );
 }
 
+type FreespinsCardProps = {
+  count: number;
+  cost: number;
+  expireHours: number;
+  games: tFreespinAvailableGame[];
+  loading: boolean;
+};
+
+function FreespinsCard({
+  count,
+  cost,
+  expireHours,
+  games,
+  loading,
+}: FreespinsCardProps) {
+  const t = useTranslations("Wagering");
+
+  return (
+    <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="text-white font-semibold">{t("Free Spins")}</div>
+          <div className="mt-1 text-sm text-slate-300">
+            {t("Remaining")}:{" "}
+            <span className="text-slate-100 font-medium">{count}</span>
+            {" • "}
+            {t("Per spin")}:{" "}
+            <span className="text-slate-100 font-medium">
+              {formatMoney(cost)}
+            </span>
+            {" • "}
+            {t("Expires")}:{" "}
+            <span className="text-slate-100 font-medium">{expireHours}h</span>
+          </div>
+        </div>
+        <Chip
+          size="sm"
+          variant="flat"
+          className="bg-emerald-500/15 text-emerald-300 shrink-0"
+        >
+          {t("Available")}
+        </Chip>
+      </div>
+
+      {(loading || games.length > 0) && (
+        <div className="mt-4 border-t border-slate-700/50 pt-4">
+          <div className="text-xs uppercase tracking-wide text-slate-400 mb-3">
+            {t("Available games")}
+          </div>
+          {loading ? (
+            <div className="flex items-center gap-2 text-sm text-slate-400">
+              <LoaderIcon size={16} className="animate-spin" />
+              {t("Loading games")}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              {games.map((item) => {
+                const game = item.game;
+                if (!game) return null;
+                const imgSrc =
+                  game.img_custom || game.img || placeholderGameImage;
+                return (
+                  <Link
+                    key={item.gameId}
+                    href={`/game/${game.id}`}
+                    scrollToTop
+                    className="flex items-center gap-3 rounded-lg border border-slate-700/50 bg-slate-950/40 px-3 py-2 hover:border-emerald-500/40 transition"
+                  >
+                    <img
+                      src={imgSrc}
+                      alt={game.name}
+                      className="w-10 h-10 rounded-md object-cover shrink-0 border border-white/10"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src =
+                          placeholderGameImage;
+                      }}
+                    />
+                    <div className="min-w-0 flex-1">
+                      <div className="text-sm font-medium text-white truncate">
+                        {game.name}
+                      </div>
+                      <div className="text-xs text-slate-400">
+                        {item.remaining}{" "}
+                        {item.remaining === 1 ? t("spin left") : t("spins left")}
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 type WageringPageProps = {
   /** When true, renders without standalone page chrome (for promotions tab). */
   embedded?: boolean;
@@ -167,6 +269,40 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
 
   const [loading, setLoading] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  const [freespinGames, setFreespinGames] = useState<tFreespinAvailableGame[]>(
+    [],
+  );
+  const [freespinGamesLoading, setFreespinGamesLoading] = useState(false);
+
+  const currencyCode = currencyState.value.code;
+  const balance = balanceState.value[currencyCode];
+  const freespinCount = Number(balance?.freespin?.count ?? 0);
+
+  useEffect(() => {
+    if (!userId || freespinCount <= 0) {
+      setFreespinGames([]);
+      setFreespinGamesLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+    setFreespinGamesLoading(true);
+
+    (async () => {
+      try {
+        const games = await apiGetFreespinAvailableGames(userId, currencyCode);
+        if (!cancelled) setFreespinGames(games);
+      } catch {
+        if (!cancelled) setFreespinGames([]);
+      } finally {
+        if (!cancelled) setFreespinGamesLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [userId, currencyCode, freespinCount]);
 
   const handleCancelWagering = async () => {
     if (!userId) return;
@@ -217,52 +353,31 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
 
       {/* Main panel container like screenshot */}
       <div className="rounded-2xl border border-slate-700/60 bg-slate-950/35 p-5">
-        {loading && !balanceState.value[currencyState.value.code] ? (
+        {loading && !balance ? (
           <Loader />
-        ) : !balanceState.value[currencyState.value.code] ? (
+        ) : !balance ? (
           <div className="text-slate-300 text-sm">{t("No balance data")}</div>
         ) : (
           <div className="space-y-4">
-            {/* Freespins row like screenshot */}
-            {/* <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <div className="text-white font-semibold">Freespins</div>
-                  <div className="mt-1 text-sm text-slate-300">
-                    Count:{" "}
-                    <span className="text-slate-100 font-medium">
-                      {balanceState.value[currencyState.value].freespin.count}
-                    </span>
-                    {" • "}
-                    Cost:{" "}
-                    <span className="text-slate-100 font-medium">
-                      {formatMoney(balanceState.value[currencyState.value].freespin.cost)}
-                    </span>
-                    {" • "}
-                    Expires:{" "}
-                    <span className="text-slate-100 font-medium">
-                      {balanceState.value[currencyState.value].freespin.expireHours}h
-                    </span>
-                  </div>
-                </div>
-
-                <Chip
-                  size="sm"
-                  variant="flat"
-                  className="bg-slate-700/40 text-slate-200"
-                >
-                  {balanceState.value[currencyState.value].freespin.count > 0 ? "Available" : "None"}
-                </Chip>
-              </div>
-            </div>
-            */}
+            {freespinCount > 0 && (
+              <FreespinsCard
+                count={freespinCount}
+                cost={Number(balance.freespin.cost ?? 0)}
+                expireHours={Number(balance.freespin.expireHours ?? 0)}
+                games={freespinGames}
+                loading={freespinGamesLoading}
+              />
+            )}
 
             {/* Bonus row */}
             {(() => {
-              const bal = balanceState.value[currencyState.value.code];
+              const bal = balance;
               const promo = bal.promotion;
 
               if (!bal.bonus.isActive) {
+                if (freespinCount > 0) {
+                  return null;
+                }
                 return (
                   <div className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-5 py-4 flex items-center justify-between gap-3">
                     <div>
