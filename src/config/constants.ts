@@ -11,17 +11,14 @@ export const RTL_LANGUAGES = ["ar", "fa"];
 export const ASSET_BASE_URL = `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}`;
 
 const VIP_OTHERS_BASE =
-  "https://tekio.s3.eu-north-1.amazonaws.com/mallow/images/others";
+  "https://tekio.s3.eu-north-1.amazonaws.com/mirage888/vip";
 
-/** VIP page hero artwork (site-specific). */
-export const VIP_LOTTERY_IMAGE = `${VIP_OTHERS_BASE}/lottery_mallow.png`;
+export const VIP_LOTTERY_IMAGE = `${VIP_OTHERS_BASE}/hero.png`;
 
-/** VIP tier icons: backend id 0 → mallow_vip_1.png … id 6 → mallow_vip_7.png */
-export const VIP_LEVEL_COUNT = 7;
+export const VIP_LEVEL_COUNT = 11;
 
 export function getVipLevelIconUrl(levelId: number): string {
-  const clamped = Math.min(Math.max(Math.floor(levelId), 0), VIP_LEVEL_COUNT - 1);
-  return `${VIP_OTHERS_BASE}/mallow_vip_${clamped + 1}.png`;
+  return `${VIP_OTHERS_BASE}/${levelId}.svg`;
 }
 
 export const mobileMediaQuery =
