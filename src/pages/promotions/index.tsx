@@ -113,7 +113,6 @@ export default function PromoPage() {
   return (
     <div
       className="min-h-screen text-white flex flex-col gap-3 overflow-none"
-      style={{ background: "#0f1a13" }}
     >
       <div className="mx-auto w-full max-w-6xl px-4 py-6">
         <div className="flex items-center gap-3 w-full mt-4 mb-6">
