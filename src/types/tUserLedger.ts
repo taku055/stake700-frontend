@@ -85,5 +85,18 @@ export interface tUserBalance {
     expireHours: number; // hours until the freespin expires
   };
   promotion: ActivePromotion | null;
+  /** ISO-8601 deadline for the active bonus package */
+  bonusExpiresAt?: string | null;
   currencyCode: string;
+}
+
+export interface tWageringStatus {
+  isBonusActive: boolean;
+  bonusBalance: number;
+  bonusWagering: WageringProgress;
+  cashWagering: WageringProgress;
+  bonusExpiresAt: string | null;
+  expiresInSeconds: number;
+  isExpired: boolean;
+  activePromotion: ActivePromotion | null;
 }

@@ -125,6 +125,7 @@
     "Bonus": "Бонус",
     "Available spins": "Available spins",
     "Total Balance": "Общий баланс",
+    "Bonus expires": "Бонус истекает",
     "WalletGetStartedDesc": "Чтобы начать, пополните счёт криптовалютой или местной валютой (где доступно) или купите криптовалюту мгновенно через MoonPay или Swapped."
   },
   "PromotionCard": {
@@ -1723,7 +1724,28 @@
     "No, keep it": "Нет, оставить",
     "Yes, cancel": "Да, отменить",
     "Wagering cancelled": "Вейджер отменён, баланс обновлён.",
-    "Failed to cancel wagering": "Не удалось отменить вейджер."
+    "Failed to cancel wagering": "Не удалось отменить вейджер.",
+    "Free Spins": "Фриспины",
+    "Per spin": "За спин",
+    "Expires": "Истекает",
+    "Available": "Доступно",
+    "Available games": "Доступные игры",
+    "Loading games": "Загрузка игр…",
+    "spin left": "спин остался",
+    "spins left": "спинов осталось",
+    "Bonus expires": "Бонус истекает",
+    "bonus_expires_in": "Истекает через {time}",
+    "bonus_expired_toast": "Срок действия бонуса истёк, бонус был удалён.",
+    "wagering_window_after_claim": "{hours} ч после активации",
+    "bonus_expiry_urgent": "Бонус скоро истечёт",
+    "wagering_window_label": "Срок отыгрыша"
+  },
+  "BonusExpiry": {
+    "expired": "Истекло",
+    "days_hours_left": "осталось {days}д {hours}ч",
+    "hours_mins_left": "осталось {hours}ч {mins}м",
+    "mins_secs_left": "осталось {mins}м {secs}с",
+    "secs_left": "осталось {secs}с"
   },
   "PrivacyPolicy": {
     "tag_001": "ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ",

@@ -12,6 +12,7 @@ import { useEffect, useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
 import { profileOpenedState } from "@/state/profileOpenedState";
 import WageringPage from "@/pages/wagering";
+import { useTranslations } from "@/context/I18nContext";
 
 type PromoTab = "offers" | "active";
 
@@ -38,6 +39,7 @@ function ctaLabel(type: string) {
 }
 
 export default function PromoPage() {
+  const tWagering = useTranslations("Wagering");
   const location = useLocation();
   const [activeTab, setActiveTab] = useState<PromoTab>(() =>
     getTabFromQuery(location.query?.tab)
@@ -464,8 +466,14 @@ export default function PromoPage() {
                       )}
                       {modalPromo.expiresAfterhours > 0 && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Expires After</div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>{modalPromo.expiresAfterhours}h</div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>
+                            {tWagering("wagering_window_label")}
+                          </div>
+                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
+                            {tWagering("wagering_window_after_claim", {
+                              hours: String(modalPromo.expiresAfterhours),
+                            })}
+                          </div>
                         </div>
                       )}
                     </div>

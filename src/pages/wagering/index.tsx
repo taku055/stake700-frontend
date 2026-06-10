@@ -1,10 +1,12 @@
 import { useEffect, useState } from "preact/hooks";
 import Loader from "@/components/Loader";
 import LoginRequest from "@/components/LoginRequest";
+import BonusExpiryCountdown from "@/components/BonusExpiryCountdown";
 import { userState } from "@/state/userState";
 import { WageringProgress } from "@/types/tUserLedger";
 import { Progress, Chip, Button } from "@heroui/react";
 import { toast } from "@/helpers/toast";
+import { isBonusExpired, isBonusExpiryUrgent } from "@/helpers/bonusExpiry";
 import { apiCancelWagering } from "@/api/ledger/apiCancelUserWagering";
 import { apiGetFreespinAvailableGames } from "@/api/ledger/apiGetFreespinAvailableGames";
 import { balanceState } from "@/state/balanceState";
@@ -463,19 +465,68 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
                                 {promo.wageringMaxWithdrawMultiplier}× bonus
                               </span>
                             )}
-                            {promo.expiresAfterhours > 0 && (
-                              <span>expires in {promo.expiresAfterhours}h</span>
-                            )}
+                            {bal.bonusExpiresAt ? (
+                              <span>
+                                {t("Bonus expires")}:{" "}
+                                <BonusExpiryCountdown
+                                  bonusExpiresAt={bal.bonusExpiresAt}
+                                  normalClassName="text-emerald-300 font-medium"
+                                  urgentClassName="text-amber-300 font-medium"
+                                  expiredClassName="text-red-300 font-medium"
+                                />
+                              </span>
+                            ) : promo.expiresAfterhours > 0 ? (
+                              <span>
+                                {t("wagering_window_after_claim", {
+                                  hours: String(promo.expiresAfterhours),
+                                })}
+                              </span>
+                            ) : null}
                           </div>
                         </div>
                       </div>
-                      <Chip
-                        size="sm"
-                        variant="flat"
-                        className="bg-emerald-500/15 text-emerald-300 shrink-0"
-                      >
-                        {promo.type}
-                      </Chip>
+                      <div className="flex items-center gap-2 shrink-0">
+                        {bal.bonusExpiresAt &&
+                          isBonusExpiryUrgent(bal.bonusExpiresAt) &&
+                          !isBonusExpired(bal.bonusExpiresAt) && (
+                            <Chip
+                              size="sm"
+                              variant="flat"
+                              className="bg-amber-500/15 text-amber-300"
+                            >
+                              {t("bonus_expiry_urgent")}
+                            </Chip>
+                          )}
+                        <Chip
+                          size="sm"
+                          variant="flat"
+                          className="bg-emerald-500/15 text-emerald-300 shrink-0"
+                        >
+                          {promo.type}
+                        </Chip>
+                      </div>
+                    </div>
+                  )}
+                  {bal.bonusExpiresAt && (
+                    <div
+                      className={[
+                        "px-5 py-2.5 border-b text-xs flex flex-wrap items-center justify-between gap-2",
+                        isBonusExpired(bal.bonusExpiresAt)
+                          ? "bg-red-500/10 text-red-300"
+                          : isBonusExpiryUrgent(bal.bonusExpiresAt)
+                            ? "bg-amber-500/10 text-amber-200"
+                            : "bg-slate-800/40 text-slate-300",
+                      ].join(" ")}
+                      style={{ borderColor: "#2e7d4f44" }}
+                    >
+                      <span>{t("Bonus expires")}</span>
+                      <BonusExpiryCountdown
+                        bonusExpiresAt={bal.bonusExpiresAt}
+                        showDateTime
+                        normalClassName="text-emerald-200 font-semibold text-right"
+                        urgentClassName="text-amber-200 font-semibold text-right"
+                        expiredClassName="text-red-200 font-semibold text-right"
+                      />
                     </div>
                   )}
                   <div className="px-5 py-4">

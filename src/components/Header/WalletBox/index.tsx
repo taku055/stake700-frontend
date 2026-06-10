@@ -18,6 +18,8 @@ import { Link } from "@/components/common";
 import { placeholderGameImage } from "@/config/constants";
 import { apiGetFreespinAvailableGames } from "@/api/ledger/apiGetFreespinAvailableGames";
 import type { tFreespinAvailableGame } from "@/types/tFreespinAvailableGame";
+import BonusExpiryCountdown from "@/components/BonusExpiryCountdown";
+import { isBonusExpiryUrgent } from "@/helpers/bonusExpiry";
 
 type Pos = { top: number; left: number; width: number };
 
@@ -231,6 +233,15 @@ export default function WalletBox() {
     if (!cur || !user) return 0;
     if (user.role !== "NORMAL") return 0;
     return Number(balanceState.value?.[cur.code]?.freespin?.count ?? 0);
+  }, [balanceState.value, currencyState.value, userState.value]);
+
+  const bonusExpiresAt = useMemo(() => {
+    const cur = currencyState.value;
+    const user = userState.value;
+    if (!cur || !user || user.role !== "NORMAL") return null;
+    const bal = balanceState.value?.[cur.code];
+    if (!bal?.bonus?.isActive) return null;
+    return bal.bonusExpiresAt ?? null;
   }, [balanceState.value, currencyState.value, userState.value]);
 
   useEffect(() => {
@@ -448,13 +459,32 @@ export default function WalletBox() {
                     {symbol} {cash.toFixed(2)}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
-                  <span className="text-[13px] text-white/80">
-                    {t("Bonus")}
-                  </span>
-                  <span className="text-[13px] font-semibold text-white tabular-nums">
-                    {symbol} {bonus.toFixed(2)}
-                  </span>
+                <div className="rounded-lg px-3 py-2 bg-black/10">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[13px] text-white/80">
+                      {t("Bonus")}
+                    </span>
+                    <span className="text-[13px] font-semibold text-white tabular-nums">
+                      {symbol} {bonus.toFixed(2)}
+                    </span>
+                  </div>
+                  {bonusExpiresAt && (
+                    <div
+                      className={[
+                        "mt-1 text-[11px]",
+                        isBonusExpiryUrgent(bonusExpiresAt)
+                          ? "text-amber-300"
+                          : "text-emerald-300/90",
+                      ].join(" ")}
+                    >
+                      <BonusExpiryCountdown
+                        bonusExpiresAt={bonusExpiresAt}
+                        normalClassName="text-emerald-300/90"
+                        urgentClassName="text-amber-300"
+                        expiredClassName="text-red-300"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
                   <span className="text-[13px] text-white/80">

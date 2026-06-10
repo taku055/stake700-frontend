@@ -1,6 +1,6 @@
 import { userState } from "@/state/userState";
 import { effect } from "@preact/signals";
-import { useEffect } from "preact/hooks";
+import { useEffect, useRef } from "preact/hooks";
 import useSocketEvent from "@/hooks/useSocketEvent";
 import { useSocket, useSocketStatus } from "@/context/SocketContext";
 import { accessTokenState } from "@/state/accessTokenState";
@@ -78,6 +78,7 @@ import { balanceState } from "@/state/balanceState";
 import { apiGetAgentMeBalance } from "@/api/agent/apiGetAgentMeBalance";
 import { agentToUserBalanceMap } from "@/helpers/agentToUserBalanceMap";
 import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
+import { toast } from "@/helpers/toast";
 import { STATIC_CATEGORIES, sidebarDataState } from "@/state/sidebarData";
 import { apiGetCategoryCount } from "@/api/common/apiGetCategoryCount";
 
@@ -122,6 +123,7 @@ export default function GlobalServiceProvider({
 }: GlobalServiceProviderProps) {
   const socket = useSocket();
   const socketConnected = useSocketStatus();
+  const bonusExpiryTrackRef = useRef<Record<string, string | null>>({});
   useRTL(); // Enable RTL support
 
   useEffect(() => {
@@ -354,6 +356,7 @@ export default function GlobalServiceProvider({
         const next = { ...balanceState.value };
         balances.forEach((b) => {
           next[b.currencyCode] = b;
+          bonusExpiryTrackRef.current[b.currencyCode] = b.bonusExpiresAt ?? null;
         });
 
         balanceState.value = next;
@@ -394,10 +397,32 @@ export default function GlobalServiceProvider({
   });
 
   useSocketEvent("ledger.updated", (data: tUserBalance) => {
+    const code = data.currencyCode;
+    const prevExpiry = bonusExpiryTrackRef.current[code];
+    const hadTrackedExpiry = !!prevExpiry;
+    const stillActive =
+      !!data.bonusExpiresAt ||
+      (data.bonus.isActive &&
+        (!!data.promotion ||
+          data.bonus.balance > 0 ||
+          data.bonus.wagering.required > data.bonus.wagering.completed));
+
     balanceState.value = {
       ...balanceState.value,
-      [data.currencyCode]: data,
+      [code]: data,
     };
+
+    if (hadTrackedExpiry && !stillActive) {
+      const locale = localeState.value as keyof typeof i18nDefinitions;
+      const messages = i18nDefinitions[locale] ?? enDefinition;
+      toast.info(
+        messages.Wagering?.bonus_expired_toast ??
+          enDefinition.Wagering?.bonus_expired_toast ??
+          "Your bonus has expired and was removed.",
+      );
+    }
+
+    bonusExpiryTrackRef.current[code] = data.bonusExpiresAt ?? null;
   });
 
   useSocketEvent("user.logout", (userId: string) => {

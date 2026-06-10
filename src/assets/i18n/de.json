@@ -128,6 +128,7 @@
     "Bonus": "Bonus",
     "Available spins": "Available spins",
     "Total Balance": "Gesamtguthaben",
+    "Bonus expires": "Bonus läuft ab",
     "WalletGetStartedDesc": "Um zu starten, zahlen Sie per Krypto oder lokaler Währung ein (wo verfügbar) oder kaufen Sie Krypto sofort über MoonPay oder Swapped."
   },
   "PromotionCard": {
@@ -1842,7 +1843,28 @@
     "No, keep it": "Nein, behalten",
     "Yes, cancel": "Ja, stornieren",
     "Wagering cancelled": "Umsatz storniert und Guthaben aktualisiert.",
-    "Failed to cancel wagering": "Umsatz konnte nicht storniert werden."
+    "Failed to cancel wagering": "Umsatz konnte nicht storniert werden.",
+    "Free Spins": "Freispiele",
+    "Per spin": "Pro Dreh",
+    "Expires": "Läuft ab",
+    "Available": "Verfügbar",
+    "Available games": "Verfügbare Spiele",
+    "Loading games": "Spiele werden geladen…",
+    "spin left": "Dreh übrig",
+    "spins left": "Drehs übrig",
+    "Bonus expires": "Bonus läuft ab",
+    "bonus_expires_in": "Läuft ab in {time}",
+    "bonus_expired_toast": "Ihr Bonus ist abgelaufen und wurde entfernt.",
+    "wagering_window_after_claim": "{hours} Std. nach Aktivierung",
+    "bonus_expiry_urgent": "Bonus läuft bald ab",
+    "wagering_window_label": "Umsatzfrist"
+  },
+  "BonusExpiry": {
+    "expired": "Abgelaufen",
+    "days_hours_left": "noch {days}T {hours}Std",
+    "hours_mins_left": "noch {hours}Std {mins}Min",
+    "mins_secs_left": "noch {mins}Min {secs}Sek",
+    "secs_left": "noch {secs}Sek"
   },
   "PrivacyPolicy": {
     "tag_001": "DATENSCHUTZRICHTLINIE",

@@ -127,7 +127,8 @@
     "Cash": "نقدي",
     "Bonus": "مكافأة",
     "Available spins": "Available spins",
-    "Total Balance": "الرصيد الإجمالي"
+    "Total Balance": "الرصيد الإجمالي",
+    "Bonus expires": "تنتهي المكافأة"
   },
   "PromotionCard": {
     "daily_promotion_title": "عرض يومي",
@@ -1845,7 +1846,28 @@
     "No, keep it": "لا، احتفظ به",
     "Yes, cancel": "نعم، إلغاء",
     "Wagering cancelled": "تم إلغاء الرهان وتحديث الرصيد.",
-    "Failed to cancel wagering": "فشل إلغاء الرهان."
+    "Failed to cancel wagering": "فشل إلغاء الرهان.",
+    "Free Spins": "لفات مجانية",
+    "Per spin": "لكل لفة",
+    "Expires": "ينتهي",
+    "Available": "متاح",
+    "Available games": "الألعاب المتاحة",
+    "Loading games": "جاري تحميل الألعاب…",
+    "spin left": "لفة متبقية",
+    "spins left": "لفات متبقية",
+    "Bonus expires": "تنتهي المكافأة",
+    "bonus_expires_in": "ينتهي خلال {time}",
+    "bonus_expired_toast": "انتهت صلاحية مكافأتك وتمت إزالتها.",
+    "wagering_window_after_claim": "{hours} ساعة بعد التفعيل",
+    "bonus_expiry_urgent": "المكافأة على وشك الانتهاء",
+    "wagering_window_label": "مهلة الرهان"
+  },
+  "BonusExpiry": {
+    "expired": "منتهي",
+    "days_hours_left": "متبقي {days} ي {hours} س",
+    "hours_mins_left": "متبقي {hours} س {mins} د",
+    "mins_secs_left": "متبقي {mins} د {secs} ث",
+    "secs_left": "متبقي {secs} ث"
   },
   "PrivacyPolicy": {
     "tag_001": "سياسة الخصوصية",
