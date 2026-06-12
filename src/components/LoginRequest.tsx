@@ -11,7 +11,7 @@ export default function LoginRequest() {
         {t("you_dont_have_access_to_this_page")}
       </div>
       <Button
-        className="bg-[var(--pink-color)]"
+        className="bg-[var(--green-color)]"
         onPress={() => (loginOpenedState.value = true)}
       >
         {t("login")}

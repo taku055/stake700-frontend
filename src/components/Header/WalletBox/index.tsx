@@ -488,7 +488,7 @@ export default function WalletBox() {
                 </div>
                 <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
                   <span className="text-[13px] text-white/80">
-                    {t("Available spins") || "Available spins"}
+                    {t("Available spins")}
                   </span>
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="text-[13px] font-semibold text-white tabular-nums shrink-0">
