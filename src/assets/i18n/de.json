@@ -305,6 +305,7 @@
     "register_now": "Jetzt registrieren – ganz einfach!",
     "first_name": "Vorname",
     "middle_name": "Zweiter Vorname",
+    "middle_name_optional": "Zweiter Vorname (optional)",
     "last_name": "Nachname",
     "birthday": "Geburtsdatum",
     "email": "E-Mail",

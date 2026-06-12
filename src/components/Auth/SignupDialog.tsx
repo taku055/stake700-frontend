@@ -108,7 +108,7 @@ export default function SignupDialog({
           referCode: refCode || null,
           firstName,
           lastName,
-          middleName,
+          middleName: middleName.trim(),
           birthDay: birthday.toString(),
         });
 
@@ -194,16 +194,11 @@ export default function SignupDialog({
               </div>
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("middle_name")}</span>
-                  <img
-                    src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
-                    alt="*"
-                    className="h-[20px] pl-[4px]"
-                  />
+                  <span>{t("middle_name_optional")}</span>
                 </label>
                 <Input
                   type="text"
-                  label={t("middle_name")}
+                  label={t("middle_name_optional")}
                   value={middleName}
                   onChange={(e: any) => setMiddleName(e.target.value)}
                   variant="bordered"

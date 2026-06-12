@@ -409,6 +409,7 @@
     "register_now": "Register now, it's easy!",
     "first_name": "First name",
     "middle_name": "Middle name",
+    "middle_name_optional": "Middle name (Optional)",
     "last_name": "Last name",
     "birthday": "Birthday",
     "email": "Email",

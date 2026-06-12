@@ -301,6 +301,7 @@
     "register_now": "Inscrivez-vous maintenant, c'est facile !",
     "first_name": "Prénom",
     "middle_name": "Deuxième prénom",
+    "middle_name_optional": "Deuxième prénom (facultatif)",
     "last_name": "Nom",
     "birthday": "Date de naissance",
     "email": "Email",

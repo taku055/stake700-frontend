@@ -301,6 +301,7 @@
     "register_now": "Зарегистрируйтесь сейчас, это просто!",
     "first_name": "Имя",
     "middle_name": "Отчество",
+    "middle_name_optional": "Отчество (необязательно)",
     "last_name": "Фамилия",
     "birthday": "Дата рождения",
     "email": "Email",
