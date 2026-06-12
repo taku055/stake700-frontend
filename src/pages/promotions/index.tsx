@@ -2,6 +2,7 @@ import { apiGetPromotions } from "@/api/ledger/apiPromotions";
 import { apiGetGameById } from "@/api/common/apiGetGameById";
 import {
   formatEligibility,
+  formatPromoType,
   formatVipRange,
   isDepositSequenceEligibility,
 } from "@/config/promoConstants";
@@ -26,19 +27,23 @@ type PromoResponse = {
   total: number;
 };
 
-function ctaLabel(type: string) {
+function ctaLabel(
+  type: string,
+  t: (key: string, values?: Record<string, string>) => string,
+) {
   switch (type) {
     case "DEPOSIT":
     case "DEPOSIT_BONUS":
-      return "DEPOSIT NOW";
+      return t("deposit_now");
     case "SIGNUP":
-      return "SIGN UP NOW";
+      return t("sign_up_now");
     default:
-      return "CLAIM OFFER";
+      return t("claim_offer");
   }
 }
 
 export default function PromoPage() {
+  const t = useTranslations("PromotionsPage");
   const tWagering = useTranslations("Wagering");
   const location = useLocation();
   const [activeTab, setActiveTab] = useState<PromoTab>(() =>
@@ -97,7 +102,7 @@ export default function PromoPage() {
         setData(promotionList);
       } catch (e: any) {
         if (!alive) return;
-        setError(e?.message ?? "Failed to load promotions.");
+        setError(e?.message ?? t("load_error"));
         setData(null);
       } finally {
         if (!alive) return;
@@ -133,7 +138,7 @@ export default function PromoPage() {
               textShadow: "0 0 18px #2e7d4f66, 0 2px 4px #000",
             }}
           >
-            Promotions
+            {t("title")}
           </h1>
           <div
             className="flex-1 h-[2px]"
@@ -144,9 +149,7 @@ export default function PromoPage() {
         </div>
 
         <p className="text-center text-sm mb-6 -mt-2" style={{ color: "#6b8c78" }}>
-          {activeTab === "offers"
-            ? "Grab limited-time offers and boost your play."
-            : "Track your active bonus, free spins, and wagering progress."}
+          {activeTab === "offers" ? t("subtitle_offers") : t("subtitle_active")}
         </p>
 
         <div className="mb-6 flex justify-center">
@@ -156,8 +159,8 @@ export default function PromoPage() {
           >
             {(
               [
-                { key: "offers" as const, label: "All Promotions" },
-                { key: "active" as const, label: "Active Promotion" },
+                { key: "offers" as const, label: t("tab_all") },
+                { key: "active" as const, label: t("tab_active") },
               ] as const
             ).map((tab) => (
               <button
@@ -190,7 +193,7 @@ export default function PromoPage() {
             className="rounded-full px-3 py-1 text-xs"
             style={{ background: "rgba(46,125,79,0.25)", color: "#a0c8b0" }}
           >
-            Total: {data?.total ?? 0}
+            {t("total_count", { total: String(data?.total ?? 0) })}
           </span>
         </div>
 
@@ -203,7 +206,7 @@ export default function PromoPage() {
               color: "#8aab96",
             }}
           >
-            Loading promotions…
+            {t("loading")}
           </div>
         )}
 
@@ -229,36 +232,44 @@ export default function PromoPage() {
               color: "#8aab96",
             }}
           >
-            No promotions available right now.
+            {t("empty")}
           </div>
         )}
 
         {!loading && !error && promos.length > 0 && (
           <>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 font-serif">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 font-serif items-stretch">
               {promos.filter(promo => promo.isActive).map((promo) => (
-                <div key={promo.id} className="overflow-hidden max-w-[561px] mx-auto shadow-lg">
-                  <div className="w-full">
+                <div
+                  key={promo.id}
+                  className="flex h-full w-full max-w-[561px] mx-auto flex-col overflow-hidden shadow-lg"
+                >
+                  <div className="aspect-[16/9] w-full shrink-0 bg-[#0C0C0C]">
                     <img
                       src={promo.imageUrl || "/images/new-promo.svg"}
-                      alt="Promo"
-                      className="w-full h-full object-contain block"
+                      alt={t("promo_alt")}
+                      className="block h-full w-full object-cover"
                     />
                   </div>
-                  <div className="px-5 pt-6 pb-5 bg-[#0C0C0C]">
-                    <div className="font-bold text-[20px] text-[#CEA30E] mb-2 tracking-wide text-center line-clamp-2">
-                      {promo.description}
+                  <div className="flex flex-1 flex-col bg-[#0C0C0C] px-5 pt-6 pb-5">
+                    <div className="flex min-h-[148px] flex-1 flex-col">
+                      <div className="mb-2 min-h-[3.25rem] text-center text-[20px] font-bold tracking-wide text-[#CEA30E] line-clamp-2">
+                        {promo.description}
+                      </div>
+                      <div className="my-3 shrink-0 border-b border-[1.35px] border-[#CEA30E]" />
+                      <div className="mb-2 text-[16px] font-semibold text-white">
+                        {t("deposit_code")}{" "}
+                        <span className="text-[#CEA30E]">{promo.code}</span>
+                      </div>
+                      <div className="min-h-[2.75rem]">
+                        {!promo.available && promo.ineligibleReason && (
+                          <p className="text-xs leading-relaxed text-amber-200/80 line-clamp-3">
+                            {promo.ineligibleReason}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                    <div className="border-b border-[1.35px] border-[#CEA30E] my-3" />
-                    <div className="text-white font-semibold text-[16px] mb-2 ">
-                      DEPOSIT CODE : <span className="text-[#CEA30E]">{promo.code}</span>
-                    </div>
-                    {!promo.available && promo.ineligibleReason && (
-                      <p className="text-xs leading-relaxed text-amber-200/80 mb-2">
-                        {promo.ineligibleReason}
-                      </p>
-                    )}
-                    <div className="flex gap-3 mt-5">
+                    <div className="mt-auto flex shrink-0 gap-3 pt-5">
                       <button
                         type="button"
                         className={[
@@ -275,7 +286,7 @@ export default function PromoPage() {
                           profileOpenedState.value = { isOpen: true, defaultTab: "/balance-management/deposit", bonusId: String(promo.id) };
                         }}
                       >
-                        DEPOSIT NOW
+                        {t("deposit_now")}
                       </button>
                       <button
                         className="flex-1 bg-transparent text-[#CEA30E] font-bold text-[16px] border-2 border-[#CEA30E] rounded-lg py-3 cursor-pointer transition hover:bg-yellow-400/10"
@@ -291,7 +302,7 @@ export default function PromoPage() {
                           display: 'block',
 
                         }}>
-                          LEARN MORE
+                          {t("learn_more")}
                         </span>
                       </button>
                     </div>
@@ -317,7 +328,7 @@ export default function PromoPage() {
                     <button
                       className="absolute top-3 right-3 text-white text-xl font-bold rounded-full w-8 h-8 flex items-center justify-center bg-[#222]/60 hover:bg-[#222]/80 transition"
                       onClick={() => setModalPromo(null)}
-                      aria-label="Close"
+                      aria-label={t("close")}
                     >
                       ×
                     </button>
@@ -330,7 +341,7 @@ export default function PromoPage() {
                           : { background: "#5a2020", color: "#f5a0a0" }
                         }
                       >
-                        {modalPromo.available ? "Available" : "Unavailable"}
+                        {modalPromo.available ? t("available") : t("unavailable")}
                       </span>
                     </div>
 
@@ -344,7 +355,7 @@ export default function PromoPage() {
                             {modalPromo.name}
                           </h3>
                           <span className="text-[11px]" style={{ color: "#4a6a56" }}>
-                            Code:{" "}
+                            {t("code")}{" "}
                             <span style={{ color: "#6b9c80" }}>{modalPromo.code}</span>
                           </span>
                         </div>
@@ -352,16 +363,16 @@ export default function PromoPage() {
 
                       <div className="flex flex-wrap gap-1.5 mt-2">
                         <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase" style={{ background: "rgba(46,125,79,0.2)", color: "#8aab96" }}>
-                          {modalPromo.type}
+                          {formatPromoType(modalPromo.type, t)}
                         </span>
                         {modalPromo.eligibility && modalPromo.eligibility !== "ALL" && (
                           <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase" style={{ background: "rgba(180,130,20,0.2)", color: "#c8a84a" }}>
-                            {formatEligibility(modalPromo.eligibility)}
+                            {formatEligibility(modalPromo.eligibility, t)}
                           </span>
                         )}
-                        {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel) && (
+                        {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel, t) && (
                           <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase" style={{ background: "rgba(120,80,200,0.25)", color: "#c4a8f0" }}>
-                            {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel)}
+                            {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel, t)}
                           </span>
                         )}
                         {modalPromo.forWhom && modalPromo.forWhom !== "ALL" && (
@@ -387,8 +398,10 @@ export default function PromoPage() {
                         modalPromo.requiredDepositNumber != null &&
                         modalPromo.userQualifyingDepositCount != null && (
                           <span className="mt-1 block opacity-80">
-                            Qualifying deposits: {modalPromo.userQualifyingDepositCount} / need{" "}
-                            {modalPromo.requiredDepositNumber}
+                            {t("qualifying_deposits", {
+                              current: String(modalPromo.userQualifyingDepositCount),
+                              required: String(modalPromo.requiredDepositNumber),
+                            })}
                           </span>
                         )}
                     </div>
@@ -407,31 +420,31 @@ export default function PromoPage() {
                     <div className="px-5 py-3 border-b border-t grid grid-cols-2 gap-x-4 gap-y-2 mt-auto" style={{ borderColor: "#1e3328" }}>
                       {modalPromo.isPercentBonus && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Bonus</div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("bonus")}</div>
                           <div className="text-sm font-bold" style={{ color: "#4caf78" }}>{modalPromo.bonusValue}%</div>
                         </div>
                       )}
                       {parseFloat(modalPromo.maxBonusLimit) > 0 && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Max Bonus</div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("max_bonus")}</div>
                           <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>{modalPromo.maxBonusLimit} {modalPromo.currency}</div>
                         </div>
                       )}
                       {modalPromo.wageringMultiplier > 0 && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Wagering</div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("wagering")}</div>
                           <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>{modalPromo.wageringMultiplier}x <span className="text-[10px] font-normal" style={{ color: "#4a6a56" }}>({modalPromo.wageringBase})</span></div>
                         </div>
                       )}
                       {modalPromo.wageringMaxWithdrawMultiplier > 0 && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Max Withdraw</div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>{modalPromo.wageringMaxWithdrawMultiplier}x bonus</div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("max_withdraw")}</div>
+                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>{t("max_withdraw_multiplier", { multiplier: String(modalPromo.wageringMaxWithdrawMultiplier) })}</div>
                         </div>
                       )}
                       {modalPromo.freeSpins > 0 && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Free Spins</div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("free_spins")}</div>
                           <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
                             {modalPromo.freeSpins}{" "}
                             <span className="text-[10px] font-normal" style={{ color: "#4a6a56" }}>
@@ -440,7 +453,7 @@ export default function PromoPage() {
                           </div>
                           {modalPromo.freeSpinGameId && (
                             <div className="mt-0.5 text-[10px]" style={{ color: "#4a6a56" }}>
-                              Game:{" "}
+                              {t("game")}{" "}
                               <span style={{ color: "#6b8c78" }}>
                                 {freeSpinGameName ?? modalPromo.freeSpinGameId}
                               </span>
@@ -448,19 +461,19 @@ export default function PromoPage() {
                           )}
                         </div>
                       )}
-                      {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel) && (
+                      {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel, t) && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>VIP range</div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("vip_range")}</div>
                           <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
-                            {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel)}
+                            {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel, t)}
                           </div>
                         </div>
                       )}
                       {isDepositSequenceEligibility(modalPromo.eligibility) && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>Deposit tier</div>
+                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("deposit_tier")}</div>
                           <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
-                            {formatEligibility(modalPromo.eligibility)}
+                            {formatEligibility(modalPromo.eligibility, t)}
                           </div>
                         </div>
                       )}
@@ -480,9 +493,9 @@ export default function PromoPage() {
 
                     {/* Validity */}
                     <div className="px-5 py-2.5 border-b text-[11px]" style={{ borderColor: "#1e3328", color: "#4a6a56" }}>
-                      <div>Valid: <span style={{ color: "#6b8c78" }}>{modalPromo.validFrom} – {modalPromo.validTo}</span></div>
+                      <div>{t("valid")} <span style={{ color: "#6b8c78" }}>{modalPromo.validFrom} – {modalPromo.validTo}</span></div>
                       {modalPromo.validDays && modalPromo.validDays.length > 0 && (
-                        <div className="mt-0.5">Days: <span style={{ color: "#6b8c78" }}>{modalPromo.validDays.join(", ")}</span></div>
+                        <div className="mt-0.5">{t("days")} <span style={{ color: "#6b8c78" }}>{modalPromo.validDays.join(", ")}</span></div>
                       )}
                     </div>
 
@@ -509,7 +522,7 @@ export default function PromoPage() {
                             cursor: "not-allowed",
                           }}
                         >
-                          {ctaLabel(modalPromo.type)}
+                          {ctaLabel(modalPromo.type, t)}
                         </button>
                       )}
                     </div>

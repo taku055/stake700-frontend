@@ -279,6 +279,7 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
   const currencyCode = currencyState.value.code;
   const balance = balanceState.value[currencyCode];
   const freespinCount = Number(balance?.freespin?.count ?? 0);
+  const hasActivePromotion = Boolean(balance?.bonus.isActive);
 
   useEffect(() => {
     if (!userId || freespinCount <= 0) {
@@ -335,23 +336,27 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
 
   return (
     <div className={embedded ? "" : "container mx-auto px-4 py-6"}>
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          {!embedded && (
-            <h1 className="text-2xl font-semibold text-white">{t("Wagering")}</h1>
-          )}
+      {(!embedded || hasActivePromotion) && (
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            {!embedded && (
+              <h1 className="text-2xl font-semibold text-white">{t("Wagering")}</h1>
+            )}
 
-          <Button
-            size="sm"
-            variant="flat"
-            isDisabled={loading}
-            onPress={() => setIsCancelModalOpen(true)}
-            className="bg-slate-800/60 text-slate-100"
-          >
-            {t("Cancel Wagering")}
-          </Button>
+            {hasActivePromotion && (
+              <Button
+                size="sm"
+                variant="flat"
+                isDisabled={loading}
+                onPress={() => setIsCancelModalOpen(true)}
+                className="bg-slate-800/60 text-slate-100"
+              >
+                {t("Cancel Wagering")}
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Main panel container like screenshot */}
       <div className="rounded-2xl border border-slate-700/60 bg-slate-950/35 p-5">

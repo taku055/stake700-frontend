@@ -20,7 +20,28 @@ export function isDepositSequenceEligibility(eligibility: string) {
   );
 }
 
-export function formatEligibility(value?: string | null) {
+type PromoTranslator = (
+  key: string,
+  values?: Record<string, string>,
+) => string;
+
+const ELIGIBILITY_I18N_KEYS: Record<string, string> = {
+  ALL: "eligibility_all",
+  VIP: "eligibility_vip",
+  FIRST_DEPOSIT: "eligibility_first_deposit",
+  FIRST_CRYPTO_DEPOSIT: "eligibility_first_crypto_deposit",
+  SECOND_DEPOSIT: "eligibility_second_deposit",
+  THIRD_DEPOSIT: "eligibility_third_deposit",
+};
+
+export function formatEligibility(
+  value?: string | null,
+  t?: PromoTranslator,
+) {
+  const eligibility = value || "ALL";
+  if (t && ELIGIBILITY_I18N_KEYS[eligibility]) {
+    return t(ELIGIBILITY_I18N_KEYS[eligibility]);
+  }
   if (!value || value === "ALL") return "All users";
   return (
     PROMO_ELIGIBILITIES.find((e) => e.value === value)?.label ??
@@ -28,11 +49,39 @@ export function formatEligibility(value?: string | null) {
   );
 }
 
-export function formatVipRange(min?: number | null, max?: number | null) {
+export function formatVipRange(
+  min?: number | null,
+  max?: number | null,
+  t?: PromoTranslator,
+) {
   const minV = min ?? 0;
   const maxV = max ?? 0;
   if (minV <= 0 && maxV <= 0) return null;
+  if (t) {
+    if (minV > 0 && maxV > 0) {
+      return t("vip_range_min_max", {
+        min: String(minV),
+        max: String(maxV),
+      });
+    }
+    if (minV > 0) {
+      return t("vip_range_min_plus", { min: String(minV) });
+    }
+    return t("vip_range_max_only", { max: String(maxV) });
+  }
   if (minV > 0 && maxV > 0) return `VIP level ${minV}–${maxV}`;
   if (minV > 0) return `VIP level ${minV}+`;
   return `Up to VIP level ${maxV}`;
+}
+
+const PROMO_TYPE_I18N_KEYS: Record<string, string> = {
+  DEPOSIT: "type_deposit",
+  DEPOSIT_BONUS: "type_deposit_bonus",
+  SIGNUP: "type_signup",
+};
+
+export function formatPromoType(type: string, t?: PromoTranslator) {
+  const key = PROMO_TYPE_I18N_KEYS[type];
+  if (t && key) return t(key);
+  return type.replace(/_/g, " ");
 }

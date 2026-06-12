@@ -120,13 +120,13 @@ export default function SearchWidget() {
                       key="casino"
                       className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap"
                     >
-                      Casino
+                      {t("Casino")}
                     </SelectItem>
                     <SelectItem
                       key="sports"
                       className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap"
                     >
-                      Sports
+                      {t("Sports")}
                     </SelectItem>
                   </Select>
                 )}
@@ -295,13 +295,13 @@ export function SearchWidgetHeader() {
                           key="casino"
                           className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap"
                         >
-                          Casino
+                          {t("Casino")}
                         </SelectItem>
                         <SelectItem
                           key="sports"
                           className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap"
                         >
-                          Sports
+                          {t("Sports")}
                         </SelectItem>
                       </Select>
                     )}
