@@ -190,7 +190,7 @@ export default function VipLevelsTable({ status }: VipLevelsTableProps) {
             </tr>
           </thead>
           <tbody>
-            {levels.slice(1).map((level) => {
+            {levels.map((level) => {
               const state = levelStatus(level.id, vipLevel);
               const iconUrl = getVipLevelIconUrl(level.id);
               return (
