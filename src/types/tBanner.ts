@@ -8,4 +8,5 @@ export type tBanner = {
   size?: string;
   type?: string;
   description?: string | null;
+  validDays?: string[];
 };

@@ -8,6 +8,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { useMemo } from "preact/hooks";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
 import { useLocation } from "preact-iso";
+import { isVisibleOnValidDays } from "@/helpers/bannerUtils";
 
 export const PromotionSection: FunctionalComponent<{
   showAppleImage: boolean;
@@ -78,6 +79,7 @@ export const PromotionSection: FunctionalComponent<{
       // Get banners from API
       const apiBanners = bannerState.value
         .filter((banner) => banner.size === (isMobile ? "sm" : "lg"))
+        .filter((banner) => isVisibleOnValidDays(banner.validDays))
         .filter((banner) => category === "all" || banner.type?.includes(category))
         .filter((banner) => !banner.type?.includes("promotion"))
         .map((banner) => banner.img) || [];

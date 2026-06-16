@@ -9,6 +9,7 @@ import {
 import { localeState } from "@/state/localeState";
 import { bannerState } from "@/state/bannerState";
 import { useMediaQuery } from "usehooks-ts";
+import { isVisibleOnValidDays } from "@/helpers/bannerUtils";
 
 export const EmblaBanner = () => {
   const viewportRef = useRef<HTMLDivElement | null>(null);
@@ -22,7 +23,11 @@ export const EmblaBanner = () => {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const slides = bannerState.value.filter((banner) => banner.size === (isMobile ? "sm" : "lg"));
+  const slides = bannerState.value.filter(
+    (banner) =>
+      banner.size === (isMobile ? "sm" : "lg") &&
+      isVisibleOnValidDays(banner.validDays),
+  );
 
   useEffect(() => {
     if (!viewportRef.current) return;
