@@ -45,7 +45,7 @@ export async function apiCreateEpayclubDeposit(amount: number, promoId?: string)
   }
 
   const res = await instance.post<tEpayclubCreateDepositResponse>(
-    "/payment/epayclub/card/create-deposit",
+    "/payment/epayclub/card/deposit",
     body,
   );
   return res.data;
