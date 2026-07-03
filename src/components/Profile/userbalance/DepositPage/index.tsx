@@ -2,6 +2,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { Tabs, Tab } from "@heroui/react";
 import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
 import NeonpayDeposit from "./NeonpayDeposit";
+import EpayclubDeposit from "./EpayclubDeposit";
 import { PROFILE_PAY_TAB, ProfilePayTabTitle } from "../profilePayTabImages";
 
 const DepositPage = () => {
@@ -42,6 +43,17 @@ const DepositPage = () => {
             }
           >
             <NeonpayDeposit type="card" />
+          </Tab>
+          <Tab
+            key="epayclub_card"
+            title={
+              <ProfilePayTabTitle
+                src={PROFILE_PAY_TAB.epayClub}
+                label={t("EPayClub")}
+              />
+            }
+          >
+            <EpayclubDeposit />
           </Tab>
           <Tab
             key="neonpay_googlepay"

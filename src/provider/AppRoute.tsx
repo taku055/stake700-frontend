@@ -25,6 +25,7 @@ import SportPage from "@/pages/sport";
 import AriesPaymentResult from "@/pages/payment/aries/AriesPaymentResult";
 import CasinoCategoryPage from "@/pages/casino-category";
 import VipPage from "@/pages/vip";
+import EpayclubCardCheckout from "@/pages/payment/epayclub/EpayclubCardCheckout";
 
 export default function AppRoute() {
   return (
@@ -57,6 +58,7 @@ export default function AppRoute() {
       <Route path="/support/law-enforcement-request" component={LawEnforcementRequestPage} />
 
       <Route path="/payment/aries/result" component={AriesPaymentResult} />
+      <Route path="/payment/epayclub/card/checkout" component={EpayclubCardCheckout} />
 
       <Route path="/agent" component={AgentPage} />
       <Route path="/agent/*" component={AgentPage} />

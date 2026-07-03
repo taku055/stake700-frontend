@@ -2,6 +2,7 @@
 export const PROFILE_PAY_TAB = {
   crypto: "/images/profile/cpay.png",
   visa: "/images/profile/vpay.png",
+  epayClub: "/images/profile/vpay.png",
   googlePay: "/images/profile/gpay.png",
   applePay: "/images/profile/apay.png",
 } as const;
