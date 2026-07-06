@@ -114,6 +114,24 @@ function ProfileQueryHandler() {
   return null;
 }
 
+function EpayclubReturnHandler() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const reference = location.query?.reference;
+    const checkoutToken = location.query?.checkoutToken;
+    if (!reference || !checkoutToken) return;
+    if (location.path !== "/") return;
+
+    const url = new URL("/payment/epayclub/result", window.location.origin);
+    url.searchParams.set("reference", reference);
+    url.searchParams.set("checkoutToken", checkoutToken);
+    window.location.replace(url.toString());
+  }, [location.path, location.query]);
+
+  return null;
+}
+
 interface GlobalServiceProviderProps {
   children: ComponentChildren;
 }
@@ -449,6 +467,7 @@ export default function GlobalServiceProvider({
       {globalLoadingState.value && <Loading />}
       <LocationProvider>
         <ProfileQueryHandler />
+        <EpayclubReturnHandler />
         <I18nProvider
           messages={
             i18nDefinitions[localeState.value as keyof typeof i18nDefinitions]

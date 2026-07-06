@@ -36,6 +36,19 @@ export type tEpayclubCardPayResponse = {
   success?: boolean;
   message?: string;
   redirect_url?: string;
+  reference?: string;
+  status?: string;
+  provider_status?: string;
+  duplicate?: boolean;
+};
+
+export type tEpayclubVerifyResponse = {
+  success?: boolean;
+  duplicate?: boolean;
+  reference?: string;
+  status?: string;
+  provider_status?: string;
+  message?: string;
 };
 
 export async function apiCreateEpayclubDeposit(amount: number, promoId?: string) {
@@ -57,4 +70,19 @@ export async function apiPayEpayclubCard(params: tEpayclubCardPayRequest) {
     params,
   );
   return res.data;
+}
+
+export async function apiVerifyEpayclub(reference: string, checkoutToken: string) {
+  const res = await instance.post<tEpayclubVerifyResponse>(
+    "/payment/epayclub/verify",
+    { reference, checkoutToken },
+  );
+  return res.data;
+}
+
+export function buildEpayclubResultUrl(reference: string, checkoutToken: string) {
+  const url = new URL("/payment/epayclub/result", window.location.origin);
+  url.searchParams.set("reference", reference);
+  url.searchParams.set("checkoutToken", checkoutToken);
+  return url.toString();
 }

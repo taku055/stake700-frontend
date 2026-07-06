@@ -26,6 +26,7 @@ import AriesPaymentResult from "@/pages/payment/aries/AriesPaymentResult";
 import CasinoCategoryPage from "@/pages/casino-category";
 import VipPage from "@/pages/vip";
 import EpayclubCardCheckout from "@/pages/payment/epayclub/EpayclubCardCheckout";
+import EpayclubPaymentResult from "@/pages/payment/epayclub/EpayclubPaymentResult";
 
 export default function AppRoute() {
   return (
@@ -59,6 +60,7 @@ export default function AppRoute() {
 
       <Route path="/payment/aries/result" component={AriesPaymentResult} />
       <Route path="/payment/epayclub/card/checkout" component={EpayclubCardCheckout} />
+      <Route path="/payment/epayclub/result" component={EpayclubPaymentResult} />
 
       <Route path="/agent" component={AgentPage} />
       <Route path="/agent/*" component={AgentPage} />
