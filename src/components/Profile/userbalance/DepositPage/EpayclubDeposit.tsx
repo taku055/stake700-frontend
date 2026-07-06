@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from "preact/hooks";
+import { useLocation } from "preact-iso";
 import { Button, Input } from "@heroui/react";
 import axios from "axios";
 import { apiCreateEpayclubDeposit } from "@/api/wallet/apiEpayclub";
@@ -11,26 +12,48 @@ import {
 } from "@/helpers/epayclubProfile";
 import { profileOpenedState } from "@/state/profileOpenedState";
 
-function getCheckoutUrl(res: Awaited<ReturnType<typeof apiCreateEpayclubDeposit>>) {
+type CheckoutTarget =
+  | { type: "internal"; path: string }
+  | { type: "external"; url: string };
+
+function resolveCheckoutTarget(
+  res: Awaited<ReturnType<typeof apiCreateEpayclubDeposit>>,
+): CheckoutTarget | null {
   const redirectUrl =
     res.redirect_url ??
     res.checkout_url ??
     res.data?.redirect_url ??
     res.data?.checkout_url;
+
   if (redirectUrl) {
-    return redirectUrl;
+    try {
+      const parsed = new URL(redirectUrl, window.location.origin);
+      if (parsed.origin === window.location.origin) {
+        return {
+          type: "internal",
+          path: `${parsed.pathname}${parsed.search}`,
+        };
+      }
+    } catch {
+      // Fall through to external navigation.
+    }
+    return { type: "external", url: redirectUrl };
   }
 
   const reference = res.reference ?? res.data?.reference;
   const checkoutToken = res.checkoutToken ?? res.data?.checkoutToken;
   if (!reference || !checkoutToken) {
-    return "";
+    return null;
   }
 
-  const url = new URL("/payment/epayclub/card/checkout", window.location.origin);
-  url.searchParams.set("reference", reference);
-  url.searchParams.set("checkoutToken", checkoutToken);
-  return url.toString();
+  const params = new URLSearchParams({
+    reference,
+    checkoutToken,
+  });
+  return {
+    type: "internal",
+    path: `/payment/epayclub/card/checkout?${params.toString()}`,
+  };
 }
 
 const PROFILE_FIELD_KEYS: Record<EpayclubProfileField, string> = {
@@ -43,6 +66,7 @@ const PROFILE_FIELD_KEYS: Record<EpayclubProfileField, string> = {
 
 export default function EpayclubDeposit() {
   const t = useTranslations("UserBalancePage");
+  const location = useLocation();
   const [amount, setAmount] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -72,10 +96,16 @@ export default function EpayclubDeposit() {
       const promoId =
         new URLSearchParams(window.location.search).get("promo") ?? undefined;
       const res = await apiCreateEpayclubDeposit(num, promoId);
-      const checkoutUrl = getCheckoutUrl(res);
+      const checkoutTarget = resolveCheckoutTarget(res);
 
-      if (checkoutUrl) {
-        window.location.assign(checkoutUrl);
+      if (checkoutTarget?.type === "internal") {
+        profileOpenedState.value = { isOpen: false };
+        location.route(checkoutTarget.path);
+        return;
+      }
+
+      if (checkoutTarget?.type === "external") {
+        window.location.assign(checkoutTarget.url);
         return;
       }
 
@@ -95,7 +125,7 @@ export default function EpayclubDeposit() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [amount, isProfileIncomplete, t]);
+  }, [amount, isProfileIncomplete, location, t]);
 
   const openProfile = useCallback(() => {
     profileOpenedState.value = {
