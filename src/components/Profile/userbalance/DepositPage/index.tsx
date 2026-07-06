@@ -34,17 +34,6 @@ const DepositPage = () => {
             <DepositPanel />
           </Tab>
           <Tab
-            key="neonpay_card"
-            title={
-              <ProfilePayTabTitle
-                src={PROFILE_PAY_TAB.visa}
-                label={t("Pay with card")}
-              />
-            }
-          >
-            <NeonpayDeposit type="card" />
-          </Tab>
-          <Tab
             key="epayclub_card"
             title={
               <ProfilePayTabTitle
@@ -54,28 +43,6 @@ const DepositPage = () => {
             }
           >
             <EpayclubDeposit />
-          </Tab>
-          <Tab
-            key="neonpay_googlepay"
-            title={
-              <ProfilePayTabTitle
-                src={PROFILE_PAY_TAB.googlePay}
-                label={t("Pay with Google Pay")}
-              />
-            }
-          >
-            <NeonpayDeposit type="googlepay" />
-          </Tab>
-          <Tab
-            key="neonpay_applepay"
-            title={
-              <ProfilePayTabTitle
-                src={PROFILE_PAY_TAB.applePay}
-                label={t("Pay with Apple Pay")}
-              />
-            }
-          >
-            <NeonpayDeposit type="applepay" />
           </Tab>
         </Tabs>
       </div>
