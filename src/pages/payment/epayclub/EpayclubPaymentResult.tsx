@@ -10,10 +10,14 @@ import {
   Wallet,
 } from "lucide-preact";
 import { useTranslations } from "@/context/I18nContext";
-import { apiVerifyEpayclub } from "@/api/wallet/apiEpayclub";
+import { apiVerifyEpayclubWithPolling } from "@/api/wallet/apiEpayclub";
 import { balanceState } from "@/state/balanceState";
 import { CURRENCY_LIST } from "@/config/constants";
 import { profileOpenedState } from "@/state/profileOpenedState";
+import {
+  clearEpayclubCheckout,
+  loadEpayclubCheckout,
+} from "@/helpers/epayclubSession";
 import axios from "axios";
 
 const statusConfig: Record<
@@ -76,8 +80,10 @@ function resolveDisplayStatus(
 export default function EpayclubPaymentResult() {
   const t = useTranslations("EpayclubPaymentResult");
   const location = useLocation();
-  const reference = location.query.reference ?? "";
-  const checkoutToken = location.query.checkoutToken ?? "";
+  const savedSession = loadEpayclubCheckout();
+  const reference = location.query.reference ?? savedSession?.reference ?? "";
+  const checkoutToken =
+    location.query.checkoutToken ?? savedSession?.checkoutToken ?? "";
 
   const [result, setResult] = useState<{
     status: string;
@@ -97,13 +103,21 @@ export default function EpayclubPaymentResult() {
     (async () => {
       setError(null);
       try {
-        const res = await apiVerifyEpayclub(reference, checkoutToken);
+        const res = await apiVerifyEpayclubWithPolling(reference, checkoutToken);
         if (cancelled) return;
+        const displayStatus = resolveDisplayStatus(
+          res.status,
+          res.duplicate,
+          res.success,
+        );
         setResult({
-          status: resolveDisplayStatus(res.status, res.duplicate, res.success),
+          status: displayStatus,
           message: res.message,
           duplicate: res.duplicate,
         });
+        if (displayStatus === "success" || res.duplicate) {
+          clearEpayclubCheckout();
+        }
       } catch (err: unknown) {
         if (cancelled) return;
         let message = t("verify_failed");

@@ -13,6 +13,7 @@ import {
 } from "@/api/wallet/apiEpayclub";
 import { useTranslations } from "@/context/I18nContext";
 import { toast } from "@/helpers/toast";
+import { saveEpayclubCheckout } from "@/helpers/epayclubSession";
 import { userState } from "@/state/userState";
 
 const onlyDigits = (value: string) => value.replace(/\D/g, "");
@@ -130,6 +131,7 @@ export default function EpayclubCardCheckout() {
           expiryyear,
           cvv,
           country: upperCountry,
+          authOption: "3DS",
           billingaddress: {
             street,
             city,
@@ -139,12 +141,18 @@ export default function EpayclubCardCheckout() {
           },
         });
 
+        saveEpayclubCheckout(reference, checkoutToken);
+
         if (res.redirect_url) {
-          window.location.assign(res.redirect_url);
+          window.location.href = res.redirect_url;
           return;
         }
 
-        if (res.success || res.status?.toUpperCase() === "SUCCESS") {
+        if (
+          res.success ||
+          res.status?.toUpperCase() === "SUCCESS" ||
+          res.status?.toUpperCase() === "PENDING_AUTHENTICATION"
+        ) {
           window.location.assign(buildEpayclubResultUrl(reference, checkoutToken));
           return;
         }

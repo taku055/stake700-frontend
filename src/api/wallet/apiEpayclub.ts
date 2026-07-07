@@ -23,6 +23,7 @@ export type tEpayclubCardPayRequest = {
   expiryyear: string;
   cvv: string;
   country: string;
+  authOption?: "3DS" | "NOAUTH";
   billingaddress: {
     street: string;
     city: string;
@@ -36,6 +37,7 @@ export type tEpayclubCardPayResponse = {
   success?: boolean;
   message?: string;
   redirect_url?: string;
+  return_url?: string;
   reference?: string;
   status?: string;
   provider_status?: string;
@@ -78,6 +80,47 @@ export async function apiVerifyEpayclub(reference: string, checkoutToken: string
     { reference, checkoutToken },
   );
   return res.data;
+}
+
+const EPAYCLUB_PENDING_STATUSES = new Set([
+  "pending",
+  "pending_callback",
+  "pending_authentication",
+  "created",
+]);
+
+function isEpayclubVerifyPending(status?: string) {
+  return EPAYCLUB_PENDING_STATUSES.has((status ?? "").toLowerCase());
+}
+
+export async function apiVerifyEpayclubWithPolling(
+  reference: string,
+  checkoutToken: string,
+  options?: { maxAttempts?: number; intervalMs?: number },
+) {
+  const maxAttempts = options?.maxAttempts ?? 20;
+  const intervalMs = options?.intervalMs ?? 3000;
+
+  let lastResponse = await apiVerifyEpayclub(reference, checkoutToken);
+  if (
+    lastResponse.duplicate ||
+    !isEpayclubVerifyPending(lastResponse.status)
+  ) {
+    return lastResponse;
+  }
+
+  for (let attempt = 1; attempt < maxAttempts; attempt++) {
+    await new Promise((resolve) => setTimeout(resolve, intervalMs));
+    lastResponse = await apiVerifyEpayclub(reference, checkoutToken);
+    if (
+      lastResponse.duplicate ||
+      !isEpayclubVerifyPending(lastResponse.status)
+    ) {
+      return lastResponse;
+    }
+  }
+
+  return lastResponse;
 }
 
 export function buildEpayclubResultUrl(reference: string, checkoutToken: string) {
