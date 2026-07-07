@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
-import { Button, Input, Radio, RadioGroup, Spinner } from "@heroui/react";
+import { Button, Input, Spinner } from "@heroui/react";
 import axios from "axios";
 import {
   apiCreateEpayclubDeposit,
@@ -17,7 +17,6 @@ import {
 import { profileOpenedState } from "@/state/profileOpenedState";
 import { saveEpayclubCheckout } from "@/helpers/epayclubSession";
 import {
-  canChooseEpayclubDepositMethod,
   DEFAULT_EPAYCLUB_DEPOSIT_OPTIONS,
   extractEpayclubCheckoutSession,
   resolveEpayclubCheckoutTarget,
@@ -81,7 +80,7 @@ export default function EpayclubDeposit() {
     [userState.value],
   );
   const isProfileIncomplete = missingProfileFields.length > 0;
-  const showMethodPicker = canChooseEpayclubDepositMethod(options);
+  const showMethodPicker = options.enabled;
   const isProviderDisabled = optionsLoaded && !options.enabled;
   const isMethodDisabled =
     optionsLoaded &&
@@ -98,6 +97,15 @@ export default function EpayclubDeposit() {
 
     if (isProviderDisabled || isMethodDisabled) {
       setError(t("EPayClub_unavailable"));
+      return;
+    }
+
+    if (method === "card" && !options.card_checkout_enabled) {
+      setError(t("EPayClub_card_unavailable"));
+      return;
+    }
+    if (method === "payment_link" && !options.payment_link_enabled) {
+      setError(t("EPayClub_link_unavailable"));
       return;
     }
 
@@ -173,11 +181,22 @@ export default function EpayclubDeposit() {
     isProviderDisabled,
     location,
     method,
-    options.currency,
+    options.card_checkout_enabled,
+    options.payment_link_enabled,
     options.max_amount,
     options.min_amount,
     t,
   ]);
+
+  const selectMethod = useCallback(
+    (next: EpayclubDepositMethod) => {
+      if (next === "payment_link" && !options.payment_link_enabled) return;
+      if (next === "card" && !options.card_checkout_enabled) return;
+      setMethod(next);
+      setError("");
+    },
+    [options.card_checkout_enabled, options.payment_link_enabled],
+  );
 
   const openProfile = useCallback(() => {
     profileOpenedState.value = {
@@ -216,26 +235,37 @@ export default function EpayclubDeposit() {
       </div>
 
       {showMethodPicker ? (
-        <RadioGroup
-          label={t("EPayClub_deposit_method")}
-          orientation="horizontal"
-          value={method}
-          onValueChange={(value) => setMethod(value as EpayclubDepositMethod)}
-          classNames={{
-            label: "text-white/70 text-sm",
-            wrapper: "gap-4",
-          }}
-        >
-          <Radio
-            value="payment_link"
-            classNames={{ label: "text-white/85 text-sm" }}
-          >
-            {t("EPayClub_payment_link")}
-          </Radio>
-          <Radio value="card" classNames={{ label: "text-white/85 text-sm" }}>
-            {t("EPayClub card checkout")}
-          </Radio>
-        </RadioGroup>
+        <div className="flex flex-col gap-2">
+          <p className="text-sm text-white/70">{t("EPayClub_deposit_method")}</p>
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <button
+              type="button"
+              aria-pressed={method === "payment_link"}
+              disabled={!options.payment_link_enabled}
+              onClick={() => selectMethod("payment_link")}
+              className={`rounded-lg border px-4 py-3 text-left text-sm font-medium transition-colors ${
+                method === "payment_link"
+                  ? "border-emerald-400/60 bg-emerald-500/15 text-white"
+                  : "border-white/10 bg-white/[0.03] text-white/75 hover:border-white/20 hover:bg-white/[0.06]"
+              } disabled:cursor-not-allowed disabled:opacity-40`}
+            >
+              {t("EPayClub_payment_link")}
+            </button>
+            <button
+              type="button"
+              aria-pressed={method === "card"}
+              disabled={!options.card_checkout_enabled}
+              onClick={() => selectMethod("card")}
+              className={`rounded-lg border px-4 py-3 text-left text-sm font-medium transition-colors ${
+                method === "card"
+                  ? "border-emerald-400/60 bg-emerald-500/15 text-white"
+                  : "border-white/10 bg-white/[0.03] text-white/75 hover:border-white/20 hover:bg-white/[0.06]"
+              } disabled:cursor-not-allowed disabled:opacity-40`}
+            >
+              {t("EPayClub card checkout")}
+            </button>
+          </div>
+        </div>
       ) : null}
 
       {method === "payment_link" ? (

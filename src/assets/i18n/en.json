@@ -589,6 +589,8 @@
     "EPayClub_card_checkout_hint": "Enter your card details on our secure checkout page to complete the deposit.",
     "EPayClub_amount_range": "Min {min} – max {max} {currency}",
     "EPayClub_unavailable": "ePayClub deposits are currently unavailable.",
+    "EPayClub_card_unavailable": "Card checkout is not enabled for ePayClub.",
+    "EPayClub_link_unavailable": "Payment links are not enabled for ePayClub.",
     "EPayClub_invalid_amount": "Enter a valid amount greater than zero.",
     "EPayClub_checkout_failed": "Could not start the checkout. Please try again.",
     "EPayClub_error": "Something went wrong.",

@@ -52,10 +52,17 @@ export function resolveEpayclubDepositMethod(
   return "payment_link";
 }
 
-export function canChooseEpayclubDepositMethod(
+export function hasMultipleEpayclubDepositMethods(
   options: EpayclubDepositOptions,
 ): boolean {
   return options.payment_link_enabled && options.card_checkout_enabled;
+}
+
+/** @deprecated use hasMultipleEpayclubDepositMethods */
+export function canChooseEpayclubDepositMethod(
+  options: EpayclubDepositOptions,
+): boolean {
+  return hasMultipleEpayclubDepositMethods(options);
 }
 
 export function resolveEpayclubCheckoutTarget(
