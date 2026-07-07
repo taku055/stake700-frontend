@@ -1,4 +1,5 @@
 import { instance } from "../instance";
+import type { EpayclubDepositOptions } from "@/helpers/epayclubDeposit";
 
 export type tEpayclubCreateDepositResponse = {
   success?: boolean;
@@ -53,6 +54,13 @@ export type tEpayclubVerifyResponse = {
   message?: string;
 };
 
+export async function apiGetEpayclubDepositOptions() {
+  const res = await instance.get<EpayclubDepositOptions>(
+    "/payment/epayclub/options",
+  );
+  return res.data;
+}
+
 export async function apiCreateEpayclubDeposit(amount: number, promoId?: string) {
   const body: { amount: number; promoId?: string } = { amount };
   if (promoId) {
@@ -61,6 +69,22 @@ export async function apiCreateEpayclubDeposit(amount: number, promoId?: string)
 
   const res = await instance.post<tEpayclubCreateDepositResponse>(
     "/payment/epayclub/card/deposit",
+    body,
+  );
+  return res.data;
+}
+
+export async function apiCreateEpayclubLinkDeposit(
+  amount: number,
+  promoId?: string,
+) {
+  const body: { amount: number; promoId?: string } = { amount };
+  if (promoId) {
+    body.promoId = promoId;
+  }
+
+  const res = await instance.post<tEpayclubCreateDepositResponse>(
+    "/payment/epayclub/link/deposit",
     body,
   );
   return res.data;

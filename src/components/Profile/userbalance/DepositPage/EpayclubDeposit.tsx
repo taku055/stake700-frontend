@@ -1,8 +1,12 @@
-import { useCallback, useMemo, useState } from "preact/hooks";
+import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
-import { Button, Input } from "@heroui/react";
+import { Button, Input, Radio, RadioGroup, Spinner } from "@heroui/react";
 import axios from "axios";
-import { apiCreateEpayclubDeposit } from "@/api/wallet/apiEpayclub";
+import {
+  apiCreateEpayclubDeposit,
+  apiCreateEpayclubLinkDeposit,
+  apiGetEpayclubDepositOptions,
+} from "@/api/wallet/apiEpayclub";
 import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
@@ -11,50 +15,16 @@ import {
   type EpayclubProfileField,
 } from "@/helpers/epayclubProfile";
 import { profileOpenedState } from "@/state/profileOpenedState";
-
-type CheckoutTarget =
-  | { type: "internal"; path: string }
-  | { type: "external"; url: string };
-
-function resolveCheckoutTarget(
-  res: Awaited<ReturnType<typeof apiCreateEpayclubDeposit>>,
-): CheckoutTarget | null {
-  const redirectUrl =
-    res.redirect_url ??
-    res.checkout_url ??
-    res.data?.redirect_url ??
-    res.data?.checkout_url;
-
-  if (redirectUrl) {
-    try {
-      const parsed = new URL(redirectUrl, window.location.origin);
-      if (parsed.origin === window.location.origin) {
-        return {
-          type: "internal",
-          path: `${parsed.pathname}${parsed.search}`,
-        };
-      }
-    } catch {
-      // Fall through to external navigation.
-    }
-    return { type: "external", url: redirectUrl };
-  }
-
-  const reference = res.reference ?? res.data?.reference;
-  const checkoutToken = res.checkoutToken ?? res.data?.checkoutToken;
-  if (!reference || !checkoutToken) {
-    return null;
-  }
-
-  const params = new URLSearchParams({
-    reference,
-    checkoutToken,
-  });
-  return {
-    type: "internal",
-    path: `/payment/epayclub/card/checkout?${params.toString()}`,
-  };
-}
+import { saveEpayclubCheckout } from "@/helpers/epayclubSession";
+import {
+  canChooseEpayclubDepositMethod,
+  DEFAULT_EPAYCLUB_DEPOSIT_OPTIONS,
+  extractEpayclubCheckoutSession,
+  resolveEpayclubCheckoutTarget,
+  resolveEpayclubDepositMethod,
+  type EpayclubDepositMethod,
+  type EpayclubDepositOptions,
+} from "@/helpers/epayclubDeposit";
 
 const PROFILE_FIELD_KEYS: Record<EpayclubProfileField, string> = {
   firstName: "EPayClub_missing_field_firstName",
@@ -68,17 +38,68 @@ export default function EpayclubDeposit() {
   const t = useTranslations("UserBalancePage");
   const location = useLocation();
   const [amount, setAmount] = useState("");
+  const [options, setOptions] = useState<EpayclubDepositOptions>(
+    DEFAULT_EPAYCLUB_DEPOSIT_OPTIONS,
+  );
+  const [optionsLoaded, setOptionsLoaded] = useState(false);
+  const [method, setMethod] = useState<EpayclubDepositMethod>("payment_link");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const nextOptions = await apiGetEpayclubDepositOptions();
+        if (cancelled) return;
+        setOptions(nextOptions);
+        setMethod(
+          resolveEpayclubDepositMethod(nextOptions, window.location.search),
+        );
+      } catch {
+        if (cancelled) return;
+        setOptions(DEFAULT_EPAYCLUB_DEPOSIT_OPTIONS);
+        setMethod(
+          resolveEpayclubDepositMethod(
+            DEFAULT_EPAYCLUB_DEPOSIT_OPTIONS,
+            window.location.search,
+          ),
+        );
+      } finally {
+        if (!cancelled) setOptionsLoaded(true);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const missingProfileFields = useMemo(
     () => getEpayclubProfileMissing(userState.value),
     [userState.value],
   );
   const isProfileIncomplete = missingProfileFields.length > 0;
+  const showMethodPicker = canChooseEpayclubDepositMethod(options);
+  const isProviderDisabled = optionsLoaded && !options.enabled;
+  const isMethodDisabled =
+    optionsLoaded &&
+    !options.payment_link_enabled &&
+    !options.card_checkout_enabled;
+
+  const methodLabel =
+    method === "payment_link"
+      ? t("EPayClub_payment_link")
+      : t("EPayClub card checkout");
 
   const handleDeposit = useCallback(async () => {
     setError("");
+
+    if (isProviderDisabled || isMethodDisabled) {
+      setError(t("EPayClub_unavailable"));
+      return;
+    }
 
     if (isProfileIncomplete) {
       setError(t("EPayClub_incomplete_profile"));
@@ -90,13 +111,32 @@ export default function EpayclubDeposit() {
       setError(t("EPayClub_invalid_amount"));
       return;
     }
+    if (num < options.min_amount || num > options.max_amount) {
+      setError(
+        t("EPayClub_amount_range", {
+          min: String(options.min_amount),
+          max: String(options.max_amount),
+          currency: options.currency,
+        }),
+      );
+      return;
+    }
 
     setIsSubmitting(true);
     try {
       const promoId =
         new URLSearchParams(window.location.search).get("promo") ?? undefined;
-      const res = await apiCreateEpayclubDeposit(num, promoId);
-      const checkoutTarget = resolveCheckoutTarget(res);
+      const createDeposit =
+        method === "payment_link"
+          ? apiCreateEpayclubLinkDeposit
+          : apiCreateEpayclubDeposit;
+      const res = await createDeposit(num, promoId);
+      const checkoutTarget = resolveEpayclubCheckoutTarget(res, method);
+      const session = extractEpayclubCheckoutSession(res);
+
+      if (session) {
+        saveEpayclubCheckout(session.reference, session.checkoutToken);
+      }
 
       if (checkoutTarget?.type === "internal") {
         profileOpenedState.value = { isOpen: false };
@@ -105,6 +145,7 @@ export default function EpayclubDeposit() {
       }
 
       if (checkoutTarget?.type === "external") {
+        profileOpenedState.value = { isOpen: false };
         window.location.assign(checkoutTarget.url);
         return;
       }
@@ -125,7 +166,18 @@ export default function EpayclubDeposit() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [amount, isProfileIncomplete, location, t]);
+  }, [
+    amount,
+    isMethodDisabled,
+    isProfileIncomplete,
+    isProviderDisabled,
+    location,
+    method,
+    options.currency,
+    options.max_amount,
+    options.min_amount,
+    t,
+  ]);
 
   const openProfile = useCallback(() => {
     profileOpenedState.value = {
@@ -133,6 +185,22 @@ export default function EpayclubDeposit() {
       defaultTab: "/my-profile/personal-details",
     };
   }, []);
+
+  if (!optionsLoaded) {
+    return (
+      <div className="flex min-h-[220px] items-center justify-center">
+        <Spinner color="success" />
+      </div>
+    );
+  }
+
+  if (isProviderDisabled || isMethodDisabled) {
+    return (
+      <div className="flex flex-col w-full max-w-md mx-auto gap-4 py-6 text-center">
+        <p className="text-sm text-white/70">{t("EPayClub_unavailable")}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col w-full max-w-md mx-auto gap-6 py-2">
@@ -142,10 +210,43 @@ export default function EpayclubDeposit() {
             ePay<span className="text-[var(--green-color)]">Club</span>
           </span>
           <span className="mt-2 text-sm font-semibold text-white/75">
-            {t("EPayClub card checkout")}
+            {methodLabel}
           </span>
         </div>
       </div>
+
+      {showMethodPicker ? (
+        <RadioGroup
+          label={t("EPayClub_deposit_method")}
+          orientation="horizontal"
+          value={method}
+          onValueChange={(value) => setMethod(value as EpayclubDepositMethod)}
+          classNames={{
+            label: "text-white/70 text-sm",
+            wrapper: "gap-4",
+          }}
+        >
+          <Radio
+            value="payment_link"
+            classNames={{ label: "text-white/85 text-sm" }}
+          >
+            {t("EPayClub_payment_link")}
+          </Radio>
+          <Radio value="card" classNames={{ label: "text-white/85 text-sm" }}>
+            {t("EPayClub card checkout")}
+          </Radio>
+        </RadioGroup>
+      ) : null}
+
+      {method === "payment_link" ? (
+        <p className="text-xs text-white/50 leading-relaxed">
+          {t("EPayClub_payment_link_hint")}
+        </p>
+      ) : (
+        <p className="text-xs text-white/50 leading-relaxed">
+          {t("EPayClub_card_checkout_hint")}
+        </p>
+      )}
 
       {isProfileIncomplete ? (
         <div
@@ -174,10 +275,16 @@ export default function EpayclubDeposit() {
         placeholder="0"
         value={amount}
         onValueChange={setAmount}
-        min={0}
+        min={options.min_amount}
+        max={options.max_amount}
         step="any"
         isRequired
         isDisabled={isProfileIncomplete}
+        description={t("EPayClub_amount_range", {
+          min: String(options.min_amount),
+          max: String(options.max_amount),
+          currency: options.currency,
+        })}
         classNames={{ input: "text-start" }}
       />
 
@@ -193,7 +300,7 @@ export default function EpayclubDeposit() {
         isDisabled={isSubmitting || isProfileIncomplete}
         onPress={handleDeposit}
       >
-        {t("Deposit")}
+        {method === "payment_link" ? t("EPayClub_continue_to_checkout") : t("Deposit")}
       </Button>
     </div>
   );
