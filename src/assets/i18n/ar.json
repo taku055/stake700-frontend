@@ -24,6 +24,7 @@
     "Dashboard": "لوحة التحكم",
     "Users": "المستخدمون",
     "Menu": "القائمة",
+    "Favorites": "المفضلة",
     "Sports": "رياضة",
     "Live Racing": "السباقات المباشرة",
     "All Games": "كل الألعاب",
@@ -1055,7 +1056,9 @@
     "login": "تسجيل الدخول"
   },
   "Favorite": {
-    "no_favorite_games": "لا توجد ألعاب مفضلة"
+    "title": "المفضلة",
+    "no_favorite_games": "لا توجد ألعاب مفضلة",
+    "browse_games": "تصفح الألعاب"
   },
   "Profile": {
     "Balance Management": "إدارة الرصيد",

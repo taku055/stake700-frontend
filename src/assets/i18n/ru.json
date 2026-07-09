@@ -24,6 +24,7 @@
     "Dashboard": "Панель управления",
     "Users": "Пользователи",
     "Menu": "Меню",
+    "Favorites": "Избранное",
     "Sports": "Спорт",
     "Live Racing": "Гонки в прямом эфире",
     "All Games": "Все игры",
@@ -1292,7 +1293,9 @@
     "login": "Войти"
   },
   "Favorite": {
-    "no_favorite_games": "Нет избранных игр"
+    "title": "Избранное",
+    "no_favorite_games": "Нет избранных игр",
+    "browse_games": "Просмотреть игры"
   },
   "EmulateBetting": {
     "Casino Bets": "Ставки казино",

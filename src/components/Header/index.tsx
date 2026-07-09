@@ -14,19 +14,21 @@ import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { SearchWidgetHeader } from "./SearchWidget";
 import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 import LocaleSelection from "../LocaleSelection";
-import { ChevronLeft, ChevronRight, Search } from "lucide-preact";
+import { ChevronLeft, ChevronRight, Heart, Search } from "lucide-preact";
 import {
   navigationSidebarExpandedState,
 } from "@/state/navigationSidebarState";
 import { Link } from "@/components/common";
 import { useMediaQuery } from "usehooks-ts";
 import ProfileMenu from "./ProfileMenu";
+import { useLocation } from "preact-iso";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("Header");
   const { modifyHref } = useAffiliateNavigation();
   const isMobile = useMediaQuery(mobileMediaQuery);
+  const location = useLocation();
 
   return (
     <header className="relative z-[200] bg-[#171412] w-full mx-auto h-[60px] flex items-center justify-center shadow-[0_4px_24px_0_#252525]">
@@ -78,6 +80,16 @@ export default function Header() {
                 <SearchWidgetHeader />
               </div>
             </div>
+            {userState.value?.id && (
+              <button
+                type="button"
+                className="flex md:w-[44px] md:h-[44px] w-[32px] h-[32px] items-center justify-center"
+                aria-label={t("Favorites")}
+                onClick={() => location.route("/favorites")}
+              >
+                <Heart aria-hidden="true" className="w-[20px] h-[20px]" />
+              </button>
+            )}
             {!userState.value?.id ? (
               <>
                 <Button

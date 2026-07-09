@@ -24,6 +24,7 @@
     "Dashboard": "Dashboard",
     "Users": "Users",
     "Menu": "Menu",
+    "Favorites": "Favorites",
     "Sports": "Sports",
     "Live Racing": "Live Racing",
     "All Games": "All Games",
@@ -1196,7 +1197,9 @@
     "login": "Login"
   },
   "Favorite": {
-    "no_favorite_games": "No favorite games"
+    "title": "Favorites",
+    "no_favorite_games": "No favorite games",
+    "browse_games": "Browse games"
   },
   "Profile": {
     "Balance Management": "Balance Management",

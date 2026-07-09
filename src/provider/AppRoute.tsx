@@ -27,6 +27,7 @@ import CasinoCategoryPage from "@/pages/casino-category";
 import VipPage from "@/pages/vip";
 import EpayclubCardCheckout from "@/pages/payment/epayclub/EpayclubCardCheckout";
 import EpayclubPaymentResult from "@/pages/payment/epayclub/EpayclubPaymentResult";
+import FavoritesPage from "@/pages/favorites";
 
 export default function AppRoute() {
   return (
@@ -40,6 +41,7 @@ export default function AppRoute() {
       <Route path="/casino/:pageType" component={CasinoLayout} />
       <Route path="/casino/:pageType/*" component={CasinoLayout} />
       <Route path="/game/:gameId" component={GamePageComponent} />
+      <Route path="/favorites" component={FavoritesPage} />
 
       <Route path="/promotions" component={PromotionsPage} />
       <Route path="/promotions/:articleId" component={ArticlePage} />

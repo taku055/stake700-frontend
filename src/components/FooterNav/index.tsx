@@ -2,7 +2,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
 import { useEffect, useMemo, useState } from "preact/hooks";
-import { Home, ChartArea, Crown, Users, Menu } from "lucide-preact";
+import { Home, ChartArea, Crown, Users, Menu, Heart } from "lucide-preact";
 
 import { userState } from "@/state/userState";
 import { useLocation } from "preact-iso";
@@ -13,6 +13,7 @@ import {
 export default function FooterNav() {
   const isMobile = useMediaQuery(mobileMediaQuery);
   const pathname = useLocation();
+  const { route } = pathname;
   const t = useTranslations("Header");
   const [isMenuOpen, setIsMenuOpen] = useState(
     navigationSidebarExpandedState.value
@@ -61,6 +62,12 @@ export default function FooterNav() {
             />
           ),
         },
+        {
+          title: t("Favorites"),
+          href: "/favorites",
+          key: "favorites",
+          icon: <Heart width={20} height={20} />,
+        },
       ];
     } else {      
       if (userState.value?.role === "AREA_MANAGER") {
@@ -106,12 +113,11 @@ export default function FooterNav() {
   useEffect(() => { }, [userState.value, tabList]);
 
   const selectedKey = useMemo(() => {
-    // if you use i18n like /en/..., strip the locale prefix here if needed
-    const current = tabList.find(
-      (t) =>
-        // startsWith is safer when routes have deeper paths
-        pathname.path === t.href
-    );
+    if (pathname.path === "/favorites") {
+      return "favorites";
+    }
+
+    const current = tabList.find((t) => pathname.path === t.href);
     return current?.key ?? tabList[0].key ?? "home";
   }, [pathname.path, tabList]);
 
@@ -130,6 +136,7 @@ export default function FooterNav() {
             onClick={(e) => {
               e.preventDefault();
               navigationSidebarExpandedState.value = false;
+              route(tab.href);
             }}
             className={`flex flex-col items-center justify-center py-2 gap-1 h-full min-w-0 ${selectedKey === tab.key
               ? "text-[var(--green-color)] border-t-2 border-[var(--green-color)]"

@@ -24,6 +24,7 @@
     "Dashboard": "Armaturenbrett",
     "Users": "Benutzer",
     "Menu": "Menü",
+    "Favorites": "Favoriten",
     "Sports": "Sport",
     "Live Racing": "Live-Rennen",
     "All Games": "Alle Spiele",
@@ -1052,7 +1053,9 @@
     "login": "Anmelden"
   },
   "Favorite": {
-    "no_favorite_games": "Keine Favoritenspiele"
+    "title": "Favoriten",
+    "no_favorite_games": "Keine Favoritenspiele",
+    "browse_games": "Spiele durchsuchen"
   },
   "Profile": {
     "Balance Management": "Kontoverwaltung",

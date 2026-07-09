@@ -24,6 +24,7 @@
     "Dashboard": "Tableau de bord",
     "Users": "Utilisateurs",
     "Menu": "Menu",
+    "Favorites": "Favoris",
     "Sports": "Sports",
     "Live Racing": "Courses en Direct",
     "All Games": "Tous les Jeux",
@@ -1043,7 +1044,9 @@
     "login": "Se connecter"
   },
   "Favorite": {
-    "no_favorite_games": "Aucun jeu favori"
+    "title": "Favoris",
+    "no_favorite_games": "Aucun jeu favori",
+    "browse_games": "Parcourir les jeux"
   },
   "Profile": {
     "Balance Management": "Gestion du Solde",

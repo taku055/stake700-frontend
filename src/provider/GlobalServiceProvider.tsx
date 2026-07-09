@@ -332,7 +332,10 @@ export default function GlobalServiceProvider({
   }, []);
 
   useEffect(() => {
-    if (!userState.value?.id) return;
+    if (!userState.value?.id) {
+      favoritesGameState.value = [];
+      return;
+    }
 
     const getFavorites = async () => {
       try {
