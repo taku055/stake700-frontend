@@ -50,6 +50,12 @@ export const useTablist = () => {
           navIcon: "/images/sidebar/home.png",
         },
         {
+          title: t("Pragmatic Live"),
+          href: `/casino/live-casino?providerId=${SIDEBAR_PRAGMATIC_PROVIDER_ID}`,
+          key: "pragmatic-live",
+          navIcon: "/images/sidebar/playtech-live.png",
+        },
+        {
           title: t("Promotions"),
           href: "/promotions",
           key: "promotions",
@@ -94,12 +100,6 @@ export const useTablist = () => {
           href: `/casino/live-casino?providerId=${SIDEBAR_EVOLUTION_PROVIDER_ID}`,
           key: "evolution-live",
           navIcon: "/images/sidebar/evolution-live.png",
-        },
-        {
-          title: t("Pragmatic Live"),
-          href: `/casino/live-casino?providerId=${SIDEBAR_PRAGMATIC_PROVIDER_ID}`,
-          key: "pragmatic-live",
-          navIcon: "/images/sidebar/playtech-live.png",
         },
         {
           title: t("Table Games"),
