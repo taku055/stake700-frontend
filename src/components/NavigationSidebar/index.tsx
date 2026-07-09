@@ -6,7 +6,7 @@ import { useLocation } from "preact-iso";
 import {
   useTablist,
   SIDEBAR_EVOLUTION_PROVIDER_ID,
-  SIDEBAR_PLAYTECH_PROVIDER_ID,
+  SIDEBAR_PRAGMATIC_PROVIDER_ID,
 } from "@/hooks/useTablist";
 import { tPageType } from "@/pages/casino/data";
 import CollapsedSidebar from "./CollapsedSidebar";
@@ -82,7 +82,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["home", "promotions", "vip", "slots", "live-casino", "evolution-live", "playtech-live", "table-games", "jackpots"].includes(
+        ["home", "promotions", "vip", "slots", "live-casino", "evolution-live", "pragmatic-live", "table-games", "jackpots"].includes(
           item.key
         )
       )
@@ -174,8 +174,8 @@ export default function NavigationSidebar() {
       const providerId = queryVal("providerId");
       if (providerId === SIDEBAR_EVOLUTION_PROVIDER_ID)
         return byKey("evolution-live");
-      if (providerId === SIDEBAR_PLAYTECH_PROVIDER_ID)
-        return byKey("playtech-live");
+      if (providerId === SIDEBAR_PRAGMATIC_PROVIDER_ID)
+        return byKey("pragmatic-live");
       const custom = queryVal("custom");
       const category = queryVal("category");
       if (custom === "1" && category === "tablegames")

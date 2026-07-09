@@ -9,8 +9,8 @@ import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
 /** Sidebar + `/casino/live-casino` deep links — keep in sync with active-state logic in NavigationSidebar. */
 export const SIDEBAR_EVOLUTION_PROVIDER_ID =
   "f66b7dcd21696a4242e1ff93608c405741802c92";
-export const SIDEBAR_PLAYTECH_PROVIDER_ID =
-  "8ada660e06b787f245667943dc948dafab997e25";
+  export const SIDEBAR_PRAGMATIC_PROVIDER_ID =
+    "8ada660e06b787f245667943dc948dafab997e25";
 
 // Map navigation keys to sidebar SVG icons
 const getNavIcon = (key: string): string => {
@@ -96,10 +96,10 @@ export const useTablist = () => {
           navIcon: "/images/sidebar/evolution-live.png",
         },
         {
-          title: t("Playtech Live"),
-          href: `/casino/live-casino?providerId=${SIDEBAR_PLAYTECH_PROVIDER_ID}`,
-          key: "playtech-live",
-          navIcon: "/images/sidebar/playtech-live.png",
+          title: t("Pragmatic Live"),
+          href: `/casino/live-casino?providerId=${SIDEBAR_PRAGMATIC_PROVIDER_ID}`,
+          key: "pragmatic-live",
+          navIcon: "/images/sidebar/pragmatic-live.png",
         },
         {
           title: t("Table Games"),
