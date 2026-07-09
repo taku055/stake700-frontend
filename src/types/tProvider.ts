@@ -6,6 +6,6 @@ export type tProvider = {
   order: number;
   added_slot: boolean;
   count: number;
-  gameSource: "IGP" | "SOFT" | "GROUP998" | "SLOTER" | "GSS" | "BETCONSTRUCT";
+  gameSource: "IGP" | "SOFT" | "GROUP998" | "SLOTER" | "GSS" | "BETCONSTRUCT" | "DATABETRIX";
   gameType: string[];
 };

@@ -5,10 +5,10 @@ import ProviderGroup from "@/components/ProviderGroup";
 import { useLocation } from "preact-iso";
 import { tPageType } from "./data";
 import { ProviderSelection } from "./components/ProviderSelection";
-import { providerState } from "@/state/providerState";
 import { useEffect, useState } from "preact/hooks";
 import { tProvider } from "@/types/tProvider";
 import { apiGetCustomCategoryProviders } from "@/api/common/apiGetCustomCategoryProviders";
+import { apiGetProviders } from "@/api/common/apiGetProviders";
 
 export default function CasinoPageComponent({
   pageType,
@@ -29,10 +29,20 @@ export default function CasinoPageComponent({
       };
       getProviders();
     } else {
-      setProviders(providerState.value.array);
+      const getProviders = async () => {
+        const category =
+          pageType === "live-casino"
+            ? "LIVECASINO"
+            : pageType === "slots"
+              ? "SLOT"
+              : undefined;
+        const res = await apiGetProviders(category);
+        setProviders(res);
+      };
+      getProviders();
     }
   }, [
-    providerState.value.array,
+    pageType,
     location.query.custom,
     location.query.category,
   ]);

@@ -70,7 +70,13 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
   useEffect(() => {
     (async () => {
       try {
-        const res = await apiGetProviders();
+        const res = await apiGetProviders(
+          category === "live-casino"
+            ? "LIVECASINO"
+            : category === "slots"
+              ? "SLOT"
+              : undefined,
+        );
         setProviderList(res.sort((a, b) => (a.order < b.order ? -1 : 1)));
       } catch (ex) {
         console.error(ex);
