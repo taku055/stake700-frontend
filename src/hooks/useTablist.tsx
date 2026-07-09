@@ -10,7 +10,7 @@ import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
 export const SIDEBAR_EVOLUTION_PROVIDER_ID =
   "f66b7dcd21696a4242e1ff93608c405741802c92";
   export const SIDEBAR_PRAGMATIC_PROVIDER_ID =
-    "8ada660e06b787f245667943dc948dafab997e25";
+    "41acd2793fd8ecef1b96345d9229cccc70c8fd41";
 
 // Map navigation keys to sidebar SVG icons
 const getNavIcon = (key: string): string => {
@@ -99,7 +99,7 @@ export const useTablist = () => {
           title: t("Pragmatic Live"),
           href: `/casino/live-casino?providerId=${SIDEBAR_PRAGMATIC_PROVIDER_ID}`,
           key: "pragmatic-live",
-          navIcon: "/images/sidebar/pragmatic-live.png",
+          navIcon: "/images/sidebar/playtech-live.png",
         },
         {
           title: t("Table Games"),
