@@ -10,7 +10,7 @@ import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
 export const SIDEBAR_EVOLUTION_PROVIDER_ID =
   "f66b7dcd21696a4242e1ff93608c405741802c92";
   export const SIDEBAR_PRAGMATIC_PROVIDER_ID =
-    "41acd2793fd8ecef1b96345d9229cccc70c8fd41";
+    "df282673fff1cdbe65c8100b96e8570b6ae973cc";
 
 // Map navigation keys to sidebar SVG icons
 const getNavIcon = (key: string): string => {
