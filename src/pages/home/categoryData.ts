@@ -46,7 +46,7 @@ export const HOME_PAGE_CATEGORIES: Record<
     "": { type: "component", component: "lobby-games" },
     casino: { type: "component", component: "casino-games" },
     "live-casino": { type: "component", component: "live-casino-games" },
-    jackpots: { type: "grid", category: "jackpots", gameType: "SLOT", isCustom: true },
+    jackpots: { type: "grid", category: "slot-jackpots", gameType: "SLOT", isCustom: true },
     megaways: { type: "grid", category: "megaways", gameType: "SLOT", isCustom: true },
   },
   "lobby-casino": {
@@ -57,7 +57,7 @@ export const HOME_PAGE_CATEGORIES: Record<
       gameType: "SLOT",
       isCustom: false,
     },
-    top: { type: "grid", category: "top-games", gameType: "SLOT", isCustom: true },
+    top: { type: "grid", category: "slot-top-slots", gameType: "SLOT", isCustom: true },
     new: { type: "grid", category: "slot-new", gameType: "SLOT", isCustom: true },
     popular: {
       type: "grid",
@@ -68,15 +68,15 @@ export const HOME_PAGE_CATEGORIES: Record<
     megaways: { type: "grid", gameType: "SLOT", isCustom: true, category: "megaways" },
     "table-games": {
       type: "grid",
-      category: "table-games",
-      gameType: "SLOT",
+      category: "tablegames",
+      gameType: "LIVECASINO",
       isCustom: true,
     },
-    jackpots: { type: "grid", gameType: "SLOT", isCustom: true, category: "jackpots" },
+    jackpots: { type: "grid", gameType: "SLOT", isCustom: true, category: "slot-jackpots" },
   },
   "lobby-live-casino": {
     "": { type: "component", component: "live-casino-games" },
-    top: { type: "grid", category: "toptables", gameType: "LIVECASINO", isCustom: true },
+    top: { type: "grid", category: "tablegames", gameType: "LIVECASINO", isCustom: true },
     roulette: {
       type: "grid",
       category: "rouletteglobal",

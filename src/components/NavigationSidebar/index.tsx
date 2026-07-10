@@ -186,7 +186,7 @@ export default function NavigationSidebar() {
     if (path.startsWith("/casino/slots")) {
       const custom = queryVal("custom");
       const category = queryVal("category");
-      if (custom === "1" && category === "slot-new") return byKey("jackpots");
+      if (custom === "1" && category === "slot-jackpots") return byKey("jackpots");
       return byKey("slots");
     }
 

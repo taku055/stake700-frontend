@@ -21,10 +21,10 @@ export default function LiveCasinoGames() {
         viewallLink={`/casino/live-casino/?custom=1&category=${"live-tables"}`}
       />
       <GridGameGroup
-        category={"toptables"}
+        category={"tablegames"}
         title={t("Top Tables") || "Top Tables"}
         isCustom={true}
-        viewallLink={`/casino/live-casino?custom=1&category=${"toptables"}`}
+        viewallLink={`/casino/live-casino?custom=1&category=${"tablegames"}`}
       />
       <GameGroup
         category={"highstakes"}

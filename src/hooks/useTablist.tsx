@@ -109,7 +109,7 @@ export const useTablist = () => {
         },
         {
           title: t("Jackpots"),
-          href: "/casino/slots?custom=1&category=jackpots",
+          href: "/casino/slots?custom=1&category=slot-jackpots",
           key: "jackpots",
           navIcon: "/images/category_logo/jackpots.png",
         },
