@@ -82,7 +82,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["home", "promotions", "vip", "slots", "live-casino", "evolution-live", "pragmatic-live", "table-games", "jackpots"].includes(
+        ["home", "promotions", "vip", "slots", "live-casino", "evolution-live", "pragmatic-live", "table-games", "live-racing", "jackpots"].includes(
           item.key
         )
       )
@@ -189,6 +189,8 @@ export default function NavigationSidebar() {
       if (custom === "1" && category === "slot-jackpots") return byKey("jackpots");
       return byKey("slots");
     }
+
+    if (path.startsWith("/sports/racing")) return byKey("live-racing");
 
     return mainNavItems.find((item) => {
       if (!item.href) return false;

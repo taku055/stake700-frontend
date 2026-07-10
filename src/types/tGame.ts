@@ -23,4 +23,6 @@ export type tGame = {
   providerId: string;
   gameSource: "IGP" | "SOFT" | "GSS" | "BETCONSTRUCT" | "SLOTER" | "EVENBET";
   img_vertical?: string;
+  /** When set, card links here instead of /game/:id (e.g. BBBet racing routes). */
+  href?: string;
 };

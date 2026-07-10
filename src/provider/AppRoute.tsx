@@ -22,6 +22,7 @@ import LawEnforcementRequestPage from "@/pages/support/law_enforcement_request";
 import AMLPolicyPage from "@/pages/about-us/aml_policy";
 import HomePage from "@/pages/home";
 import SportPage from "@/pages/sport";
+import RacingPage from "@/pages/sports/RacingPage";
 import AriesPaymentResult from "@/pages/payment/aries/AriesPaymentResult";
 import CasinoCategoryPage from "@/pages/casino-category";
 import VipPage from "@/pages/vip";
@@ -37,6 +38,18 @@ export default function AppRoute() {
       <Route path="/provably-fair" component={ProvablyFairLayout} />
 
       <Route path="/sports" component={SportPage} />
+      <Route
+        path="/sports/racing"
+        component={() => <RacingPage racing="horseRacing" />}
+      />
+      <Route
+        path="/sports/racing/greyhound"
+        component={() => <RacingPage racing="greyhound" />}
+      />
+      <Route
+        path="/sports/racing/harness"
+        component={() => <RacingPage racing="harness" />}
+      />
 
       <Route path="/casino/:pageType" component={CasinoLayout} />
       <Route path="/casino/:pageType/*" component={CasinoLayout} />

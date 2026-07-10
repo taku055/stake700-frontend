@@ -1,7 +1,7 @@
 import { signal } from "@preact/signals";
 import { tGame } from "@/types/tGame";
 
-const imgData = [
+const imgData: Array<{ name: string; img: string; href?: string }> = [
   {
     name: "Soccer",
     img: "buffer/soccer-en.png",
@@ -33,6 +33,7 @@ const imgData = [
   {
     name: "Horse Racing",
     img: "buffer/racing-en.png",
+    href: "/sports/racing",
   },
   {
     name: "Dota 2",
@@ -49,6 +50,7 @@ export const sportsState = signal<tGame[]>(
     id: item.name,
     name: item.name,
     img: item.img,
+    href: item.href,
     providerId: "",
     soft_categories: [],
     gameSource: "SOFT",

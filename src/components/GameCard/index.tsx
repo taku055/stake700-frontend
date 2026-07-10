@@ -135,7 +135,7 @@ export default function GameCard({
       <Link
         scrollToTop={true}
         className={`${styles.game} ${showOverlap ? styles.is_open : ""}`}
-        href={`/game/${data.id}`}
+        href={data.href || `/game/${data.id}`}
         preventDefaultOnClick={false}
         stopPropagationOnClick={false}
         onClick={() => onClick?.()}

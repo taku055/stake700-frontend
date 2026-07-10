@@ -108,6 +108,24 @@ export const useTablist = () => {
           navIcon: "/images/sidebar/table-games.png",
         },
         {
+          title: t("Live Racing"),
+          key: "live-racing",
+          navIcon: "/images/sidebar/sportsbook.svg",
+          expandable: true,
+          expandableItems: [
+            {
+              title: t("Horse Racing"),
+              href: "/sports/racing",
+              icon: "/images/category_logo/lobby.png",
+            },
+            {
+              title: t("Dog Racing"),
+              href: "/sports/racing/greyhound",
+              icon: "/images/category_logo/lobby.png",
+            },
+          ],
+        },
+        {
           title: t("Jackpots"),
           href: "/casino/slots?custom=1&category=slot-jackpots",
           key: "jackpots",
