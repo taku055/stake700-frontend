@@ -1,71 +1,15 @@
 import { useEffect, useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
-import { Button, Card, CardBody } from "@heroui/react";
-import {
-  AlertCircle,
-  CheckCircle2,
-  HelpCircle,
-  Home,
-  Loader2,
-  Wallet,
-} from "lucide-preact";
+import { AlertCircle, CheckCircle2, Loader2 } from "lucide-preact";
+import axios from "axios";
 import { useTranslations } from "@/context/I18nContext";
 import { apiVerifyEpayclubWithPolling } from "@/api/wallet/apiEpayclub";
-import { balanceState } from "@/state/balanceState";
-import { CURRENCY_LIST } from "@/config/constants";
-import { profileOpenedState } from "@/state/profileOpenedState";
 import {
   clearEpayclubCheckout,
   loadEpayclubCheckout,
 } from "@/helpers/epayclubSession";
-import axios from "axios";
-
-const statusConfig: Record<
-  string,
-  { icon: typeof CheckCircle2; labelKey: string; className: string }
-> = {
-  success: {
-    icon: CheckCircle2,
-    labelKey: "Success",
-    className: "text-emerald-400 bg-emerald-500/15 border-emerald-500/30",
-  },
-  completed: {
-    icon: CheckCircle2,
-    labelKey: "Completed",
-    className: "text-emerald-400 bg-emerald-500/15 border-emerald-500/30",
-  },
-  failed: {
-    icon: AlertCircle,
-    labelKey: "Failed",
-    className: "text-rose-400 bg-rose-500/15 border-rose-500/30",
-  },
-  pending: {
-    icon: Loader2,
-    labelKey: "Pending",
-    className: "text-amber-400 bg-amber-500/15 border-amber-500/30",
-  },
-  pending_callback: {
-    icon: Loader2,
-    labelKey: "Pending",
-    className: "text-amber-400 bg-amber-500/15 border-amber-500/30",
-  },
-  created: {
-    icon: Loader2,
-    labelKey: "Pending",
-    className: "text-amber-400 bg-amber-500/15 border-amber-500/30",
-  },
-};
-
-function getStatusConfig(status: string) {
-  const key = status?.toLowerCase?.() ?? "";
-  return (
-    statusConfig[key] ?? {
-      icon: HelpCircle,
-      labelKey: "Unknown",
-      className: "text-slate-400 bg-slate-500/15 border-slate-500/30",
-    }
-  );
-}
+import { CHECKOUT } from "./components/checkoutTheme";
+import { CheckoutFooter, CheckoutLogo } from "./components/CheckoutTrust";
 
 function resolveDisplayStatus(
   status?: string,
@@ -138,160 +82,140 @@ export default function EpayclubPaymentResult() {
     };
   }, [reference, checkoutToken, t]);
 
-  const balances = balanceState.value;
+  const isSuccess = result?.status === "success" || result?.status === "completed";
+  const isFailed = result?.status === "failed";
+  const isPending =
+    result?.status === "pending" ||
+    result?.status === "pending_callback" ||
+    result?.status === "created";
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-4 py-10 sm:px-6">
-      <div className="w-full max-w-md space-y-5">
-        <div className="text-center mb-2">
-          <p className="text-[22px] font-bold leading-none text-white">
-            ePay<span className="text-[var(--green-color)]">Club</span>
-          </p>
-          <h1 className="mt-4 text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            {t("title")}
-          </h1>
-          <p className="text-slate-400 text-sm mt-1">{t("subtitle")}</p>
-        </div>
+    <main
+      className="min-h-screen px-4 py-10 sm:px-6 sm:py-16"
+      style={{ backgroundColor: CHECKOUT.bg }}
+    >
+      <div className="mx-auto w-full max-w-[560px] animate-[fadeSlideIn_300ms_ease-out]">
+        <header className="mb-8">
+          <CheckoutLogo />
+        </header>
 
-        {!reference || !checkoutToken ? (
-          <Card className="border border-white/10 bg-[#0e1824]/80 shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
-            <CardBody className="flex flex-row items-center gap-3 p-5">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-500/20 shrink-0">
-                <HelpCircle className="w-5 h-5 text-slate-400" />
-              </div>
-              <div>
-                <p className="text-white font-medium">{t("missing_reference")}</p>
-                <p className="text-slate-400 text-sm">{t("missing_reference_hint")}</p>
-              </div>
-            </CardBody>
-          </Card>
-        ) : loading ? (
-          <Card className="border border-white/10 bg-[#0e1824]/80 shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
-            <CardBody className="flex flex-row items-center gap-3 p-5">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-amber-500/20 shrink-0">
-                <Loader2 className="w-5 h-5 text-amber-400 animate-spin" />
-              </div>
-              <div>
-                <p className="text-white font-medium">{t("verifying")}</p>
-                <p className="text-slate-400 text-sm">
-                  {t("reference")}:{" "}
-                  <span className="text-slate-300 font-mono text-xs break-all">
-                    {reference}
-                  </span>
-                </p>
-              </div>
-            </CardBody>
-          </Card>
-        ) : error ? (
-          <Card className="border border-rose-500/20 bg-[#0e1824]/80 shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
-            <CardBody className="flex flex-row items-center gap-3 p-5">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-rose-500/20 shrink-0">
-                <AlertCircle className="w-5 h-5 text-rose-400" />
-              </div>
-              <div className="min-w-0">
-                <p className="text-white font-medium">{t("something_wrong")}</p>
-                <p className="text-rose-300 text-sm break-words">{error}</p>
-              </div>
-            </CardBody>
-          </Card>
-        ) : result ? (
-          (() => {
-            const config = getStatusConfig(result.status);
-            const Icon = config.icon;
-            return (
-              <Card className="border border-white/10 bg-[#0e1824]/80 shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
-                <CardBody className="p-5">
-                  <div className="flex flex-row items-center gap-3">
-                    <div
-                      className={`flex items-center justify-center w-11 h-11 rounded-full border shrink-0 ${config.className}`}
-                    >
-                      <Icon
-                        className={`w-6 h-6 ${
-                          Icon === Loader2 ? "animate-spin" : ""
-                        }`}
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-slate-400 text-xs uppercase tracking-wider font-medium">
-                        {t("payment_status")}
-                      </p>
-                      <p className="text-white text-lg font-semibold capitalize mt-0.5">
-                        {t(config.labelKey)}
-                      </p>
-                      {result.message ? (
-                        <p className="text-slate-400 text-sm mt-1 break-words">
-                          {result.message}
-                        </p>
-                      ) : null}
-                      <p className="text-slate-500 text-xs font-mono mt-2 break-all">
-                        {reference}
-                      </p>
-                    </div>
-                  </div>
-                </CardBody>
-              </Card>
-            );
-          })()
-        ) : null}
-
-        <Card className="border border-white/10 bg-[#0e1824]/80 shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
-          <CardBody className="p-5">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex items-center justify-center w-11 h-11 rounded-full bg-[#FFFFFF20] shrink-0">
-                <Wallet className="w-6 h-6 text-white/90" />
-              </div>
-              <p className="text-slate-400 text-xs uppercase tracking-wider font-medium">
-                {t("current_balance")}
+        <div
+          className="overflow-hidden rounded-2xl border px-6 py-10 text-center sm:px-8"
+          style={{
+            backgroundColor: CHECKOUT.card,
+            borderColor: CHECKOUT.border,
+            boxShadow: CHECKOUT.shadow,
+          }}
+        >
+          {!reference || !checkoutToken ? (
+            <div className="space-y-3">
+              <AlertCircle className="mx-auto h-12 w-12 text-[#94A3B8]" aria-hidden />
+              <h1 className="text-xl font-semibold text-[#F8FAFC]">
+                {t("missing_reference")}
+              </h1>
+              <p className="text-sm text-[#94A3B8]">{t("missing_reference_hint")}</p>
+            </div>
+          ) : loading ? (
+            <div className="space-y-4">
+              <Loader2
+                className="mx-auto h-12 w-12 animate-spin text-[#00C16A]"
+                aria-hidden
+              />
+              <h1 className="text-xl font-semibold text-[#F8FAFC]">
+                {t("verifying")}
+              </h1>
+              <p className="text-sm text-[#94A3B8]">
+                {t("reference")}:{" "}
+                <span className="font-mono text-xs text-[#64748B]">{reference}</span>
               </p>
             </div>
-            <div className="flex flex-col gap-3">
-              {CURRENCY_LIST.map((cur) => {
-                const cashBalance = Number(balances[cur.code]?.cash?.balance ?? 0);
-                return (
-                  <div
-                    key={cur.code}
-                    className="flex items-center justify-between py-2 border-b border-white/10 last:border-0 last:pb-0"
-                  >
-                    <span className="text-slate-300 text-sm font-medium">
-                      {cur.code}
-                    </span>
-                    <p className="text-white text-lg font-bold leading-tight">
-                      {cashBalance.toFixed(2)}{" "}
-                      <span className="text-slate-400 font-normal text-base">
-                        {cur.symbol}
-                      </span>
-                    </p>
-                  </div>
-                );
-              })}
+          ) : error ? (
+            <div className="space-y-3">
+              <AlertCircle className="mx-auto h-12 w-12 text-[#F87171]" aria-hidden />
+              <h1 className="text-xl font-semibold text-[#F8FAFC]">
+                {t("something_wrong")}
+              </h1>
+              <p className="text-sm text-[#F87171]">{error}</p>
             </div>
-          </CardBody>
-        </Card>
-
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <Button
-            className="w-full bg-[var(--green-color)] font-semibold text-white"
-            onPress={() => {
-              profileOpenedState.value = {
-                isOpen: true,
-                defaultTab: "/balance-management/deposit",
-              };
-            }}
-          >
-            {t("back_to_deposit")}
-          </Button>
-          <Button
-            variant="bordered"
-            className="w-full border-white/15 text-white"
-            startContent={<Home className="h-4 w-4" />}
-            onPress={() => {
-              window.location.href = "/";
-            }}
-          >
-            {t("go_home")}
-          </Button>
+          ) : isSuccess ? (
+            <div className="space-y-4">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#00C16A]/15">
+                <CheckCircle2 className="h-9 w-9 text-[#00C16A]" aria-hidden />
+              </div>
+              <h1 className="text-2xl font-semibold text-[#F8FAFC]">
+                {t("success_title")}
+              </h1>
+              <p className="text-sm leading-relaxed text-[#94A3B8]">
+                {t("success_message")}
+              </p>
+              <p className="text-sm text-[#64748B]">{t("success_receipt")}</p>
+              <button
+                type="button"
+                className="mt-4 h-12 w-full rounded-xl bg-[#00C16A] text-base font-semibold text-white transition-all duration-200 hover:bg-[#00D676] hover:shadow-[0_8px_24px_rgba(0,193,106,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00C16A]/50"
+                onClick={() => {
+                  window.location.href = "/";
+                }}
+              >
+                {t("return_to_merchant")}
+              </button>
+            </div>
+          ) : isFailed ? (
+            <div className="space-y-4">
+              <AlertCircle className="mx-auto h-12 w-12 text-[#F87171]" aria-hidden />
+              <h1 className="text-xl font-semibold text-[#F8FAFC]">
+                {t("Failed")}
+              </h1>
+              {result?.message ? (
+                <p className="text-sm text-[#94A3B8]">{result.message}</p>
+              ) : null}
+              <button
+                type="button"
+                className="mt-2 h-12 w-full rounded-xl border border-[rgba(255,255,255,0.08)] bg-transparent text-base font-medium text-[#F8FAFC] transition-colors duration-200 hover:bg-white/[0.04]"
+                onClick={() => {
+                  window.location.href = "/";
+                }}
+              >
+                {t("return_to_merchant")}
+              </button>
+            </div>
+          ) : isPending ? (
+            <div className="space-y-4">
+              <Loader2
+                className="mx-auto h-12 w-12 animate-spin text-[#F59E0B]"
+                aria-hidden
+              />
+              <h1 className="text-xl font-semibold text-[#F8FAFC]">
+                {t("Pending")}
+              </h1>
+              {result?.message ? (
+                <p className="text-sm text-[#94A3B8]">{result.message}</p>
+              ) : null}
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <AlertCircle className="mx-auto h-12 w-12 text-[#94A3B8]" aria-hidden />
+              <h1 className="text-xl font-semibold text-[#F8FAFC]">
+                {t("Unknown")}
+              </h1>
+            </div>
+          )}
         </div>
+
+        <CheckoutFooter />
       </div>
-    </div>
+
+      <style>{`
+        @keyframes fadeSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </main>
   );
 }

@@ -3,16 +3,20 @@ const STORAGE_KEY = "epayclub_checkout";
 export type EpayclubCheckoutSession = {
   reference: string;
   checkoutToken: string;
+  amount?: number;
+  currency?: string;
 };
 
 export function saveEpayclubCheckout(
   reference: string,
   checkoutToken: string,
+  amount?: number,
+  currency?: string,
 ): void {
   try {
     sessionStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ reference, checkoutToken }),
+      JSON.stringify({ reference, checkoutToken, amount, currency }),
     );
   } catch {
     // Ignore storage errors (private browsing, etc.)

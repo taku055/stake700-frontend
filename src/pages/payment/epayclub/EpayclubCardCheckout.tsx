@@ -1,69 +1,70 @@
-import { Button, Input, Select, SelectItem } from "@heroui/react";
 import axios from "axios";
-import {
-  CreditCard,
-  Lock,
-  MapPin,
-  ShieldCheck,
-} from "lucide-preact";
-import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
+import { Loader2 } from "lucide-preact";
+import { useCallback, useEffect, useMemo, useRef, useState } from "preact/hooks";
 import {
   apiPayEpayclubCard,
   buildEpayclubResultUrl,
 } from "@/api/wallet/apiEpayclub";
 import { useTranslations } from "@/context/I18nContext";
 import { toast } from "@/helpers/toast";
-import { saveEpayclubCheckout } from "@/helpers/epayclubSession";
+import { loadEpayclubCheckout, saveEpayclubCheckout } from "@/helpers/epayclubSession";
 import { userState } from "@/state/userState";
+import { CheckoutField } from "./components/CheckoutField";
+import { CountryCombobox } from "./components/CountryCombobox";
+import { CvvTooltip } from "./components/CvvTooltip";
+import {
+  AcceptedPaymentLogos,
+  CardBrandIcon,
+} from "./components/PaymentBrandIcons";
+import {
+  CheckoutFooter,
+  CheckoutLogo,
+  CheckoutSecureNote,
+  CheckoutTrustBadges,
+} from "./components/CheckoutTrust";
+import {
+  detectCardBrand,
+  expectedCvvLength,
+  formatCardNumber,
+  isExpiryValid,
+  luhnCheck,
+  maxCardDigits,
+  onlyDigits,
+} from "./components/cardBrand";
+import { CHECKOUT } from "./components/checkoutTheme";
 
-const onlyDigits = (value: string) => value.replace(/\D/g, "");
-
-const COUNTRY_OPTIONS = [
-  { value: "SA", label: "Saudi Arabia" },
-  { value: "AE", label: "United Arab Emirates" },
-  { value: "KW", label: "Kuwait" },
-  { value: "QA", label: "Qatar" },
-  { value: "OM", label: "Oman" },
-  { value: "BH", label: "Bahrain" },
-  { value: "LB", label: "Lebanon" },
-  { value: "JO", label: "Jordan" },
-  { value: "IQ", label: "Iraq" },
-  { value: "GB", label: "United Kingdom" },
-  { value: "US", label: "United States" },
-];
-
-const ALLOWED_COUNTRY_VALUES = new Set(COUNTRY_OPTIONS.map((c) => c.value));
-
-const inputClassNames = {
-  label: "text-white/65 text-xs font-medium",
-  inputWrapper:
-    "bg-white/[0.04] border border-white/10 shadow-none hover:bg-white/[0.06] group-data-[focus=true]:border-emerald-400/45 group-data-[focus=true]:bg-white/[0.06]",
-  input: "text-white placeholder:text-white/25",
-  description: "text-white/40",
-};
+type FieldErrors = Partial<
+  Record<
+    | "cardnumber"
+    | "expirymonth"
+    | "expiryyear"
+    | "cvv"
+    | "street"
+    | "city"
+    | "state"
+    | "country"
+    | "zipcode",
+    string
+  >
+>;
 
 function resolveInitialCountry(saved: string | null | undefined): string {
-  if (saved && ALLOWED_COUNTRY_VALUES.has(saved.toUpperCase())) {
-    return saved.toUpperCase();
-  }
-  return "";
+  if (!saved) return "";
+  return saved.trim().toUpperCase();
 }
 
-function formatCardDisplay(value: string) {
-  return onlyDigits(value)
-    .slice(0, 19)
-    .replace(/(\d{4})(?=\d)/g, "$1 ")
-    .trim();
-}
-
-function maskCardNumber(value: string) {
-  const digits = onlyDigits(value);
-  if (!digits) return "•••• •••• •••• ••••";
-  const chars = [...digits];
-  for (let i = 0; i < chars.length - 4; i++) {
-    chars[i] = "•";
+function formatPayAmount(amount: number | null, currency: string) {
+  if (amount == null || !Number.isFinite(amount)) return null;
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount);
+  } catch {
+    return `${currency} ${amount.toFixed(2)}`;
   }
-  return chars.join("").replace(/(.{4})(?=.)/g, "$1 ");
 }
 
 export default function EpayclubCardCheckout() {
@@ -73,12 +74,24 @@ export default function EpayclubCardCheckout() {
   const checkoutToken = params.get("checkoutToken") || "";
   const isInvalidLink = !reference || !checkoutToken;
   const user = userState.value;
+  const savedSession = loadEpayclubCheckout();
+
+  const amountParam = params.get("amount");
+  const currencyParam = params.get("currency");
+  const payAmount = useMemo(() => {
+    const raw = amountParam ?? savedSession?.amount;
+    const parsed = raw == null ? null : Number(raw);
+    return parsed != null && Number.isFinite(parsed) ? parsed : null;
+  }, [amountParam, savedSession?.amount]);
+  const payCurrency = currencyParam || savedSession?.currency || "USD";
+  const formattedAmount = formatPayAmount(payAmount, payCurrency);
 
   const [cardnumber, setCardnumber] = useState("");
   const [expirymonth, setExpirymonth] = useState("");
   const [expiryyear, setExpiryyear] = useState("");
   const [cvv, setCvv] = useState("");
   const [street, setStreet] = useState(user?.address || "");
+  const [apartment, setApartment] = useState("");
   const [city, setCity] = useState(user?.city || "");
   const [state, setState] = useState(user?.state || "");
   const [country, setCountry] = useState(() =>
@@ -89,59 +102,172 @@ export default function EpayclubCardCheckout() {
     isInvalidLink ? t("invalid_link") : "",
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [submitted, setSubmitted] = useState(false);
 
-  const cardHolder = useMemo(() => {
-    const first = user?.firstName?.trim() ?? "";
-    const last = user?.lastName?.trim() ?? "";
-    const full = `${first} ${last}`.trim();
-    return full || t("card_preview_holder");
-  }, [user?.firstName, user?.lastName, t]);
+  const monthRef = useRef<HTMLInputElement>(null);
+  const yearRef = useRef<HTMLInputElement>(null);
+  const cvvRef = useRef<HTMLInputElement>(null);
 
-  const expiryPreview = useMemo(() => {
-    if (!expirymonth && !expiryyear) return "MM/YY";
-    return `${expirymonth.padStart(2, "0") || "MM"}/${expiryyear.padStart(2, "0") || "YY"}`;
-  }, [expirymonth, expiryyear]);
+  const cardDigits = onlyDigits(cardnumber);
+  const cardBrand = detectCardBrand(cardDigits);
 
   useEffect(() => {
-    const user = userState.value;
-    if (!user) return;
-
-    setStreet(user.address || "");
-    setCity(user.city || "");
-    setState(user.state || "");
-    setCountry(resolveInitialCountry(user.country));
-    setZipcode(user.zipCode || "");
+    const nextUser = userState.value;
+    if (!nextUser) return;
+    setStreet(nextUser.address || "");
+    setCity(nextUser.city || "");
+    setState(nextUser.state || "");
+    setCountry(resolveInitialCountry(nextUser.country));
+    setZipcode(nextUser.zipCode || "");
   }, [user]);
+
+  const errors = useMemo<FieldErrors>(() => {
+    const next: FieldErrors = {};
+    const show = (field: keyof FieldErrors) => submitted || touched[field];
+
+    if (show("cardnumber")) {
+      if (!cardDigits) next.cardnumber = t("error_required");
+      else if (cardDigits.length < 13) next.cardnumber = t("error_card_invalid");
+      else if (!luhnCheck(cardDigits)) next.cardnumber = t("error_card_invalid");
+    }
+
+    if (show("expirymonth")) {
+      if (!expirymonth) next.expirymonth = t("error_required");
+      else if (!/^(0[1-9]|1[0-2])$/.test(expirymonth)) {
+        next.expirymonth = t("error_expiry_invalid");
+      }
+    }
+
+    if (show("expiryyear")) {
+      if (!expiryyear) next.expiryyear = t("error_required");
+      else if (!isExpiryValid(expirymonth, expiryyear)) {
+        next.expiryyear = t("error_expiry_invalid");
+      }
+    }
+
+    if (show("cvv")) {
+      const len = expectedCvvLength(cardBrand);
+      if (!cvv) next.cvv = t("error_required");
+      else if (cvv.length < len) next.cvv = t("error_cvv_invalid");
+    }
+
+    if (show("street") && !street.trim()) next.street = t("error_required");
+    if (show("city") && !city.trim()) next.city = t("error_required");
+    if (show("state") && !state.trim()) next.state = t("error_required");
+    if (show("country") && !country) next.country = t("error_required");
+    if (show("zipcode") && !zipcode.trim()) next.zipcode = t("error_required");
+
+    return next;
+  }, [
+    cardBrand,
+    cardDigits,
+    city,
+    country,
+    cvv,
+    expirymonth,
+    expiryyear,
+    state,
+    street,
+    submitted,
+    t,
+    touched,
+    zipcode,
+  ]);
+
+  const isFormValid = useMemo(() => {
+    const len = expectedCvvLength(cardBrand);
+    return (
+      cardDigits.length >= 13 &&
+      luhnCheck(cardDigits) &&
+      /^(0[1-9]|1[0-2])$/.test(expirymonth) &&
+      isExpiryValid(expirymonth, expiryyear) &&
+      cvv.length >= len &&
+      street.trim() &&
+      city.trim() &&
+      state.trim() &&
+      country &&
+      zipcode.trim()
+    );
+  }, [
+    cardBrand,
+    cardDigits,
+    city,
+    country,
+    cvv,
+    expirymonth,
+    expiryyear,
+    state,
+    street,
+    zipcode,
+  ]);
+
+  const markTouched = (field: string) =>
+    setTouched((prev) => ({ ...prev, [field]: true }));
+
+  const handleCardChange = (value: string) => {
+    const digits = onlyDigits(value).slice(0, maxCardDigits(detectCardBrand(onlyDigits(value))));
+    setCardnumber(digits);
+    const brand = detectCardBrand(digits);
+    const maxLen = maxCardDigits(brand);
+    if (digits.length >= maxLen) {
+      monthRef.current?.focus();
+    }
+  };
+
+  const handleMonthChange = (value: string) => {
+    const digits = onlyDigits(value).slice(0, 2);
+    setExpirymonth(digits);
+    if (digits.length === 2) yearRef.current?.focus();
+  };
+
+  const handleYearChange = (value: string) => {
+    const digits = onlyDigits(value).slice(0, 2);
+    setExpiryyear(digits);
+    if (digits.length === 2) cvvRef.current?.focus();
+  };
 
   const handleSubmit = useCallback(
     async (event: Event) => {
       event.preventDefault();
       if (isInvalidLink) return;
 
+      setSubmitted(true);
+      if (!isFormValid) return;
+
       setIsSubmitting(true);
       setMessage(t("processing"));
+
+      const billingStreet = apartment.trim()
+        ? `${street.trim()}, ${apartment.trim()}`
+        : street.trim();
 
       try {
         const upperCountry = country.trim().toUpperCase();
         const res = await apiPayEpayclubCard({
           reference,
           checkoutToken,
-          cardnumber: onlyDigits(cardnumber),
+          cardnumber: cardDigits,
           expirymonth,
           expiryyear,
           cvv,
           country: upperCountry,
           authOption: "3DS",
           billingaddress: {
-            street,
-            city,
-            state,
+            street: billingStreet,
+            city: city.trim(),
+            state: state.trim(),
             country: upperCountry,
-            zipcode,
+            zipcode: zipcode.trim(),
           },
         });
 
-        saveEpayclubCheckout(reference, checkoutToken);
+        saveEpayclubCheckout(
+          reference,
+          checkoutToken,
+          payAmount ?? undefined,
+          payCurrency,
+        );
 
         if (res.redirect_url) {
           window.location.href = res.redirect_url;
@@ -173,14 +299,18 @@ export default function EpayclubCardCheckout() {
       }
     },
     [
-      cardnumber,
+      apartment,
+      cardDigits,
       checkoutToken,
       city,
       country,
       cvv,
       expirymonth,
       expiryyear,
+      isFormValid,
       isInvalidLink,
+      payAmount,
+      payCurrency,
       reference,
       state,
       street,
@@ -189,250 +319,230 @@ export default function EpayclubCardCheckout() {
     ],
   );
 
+  const payButtonLabel = formattedAmount
+    ? t("pay_amount_securely", { amount: formattedAmount })
+    : t("pay_now");
+
   return (
-    <main className="relative min-h-[75vh] overflow-hidden px-4 py-8 sm:px-6 sm:py-12">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(16,185,129,0.18),transparent_55%)]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-24 top-1/3 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-24 bottom-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl"
-      />
-
-      <div className="relative mx-auto w-full max-w-lg">
-        <div className="mb-6 text-center">
-          <p className="text-2xl font-bold leading-none text-white">
-            ePay<span className="text-[var(--green-color)]">Club</span>
-          </p>
-          <h1 className="mt-3 text-xl font-bold tracking-tight text-white sm:text-2xl">
-            {t("title")}
-          </h1>
-          <p className="mt-1 text-sm text-white/50">{t("subtitle")}</p>
-        </div>
-
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0c1520]/90 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-sm">
-          <div className="relative overflow-hidden bg-gradient-to-br from-emerald-600/30 via-[#0e2230] to-[#0a1520] px-5 py-6 sm:px-6">
-            <div
-              aria-hidden
-              className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-emerald-400/10 blur-2xl"
-            />
-            <div className="relative flex items-start justify-between gap-4">
-              <div className="min-w-0">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/45">
-                  {t("card_details")}
-                </p>
-                <p className="mt-3 font-mono text-lg tracking-[0.12em] text-white sm:text-xl">
-                  {maskCardNumber(cardnumber)}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-6 text-xs text-white/70">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-wider text-white/40">
-                      {t("card_preview_holder")}
-                    </p>
-                    <p className="mt-1 max-w-[180px] truncate font-medium uppercase text-white">
-                      {cardHolder}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-wider text-white/40">
-                      {t("card_preview_expires")}
-                    </p>
-                    <p className="mt-1 font-mono font-medium text-white">
-                      {expiryPreview}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <CreditCard className="h-9 w-9 shrink-0 text-emerald-300/80" />
-            </div>
+    <main
+      className="min-h-screen px-4 py-10 sm:px-6 sm:py-16"
+      style={{ backgroundColor: CHECKOUT.bg }}
+    >
+      <div className="mx-auto w-full max-w-[560px] animate-[fadeSlideIn_300ms_ease-out]">
+        <header className="mb-8 space-y-4 text-center">
+          <CheckoutLogo />
+          <div className="space-y-2">
+            <h1 className="text-2xl font-semibold tracking-tight text-[#F8FAFC] sm:text-[28px]">
+              {t("title")}
+            </h1>
+            <p className="mx-auto max-w-md text-sm leading-relaxed text-[#94A3B8]">
+              {t("subtitle")}
+            </p>
           </div>
+          <AcceptedPaymentLogos />
+        </header>
 
+        <div
+          className="overflow-hidden rounded-2xl border"
+          style={{
+            backgroundColor: CHECKOUT.card,
+            borderColor: CHECKOUT.border,
+            boxShadow: CHECKOUT.shadow,
+          }}
+        >
           {isInvalidLink ? (
-            <div className="px-5 py-8 sm:px-6">
-              <p className="text-center text-sm text-rose-300" role="alert">
+            <div className="px-6 py-10 sm:px-8">
+              <p
+                className="text-center text-sm text-[#F87171]"
+                role="alert"
+              >
                 {message}
               </p>
             </div>
           ) : (
             <form
-              className="space-y-6 px-5 py-6 sm:px-6"
+              className="space-y-8 px-6 py-8 sm:px-8"
               autoComplete="on"
               onSubmit={handleSubmit}
+              noValidate
             >
-              <section className="space-y-3.5">
-                <div className="flex items-center gap-2 text-white/80">
-                  <CreditCard className="h-4 w-4 text-emerald-400" />
-                  <h2 className="text-sm font-semibold">{t("card_details")}</h2>
-                </div>
-
-                <Input
-                  label={t("card_number")}
-                  inputMode="numeric"
-                  autoComplete="cc-number"
-                  value={formatCardDisplay(cardnumber)}
-                  onValueChange={(value) =>
-                    setCardnumber(onlyDigits(value).slice(0, 19))
-                  }
-                  isRequired
-                  classNames={inputClassNames}
-                  startContent={
-                    <CreditCard className="h-4 w-4 text-white/30" />
-                  }
-                />
-
-                <div className="grid grid-cols-3 gap-3">
-                  <Input
-                    label={t("expiry_month")}
-                    inputMode="numeric"
-                    autoComplete="cc-exp-month"
-                    maxLength={2}
-                    placeholder="MM"
-                    value={expirymonth}
-                    onValueChange={(value) =>
-                      setExpirymonth(onlyDigits(value).slice(0, 2))
-                    }
-                    isRequired
-                    classNames={inputClassNames}
-                  />
-                  <Input
-                    label={t("expiry_year")}
-                    inputMode="numeric"
-                    autoComplete="cc-exp-year"
-                    maxLength={2}
-                    placeholder="YY"
-                    value={expiryyear}
-                    onValueChange={(value) =>
-                      setExpiryyear(onlyDigits(value).slice(0, 2))
-                    }
-                    isRequired
-                    classNames={inputClassNames}
-                  />
-                  <Input
-                    label={t("cvv")}
-                    inputMode="numeric"
-                    autoComplete="cc-csc"
-                    maxLength={4}
-                    placeholder="•••"
-                    type="password"
-                    value={cvv}
-                    onValueChange={(value) =>
-                      setCvv(onlyDigits(value).slice(0, 4))
-                    }
-                    isRequired
-                    classNames={inputClassNames}
-                    endContent={<Lock className="h-3.5 w-3.5 text-white/30" />}
-                  />
-                </div>
-              </section>
-
-              <div className="h-px bg-white/8" />
-
-              <section className="space-y-3.5">
-                <div className="flex items-center gap-2 text-white/80">
-                  <MapPin className="h-4 w-4 text-emerald-400" />
-                  <h2 className="text-sm font-semibold">{t("billing_details")}</h2>
-                </div>
-
-                <Input
-                  label={t("street")}
-                  autoComplete="billing street-address"
-                  value={street}
-                  onValueChange={setStreet}
-                  isRequired
-                  classNames={inputClassNames}
-                />
-
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  <Input
-                    label={t("city")}
-                    autoComplete="billing address-level2"
-                    value={city}
-                    onValueChange={setCity}
-                    isRequired
-                    classNames={inputClassNames}
-                  />
-                  <Input
-                    label={t("state")}
-                    autoComplete="billing address-level1"
-                    value={state}
-                    onValueChange={setState}
-                    isRequired
-                    classNames={inputClassNames}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  <Select
-                    label={t("country")}
-                    placeholder={t("select_country")}
-                    selectedKeys={country ? [country] : []}
-                    variant="bordered"
-                    onSelectionChange={(keys) =>
-                      setCountry(Array.from(keys as Set<string>)[0] ?? "")
-                    }
-                    isRequired
-                    classNames={{
-                      label: inputClassNames.label,
-                      trigger:
-                        "bg-white/[0.04] border-white/10 data-[hover=true]:bg-white/[0.06] data-[focus=true]:border-emerald-400/45",
-                      value: "text-white",
-                      popoverContent: "bg-[#0e1824] border border-white/10",
-                    }}
-                    popoverProps={{
-                      shouldCloseOnScroll: false,
-                      shouldBlockScroll: true,
-                    }}
+              <fieldset
+                disabled={isSubmitting}
+                className="space-y-6 border-0 p-0 m-0 min-w-0"
+              >
+                <section className="space-y-4" aria-labelledby="card-section">
+                  <h2
+                    id="card-section"
+                    className="text-sm font-medium text-[#F8FAFC]"
                   >
-                    {COUNTRY_OPTIONS.map((c) => (
-                      <SelectItem key={c.value} textValue={c.label}>
-                        {c.label}
-                      </SelectItem>
-                    ))}
-                  </Select>
-                  <Input
-                    label={t("zip_code")}
-                    autoComplete="billing postal-code"
-                    value={zipcode}
-                    onValueChange={setZipcode}
-                    isRequired
-                    classNames={inputClassNames}
+                    {t("card_details")}
+                  </h2>
+
+                  <CheckoutField
+                    label={t("card_number")}
+                    inputMode="numeric"
+                    autoComplete="cc-number"
+                    value={formatCardNumber(cardnumber)}
+                    onValueChange={handleCardChange}
+                    onBlurValidate={() => markTouched("cardnumber")}
+                    error={errors.cardnumber}
+                    success={
+                      Boolean(cardDigits) &&
+                      !errors.cardnumber &&
+                      luhnCheck(cardDigits)
+                    }
+                    endContent={
+                      cardBrand !== "unknown" ? (
+                        <CardBrandIcon brand={cardBrand} className="h-5 w-auto text-[#94A3B8]" />
+                      ) : undefined
+                    }
                   />
-                </div>
-              </section>
 
-              <div className="space-y-3 pt-1">
-                <Button
+                  <div className="grid grid-cols-3 gap-3">
+                    <CheckoutField
+                      label={t("expiry_month")}
+                      inputMode="numeric"
+                      autoComplete="cc-exp-month"
+                      maxLength={2}
+                      value={expirymonth}
+                      onValueChange={handleMonthChange}
+                      inputRef={(el) => {
+                        monthRef.current = el;
+                      }}
+                      onBlurValidate={() => markTouched("expirymonth")}
+                      error={errors.expirymonth}
+                      success={Boolean(expirymonth) && !errors.expirymonth}
+                    />
+                    <CheckoutField
+                      label={t("expiry_year")}
+                      inputMode="numeric"
+                      autoComplete="cc-exp-year"
+                      maxLength={2}
+                      value={expiryyear}
+                      onValueChange={handleYearChange}
+                      inputRef={(el) => {
+                        yearRef.current = el;
+                      }}
+                      onBlurValidate={() => markTouched("expiryyear")}
+                      error={errors.expiryyear}
+                      success={Boolean(expiryyear) && !errors.expiryyear}
+                    />
+                    <CheckoutField
+                      label={t("cvv")}
+                      inputMode="numeric"
+                      autoComplete="cc-csc"
+                      maxLength={expectedCvvLength(cardBrand)}
+                      type="password"
+                      value={cvv}
+                      onValueChange={(value) =>
+                        setCvv(onlyDigits(value).slice(0, expectedCvvLength(cardBrand)))
+                      }
+                      inputRef={(el) => {
+                        cvvRef.current = el;
+                      }}
+                      onBlurValidate={() => markTouched("cvv")}
+                      error={errors.cvv}
+                      success={Boolean(cvv) && !errors.cvv}
+                      endContent={<CvvTooltip text={t("cvv_tooltip")} />}
+                    />
+                  </div>
+                </section>
+
+                <div className="h-px bg-[rgba(255,255,255,0.08)]" aria-hidden />
+
+                <section className="space-y-4" aria-labelledby="billing-section">
+                  <h2
+                    id="billing-section"
+                    className="text-sm font-medium text-[#F8FAFC]"
+                  >
+                    {t("billing_details")}
+                  </h2>
+
+                  <CheckoutField
+                    label={t("street")}
+                    autoComplete="billing street-address"
+                    value={street}
+                    onValueChange={setStreet}
+                    onBlurValidate={() => markTouched("street")}
+                    error={errors.street}
+                    success={Boolean(street.trim()) && !errors.street}
+                  />
+
+                  <CheckoutField
+                    label={t("apartment")}
+                    autoComplete="billing address-line2"
+                    value={apartment}
+                    onValueChange={setApartment}
+                  />
+
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <CheckoutField
+                      label={t("city")}
+                      autoComplete="billing address-level2"
+                      value={city}
+                      onValueChange={setCity}
+                      onBlurValidate={() => markTouched("city")}
+                      error={errors.city}
+                      success={Boolean(city.trim()) && !errors.city}
+                    />
+                    <CheckoutField
+                      label={t("state")}
+                      autoComplete="billing address-level1"
+                      value={state}
+                      onValueChange={setState}
+                      onBlurValidate={() => markTouched("state")}
+                      error={errors.state}
+                      success={Boolean(state.trim()) && !errors.state}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <CountryCombobox
+                      label={t("country")}
+                      value={country}
+                      onChange={(code) => {
+                        setCountry(code);
+                        markTouched("country");
+                      }}
+                      error={errors.country}
+                      disabled={isSubmitting}
+                    />
+                    <CheckoutField
+                      label={t("zip_code")}
+                      autoComplete="billing postal-code"
+                      value={zipcode}
+                      onValueChange={setZipcode}
+                      onBlurValidate={() => markTouched("zipcode")}
+                      error={errors.zipcode}
+                      success={Boolean(zipcode.trim()) && !errors.zipcode}
+                    />
+                  </div>
+                </section>
+              </fieldset>
+
+              <div className="space-y-4 pt-2">
+                <button
                   type="submit"
-                  className="min-h-12 w-full rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-base font-bold text-white shadow-[0_8px_24px_rgba(16,185,129,0.35)]"
-                  isDisabled={isSubmitting}
-                  isLoading={isSubmitting}
-                  startContent={
-                    !isSubmitting ? (
-                      <ShieldCheck className="h-5 w-5" />
-                    ) : undefined
-                  }
+                  disabled={isSubmitting}
+                  className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-[#00C16A] text-base font-semibold text-white transition-all duration-200 hover:bg-[#00D676] hover:shadow-[0_8px_24px_rgba(0,193,106,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00C16A]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#131B2C] disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  {t("pay_now")}
-                </Button>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
+                      {t("processing")}
+                    </>
+                  ) : (
+                    payButtonLabel
+                  )}
+                </button>
 
-                <p className="flex items-center justify-center gap-1.5 text-center text-[11px] text-white/40">
-                  <Lock className="h-3 w-3" />
-                  {t("secured_by")}
-                </p>
+                <CheckoutTrustBadges />
+                <CheckoutSecureNote />
 
-                {message ? (
+                {message && message !== t("processing") ? (
                   <p
-                    className={`text-center text-sm leading-snug ${
-                      message === t("processing")
-                        ? "text-amber-300"
-                        : "text-rose-300"
-                    }`}
-                    role="status"
+                    className="text-center text-sm text-[#F87171]"
+                    role="alert"
                   >
                     {message}
                   </p>
@@ -441,7 +551,33 @@ export default function EpayclubCardCheckout() {
             </form>
           )}
         </div>
+
+        <CheckoutFooter />
       </div>
+
+      <style>{`
+        @keyframes fadeSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+      `}</style>
     </main>
   );
 }

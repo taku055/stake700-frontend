@@ -143,12 +143,20 @@ export default function EpayclubDeposit() {
       const session = extractEpayclubCheckoutSession(res);
 
       if (session) {
-        saveEpayclubCheckout(session.reference, session.checkoutToken);
+        saveEpayclubCheckout(
+          session.reference,
+          session.checkoutToken,
+          num,
+          options.currency,
+        );
       }
 
       if (checkoutTarget?.type === "internal") {
         profileOpenedState.value = { isOpen: false };
-        location.route(checkoutTarget.path);
+        const checkoutUrl = new URL(checkoutTarget.path, window.location.origin);
+        checkoutUrl.searchParams.set("amount", String(num));
+        checkoutUrl.searchParams.set("currency", options.currency);
+        location.route(`${checkoutUrl.pathname}${checkoutUrl.search}`);
         return;
       }
 
