@@ -33,10 +33,10 @@ export default function LobbyGames() {
         viewallLink={`/casino/slots/?custom=1&category=${"megaways"}`}
       />
       <GameGroup
-        category={"slot-jackpots"}
+        category={"jackpots"}
         title={t("Jackpots") || "Jackpots"}
         isCustom={true}
-        viewallLink={`/casino/slots/?custom=1&category=${"slot-jackpots"}`}
+        viewallLink={`/casino/slots/?custom=1&category=${"jackpots"}`}
       />
       <GameGroup
         category={"hacksaw"}

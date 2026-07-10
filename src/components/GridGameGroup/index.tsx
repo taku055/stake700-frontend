@@ -10,6 +10,7 @@ import GameCard from "@/components/GameCard";
 import { Button } from "@heroui/react";
 import { customGamesState } from "@/state/customGamesState";
 import { useTranslations } from "@/context/I18nContext";
+import { matchesCustomCategory } from "@/config/customGameCategories";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
@@ -64,7 +65,7 @@ export default function GridGameGroup({
       }
       const data = isCustom
         ? customGamesState.value
-          .filter((c) => c.category === category)
+          .filter((c) => matchesCustomCategory(c.category, category ?? ""))
           .slice(0, 30)
           .map((e) => e.Game as tGame)
         : (

@@ -46,7 +46,7 @@ export const HOME_PAGE_CATEGORIES: Record<
     "": { type: "component", component: "lobby-games" },
     casino: { type: "component", component: "casino-games" },
     "live-casino": { type: "component", component: "live-casino-games" },
-    jackpots: { type: "grid", category: "slot-jackpots", gameType: "SLOT", isCustom: true },
+    jackpots: { type: "grid", category: "jackpots", gameType: "SLOT", isCustom: true },
     megaways: { type: "grid", category: "megaways", gameType: "SLOT", isCustom: true },
   },
   "lobby-casino": {
@@ -72,7 +72,7 @@ export const HOME_PAGE_CATEGORIES: Record<
       gameType: "LIVECASINO",
       isCustom: true,
     },
-    jackpots: { type: "grid", gameType: "SLOT", isCustom: true, category: "slot-jackpots" },
+    jackpots: { type: "grid", gameType: "SLOT", isCustom: true, category: "jackpots" },
   },
   "lobby-live-casino": {
     "": { type: "component", component: "live-casino-games" },

@@ -65,7 +65,7 @@ export const CASINO_CATEGORY_PAGES: Record<
   "jackpots-casino": {
     section: "slots",
     tab: { key: "jackpots", name: "Jackpots", icon: "/images/category_logo/jackpots.png" },
-    render: { type: "grid", category: "slot-jackpots", gameType: "SLOT", isCustom: true },
+    render: { type: "grid", category: "jackpots", gameType: "SLOT", isCustom: true },
   },
   "megaways-casino": {
     section: "slots",

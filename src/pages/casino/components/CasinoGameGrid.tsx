@@ -7,6 +7,7 @@ import Loader from "@/components/Loader";
 import { tGame } from "@/types/tGame";
 import { customGamesState } from "@/state/customGamesState";
 import { apiGetGames } from "@/api/common/apiGetGames";
+import { matchesCustomCategory } from "@/config/customGameCategories";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 import {
@@ -89,7 +90,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
         if (isCustom) {
           const totalGames = customGamesState.value.filter(
             (c) =>
-              c.category === category &&
+              matchesCustomCategory(c.category, category) &&
               (provider && c.Game?.providerId
                 ? provider.includes(c.Game?.providerId)
                 : true),
