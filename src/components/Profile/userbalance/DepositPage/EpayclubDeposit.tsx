@@ -162,7 +162,18 @@ export default function EpayclubDeposit() {
 
       if (checkoutTarget?.type === "external") {
         profileOpenedState.value = { isOpen: false };
-        window.location.assign(checkoutTarget.url);
+        const checkoutUrl = new URL(checkoutTarget.url);
+        if (method === "card") {
+          checkoutUrl.searchParams.set("amount", String(num));
+          checkoutUrl.searchParams.set("currency", options.currency);
+          const user = userState.value;
+          if (user?.address) checkoutUrl.searchParams.set("street", user.address);
+          if (user?.city) checkoutUrl.searchParams.set("city", user.city);
+          if (user?.state) checkoutUrl.searchParams.set("state", user.state);
+          if (user?.country) checkoutUrl.searchParams.set("country", user.country);
+          if (user?.zipCode) checkoutUrl.searchParams.set("zipcode", user.zipCode);
+        }
+        window.location.assign(checkoutUrl.toString());
         return;
       }
 

@@ -1,4 +1,4 @@
-import { userState } from "@/state/userState";
+import { buildEpayclubExternalResultUrl } from "@/helpers/epayclubDeposit";
 import { effect } from "@preact/signals";
 import { useEffect, useRef } from "preact/hooks";
 import useSocketEvent from "@/hooks/useSocketEvent";
@@ -122,6 +122,12 @@ function EpayclubReturnHandler() {
     const checkoutToken = location.query?.checkoutToken;
     if (!reference || !checkoutToken) return;
     if (location.path !== "/") return;
+
+    const external = buildEpayclubExternalResultUrl(reference, checkoutToken);
+    if (external) {
+      window.location.replace(external);
+      return;
+    }
 
     const url = new URL("/payment/epayclub/result", window.location.origin);
     url.searchParams.set("reference", reference);

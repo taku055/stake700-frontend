@@ -65,6 +65,36 @@ export function canChooseEpayclubDepositMethod(
   return hasMultipleEpayclubDepositMethods(options);
 }
 
+export function getEpayclubCheckoutBaseUrl(): string | null {
+  const raw = import.meta.env.VITE_EPAYCLUB_CHECKOUT_URL?.trim();
+  if (!raw) return null;
+  return raw.replace(/\/$/, "");
+}
+
+export function buildEpayclubExternalCheckoutUrl(
+  reference: string,
+  checkoutToken: string,
+): string | null {
+  const base = getEpayclubCheckoutBaseUrl();
+  if (!base) return null;
+  const url = new URL("/checkout", `${base}/`);
+  url.searchParams.set("reference", reference);
+  url.searchParams.set("checkoutToken", checkoutToken);
+  return url.toString();
+}
+
+export function buildEpayclubExternalResultUrl(
+  reference: string,
+  checkoutToken: string,
+): string | null {
+  const base = getEpayclubCheckoutBaseUrl();
+  if (!base) return null;
+  const url = new URL("/result", `${base}/`);
+  url.searchParams.set("reference", reference);
+  url.searchParams.set("checkoutToken", checkoutToken);
+  return url.toString();
+}
+
 export function resolveEpayclubCheckoutTarget(
   res: tEpayclubCreateDepositResponse,
   method: EpayclubDepositMethod,
@@ -98,6 +128,14 @@ export function resolveEpayclubCheckoutTarget(
   const checkoutToken = res.checkoutToken ?? res.data?.checkoutToken;
   if (!reference || !checkoutToken) {
     return null;
+  }
+
+  const externalCheckout = buildEpayclubExternalCheckoutUrl(
+    reference,
+    checkoutToken,
+  );
+  if (externalCheckout) {
+    return { type: "external", url: externalCheckout };
   }
 
   const params = new URLSearchParams({

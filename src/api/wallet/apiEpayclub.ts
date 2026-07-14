@@ -1,5 +1,6 @@
 import { instance } from "../instance";
 import type { EpayclubDepositOptions } from "@/helpers/epayclubDeposit";
+import { buildEpayclubExternalResultUrl } from "@/helpers/epayclubDeposit";
 
 export type tEpayclubCreateDepositResponse = {
   success?: boolean;
@@ -148,6 +149,9 @@ export async function apiVerifyEpayclubWithPolling(
 }
 
 export function buildEpayclubResultUrl(reference: string, checkoutToken: string) {
+  const external = buildEpayclubExternalResultUrl(reference, checkoutToken);
+  if (external) return external;
+
   const url = new URL("/payment/epayclub/result", window.location.origin);
   url.searchParams.set("reference", reference);
   url.searchParams.set("checkoutToken", checkoutToken);
