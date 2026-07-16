@@ -38,7 +38,7 @@ const DepositPage = () => {
             title={
               <ProfilePayTabTitle
                 src={PROFILE_PAY_TAB.epayClub}
-                label={t("EPayClub")}
+                label={t("Visa", undefined, "Visa")}
               />
             }
           >

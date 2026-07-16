@@ -1,15 +1,16 @@
 import { Lock } from "lucide-preact";
 import { useTranslations } from "@/context/I18nContext";
+import { VisaIcon } from "./PaymentBrandIcons";
 
 export function CheckoutTrustBadges() {
   const t = useTranslations("EpayclubCheckout");
 
   const items = [
-  { icon: "🔒", label: t("trust_ssl") },
-  { label: t("trust_pci") },
-  { label: t("trust_encryption") },
-  { label: t("trust_money_back") },
-];
+    { icon: "🔒", label: t("trust_ssl") },
+    { label: t("trust_pci") },
+    { label: t("trust_encryption") },
+    { label: t("trust_money_back") },
+  ];
 
   return (
     <div
@@ -36,14 +37,8 @@ export function CheckoutFooter() {
 
   return (
     <footer className="mt-8 text-center">
-      <p className="text-xs text-[#64748B]">
-        {t("powered_by")}{" "}
-        <span className="font-medium text-[#94A3B8]">
-          ePay<span className="text-[#00C16A]">Club</span>
-        </span>
-      </p>
       <nav
-        className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs"
+        className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs"
         aria-label={t("footer_nav_label")}
       >
         <a
@@ -71,9 +66,15 @@ export function CheckoutFooter() {
 
 export function CheckoutLogo() {
   return (
-    <div className="text-center">
-      <p className="text-[22px] font-bold leading-none tracking-tight text-[#F8FAFC]">
-        ePay<span className="text-[#00C16A]">Club</span>
+    <div className="flex flex-col items-center gap-2">
+      <div
+        className="flex h-12 w-[76px] items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.08)] bg-white px-3"
+        aria-label="Visa"
+      >
+        <VisaIcon className="h-5 w-auto text-[#1A1F71]" />
+      </div>
+      <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#64748B]">
+        Secure Checkout
       </p>
     </div>
   );
