@@ -127,7 +127,8 @@ export function resolveEpayclubCheckoutTarget(
     return null;
   }
 
-  const reference = res.reference ?? res.data?.reference;
+  const preReference = res.reference ?? res.data?.reference;
+  const reference = preReference?.split("_").slice(-2).join("_");
   const checkoutToken = res.checkoutToken ?? res.data?.checkoutToken;
   if (!reference || !checkoutToken) {
     return null;
