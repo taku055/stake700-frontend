@@ -24,6 +24,7 @@ import {
   type EpayclubDepositMethod,
   type EpayclubDepositOptions,
 } from "@/helpers/epayclubDeposit";
+import { VisaIcon } from "@/pages/payment/epayclub/components/PaymentBrandIcons";
 
 const PROFILE_FIELD_KEYS: Record<EpayclubProfileField, string> = {
   firstName: "EPayClub_missing_field_firstName",
@@ -92,13 +93,6 @@ export default function EpayclubDeposit() {
     optionsLoaded &&
     // !options.payment_link_enabled &&
     !options.card_checkout_enabled;
-
-  // Payment link temporarily disabled — always show card checkout label.
-  const methodLabel = t("EPayClub card checkout");
-  // const methodLabel =
-  //   method === "payment_link"
-  //     ? t("EPayClub_payment_link")
-  //     : t("EPayClub card checkout");
 
   const handleDeposit = useCallback(async () => {
     setError("");
@@ -253,13 +247,8 @@ export default function EpayclubDeposit() {
   return (
     <div className="flex flex-col w-full max-w-md mx-auto gap-6 py-2">
       <div className="flex justify-center">
-        <div className="flex min-w-[min(100%,280px)] flex-col items-center justify-center rounded-lg border border-emerald-400/35 bg-[#0e1824] px-8 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-          <span className="text-[22px] font-bold leading-none text-white">
-            ePay<span className="text-[var(--green-color)]">Club</span>
-          </span>
-          <span className="mt-2 text-sm font-semibold text-white/75">
-            {methodLabel}
-          </span>
+        <div className="flex min-w-[min(100%,280px)] flex-col items-center justify-center rounded-lg border border-emerald-400/35 bg-[#0e1824] px-8 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+          <VisaIcon className="h-8 w-auto text-white" />
         </div>
       </div>
 
