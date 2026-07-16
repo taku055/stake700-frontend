@@ -20,7 +20,8 @@ export const DEFAULT_EPAYCLUB_DEPOSIT_OPTIONS: EpayclubDepositOptions = {
   currency: "USD",
   min_amount: 1,
   max_amount: 1_000_000,
-  payment_link_enabled: true,
+  // payment_link_enabled: true,
+  payment_link_enabled: false,
   card_checkout_enabled: true,
 };
 
@@ -41,15 +42,17 @@ export function resolveEpayclubDepositMethod(
   search = "",
 ): EpayclubDepositMethod {
   const requested = parseEpayclubMethodParam(search);
-  if (requested === "payment_link" && options.payment_link_enabled) {
-    return "payment_link";
-  }
+  // Payment link deposit temporarily disabled on frontend.
+  // if (requested === "payment_link" && options.payment_link_enabled) {
+  //   return "payment_link";
+  // }
   if (requested === "card" && options.card_checkout_enabled) {
     return "card";
   }
-  if (options.payment_link_enabled) return "payment_link";
+  // if (options.payment_link_enabled) return "payment_link";
   if (options.card_checkout_enabled) return "card";
-  return "payment_link";
+  // return "payment_link";
+  return "card";
 }
 
 export function hasMultipleEpayclubDepositMethods(

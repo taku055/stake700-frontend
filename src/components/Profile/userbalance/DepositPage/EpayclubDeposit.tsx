@@ -4,7 +4,7 @@ import { Button, Input, Spinner } from "@heroui/react";
 import axios from "axios";
 import {
   apiCreateEpayclubDeposit,
-  apiCreateEpayclubLinkDeposit,
+  // apiCreateEpayclubLinkDeposit,
   apiGetEpayclubDepositOptions,
 } from "@/api/wallet/apiEpayclub";
 import { toast } from "@/helpers/toast";
@@ -41,7 +41,8 @@ export default function EpayclubDeposit() {
     DEFAULT_EPAYCLUB_DEPOSIT_OPTIONS,
   );
   const [optionsLoaded, setOptionsLoaded] = useState(false);
-  const [method, setMethod] = useState<EpayclubDepositMethod>("payment_link");
+  // Payment link deposit temporarily disabled — default to card checkout.
+  const [method, setMethod] = useState<EpayclubDepositMethod>("card");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -52,9 +53,14 @@ export default function EpayclubDeposit() {
       try {
         const nextOptions = await apiGetEpayclubDepositOptions();
         if (cancelled) return;
-        setOptions(nextOptions);
+        // Force-disable payment link on frontend regardless of backend options.
+        const patchedOptions = {
+          ...nextOptions,
+          payment_link_enabled: false,
+        };
+        setOptions(patchedOptions);
         setMethod(
-          resolveEpayclubDepositMethod(nextOptions, window.location.search),
+          resolveEpayclubDepositMethod(patchedOptions, window.location.search),
         );
       } catch {
         if (cancelled) return;
@@ -80,17 +86,19 @@ export default function EpayclubDeposit() {
     [userState.value],
   );
   const isProfileIncomplete = missingProfileFields.length > 0;
-  const showMethodPicker = options.enabled;
+  // const showMethodPicker = options.enabled;
   const isProviderDisabled = optionsLoaded && !options.enabled;
   const isMethodDisabled =
     optionsLoaded &&
-    !options.payment_link_enabled &&
+    // !options.payment_link_enabled &&
     !options.card_checkout_enabled;
 
-  const methodLabel =
-    method === "payment_link"
-      ? t("EPayClub_payment_link")
-      : t("EPayClub card checkout");
+  // Payment link temporarily disabled — always show card checkout label.
+  const methodLabel = t("EPayClub card checkout");
+  // const methodLabel =
+  //   method === "payment_link"
+  //     ? t("EPayClub_payment_link")
+  //     : t("EPayClub card checkout");
 
   const handleDeposit = useCallback(async () => {
     setError("");
@@ -135,9 +143,10 @@ export default function EpayclubDeposit() {
       const promoId =
         new URLSearchParams(window.location.search).get("promo") ?? undefined;
       const createDeposit =
-        method === "payment_link"
-          ? apiCreateEpayclubLinkDeposit
-          : apiCreateEpayclubDeposit;
+        // method === "payment_link"
+        //   ? apiCreateEpayclubLinkDeposit
+        //   : apiCreateEpayclubDeposit;
+        apiCreateEpayclubDeposit;
       const res = await createDeposit(num, promoId);
       const checkoutTarget = resolveEpayclubCheckoutTarget(res, method);
       const session = extractEpayclubCheckoutSession(res);
@@ -207,15 +216,16 @@ export default function EpayclubDeposit() {
     t,
   ]);
 
-  const selectMethod = useCallback(
-    (next: EpayclubDepositMethod) => {
-      if (next === "payment_link" && !options.payment_link_enabled) return;
-      if (next === "card" && !options.card_checkout_enabled) return;
-      setMethod(next);
-      setError("");
-    },
-    [options.card_checkout_enabled, options.payment_link_enabled],
-  );
+  // Method picker temporarily disabled with payment link.
+  // const selectMethod = useCallback(
+  //   (next: EpayclubDepositMethod) => {
+  //     if (next === "payment_link" && !options.payment_link_enabled) return;
+  //     if (next === "card" && !options.card_checkout_enabled) return;
+  //     setMethod(next);
+  //     setError("");
+  //   },
+  //   [options.card_checkout_enabled, options.payment_link_enabled],
+  // );
 
   const openProfile = useCallback(() => {
     profileOpenedState.value = {
@@ -253,6 +263,7 @@ export default function EpayclubDeposit() {
         </div>
       </div>
 
+      {/* Payment link deposit temporarily disabled on frontend.
       {showMethodPicker ? (
         <div className="flex flex-col gap-2">
           <p className="text-sm text-white/70">{t("EPayClub_deposit_method")}</p>
@@ -286,16 +297,11 @@ export default function EpayclubDeposit() {
           </div>
         </div>
       ) : null}
+      */}
 
-      {method === "payment_link" ? (
-        <p className="text-xs text-white/50 leading-relaxed">
-          {t("EPayClub_payment_link_hint")}
-        </p>
-      ) : (
-        <p className="text-xs text-white/50 leading-relaxed">
-          {t("EPayClub_card_checkout_hint")}
-        </p>
-      )}
+      <p className="text-xs text-white/50 leading-relaxed">
+        {t("EPayClub_card_checkout_hint")}
+      </p>
 
       {isProfileIncomplete ? (
         <div
@@ -349,7 +355,8 @@ export default function EpayclubDeposit() {
         isDisabled={isSubmitting || isProfileIncomplete}
         onPress={handleDeposit}
       >
-        {method === "payment_link" ? t("EPayClub_continue_to_checkout") : t("Deposit")}
+        {t("Deposit")}
+        {/* {method === "payment_link" ? t("EPayClub_continue_to_checkout") : t("Deposit")} */}
       </Button>
     </div>
   );
