@@ -98,6 +98,17 @@ export function buildEpayclubExternalResultUrl(
   return url.toString();
 }
 
+function getCheckoutSessionFromResponse(
+  res: tEpayclubCreateDepositResponse,
+): { reference: string; checkoutToken: string } | null {
+  const reference = (res.reference ?? res.data?.reference)?.trim();
+  const checkoutToken = (res.checkoutToken ?? res.data?.checkoutToken)?.trim();
+  if (!reference || !checkoutToken) {
+    return null;
+  }
+  return { reference, checkoutToken };
+}
+
 export function resolveEpayclubCheckoutTarget(
   res: tEpayclubCreateDepositResponse,
   method: EpayclubDepositMethod,
@@ -127,12 +138,12 @@ export function resolveEpayclubCheckoutTarget(
     return null;
   }
 
-  const preReference = res.reference ?? res.data?.reference;
-  const reference = preReference?.split("_").slice(-2).join("_");
-  const checkoutToken = res.checkoutToken ?? res.data?.checkoutToken;
-  if (!reference || !checkoutToken) {
+  const session = getCheckoutSessionFromResponse(res);
+  if (!session) {
     return null;
   }
+
+  const { reference, checkoutToken } = session;
 
   const externalCheckout = buildEpayclubExternalCheckoutUrl(
     reference,
@@ -155,10 +166,5 @@ export function resolveEpayclubCheckoutTarget(
 export function extractEpayclubCheckoutSession(
   res: tEpayclubCreateDepositResponse,
 ) {
-  const reference = res.reference ?? res.data?.reference;
-  const checkoutToken = res.checkoutToken ?? res.data?.checkoutToken;
-  if (!reference || !checkoutToken) {
-    return null;
-  }
-  return { reference, checkoutToken };
+  return getCheckoutSessionFromResponse(res);
 }
