@@ -321,7 +321,8 @@
     "successfully_registered": "تم التسجيل بنجاح",
     "email_or_username_already_taken": "البريد الإلكتروني أو اسم المستخدم مستخدم بالفعل",
     "something_went_wrong": "حدث خطأ ما",
-    "already_have_an_account": "لديك حساب بالفعل؟"
+    "already_have_an_account": "لديك حساب بالفعل؟",
+    "phone": "رقم الجوال"
   },
   "HomePage": {
     "casino-games": "ألعاب الكازينو",
@@ -2172,5 +2173,29 @@
     "Clear all": "مسح الكل",
     "view_all": "عرض الكل",
     "providers_back": "رجوع"
+  },
+  "VerifyEmailPage": {
+    "title": "Verify email",
+    "verifying": "Confirming your email address…",
+    "missing_token": "This verification link is missing or invalid.",
+    "request_failed": "We could not verify your email. The link may have expired.",
+    "success_message": "Your email has been verified successfully.",
+    "login_now": "Log in",
+    "go_home": "Go to home"
+  },
+  "ResetPasswordPage": {
+    "title": "Reset password",
+    "description": "Choose a new password for your account.",
+    "password_label": "New password",
+    "password_required": "Please enter a new password.",
+    "submit": "Update password",
+    "submitting": "Updating…",
+    "success_message": "Your password has been updated.",
+    "login_now": "Log in",
+    "missing_token": "This reset link is missing or invalid.",
+    "token_not_found": "This reset link is invalid.",
+    "token_expired": "This reset link has expired.",
+    "request_failed": "Could not reset password. Please try again.",
+    "request_new_link": "Request a new reset link"
   }
 }

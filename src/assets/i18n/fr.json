@@ -319,7 +319,8 @@
     "email_or_username_already_taken": "L'email ou le nom d'utilisateur est déjà utilisé",
     "something_went_wrong": "Une erreur s'est produite",
     "login_an_account": "Log in",
-    "already_have_an_account": "Vous avez déjà un compte ?"
+    "already_have_an_account": "Vous avez déjà un compte ?",
+    "phone": "Numéro de mobile"
   },
   "HomePage": {
     "casino-games": "Jeux de casino",
@@ -2050,5 +2051,29 @@
     "Clear all": "Tout effacer",
     "view_all": "Tout voir",
     "providers_back": "Retour"
+  },
+  "VerifyEmailPage": {
+    "title": "Verify email",
+    "verifying": "Confirming your email address…",
+    "missing_token": "This verification link is missing or invalid.",
+    "request_failed": "We could not verify your email. The link may have expired.",
+    "success_message": "Your email has been verified successfully.",
+    "login_now": "Log in",
+    "go_home": "Go to home"
+  },
+  "ResetPasswordPage": {
+    "title": "Reset password",
+    "description": "Choose a new password for your account.",
+    "password_label": "New password",
+    "password_required": "Please enter a new password.",
+    "submit": "Update password",
+    "submitting": "Updating…",
+    "success_message": "Your password has been updated.",
+    "login_now": "Log in",
+    "missing_token": "This reset link is missing or invalid.",
+    "token_not_found": "This reset link is invalid.",
+    "token_expired": "This reset link has expired.",
+    "request_failed": "Could not reset password. Please try again.",
+    "request_new_link": "Request a new reset link"
   }
 }

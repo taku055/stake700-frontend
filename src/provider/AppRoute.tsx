@@ -29,6 +29,8 @@ import VipPage from "@/pages/vip";
 import EpayclubCardCheckout from "@/pages/payment/epayclub/EpayclubCardCheckout";
 import EpayclubPaymentResult from "@/pages/payment/epayclub/EpayclubPaymentResult";
 import FavoritesPage from "@/pages/favorites";
+import VerifyEmailPage from "@/pages/verify-email";
+import ResetPasswordPage from "@/pages/reset-password";
 
 export default function AppRoute() {
   return (
@@ -36,6 +38,8 @@ export default function AppRoute() {
       <Route path="/" component={HomePage} />
       <Route path="/casino-category" component={CasinoCategoryPage} />
       <Route path="/provably-fair" component={ProvablyFairLayout} />
+      <Route path="/verify-email" component={VerifyEmailPage} />
+      <Route path="/reset-password" component={ResetPasswordPage} />
 
       <Route path="/sports" component={SportPage} />
       <Route
