@@ -21,11 +21,11 @@ export default function CasinoGames() {
         viewallLink={`/casino/slots?custom=1&category=${"slot-top-slots"}`}
       />
       <GameGroup
-        category={"slot-popular"}
+        category={"slot-top-slots"}
         title={t("Popular Games") || "Popular Games"}
         isCustom={true}
         useImgCustom={false}
-        viewallLink={`/casino/slots?custom=1&category=${"slot-popular"}`}
+        viewallLink={`/casino/slots?custom=1&category=${"slot-top-slots"}`}
       />
       <GameGroup
         category={"classic-slots"}
@@ -54,13 +54,6 @@ export default function CasinoGames() {
         isCustom={true}
         useImgCustom={false}
         viewallLink={`/casino/search?providerId=7bb31b6ed509550906c7d17c055b68f2e1ab6630`}
-      />
-      <GameGroup
-        category={"instant-win"}
-        title={t("Instant Win") || "Instant Win"}
-        isCustom={true}
-        useImgCustom={false}
-        viewallLink={`/casino/slots/?custom=1&category=${"instant-win"}`}
       />
       <GameGroup
         category={"book-of"}

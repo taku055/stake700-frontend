@@ -57,7 +57,7 @@ export const CASINO_CATEGORY_PAGES: Record<
     tab: { key: "popular", name: "Popular", icon: "/images/category_logo/popular.png" },
     render: {
       type: "grid",
-      category: "slot-popular",
+      category: "slot-top-slots",
       gameType: "SLOT",
       isCustom: true,
     },

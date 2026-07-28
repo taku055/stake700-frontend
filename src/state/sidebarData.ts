@@ -54,7 +54,7 @@ export const STATIC_CATEGORIES: ISidebarItem[] = [
   },
   {
     name: "Popular Games",
-    path: "/casino/slots?custom=1&category=slot-popular",
+    path: "/casino/slots?custom=1&category=slot-top-slots",
     icon: "/images/sidebar/popular-games.svg",
   },
   {

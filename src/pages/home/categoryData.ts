@@ -61,7 +61,7 @@ export const HOME_PAGE_CATEGORIES: Record<
     new: { type: "grid", category: "slot-new", gameType: "SLOT", isCustom: true },
     popular: {
       type: "grid",
-      category: "slot-popular",
+      category: "slot-top-slots",
       gameType: "SLOT",
       isCustom: true,
     },

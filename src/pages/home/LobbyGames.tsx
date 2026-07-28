@@ -9,10 +9,10 @@ export default function LobbyGames() {
   return (
     <div className="flex flex-col gap-4">
       <GridGameGroup
-        category={"slot-popular"}
+        category={"trending"}
         title={t("Trending Games") || "Trending Games"}
         isCustom={true}
-        viewallLink={`/casino/slots/?custom=1&category=${"slot-popular"}`}
+        viewallLink={`/casino/slots/?custom=1&category=${"trending"}`}
       />
       <GridGameGroup
         category={"slot-new"}
@@ -58,13 +58,6 @@ export default function LobbyGames() {
         isCustom={true}
         useImgCustom={false}
         viewallLink={`/casino/search?providerId=7bb31b6ed509550906c7d17c055b68f2e1ab6630`}
-      />
-      <GameGroup
-        category={"instant-win"}
-        title={t("Instant Win") || "Instant Win"}
-        isCustom={true}
-        useImgCustom={false}
-        viewallLink={`/casino/slots/?custom=1&category=${"instant-win"}`}
       />
       <GameGroup
         category={"book-of"}

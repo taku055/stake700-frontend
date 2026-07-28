@@ -49,7 +49,7 @@ const STATIC_CATEGORIES: CategoryItem[] = [
   },
   {
     name: "Popular Games",
-    path: "/casino/slots?custom=1&category=slot-popular",
+    path: "/casino/slots?custom=1&category=slot-top-slots",
     icon: "/images/category_logo/popular-games.svg",
   },
   {
