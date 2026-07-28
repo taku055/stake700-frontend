@@ -15,10 +15,10 @@ export default function CasinoGames() {
         viewallLink={`/casino/slots?custom=1&category=${"show"}`}
       />
       <TwoRowGameGroup
-        category={"slot-top-slots"}
+        category={"top-games"}
         title={t("Top Games") || "Top Games"}
         isCustom={true}
-        viewallLink={`/casino/slots?custom=1&category=${"slot-top-slots"}`}
+        viewallLink={`/casino/slots?custom=1&category=${"top-games"}`}
       />
       <GameGroup
         category={"slot-top-slots"}

@@ -45,7 +45,7 @@ export const CASINO_CATEGORY_PAGES: Record<
   "top-casino": {
     section: "slots",
     tab: { key: "top", name: "Top", icon: "/images/category_logo/top.png" },
-    render: { type: "grid", category: "slot-top-slots", gameType: "SLOT", isCustom: true },
+    render: { type: "grid", category: "top-games", gameType: "SLOT", isCustom: true },
   },
   "new-casino": {
     section: "slots",

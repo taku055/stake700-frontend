@@ -49,7 +49,7 @@ export const STATIC_CATEGORIES: ISidebarItem[] = [
   },
   {
     name: "Top Slots",
-    path: "/casino/slots?custom=1&category=slot-top-slots",
+    path: "/casino/slots?custom=1&category=top-games",
     icon: "/images/sidebar/top-slots.svg",
   },
   {
