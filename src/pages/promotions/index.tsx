@@ -1,8 +1,4 @@
-import {
-  apiClaimNoDepositBonus,
-  apiGetPromotions,
-} from "@/api/ledger/apiPromotions";
-import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
+import { apiGetPromotions } from "@/api/ledger/apiPromotions";
 import { apiGetGameById } from "@/api/common/apiGetGameById";
 import {
   formatEligibility,
@@ -14,15 +10,12 @@ import {
 } from "@/config/promoConstants";
 import { currencyState } from "@/state/currencyState";
 import { userState } from "@/state/userState";
-import { balanceState } from "@/state/balanceState";
-import { loginOpenedState } from "@/state/loginOpenedState";
 import { tLedgerPromotion } from "@/types/tUserLedger";
 import { useEffect, useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
 import { profileOpenedState } from "@/state/profileOpenedState";
 import WageringPage from "@/pages/wagering";
 import { useTranslations } from "@/context/I18nContext";
-import { toast } from "@/helpers/toast";
 
 type PromoTab = "offers" | "active";
 
@@ -44,8 +37,6 @@ function ctaLabel(
     case "DEPOSIT":
     case "DEPOSIT_BONUS":
       return t("deposit_now");
-    case "NO_DEPOSIT":
-      return t("claim_now");
     case "SIGNUP":
     case "SIGNUP_BONUS":
       return t("sign_up_now");
@@ -66,7 +57,6 @@ export default function PromoPage() {
   const [error, setError] = useState<string | null>(null);
   const [modalPromo, setModalPromo] = useState<tLedgerPromotion | null>(null);
   const [freeSpinGameName, setFreeSpinGameName] = useState<string | null>(null);
-  const [claimingPromoId, setClaimingPromoId] = useState<number | null>(null);
 
   useEffect(() => {
     setActiveTab(getTabFromQuery(location.query?.tab));
@@ -78,54 +68,14 @@ export default function PromoPage() {
   };
 
   const openDepositForPromo = (promo: tLedgerPromotion) => {
+    // No-deposit bonuses are granted manually for special cases — not via deposit.
+    if (isNoDepositPromoType(promo.type)) return;
     history.pushState(null, "", `?promo=${promo.id}`);
     profileOpenedState.value = {
       isOpen: true,
       defaultTab: "/balance-management/deposit",
       bonusId: String(promo.id),
     };
-  };
-
-  const claimNoDepositPromo = async (promo: tLedgerPromotion) => {
-    if (!promo.available || claimingPromoId != null) return;
-
-    const userId = userState.value?.id;
-    if (!userId) {
-      toast.error(t("login_to_claim"));
-      loginOpenedState.value = true;
-      return;
-    }
-
-    const currencyCode = currencyState.value.unit;
-    setClaimingPromoId(promo.id);
-    try {
-      await apiClaimNoDepositBonus(promo.id, currencyCode);
-      try {
-        const balance = await apiGetUserBalance(userId, currencyCode);
-        balanceState.value = {
-          ...balanceState.value,
-          [balance.currencyCode]: balance,
-        };
-      } catch {
-        // Socket ledger.updated may still refresh balance.
-      }
-      toast.success(t("claim_success"));
-      setModalPromo(null);
-      switchTab("active");
-    } catch (e: any) {
-      toast.error(e?.message ?? t("claim_error"));
-    } finally {
-      setClaimingPromoId(null);
-    }
-  };
-
-  const handlePrimaryCta = (promo: tLedgerPromotion) => {
-    if (!promo.available) return;
-    if (isNoDepositPromoType(promo.type)) {
-      void claimNoDepositPromo(promo);
-      return;
-    }
-    openDepositForPromo(promo);
   };
 
   useEffect(() => {
@@ -336,22 +286,25 @@ export default function PromoPage() {
                       </div>
                     </div>
                     <div className="mt-auto flex shrink-0 gap-3 pt-5">
-                      <button
-                        type="button"
-                        className={[
-                          "flex-1 font-bold text-[16px] rounded-lg py-3 font-serif transition shadow-md",
-                          promo.available && claimingPromoId !== promo.id
-                            ? "bg-[#01A825] text-white cursor-pointer shadow-[#01A825] hover:brightness-110"
-                            : "bg-[#1e2520] text-white/35 cursor-not-allowed border border-white/10 opacity-80 shadow-none",
-                        ].join(" ")}
-                        disabled={!promo.available || claimingPromoId === promo.id}
-                        aria-disabled={!promo.available || claimingPromoId === promo.id}
-                        onClick={() => handlePrimaryCta(promo)}
-                      >
-                        {claimingPromoId === promo.id
-                          ? t("claiming")
-                          : ctaLabel(promo.type, t)}
-                      </button>
+                      {!isNoDepositPromoType(promo.type) && (
+                        <button
+                          type="button"
+                          className={[
+                            "flex-1 font-bold text-[16px] rounded-lg py-3 font-serif transition shadow-md",
+                            promo.available
+                              ? "bg-[#01A825] text-white cursor-pointer shadow-[#01A825] hover:brightness-110"
+                              : "bg-[#1e2520] text-white/35 cursor-not-allowed border border-white/10 opacity-80 shadow-none",
+                          ].join(" ")}
+                          disabled={!promo.available}
+                          aria-disabled={!promo.available}
+                          onClick={() => {
+                            if (!promo.available) return;
+                            openDepositForPromo(promo);
+                          }}
+                        >
+                          {ctaLabel(promo.type, t)}
+                        </button>
+                      )}
                       <button
                         className="flex-1 bg-transparent text-[#CEA30E] font-bold text-[16px] border-2 border-[#CEA30E] rounded-lg py-3 cursor-pointer transition hover:bg-yellow-400/10"
                         style={{
@@ -572,39 +525,29 @@ export default function PromoPage() {
                       )}
                     </div>
 
-                    {/* CTA */}
+                    {/* CTA — deposit promos only; no-deposit is granted manually */}
                     <div className="px-5 py-4">
-                      {(isDepositPromoType(modalPromo.type) ||
-                        isNoDepositPromoType(modalPromo.type)) && (
+                      {isDepositPromoType(modalPromo.type) && (
                         <button
-                          disabled={
-                            !modalPromo.available ||
-                            claimingPromoId === modalPromo.id
-                          }
-                          onClick={() => handlePrimaryCta(modalPromo)}
+                          disabled={!modalPromo.available}
+                          onClick={() => {
+                            if (!modalPromo.available) return;
+                            openDepositForPromo(modalPromo);
+                          }}
                           className="inline-flex w-full items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-semibold text-white transition"
-                          style={
-                            modalPromo.available &&
-                            claimingPromoId !== modalPromo.id
-                              ? {
-                                  background:
-                                    "linear-gradient(145deg, #2e7d4f, #1a4d30)",
-                                  boxShadow:
-                                    "0 0 24px #2e7d4f44, 0 4px 12px #000",
-                                  border: "2px solid rgba(255,255,255,0.15)",
-                                  cursor: "pointer",
-                                }
-                              : {
-                                  background: "#1e2a22",
-                                  border: "2px solid #2a3a2e",
-                                  color: "#4a6a56",
-                                  cursor: "not-allowed",
-                                }
-                          }
+                          style={modalPromo.available ? {
+                            background: "linear-gradient(145deg, #2e7d4f, #1a4d30)",
+                            boxShadow: "0 0 24px #2e7d4f44, 0 4px 12px #000",
+                            border: "2px solid rgba(255,255,255,0.15)",
+                            cursor: "pointer",
+                          } : {
+                            background: "#1e2a22",
+                            border: "2px solid #2a3a2e",
+                            color: "#4a6a56",
+                            cursor: "not-allowed",
+                          }}
                         >
-                          {claimingPromoId === modalPromo.id
-                            ? t("claiming")
-                            : ctaLabel(modalPromo.type, t)}
+                          {ctaLabel(modalPromo.type, t)}
                         </button>
                       )}
                     </div>

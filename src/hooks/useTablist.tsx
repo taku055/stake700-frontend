@@ -8,7 +8,7 @@ import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
 
 /** Sidebar + `/casino/live-casino` deep links — keep in sync with active-state logic in NavigationSidebar. */
 export const SIDEBAR_EVOLUTION_PROVIDER_ID =
-  "e544fca303b10f448c5695650e34faba5dbad8a2";
+  "c780a72efac190d6c49c11b328a79b3ce45b8bc2";
   export const SIDEBAR_PRAGMATIC_PROVIDER_ID =
     "df282673fff1cdbe65c8100b96e8570b6ae973cc";
 
