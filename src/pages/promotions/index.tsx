@@ -1,19 +1,28 @@
-import { apiGetPromotions } from "@/api/ledger/apiPromotions";
+import {
+  apiClaimNoDepositBonus,
+  apiGetPromotions,
+} from "@/api/ledger/apiPromotions";
+import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
 import { apiGetGameById } from "@/api/common/apiGetGameById";
 import {
   formatEligibility,
   formatPromoType,
   formatVipRange,
+  isDepositPromoType,
   isDepositSequenceEligibility,
+  isNoDepositPromoType,
 } from "@/config/promoConstants";
 import { currencyState } from "@/state/currencyState";
 import { userState } from "@/state/userState";
+import { balanceState } from "@/state/balanceState";
+import { loginOpenedState } from "@/state/loginOpenedState";
 import { tLedgerPromotion } from "@/types/tUserLedger";
 import { useEffect, useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
 import { profileOpenedState } from "@/state/profileOpenedState";
 import WageringPage from "@/pages/wagering";
 import { useTranslations } from "@/context/I18nContext";
+import { toast } from "@/helpers/toast";
 
 type PromoTab = "offers" | "active";
 
@@ -35,7 +44,10 @@ function ctaLabel(
     case "DEPOSIT":
     case "DEPOSIT_BONUS":
       return t("deposit_now");
+    case "NO_DEPOSIT":
+      return t("claim_now");
     case "SIGNUP":
+    case "SIGNUP_BONUS":
       return t("sign_up_now");
     default:
       return t("claim_offer");
@@ -54,6 +66,7 @@ export default function PromoPage() {
   const [error, setError] = useState<string | null>(null);
   const [modalPromo, setModalPromo] = useState<tLedgerPromotion | null>(null);
   const [freeSpinGameName, setFreeSpinGameName] = useState<string | null>(null);
+  const [claimingPromoId, setClaimingPromoId] = useState<number | null>(null);
 
   useEffect(() => {
     setActiveTab(getTabFromQuery(location.query?.tab));
@@ -62,6 +75,57 @@ export default function PromoPage() {
   const switchTab = (tab: PromoTab) => {
     setActiveTab(tab);
     location.route(tab === "active" ? "/promotions?tab=active" : "/promotions");
+  };
+
+  const openDepositForPromo = (promo: tLedgerPromotion) => {
+    history.pushState(null, "", `?promo=${promo.id}`);
+    profileOpenedState.value = {
+      isOpen: true,
+      defaultTab: "/balance-management/deposit",
+      bonusId: String(promo.id),
+    };
+  };
+
+  const claimNoDepositPromo = async (promo: tLedgerPromotion) => {
+    if (!promo.available || claimingPromoId != null) return;
+
+    const userId = userState.value?.id;
+    if (!userId) {
+      toast.error(t("login_to_claim"));
+      loginOpenedState.value = true;
+      return;
+    }
+
+    const currencyCode = currencyState.value.unit;
+    setClaimingPromoId(promo.id);
+    try {
+      await apiClaimNoDepositBonus(promo.id, currencyCode);
+      try {
+        const balance = await apiGetUserBalance(userId, currencyCode);
+        balanceState.value = {
+          ...balanceState.value,
+          [balance.currencyCode]: balance,
+        };
+      } catch {
+        // Socket ledger.updated may still refresh balance.
+      }
+      toast.success(t("claim_success"));
+      setModalPromo(null);
+      switchTab("active");
+    } catch (e: any) {
+      toast.error(e?.message ?? t("claim_error"));
+    } finally {
+      setClaimingPromoId(null);
+    }
+  };
+
+  const handlePrimaryCta = (promo: tLedgerPromotion) => {
+    if (!promo.available) return;
+    if (isNoDepositPromoType(promo.type)) {
+      void claimNoDepositPromo(promo);
+      return;
+    }
+    openDepositForPromo(promo);
   };
 
   useEffect(() => {
@@ -258,7 +322,9 @@ export default function PromoPage() {
                       </div>
                       <div className="my-3 shrink-0 border-b border-[1.35px] border-[#CEA30E]" />
                       <div className="mb-2 text-[16px] font-semibold text-white">
-                        {t("deposit_code")}{" "}
+                        {isNoDepositPromoType(promo.type)
+                          ? t("promo_code")
+                          : t("deposit_code")}{" "}
                         <span className="text-[#CEA30E]">{promo.code}</span>
                       </div>
                       <div className="min-h-[2.75rem]">
@@ -274,19 +340,17 @@ export default function PromoPage() {
                         type="button"
                         className={[
                           "flex-1 font-bold text-[16px] rounded-lg py-3 font-serif transition shadow-md",
-                          promo.available
+                          promo.available && claimingPromoId !== promo.id
                             ? "bg-[#01A825] text-white cursor-pointer shadow-[#01A825] hover:brightness-110"
                             : "bg-[#1e2520] text-white/35 cursor-not-allowed border border-white/10 opacity-80 shadow-none",
                         ].join(" ")}
-                        disabled={!promo.available}
-                        aria-disabled={!promo.available}
-                        onClick={() => {
-                          if (!promo.available) return;
-                          history.pushState(null, "", `?promo=${promo.id}`);
-                          profileOpenedState.value = { isOpen: true, defaultTab: "/balance-management/deposit", bonusId: String(promo.id) };
-                        }}
+                        disabled={!promo.available || claimingPromoId === promo.id}
+                        aria-disabled={!promo.available || claimingPromoId === promo.id}
+                        onClick={() => handlePrimaryCta(promo)}
                       >
-                        {t("deposit_now")}
+                        {claimingPromoId === promo.id
+                          ? t("claiming")
+                          : ctaLabel(promo.type, t)}
                       </button>
                       <button
                         className="flex-1 bg-transparent text-[#CEA30E] font-bold text-[16px] border-2 border-[#CEA30E] rounded-lg py-3 cursor-pointer transition hover:bg-yellow-400/10"
@@ -418,11 +482,20 @@ export default function PromoPage() {
 
                     {/* Bonus highlights */}
                     <div className="px-5 py-3 border-b border-t grid grid-cols-2 gap-x-4 gap-y-2 mt-auto" style={{ borderColor: "#1e3328" }}>
-                      {modalPromo.isPercentBonus && (
+                      {modalPromo.isPercentBonus ? (
                         <div>
                           <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("bonus")}</div>
                           <div className="text-sm font-bold" style={{ color: "#4caf78" }}>{modalPromo.bonusValue}%</div>
                         </div>
+                      ) : (
+                        parseFloat(String(modalPromo.bonusValue)) > 0 && (
+                          <div>
+                            <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("bonus_amount")}</div>
+                            <div className="text-sm font-bold" style={{ color: "#4caf78" }}>
+                              {modalPromo.bonusValue} {modalPromo.currency}
+                            </div>
+                          </div>
+                        )
                       )}
                       {parseFloat(modalPromo.maxBonusLimit) > 0 && (
                         <div>
@@ -501,28 +574,37 @@ export default function PromoPage() {
 
                     {/* CTA */}
                     <div className="px-5 py-4">
-                      {(modalPromo.type === "DEPOSIT" || modalPromo.type === "DEPOSIT_BONUS") && (
+                      {(isDepositPromoType(modalPromo.type) ||
+                        isNoDepositPromoType(modalPromo.type)) && (
                         <button
-                          disabled={!modalPromo.available}
-                          onClick={() => {
-                            if (!modalPromo.available) return;
-                            history.pushState(null, "", `?promo=${modalPromo.id}`);
-                            profileOpenedState.value = { isOpen: true, defaultTab: "/balance-management/deposit", bonusId: String(modalPromo.id) };
-                          }}
+                          disabled={
+                            !modalPromo.available ||
+                            claimingPromoId === modalPromo.id
+                          }
+                          onClick={() => handlePrimaryCta(modalPromo)}
                           className="inline-flex w-full items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-semibold text-white transition"
-                          style={modalPromo.available ? {
-                            background: "linear-gradient(145deg, #2e7d4f, #1a4d30)",
-                            boxShadow: "0 0 24px #2e7d4f44, 0 4px 12px #000",
-                            border: "2px solid rgba(255,255,255,0.15)",
-                            cursor: "pointer",
-                          } : {
-                            background: "#1e2a22",
-                            border: "2px solid #2a3a2e",
-                            color: "#4a6a56",
-                            cursor: "not-allowed",
-                          }}
+                          style={
+                            modalPromo.available &&
+                            claimingPromoId !== modalPromo.id
+                              ? {
+                                  background:
+                                    "linear-gradient(145deg, #2e7d4f, #1a4d30)",
+                                  boxShadow:
+                                    "0 0 24px #2e7d4f44, 0 4px 12px #000",
+                                  border: "2px solid rgba(255,255,255,0.15)",
+                                  cursor: "pointer",
+                                }
+                              : {
+                                  background: "#1e2a22",
+                                  border: "2px solid #2a3a2e",
+                                  color: "#4a6a56",
+                                  cursor: "not-allowed",
+                                }
+                          }
                         >
-                          {ctaLabel(modalPromo.type, t)}
+                          {claimingPromoId === modalPromo.id
+                            ? t("claiming")
+                            : ctaLabel(modalPromo.type, t)}
                         </button>
                       )}
                     </div>

@@ -21,3 +21,23 @@ export const apiGetPromotions = async (
   );
   return res.data.data;
 };
+
+/** Claim a fixed NO_DEPOSIT promotion without making a deposit. */
+export const apiClaimNoDepositBonus = async (
+  promotionId: number,
+  currencyCode: string = "USD",
+) => {
+  const res = await instance.post<{
+    hasError: boolean;
+    errorCode?: string;
+    message: string;
+    data?: {
+      bonusAmount: number;
+      balance: unknown;
+    };
+  }>(`/ledger/promotions/${promotionId}/claim-no-deposit`, { currencyCode });
+  if (res.data.hasError) {
+    throw new Error(res.data.message || "Failed to claim no-deposit bonus.");
+  }
+  return res.data.data;
+};

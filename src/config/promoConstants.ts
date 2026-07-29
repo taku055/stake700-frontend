@@ -77,8 +77,18 @@ export function formatVipRange(
 const PROMO_TYPE_I18N_KEYS: Record<string, string> = {
   DEPOSIT: "type_deposit",
   DEPOSIT_BONUS: "type_deposit_bonus",
+  NO_DEPOSIT: "type_no_deposit",
   SIGNUP: "type_signup",
+  SIGNUP_BONUS: "type_signup",
 };
+
+export function isNoDepositPromoType(type?: string | null) {
+  return type === "NO_DEPOSIT";
+}
+
+export function isDepositPromoType(type?: string | null) {
+  return type === "DEPOSIT" || type === "DEPOSIT_BONUS";
+}
 
 export function formatPromoType(type: string, t?: PromoTranslator) {
   const key = PROMO_TYPE_I18N_KEYS[type];
