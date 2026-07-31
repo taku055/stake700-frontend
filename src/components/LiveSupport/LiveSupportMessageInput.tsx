@@ -15,6 +15,7 @@ import { apiSendSupportMessage } from "@/api/live_support/apiSendSupportMessage"
 import { apiUploadSupportFiles } from "@/api/live_support/apiUploadSupportFiles";
 import { liveSupportMessagesState } from "@/state/liveSupportMessagesState";
 import { tLiveSupportMessage } from "@/types/tLiveSupportMessage";
+import styles from "./LiveSupport.module.scss";
 
 const MAX_FILES = 5;
 const ACCEPT =
@@ -162,7 +163,6 @@ const LiveSupportMessageInput: React.FC = () => {
         setRecordingKind(null);
       };
 
-      // If user stops screen share from browser UI
       stream.getVideoTracks().forEach((track) => {
         track.onended = () => {
           if (mediaRecorderRef.current?.state === "recording") {
@@ -286,39 +286,24 @@ const LiveSupportMessageInput: React.FC = () => {
   const sendDisabled = !user?.id || uploading || !!recordingKind;
 
   return (
-    <div className="flex flex-col w-full border-t border-[var(--background-secondary)]">
+    <div className={styles.composer}>
       {pending.length > 0 && (
-        <div className="flex gap-2 overflow-x-auto px-3 pt-2">
+        <div className={styles.pendingRow}>
           {pending.map((p) => (
-            <div
-              key={p.id}
-              className="relative shrink-0 w-16 h-16 rounded-md overflow-hidden bg-[#f0f2f4] border border-[#d8dde3]"
-            >
+            <div key={p.id} className={styles.pendingThumb}>
               {p.previewUrl && isImage(p.file) ? (
-                <img
-                  src={p.previewUrl}
-                  alt={p.file.name}
-                  className="w-full h-full object-cover"
-                />
+                <img src={p.previewUrl} alt={p.file.name} />
               ) : p.previewUrl && isVideo(p.file) ? (
-                <video
-                  src={p.previewUrl}
-                  className="w-full h-full object-cover"
-                  muted
-                />
-              ) : p.previewUrl && isAudio(p.file) ? (
-                <div className="w-full h-full flex items-center justify-center text-[10px] px-1 text-center text-[#0F212E]">
-                  Voice
-                </div>
+                <video src={p.previewUrl} muted />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-[10px] px-1 text-center text-[#0F212E] break-all">
-                  {p.file.name.slice(0, 18)}
+                <div className={styles.pendingLabel}>
+                  {isAudio(p.file) ? "Voice" : p.file.name.slice(0, 18)}
                 </div>
               )}
               <button
                 type="button"
                 aria-label="Remove attachment"
-                className="absolute top-0 right-0 bg-black/60 text-white p-0.5"
+                className={styles.pendingRemove}
                 onClick={() => removePending(p.id)}
                 disabled={uploading}
               >
@@ -329,25 +314,19 @@ const LiveSupportMessageInput: React.FC = () => {
         </div>
       )}
 
-      {error && (
-        <div className="px-3 pt-1 text-[11px] text-red-500">{error}</div>
-      )}
+      {error && <div className={styles.hint}>{error}</div>}
 
       {recordingKind && (
-        <div className="px-3 pt-1 text-[12px] text-[#0F212E] flex items-center gap-2">
+        <div className={styles.recordingHint}>
           <MdFiberManualRecord className="text-red-500 animate-pulse" />
           {recordingKind === "voice" ? "Recording voice…" : "Recording screen…"}
-          <button
-            type="button"
-            className="underline ml-auto"
-            onClick={stopRecording}
-          >
+          <button type="button" onClick={stopRecording}>
             Stop
           </button>
         </div>
       )}
 
-      <div className="flex items-end gap-1 w-full px-1">
+      <div className={styles.composerRow}>
         <input
           ref={fileInputRef}
           type="file"
@@ -364,18 +343,18 @@ const LiveSupportMessageInput: React.FC = () => {
           type="button"
           title="Attach file"
           disabled={!user?.id || uploading || !!recordingKind}
-          className="p-2 text-[#0F212E] disabled:opacity-40"
+          className={styles.toolBtn}
           onClick={() => fileInputRef.current?.click()}
         >
-          <MdAttachFile size={22} />
+          <MdAttachFile size={20} />
         </button>
 
         <button
           type="button"
           title={recordingKind === "voice" ? "Stop voice" : "Record voice"}
           disabled={!user?.id || uploading || recordingKind === "screen"}
-          className={`p-2 disabled:opacity-40 ${
-            recordingKind === "voice" ? "text-red-500" : "text-[#0F212E]"
+          className={`${styles.toolBtn} ${
+            recordingKind === "voice" ? styles.active : ""
           }`}
           onClick={() =>
             recordingKind === "voice"
@@ -384,9 +363,9 @@ const LiveSupportMessageInput: React.FC = () => {
           }
         >
           {recordingKind === "voice" ? (
-            <MdStop size={22} />
+            <MdStop size={20} />
           ) : (
-            <MdMic size={22} />
+            <MdMic size={20} />
           )}
         </button>
 
@@ -396,8 +375,8 @@ const LiveSupportMessageInput: React.FC = () => {
             recordingKind === "screen" ? "Stop screen" : "Record screen"
           }
           disabled={!user?.id || uploading || recordingKind === "voice"}
-          className={`p-2 disabled:opacity-40 ${
-            recordingKind === "screen" ? "text-red-500" : "text-[#0F212E]"
+          className={`${styles.toolBtn} ${
+            recordingKind === "screen" ? styles.active : ""
           }`}
           onClick={() =>
             recordingKind === "screen"
@@ -405,7 +384,7 @@ const LiveSupportMessageInput: React.FC = () => {
               : void startRecording("screen")
           }
         >
-          <MdScreenShare size={22} />
+          <MdScreenShare size={20} />
         </button>
 
         <div
@@ -415,19 +394,20 @@ const LiveSupportMessageInput: React.FC = () => {
           onKeyDown={handleKeyDown}
           contentEditable={!!user?.id && !uploading}
           data-placeholder="Type a message…"
-          className="ml-0 my-2 flex-1 border border-[var(--background-secondary)] rounded-[9px] text-black text-[16px] leading-[27px] px-[15px] py-[9px] outline-[0px] min-h-[45px] max-h-[200px] overflow-auto empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400"
+          className={styles.inputBox}
         />
 
-        <MdSend
-          className={`w-9 h-auto mr-1 mb-3 ${
-            sendDisabled
-              ? "text-gray-300 cursor-not-allowed"
-              : "text-[var(--green-color)] cursor-pointer"
-          }`}
+        <button
+          type="button"
+          className={styles.sendBtn}
+          disabled={sendDisabled}
+          aria-label="Send message"
           onClick={() => {
             if (!sendDisabled) void sendMessage();
           }}
-        />
+        >
+          <MdSend size={18} />
+        </button>
       </div>
     </div>
   );

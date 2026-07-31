@@ -29,13 +29,15 @@ function upsertMessage(
   tempId?: number,
 ): tLiveSupportMessage[] {
   const withoutTemp =
-    tempId && tempId < 0
-      ? list.filter((m) => m.id !== tempId)
-      : list;
+    tempId && tempId < 0 ? list.filter((m) => m.id !== tempId) : list;
   if (withoutTemp.some((m) => m.id === incoming.id)) {
     return withoutTemp.map((m) =>
       m.id === incoming.id
-        ? { ...m, ...incoming, status: incoming.deliveryStatus === "FAILED" ? 2 : 0 }
+        ? {
+            ...m,
+            ...incoming,
+            status: incoming.deliveryStatus === "FAILED" ? 2 : 0,
+          }
         : m,
     );
   }
@@ -124,7 +126,6 @@ export default function LiveSupport() {
         liveSupportMessagesUnseenState.value =
           liveSupportMessagesUnseenState.value + 1;
       }
-      // A new customer/support message reopens the UI closed flag.
       if (msg.telegramSenderId || msg.supporterId) {
         setClosed(false);
       }
@@ -151,36 +152,58 @@ export default function LiveSupport() {
   return (
     <AnimatePresence>
       {liveSupportExpanded ? (
-        <motion.section className={styles.container}>
-          <div className="flex items-center justify-between w-full border-b border-[var(--background-tertiary)] text-[#0F212E] px-4 py-3">
-            <div className="flex items-center gap-2">
+        <motion.section
+          className={styles.container}
+          initial={{ opacity: 0, y: 16, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 12, scale: 0.98 }}
+          transition={{ duration: 0.22 }}
+        >
+          <div className={styles.header}>
+            <div className={styles.headerMeta}>
               <img
-                src="/images/icons/icons/online-led.svg"
-                alt="Live Support"
-                className="w-5 h-5"
+                src="/images/support-avatar.svg"
+                alt="Support"
+                className={styles.headerAvatar}
               />
-              <h2 className="text-[15px] font-semibold">Chat with us</h2>
+              <div>
+                <div className={styles.headerTitle}>Mirage888 Support</div>
+                <div className={styles.headerSub}>
+                  <span className={styles.onlineDot} />
+                  Online · typically replies in minutes
+                </div>
+              </div>
             </div>
             <button
               type="button"
+              className={styles.closeBtn}
+              aria-label="Close chat"
               onClick={() => (liveSupportExpandedState.value = false)}
             >
               <MdClose size={20} />
             </button>
           </div>
 
-          <div
-            className="flex-1 overflow-auto bg-white p-3 flex flex-col gap-3"
-            ref={divRef}
-          >
-            {liveSupportMessages.map((e) => (
-              <LiveSupportMessage key={e.id} data={e} />
-            ))}
+          <div className={styles.messages} ref={divRef}>
+            {liveSupportMessages.length === 0 ? (
+              <div className={styles.emptyState}>
+                <img src="/images/support-avatar.svg" alt="" />
+                <h3>How can we help?</h3>
+                <p>
+                  Send a message, photo, voice note, or screen recording. Our
+                  team will reply here.
+                </p>
+              </div>
+            ) : (
+              liveSupportMessages.map((e) => (
+                <LiveSupportMessage key={e.id} data={e} />
+              ))
+            )}
             <div ref={messagesEndRef} />
           </div>
 
           {closed ? (
-            <div className="px-4 py-2 text-xs text-amber-700 bg-amber-50 border-t border-amber-100">
+            <div className={styles.closedBanner}>
               Ticket was closed by support. Sending a message will reopen it.
             </div>
           ) : null}
@@ -197,7 +220,6 @@ export default function LiveSupport() {
               <img
                 src="/images/icons/icons/live-support.svg"
                 alt="Live Support"
-                className="w-5 h-5"
               />
             </motion.button>
           )}
@@ -207,6 +229,8 @@ export default function LiveSupport() {
           <motion.button
             className={styles.expandButton}
             onClick={openChat}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
           >
             {smUnseenCount > 0 && (
               <div className={styles.badge}>{smUnseenCount}</div>
@@ -214,7 +238,6 @@ export default function LiveSupport() {
             <img
               src="/images/icons/icons/live-support.svg"
               alt="Live Support"
-              className="w-5 h-5"
             />
           </motion.button>
         )
