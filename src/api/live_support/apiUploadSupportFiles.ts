@@ -9,17 +9,14 @@ export type UploadedSupportFile = {
 export const apiUploadSupportFiles = async (files: File[]) => {
   const formData = new FormData();
   for (const file of files) {
-    formData.append("files", file);
+    // Pass filename explicitly so Nest/multer keeps the original name
+    formData.append("files", file, file.name || "file");
   }
 
+  // Do NOT set Content-Type manually — axios must add the multipart boundary.
   const res = await instance.post<UploadedSupportFile[]>(
     "/live-support/upload",
     formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    },
   );
   return res.data;
 };

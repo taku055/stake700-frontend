@@ -9,17 +9,20 @@ import {
   MdSend,
   MdClose,
   MdStop,
+  MdPhotoCamera,
 } from "react-icons/md";
 import { userState } from "@/state/userState";
 import { apiSendSupportMessage } from "@/api/live_support/apiSendSupportMessage";
 import { apiUploadSupportFiles } from "@/api/live_support/apiUploadSupportFiles";
 import { liveSupportMessagesState } from "@/state/liveSupportMessagesState";
 import { tLiveSupportMessage } from "@/types/tLiveSupportMessage";
+import { isAudioFile, isImageFile, isVideoFile } from "./mediaUtils";
 import styles from "./LiveSupport.module.scss";
 
 const MAX_FILES = 5;
-const ACCEPT =
-  "image/*,video/*,audio/*,.pdf,.doc,.docx,.zip,.txt,application/pdf";
+const ACCEPT_ALL =
+  "image/*,video/*,audio/*,.pdf,.doc,.docx,.zip,.txt,application/pdf,.heic,.heif";
+const ACCEPT_PHOTO = "image/*,.heic,.heif";
 
 type PendingFile = {
   id: string;
@@ -27,28 +30,18 @@ type PendingFile = {
   previewUrl?: string;
 };
 
-function isImage(file: File) {
-  return file.type.startsWith("image/");
-}
-
-function isVideo(file: File) {
-  return file.type.startsWith("video/");
-}
-
-function isAudio(file: File) {
-  return file.type.startsWith("audio/");
-}
-
 const LiveSupportMessageInput: React.FC = () => {
   const user = userState.value;
   const divRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const photoInputRef = useRef<HTMLInputElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const mediaChunksRef = useRef<Blob[]>([]);
   const mediaStreamRef = useRef<MediaStream | null>(null);
 
   const [pending, setPending] = useState<PendingFile[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [hasText, setHasText] = useState(false);
   const [recordingKind, setRecordingKind] = useState<
     null | "voice" | "screen"
   >(null);
@@ -78,7 +71,11 @@ const LiveSupportMessageInput: React.FC = () => {
 
   const addFiles = useCallback((files: FileList | File[]) => {
     setError(null);
-    const list = Array.from(files);
+    const list = Array.from(files).filter((f) => f && f.size > 0);
+    if (!list.length) {
+      setError("Could not read selected file");
+      return;
+    }
     setPending((prev) => {
       const room = MAX_FILES - prev.length;
       if (room <= 0) {
@@ -87,7 +84,7 @@ const LiveSupportMessageInput: React.FC = () => {
       }
       const next = list.slice(0, room).map((file) => {
         const preview =
-          isImage(file) || isVideo(file) || isAudio(file)
+          isImageFile(file) || isVideoFile(file) || isAudioFile(file)
             ? URL.createObjectURL(file)
             : undefined;
         return {
@@ -194,6 +191,13 @@ const LiveSupportMessageInput: React.FC = () => {
     }
   };
 
+  const syncHasText = () => {
+    const text = (divRef.current?.innerText || "")
+      .replace(/\u00a0/g, " ")
+      .trim();
+    setHasText(Boolean(text));
+  };
+
   const sendMessage = useCallback(async () => {
     if (!divRef.current || !user?.id || uploading || recordingKind) return;
 
@@ -229,6 +233,7 @@ const LiveSupportMessageInput: React.FC = () => {
       optimistic,
     ];
     divRef.current.innerText = "";
+    setHasText(false);
     const toCleanup = [...pending];
     setPending([]);
 
@@ -238,12 +243,15 @@ const LiveSupportMessageInput: React.FC = () => {
 
       if (localFiles.length) {
         const uploaded = await apiUploadSupportFiles(localFiles);
+        if (!uploaded?.length) {
+          throw new Error("Upload returned no files");
+        }
         filepaths = uploaded.map((u) => u.url);
         filenames = uploaded.map((u) => u.filename);
       }
 
       const saved = await apiSendSupportMessage({
-        message,
+        message: message || undefined,
         filepaths,
         filenames,
         tempId,
@@ -262,14 +270,17 @@ const LiveSupportMessageInput: React.FC = () => {
               }
             : msg,
       );
-    } catch (ex) {
+    } catch (ex: any) {
       console.error(ex);
-      setError("Failed to send. Tap Retry on the message.");
-      liveSupportMessagesState.value = liveSupportMessagesState.value.map(
-        (msg) =>
-          msg.id === tempId
-            ? { ...msg, status: 2, deliveryStatus: "FAILED" }
-            : msg,
+      const apiMsg =
+        ex?.response?.data?.message ||
+        ex?.message ||
+        "Failed to send attachment.";
+      setError(Array.isArray(apiMsg) ? apiMsg.join(", ") : String(apiMsg));
+      // Restore unsent attachments so the user can retry without re-picking files
+      setPending((prev) => (prev.length ? prev : toCleanup));
+      liveSupportMessagesState.value = liveSupportMessagesState.value.filter(
+        (msg) => msg.id !== tempId,
       );
     } finally {
       setUploading(false);
@@ -284,6 +295,7 @@ const LiveSupportMessageInput: React.FC = () => {
   };
 
   const sendDisabled = !user?.id || uploading || !!recordingKind;
+  const canSend = !sendDisabled && (hasText || pending.length > 0);
 
   return (
     <div className={styles.composer}>
@@ -291,13 +303,13 @@ const LiveSupportMessageInput: React.FC = () => {
         <div className={styles.pendingRow}>
           {pending.map((p) => (
             <div key={p.id} className={styles.pendingThumb}>
-              {p.previewUrl && isImage(p.file) ? (
+              {p.previewUrl && isImageFile(p.file) ? (
                 <img src={p.previewUrl} alt={p.file.name} />
-              ) : p.previewUrl && isVideo(p.file) ? (
+              ) : p.previewUrl && isVideoFile(p.file) ? (
                 <video src={p.previewUrl} muted />
               ) : (
                 <div className={styles.pendingLabel}>
-                  {isAudio(p.file) ? "Voice" : p.file.name.slice(0, 18)}
+                  {isAudioFile(p.file) ? "Voice" : p.file.name.slice(0, 18)}
                 </div>
               )}
               <button
@@ -307,7 +319,7 @@ const LiveSupportMessageInput: React.FC = () => {
                 onClick={() => removePending(p.id)}
                 disabled={uploading}
               >
-                <MdClose size={12} />
+                <MdClose size={14} />
               </button>
             </div>
           ))}
@@ -330,7 +342,18 @@ const LiveSupportMessageInput: React.FC = () => {
         <input
           ref={fileInputRef}
           type="file"
-          accept={ACCEPT}
+          accept={ACCEPT_ALL}
+          multiple
+          className="hidden"
+          onChange={(e) => {
+            if (e.target.files?.length) addFiles(e.target.files);
+            e.target.value = "";
+          }}
+        />
+        <input
+          ref={photoInputRef}
+          type="file"
+          accept={ACCEPT_PHOTO}
           multiple
           className="hidden"
           onChange={(e) => {
@@ -341,39 +364,38 @@ const LiveSupportMessageInput: React.FC = () => {
 
         <button
           type="button"
+          title="Attach photo"
+          disabled={!user?.id || uploading || !!recordingKind}
+          className={styles.toolBtn}
+          onClick={() => photoInputRef.current?.click()}
+        >
+          <MdPhotoCamera size={22} />
+        </button>
+
+        <button
+          type="button"
           title="Attach file"
           disabled={!user?.id || uploading || !!recordingKind}
           className={styles.toolBtn}
           onClick={() => fileInputRef.current?.click()}
         >
-          <MdAttachFile size={20} />
+          <MdAttachFile size={22} />
         </button>
+
+        <div
+          id="live-support-message-input"
+          tabIndex={0}
+          ref={divRef}
+          onKeyDown={handleKeyDown}
+          onInput={syncHasText}
+          contentEditable={!!user?.id && !uploading}
+          data-placeholder="Message"
+          className={styles.inputBox}
+        />
 
         <button
           type="button"
-          title={recordingKind === "voice" ? "Stop voice" : "Record voice"}
-          disabled={!user?.id || uploading || recordingKind === "screen"}
-          className={`${styles.toolBtn} ${
-            recordingKind === "voice" ? styles.active : ""
-          }`}
-          onClick={() =>
-            recordingKind === "voice"
-              ? stopRecording()
-              : void startRecording("voice")
-          }
-        >
-          {recordingKind === "voice" ? (
-            <MdStop size={20} />
-          ) : (
-            <MdMic size={20} />
-          )}
-        </button>
-
-        <button
-          type="button"
-          title={
-            recordingKind === "screen" ? "Stop screen" : "Record screen"
-          }
+          title={recordingKind === "screen" ? "Stop screen" : "Record screen"}
           disabled={!user?.id || uploading || recordingKind === "voice"}
           className={`${styles.toolBtn} ${
             recordingKind === "screen" ? styles.active : ""
@@ -387,27 +409,38 @@ const LiveSupportMessageInput: React.FC = () => {
           <MdScreenShare size={20} />
         </button>
 
-        <div
-          id="live-support-message-input"
-          tabIndex={0}
-          ref={divRef}
-          onKeyDown={handleKeyDown}
-          contentEditable={!!user?.id && !uploading}
-          data-placeholder="Type a message…"
-          className={styles.inputBox}
-        />
-
-        <button
-          type="button"
-          className={styles.sendBtn}
-          disabled={sendDisabled}
-          aria-label="Send message"
-          onClick={() => {
-            if (!sendDisabled) void sendMessage();
-          }}
-        >
-          <MdSend size={18} />
-        </button>
+        {canSend || recordingKind === "voice" ? (
+          recordingKind === "voice" ? (
+            <button
+              type="button"
+              title="Stop voice"
+              className={`${styles.toolBtn} ${styles.active}`}
+              onClick={stopRecording}
+            >
+              <MdStop size={22} />
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={styles.sendBtn}
+              disabled={sendDisabled}
+              aria-label="Send message"
+              onClick={() => void sendMessage()}
+            >
+              <MdSend size={18} />
+            </button>
+          )
+        ) : (
+          <button
+            type="button"
+            title="Record voice"
+            disabled={!user?.id || uploading}
+            className={styles.toolBtn}
+            onClick={() => void startRecording("voice")}
+          >
+            <MdMic size={22} />
+          </button>
+        )}
       </div>
     </div>
   );

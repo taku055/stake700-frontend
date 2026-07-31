@@ -170,7 +170,7 @@ export default function LiveSupport() {
                 <div className={styles.headerTitle}>Mirage888 Support</div>
                 <div className={styles.headerSub}>
                   <span className={styles.onlineDot} />
-                  Online · typically replies in minutes
+                  online
                 </div>
               </div>
             </div>
