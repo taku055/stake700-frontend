@@ -345,9 +345,10 @@ const LiveSupportMessageInput: React.FC = () => {
           accept={ACCEPT_ALL}
           multiple
           className="hidden"
-          onChange={(e) => {
-            if (e.target.files?.length) addFiles(e.target.files);
-            e.target.value = "";
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const input = e.currentTarget;
+            if (input.files?.length) addFiles(input.files);
+            input.value = "";
           }}
         />
         <input
@@ -356,9 +357,10 @@ const LiveSupportMessageInput: React.FC = () => {
           accept={ACCEPT_PHOTO}
           multiple
           className="hidden"
-          onChange={(e) => {
-            if (e.target.files?.length) addFiles(e.target.files);
-            e.target.value = "";
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const input = e.currentTarget;
+            if (input.files?.length) addFiles(input.files);
+            input.value = "";
           }}
         />
 
