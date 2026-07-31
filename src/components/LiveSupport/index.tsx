@@ -190,8 +190,8 @@ export default function LiveSupport() {
                 <img src="/images/support-avatar.svg" alt="" />
                 <h3>How can we help?</h3>
                 <p>
-                  Send a message, photo, voice note, or screen recording. Our
-                  team will reply here.
+                  Send a message, photo, voice note, or screen recording. Paste
+                  (Ctrl/Cmd+V) or drag files here too.
                 </p>
               </div>
             ) : (

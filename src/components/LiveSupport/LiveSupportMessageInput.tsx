@@ -30,6 +30,70 @@ type PendingFile = {
   previewUrl?: string;
 };
 
+function extFromMime(mime: string): string {
+  const map: Record<string, string> = {
+    "image/png": "png",
+    "image/jpeg": "jpg",
+    "image/jpg": "jpg",
+    "image/gif": "gif",
+    "image/webp": "webp",
+    "image/heic": "heic",
+    "image/heif": "heif",
+    "video/mp4": "mp4",
+    "video/webm": "webm",
+    "audio/webm": "webm",
+    "audio/ogg": "ogg",
+    "audio/mpeg": "mp3",
+    "application/pdf": "pdf",
+  };
+  return map[mime] || "bin";
+}
+
+/** Normalize clipboard / drag files so they always have a usable name + extension. */
+function normalizePastedFile(file: File, index = 0): File {
+  const hasExt = /\.[a-z0-9]{2,5}$/i.test(file.name || "");
+  const generic =
+    !file.name ||
+    file.name === "image.png" ||
+    file.name === "blob" ||
+    file.name === "untitled";
+  if (!generic && hasExt) return file;
+
+  const ext = extFromMime(file.type || "application/octet-stream");
+  const base = file.type.startsWith("image/")
+    ? "paste-image"
+    : file.type.startsWith("video/")
+      ? "paste-video"
+      : file.type.startsWith("audio/")
+        ? "paste-audio"
+        : "paste-file";
+  return new File([file], `${base}-${Date.now()}-${index}.${ext}`, {
+    type: file.type || "application/octet-stream",
+    lastModified: file.lastModified || Date.now(),
+  });
+}
+
+function filesFromClipboard(clipboard: DataTransfer | null): File[] {
+  if (!clipboard) return [];
+  const out: File[] = [];
+
+  if (clipboard.items?.length) {
+    Array.from(clipboard.items).forEach((item, i) => {
+      if (item.kind !== "file") return;
+      const file = item.getAsFile();
+      if (file && file.size > 0) out.push(normalizePastedFile(file, i));
+    });
+  }
+
+  if (!out.length && clipboard.files?.length) {
+    Array.from(clipboard.files).forEach((file, i) => {
+      if (file && file.size > 0) out.push(normalizePastedFile(file, i));
+    });
+  }
+
+  return out;
+}
+
 const LiveSupportMessageInput: React.FC = () => {
   const user = userState.value;
   const divRef = useRef<HTMLDivElement>(null);
@@ -294,11 +358,41 @@ const LiveSupportMessageInput: React.FC = () => {
     }
   };
 
+  const handlePaste = (e: React.ClipboardEvent<HTMLElement>) => {
+    if (!user?.id || uploading || recordingKind) return;
+    const files = filesFromClipboard(e.clipboardData);
+    if (!files.length) return;
+    e.preventDefault();
+    addFiles(files);
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLElement>) => {
+    if (!user?.id || uploading || recordingKind) return;
+    const files = filesFromClipboard(e.dataTransfer);
+    if (!files.length) return;
+    e.preventDefault();
+    e.stopPropagation();
+    addFiles(files);
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLElement>) => {
+    if (!user?.id || uploading || recordingKind) return;
+    if (e.dataTransfer?.types?.includes("Files")) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "copy";
+    }
+  };
+
   const sendDisabled = !user?.id || uploading || !!recordingKind;
   const canSend = !sendDisabled && (hasText || pending.length > 0);
 
   return (
-    <div className={styles.composer}>
+    <div
+      className={styles.composer}
+      onPaste={handlePaste}
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+    >
       {pending.length > 0 && (
         <div className={styles.pendingRow}>
           {pending.map((p) => (
@@ -390,6 +484,7 @@ const LiveSupportMessageInput: React.FC = () => {
           ref={divRef}
           onKeyDown={handleKeyDown}
           onInput={syncHasText}
+          onPaste={handlePaste}
           contentEditable={!!user?.id && !uploading}
           data-placeholder="Message"
           className={styles.inputBox}
