@@ -2,11 +2,12 @@ import { tLiveSupportMessage } from "@/types/tLiveSupportMessage";
 import { instance } from "../instance";
 
 export type SendMessageDto = {
-  message: string;
+  message?: string;
   filepaths: string[];
   filenames: string[];
   replyId?: number;
   tempId: number;
+  subject?: string;
 };
 
 export const apiSendSupportMessage = async (data: SendMessageDto) => {

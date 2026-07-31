@@ -24,6 +24,31 @@ function escapeHtml(text: string) {
     .replace(/'/g, "&#39;");
 }
 
+function mediaKind(
+  filename: string,
+  url: string,
+): "image" | "video" | "audio" | "file" {
+  const name = (filename || "").toLowerCase();
+  const target = `${name} ${url}`.toLowerCase();
+
+  // Voice recordings are often audio/webm — check before generic .webm → video.
+  if (
+    name.startsWith("voice") ||
+    /\.(mp3|ogg|opus|wav|m4a|aac)(\?|$)/i.test(name)
+  ) {
+    return "audio";
+  }
+  if (/\.(png|jpe?g|gif|webp|bmp|svg)(\?|$)/i.test(target)) return "image";
+  if (
+    name.startsWith("screen") ||
+    /\.(mp4|webm|mov|mkv|m4v)(\?|$)/i.test(name) ||
+    /\.(mp4|webm|mov|mkv|m4v)(\?|$)/i.test(url)
+  ) {
+    return "video";
+  }
+  return "file";
+}
+
 const LiveSupportMessage: React.FC<ILiveSupportMessage> = ({ data }) => {
   const isFromUser = isSupportMessageFromCustomer(data);
   const failed = data.deliveryStatus === "FAILED" || data.status === 2;
@@ -37,7 +62,11 @@ const LiveSupportMessage: React.FC<ILiveSupportMessage> = ({ data }) => {
       liveSupportMessagesState.value = liveSupportMessagesState.value.map(
         (m) =>
           m.id === data.id
-            ? { ...m, ...updated, status: updated.deliveryStatus === "FAILED" ? 2 : 0 }
+            ? {
+                ...m,
+                ...updated,
+                status: updated.deliveryStatus === "FAILED" ? 2 : 0,
+              }
             : m,
       );
     } catch (ex) {
@@ -45,8 +74,13 @@ const LiveSupportMessage: React.FC<ILiveSupportMessage> = ({ data }) => {
     }
   };
 
-  const body = escapeHtml(data.message).replace(/\n/g, "<br/>");
+  const rawText = data.message === "📎 Attachment" ? "" : data.message || "";
+  const body = escapeHtml(rawText).replace(/\n/g, "<br/>");
   const supportLabel = data.senderName || "Support";
+  const files = (data.filepaths || []).map((url, i) => ({
+    url,
+    name: data.filenames?.[i] || `file-${i + 1}`,
+  }));
 
   return (
     <motion.div
@@ -76,7 +110,69 @@ const LiveSupportMessage: React.FC<ILiveSupportMessage> = ({ data }) => {
             {supportLabel}
           </div>
         )}
-        <div dangerouslySetInnerHTML={{ __html: body }} />
+
+        {files.length > 0 && (
+          <div className="flex flex-col gap-2 mb-2">
+            {files.map((f) => {
+              const kind = mediaKind(f.name, f.url);
+              if (kind === "image") {
+                return (
+                  <a
+                    key={`${f.url}-${f.name}`}
+                    href={f.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src={f.url}
+                      alt={f.name}
+                      className="max-w-full max-h-48 rounded-md object-contain"
+                    />
+                  </a>
+                );
+              }
+              if (kind === "video") {
+                return (
+                  <video
+                    key={`${f.url}-${f.name}`}
+                    src={f.url}
+                    controls
+                    playsInline
+                    className="max-w-full max-h-56 rounded-md"
+                  />
+                );
+              }
+              if (kind === "audio") {
+                return (
+                  <audio
+                    key={`${f.url}-${f.name}`}
+                    src={f.url}
+                    controls
+                    className="w-full min-w-[180px]"
+                  />
+                );
+              }
+              return (
+                <a
+                  key={`${f.url}-${f.name}`}
+                  href={f.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`underline text-xs break-all ${
+                    isFromUser ? "text-blue-200" : "text-blue-700"
+                  }`}
+                >
+                  {f.name}
+                </a>
+              );
+            })}
+          </div>
+        )}
+
+        {rawText ? (
+          <div dangerouslySetInnerHTML={{ __html: body }} />
+        ) : null}
+
         <div
           className={`text-[12px] mt-1 flex items-center justify-end gap-2 ${
             isFromUser ? "text-gray-300" : "text-gray-500"
