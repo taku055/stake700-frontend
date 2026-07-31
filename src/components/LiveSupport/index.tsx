@@ -126,17 +126,23 @@ export default function LiveSupport() {
         liveSupportMessagesUnseenState.value =
           liveSupportMessagesUnseenState.value + 1;
       }
-      if (msg.telegramSenderId || msg.supporterId) {
-        setClosed(false);
-      }
+      // Any new activity reopens the local "closed" banner (new/recreated topic).
+      setClosed(false);
     },
   );
 
   useSocketEvent(
     "support.conversation.closed",
-    (payload: { userId: string }) => {
-      if (payload?.userId === loggedUser?.id) {
-        setClosed(true);
+    (payload: {
+      userId: string;
+      messagesCleared?: boolean;
+      deletedMessages?: number;
+    }) => {
+      if (payload?.userId !== loggedUser?.id) return;
+      setClosed(true);
+      if (payload.messagesCleared) {
+        liveSupportMessagesState.value = [];
+        liveSupportMessagesUnseenState.value = 0;
       }
     },
   );
