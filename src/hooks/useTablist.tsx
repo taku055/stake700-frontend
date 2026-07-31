@@ -1,6 +1,6 @@
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
-import { Users, Crown, ChartArea, Shield, Globe, Headphones, Handshake, MessageSquare, FileText, Trophy, Gift } from "lucide-preact";
+import { Users, Crown, ChartArea } from "lucide-preact";
 import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
 import { ASSET_BASE_URL } from "@/config/constants";
