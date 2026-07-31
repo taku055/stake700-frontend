@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./LiveSupport.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
-// import { useRecoilState } from "recoil";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 import { MdClose } from "react-icons/md";
@@ -15,48 +14,75 @@ import { userState } from "@/state/userState";
 import { apiGetSupportMessages } from "@/api/live_support/apiGetSupportMessages";
 import { liveSupportMessagesUnseenState } from "@/state/liveSupportMessagesUnseenState";
 import { apiSetSmUserCursor } from "@/api/live_support/apiSetSmUserCursor";
-import { FaMessage, FaChevronDown } from "react-icons/fa6";
 import { tLiveSupportMessage } from "@/types/tLiveSupportMessage";
+import useSocketEvent from "@/hooks/useSocketEvent";
+import { loginOpenedState } from "@/state/loginOpenedState";
+
+type SupportSocketPayload = {
+  tempId: number;
+  supportMessage: tLiveSupportMessage;
+};
+
+function upsertMessage(
+  list: tLiveSupportMessage[],
+  incoming: tLiveSupportMessage,
+  tempId?: number,
+): tLiveSupportMessage[] {
+  const withoutTemp =
+    tempId && tempId < 0
+      ? list.filter((m) => m.id !== tempId)
+      : list;
+  if (withoutTemp.some((m) => m.id === incoming.id)) {
+    return withoutTemp.map((m) =>
+      m.id === incoming.id
+        ? { ...m, ...incoming, status: incoming.deliveryStatus === "FAILED" ? 2 : 0 }
+        : m,
+    );
+  }
+  return [
+    ...withoutTemp,
+    { ...incoming, status: incoming.deliveryStatus === "FAILED" ? 2 : 0 },
+  ];
+}
 
 export default function LiveSupport() {
-
   const isMobile = useMediaQuery(mobileMediaQuery);
   const messagesEndRef = useRef(null);
   const divRef = useRef<HTMLDivElement>(null);
   const liveSupportMessages = liveSupportMessagesState.value;
   const liveSupportExpanded = liveSupportExpandedState.value;
   const smUnseenCount = liveSupportMessagesUnseenState.value;
-  const setLiveSupportMessages = (messages: tLiveSupportMessage[]) => {
-    liveSupportMessagesState.value = messages;
-  };
-
   const loggedUser = userState.value;
+  const [closed, setClosed] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
         if (loggedUser) {
           const res = await apiGetSupportMessages(0, loggedUser.id);
-          setLiveSupportMessages(res);
+          liveSupportMessagesState.value = res.map((m) => ({
+            ...m,
+            status: m.deliveryStatus === "FAILED" ? 2 : 0,
+          }));
           const unseenMessagesCount = res.filter(
-            (m) => m.id > loggedUser.smUserCursor
+            (m) => m.id > loggedUser.smUserCursor,
           ).length;
           liveSupportMessagesUnseenState.value = unseenMessagesCount;
         } else {
-          setLiveSupportMessages([]);
+          liveSupportMessagesState.value = [];
           liveSupportMessagesUnseenState.value = 0;
         }
       } catch (ex) {
         console.error(ex);
       }
     })();
-  }, [loggedUser]);
+  }, [loggedUser?.id]);
 
   useEffect(() => {
     if (!divRef.current) return;
     divRef.current.scrollTo(
       0,
-      divRef.current.scrollHeight - divRef.current.offsetHeight
+      divRef.current.scrollHeight - divRef.current.offsetHeight,
     );
   }, [liveSupportMessages.length, liveSupportExpanded]);
 
@@ -75,28 +101,70 @@ export default function LiveSupport() {
         }
       }
     })();
-  }, [liveSupportExpanded, liveSupportMessagesUnseenState, liveSupportMessages, loggedUser]);
+  }, [liveSupportExpanded, liveSupportMessages, loggedUser]);
 
   useEffect(() => {
     resetUnseenCount();
   }, [liveSupportExpanded, resetUnseenCount]);
 
+  useSocketEvent(
+    "received.support",
+    (payload: SupportSocketPayload) => {
+      const msg = payload?.supportMessage;
+      if (!msg || !loggedUser) return;
+      if (msg.userId !== loggedUser.id) return;
+
+      liveSupportMessagesState.value = upsertMessage(
+        liveSupportMessagesState.value,
+        msg,
+        payload.tempId,
+      );
+
+      if (!liveSupportExpandedState.value) {
+        liveSupportMessagesUnseenState.value =
+          liveSupportMessagesUnseenState.value + 1;
+      }
+      // A new customer/support message reopens the UI closed flag.
+      if (msg.telegramSenderId || msg.supporterId) {
+        setClosed(false);
+      }
+    },
+  );
+
+  useSocketEvent(
+    "support.conversation.closed",
+    (payload: { userId: string }) => {
+      if (payload?.userId === loggedUser?.id) {
+        setClosed(true);
+      }
+    },
+  );
+
+  const openChat = () => {
+    if (!loggedUser) {
+      loginOpenedState.value = true;
+      return;
+    }
+    liveSupportExpandedState.value = true;
+  };
+
   return (
     <AnimatePresence>
       {liveSupportExpanded ? (
-        <motion.section
-          className={styles.container}
-          // initial={{ opacity: 0, y: 50 }}
-          // animate={{ opacity: 1, y: 0 }}
-          // exit={{ opacity: 0, y: 50 }}
-          // transition={{ duration: 0.3 }}
-        >
+        <motion.section className={styles.container}>
           <div className="flex items-center justify-between w-full border-b border-[var(--background-tertiary)] text-[#0F212E] px-4 py-3">
             <div className="flex items-center gap-2">
-              <img src="/images/icons/icons/online-led.svg" alt="Live Support" className="w-5 h-5" />
+              <img
+                src="/images/icons/icons/online-led.svg"
+                alt="Live Support"
+                className="w-5 h-5"
+              />
               <h2 className="text-[15px] font-semibold">Chat with us</h2>
             </div>
-            <button onClick={() => liveSupportExpandedState.value = false}>
+            <button
+              type="button"
+              onClick={() => (liveSupportExpandedState.value = false)}
+            >
               <MdClose size={20} />
             </button>
           </div>
@@ -111,47 +179,44 @@ export default function LiveSupport() {
             <div ref={messagesEndRef} />
           </div>
 
+          {closed ? (
+            <div className="px-4 py-2 text-xs text-amber-700 bg-amber-50 border-t border-amber-100">
+              Ticket was closed by support. Sending a message will reopen it.
+            </div>
+          ) : null}
           <ChatMessageInput />
 
           {!isMobile && (
             <motion.button
               className={styles.expandButton}
-              onClick={() => liveSupportExpandedState.value = false}
-              // initial={{ scale: 0 }}
-              // animate={{
-              //   scale: [1, 1.1, 1],
-              //   transition: {
-              //     duration: 1.5,
-              //     repeat: Infinity,
-              //     repeatType: "loop",
-              //   },
-              // }}
-              // exit={{ scale: 0 }}
+              onClick={() => (liveSupportExpandedState.value = false)}
             >
               {smUnseenCount > 0 && (
                 <div className={styles.badge}>{smUnseenCount}</div>
               )}
-              <img src="/images/icons/icons/live-support.svg" alt="Chevron Down" className="w-5 h-5" />
+              <img
+                src="/images/icons/icons/live-support.svg"
+                alt="Live Support"
+                className="w-5 h-5"
+              />
             </motion.button>
           )}
         </motion.section>
       ) : (
         !isMobile && (
-        <motion.button
-          className={styles.expandButton}
-          onClick={() => liveSupportExpandedState.value = true}
-          // initial={{ scale: 0 }}
-          // animate={{
-          //   scale: [1, 1.1, 1],
-          //   transition: { duration: 1.5, repeat: Infinity, repeatType: "loop" },
-          // }} 
-          // exit={{ scale: 0 }}
-        >
-          {smUnseenCount > 0 && (
-            <div className={styles.badge}>{smUnseenCount}</div>
-          )}
-          <img src="/images/icons/icons/live-support.svg" alt="Chevron Down" className="w-5 h-5" />
-        </motion.button>
+          <motion.button
+            className={styles.expandButton}
+            onClick={openChat}
+          >
+            {smUnseenCount > 0 && (
+              <div className={styles.badge}>{smUnseenCount}</div>
+            )}
+            <img
+              src="/images/icons/icons/live-support.svg"
+              alt="Live Support"
+              className="w-5 h-5"
+            />
+          </motion.button>
         )
       )}
     </AnimatePresence>
