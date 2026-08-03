@@ -6,7 +6,6 @@ import {
   tLiveSupportMessage,
 } from "@/types/tLiveSupportMessage";
 import moment from "moment";
-import { Spinner } from "@heroui/spinner";
 import { motion } from "framer-motion";
 import { MdClose, MdInsertDriveFile } from "react-icons/md";
 import { apiRetrySupportMessage } from "@/api/live_support/apiRetrySupportMessage";
@@ -74,11 +73,7 @@ const LiveSupportMessage: React.FC<ILiveSupportMessage> = ({ data }) => {
     >
       <span>{timeLabel}</span>
       {sending && (
-        <Spinner
-          classNames={{ wrapper: "w-[11px] h-[11px]" }}
-          variant="gradient"
-          color="default"
-        />
+        <span className={styles.sendingSpinner} aria-label="Sending" />
       )}
       {failed && isFromUser && (
         <button type="button" className={styles.retryBtn} onClick={onRetry}>
