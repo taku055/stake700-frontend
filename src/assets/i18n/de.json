@@ -548,9 +548,20 @@
     "Unknown": "Unbekannt",
     "Status": "Status",
     "Pay with card": "Mit Karte bezahlen",
+    "Pay with Google Pay": "Mit Google Pay bezahlen",
+    "Pay with Apple Pay": "Mit Apple Pay bezahlen",
     "Visa": "Visa",
     "EPayClub_card_unavailable": "Karten-Checkout ist nicht aktiviert.",
-    "EPayClub_link_unavailable": "Zahlungslinks sind nicht aktiviert."
+    "EPayClub_link_unavailable": "Zahlungslinks sind nicht aktiviert.",
+    "Finera_invalid_amount": "Geben Sie einen gültigen Betrag größer als null ein.",
+    "Finera_minimum_deposit": "Der Mindesteinzahlungsbetrag beträgt {amount}.",
+    "Finera_amount_below_minimum": "Der Mindesteinzahlungsbetrag beträgt {amount}.",
+    "Finera_redirect_failed": "Die Zahlung konnte nicht gestartet werden. Bitte erneut versuchen.",
+    "Finera_error": "Etwas ist schiefgelaufen.",
+    "Finera_ftd_checkbox": "Erste Einzahlung (FTD)",
+    "Finera_withdraw_card": "Kartenauszahlung",
+    "Finera_withdraw_card_ref": "Kartenreferenz",
+    "Finera_withdraw_bank": "Bankauszahlung"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Treuepunkte",
@@ -703,7 +714,9 @@
     "reload-with-current-currency": "Mit {currency_symbol} neu laden",
     "currency-change-message": "Sind Sie sicher, dass Sie die Währung ändern möchten?",
     "Balance displayed in": "Guthaben angezeigt in",
-    "Full Screen Mode": "Vollbildmodus"
+    "Full Screen Mode": "Vollbildmodus",
+    "Exit Full Screen": "Vollbild beenden",
+    "Refresh Game": "Spiel aktualisieren"
   },
   "MoreGameWrapper": {
     "More from": "Mehr von"
@@ -770,6 +783,44 @@
     "WAGERING_REQUIREMENT_NOT_MET": "Sie können kein Geld abheben, bis Sie die Umsatzanforderungen für Ihr Barguthaben erfüllt haben.",
     "INSUFFICIENT_BALANCE": "Ihr Barguthaben reicht für diese Auszahlung nicht aus.",
     "INVALID_AMOUNT": "Der Betrag muss größer als null sein."
+  },
+  "DepositPaymentResult": {
+    "Payment result": "Zahlungsergebnis",
+    "Finera deposit redirect": "Weiterleitung nach Karteneinzahlung vom Zahlungsanbieter",
+    "Deposit successful": "Einzahlung erfolgreich",
+    "Deposit success description": "Ihre Zahlung wurde abgeschlossen. Ihr Guthaben wird in Kürze aktualisiert.",
+    "Deposit failed": "Einzahlung fehlgeschlagen",
+    "Deposit failed description": "Die Zahlung konnte nicht abgeschlossen werden. Bitte erneut versuchen oder eine andere Methode wählen.",
+    "Deposit status unknown": "Zahlungsstatus unklar",
+    "Deposit unknown description": "Das Zahlungsergebnis konnte nicht ermittelt werden. Prüfen Sie den Transaktionsverlauf.",
+    "Reference": "Referenz",
+    "Current balance": "Aktuelles Guthaben",
+    "Try again": "Erneut versuchen",
+    "Deposit again": "Erneut einzahlen",
+    "Back to home": "Zur Startseite",
+    "Login hint": "Melden Sie sich an, um Guthaben und Transaktionen zu sehen.",
+    "Bonus": "Bonus"
+  },
+  "FineraWithdraw": {
+    "Please login to withdraw.": "Bitte melden Sie sich zum Auszahlen an.",
+    "Please enter a valid amount.": "Bitte geben Sie einen gültigen Betrag ein.",
+    "Insufficient balance for this withdraw amount.": "Unzureichendes Guthaben für diesen Auszahlungsbetrag.",
+    "Withdraw request created successfully.": "Auszahlungsanfrage erfolgreich erstellt.",
+    "Withdraw could not be created.": "Auszahlungsanfrage konnte nicht erstellt werden.",
+    "Something went wrong.": "Etwas ist schiefgelaufen.",
+    "Amount": "Betrag",
+    "Enter amount": "Betrag eingeben",
+    "Cardholder name": "Karteninhaber",
+    "Card number": "Kartennummer",
+    "Expire month": "Ablaufmonat",
+    "Expire year": "Ablaufjahr",
+    "Destination card reference ID": "Ziel-Kartenreferenz-ID",
+    "Card reference ID is required.": "Kartenreferenz-ID ist erforderlich.",
+    "Account number": "Kontonummer",
+    "Account number is required.": "Kontonummer ist erforderlich.",
+    "Account name": "Kontoinhaber",
+    "Routing number": "Bankleitzahl",
+    "Submit withdraw": "Auszahlung absenden"
   },
   "SearchWidget": {
     "Search": "Suche",

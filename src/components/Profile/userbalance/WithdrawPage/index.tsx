@@ -1,37 +1,97 @@
+import { useEffect, useState } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
 import { Tabs, Tab } from "@heroui/react";
 import WithdrawalPanel from "@/components/DepositDialogFull/WithdrawalPanel";
-import { PROFILE_PAY_TAB, ProfilePayTabTitle } from "../profilePayTabImages";
+import FineraWithdraw from "./FineraWithdraw";
+import { PROFILE_PAY_TAB, ProfilePayTextTabTitle } from "../profilePayTabImages";
+import {
+  apiGetPaymentProviders,
+  getEnabledFineraWithdrawMethods,
+  getFineraProvider,
+  tFineraWithdrawMethod,
+} from "@/api/wallet/apiGetPaymentProviders";
+
+const WITHDRAW_TAB_LABEL_KEYS: Record<tFineraWithdrawMethod, string> = {
+  card: "Finera_withdraw_card",
+  card_ref: "Finera_withdraw_card_ref",
+  bank: "Finera_withdraw_bank",
+};
 
 const WithdrawPage = () => {
   const t = useTranslations("UserBalancePage");
+  const [fineraMethods, setFineraMethods] = useState<tFineraWithdrawMethod[]>(
+    [],
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      try {
+        const res = await apiGetPaymentProviders();
+        if (cancelled) return;
+        const finera = getFineraProvider(res.providers);
+        setFineraMethods(getEnabledFineraWithdrawMethods(finera));
+      } catch {
+        if (!cancelled) setFineraMethods([]);
+      }
+    };
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <div className="flex flex-col h-full">
       <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">
         {t("Withdraw")}
       </div>
-      <div className="flex flex-col w-full py-5 gap-5">
+      <div className="flex flex-col w-full py-5 gap-5 px-5">
         <Tabs
           aria-label={t("Withdraw tab options")}
           variant="light"
           classNames={{
             base: "w-full",
-            tabList: "gap-2 p-0 bg-transparent rounded-sm",
-            tab: "h-8 w-12 min-w-12 !p-0 m-0 rounded-sm border-2 border-transparent data-[selected=true]:border-green-500 overflow-hidden",
+            tabList:
+              "gap-2 p-0 bg-transparent rounded-sm flex-wrap w-full",
+            tab: [
+              "h-auto min-h-[44px] w-auto min-w-0 !p-0 m-0 rounded-lg",
+              "border border-white/12 bg-white/[0.04]",
+              "data-[selected=true]:border-[var(--green-color)]",
+              "data-[selected=true]:bg-[var(--green-color)]/15",
+              "transition-colors",
+            ].join(" "),
             tabContent:
-              "!p-0 !gap-0 size-full text-white/70 data-[selected=true]:text-green-500 flex items-center justify-center",
+              "text-white/65 data-[selected=true]:text-white flex items-center justify-center",
             cursor: "bg-transparent",
+            panel: "w-full pt-4",
           }}
         >
           <Tab
             key="crypto"
             title={
-              <ProfilePayTabTitle src={PROFILE_PAY_TAB.crypto} label={t("Crypto")} />
+              <ProfilePayTextTabTitle
+                src={PROFILE_PAY_TAB.crypto}
+                label={t("Crypto")}
+              />
             }
           >
             <WithdrawalPanel />
           </Tab>
+          {fineraMethods.map((method) => (
+            <Tab
+              key={`finera_withdraw_${method}`}
+              title={
+                <ProfilePayTextTabTitle
+                  src={PROFILE_PAY_TAB.visa}
+                  caption="Finera"
+                  label={t(WITHDRAW_TAB_LABEL_KEYS[method])}
+                />
+              }
+            >
+              <FineraWithdraw method={method} />
+            </Tab>
+          ))}
         </Tabs>
       </div>
     </div>

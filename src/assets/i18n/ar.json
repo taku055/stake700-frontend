@@ -551,7 +551,16 @@
     "Pay with Apple Pay": "الدفع عبر Apple Pay",
     "Visa": "فيزا",
     "EPayClub_card_unavailable": "الدفع بالبطاقة غير مفعّل.",
-    "EPayClub_link_unavailable": "روابط الدفع غير مفعّلة."
+    "EPayClub_link_unavailable": "روابط الدفع غير مفعّلة.",
+    "Finera_invalid_amount": "أدخل مبلغًا صالحًا أكبر من صفر.",
+    "Finera_minimum_deposit": "الحد الأدنى لمبلغ الإيداع هو {amount}.",
+    "Finera_amount_below_minimum": "الحد الأدنى لمبلغ الإيداع هو {amount}.",
+    "Finera_redirect_failed": "تعذر بدء الدفع. يرجى المحاولة مرة أخرى.",
+    "Finera_error": "حدث خطأ ما.",
+    "Finera_ftd_checkbox": "إيداع أول مرة (FTD)",
+    "Finera_withdraw_card": "سحب بالبطاقة",
+    "Finera_withdraw_card_ref": "مرجع البطاقة",
+    "Finera_withdraw_bank": "سحب بنكي"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "نقاط الولاء",
@@ -704,7 +713,9 @@
     "reload-with-current-currency": "إعادة التحميل بـ {currency_symbol}",
     "currency-change-message": "هل أنت متأكد أنك تريد تغيير العملة؟",
     "Balance displayed in": "الرصيد المعروض بـ",
-    "Full Screen Mode": "وضع ملء الشاشة"
+    "Full Screen Mode": "وضع ملء الشاشة",
+    "Exit Full Screen": "إنهاء ملء الشاشة",
+    "Refresh Game": "تحديث اللعبة"
   },
   "MoreGameWrapper": {
     "More from": "المزيد من"
@@ -771,6 +782,44 @@
     "WAGERING_REQUIREMENT_NOT_MET": "لا يمكنك سحب النقد حتى تستوفي متطلبات الرهان لرصيدك النقدي.",
     "INSUFFICIENT_BALANCE": "رصيدك النقدي غير كافٍ لهذا السحب.",
     "INVALID_AMOUNT": "يجب أن يكون المبلغ أكبر من الصفر."
+  },
+  "DepositPaymentResult": {
+    "Payment result": "نتيجة الدفع",
+    "Finera deposit redirect": "إعادة التوجيه بعد إيداع البطاقة من مزود الدفع",
+    "Deposit successful": "تم الإيداع بنجاح",
+    "Deposit success description": "اكتمل الدفع. سيتم تحديث رصيدك قريبًا إن لم يظهر بعد.",
+    "Deposit failed": "فشل الإيداع",
+    "Deposit failed description": "تعذر إتمام الدفع. يمكنك المحاولة مرة أخرى أو استخدام طريقة أخرى.",
+    "Deposit status unknown": "حالة الدفع غير واضحة",
+    "Deposit unknown description": "تعذر تحديد نتيجة الدفع. راجع سجل المعاملات أو حاول مرة أخرى.",
+    "Reference": "المرجع",
+    "Current balance": "الرصيد الحالي",
+    "Try again": "حاول مرة أخرى",
+    "Deposit again": "إيداع مرة أخرى",
+    "Back to home": "العودة للرئيسية",
+    "Login hint": "سجّل الدخول لعرض رصيدك وسجل المعاملات.",
+    "Bonus": "مكافأة"
+  },
+  "FineraWithdraw": {
+    "Please login to withdraw.": "يرجى تسجيل الدخول للسحب.",
+    "Please enter a valid amount.": "يرجى إدخال مبلغ صالح.",
+    "Insufficient balance for this withdraw amount.": "الرصيد غير كافٍ لهذا المبلغ.",
+    "Withdraw request created successfully.": "تم إنشاء طلب السحب بنجاح.",
+    "Withdraw could not be created.": "تعذر إنشاء طلب السحب.",
+    "Something went wrong.": "حدث خطأ ما.",
+    "Amount": "المبلغ",
+    "Enter amount": "أدخل المبلغ",
+    "Cardholder name": "اسم حامل البطاقة",
+    "Card number": "رقم البطاقة",
+    "Expire month": "شهر الانتهاء",
+    "Expire year": "سنة الانتهاء",
+    "Destination card reference ID": "معرّف مرجع البطاقة الوجهة",
+    "Card reference ID is required.": "معرّف مرجع البطاقة مطلوب.",
+    "Account number": "رقم الحساب",
+    "Account number is required.": "رقم الحساب مطلوب.",
+    "Account name": "اسم الحساب",
+    "Routing number": "رقم التوجيه",
+    "Submit withdraw": "إرسال السحب"
   },
   "SearchWidget": {
     "Search": "بحث",
