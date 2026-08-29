@@ -38,6 +38,10 @@ export function isFineraProviderCode(code: string) {
   return code === "Finera";
 }
 
+export function isEcohpayProviderCode(code: string) {
+  return code === "Ecohpay";
+}
+
 export async function apiGetPaymentProviders() {
   const res = await instance.get<tPaymentProvidersResponse>(
     "/payment/providers?from=0&limit=50",
@@ -47,6 +51,10 @@ export async function apiGetPaymentProviders() {
 
 export function getFineraProvider(providers: tPaymentProviderPublic[]) {
   return providers.find((p) => isFineraProviderCode(p.code));
+}
+
+export function getEcohpayProvider(providers: tPaymentProviderPublic[]) {
+  return providers.find((p) => isEcohpayProviderCode(p.code));
 }
 
 export function getEnabledFineraDepositMethods(
@@ -60,6 +68,12 @@ export function getEnabledFineraDepositMethods(
   return all.filter((method) => methods?.[method] !== false);
 }
 
+export function getEnabledEcohpayDepositMethods(
+  provider: tPaymentProviderPublic | undefined,
+): tFineraPaymentMethod[] {
+  return getEnabledFineraDepositMethods(provider);
+}
+
 export function getEnabledFineraWithdrawMethods(
   provider: tPaymentProviderPublic | undefined,
 ): tFineraWithdrawMethod[] {
@@ -69,4 +83,10 @@ export function getEnabledFineraWithdrawMethods(
   const methods = provider.config?.withdraw_methods_enabled;
   const all: tFineraWithdrawMethod[] = ["card", "card_ref", "bank"];
   return all.filter((method) => methods?.[method] === true);
+}
+
+export function getEnabledEcohpayWithdrawMethods(
+  provider: tPaymentProviderPublic | undefined,
+): tFineraWithdrawMethod[] {
+  return getEnabledFineraWithdrawMethods(provider);
 }

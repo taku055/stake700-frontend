@@ -665,7 +665,16 @@
     "Finera_ftd_checkbox": "First-time deposit (FTD)",
     "Finera_withdraw_card": "Card payout",
     "Finera_withdraw_card_ref": "Card reference",
-    "Finera_withdraw_bank": "Bank payout"
+    "Finera_withdraw_bank": "Bank payout",
+    "Ecohpay_invalid_amount": "Enter a valid amount greater than zero.",
+    "Ecohpay_minimum_deposit": "Minimum deposit amount is {amount}.",
+    "Ecohpay_amount_below_minimum": "The minimum deposit amount is {amount}.",
+    "Ecohpay_redirect_failed": "Could not start the payment. Please try again.",
+    "Ecohpay_error": "Something went wrong.",
+    "Ecohpay_ftd_checkbox": "First-time deposit (FTD)",
+    "Ecohpay_withdraw_card": "Card payout",
+    "Ecohpay_withdraw_card_ref": "Card reference",
+    "Ecohpay_withdraw_bank": "Bank payout"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Loyalty Points",
@@ -2203,5 +2212,26 @@
     "token_expired": "This reset link has expired.",
     "request_failed": "Could not reset password. Please try again.",
     "request_new_link": "Request a new reset link"
+  },
+  "EcohpayWithdraw": {
+    "Please login to withdraw.": "Please login to withdraw.",
+    "Please enter a valid amount.": "Please enter a valid amount.",
+    "Insufficient balance for this withdraw amount.": "Insufficient balance for this withdraw amount.",
+    "Withdraw request created successfully.": "Withdraw request created successfully.",
+    "Withdraw could not be created.": "Withdraw could not be created.",
+    "Something went wrong.": "Something went wrong.",
+    "Amount": "Amount",
+    "Enter amount": "Enter amount",
+    "Cardholder name": "Cardholder name",
+    "Card number": "Card number",
+    "Expire month": "Expire month",
+    "Expire year": "Expire year",
+    "Destination card reference ID": "Destination card reference ID",
+    "Card reference ID is required.": "Card reference ID is required.",
+    "Account number": "Account number",
+    "Account number is required.": "Account number is required.",
+    "Account name": "Account name",
+    "Routing number": "Routing number",
+    "Submit withdraw": "Submit withdraw"
   }
 }

@@ -3,10 +3,13 @@ import { useTranslations } from "@/context/I18nContext";
 import { Tabs, Tab } from "@heroui/react";
 import WithdrawalPanel from "@/components/DepositDialogFull/WithdrawalPanel";
 import FineraWithdraw from "./FineraWithdraw";
+import EcohpayWithdraw from "./EcohpayWithdraw";
 import { PROFILE_PAY_TAB, ProfilePayTextTabTitle } from "../profilePayTabImages";
 import {
   apiGetPaymentProviders,
+  getEnabledEcohpayWithdrawMethods,
   getEnabledFineraWithdrawMethods,
+  getEcohpayProvider,
   getFineraProvider,
   tFineraWithdrawMethod,
 } from "@/api/wallet/apiGetPaymentProviders";
@@ -22,6 +25,9 @@ const WithdrawPage = () => {
   const [fineraMethods, setFineraMethods] = useState<tFineraWithdrawMethod[]>(
     [],
   );
+  const [ecohpayMethods, setEcohpayMethods] = useState<tFineraWithdrawMethod[]>(
+    [],
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -31,8 +37,13 @@ const WithdrawPage = () => {
         if (cancelled) return;
         const finera = getFineraProvider(res.providers);
         setFineraMethods(getEnabledFineraWithdrawMethods(finera));
+        const ecohpay = getEcohpayProvider(res.providers);
+        setEcohpayMethods(getEnabledEcohpayWithdrawMethods(ecohpay));
       } catch {
-        if (!cancelled) setFineraMethods([]);
+        if (!cancelled) {
+          setFineraMethods([]);
+          setEcohpayMethods([]);
+        }
       }
     };
     load();
@@ -90,6 +101,20 @@ const WithdrawPage = () => {
               }
             >
               <FineraWithdraw method={method} />
+            </Tab>
+          ))}
+          {ecohpayMethods.map((method) => (
+            <Tab
+              key={`ecohpay_withdraw_${method}`}
+              title={
+                <ProfilePayTextTabTitle
+                  src={PROFILE_PAY_TAB.visa}
+                  caption="Ecohpay"
+                  label={t(WITHDRAW_TAB_LABEL_KEYS[method])}
+                />
+              }
+            >
+              <EcohpayWithdraw method={method} />
             </Tab>
           ))}
         </Tabs>

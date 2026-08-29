@@ -4,10 +4,13 @@ import { Tabs, Tab } from "@heroui/react";
 import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
 import EpayclubDeposit from "./EpayclubDeposit";
 import FineraDeposit from "./FineraDeposit";
+import EcohpayDeposit from "./EcohpayDeposit";
 import { PROFILE_PAY_TAB, ProfilePayTabTitle } from "../profilePayTabImages";
 import {
   apiGetPaymentProviders,
+  getEnabledEcohpayDepositMethods,
   getEnabledFineraDepositMethods,
+  getEcohpayProvider,
   getFineraProvider,
   tFineraPaymentMethod,
 } from "@/api/wallet/apiGetPaymentProviders";
@@ -43,6 +46,10 @@ const DepositPage = () => {
     [],
   );
   const [fineraMinAmount, setFineraMinAmount] = useState(1);
+  const [ecohpayMethods, setEcohpayMethods] = useState<tFineraPaymentMethod[]>(
+    [],
+  );
+  const [ecohpayMinAmount, setEcohpayMinAmount] = useState(1);
 
   useEffect(() => {
     let cancelled = false;
@@ -53,9 +60,13 @@ const DepositPage = () => {
         const finera = getFineraProvider(res.providers);
         setFineraMethods(getEnabledFineraDepositMethods(finera));
         setFineraMinAmount(finera?.min_amount ?? 1);
+        const ecohpay = getEcohpayProvider(res.providers);
+        setEcohpayMethods(getEnabledEcohpayDepositMethods(ecohpay));
+        setEcohpayMinAmount(ecohpay?.min_amount ?? 1);
       } catch {
         if (!cancelled) {
           setFineraMethods([]);
+          setEcohpayMethods([]);
         }
       }
     };
@@ -123,6 +134,22 @@ const DepositPage = () => {
                 }
               >
                 <FineraDeposit type={method} minAmount={fineraMinAmount} />
+              </Tab>
+            );
+          })}
+          {ecohpayMethods.map((method) => {
+            const tab = FINERA_TAB_META[method];
+            return (
+              <Tab
+                key={`ecohpay_${method}`}
+                title={
+                  <ProfilePayTabTitle
+                    src={tab.icon}
+                    label={`Ecohpay ${t(tab.labelKey)}`}
+                  />
+                }
+              >
+                <EcohpayDeposit type={method} minAmount={ecohpayMinAmount} />
               </Tab>
             );
           })}

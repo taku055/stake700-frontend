@@ -561,7 +561,16 @@
     "Finera_ftd_checkbox": "Erste Einzahlung (FTD)",
     "Finera_withdraw_card": "Kartenauszahlung",
     "Finera_withdraw_card_ref": "Kartenreferenz",
-    "Finera_withdraw_bank": "Bankauszahlung"
+    "Finera_withdraw_bank": "Bankauszahlung",
+    "Ecohpay_invalid_amount": "Geben Sie einen gültigen Betrag größer als null ein.",
+    "Ecohpay_minimum_deposit": "Mindesteinzahlung beträgt {amount}.",
+    "Ecohpay_amount_below_minimum": "Mindesteinzahlung beträgt {amount}.",
+    "Ecohpay_redirect_failed": "Zahlung konnte nicht gestartet werden. Bitte erneut versuchen.",
+    "Ecohpay_error": "Etwas ist schiefgelaufen.",
+    "Ecohpay_ftd_checkbox": "Erste Einzahlung (FTD)",
+    "Ecohpay_withdraw_card": "Kartenauszahlung",
+    "Ecohpay_withdraw_card_ref": "Kartenreferenz",
+    "Ecohpay_withdraw_bank": "Bankauszahlung"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Treuepunkte",
@@ -2253,5 +2262,26 @@
     "token_expired": "This reset link has expired.",
     "request_failed": "Could not reset password. Please try again.",
     "request_new_link": "Request a new reset link"
+  },
+  "EcohpayWithdraw": {
+    "Please login to withdraw.": "Bitte melden Sie sich zum Auszahlen an.",
+    "Please enter a valid amount.": "Bitte geben Sie einen gültigen Betrag ein.",
+    "Insufficient balance for this withdraw amount.": "Unzureichendes Guthaben für diesen Auszahlungsbetrag.",
+    "Withdraw request created successfully.": "Auszahlungsanfrage erfolgreich erstellt.",
+    "Withdraw could not be created.": "Auszahlungsanfrage konnte nicht erstellt werden.",
+    "Something went wrong.": "Etwas ist schiefgelaufen.",
+    "Amount": "Betrag",
+    "Enter amount": "Betrag eingeben",
+    "Cardholder name": "Karteninhaber",
+    "Card number": "Kartennummer",
+    "Expire month": "Ablaufmonat",
+    "Expire year": "Ablaufjahr",
+    "Destination card reference ID": "Ziel-Kartenreferenz-ID",
+    "Card reference ID is required.": "Kartenreferenz-ID ist erforderlich.",
+    "Account number": "Kontonummer",
+    "Account number is required.": "Kontonummer ist erforderlich.",
+    "Account name": "Kontoinhaber",
+    "Routing number": "Bankleitzahl",
+    "Submit withdraw": "Auszahlung absenden"
   }
 }

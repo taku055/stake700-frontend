@@ -558,7 +558,16 @@
     "Finera_ftd_checkbox": "Первый депозит (FTD)",
     "Finera_withdraw_card": "Вывод на карту",
     "Finera_withdraw_card_ref": "Ссылка на карту",
-    "Finera_withdraw_bank": "Банковский вывод"
+    "Finera_withdraw_bank": "Банковский вывод",
+    "Ecohpay_invalid_amount": "Введите сумму больше нуля.",
+    "Ecohpay_minimum_deposit": "Минимальная сумма депозита: {amount}.",
+    "Ecohpay_amount_below_minimum": "Минимальная сумма депозита: {amount}.",
+    "Ecohpay_redirect_failed": "Не удалось начать оплату. Попробуйте ещё раз.",
+    "Ecohpay_error": "Что-то пошло не так.",
+    "Ecohpay_ftd_checkbox": "Первый депозит (FTD)",
+    "Ecohpay_withdraw_card": "Вывод на карту",
+    "Ecohpay_withdraw_card_ref": "Ссылка на карту",
+    "Ecohpay_withdraw_bank": "Банковский вывод"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Бонусные баллы",
@@ -2134,5 +2143,26 @@
     "token_expired": "This reset link has expired.",
     "request_failed": "Could not reset password. Please try again.",
     "request_new_link": "Request a new reset link"
+  },
+  "EcohpayWithdraw": {
+    "Please login to withdraw.": "Пожалуйста, войдите для вывода средств.",
+    "Please enter a valid amount.": "Пожалуйста, введите корректную сумму.",
+    "Insufficient balance for this withdraw amount.": "Недостаточно средств для этой суммы вывода.",
+    "Withdraw request created successfully.": "Заявка на вывод успешно создана.",
+    "Withdraw could not be created.": "Не удалось создать заявку на вывод.",
+    "Something went wrong.": "Что-то пошло не так.",
+    "Amount": "Сумма",
+    "Enter amount": "Введите сумму",
+    "Cardholder name": "Имя держателя карты",
+    "Card number": "Номер карты",
+    "Expire month": "Месяц истечения",
+    "Expire year": "Год истечения",
+    "Destination card reference ID": "ID ссылки на карту назначения",
+    "Card reference ID is required.": "Требуется ID ссылки на карту.",
+    "Account number": "Номер счёта",
+    "Account number is required.": "Номер счёта обязателен.",
+    "Account name": "Имя владельца счёта",
+    "Routing number": "Банковский код",
+    "Submit withdraw": "Отправить вывод"
   }
 }

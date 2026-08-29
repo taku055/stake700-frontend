@@ -558,7 +558,16 @@
     "Finera_ftd_checkbox": "Premier dépôt (FTD)",
     "Finera_withdraw_card": "Paiement par carte",
     "Finera_withdraw_card_ref": "Référence carte",
-    "Finera_withdraw_bank": "Paiement bancaire"
+    "Finera_withdraw_bank": "Paiement bancaire",
+    "Ecohpay_invalid_amount": "Saisissez un montant valide supérieur à zéro.",
+    "Ecohpay_minimum_deposit": "Le montant minimum du dépôt est {amount}.",
+    "Ecohpay_amount_below_minimum": "Le montant minimum du dépôt est {amount}.",
+    "Ecohpay_redirect_failed": "Impossible de démarrer le paiement. Réessayez.",
+    "Ecohpay_error": "Une erreur s'est produite.",
+    "Ecohpay_ftd_checkbox": "Premier dépôt (FTD)",
+    "Ecohpay_withdraw_card": "Paiement carte",
+    "Ecohpay_withdraw_card_ref": "Référence carte",
+    "Ecohpay_withdraw_bank": "Paiement bancaire"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Points de fidélité",
@@ -2134,5 +2143,26 @@
     "token_expired": "This reset link has expired.",
     "request_failed": "Could not reset password. Please try again.",
     "request_new_link": "Request a new reset link"
+  },
+  "EcohpayWithdraw": {
+    "Please login to withdraw.": "Veuillez vous connecter pour retirer.",
+    "Please enter a valid amount.": "Veuillez saisir un montant valide.",
+    "Insufficient balance for this withdraw amount.": "Solde insuffisant pour ce montant de retrait.",
+    "Withdraw request created successfully.": "La demande de retrait a été créée avec succès.",
+    "Withdraw could not be created.": "La demande de retrait n'a pas pu être créée.",
+    "Something went wrong.": "Une erreur s'est produite.",
+    "Amount": "Montant",
+    "Enter amount": "Saisir le montant",
+    "Cardholder name": "Nom du titulaire",
+    "Card number": "Numéro de carte",
+    "Expire month": "Mois d'expiration",
+    "Expire year": "Année d'expiration",
+    "Destination card reference ID": "ID de référence de carte de destination",
+    "Card reference ID is required.": "L'ID de référence de carte est requis.",
+    "Account number": "Numéro de compte",
+    "Account number is required.": "Le numéro de compte est requis.",
+    "Account name": "Nom du compte",
+    "Routing number": "Numéro de routage",
+    "Submit withdraw": "Envoyer le retrait"
   }
 }
