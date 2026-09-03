@@ -13,14 +13,12 @@ export async function apiGetFineraSaleForm(
   type: "card" | "googlepay" | "applepay",
   locale: string,
   promoId?: string,
-  ftd?: boolean,
 ) {
   const body: {
     amount: number;
     type: "card" | "googlepay" | "applepay";
     locale: string;
     promoId?: string;
-    ftd?: boolean;
   } = {
     amount,
     type,
@@ -28,9 +26,6 @@ export async function apiGetFineraSaleForm(
   };
   if (promoId) {
     body.promoId = promoId;
-  }
-  if (ftd) {
-    body.ftd = true;
   }
 
   const res = await instance.post<tFineraSaleFormResponse>(

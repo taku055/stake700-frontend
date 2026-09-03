@@ -18,11 +18,8 @@ export default function FineraDeposit({
 }: FineraDepositProps) {
   const t = useTranslations("UserBalancePage");
   const [amount, setAmount] = useState("");
-  const [ftd, setFtd] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
-
-  const supportsFtd = type === "googlepay" || type === "applepay";
 
   const methodLabel =
     type === "googlepay"
@@ -55,7 +52,6 @@ export default function FineraDeposit({
         type,
         localeState.value || "en",
         promoId,
-        supportsFtd && ftd,
       );
       if (res.success && res.redirect_url) {
         window.location.assign(res.redirect_url);
@@ -77,7 +73,7 @@ export default function FineraDeposit({
     } finally {
       setIsSubmitting(false);
     }
-  }, [amount, ftd, minAmount, supportsFtd, t, type]);
+  }, [amount, minAmount, t, type]);
 
   const parsedAmount = Number.parseFloat(amount.replace(",", "."));
   const isBelowMinimum =
@@ -104,40 +100,6 @@ export default function FineraDeposit({
         isInvalid={isBelowMinimum || !!error}
         classNames={{ input: "text-start" }}
       />
-
-      {supportsFtd ? (
-        <button
-          type="button"
-          role="checkbox"
-          aria-checked={ftd}
-          onClick={() => setFtd((prev) => !prev)}
-          className="flex w-full items-center gap-3 rounded-lg border border-white/15 bg-white/5 px-3 py-3 text-left cursor-pointer select-none hover:bg-white/10 active:bg-white/15"
-        >
-          <span
-            aria-hidden="true"
-            className={`flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 ${
-              ftd
-                ? "border-[var(--green-color)] bg-[var(--green-color)]"
-                : "border-white/50 bg-transparent"
-            }`}
-          >
-            {ftd ? (
-              <svg
-                viewBox="0 0 16 16"
-                className="h-3.5 w-3.5 text-white"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path d="M3.5 8.5 L6.5 11.5 L12.5 4.5" />
-              </svg>
-            ) : null}
-          </span>
-          <span className="text-sm text-white/90">
-            {t("Finera_ftd_checkbox")}
-          </span>
-        </button>
-      ) : null}
 
       <p className="text-sm text-white/60">
         {t("Finera_minimum_deposit", { amount: String(minAmount) })}
