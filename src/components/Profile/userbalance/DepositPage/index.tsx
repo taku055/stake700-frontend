@@ -2,7 +2,6 @@ import { useEffect, useState } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
 import { Tabs, Tab } from "@heroui/react";
 import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
-import EpayclubDeposit from "./EpayclubDeposit";
 import FineraDeposit from "./FineraDeposit";
 import EcohpayDeposit from "./EcohpayDeposit";
 import { PROFILE_PAY_TAB, ProfilePayTabTitle } from "../profilePayTabImages";
@@ -109,17 +108,6 @@ const DepositPage = () => {
             }
           >
             <DepositPanel />
-          </Tab>
-          <Tab
-            key="epayclub_card"
-            title={
-              <ProfilePayTabTitle
-                src={PROFILE_PAY_TAB.epayClub}
-                label={t("Visa", undefined, "Visa")}
-              />
-            }
-          >
-            <EpayclubDeposit />
           </Tab>
           {fineraMethods.map((method) => {
             const tab = FINERA_TAB_META[method];

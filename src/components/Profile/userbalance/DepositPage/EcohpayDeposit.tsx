@@ -22,7 +22,8 @@ export default function EcohpayDeposit({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const supportsFtd = type === "googlepay" || type === "applepay";
+  const supportsFtd =
+    type === "card" || type === "googlepay" || type === "applepay";
 
   const methodLabel =
     type === "googlepay"

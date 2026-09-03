@@ -42,6 +42,11 @@ export function isEcohpayProviderCode(code: string) {
   return code === "Ecohpay";
 }
 
+export function isEpayclubProviderCode(code: string) {
+  const normalized = code.trim().toLowerCase();
+  return normalized === "epc" || normalized === "epayclub";
+}
+
 export async function apiGetPaymentProviders() {
   const res = await instance.get<tPaymentProvidersResponse>(
     "/payment/providers?from=0&limit=50",
@@ -55,6 +60,18 @@ export function getFineraProvider(providers: tPaymentProviderPublic[]) {
 
 export function getEcohpayProvider(providers: tPaymentProviderPublic[]) {
   return providers.find((p) => isEcohpayProviderCode(p.code));
+}
+
+export function getEpayclubProvider(providers: tPaymentProviderPublic[]) {
+  return providers.find((p) => isEpayclubProviderCode(p.code));
+}
+
+export function isEpayclubDepositEnabled(
+  provider: tPaymentProviderPublic | undefined,
+): boolean {
+  if (provider?.enabled !== true) return false;
+  if (provider.config?.features_enabled?.deposits === false) return false;
+  return true;
 }
 
 export function getEnabledFineraDepositMethods(
