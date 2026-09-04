@@ -24,6 +24,7 @@ import HomePage from "@/pages/home";
 import SportPage from "@/pages/sport";
 import RacingPage from "@/pages/sports/RacingPage";
 import AriesPaymentResult from "@/pages/payment/aries/AriesPaymentResult";
+import DepositPaymentResultPage from "@/pages/profile/deposit";
 import CasinoCategoryPage from "@/pages/casino-category";
 import VipPage from "@/pages/vip";
 import EpayclubCardCheckout from "@/pages/payment/epayclub/EpayclubCardCheckout";
@@ -80,6 +81,7 @@ export default function AppRoute() {
       <Route path="/payment/aries/result" component={AriesPaymentResult} />
       <Route path="/payment/epayclub/card/checkout" component={EpayclubCardCheckout} />
       <Route path="/payment/epayclub/result" component={EpayclubPaymentResult} />
+      <Route path="/profile/deposit" component={DepositPaymentResultPage} />
 
       <Route path="/agent" component={AgentPage} />
       <Route path="/agent/*" component={AgentPage} />

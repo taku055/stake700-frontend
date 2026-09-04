@@ -545,9 +545,29 @@
     "Unknown": "Inconnu",
     "Status": "Statut",
     "Pay with card": "Payer par carte",
+    "Pay with Google Pay": "Payer avec Google Pay",
+    "Pay with Apple Pay": "Payer avec Apple Pay",
     "Visa": "Visa",
     "EPayClub_card_unavailable": "Le paiement par carte n'est pas activé.",
-    "EPayClub_link_unavailable": "Les liens de paiement ne sont pas activés."
+    "EPayClub_link_unavailable": "Les liens de paiement ne sont pas activés.",
+    "Finera_invalid_amount": "Saisissez un montant valide supérieur à zéro.",
+    "Finera_minimum_deposit": "Le montant minimum de dépôt est de {amount}.",
+    "Finera_amount_below_minimum": "Le montant minimum de dépôt est de {amount}.",
+    "Finera_redirect_failed": "Impossible de démarrer le paiement. Veuillez réessayer.",
+    "Finera_error": "Une erreur s'est produite.",
+    "Finera_ftd_checkbox": "Premier dépôt (FTD)",
+    "Finera_withdraw_card": "Paiement par carte",
+    "Finera_withdraw_card_ref": "Référence carte",
+    "Finera_withdraw_bank": "Paiement bancaire",
+    "Ecohpay_invalid_amount": "Saisissez un montant valide supérieur à zéro.",
+    "Ecohpay_minimum_deposit": "Le montant minimum du dépôt est {amount}.",
+    "Ecohpay_amount_below_minimum": "Le montant minimum du dépôt est {amount}.",
+    "Ecohpay_redirect_failed": "Impossible de démarrer le paiement. Réessayez.",
+    "Ecohpay_error": "Une erreur s'est produite.",
+    "Ecohpay_ftd_checkbox": "Premier dépôt (FTD)",
+    "Ecohpay_withdraw_card": "Paiement carte",
+    "Ecohpay_withdraw_card_ref": "Référence carte",
+    "Ecohpay_withdraw_bank": "Paiement bancaire"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Points de fidélité",
@@ -694,7 +714,9 @@
     "reload-with-current-currency": "Recharger avec {currency_symbol}",
     "currency-change-message": "Êtes-vous sûr de vouloir changer la devise ?",
     "Balance displayed in": "Solde affiché en",
-    "Full Screen Mode": "Mode Plein Écran"
+    "Full Screen Mode": "Mode Plein Écran",
+    "Exit Full Screen": "Quitter le plein écran",
+    "Refresh Game": "Actualiser le jeu"
   },
   "MoreGameWrapper": {
     "More from": "Plus de"
@@ -761,6 +783,44 @@
     "WAGERING_REQUIREMENT_NOT_MET": "Vous ne pouvez pas retirer d'argent tant que vous n'avez pas rempli les exigences de mise en jeu concernant votre solde en espèces.",
     "INSUFFICIENT_BALANCE": "Votre solde en espèces est insuffisant pour ce retrait.",
     "INVALID_AMOUNT": "Le montant doit être supérieur à zero."
+  },
+  "DepositPaymentResult": {
+    "Payment result": "Résultat du paiement",
+    "Finera deposit redirect": "Redirection après dépôt par carte depuis le prestataire",
+    "Deposit successful": "Dépôt réussi",
+    "Deposit success description": "Votre paiement a été effectué. Votre solde sera mis à jour sous peu.",
+    "Deposit failed": "Échec du dépôt",
+    "Deposit failed description": "Le paiement n'a pas pu être finalisé. Réessayez ou utilisez une autre méthode.",
+    "Deposit status unknown": "Statut du paiement incertain",
+    "Deposit unknown description": "Impossible de déterminer le résultat. Consultez l'historique ou réessayez.",
+    "Reference": "Référence",
+    "Current balance": "Solde actuel",
+    "Try again": "Réessayer",
+    "Deposit again": "Déposer à nouveau",
+    "Back to home": "Retour à l'accueil",
+    "Login hint": "Connectez-vous pour voir votre solde et vos transactions.",
+    "Bonus": "Bonus"
+  },
+  "FineraWithdraw": {
+    "Please login to withdraw.": "Veuillez vous connecter pour retirer.",
+    "Please enter a valid amount.": "Veuillez saisir un montant valide.",
+    "Insufficient balance for this withdraw amount.": "Solde insuffisant pour ce montant de retrait.",
+    "Withdraw request created successfully.": "La demande de retrait a été créée avec succès.",
+    "Withdraw could not be created.": "La demande de retrait n'a pas pu être créée.",
+    "Something went wrong.": "Une erreur s'est produite.",
+    "Amount": "Montant",
+    "Enter amount": "Saisir le montant",
+    "Cardholder name": "Nom du titulaire",
+    "Card number": "Numéro de carte",
+    "Expire month": "Mois d'expiration",
+    "Expire year": "Année d'expiration",
+    "Destination card reference ID": "ID de référence de carte de destination",
+    "Card reference ID is required.": "L'ID de référence de carte est requis.",
+    "Account number": "Numéro de compte",
+    "Account number is required.": "Le numéro de compte est requis.",
+    "Account name": "Nom du compte",
+    "Routing number": "Numéro de routage",
+    "Submit withdraw": "Envoyer le retrait"
   },
   "SearchWidget": {
     "Search": "Rechercher",
@@ -2083,5 +2143,26 @@
     "token_expired": "This reset link has expired.",
     "request_failed": "Could not reset password. Please try again.",
     "request_new_link": "Request a new reset link"
+  },
+  "EcohpayWithdraw": {
+    "Please login to withdraw.": "Veuillez vous connecter pour retirer.",
+    "Please enter a valid amount.": "Veuillez saisir un montant valide.",
+    "Insufficient balance for this withdraw amount.": "Solde insuffisant pour ce montant de retrait.",
+    "Withdraw request created successfully.": "La demande de retrait a été créée avec succès.",
+    "Withdraw could not be created.": "La demande de retrait n'a pas pu être créée.",
+    "Something went wrong.": "Une erreur s'est produite.",
+    "Amount": "Montant",
+    "Enter amount": "Saisir le montant",
+    "Cardholder name": "Nom du titulaire",
+    "Card number": "Numéro de carte",
+    "Expire month": "Mois d'expiration",
+    "Expire year": "Année d'expiration",
+    "Destination card reference ID": "ID de référence de carte de destination",
+    "Card reference ID is required.": "L'ID de référence de carte est requis.",
+    "Account number": "Numéro de compte",
+    "Account number is required.": "Le numéro de compte est requis.",
+    "Account name": "Nom du compte",
+    "Routing number": "Numéro de routage",
+    "Submit withdraw": "Envoyer le retrait"
   }
 }

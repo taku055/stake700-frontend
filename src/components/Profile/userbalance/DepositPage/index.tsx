@@ -1,12 +1,85 @@
+import { useEffect, useState } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
 import { Tabs, Tab } from "@heroui/react";
 import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
-import NeonpayDeposit from "./NeonpayDeposit";
-import EpayclubDeposit from "./EpayclubDeposit";
+import FineraDeposit from "./FineraDeposit";
+import EcohpayDeposit from "./EcohpayDeposit";
 import { PROFILE_PAY_TAB, ProfilePayTabTitle } from "../profilePayTabImages";
+import {
+  apiGetPaymentProviders,
+  getEnabledEcohpayDepositMethods,
+  getEnabledFineraDepositMethods,
+  getEcohpayProvider,
+  getFineraProvider,
+  tFineraPaymentMethod,
+} from "@/api/wallet/apiGetPaymentProviders";
+import {
+  clearDepositPromoFromUrl,
+  currentUserHasActiveBonusCycle,
+} from "@/helpers/hasActiveBonusCycle";
+
+const FINERA_TAB_META: Record<
+  tFineraPaymentMethod,
+  { key: string; labelKey: string; icon: string }
+> = {
+  card: {
+    key: "finera_card",
+    labelKey: "Pay with card",
+    icon: PROFILE_PAY_TAB.visa,
+  },
+  googlepay: {
+    key: "finera_googlepay",
+    labelKey: "Pay with Google Pay",
+    icon: PROFILE_PAY_TAB.googlePay,
+  },
+  applepay: {
+    key: "finera_applepay",
+    labelKey: "Pay with Apple Pay",
+    icon: PROFILE_PAY_TAB.applePay,
+  },
+};
 
 const DepositPage = () => {
   const t = useTranslations("UserBalancePage");
+  const [fineraMethods, setFineraMethods] = useState<tFineraPaymentMethod[]>(
+    [],
+  );
+  const [fineraMinAmount, setFineraMinAmount] = useState(1);
+  const [ecohpayMethods, setEcohpayMethods] = useState<tFineraPaymentMethod[]>(
+    [],
+  );
+  const [ecohpayMinAmount, setEcohpayMinAmount] = useState(1);
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      try {
+        const res = await apiGetPaymentProviders();
+        if (cancelled) return;
+        const finera = getFineraProvider(res.providers);
+        setFineraMethods(getEnabledFineraDepositMethods(finera));
+        setFineraMinAmount(finera?.min_amount ?? 1);
+        const ecohpay = getEcohpayProvider(res.providers);
+        setEcohpayMethods(getEnabledEcohpayDepositMethods(ecohpay));
+        setEcohpayMinAmount(ecohpay?.min_amount ?? 1);
+      } catch {
+        if (!cancelled) {
+          setFineraMethods([]);
+          setEcohpayMethods([]);
+        }
+      }
+    };
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (currentUserHasActiveBonusCycle()) {
+      clearDepositPromoFromUrl();
+    }
+  }, []);
 
   return (
     <div className="flex flex-col h-full">
@@ -28,22 +101,46 @@ const DepositPage = () => {
           <Tab
             key="crypto"
             title={
-              <ProfilePayTabTitle src={PROFILE_PAY_TAB.crypto} label={t("Crypto")} />
+              <ProfilePayTabTitle
+                src={PROFILE_PAY_TAB.crypto}
+                label={t("Crypto")}
+              />
             }
           >
             <DepositPanel />
           </Tab>
-          <Tab
-            key="epayclub_card"
-            title={
-              <ProfilePayTabTitle
-                src={PROFILE_PAY_TAB.epayClub}
-                label={t("Visa", undefined, "Visa")}
-              />
-            }
-          >
-            <EpayclubDeposit />
-          </Tab>
+          {fineraMethods.map((method) => {
+            const tab = FINERA_TAB_META[method];
+            return (
+              <Tab
+                key={tab.key}
+                title={
+                  <ProfilePayTabTitle
+                    src={tab.icon}
+                    label={`Finera ${t(tab.labelKey)}`}
+                  />
+                }
+              >
+                <FineraDeposit type={method} minAmount={fineraMinAmount} />
+              </Tab>
+            );
+          })}
+          {ecohpayMethods.map((method) => {
+            const tab = FINERA_TAB_META[method];
+            return (
+              <Tab
+                key={`ecohpay_${method}`}
+                title={
+                  <ProfilePayTabTitle
+                    src={tab.icon}
+                    label={`Ecohpay ${t(tab.labelKey)}`}
+                  />
+                }
+              >
+                <EcohpayDeposit type={method} minAmount={ecohpayMinAmount} />
+              </Tab>
+            );
+          })}
         </Tabs>
       </div>
     </div>
