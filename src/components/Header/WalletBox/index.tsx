@@ -15,6 +15,7 @@ import { cashDetailAmountForUnit } from "@/helpers/multipleBalance";
 import { profileOpenedState } from "@/state/profileOpenedState";
 import { Loader } from "lucide-preact";
 import { Link } from "@/components/common";
+import { requireLogin } from "@/helpers/requireAuth";
 import { placeholderGameImage } from "@/config/constants";
 import { apiGetFreespinAvailableGames } from "@/api/ledger/apiGetFreespinAvailableGames";
 import type { tFreespinAvailableGame } from "@/types/tFreespinAvailableGame";
@@ -522,7 +523,13 @@ export default function WalletBox() {
                                 "hover:border-white/35 transition",
                               ].join(" ")}
                               title={game.name}
-                              onClick={() => setIsSelectorOpen(false)}
+                              onClick={(e) => {
+                                if (!requireLogin()) {
+                                  e.preventDefault();
+                                  return;
+                                }
+                                setIsSelectorOpen(false);
+                              }}
                             >
                               <img
                                 src={imgSrc}

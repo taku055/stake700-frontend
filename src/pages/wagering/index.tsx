@@ -16,6 +16,7 @@ import { Loader as LoaderIcon } from "lucide-preact";
 import { Link } from "@/components/common";
 import { placeholderGameImage } from "@/config/constants";
 import type { tFreespinAvailableGame } from "@/types/tFreespinAvailableGame";
+import { requireLogin } from "@/helpers/requireAuth";
 
 function formatMoney(n: number | string | null | undefined) {
   const v = typeof n === "string" ? Number(n) : (n ?? 0);
@@ -229,6 +230,10 @@ function FreespinsCard({
                     key={item.gameId}
                     href={`/game/${game.id}`}
                     scrollToTop
+                    preventDefaultOnClick={false}
+                    onClick={(e) => {
+                      if (!requireLogin()) e.preventDefault();
+                    }}
                     className="flex items-center gap-3 rounded-lg border border-slate-700/50 bg-slate-950/40 px-3 py-2 hover:border-emerald-500/40 transition"
                   >
                     <img

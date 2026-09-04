@@ -14,6 +14,8 @@ import { tLedgerPromotion } from "@/types/tUserLedger";
 import { useEffect, useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
 import { profileOpenedState } from "@/state/profileOpenedState";
+import { loginOpenedState } from "@/state/loginOpenedState";
+import { requireLogin } from "@/helpers/requireAuth";
 import WageringPage from "@/pages/wagering";
 import { useTranslations } from "@/context/I18nContext";
 
@@ -62,7 +64,14 @@ export default function PromoPage() {
     setActiveTab(getTabFromQuery(location.query?.tab));
   }, [location.query?.tab]);
 
+  useEffect(() => {
+    if (activeTab === "active" && !userState.value?.id) {
+      loginOpenedState.value = true;
+    }
+  }, [activeTab]);
+
   const switchTab = (tab: PromoTab) => {
+    if (tab === "active" && !requireLogin()) return;
     setActiveTab(tab);
     location.route(tab === "active" ? "/promotions?tab=active" : "/promotions");
   };
@@ -70,6 +79,7 @@ export default function PromoPage() {
   const openDepositForPromo = (promo: tLedgerPromotion) => {
     // No-deposit bonuses are granted manually for special cases — not via deposit.
     if (isNoDepositPromoType(promo.type)) return;
+    if (!requireLogin()) return;
     history.pushState(null, "", `?promo=${promo.id}`);
     profileOpenedState.value = {
       isOpen: true,

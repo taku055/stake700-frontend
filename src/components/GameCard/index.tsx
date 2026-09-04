@@ -15,6 +15,7 @@ import { apiDeleteFavoritesGame } from "@/api/favorites/apiDeleteFavoritesGame";
 import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
+import { requireLogin } from "@/helpers/requireAuth";
 import { Link } from "../common";
 
 interface GameCardProps {
@@ -138,7 +139,13 @@ export default function GameCard({
         href={data.href || `/game/${data.id}`}
         preventDefaultOnClick={false}
         stopPropagationOnClick={false}
-        onClick={() => onClick?.()}
+        onClick={(e) => {
+          if (!requireLogin()) {
+            e.preventDefault();
+            return;
+          }
+          onClick?.();
+        }}
       >
         <div className={styles.imgWrapper}>
           {/* Placeholder shown until image loads */}

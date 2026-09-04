@@ -17,6 +17,7 @@ import { apiSetSmUserCursor } from "@/api/live_support/apiSetSmUserCursor";
 import { tLiveSupportMessage } from "@/types/tLiveSupportMessage";
 import useSocketEvent from "@/hooks/useSocketEvent";
 import { loginOpenedState } from "@/state/loginOpenedState";
+import { useLocation } from "preact-iso";
 
 type SupportSocketPayload = {
   tempId: number;
@@ -102,6 +103,8 @@ function upsertMessage(
 
 export default function LiveSupport() {
   const isMobile = useMediaQuery(mobileMediaQuery);
+  const location = useLocation();
+  const isGamePage = /^\/game(?:\/|$)/.test(location.path);
   const messagesEndRef = useRef(null);
   const divRef = useRef<HTMLDivElement>(null);
   const liveSupportMessages = liveSupportMessagesState.value;
@@ -126,6 +129,12 @@ export default function LiveSupport() {
     originX: 0,
     originY: 0,
   });
+
+  useEffect(() => {
+    if (isGamePage && liveSupportExpandedState.value) {
+      liveSupportExpandedState.value = false;
+    }
+  }, [isGamePage]);
 
   useEffect(() => {
     setFabPos(loadFabPosition(isMobile));
@@ -352,7 +361,7 @@ export default function LiveSupport() {
   return (
     <>
       <AnimatePresence>
-        {liveSupportExpanded ? (
+        {liveSupportExpanded && !isGamePage ? (
           <motion.section
             key="live-support-panel"
             className={styles.container}
@@ -413,7 +422,7 @@ export default function LiveSupport() {
           </motion.section>
         ) : null}
       </AnimatePresence>
-      {(!liveSupportExpanded || !isMobile) && fabButton}
+      {(!liveSupportExpanded || !isMobile) && !isGamePage && fabButton}
     </>
   );
 }

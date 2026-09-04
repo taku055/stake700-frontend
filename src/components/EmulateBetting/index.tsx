@@ -10,6 +10,7 @@ import {
 import { apiGetLazyWithdraws } from "@/api/wallet/apiGetLazyWithdraws";
 import { tWithdrawRequest } from "@/types/tWithdrawRequest";
 import { Link } from "../common";
+import { requireLogin } from "@/helpers/requireAuth";
 import { userState } from "@/state/userState";
 import { useTranslations } from "@/context/I18nContext";
 import styles from "./EmulateBetting.module.scss";
@@ -201,6 +202,10 @@ export default function EmulateBetting() {
                     <Link
                       href={`/game/${encodeURIComponent(e.gameId)}`}
                       className="hover:underline"
+                      preventDefaultOnClick={false}
+                      onClick={(event) => {
+                        if (!requireLogin()) event.preventDefault();
+                      }}
                     >
                       {e.name}
                     </Link>
