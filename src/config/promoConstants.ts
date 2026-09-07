@@ -86,8 +86,38 @@ export function isNoDepositPromoType(type?: string | null) {
   return type === "NO_DEPOSIT";
 }
 
+export function isOneTimePromotion(p: {
+  name?: string | null;
+  code?: string | null;
+  type?: string | null;
+}) {
+  const name = (p.name ?? "").trim().toLowerCase();
+  const code = (p.code ?? "").trim().toUpperCase();
+  return (
+    name.startsWith("one-time promotion") ||
+    name.includes("one-time promotion for") ||
+    code.startsWith("ONE_TIME_") ||
+    p.type === "MANUAL_BONUS" ||
+    p.type === "ONE_TIME" ||
+    p.type === "ONE_TIME_PROMO"
+  );
+}
+
+/** Offers shown on the player promotions page. */
+export function isPlayerVisiblePromotion(p: {
+  name?: string | null;
+  code?: string | null;
+  type?: string | null;
+}) {
+  return !isNoDepositPromoType(p.type) && !isOneTimePromotion(p);
+}
+
 export function isDepositPromoType(type?: string | null) {
-  return type === "DEPOSIT" || type === "DEPOSIT_BONUS";
+  return (
+    type === "DEPOSIT" ||
+    type === "DEPOSIT_BONUS" ||
+    type === "WELCOME_BONUS"
+  );
 }
 
 export function formatPromoType(type: string, t?: PromoTranslator) {
