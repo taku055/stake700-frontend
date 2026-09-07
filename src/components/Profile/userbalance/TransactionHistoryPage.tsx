@@ -109,6 +109,7 @@ const TransactionHistoryPage = () => {
                 <TableColumn>{tBet("Type")}</TableColumn>
                 <TableColumn>{tBet("Provider")}</TableColumn>
                 <TableColumn>{t("Amount")}</TableColumn>
+                <TableColumn>{t("Bonus", undefined, "Bonus")}</TableColumn>
                 <TableColumn>{tBet("Currency")}</TableColumn>
                 <TableColumn>{tBet("Date")}</TableColumn>
               </TableHeader>
@@ -138,7 +139,8 @@ const TransactionHistoryPage = () => {
                     <TableCell className="max-w-[140px] truncate text-[12px]">
                       {transactionPlatformLabel(t, e.platform)}
                     </TableCell>
-                    <TableCell>{e.cash}</TableCell>
+                    <TableCell>{Number(e.cash || 0)}</TableCell>
+                    <TableCell>{Number(e.bonus || 0)}</TableCell>
                     <TableCell>
                       <span className="text-black bg-success rounded-xl p-1 text-[10px]">
                         {e.currency}
