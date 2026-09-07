@@ -5,6 +5,7 @@ import { searchWidgetState } from "@/state/searchWidgetState";
 import { providerState } from "@/state/providerState";
 import { placeholderGameImage } from "@/config/constants";
 import { Link } from "@/components/common";
+import { requireLogin } from "@/helpers/requireAuth";
 
 interface SearchGameItemProps {
   data: tGame;
@@ -31,7 +32,15 @@ export default function SearchGameItem({ data }: SearchGameItemProps) {
 
   return (
     <div className={styles.gameWrapper} onClick={onClickCover}>
-      <Link scrollToTop={true} className={styles.imgWrapper} href={`/game/${data.id}`}>
+      <Link
+        scrollToTop={true}
+        className={styles.imgWrapper}
+        href={`/game/${data.id}`}
+        preventDefaultOnClick={false}
+        onClick={(e) => {
+          if (!requireLogin()) e.preventDefault();
+        }}
+      >
         <div className={styles.game}>
           <div className={styles.imgWrapper}>
             <img
