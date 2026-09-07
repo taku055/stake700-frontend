@@ -6,5 +6,5 @@ export const PROVIDER_PRIORITY_CUSTOM_CATEGORIES: Record<
   string,
   readonly string[]
 > = {
-  c780a72efac190d6c49c11b328a79b3ce45b8bc2: ["evolution"],
+  e544fca303b10f448c5695650e34faba5dbad8a2: ["evolution"],
 };
