@@ -83,7 +83,13 @@ const PROMO_TYPE_I18N_KEYS: Record<string, string> = {
 };
 
 export function isNoDepositPromoType(type?: string | null) {
-  return type === "NO_DEPOSIT";
+  const key = (type ?? "").trim().toUpperCase();
+  return (
+    key === "NO_DEPOSIT" ||
+    key === "NO_DEPOSIT_BONUS" ||
+    key === "NO_DEPOSIT_PROMOTION" ||
+    key === "NO_DEPOSIT_PROMO"
+  );
 }
 
 export function isOneTimePromotion(p: {
