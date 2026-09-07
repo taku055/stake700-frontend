@@ -1,5 +1,5 @@
 import { instance } from "../instance";
-import { tLedgerPromotion } from "@/types/tUserLedger";
+import { tLedgerPromotion, tUserBalance } from "@/types/tUserLedger";
 
 export const apiGetPromotions = async (
   category: "ALL" | "NORMAL" | "USER" = "ALL",
@@ -19,5 +19,24 @@ export const apiGetPromotions = async (
   }>(
     `/ledger/promotions?category=${category}&userId=${userId}&currencyCode=${currencyCode}&page=${page}&pageSize=${pageSize}`,
   );
+  return res.data.data;
+};
+
+export const apiClaimNoDepositBonus = async (
+  promotionId: number,
+  dto?: { currencyCode?: string },
+) => {
+  const res = await instance.post<{
+    hasError: boolean;
+    errorCode?: string;
+    message: string;
+    data?: {
+      bonusAmount: number;
+      balance: tUserBalance;
+    };
+  }>(`/ledger/promotions/${promotionId}/claim-no-deposit`, dto ?? {});
+  if (res.data.hasError) {
+    throw new Error(res.data.message || "Failed to claim no-deposit bonus.");
+  }
   return res.data.data;
 };
