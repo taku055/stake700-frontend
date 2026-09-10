@@ -82,6 +82,8 @@ import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
 import { toast } from "@/helpers/toast";
 import { STATIC_CATEGORIES, sidebarDataState } from "@/state/sidebarData";
 import { apiGetCategoryCount } from "@/api/common/apiGetCategoryCount";
+import { apiGetBonusAvailability } from "@/api/bonus/apiGetBonusAvailability";
+import { bonusAvailabilityState } from "@/state/bonusAvailabilityState";
 
 const i18nDefinitions = {
   ru: ruDefinition,
@@ -199,6 +201,14 @@ export default function GlobalServiceProvider({
       }
     };
 
+    const getBonusAvailability = async () => {
+      try {
+        bonusAvailabilityState.value = await apiGetBonusAvailability();
+      } catch (ex) {
+        console.error(ex);
+      }
+    };
+
     const getBanners = async () => {
       try {
         const res = await apiGetBanners();
@@ -311,6 +321,7 @@ export default function GlobalServiceProvider({
         getMaintenance(),
         getAccount(),
         getBanners(),
+        getBonusAvailability(),
         getSidebarData(),
         // loadGameCategoryImages(),
       ]);
