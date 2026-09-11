@@ -1917,6 +1917,10 @@
     "Language": "Language",
     "Change language": "Change language"
   },
+  "GameCard": {
+    "bonus_available": "Bonus",
+    "cash_only": "Cash only"
+  },
   "Wagering": {
     "Wagering": "Wagering",
     "Cancel Wagering": "Cancel Wagering",

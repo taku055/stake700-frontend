@@ -1848,6 +1848,10 @@
     "Live Support": "Онлайн-поддержка",
     "Logout": "Выйти"
   },
+  "GameCard": {
+    "bonus_available": "Бонус",
+    "cash_only": "Только кэш"
+  },
   "Wagering": {
     "Wagering": "Вейджер",
     "Cancel Wagering": "Отменить вейджер",

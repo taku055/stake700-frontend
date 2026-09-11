@@ -1968,6 +1968,10 @@
     "Live Support": "الدعم المباشر",
     "Logout": "تسجيل الخروج"
   },
+  "GameCard": {
+    "bonus_available": "بونص",
+    "cash_only": "نقد فقط"
+  },
   "Wagering": {
     "Wagering": "شرط الرهان",
     "Cancel Wagering": "إلغاء شرط الرهان",

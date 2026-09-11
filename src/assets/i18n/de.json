@@ -1967,6 +1967,10 @@
     "Live Support": "Live-Support",
     "Logout": "Abmelden"
   },
+  "GameCard": {
+    "bonus_available": "Bonus",
+    "cash_only": "Nur Cash"
+  },
   "Wagering": {
     "Wagering": "Umsatz",
     "Cancel Wagering": "Umsatz stornieren",
