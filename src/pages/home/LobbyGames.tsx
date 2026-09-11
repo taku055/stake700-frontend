@@ -41,21 +41,24 @@ export default function LobbyGames() {
       <GameGroup
         category={"hacksaw"}
         title={t("Hacksaw") || "Hacksaw"}
-        isCustom={true}
+        isCustom={false}
+        provider={"6645919a6bf2f0cb6ce4b25f6f054975d443f17e"}
         useImgCustom={false}
         viewallLink={`/casino/search?providerId=6645919a6bf2f0cb6ce4b25f6f054975d443f17e `}
       />
       <GameGroup
         category={"pragmatic"}
         title={t("Pragmatic") || "Pragmatic"}
-        isCustom={true}
+        isCustom={false}
+        provider={"1e418d617fc706f42f4a0b6580297f870d877ec9"}
         useImgCustom={false}
         viewallLink={`/casino/search?providerId=1e418d617fc706f42f4a0b6580297f870d877ec9`}
       />
       <GameGroup
         category={"nolimit"}
         title={t("No Limit") || "No Limit"}
-        isCustom={true}
+        isCustom={false}
+        provider={"17fbedea2386ee51d7684f36f89e0876ff6be5ce"}
         useImgCustom={false}
         viewallLink={`/casino/search?providerId=17fbedea2386ee51d7684f36f89e0876ff6be5ce`}
       />
