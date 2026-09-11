@@ -5,11 +5,13 @@ export type tBonusAvailabilityRow = {
   providerId: string;
   livecasino: boolean;
   slot: boolean;
+  sport: boolean;
 };
 
 export type tBonusAvailabilityPublic = {
   defaultLivecasino: boolean;
   defaultSlot: boolean;
+  defaultSport: boolean;
   settings: Record<string, tBonusAvailabilityRow>;
 };
 

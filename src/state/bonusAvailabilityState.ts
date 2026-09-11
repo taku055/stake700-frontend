@@ -4,5 +4,6 @@ import { tBonusAvailabilityPublic } from "@/api/bonus/apiGetBonusAvailability";
 export const bonusAvailabilityState = signal<tBonusAvailabilityPublic>({
   defaultLivecasino: true,
   defaultSlot: true,
+  defaultSport: false,
   settings: {},
 });
