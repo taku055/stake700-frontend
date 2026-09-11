@@ -21,11 +21,11 @@ export default function CasinoGames() {
         viewallLink={`/casino/slots?custom=1&category=${"top-games"}`}
       />
       <GameGroup
-        category={"slot-top-slots"}
+        category={"slot-popular"}
         title={t("Popular Games") || "Popular Games"}
         isCustom={true}
         useImgCustom={false}
-        viewallLink={`/casino/slots?custom=1&category=${"slot-top-slots"}`}
+        viewallLink={`/casino/slots?custom=1&category=${"slot-popular"}`}
       />
       <GameGroup
         category={"classic-slots"}
@@ -39,29 +39,29 @@ export default function CasinoGames() {
         title={t("Hacksaw") || "Hacksaw"}
         isCustom={true}
         useImgCustom={false}
-        viewallLink={`/casino/search?providerId=36855229b93e55ecde0c9231d3ecca4d6cc8d500 `}
+        viewallLink={`/casino/search?providerId=6645919a6bf2f0cb6ce4b25f6f054975d443f17e `}
       />
       <GameGroup
         category={"pragmatic"}
         title={t("Pragmatic") || "Pragmatic"}
         isCustom={true}
         useImgCustom={false}
-        viewallLink={`/casino/search?providerId=5af8ec20d4b1198738df2967a01b0d7c52246b97`}
+        viewallLink={`/casino/search?providerId=1e418d617fc706f42f4a0b6580297f870d877ec9`}
       />
       <GameGroup
         category={"nolimit"}
         title={t("No Limit") || "No Limit"}
         isCustom={true}
         useImgCustom={false}
-        viewallLink={`/casino/search?providerId=7bb31b6ed509550906c7d17c055b68f2e1ab6630`}
+        viewallLink={`/casino/search?providerId=17fbedea2386ee51d7684f36f89e0876ff6be5ce`}
       />
-      <GameGroup
+      {/* <GameGroup
         category={"book-of"}
         title={t("Book Of") || "Book Of"}
         isCustom={true}
         useImgCustom={false}
         viewallLink={`/casino/slots/?custom=1&category=${"book-of"}`}
-      />
+      /> */}
     </div>
   );
 }
