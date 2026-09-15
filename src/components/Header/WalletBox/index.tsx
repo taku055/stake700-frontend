@@ -254,7 +254,7 @@ export default function WalletBox() {
 
     const user = userState.value;
     const cur = currencyState.value;
-    if (!user || user.role !== "NORMAL" || !cur || freeSpins <= 0) {
+    if (!user || user.role !== "NORMAL" || !cur) {
       setFreespinGames([]);
       setFreespinGamesLoading(false);
       return;
@@ -283,7 +283,14 @@ export default function WalletBox() {
     return () => {
       cancelled = true;
     };
-  }, [isSelectorOpen, freeSpins, currencyState.value?.code, userState.value?.id, userState.value?.role]);
+  }, [isSelectorOpen, currencyState.value?.code, userState.value?.id, userState.value?.role]);
+
+  const displayedFreeSpins = useMemo(() => {
+    if (freespinGames.length > 0) {
+      return freespinGames.reduce((sum, item) => sum + item.remaining, 0);
+    }
+    return freeSpins;
+  }, [freespinGames, freeSpins]);
 
   const userInitial =
     userState.value?.userName?.trim()?.at(0)?.toUpperCase() ?? "?";
@@ -487,65 +494,86 @@ export default function WalletBox() {
                     </div>
                   )}
                 </div>
-                <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
-                  <span className="text-[13px] text-white/80">
-                    {t("Available spins")}
-                  </span>
-                  <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-[13px] font-semibold text-white tabular-nums shrink-0">
-                      {freeSpins}
+                <div className="rounded-lg px-3 py-2 bg-black/10">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[13px] text-white/80">
+                      {t("Available spins")}
                     </span>
-                    {freeSpins > 0 && freespinGamesLoading && (
-                      <Loader
-                        size={14}
-                        className="animate-spin text-white/60 shrink-0"
-                        aria-hidden="true"
-                      />
-                    )}
-                    {!freespinGamesLoading && freespinGames.length > 0 && (
-                      <div className="flex items-center gap-1">
-                        {freespinGames.map((item) => {
-                          const game = item.game;
-                          if (!game) return null;
-                          const imgSrc =
-                            game.img_custom || game.img || placeholderGameImage;
-                          return (
-                            <Link
-                              key={item.gameId}
-                              href={`/game/${game.id}`}
-                              scrollToTop
-                              preventDefaultOnClick={false}
-                              stopPropagationOnClick={false}
-                              className={[
-                                "shrink-0 block",
-                                "w-7 h-7 rounded-md overflow-hidden",
-                                "border border-white/15",
-                                "hover:border-white/35 transition",
-                              ].join(" ")}
-                              title={game.name}
-                              onClick={(e) => {
-                                if (!requireLogin()) {
-                                  e.preventDefault();
-                                  return;
-                                }
-                                setIsSelectorOpen(false);
-                              }}
-                            >
-                              <img
-                                src={imgSrc}
-                                alt={game.name}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                  (e.currentTarget as HTMLImageElement).src =
-                                    placeholderGameImage;
-                                }}
-                              />
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {freespinGamesLoading && (
+                        <Loader
+                          size={14}
+                          className="animate-spin text-white/60 shrink-0"
+                          aria-hidden="true"
+                        />
+                      )}
+                      <span className="text-[13px] font-semibold text-white tabular-nums shrink-0">
+                        {displayedFreeSpins}
+                      </span>
+                    </div>
                   </div>
+                  {!freespinGamesLoading && freespinGames.length > 0 && (
+                    <div className="mt-2 flex flex-col gap-2">
+                      {freespinGames.map((item) => {
+                        const game = item.game;
+                        if (!game) return null;
+                        const imgSrc =
+                          game.img_custom || game.img || placeholderGameImage;
+                        return (
+                          <Link
+                            key={item.gameId}
+                            href={`/game/${game.id}`}
+                            scrollToTop
+                            preventDefaultOnClick={false}
+                            stopPropagationOnClick={false}
+                            className={[
+                              "flex items-center gap-2.5",
+                              "rounded-lg px-2 py-1.5",
+                              "bg-black/20 border border-white/10",
+                              "hover:border-white/25 transition",
+                            ].join(" ")}
+                            title={game.name}
+                            onClick={(e) => {
+                              if (!requireLogin()) {
+                                e.preventDefault();
+                                return;
+                              }
+                              setIsSelectorOpen(false);
+                            }}
+                          >
+                            <img
+                              src={imgSrc}
+                              alt={game.name}
+                              className="w-10 h-10 rounded-md object-cover shrink-0 border border-white/15"
+                              onError={(e) => {
+                                (e.currentTarget as HTMLImageElement).src =
+                                  placeholderGameImage;
+                              }}
+                            />
+                            <div className="min-w-0 flex-1">
+                              <div className="text-[12px] font-semibold text-white truncate">
+                                {game.name}
+                              </div>
+                              <div className="mt-0.5 text-[11px] text-white/70 tabular-nums">
+                                {item.remaining} {t("left")}
+                                {" · "}
+                                {symbol}
+                                {Number(item.perSpinCost).toFixed(2)}{" "}
+                                {t("Per spin")}
+                              </div>
+                              <BonusExpiryCountdown
+                                bonusExpiresAt={item.expireAt}
+                                className="mt-0.5 block text-[11px]"
+                                normalClassName="text-emerald-300/90"
+                                urgentClassName="text-amber-300"
+                                expiredClassName="text-red-300"
+                              />
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -252,7 +252,19 @@ function FreespinsCard({
                       <div className="text-xs text-slate-400">
                         {item.remaining}{" "}
                         {item.remaining === 1 ? t("spin left") : t("spins left")}
+                        {" · "}
+                        {formatMoney(item.perSpinCost)} {t("Per spin")}
                       </div>
+                      {item.expireAt ? (
+                        <div className="text-xs text-emerald-300/90 mt-0.5">
+                          <BonusExpiryCountdown
+                            bonusExpiresAt={item.expireAt}
+                            normalClassName="text-emerald-300/90"
+                            urgentClassName="text-amber-300"
+                            expiredClassName="text-red-300"
+                          />
+                        </div>
+                      ) : null}
                     </div>
                   </Link>
                 );
@@ -287,7 +299,7 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
   const hasActivePromotion = Boolean(balance?.bonus.isActive);
 
   useEffect(() => {
-    if (!userId || freespinCount <= 0) {
+    if (!userId) {
       setFreespinGames([]);
       setFreespinGamesLoading(false);
       return;
@@ -371,10 +383,17 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
           <div className="text-slate-300 text-sm">{t("No balance data")}</div>
         ) : (
           <div className="space-y-4">
-            {freespinCount > 0 && (
+            {(freespinCount > 0 || freespinGames.length > 0) && (
               <FreespinsCard
-                count={freespinCount}
-                cost={Number(balance.freespin.cost ?? 0)}
+                count={
+                  freespinGames.length > 0
+                    ? freespinGames.reduce((sum, item) => sum + item.remaining, 0)
+                    : freespinCount
+                }
+                cost={
+                  freespinGames[0]?.perSpinCost ??
+                  Number(balance.freespin.cost ?? 0)
+                }
                 expireHours={Number(balance.freespin.expireHours ?? 0)}
                 games={freespinGames}
                 loading={freespinGamesLoading}
