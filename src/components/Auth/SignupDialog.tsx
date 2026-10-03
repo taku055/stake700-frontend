@@ -16,6 +16,7 @@ import {
   Input,
 } from "@/components/common";
 import { loginOpenedState } from "@/state/loginOpenedState";
+import { welcomeDialogOpenedState } from "@/state/registerOpenedState";
 import { Eye, EyeOff } from "lucide-preact";
 import {
   parseDate,
@@ -23,16 +24,24 @@ import {
   today,
   getLocalTimeZone,
 } from "@internationalized/date";
-import { useLocation } from "preact-iso";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ASSET_BASE_URL } from "@/config/constants";
-
-// const inputStyles =
-//   "bg-[#fff1] border-none rounded-sm! hover:bg-[#fff2] focus-within:hover:bg-[#fff2]";
+import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
+import { useMediaQuery } from "usehooks-ts";
+import { setViewportCss } from "@/helpers/setViewportCss";
 
 interface ISignupComponentProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+function dismissMobileKeyboard() {
+  const active = document.activeElement as HTMLElement | null;
+  active?.blur?.();
+  // Force layout back to full viewport after iOS keyboard
+  window.setTimeout(() => {
+    setViewportCss(window.innerWidth, window.innerHeight);
+    window.scrollTo(0, 0);
+  }, 50);
 }
 
 export default function SignupDialog({
@@ -45,6 +54,7 @@ export default function SignupDialog({
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [birthday, setBirthday] = useState(parseDate("1990-01-01"));
@@ -52,6 +62,12 @@ export default function SignupDialog({
   const tToast = useTranslations("ToastMessages");
   const firstNameRef = useRef<HTMLInputElement>(null);
   const { refCode } = useAffiliateNavigation();
+  const isMobile = useMediaQuery(mobileMediaQuery);
+
+  const handleClose = useCallback(() => {
+    dismissMobileKeyboard();
+    onClose();
+  }, [onClose]);
 
   useEffect(() => {
     setEmail("");
@@ -60,15 +76,15 @@ export default function SignupDialog({
     setFirstName("");
     setLastName("");
     setMiddleName("");
-    setFirstName("");
-    setLastName("");
+    setPhone("");
 
-    if (isOpen) {
+    // Avoid auto-focus on mobile — it opens the keyboard and leaves a half-screen layout
+    if (isOpen && !isMobile) {
       setTimeout(() => {
         firstNameRef.current?.focus();
       }, 300);
     }
-  }, [isOpen]);
+  }, [isOpen, isMobile]);
 
   const onSubmit = useCallback(
     async (e: any) => {
@@ -78,7 +94,7 @@ export default function SignupDialog({
         return;
       }
 
-      if (!email || !password) {
+      if (!email || !password || !phone.trim()) {
         toast.error(t("please_input_all_fields"));
         return;
       }
@@ -110,13 +126,16 @@ export default function SignupDialog({
           lastName,
           middleName: middleName.trim(),
           birthDay: birthday.toString(),
+          phone: phone.trim(),
         });
 
         userState.value = res.user;
         accessTokenState.value = res.accessToken;
         setAxiosAuthToken(res.accessToken);
         toast.success(tToast("success.registered"));
+        dismissMobileKeyboard();
         onClose();
+        welcomeDialogOpenedState.value = true;
       } catch (ex) {
         if (axios.isAxiosError(ex)) {
           if (ex.response?.status === 400) {
@@ -131,14 +150,28 @@ export default function SignupDialog({
       }
       setLoading(false);
     },
-    [email, userName, password, refCode]
+    [
+      email,
+      userName,
+      password,
+      phone,
+      firstName,
+      lastName,
+      middleName,
+      birthday,
+      refCode,
+      loading,
+      t,
+      tToast,
+      onClose,
+    ]
   );
 
   return (
     <Modal
       backdrop="blur"
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       placement="center"
       scrollBehavior="inside"
     >
@@ -162,7 +195,7 @@ export default function SignupDialog({
                   <button
                     type="button"
                     onClick={() => {
-                      onClose();
+                      handleClose();
                       loginOpenedState.value = true;
                     }}
                     className="text-[16px] font-semibold text-[var(--green-color)] hover:underline leading-[24px] h-[24px]"
@@ -301,6 +334,29 @@ export default function SignupDialog({
 
               <div className="h-[68px]">
                 <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
+                  <span>{t("phone")}</span>
+                  <img
+                    src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
+                    alt="*"
+                    className="h-[20px] pl-[4px]"
+                  />
+                </label>
+                <Input
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  label={t("phone")}
+                  value={phone}
+                  onChange={(e: any) => setPhone(e.target.value)}
+                  classNames={{
+                    input: "text-white",
+                  }}
+                  variant="bordered"
+                />
+              </div>
+
+              <div className="h-[68px]">
+                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
                   <span>{t("password")}</span>
                   <img
                     src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
@@ -314,7 +370,6 @@ export default function SignupDialog({
                   value={password}
                   onChange={(e: any) => setPassword(e.target.value)}
                   classNames={{
-                    // inputWrapper: inputStyles,
                     input: "text-white",
                   }}
                   endContent={
@@ -342,16 +397,6 @@ export default function SignupDialog({
             >
               {t("register")}
             </Button>
-            {/* <div className="flex items-center justify-center gap-[12px] my-[20px]">
-              <img
-                src="/images/icons/login_contact_support.png"
-                alt="contact_support"
-                className="w-[16px] h-[16px]"
-              />
-              <span className="text-[14px] text-[#FFFFFFB2]">
-                {t("contact_support")}
-              </span>
-            </div> */}
           </form>
         </ModalBody>
       </ModalContent>

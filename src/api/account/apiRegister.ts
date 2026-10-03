@@ -16,6 +16,7 @@ type tRegisterReq = {
   password: string;
   userName: string;
   referCode: string | null;
+  phone?: string;
 };
 
 export const apiRegister = async (data: tRegisterReq) => {

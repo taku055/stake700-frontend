@@ -4,7 +4,10 @@ import {
   formatEligibility,
   formatPromoType,
   formatVipRange,
+  isDepositPromoType,
   isDepositSequenceEligibility,
+  isNoDepositPromoType,
+  isPlayerVisiblePromotion,
 } from "@/config/promoConstants";
 import { currencyState } from "@/state/currencyState";
 import { userState } from "@/state/userState";
@@ -12,6 +15,8 @@ import { tLedgerPromotion } from "@/types/tUserLedger";
 import { useEffect, useState } from "preact/hooks";
 import { useLocation } from "preact-iso";
 import { profileOpenedState } from "@/state/profileOpenedState";
+import { loginOpenedState } from "@/state/loginOpenedState";
+import { requireLogin } from "@/helpers/requireAuth";
 import WageringPage from "@/pages/wagering";
 import { useTranslations } from "@/context/I18nContext";
 
@@ -34,8 +39,10 @@ function ctaLabel(
   switch (type) {
     case "DEPOSIT":
     case "DEPOSIT_BONUS":
+    case "WELCOME_BONUS":
       return t("deposit_now");
     case "SIGNUP":
+    case "SIGNUP_BONUS":
       return t("sign_up_now");
     default:
       return t("claim_offer");
@@ -59,9 +66,27 @@ export default function PromoPage() {
     setActiveTab(getTabFromQuery(location.query?.tab));
   }, [location.query?.tab]);
 
+  useEffect(() => {
+    if (activeTab === "active" && !userState.value?.id) {
+      loginOpenedState.value = true;
+    }
+  }, [activeTab]);
+
   const switchTab = (tab: PromoTab) => {
+    if (tab === "active" && !requireLogin()) return;
     setActiveTab(tab);
     location.route(tab === "active" ? "/promotions?tab=active" : "/promotions");
+  };
+
+  const openDepositForPromo = (promo: tLedgerPromotion) => {
+    if (isNoDepositPromoType(promo.type)) return;
+    if (!requireLogin()) return;
+    history.pushState(null, "", `?promo=${promo.id}`);
+    profileOpenedState.value = {
+      isOpen: true,
+      defaultTab: "/balance-management/deposit",
+      bonusId: String(promo.id),
+    };
   };
 
   useEffect(() => {
@@ -99,7 +124,13 @@ export default function PromoPage() {
         const promotionList = await apiGetPromotions("NORMAL", userId, currencyCode);
         if (!alive) return;
 
-        setData(promotionList);
+        const visible = (promotionList.promotions ?? []).filter(
+          isPlayerVisiblePromotion
+        );
+        setData({
+          promotions: visible,
+          total: visible.length,
+        });
       } catch (e: any) {
         if (!alive) return;
         setError(e?.message ?? t("load_error"));
@@ -115,7 +146,7 @@ export default function PromoPage() {
     };
   }, [activeTab, userState.value?.id, currencyState.value.unit]);
 
-  const promos = data?.promotions ?? [];
+  const promos = (data?.promotions ?? []).filter(isPlayerVisiblePromotion);
 
   return (
     <div
@@ -282,11 +313,10 @@ export default function PromoPage() {
                         aria-disabled={!promo.available}
                         onClick={() => {
                           if (!promo.available) return;
-                          history.pushState(null, "", `?promo=${promo.id}`);
-                          profileOpenedState.value = { isOpen: true, defaultTab: "/balance-management/deposit", bonusId: String(promo.id) };
+                          openDepositForPromo(promo);
                         }}
                       >
-                        {t("deposit_now")}
+                        {ctaLabel(promo.type, t)}
                       </button>
                       <button
                         className="flex-1 bg-transparent text-[#CEA30E] font-bold text-[16px] border-2 border-[#CEA30E] rounded-lg py-3 cursor-pointer transition hover:bg-yellow-400/10"
@@ -418,11 +448,20 @@ export default function PromoPage() {
 
                     {/* Bonus highlights */}
                     <div className="px-5 py-3 border-b border-t grid grid-cols-2 gap-x-4 gap-y-2 mt-auto" style={{ borderColor: "#1e3328" }}>
-                      {modalPromo.isPercentBonus && (
+                      {modalPromo.isPercentBonus ? (
                         <div>
                           <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("bonus")}</div>
                           <div className="text-sm font-bold" style={{ color: "#4caf78" }}>{modalPromo.bonusValue}%</div>
                         </div>
+                      ) : (
+                        parseFloat(String(modalPromo.bonusValue)) > 0 && (
+                          <div>
+                            <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("bonus_amount")}</div>
+                            <div className="text-sm font-bold" style={{ color: "#4caf78" }}>
+                              {modalPromo.bonusValue} {modalPromo.currency}
+                            </div>
+                          </div>
+                        )
                       )}
                       {parseFloat(modalPromo.maxBonusLimit) > 0 && (
                         <div>
@@ -499,28 +538,30 @@ export default function PromoPage() {
                       )}
                     </div>
 
-                    {/* CTA */}
                     <div className="px-5 py-4">
-                      {(modalPromo.type === "DEPOSIT" || modalPromo.type === "DEPOSIT_BONUS") && (
+                      {isDepositPromoType(modalPromo.type) && (
                         <button
                           disabled={!modalPromo.available}
                           onClick={() => {
                             if (!modalPromo.available) return;
-                            history.pushState(null, "", `?promo=${modalPromo.id}`);
-                            profileOpenedState.value = { isOpen: true, defaultTab: "/balance-management/deposit", bonusId: String(modalPromo.id) };
+                            openDepositForPromo(modalPromo);
                           }}
                           className="inline-flex w-full items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-semibold text-white transition"
-                          style={modalPromo.available ? {
-                            background: "linear-gradient(145deg, #2e7d4f, #1a4d30)",
-                            boxShadow: "0 0 24px #2e7d4f44, 0 4px 12px #000",
-                            border: "2px solid rgba(255,255,255,0.15)",
-                            cursor: "pointer",
-                          } : {
-                            background: "#1e2a22",
-                            border: "2px solid #2a3a2e",
-                            color: "#4a6a56",
-                            cursor: "not-allowed",
-                          }}
+                          style={
+                            modalPromo.available
+                              ? {
+                                  background: "linear-gradient(145deg, #2e7d4f, #1a4d30)",
+                                  boxShadow: "0 0 24px #2e7d4f44, 0 4px 12px #000",
+                                  border: "2px solid rgba(255,255,255,0.15)",
+                                  cursor: "pointer",
+                                }
+                              : {
+                                  background: "#1e2a22",
+                                  border: "2px solid #2a3a2e",
+                                  color: "#4a6a56",
+                                  cursor: "not-allowed",
+                                }
+                          }
                         >
                           {ctaLabel(modalPromo.type, t)}
                         </button>

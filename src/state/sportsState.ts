@@ -30,11 +30,7 @@ const imgData: Array<{ name: string; img: string; href?: string }> = [
     name: "Darts",
     img: "buffer/darts-en.png",
   },
-  {
-    name: "Horse Racing",
-    img: "buffer/racing-en.png",
-    href: "/sports/racing",
-  },
+  // Horse Racing hidden for now.
   {
     name: "Dota 2",
     img: "buffer/dota-2-en.png",

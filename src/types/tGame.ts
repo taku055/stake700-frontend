@@ -21,7 +21,8 @@ export type tGame = {
   is_deleted?: boolean;
   img_custom?: string;
   providerId: string;
-  gameSource: "IGP" | "SOFT" | "GSS" | "BETCONSTRUCT" | "SLOTER" | "EVENBET";
+  gameSource: "IGP" | "SOFT" | "GSS" | "BETCONSTRUCT" | "SLOTER" | "EVENBET" | "DATABETRIX";
+  gameType?: "SPORT" | "SLOT" | "LIVECASINO";
   img_vertical?: string;
   /** When set, card links here instead of /game/:id (e.g. BBBet racing routes). */
   href?: string;

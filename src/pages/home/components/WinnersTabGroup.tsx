@@ -7,6 +7,7 @@ import { DEFAULT_CURRENCY_SYMBOL, placeholderGameImage } from "@/config/constant
 import { customGamesState } from "@/state/customGamesState";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { scrollToTop } from "@/helpers/scrollToTop";
+import { requireLogin } from "@/helpers/requireAuth";
 
 interface WinnerData {
   game: tGame;
@@ -34,6 +35,7 @@ const WinnerCard: FunctionalComponent<WinnerCardProps> = ({ winner, isLast = fal
   };
 
   const handleCardClick = () => {
+    if (!requireLogin()) return;
     scrollToTop();
     handleNavigate(`/game/${winner.game.id}`);
   };

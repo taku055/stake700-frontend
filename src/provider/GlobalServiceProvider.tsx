@@ -82,6 +82,8 @@ import { apiGetUserBalance } from "@/api/ledger/apiGetUserBalance";
 import { toast } from "@/helpers/toast";
 import { STATIC_CATEGORIES, sidebarDataState } from "@/state/sidebarData";
 import { apiGetCategoryCount } from "@/api/common/apiGetCategoryCount";
+import { apiGetBonusAvailability } from "@/api/bonus/apiGetBonusAvailability";
+import { bonusAvailabilityState } from "@/state/bonusAvailabilityState";
 
 const i18nDefinitions = {
   ru: ruDefinition,
@@ -199,6 +201,14 @@ export default function GlobalServiceProvider({
       }
     };
 
+    const getBonusAvailability = async () => {
+      try {
+        bonusAvailabilityState.value = await apiGetBonusAvailability();
+      } catch (ex) {
+        console.error(ex);
+      }
+    };
+
     const getBanners = async () => {
       try {
         const res = await apiGetBanners();
@@ -311,6 +321,7 @@ export default function GlobalServiceProvider({
         getMaintenance(),
         getAccount(),
         getBanners(),
+        getBonusAvailability(),
         getSidebarData(),
         // loadGameCategoryImages(),
       ]);
@@ -321,20 +332,30 @@ export default function GlobalServiceProvider({
     })();
 
     // define resize event for mobile
+    // Prefer layout viewport when visual viewport is only slightly smaller
+    // (avoids iOS keyboard leaving the page stuck at half height).
     const onResizeViewport = () => {
+      const vv = window.visualViewport;
+      const layoutH = window.innerHeight;
+      const layoutW = window.innerWidth;
+      const visualH = vv?.height ?? layoutH;
+      const visualW = vv?.width ?? layoutW;
+      const keyboardLikelyOpen = visualH < layoutH * 0.75;
       setViewportCss(
-        window.visualViewport?.width || -1,
-        window.visualViewport?.height || -1
+        keyboardLikelyOpen ? visualW : layoutW,
+        keyboardLikelyOpen ? visualH : layoutH
       );
     };
 
     setTimeout(() => {
       onResizeViewport();
       window.visualViewport?.addEventListener("resize", onResizeViewport);
+      window.addEventListener("orientationchange", onResizeViewport);
     }, 1000);
 
     return () => {
       window.visualViewport?.removeEventListener("resize", onResizeViewport);
+      window.removeEventListener("orientationchange", onResizeViewport);
     };
   }, []);
 
@@ -572,7 +593,7 @@ export default function GlobalServiceProvider({
 
             <Sidebar />
             <Support />
-            {/* <LiveSupport /> */}
+            <LiveSupport />
           </div>
 
           <ToastProvider

@@ -82,7 +82,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["home", "promotions", "vip", "slots", "live-casino", "evolution-live", "pragmatic-live", "table-games", "live-racing", "jackpots"].includes(
+        ["home", "promotions", "vip", "slots", "live-casino", "evolution-live", "pragmatic-live", "table-games", "jackpots"].includes(
           item.key
         )
       )

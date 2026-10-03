@@ -129,6 +129,8 @@
     "Cash": "نقدي",
     "Bonus": "مكافأة",
     "Available spins": "الدورات المجانية المتاحة",
+    "Per spin": "لكل دورة",
+    "left": "متبقية",
     "Total Balance": "الرصيد الإجمالي",
     "Bonus expires": "تنتهي المكافأة"
   },
@@ -321,7 +323,8 @@
     "successfully_registered": "تم التسجيل بنجاح",
     "email_or_username_already_taken": "البريد الإلكتروني أو اسم المستخدم مستخدم بالفعل",
     "something_went_wrong": "حدث خطأ ما",
-    "already_have_an_account": "لديك حساب بالفعل؟"
+    "already_have_an_account": "لديك حساب بالفعل؟",
+    "phone": "رقم الجوال"
   },
   "HomePage": {
     "casino-games": "ألعاب الكازينو",
@@ -550,7 +553,25 @@
     "Pay with Apple Pay": "الدفع عبر Apple Pay",
     "Visa": "فيزا",
     "EPayClub_card_unavailable": "الدفع بالبطاقة غير مفعّل.",
-    "EPayClub_link_unavailable": "روابط الدفع غير مفعّلة."
+    "EPayClub_link_unavailable": "روابط الدفع غير مفعّلة.",
+    "Finera_invalid_amount": "أدخل مبلغًا صالحًا أكبر من صفر.",
+    "Finera_minimum_deposit": "الحد الأدنى لمبلغ الإيداع هو {amount}.",
+    "Finera_amount_below_minimum": "الحد الأدنى لمبلغ الإيداع هو {amount}.",
+    "Finera_redirect_failed": "تعذر بدء الدفع. يرجى المحاولة مرة أخرى.",
+    "Finera_error": "حدث خطأ ما.",
+    "Finera_ftd_checkbox": "إيداع أول مرة (FTD)",
+    "Finera_withdraw_card": "سحب بالبطاقة",
+    "Finera_withdraw_card_ref": "مرجع البطاقة",
+    "Finera_withdraw_bank": "سحب بنكي",
+    "Ecohpay_invalid_amount": "أدخل مبلغًا صالحًا أكبر من صفر.",
+    "Ecohpay_minimum_deposit": "الحد الأدنى للإيداع هو {amount}.",
+    "Ecohpay_amount_below_minimum": "الحد الأدنى للإيداع هو {amount}.",
+    "Ecohpay_redirect_failed": "تعذر بدء الدفع. حاول مرة أخرى.",
+    "Ecohpay_error": "حدث خطأ ما.",
+    "Ecohpay_ftd_checkbox": "أول إيداع (FTD)",
+    "Ecohpay_withdraw_card": "سحب إلى البطاقة",
+    "Ecohpay_withdraw_card_ref": "مرجع البطاقة",
+    "Ecohpay_withdraw_bank": "سحب بنكي"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "نقاط الولاء",
@@ -651,13 +672,20 @@
     "empty": "لا توجد عروض متاحة حالياً.",
     "promo_alt": "عرض",
     "deposit_code": "رمز الإيداع:",
+    "promo_code": "رمز العرض:",
     "deposit_now": "إيداع الآن",
+    "claim_now": "احصل الآن",
+    "claiming": "جارٍ المطالبة…",
+    "claim_success": "تم الحصول على بونص بدون إيداع بنجاح.",
+    "claim_error": "تعذّر الحصول على البونص. يرجى المحاولة مرة أخرى.",
+    "login_to_claim": "يرجى تسجيل الدخول للحصول على هذا البونص.",
     "learn_more": "اعرف المزيد",
     "close": "إغلاق",
     "available": "متاح",
     "unavailable": "غير متاح",
     "code": "الرمز:",
     "bonus": "بونص",
+    "bonus_amount": "مبلغ البونص",
     "max_bonus": "الحد الأقصى للبونص",
     "wagering": "متطلبات الرهان",
     "max_withdraw": "الحد الأقصى للسحب",
@@ -682,6 +710,7 @@
     "vip_range_max_only": "حتى مستوى VIP {max}",
     "type_deposit": "إيداع",
     "type_deposit_bonus": "بونص إيداع",
+    "type_no_deposit": "بونص بدون إيداع",
     "type_signup": "تسجيل"
   },
   "GamePlay": {
@@ -695,7 +724,9 @@
     "reload-with-current-currency": "إعادة التحميل بـ {currency_symbol}",
     "currency-change-message": "هل أنت متأكد أنك تريد تغيير العملة؟",
     "Balance displayed in": "الرصيد المعروض بـ",
-    "Full Screen Mode": "وضع ملء الشاشة"
+    "Full Screen Mode": "وضع ملء الشاشة",
+    "Exit Full Screen": "إنهاء ملء الشاشة",
+    "Refresh Game": "تحديث اللعبة"
   },
   "MoreGameWrapper": {
     "More from": "المزيد من"
@@ -762,6 +793,44 @@
     "WAGERING_REQUIREMENT_NOT_MET": "لا يمكنك سحب النقد حتى تستوفي متطلبات الرهان لرصيدك النقدي.",
     "INSUFFICIENT_BALANCE": "رصيدك النقدي غير كافٍ لهذا السحب.",
     "INVALID_AMOUNT": "يجب أن يكون المبلغ أكبر من الصفر."
+  },
+  "DepositPaymentResult": {
+    "Payment result": "نتيجة الدفع",
+    "Finera deposit redirect": "إعادة التوجيه بعد إيداع البطاقة من مزود الدفع",
+    "Deposit successful": "تم الإيداع بنجاح",
+    "Deposit success description": "اكتمل الدفع. سيتم تحديث رصيدك قريبًا إن لم يظهر بعد.",
+    "Deposit failed": "فشل الإيداع",
+    "Deposit failed description": "تعذر إتمام الدفع. يمكنك المحاولة مرة أخرى أو استخدام طريقة أخرى.",
+    "Deposit status unknown": "حالة الدفع غير واضحة",
+    "Deposit unknown description": "تعذر تحديد نتيجة الدفع. راجع سجل المعاملات أو حاول مرة أخرى.",
+    "Reference": "المرجع",
+    "Current balance": "الرصيد الحالي",
+    "Try again": "حاول مرة أخرى",
+    "Deposit again": "إيداع مرة أخرى",
+    "Back to home": "العودة للرئيسية",
+    "Login hint": "سجّل الدخول لعرض رصيدك وسجل المعاملات.",
+    "Bonus": "مكافأة"
+  },
+  "FineraWithdraw": {
+    "Please login to withdraw.": "يرجى تسجيل الدخول للسحب.",
+    "Please enter a valid amount.": "يرجى إدخال مبلغ صالح.",
+    "Insufficient balance for this withdraw amount.": "الرصيد غير كافٍ لهذا المبلغ.",
+    "Withdraw request created successfully.": "تم إنشاء طلب السحب بنجاح.",
+    "Withdraw could not be created.": "تعذر إنشاء طلب السحب.",
+    "Something went wrong.": "حدث خطأ ما.",
+    "Amount": "المبلغ",
+    "Enter amount": "أدخل المبلغ",
+    "Cardholder name": "اسم حامل البطاقة",
+    "Card number": "رقم البطاقة",
+    "Expire month": "شهر الانتهاء",
+    "Expire year": "سنة الانتهاء",
+    "Destination card reference ID": "معرّف مرجع البطاقة الوجهة",
+    "Card reference ID is required.": "معرّف مرجع البطاقة مطلوب.",
+    "Account number": "رقم الحساب",
+    "Account number is required.": "رقم الحساب مطلوب.",
+    "Account name": "اسم الحساب",
+    "Routing number": "رقم التوجيه",
+    "Submit withdraw": "إرسال السحب"
   },
   "SearchWidget": {
     "Search": "بحث",
@@ -1901,6 +1970,10 @@
     "Live Support": "الدعم المباشر",
     "Logout": "تسجيل الخروج"
   },
+  "GameCard": {
+    "bonus_available": "بونص",
+    "cash_only": "نقد فقط"
+  },
   "Wagering": {
     "Wagering": "شرط الرهان",
     "Cancel Wagering": "إلغاء شرط الرهان",
@@ -2172,5 +2245,50 @@
     "Clear all": "مسح الكل",
     "view_all": "عرض الكل",
     "providers_back": "رجوع"
+  },
+  "VerifyEmailPage": {
+    "title": "Verify email",
+    "verifying": "Confirming your email address…",
+    "missing_token": "This verification link is missing or invalid.",
+    "request_failed": "We could not verify your email. The link may have expired.",
+    "success_message": "Your email has been verified successfully.",
+    "login_now": "Log in",
+    "go_home": "Go to home"
+  },
+  "ResetPasswordPage": {
+    "title": "Reset password",
+    "description": "Choose a new password for your account.",
+    "password_label": "New password",
+    "password_required": "Please enter a new password.",
+    "submit": "Update password",
+    "submitting": "Updating…",
+    "success_message": "Your password has been updated.",
+    "login_now": "Log in",
+    "missing_token": "This reset link is missing or invalid.",
+    "token_not_found": "This reset link is invalid.",
+    "token_expired": "This reset link has expired.",
+    "request_failed": "Could not reset password. Please try again.",
+    "request_new_link": "Request a new reset link"
+  },
+  "EcohpayWithdraw": {
+    "Please login to withdraw.": "يرجى تسجيل الدخول للسحب.",
+    "Please enter a valid amount.": "يرجى إدخال مبلغ صالح.",
+    "Insufficient balance for this withdraw amount.": "الرصيد غير كافٍ لهذا المبلغ.",
+    "Withdraw request created successfully.": "تم إنشاء طلب السحب بنجاح.",
+    "Withdraw could not be created.": "تعذر إنشاء طلب السحب.",
+    "Something went wrong.": "حدث خطأ ما.",
+    "Amount": "المبلغ",
+    "Enter amount": "أدخل المبلغ",
+    "Cardholder name": "اسم حامل البطاقة",
+    "Card number": "رقم البطاقة",
+    "Expire month": "شهر الانتهاء",
+    "Expire year": "سنة الانتهاء",
+    "Destination card reference ID": "معرّف مرجع البطاقة الوجهة",
+    "Card reference ID is required.": "معرّف مرجع البطاقة مطلوب.",
+    "Account number": "رقم الحساب",
+    "Account number is required.": "رقم الحساب مطلوب.",
+    "Account name": "اسم الحساب",
+    "Routing number": "رقم التوجيه",
+    "Submit withdraw": "إرسال السحب"
   }
 }

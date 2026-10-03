@@ -126,6 +126,8 @@
     "Cash": "Наличные",
     "Bonus": "Бонус",
     "Available spins": "Доступные фриспины",
+    "Per spin": "за спин",
+    "left": "осталось",
     "Total Balance": "Общий баланс",
     "Bonus expires": "Бонус истекает",
     "WalletGetStartedDesc": "Чтобы начать, пополните счёт криптовалютой или местной валютой (где доступно) или купите криптовалюту мгновенно через MoonPay или Swapped."
@@ -319,7 +321,8 @@
     "email_or_username_already_taken": "Email или имя пользователя уже используется",
     "something_went_wrong": "Что-то пошло не так",
     "login_an_account": "Войти",
-    "already_have_an_account": "Уже есть аккаунт?"
+    "already_have_an_account": "Уже есть аккаунт?",
+    "phone": "Номер телефона"
   },
   "HomePage": {
     "casino-games": "Казино Игры",
@@ -544,9 +547,29 @@
     "Unknown": "Неизвестно",
     "Status": "Статус",
     "Pay with card": "Оплата картой",
+    "Pay with Google Pay": "Оплата через Google Pay",
+    "Pay with Apple Pay": "Оплата через Apple Pay",
     "Visa": "Visa",
     "EPayClub_card_unavailable": "Оплата картой не включена.",
-    "EPayClub_link_unavailable": "Платёжные ссылки не включены."
+    "EPayClub_link_unavailable": "Платёжные ссылки не включены.",
+    "Finera_invalid_amount": "Введите сумму больше нуля.",
+    "Finera_minimum_deposit": "Минимальная сумма депозита — {amount}.",
+    "Finera_amount_below_minimum": "Минимальная сумма депозита — {amount}.",
+    "Finera_redirect_failed": "Не удалось начать оплату. Попробуйте снова.",
+    "Finera_error": "Что-то пошло не так.",
+    "Finera_ftd_checkbox": "Первый депозит (FTD)",
+    "Finera_withdraw_card": "Вывод на карту",
+    "Finera_withdraw_card_ref": "Ссылка на карту",
+    "Finera_withdraw_bank": "Банковский вывод",
+    "Ecohpay_invalid_amount": "Введите сумму больше нуля.",
+    "Ecohpay_minimum_deposit": "Минимальная сумма депозита: {amount}.",
+    "Ecohpay_amount_below_minimum": "Минимальная сумма депозита: {amount}.",
+    "Ecohpay_redirect_failed": "Не удалось начать оплату. Попробуйте ещё раз.",
+    "Ecohpay_error": "Что-то пошло не так.",
+    "Ecohpay_ftd_checkbox": "Первый депозит (FTD)",
+    "Ecohpay_withdraw_card": "Вывод на карту",
+    "Ecohpay_withdraw_card_ref": "Ссылка на карту",
+    "Ecohpay_withdraw_bank": "Банковский вывод"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Бонусные баллы",
@@ -641,13 +664,20 @@
     "empty": "Сейчас нет доступных акций.",
     "promo_alt": "Акция",
     "deposit_code": "КОД ДЕПОЗИТА:",
+    "promo_code": "ПРОМОКОД:",
     "deposit_now": "ПОПОЛНИТЬ СЕЙЧАС",
+    "claim_now": "ПОЛУЧИТЬ СЕЙЧАС",
+    "claiming": "ПОЛУЧЕНИЕ…",
+    "claim_success": "Бонус без депозита успешно получен.",
+    "claim_error": "Не удалось получить бонус. Попробуйте снова.",
+    "login_to_claim": "Войдите, чтобы получить этот бонус.",
     "learn_more": "ПОДРОБНЕЕ",
     "close": "Закрыть",
     "available": "Доступно",
     "unavailable": "Недоступно",
     "code": "Код:",
     "bonus": "Бонус",
+    "bonus_amount": "Сумма бонуса",
     "max_bonus": "Макс. бонус",
     "wagering": "Отыгрыш",
     "max_withdraw": "Макс. вывод",
@@ -672,6 +702,7 @@
     "vip_range_max_only": "До VIP-уровня {max}",
     "type_deposit": "Депозит",
     "type_deposit_bonus": "Бонус на депозит",
+    "type_no_deposit": "Бонус без депозита",
     "type_signup": "Регистрация"
   },
   "GamePlay": {
@@ -685,7 +716,9 @@
     "reload-with-current-currency": "Перезагрузить с {currency_symbol}",
     "currency-change-message": "Вы уверены, что хотите изменить валюту?",
     "Balance displayed in": "Баланс отображается в",
-    "Full Screen Mode": "Полноэкранный режим"
+    "Full Screen Mode": "Полноэкранный режим",
+    "Exit Full Screen": "Выйти из полноэкранного режима",
+    "Refresh Game": "Обновить игру"
   },
   "MoreGameWrapper": {
     "More from": "Больше от"
@@ -752,6 +785,44 @@
     "WAGERING_REQUIREMENT_NOT_MET": "Вы не можете вывести деньги, пока не выполните требования по обороту для вашего наличного баланса.",
     "INSUFFICIENT_BALANCE": "Ваш денежный баланс недостаточен для этого вывода.",
     "INVALID_AMOUNT": "Сумма должна быть больше нуля."
+  },
+  "DepositPaymentResult": {
+    "Payment result": "Результат платежа",
+    "Finera deposit redirect": "Перенаправление после депозита картой от платёжного провайдера",
+    "Deposit successful": "Депозит успешен",
+    "Deposit success description": "Платёж завершён. Баланс обновится в ближайшее время.",
+    "Deposit failed": "Депозит не выполнен",
+    "Deposit failed description": "Не удалось завершить платёж. Попробуйте снова или выберите другой способ.",
+    "Deposit status unknown": "Статус платежа неизвестен",
+    "Deposit unknown description": "Не удалось определить результат. Проверьте историю транзакций.",
+    "Reference": "Ссылка",
+    "Current balance": "Текущий баланс",
+    "Try again": "Попробовать снова",
+    "Deposit again": "Пополнить снова",
+    "Back to home": "На главную",
+    "Login hint": "Войдите, чтобы видеть баланс и историю транзакций.",
+    "Bonus": "Бонус"
+  },
+  "FineraWithdraw": {
+    "Please login to withdraw.": "Пожалуйста, войдите для вывода средств.",
+    "Please enter a valid amount.": "Пожалуйста, введите корректную сумму.",
+    "Insufficient balance for this withdraw amount.": "Недостаточно средств для этой суммы вывода.",
+    "Withdraw request created successfully.": "Заявка на вывод успешно создана.",
+    "Withdraw could not be created.": "Не удалось создать заявку на вывод.",
+    "Something went wrong.": "Что-то пошло не так.",
+    "Amount": "Сумма",
+    "Enter amount": "Введите сумму",
+    "Cardholder name": "Имя держателя карты",
+    "Card number": "Номер карты",
+    "Expire month": "Месяц истечения",
+    "Expire year": "Год истечения",
+    "Destination card reference ID": "ID ссылки на карту назначения",
+    "Card reference ID is required.": "Требуется ID ссылки на карту.",
+    "Account number": "Номер счёта",
+    "Account number is required.": "Номер счёта обязателен.",
+    "Account name": "Имя владельца счёта",
+    "Routing number": "Банковский код",
+    "Submit withdraw": "Отправить вывод"
   },
   "SearchWidget": {
     "Search": "Поиск",
@@ -1779,6 +1850,10 @@
     "Live Support": "Онлайн-поддержка",
     "Logout": "Выйти"
   },
+  "GameCard": {
+    "bonus_available": "Бонус",
+    "cash_only": "Только кэш"
+  },
   "Wagering": {
     "Wagering": "Вейджер",
     "Cancel Wagering": "Отменить вейджер",
@@ -2050,5 +2125,50 @@
     "Clear all": "Сбросить всё",
     "view_all": "Показать все",
     "providers_back": "Назад"
+  },
+  "VerifyEmailPage": {
+    "title": "Verify email",
+    "verifying": "Confirming your email address…",
+    "missing_token": "This verification link is missing or invalid.",
+    "request_failed": "We could not verify your email. The link may have expired.",
+    "success_message": "Your email has been verified successfully.",
+    "login_now": "Log in",
+    "go_home": "Go to home"
+  },
+  "ResetPasswordPage": {
+    "title": "Reset password",
+    "description": "Choose a new password for your account.",
+    "password_label": "New password",
+    "password_required": "Please enter a new password.",
+    "submit": "Update password",
+    "submitting": "Updating…",
+    "success_message": "Your password has been updated.",
+    "login_now": "Log in",
+    "missing_token": "This reset link is missing or invalid.",
+    "token_not_found": "This reset link is invalid.",
+    "token_expired": "This reset link has expired.",
+    "request_failed": "Could not reset password. Please try again.",
+    "request_new_link": "Request a new reset link"
+  },
+  "EcohpayWithdraw": {
+    "Please login to withdraw.": "Пожалуйста, войдите для вывода средств.",
+    "Please enter a valid amount.": "Пожалуйста, введите корректную сумму.",
+    "Insufficient balance for this withdraw amount.": "Недостаточно средств для этой суммы вывода.",
+    "Withdraw request created successfully.": "Заявка на вывод успешно создана.",
+    "Withdraw could not be created.": "Не удалось создать заявку на вывод.",
+    "Something went wrong.": "Что-то пошло не так.",
+    "Amount": "Сумма",
+    "Enter amount": "Введите сумму",
+    "Cardholder name": "Имя держателя карты",
+    "Card number": "Номер карты",
+    "Expire month": "Месяц истечения",
+    "Expire year": "Год истечения",
+    "Destination card reference ID": "ID ссылки на карту назначения",
+    "Card reference ID is required.": "Требуется ID ссылки на карту.",
+    "Account number": "Номер счёта",
+    "Account number is required.": "Номер счёта обязателен.",
+    "Account name": "Имя владельца счёта",
+    "Routing number": "Банковский код",
+    "Submit withdraw": "Отправить вывод"
   }
 }

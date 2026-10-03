@@ -16,6 +16,7 @@ import { Loader as LoaderIcon } from "lucide-preact";
 import { Link } from "@/components/common";
 import { placeholderGameImage } from "@/config/constants";
 import type { tFreespinAvailableGame } from "@/types/tFreespinAvailableGame";
+import { requireLogin } from "@/helpers/requireAuth";
 
 function formatMoney(n: number | string | null | undefined) {
   const v = typeof n === "string" ? Number(n) : (n ?? 0);
@@ -229,6 +230,10 @@ function FreespinsCard({
                     key={item.gameId}
                     href={`/game/${game.id}`}
                     scrollToTop
+                    preventDefaultOnClick={false}
+                    onClick={(e) => {
+                      if (!requireLogin()) e.preventDefault();
+                    }}
                     className="flex items-center gap-3 rounded-lg border border-slate-700/50 bg-slate-950/40 px-3 py-2 hover:border-emerald-500/40 transition"
                   >
                     <img
@@ -247,7 +252,19 @@ function FreespinsCard({
                       <div className="text-xs text-slate-400">
                         {item.remaining}{" "}
                         {item.remaining === 1 ? t("spin left") : t("spins left")}
+                        {" · "}
+                        {formatMoney(item.perSpinCost)} {t("Per spin")}
                       </div>
+                      {item.expireAt ? (
+                        <div className="text-xs text-emerald-300/90 mt-0.5">
+                          <BonusExpiryCountdown
+                            bonusExpiresAt={item.expireAt}
+                            normalClassName="text-emerald-300/90"
+                            urgentClassName="text-amber-300"
+                            expiredClassName="text-red-300"
+                          />
+                        </div>
+                      ) : null}
                     </div>
                   </Link>
                 );
@@ -282,7 +299,7 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
   const hasActivePromotion = Boolean(balance?.bonus.isActive);
 
   useEffect(() => {
-    if (!userId || freespinCount <= 0) {
+    if (!userId) {
       setFreespinGames([]);
       setFreespinGamesLoading(false);
       return;
@@ -366,10 +383,17 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
           <div className="text-slate-300 text-sm">{t("No balance data")}</div>
         ) : (
           <div className="space-y-4">
-            {freespinCount > 0 && (
+            {(freespinCount > 0 || freespinGames.length > 0) && (
               <FreespinsCard
-                count={freespinCount}
-                cost={Number(balance.freespin.cost ?? 0)}
+                count={
+                  freespinGames.length > 0
+                    ? freespinGames.reduce((sum, item) => sum + item.remaining, 0)
+                    : freespinCount
+                }
+                cost={
+                  freespinGames[0]?.perSpinCost ??
+                  Number(balance.freespin.cost ?? 0)
+                }
                 expireHours={Number(balance.freespin.expireHours ?? 0)}
                 games={freespinGames}
                 loading={freespinGamesLoading}

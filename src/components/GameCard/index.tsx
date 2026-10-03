@@ -15,7 +15,10 @@ import { apiDeleteFavoritesGame } from "@/api/favorites/apiDeleteFavoritesGame";
 import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
+import { requireLogin } from "@/helpers/requireAuth";
 import { Link } from "../common";
+import { isBonusAvailableForGame } from "@/helpers/isBonusAvailableForGame";
+import { bonusAvailabilityState } from "@/state/bonusAvailabilityState";
 
 interface GameCardProps {
   data: tGame;
@@ -51,6 +54,9 @@ export default function GameCard({
   const [imgError, setImgError] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const tToast = useTranslations("ToastMessages");
+  const tCard = useTranslations("GameCard");
+  const bonusAvailable = isBonusAvailableForGame(data);
+  void bonusAvailabilityState.value;
 
   useEffect(() => {
     const mq = window.matchMedia("(hover: none)");
@@ -138,7 +144,13 @@ export default function GameCard({
         href={data.href || `/game/${data.id}`}
         preventDefaultOnClick={false}
         stopPropagationOnClick={false}
-        onClick={() => onClick?.()}
+        onClick={(e) => {
+          if (!requireLogin()) {
+            e.preventDefault();
+            return;
+          }
+          onClick?.();
+        }}
       >
         <div className={styles.imgWrapper}>
           {/* Placeholder shown until image loads */}
@@ -161,6 +173,15 @@ export default function GameCard({
             }}
             style={{ opacity: imgLoaded ? 1 : 0, transition: "opacity 0.3s" }}
           />
+          <span
+            className={`${styles.bonusBadge} ${
+              bonusAvailable ? styles.bonusOn : styles.bonusOff
+            }`}
+          >
+            {bonusAvailable
+              ? tCard("bonus_available", undefined, "Bonus")
+              : tCard("cash_only", undefined, "Cash only")}
+          </span>
           {userState.value?.id && (
             <FaStar
               size={20}

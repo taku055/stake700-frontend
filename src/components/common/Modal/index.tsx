@@ -160,8 +160,16 @@ export function Modal({
         const first = contentRef.current && getTabbables(contentRef.current)[0];
         (first || contentRef.current)?.focus?.();
       });
-    } else if (lastActiveElement.current instanceof HTMLElement) {
-      (lastActiveElement.current as HTMLElement).focus?.();
+    } else {
+      // Blur first so iOS dismisses the keyboard before restoring focus
+      const active = document.activeElement as HTMLElement | null;
+      if (active && contentRef.current?.contains(active)) {
+        active.blur?.();
+      }
+      const restore = lastActiveElement.current;
+      if (restore instanceof HTMLElement && restore.tagName !== "INPUT" && restore.tagName !== "TEXTAREA") {
+        restore.focus?.();
+      }
     }
   }, [openSig.value]);
 

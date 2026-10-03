@@ -24,11 +24,14 @@ import HomePage from "@/pages/home";
 import SportPage from "@/pages/sport";
 import RacingPage from "@/pages/sports/RacingPage";
 import AriesPaymentResult from "@/pages/payment/aries/AriesPaymentResult";
+import DepositPaymentResultPage from "@/pages/profile/deposit";
 import CasinoCategoryPage from "@/pages/casino-category";
 import VipPage from "@/pages/vip";
 import EpayclubCardCheckout from "@/pages/payment/epayclub/EpayclubCardCheckout";
 import EpayclubPaymentResult from "@/pages/payment/epayclub/EpayclubPaymentResult";
 import FavoritesPage from "@/pages/favorites";
+import VerifyEmailPage from "@/pages/verify-email";
+import ResetPasswordPage from "@/pages/reset-password";
 
 export default function AppRoute() {
   return (
@@ -36,6 +39,8 @@ export default function AppRoute() {
       <Route path="/" component={HomePage} />
       <Route path="/casino-category" component={CasinoCategoryPage} />
       <Route path="/provably-fair" component={ProvablyFairLayout} />
+      <Route path="/verify-email" component={VerifyEmailPage} />
+      <Route path="/reset-password" component={ResetPasswordPage} />
 
       <Route path="/sports" component={SportPage} />
       <Route
@@ -76,6 +81,7 @@ export default function AppRoute() {
       <Route path="/payment/aries/result" component={AriesPaymentResult} />
       <Route path="/payment/epayclub/card/checkout" component={EpayclubCardCheckout} />
       <Route path="/payment/epayclub/result" component={EpayclubPaymentResult} />
+      <Route path="/profile/deposit" component={DepositPaymentResultPage} />
 
       <Route path="/agent" component={AgentPage} />
       <Route path="/agent/*" component={AgentPage} />

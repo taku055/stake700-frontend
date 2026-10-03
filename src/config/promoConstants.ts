@@ -77,8 +77,54 @@ export function formatVipRange(
 const PROMO_TYPE_I18N_KEYS: Record<string, string> = {
   DEPOSIT: "type_deposit",
   DEPOSIT_BONUS: "type_deposit_bonus",
+  NO_DEPOSIT: "type_no_deposit",
   SIGNUP: "type_signup",
+  SIGNUP_BONUS: "type_signup",
 };
+
+export function isNoDepositPromoType(type?: string | null) {
+  const key = (type ?? "").trim().toUpperCase();
+  return (
+    key === "NO_DEPOSIT" ||
+    key === "NO_DEPOSIT_BONUS" ||
+    key === "NO_DEPOSIT_PROMOTION" ||
+    key === "NO_DEPOSIT_PROMO"
+  );
+}
+
+export function isOneTimePromotion(p: {
+  name?: string | null;
+  code?: string | null;
+  type?: string | null;
+}) {
+  const name = (p.name ?? "").trim().toLowerCase();
+  const code = (p.code ?? "").trim().toUpperCase();
+  return (
+    name.startsWith("one-time promotion") ||
+    name.includes("one-time promotion for") ||
+    code.startsWith("ONE_TIME_") ||
+    p.type === "MANUAL_BONUS" ||
+    p.type === "ONE_TIME" ||
+    p.type === "ONE_TIME_PROMO"
+  );
+}
+
+/** Offers shown on the player promotions page. */
+export function isPlayerVisiblePromotion(p: {
+  name?: string | null;
+  code?: string | null;
+  type?: string | null;
+}) {
+  return !isNoDepositPromoType(p.type) && !isOneTimePromotion(p);
+}
+
+export function isDepositPromoType(type?: string | null) {
+  return (
+    type === "DEPOSIT" ||
+    type === "DEPOSIT_BONUS" ||
+    type === "WELCOME_BONUS"
+  );
+}
 
 export function formatPromoType(type: string, t?: PromoTranslator) {
   const key = PROMO_TYPE_I18N_KEYS[type];

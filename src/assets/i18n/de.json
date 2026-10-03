@@ -129,6 +129,8 @@
     "Cash": "Bargeld",
     "Bonus": "Bonus",
     "Available spins": "Verfügbare Freispiele",
+    "Per spin": "Pro Spin",
+    "left": "übrig",
     "Total Balance": "Gesamtguthaben",
     "Bonus expires": "Bonus läuft ab",
     "WalletGetStartedDesc": "Um zu starten, zahlen Sie per Krypto oder lokaler Währung ein (wo verfügbar) oder kaufen Sie Krypto sofort über MoonPay oder Swapped."
@@ -322,7 +324,8 @@
     "successfully_registered": "Erfolgreich registriert",
     "email_or_username_already_taken": "E-Mail oder Benutzername ist bereits vergeben",
     "something_went_wrong": "Etwas ist schief gelaufen",
-    "already_have_an_account": "Haben Sie bereits ein Konto?"
+    "already_have_an_account": "Haben Sie bereits ein Konto?",
+    "phone": "Handynummer"
   },
   "HomePage": {
     "casino-games": "Casino-Spiele",
@@ -547,9 +550,29 @@
     "Unknown": "Unbekannt",
     "Status": "Status",
     "Pay with card": "Mit Karte bezahlen",
+    "Pay with Google Pay": "Mit Google Pay bezahlen",
+    "Pay with Apple Pay": "Mit Apple Pay bezahlen",
     "Visa": "Visa",
     "EPayClub_card_unavailable": "Karten-Checkout ist nicht aktiviert.",
-    "EPayClub_link_unavailable": "Zahlungslinks sind nicht aktiviert."
+    "EPayClub_link_unavailable": "Zahlungslinks sind nicht aktiviert.",
+    "Finera_invalid_amount": "Geben Sie einen gültigen Betrag größer als null ein.",
+    "Finera_minimum_deposit": "Der Mindesteinzahlungsbetrag beträgt {amount}.",
+    "Finera_amount_below_minimum": "Der Mindesteinzahlungsbetrag beträgt {amount}.",
+    "Finera_redirect_failed": "Die Zahlung konnte nicht gestartet werden. Bitte erneut versuchen.",
+    "Finera_error": "Etwas ist schiefgelaufen.",
+    "Finera_ftd_checkbox": "Erste Einzahlung (FTD)",
+    "Finera_withdraw_card": "Kartenauszahlung",
+    "Finera_withdraw_card_ref": "Kartenreferenz",
+    "Finera_withdraw_bank": "Bankauszahlung",
+    "Ecohpay_invalid_amount": "Geben Sie einen gültigen Betrag größer als null ein.",
+    "Ecohpay_minimum_deposit": "Mindesteinzahlung beträgt {amount}.",
+    "Ecohpay_amount_below_minimum": "Mindesteinzahlung beträgt {amount}.",
+    "Ecohpay_redirect_failed": "Zahlung konnte nicht gestartet werden. Bitte erneut versuchen.",
+    "Ecohpay_error": "Etwas ist schiefgelaufen.",
+    "Ecohpay_ftd_checkbox": "Erste Einzahlung (FTD)",
+    "Ecohpay_withdraw_card": "Kartenauszahlung",
+    "Ecohpay_withdraw_card_ref": "Kartenreferenz",
+    "Ecohpay_withdraw_bank": "Bankauszahlung"
   },
   "LoyaltyPoints": {
     "Loyalty Points": "Treuepunkte",
@@ -650,13 +673,20 @@
     "empty": "Derzeit sind keine Aktionen verfügbar.",
     "promo_alt": "Aktion",
     "deposit_code": "EINZAHLUNGSCODE:",
+    "promo_code": "PROMO-CODE:",
     "deposit_now": "JETZT EINZAHLEN",
+    "claim_now": "JETZT EINLÖSEN",
+    "claiming": "WIRD EINGELÖST…",
+    "claim_success": "No-Deposit-Bonus erfolgreich eingelöst.",
+    "claim_error": "Bonus konnte nicht eingelöst werden. Bitte erneut versuchen.",
+    "login_to_claim": "Bitte melden Sie sich an, um diesen Bonus einzulösen.",
     "learn_more": "MEHR ERFAHREN",
     "close": "Schließen",
     "available": "Verfügbar",
     "unavailable": "Nicht verfügbar",
     "code": "Code:",
     "bonus": "Bonus",
+    "bonus_amount": "Bonusbetrag",
     "max_bonus": "Max. Bonus",
     "wagering": "Umsatz",
     "max_withdraw": "Max. Auszahlung",
@@ -681,6 +711,7 @@
     "vip_range_max_only": "Bis VIP-Stufe {max}",
     "type_deposit": "Einzahlung",
     "type_deposit_bonus": "Einzahlungsbonus",
+    "type_no_deposit": "No-Deposit-Bonus",
     "type_signup": "Registrierung"
   },
   "GamePlay": {
@@ -694,7 +725,9 @@
     "reload-with-current-currency": "Mit {currency_symbol} neu laden",
     "currency-change-message": "Sind Sie sicher, dass Sie die Währung ändern möchten?",
     "Balance displayed in": "Guthaben angezeigt in",
-    "Full Screen Mode": "Vollbildmodus"
+    "Full Screen Mode": "Vollbildmodus",
+    "Exit Full Screen": "Vollbild beenden",
+    "Refresh Game": "Spiel aktualisieren"
   },
   "MoreGameWrapper": {
     "More from": "Mehr von"
@@ -761,6 +794,44 @@
     "WAGERING_REQUIREMENT_NOT_MET": "Sie können kein Geld abheben, bis Sie die Umsatzanforderungen für Ihr Barguthaben erfüllt haben.",
     "INSUFFICIENT_BALANCE": "Ihr Barguthaben reicht für diese Auszahlung nicht aus.",
     "INVALID_AMOUNT": "Der Betrag muss größer als null sein."
+  },
+  "DepositPaymentResult": {
+    "Payment result": "Zahlungsergebnis",
+    "Finera deposit redirect": "Weiterleitung nach Karteneinzahlung vom Zahlungsanbieter",
+    "Deposit successful": "Einzahlung erfolgreich",
+    "Deposit success description": "Ihre Zahlung wurde abgeschlossen. Ihr Guthaben wird in Kürze aktualisiert.",
+    "Deposit failed": "Einzahlung fehlgeschlagen",
+    "Deposit failed description": "Die Zahlung konnte nicht abgeschlossen werden. Bitte erneut versuchen oder eine andere Methode wählen.",
+    "Deposit status unknown": "Zahlungsstatus unklar",
+    "Deposit unknown description": "Das Zahlungsergebnis konnte nicht ermittelt werden. Prüfen Sie den Transaktionsverlauf.",
+    "Reference": "Referenz",
+    "Current balance": "Aktuelles Guthaben",
+    "Try again": "Erneut versuchen",
+    "Deposit again": "Erneut einzahlen",
+    "Back to home": "Zur Startseite",
+    "Login hint": "Melden Sie sich an, um Guthaben und Transaktionen zu sehen.",
+    "Bonus": "Bonus"
+  },
+  "FineraWithdraw": {
+    "Please login to withdraw.": "Bitte melden Sie sich zum Auszahlen an.",
+    "Please enter a valid amount.": "Bitte geben Sie einen gültigen Betrag ein.",
+    "Insufficient balance for this withdraw amount.": "Unzureichendes Guthaben für diesen Auszahlungsbetrag.",
+    "Withdraw request created successfully.": "Auszahlungsanfrage erfolgreich erstellt.",
+    "Withdraw could not be created.": "Auszahlungsanfrage konnte nicht erstellt werden.",
+    "Something went wrong.": "Etwas ist schiefgelaufen.",
+    "Amount": "Betrag",
+    "Enter amount": "Betrag eingeben",
+    "Cardholder name": "Karteninhaber",
+    "Card number": "Kartennummer",
+    "Expire month": "Ablaufmonat",
+    "Expire year": "Ablaufjahr",
+    "Destination card reference ID": "Ziel-Kartenreferenz-ID",
+    "Card reference ID is required.": "Kartenreferenz-ID ist erforderlich.",
+    "Account number": "Kontonummer",
+    "Account number is required.": "Kontonummer ist erforderlich.",
+    "Account name": "Kontoinhaber",
+    "Routing number": "Bankleitzahl",
+    "Submit withdraw": "Auszahlung absenden"
   },
   "SearchWidget": {
     "Search": "Suche",
@@ -1898,6 +1969,10 @@
     "Live Support": "Live-Support",
     "Logout": "Abmelden"
   },
+  "GameCard": {
+    "bonus_available": "Bonus",
+    "cash_only": "Nur Cash"
+  },
   "Wagering": {
     "Wagering": "Umsatz",
     "Cancel Wagering": "Umsatz stornieren",
@@ -2169,5 +2244,50 @@
     "Clear all": "Alle löschen",
     "view_all": "Alle anzeigen",
     "providers_back": "Zurück"
+  },
+  "VerifyEmailPage": {
+    "title": "Verify email",
+    "verifying": "Confirming your email address…",
+    "missing_token": "This verification link is missing or invalid.",
+    "request_failed": "We could not verify your email. The link may have expired.",
+    "success_message": "Your email has been verified successfully.",
+    "login_now": "Log in",
+    "go_home": "Go to home"
+  },
+  "ResetPasswordPage": {
+    "title": "Reset password",
+    "description": "Choose a new password for your account.",
+    "password_label": "New password",
+    "password_required": "Please enter a new password.",
+    "submit": "Update password",
+    "submitting": "Updating…",
+    "success_message": "Your password has been updated.",
+    "login_now": "Log in",
+    "missing_token": "This reset link is missing or invalid.",
+    "token_not_found": "This reset link is invalid.",
+    "token_expired": "This reset link has expired.",
+    "request_failed": "Could not reset password. Please try again.",
+    "request_new_link": "Request a new reset link"
+  },
+  "EcohpayWithdraw": {
+    "Please login to withdraw.": "Bitte melden Sie sich zum Auszahlen an.",
+    "Please enter a valid amount.": "Bitte geben Sie einen gültigen Betrag ein.",
+    "Insufficient balance for this withdraw amount.": "Unzureichendes Guthaben für diesen Auszahlungsbetrag.",
+    "Withdraw request created successfully.": "Auszahlungsanfrage erfolgreich erstellt.",
+    "Withdraw could not be created.": "Auszahlungsanfrage konnte nicht erstellt werden.",
+    "Something went wrong.": "Etwas ist schiefgelaufen.",
+    "Amount": "Betrag",
+    "Enter amount": "Betrag eingeben",
+    "Cardholder name": "Karteninhaber",
+    "Card number": "Kartennummer",
+    "Expire month": "Ablaufmonat",
+    "Expire year": "Ablaufjahr",
+    "Destination card reference ID": "Ziel-Kartenreferenz-ID",
+    "Card reference ID is required.": "Kartenreferenz-ID ist erforderlich.",
+    "Account number": "Kontonummer",
+    "Account number is required.": "Kontonummer ist erforderlich.",
+    "Account name": "Kontoinhaber",
+    "Routing number": "Bankleitzahl",
+    "Submit withdraw": "Auszahlung absenden"
   }
 }

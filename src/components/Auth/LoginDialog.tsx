@@ -19,7 +19,9 @@ import { Select, SelectItem } from "@heroui/react";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
 import { Eye, EyeOff } from "lucide-preact";
 import { registerOpenedState, signupStep1OpenedState } from "@/state/registerOpenedState";
-import { ASSET_BASE_URL } from "@/config/constants.ts";
+import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants.ts";
+import { useMediaQuery } from "usehooks-ts";
+import { setViewportCss } from "@/helpers/setViewportCss";
 
 
 interface ILoginComponentProps {
@@ -37,7 +39,17 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
   const location = useLocation();
   const emailRef = useRef<HTMLInputElement>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const isMobile = useMediaQuery(mobileMediaQuery);
 
+  const handleClose = () => {
+    const active = document.activeElement as HTMLElement | null;
+    active?.blur?.();
+    window.setTimeout(() => {
+      setViewportCss(window.innerWidth, window.innerHeight);
+      window.scrollTo(0, 0);
+    }, 50);
+    onClose();
+  };
 
   useEffect(() => {
     setEmail("");
@@ -45,12 +57,12 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
     setRemember(false);
     setUserType("NORMAL");
 
-    if (isOpen) {
+    if (isOpen && !isMobile) {
       setTimeout(() => {
         emailRef.current?.focus();
       }, 300);
     }
-  }, [isOpen]);
+  }, [isOpen, isMobile]);
 
   const onSubmit = useCallback(
     async (e: any) => {
@@ -76,7 +88,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
         accessTokenState.value = res.accessToken;
         setAxiosAuthToken(res.accessToken);
         toast.success(t("successfully_logged_in"));
-        onClose();
+        handleClose();
         setLoading(false);
         if (res.user.role === "SUPERAGENT") {
           location.route("/superagent");
@@ -105,7 +117,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
     <Modal
       backdrop="blur"
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       placement="center"
       scrollBehavior="inside"
     >
@@ -194,7 +206,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
               <button
                 type="button"
                 onClick={() => {
-                  onClose();
+                  handleClose();
                   forgotOpenedState.value = true;
                 }}
                 className="text-left text-[16px] leading-[24px] font-semibold h-[24px] text-[#FFFFFFB2] hover:text-white transition-colors mt-[8px]"
@@ -221,7 +233,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   type="button"
                   onClick={() => {
                     registerOpenedState.value = true;
-                    onClose();
+                    handleClose();
                   }}
                   className="text-[16px] font-semibold hover:underline leading-[24px] h-[24px]"
                 >

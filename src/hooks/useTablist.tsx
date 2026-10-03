@@ -1,6 +1,6 @@
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
-import { Users, Crown, ChartArea, Shield, Globe, Headphones, Handshake, MessageSquare, FileText, Trophy, Gift } from "lucide-preact";
+import { Users, Crown, ChartArea } from "lucide-preact";
 import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
 import { ASSET_BASE_URL } from "@/config/constants";
@@ -10,7 +10,7 @@ import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
 export const SIDEBAR_EVOLUTION_PROVIDER_ID =
   "18b8a984dcf16829f687eb35990662a06aa8a12f";
   export const SIDEBAR_PRAGMATIC_PROVIDER_ID =
-    "df282673fff1cdbe65c8100b96e8570b6ae973cc";
+    "8c1aacd4d9947ac06c4513af1743842f5fa962f3";
 
 // Map navigation keys to sidebar SVG icons
 const getNavIcon = (key: string): string => {
@@ -108,24 +108,7 @@ export const useTablist = () => {
           key: "table-games",
           navIcon: "/images/sidebar/table-games.png",
         },
-        {
-          title: t("Live Racing"),
-          key: "live-racing",
-          navIcon: "/images/sidebar/sportsbook.svg",
-          expandable: true,
-          expandableItems: [
-            {
-              title: t("Horse Racing"),
-              href: "/sports/racing",
-              icon: "/images/category_logo/lobby.png",
-            },
-            {
-              title: t("Dog Racing"),
-              href: "/sports/racing/greyhound",
-              icon: "/images/category_logo/lobby.png",
-            },
-          ],
-        },
+        // Horse / dog racing hidden for now — re-enable Live Racing nav when ready.
         {
           title: t("Jackpots"),
           href: "/casino/slots?custom=1&category=jackpots",
