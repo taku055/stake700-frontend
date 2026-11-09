@@ -63,6 +63,12 @@ body {
   }
 }
 
+/* HeroUI pagination marks the current page with its success green. Use the theme primary instead. */
+nav[data-slot="base"] [data-slot="cursor"] {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

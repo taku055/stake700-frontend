@@ -176,7 +176,7 @@ export default function SignupDialog({
       scrollBehavior="inside"
     >
       <ModalContent
-        className="bg-[var(--background)] max-w-[630px] max-h-[calc(var(--viewport-height)-140px)] rounded-[8px] overflow-y-auto"
+        className="bg-[#1a2c38] max-w-[440px] w-full max-h-[calc(var(--viewport-height)-140px)] rounded-lg overflow-y-auto border border-[#2f4553]"
         dir={"ltr"}
       >
         <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
@@ -198,7 +198,7 @@ export default function SignupDialog({
                       handleClose();
                       loginOpenedState.value = true;
                     }}
-                    className="text-[16px] font-semibold text-[var(--green-color)] hover:underline leading-[24px] h-[24px]"
+                    className="text-[16px] font-semibold text-[#1475e1] hover:underline leading-[24px] h-[24px]"
                   >
                     {t("login_an_account")}
                   </button>
@@ -390,7 +390,7 @@ export default function SignupDialog({
               </div>
             </div>
             <Button
-              className={`w-full text-white mb-[20px] text-[16px] bg-[var(--green-color)] uppercase`}
+              className="w-full text-white mb-[20px] text-[16px] font-semibold h-12 bg-[#1475e1]! hover:bg-[#0f62c2]! rounded-md"
               type="submit"
               radius="sm"
               isLoading={loading}

@@ -63,14 +63,14 @@ export default function CasinoCategoryPage() {
           <button
             type="button"
             onClick={() => (searchWidgetState.value = !searchWidgetState.value)}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg font-medium text-[#99897a] hover:text-white hover:bg-[rgb(54,48,43)]"
+            className="flex items-center gap-2 px-3 py-2 rounded-md whitespace-nowrap transition-all flex-shrink-0 text-sm font-semibold text-[#b1bad3] hover:text-white hover:bg-[#2f4553]"
           >
             <img src="/images/search.png" className="w-5 h-5 object-contain" />
             {t("Search")}
           </button>
           <button
             key={config.tab.key}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg font-medium bg-[rgb(54,48,43)] text-[#f0d9c6]"
+            className="flex items-center gap-2 px-3 py-2 rounded-md whitespace-nowrap transition-all flex-shrink-0 text-sm font-semibold bg-[#2f4553] text-white"
           >
             <img
               src={config.tab.icon}

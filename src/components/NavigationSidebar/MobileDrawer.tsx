@@ -81,10 +81,13 @@ export default function MobileDrawer({
     );
 
   const itemCard = (active: boolean) =>
-    `flex flex-row items-center gap-3 px-4 py-[13px] rounded-xl transition-colors w-full text-start ${active
-      ? "bg-[var(--green-color)] text-white"
-      : "bg-[var(--sidebar-card-bg)] text-white hover:bg-[var(--sidebar-card-hover)]"
+    `relative flex flex-row items-center gap-3 px-3 py-2.5 rounded-md transition-colors duration-150 w-full text-start ${active
+      ? "bg-[#2f4553] text-white"
+      : "bg-transparent text-[#b1bad3] hover:bg-[#213743] hover:text-white"
     }`;
+
+  const iconChip = (_active: boolean) =>
+    "flex h-5 w-5 shrink-0 items-center justify-center";
 
   const close = () => { navigationSidebarExpandedState.value = false; };
 
@@ -93,13 +96,12 @@ export default function MobileDrawer({
       dir={isRTL ? "rtl" : "ltr"}
       className={`fixed ${isRTL ? "right-0" : "left-0"} top-0 z-5500 h-full w-full bg-(--sidebar-background) overflow-y-auto scrollbar-hide overflow-x-hidden`}
     >
-      {/* Header */}
-      <div className="flex flex-row items-center gap-3 px-4 h-15 bg-(--sidebar-background) sticky top-0 z-10">
+      <div className="flex flex-row items-center gap-3 px-4 h-16 bg-(--sidebar-background) sticky top-0 z-10 border-b border-[#2f4553]">
         <button
           type="button"
           onClick={close}
           aria-label={t("Close menu")}
-          className="w-9 h-9 flex items-center justify-center rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors shrink-0"
+          className="w-9 h-9 flex items-center justify-center rounded-md hover:bg-[#213743] transition-colors shrink-0"
         >
           {isRTL
             ? <ChevronRight size={18} className="text-white" />
@@ -116,7 +118,7 @@ export default function MobileDrawer({
       </div>
 
       {/* Content */}
-      <div className="px-3 flex flex-col gap-2 pt-2 pb-20">
+      <div className="px-3 flex flex-col gap-1.5 pt-3 pb-20">
         {/* Categories */}
 
 
@@ -132,11 +134,11 @@ export default function MobileDrawer({
                 }}
                 className={itemCard(selectedMainNavKey === item.key)}
               >
-                {renderIcon(item)}
+                <span className={iconChip(selectedMainNavKey === item.key)}>{renderIcon(item)}</span>
                 <span className="min-w-0 flex-1 text-sm font-medium">{item.title}</span>
                 {isExpanded[item.key]
-                  ? <ChevronUp size={16} className="text-[#8a8070] shrink-0" />
-                  : <ChevronDown size={16} className="text-[#8a8070] shrink-0" />}
+                  ? <ChevronUp size={16} className="text-[#b1bad3] shrink-0" />
+                  : <ChevronDown size={16} className="text-[#b1bad3] shrink-0" />}
               </button>
             ) : (
               <button
@@ -149,13 +151,13 @@ export default function MobileDrawer({
                 }}
                 className={itemCard(selectedMainNavKey === item.key)}
               >
-                {renderIcon(item)}
+                <span className={iconChip(selectedMainNavKey === item.key)}>{renderIcon(item)}</span>
                 <span className="min-w-0 flex-1 text-sm font-medium">{item.title}</span>
               </button>
             )}
 
             {item.expandable && isExpanded[item.key] && item.key !== "language" && (
-              <div className="flex flex-col gap-1 ps-2">
+              <div className="ms-5 flex flex-col gap-0.5 border-s border-[#2f4553] ps-2">
                 {item.expandableItems?.map((subItem, index) => (
                   <Link
                     key={index}
@@ -166,7 +168,7 @@ export default function MobileDrawer({
                       handleNavigate(modifyHref(subItem.href || ""));
                       close();
                     }}
-                    className="flex flex-row items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white text-start"
+                    className="flex flex-row items-center gap-3 px-3 py-2 rounded-md hover:bg-[#213743] transition-colors text-[#b1bad3] hover:text-white text-start"
                   >
                     <img src={subItem.icon} alt={subItem.title} className="w-5 h-5 shrink-0 object-contain" />
                     <span className="min-w-0 flex-1 text-sm">{subItem.title}</span>
@@ -189,11 +191,11 @@ export default function MobileDrawer({
                 }}
                 className={itemCard(selectedMainNavKey === item.key)}
               >
-                {renderIcon(item)}
+                <span className={iconChip(selectedMainNavKey === item.key)}>{renderIcon(item)}</span>
                 <span className="min-w-0 flex-1 text-sm font-medium">{item.title}</span>
                 {isExpanded[item.key]
-                  ? <ChevronUp size={16} className="text-[#8a8070] shrink-0" />
-                  : <ChevronDown size={16} className="text-[#8a8070] shrink-0" />}
+                  ? <ChevronUp size={16} className="text-[#b1bad3] shrink-0" />
+                  : <ChevronDown size={16} className="text-[#b1bad3] shrink-0" />}
               </button>
             ) : (
               <button
@@ -206,13 +208,13 @@ export default function MobileDrawer({
                 }}
                 className={itemCard(selectedMainNavKey === item.key)}
               >
-                {renderIcon(item)}
+                <span className={iconChip(selectedMainNavKey === item.key)}>{renderIcon(item)}</span>
                 <span className="min-w-0 flex-1 text-sm font-medium">{item.title}</span>
               </button>
             )}
 
             {item.expandable && isExpanded[item.key] && item.key !== "language" && (
-              <div className="flex flex-col gap-1 ps-2">
+              <div className="ms-5 flex flex-col gap-0.5 border-s border-[#2f4553] ps-2">
                 {item.expandableItems?.map((subItem, index) => (
                   <Link
                     key={index}
@@ -224,7 +226,7 @@ export default function MobileDrawer({
                       handleNavigate(modifyHref(subItem.href || ""));
                       close();
                     }}
-                    className="flex flex-row items-center gap-3 px-4 py-2.75 rounded-xl bg-(--sidebar-card-bg) hover:bg-(--sidebar-card-hover) transition-colors text-white text-start"
+                    className="flex flex-row items-center gap-3 px-3 py-2 rounded-md hover:bg-[#213743] transition-colors text-[#b1bad3] hover:text-white text-start"
                   >
                     <img src={subItem.icon} alt={subItem.title} className="w-5 h-5 shrink-0 object-contain" />
                     <span className="min-w-0 flex-1 text-sm">{subItem.title}</span>
@@ -234,7 +236,7 @@ export default function MobileDrawer({
             )}
 
             {item.expandable && isExpanded[item.key] && item.key === "language" && (
-              <div className="flex flex-col gap-1 ps-2">
+              <div className="ms-5 flex flex-col gap-0.5 border-s border-[#2f4553] ps-2">
                 {supportedLanguageOptions.map((lang) => (
                   <button
                     key={lang.value}
@@ -242,9 +244,9 @@ export default function MobileDrawer({
                       localeState.value = lang.value;
                       window.localStorage.setItem("locale", lang.value);
                     }}
-                    className={`flex flex-row items-center gap-3 px-4 py-2.75 rounded-xl transition-colors w-full text-start ${localeState.value === lang.value
-                      ? "bg-(--sidebar-card-active) text-white"
-                      : "bg-(--sidebar-card-bg) text-white hover:bg-(--sidebar-card-hover)"
+                    className={`flex flex-row items-center gap-3 px-3 py-2 rounded-xl border transition-colors w-full text-start ${localeState.value === lang.value
+                      ? "bg-[#2f4553] border-transparent text-white"
+                      : "bg-transparent border-transparent text-[#b1bad3] hover:bg-[#213743] hover:text-white"
                       }`}
                   >
                     <span className={`fi fi-${lang.flag} shrink-0`}></span>

@@ -127,7 +127,7 @@ export default function FooterNav() {
   }
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-[var(--bar-background-color)] border-t border-gray-800 z-6000 overflow-x-auto">
+    <footer className="fixed bottom-0 left-0 right-0 bg-[#0f212e] border-t border-[#213743] z-6000 overflow-x-auto">
       <div className="flex justify-around items-center h-[57px]">
         {tabList.map((tab) => (
           <a
@@ -139,7 +139,7 @@ export default function FooterNav() {
               route(tab.href);
             }}
             className={`flex flex-col items-center justify-center py-2 gap-1 h-full min-w-0 ${selectedKey === tab.key
-              ? "text-[var(--green-color)] border-t-2 border-[var(--green-color)]"
+              ? "text-[#1475e1] border-t-2 border-[#1475e1]"
               : "text-white"
               } bg-transparent`}
           >

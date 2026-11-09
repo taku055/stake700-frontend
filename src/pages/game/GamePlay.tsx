@@ -6,7 +6,7 @@ import { apiStartGame } from "@/api/game/apiStartGame";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery, placeholderGameImage } from "@/config/constants";
 import styles from "./GamePlay.module.scss";
-import { MdFullscreen, MdFullscreenExit, MdRefresh } from "react-icons/md";
+import { MdFullscreen, MdRefresh } from "react-icons/md";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
@@ -318,6 +318,7 @@ export default function GamePlay({ game }: IGamePlayProps) {
   }, [onPlay]);
 
   return (
+    <div className={styles.shell}>
     <div
       ref={rootRef}
       className={`${styles.container}${fullscreen ? ` ${styles.fullscreen}` : ""}`}
@@ -378,36 +379,6 @@ export default function GamePlay({ game }: IGamePlayProps) {
         </div>
       )}
 
-      <div className={styles.controls}>
-        <button
-          type="button"
-          className={styles.controlBtn}
-          onClick={() => void toggleFullscreen()}
-          title={
-            fullscreen ? t("Exit Full Screen") : t("Full Screen Mode")
-          }
-          aria-label={
-            fullscreen ? t("Exit Full Screen") : t("Full Screen Mode")
-          }
-        >
-          {fullscreen ? (
-            <MdFullscreenExit size={24} />
-          ) : (
-            <MdFullscreen size={24} />
-          )}
-        </button>
-        <button
-          type="button"
-          className={styles.controlBtn}
-          onClick={onRefreshGame}
-          disabled={loading || !userId}
-          title={t("Refresh Game")}
-          aria-label={t("Refresh Game")}
-        >
-          <MdRefresh size={22} className={loading ? styles.spinning : undefined} />
-        </button>
-      </div>
-
       <ConfirmModal
         isOpen={showReloadModal}
         onClose={onDismissCurrencyReload}
@@ -415,6 +386,33 @@ export default function GamePlay({ game }: IGamePlayProps) {
         currentCurrency={currency}
         newCurrency={currencyState.value.unit}
       />
+    </div>
+    {!fullscreen && (
+      <div className={styles.toolbar}>
+        <div className={styles.gameTitle}>{game?.name || ""}</div>
+        <div className={styles.controls}>
+          <button
+            type="button"
+            className={styles.controlBtn}
+            onClick={() => void toggleFullscreen()}
+            title={t("Full Screen Mode")}
+            aria-label={t("Full Screen Mode")}
+          >
+            <MdFullscreen size={20} />
+          </button>
+          <button
+            type="button"
+            className={styles.controlBtn}
+            onClick={onRefreshGame}
+            disabled={loading || !userId}
+            title={t("Refresh Game")}
+            aria-label={t("Refresh Game")}
+          >
+            <MdRefresh size={20} className={loading ? styles.spinning : undefined} />
+          </button>
+        </div>
+      </div>
+    )}
     </div>
   );
 }

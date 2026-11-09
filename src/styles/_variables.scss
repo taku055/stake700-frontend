@@ -5,8 +5,10 @@
   --passive-color: #FFFFFF;
 
 
-  --primary-color: #8CC4DF;
-  --primary-hover-color: #64a8c9;
+  --primary-color: #1475e1;
+  --primary-hover-color: #0f62c2;
+  --accent-color: #1475e1;
+  --accent-hover-color: #0f62c2;
   --primary-bg-transparent-color: #37c9961d;
   --toastify-font-family: "Cairo";
   --toastify-font-size: 12px;
@@ -19,21 +21,22 @@
   --primary-font: "Proxima Nova";
 
 
-  --bar-background-color: #171717;
-  --background: #1e1e1e;
-  --background-secondary: #323232;
-  --background-tertiary: #767676;
-  --background-btn-hover: #3B4B5C;
-  --footer-background: #323232;
-  --background-text-box: #213743;
+  --bar-background-color: #0f212e;
+  --background: #1a2c38;
+  --background-secondary: #2f4553;
+  --background-tertiary: #557086;
+  --background-btn-hover: #3d5564;
+  --footer-background: #0f212e;
+  --background-text-box: #0f212e;
 
-  --sidebar-background: #171410;
-  --sidebar-card-bg: #262018;
-  --sidebar-card-hover: #312820;
-  --sidebar-card-active: #3a2e1e;
+  --sidebar-background: #0f212e;
+  --sidebar-card-bg: transparent;
+  --sidebar-card-hover: #213743;
+  --sidebar-card-active: #2f4553;
+  --sidebar-accent: #b1bad3;
 
 
-  --header-background: #0B1629;
+  --header-background: #1a2c38;
   --bar-background-color-hover: #3b4b5c;
   --bar-background-color-active: #3B4B5C;
   --background-color-active: #a5b5c8;
@@ -46,7 +49,8 @@
 
   --text-footer-title-color: #FFFCF8;
   --text-transparent-color: #FFFFFF99;
-  --text-primary-color: #BECDE3;
+  --text-primary-color: #b1bad3;
+  --text-muted-color: #b1bad3;
 }
 
 .dark {

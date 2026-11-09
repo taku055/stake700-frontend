@@ -69,14 +69,14 @@ export default function ForgotPasswordDialog({
       onClose={onClose}
       placement="center"
     >
-      <ModalContent className="bg-[var(--background)] w-[630px] h-[716px] max-w-[630px] max-h-[716px] rounded-[8px] overflow-y-auto">
+      <ModalContent className="bg-[#1a2c38] w-full max-w-[440px] rounded-lg overflow-y-auto border border-[#2f4553]">
         <div className="flex justify-between items-center w-full h-[60px] min-h-[60px] py-[10px] px-[16px] border-b border-[#FFFFFF0A]">
           <div className="flex items-center gap-[12px]">
             <Settings className="w-5 h-5 text-white" />
             <span className="text-white text-[18px] font-normal">{t("Forgot your password?")}</span>
           </div>
         </div>
-        <ModalBody className="flex flex-col p-[16px] h-[656px]">
+        <ModalBody className="flex flex-col p-[16px]">
           <form className="flex flex-col h-full justify-between w-full gap-[24px]" onSubmit={onSubmit}>
             <div className="flex flex-col gap-[16px] flex-1">
               <div className="h-[68px] flex-1">
@@ -99,7 +99,7 @@ export default function ForgotPasswordDialog({
 
               <div className="w-full flex flex-col justify-end">
                 <Button
-                  className="w-full text-white text-[16px] h-[49px] font-medium bg-[var(--green-color)] hover:opacity-90 rounded-lg"
+                  className="w-full text-white text-[16px] h-[49px] font-semibold bg-[#1475e1]! hover:bg-[#0f62c2]! rounded-md"
                   type="submit"
                   radius="sm"
                   isLoading={loading}

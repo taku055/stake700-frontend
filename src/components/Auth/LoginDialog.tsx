@@ -122,7 +122,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
       scrollBehavior="inside"
     >
       <ModalContent
-        className="bg-[var(--background)] max-w-[630px] max-h-[calc(var(--viewport-height)-140px)] rounded-[8px] overflow-y-auto"
+        className="bg-[#1a2c38] max-w-[440px] w-full max-h-[calc(var(--viewport-height)-140px)] rounded-lg overflow-y-auto border border-[#2f4553]"
       >
         <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
           <img
@@ -147,7 +147,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   value={email}
                   onChange={(e: any) => setEmail(e.target.value)}
                   classNames={{
-                    inputWrapper: "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-secondary)] rounded-sm! h-[44px] focus-within:bg-[var(--bar-background-color)] focus-within:border-[var(--background-secondary)]",
+                    inputWrapper: "bg-[#0f212e] border border-[#2f4553] rounded-md! h-[44px] focus-within:bg-[#0f212e] focus-within:border-[#1475e1]",
                     input: "text-white bg-transparent",
                   }}
                   ref={emailRef}
@@ -163,7 +163,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   value={password}
                   onChange={(e: any) => setPassword(e.target.value)}
                   classNames={{
-                    inputWrapper: "bg-[var(--bar-background-color)] border-[2px] border-[var(--background-secondary)] rounded-sm h-[44px]",
+                    inputWrapper: "bg-[#0f212e] border border-[#2f4553] rounded-md h-[44px] focus-within:border-[#1475e1]",
                     input: "text-white",
                   }}
                   endContent={
@@ -190,7 +190,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                     setUserType(Array.from(keys as Set<string>)[0] || "NORMAL")
                   }
                   classNames={{
-                    trigger: "bg-[#fff1] border-none rounded-sm!",
+                    trigger: "bg-[#0f212e] border border-[#2f4553] rounded-md!",
                     value: "text-white",
                   }}
                   popoverProps={{
@@ -209,14 +209,14 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                   handleClose();
                   forgotOpenedState.value = true;
                 }}
-                className="text-left text-[16px] leading-[24px] font-semibold h-[24px] text-[#FFFFFFB2] hover:text-white transition-colors mt-[8px]"
+                className="text-left text-sm font-semibold text-[#b1bad3] hover:text-white transition-colors mt-[8px]"
               >
                 {t("forgot_password")}
               </button>
 
               <div className="w-full h-[68px] pt-[16px]">
                 <Button
-                  className="w-full h-full text-white text-[16px] font-medium bg-[var(--green-color)] hover:opacity-90 rounded-lg py-[14px] px-[28px]"
+                  className="w-full h-full text-white text-[16px] font-semibold bg-[#1475e1]! hover:bg-[#0f62c2]! rounded-md py-[14px] px-[28px]"
                   type="submit"
                   radius="sm"
                   isLoading={loading}
@@ -235,7 +235,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
                     registerOpenedState.value = true;
                     handleClose();
                   }}
-                  className="text-[16px] font-semibold hover:underline leading-[24px] h-[24px]"
+                  className="text-[16px] font-semibold text-[#1475e1] hover:underline leading-[24px] h-[24px]"
                 >
                   {t("register_an_account")}
                 </button>

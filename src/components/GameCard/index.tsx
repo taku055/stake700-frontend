@@ -195,6 +195,7 @@ export default function GameCard({
             />
           )}
           <div className={styles.overlap}>
+            <span className={styles.play} aria-hidden="true" />
             <span title={data.providerId} className={styles.text}>
               {data.name}
             </span>

@@ -220,7 +220,7 @@ export default function NavigationSidebar() {
   // Desktop: Show collapsed sidebar (always visible) and expanded drawer (when expanded)
   return (
     <>
-      <div className="bg-[var(--bar-background-color)] relative top-0 p-0 m-0">
+      <div className="relative top-0 h-full p-0 m-0 bg-[var(--sidebar-background)]">
         {navigationSidebarExpandedState.value ? (
           <ExpandedDrawer
             mainNavItems={mainNavItems}

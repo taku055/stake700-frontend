@@ -106,7 +106,7 @@ export default function HomePage() {
               onClick={() =>
                 (searchWidgetState.value = !searchWidgetState.value)
               }
-              className="flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg font-medium text-[#99897a] hover:text-white hover:bg-[rgb(54,48,43)]"
+              className="flex items-center gap-2 px-3 py-2 rounded-md whitespace-nowrap transition-all flex-shrink-0 text-sm font-semibold text-[#b1bad3] hover:text-white hover:bg-[#2f4553]"
             >
               <img
                 src="/images/search.png"
@@ -120,10 +120,10 @@ export default function HomePage() {
                   setActiveTab(tab.key);
                 }}
                 key={tab.key}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-lg  font-medium ${
+                className={`flex items-center gap-2 px-3 py-2 rounded-md whitespace-nowrap transition-all flex-shrink-0 text-sm font-semibold ${
                   activeTab === tab.key
-                    ? "bg-[rgb(54,48,43)] text-[#f0d9c6]"
-                    : "text-[#99897a] hover:text-white hover:bg-[#1e1e1e]"
+                    ? "bg-[#2f4553] text-white"
+                    : "text-[#b1bad3] hover:text-white hover:bg-[#213743]"
                 }`}
               >
                 <img

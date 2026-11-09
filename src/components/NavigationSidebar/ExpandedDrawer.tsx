@@ -92,41 +92,43 @@ export default function ExpandedDrawer({
     );
 
   const itemCard = (active: boolean) =>
-    `flex items-center gap-3 px-4 py-[13px] rounded-xl transition-colors w-full ${isRTL ? "flex-row-reverse text-right" : "text-left"} ${active
-      ? "bg-[var(--green-color)] text-white"
-      : "bg-[var(--sidebar-card-bg)] text-white hover:bg-[var(--sidebar-card-hover)]"
+    `relative flex items-center gap-3 px-3 py-2.5 rounded-md transition-colors duration-150 w-full ${isRTL ? "flex-row-reverse text-right" : "text-left"} ${active
+      ? "bg-[#2f4553] text-white"
+      : "bg-transparent text-[#b1bad3] hover:bg-[#213743] hover:text-white"
     }`;
+
+  const iconChip = (_active: boolean) =>
+    "flex h-5 w-5 shrink-0 items-center justify-center";
 
   return (
     <div
       dir={isRTL ? "rtl" : "ltr"}
-      className={`relative z-100 h-full overflow-y-auto scrollbar-hide w-65 overflow-x-hidden bg-(--sidebar-background) pb-15`}
+      className="relative z-100 h-full overflow-y-auto scrollbar-hide w-[240px] overflow-x-hidden bg-(--sidebar-background) pb-15"
     >
-      {/* Nav content */}
-      <div className="px-3 flex flex-col gap-2 pt-3">
-        {/* Main nav items */}
-        {topNavItems.map((item) => (
-          <div key={item.key} className="flex flex-col">
+      <div className="px-3 flex flex-col gap-1.5 pt-4">
+        {topNavItems.map((item) => {
+          const active = selectedMainNavKey === item.key;
+          return (
+          <div key={item.key} className="flex flex-col gap-1">
             {item.expandable ? (
-              <div className="rounded-xl bg-(--sidebar-card-bg) overflow-hidden">
+              <div className="flex flex-col gap-1">
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setIsExpanded((prev) => ({ ...prev, [item.key]: !prev[item.key] }));
                   }}
-                  className={`flex items-center gap-3 px-4 py-[13px] w-full text-white hover:bg-(--sidebar-card-hover) transition-colors ${isRTL ? "flex-row-reverse text-right" : "text-left"}`}
+                  className={itemCard(active)}
                 >
-                  {renderIcon(item)}
-                  <span className="flex-1 text-sm font-medium">{item.title}</span>
+                  <span className={iconChip(active)}>{renderIcon(item)}</span>
+                  <span className="flex-1 text-sm font-semibold">{item.title}</span>
                   {isExpanded[item.key]
-                    ? <div className="w-7 h-7 flex items-center justify-center rounded-lg bg-(--sidebar-card-hover) shrink-0"><ChevronUp size={14} className="text-[#8a8070]" /></div>
-                    : <div className="w-7 h-7 flex items-center justify-center rounded-lg bg-(--sidebar-card-hover) shrink-0"><ChevronDown size={14} className="text-[#8a8070]" /></div>}
+                    ? <ChevronUp size={16} className="text-[#b1bad3] shrink-0" />
+                    : <ChevronDown size={16} className="text-[#b1bad3] shrink-0" />}
                 </button>
 
-                {/* Sub-items */}
                 {isExpanded[item.key] && item.key !== "language" && (
-                  <div className="flex flex-col border-t border-dashed border-[#8a807040]">
+                  <div className="ms-5 flex flex-col gap-0.5 border-s border-[#2f4553] ps-2">
                     {item.expandableItems?.map((subItem, index) => (
                       <Link
                         key={index}
@@ -136,7 +138,7 @@ export default function ExpandedDrawer({
                           e.stopPropagation();
                           handleNavigate(modifyHref(subItem.href || ""));
                         }}
-                        className={`flex items-center gap-3 px-4 py-3 hover:bg-(--sidebar-card-hover) transition-colors text-white ${isRTL ? "flex-row-reverse text-right" : ""}`}
+                        className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-[#b1bad3] hover:bg-[#213743] hover:text-white ${isRTL ? "flex-row-reverse text-right" : ""}`}
                       >
                         <img src={subItem.icon} alt={subItem.title} className="w-5 h-5 shrink-0 object-contain" />
                         <span className="flex-1 text-sm">{subItem.title}</span>
@@ -153,42 +155,45 @@ export default function ExpandedDrawer({
                   item.onclick?.();
                   handleNavigate(item.href || "");
                 }}
-                className={itemCard(selectedMainNavKey === item.key)}
+                className={itemCard(active)}
               >
-                {renderIcon(item)}
+                <span className={iconChip(active)}>{renderIcon(item)}</span>
                 <span className="flex-1 text-sm font-medium">{item.title}</span>
               </button>
             )}
           </div>
-        ))}
+          );
+        })}
 
-        {/* Extra nav items */}
-        {ExtraNavItems.map((item) => (
-          <div key={item.key} className="flex flex-col">
+        <div className="my-2 h-px bg-[#2f4553]" />
+
+        {ExtraNavItems.map((item) => {
+          const active = selectedMainNavKey === item.key;
+          return (
+          <div key={item.key} className="flex flex-col gap-1">
             {item.expandable ? (
-              <div className="rounded-xl bg-(--sidebar-card-bg) overflow-hidden">
+              <div className="flex flex-col gap-1">
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setIsExpanded((prev) => ({ ...prev, [item.key]: !prev[item.key] }));
                   }}
-                  className={`flex items-center gap-3 px-4 py-[13px] w-full text-white hover:bg-(--sidebar-card-hover) transition-colors ${isRTL ? "flex-row-reverse text-right" : "text-left"}`}
+                  className={itemCard(active)}
                 >
-                  {renderIcon(item)}
-                  <span className="flex-1 text-sm font-medium">
+                  <span className={iconChip(active)}>{renderIcon(item)}</span>
+                  <span className="flex-1 text-sm font-semibold">
                     {item.key === "language"
                       ? (supportedLanguageOptions.find((o) => o.value === localeState.value)?.label || item.title)
                       : item.title}
                   </span>
                   {isExpanded[item.key]
-                    ? <div className="w-7 h-7 flex items-center justify-center rounded-lg bg-(--sidebar-card-hover) shrink-0"><ChevronUp size={14} className="text-[#8a8070]" /></div>
-                    : <div className="w-7 h-7 flex items-center justify-center rounded-lg bg-(--sidebar-card-hover) shrink-0"><ChevronDown size={14} className="text-[#8a8070]" /></div>}
+                    ? <ChevronUp size={16} className="text-[#b1bad3] shrink-0" />
+                    : <ChevronDown size={16} className="text-[#b1bad3] shrink-0" />}
                 </button>
 
-                {/* Language options */}
                 {item.key === "language" && isExpanded[item.key] && (
-                  <div className="flex flex-col border-t border-dashed border-[#8a807040]">
+                  <div className="ms-5 flex flex-col gap-0.5 border-s border-[#2f4553] ps-2">
                     {supportedLanguageOptions.map((lang) => (
                         <button
                           key={lang.value}
@@ -196,9 +201,9 @@ export default function ExpandedDrawer({
                             localeState.value = lang.value;
                             window.localStorage.setItem("locale", lang.value);
                           }}
-                          className={`flex items-center gap-3 px-4 py-3 transition-colors w-full ${isRTL ? "flex-row-reverse text-right" : "text-left"} ${localeState.value === lang.value
-                            ? "text-white bg-(--sidebar-card-active)"
-                            : "text-white hover:bg-(--sidebar-card-hover)"
+                          className={`flex items-center gap-3 px-3 py-2 rounded-xl transition-colors w-full ${isRTL ? "flex-row-reverse text-right" : "text-left"} ${localeState.value === lang.value
+                            ? "text-white bg-[#2f4553]"
+                            : "text-[#b1bad3] hover:text-white hover:bg-[#213743]"
                             }`}
                         >
                           <span className={`fi fi-${lang.flag}`} />
@@ -216,14 +221,15 @@ export default function ExpandedDrawer({
                   item.onclick?.();
                   handleNavigate(modifyHref(item.href || ""));
                 }}
-                className={itemCard(selectedMainNavKey === item.key)}
+                className={itemCard(active)}
               >
-                {renderIcon(item)}
+                <span className={iconChip(active)}>{renderIcon(item)}</span>
                 <span className="flex-1 text-sm font-medium">{item.title}</span>
               </button>
             )}
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

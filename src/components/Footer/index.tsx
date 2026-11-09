@@ -62,7 +62,7 @@ export const Footer = () => {
                     scrollToTop={true}
                     href={link?.href || "#"}
                     onClick={link?.onClick}
-                    className="flex items-center gap-2 text-[var(--passive-color)] text-[14px] font-semibold"
+                    className="flex items-center gap-2 text-[#b1bad3] hover:text-white text-[14px] font-semibold transition-colors"
                   >
                     {t(link.title)}
                     {link?.icon && (

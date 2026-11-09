@@ -41,80 +41,84 @@ export default function CollapsedSidebar({
     return mainNavItems;
   }, [mainNavItems]);
 
+  const railButton = (active: boolean) =>
+    `relative flex items-center justify-center w-11 h-11 rounded-md transition-colors duration-150 ${
+      active
+        ? "bg-[#2f4553] text-white"
+        : "bg-transparent text-[#b1bad3] hover:bg-[#213743] hover:text-white"
+    }`;
+
   return (
     <div
-      className={`sticky top-0 md:flex w-[64px] bg-[var(--bar-background-color)] flex-col h-full`}
+      className="sticky top-0 md:flex w-[72px] bg-[var(--sidebar-background)] flex-col h-full"
     >
-      {/* Scrollable Content Area */}
       <div className="flex-1 flex flex-col overflow-y-auto min-h-0 scrollbar-hide">
-        {/* Navigation Icons */}
-        <div className="flex flex-col items-center py-2 gap-2 flex-shrink-0">
-          {topNavItems.map((item) => (
-            <Link
-              key={item.key}
-              href={modifyHref(item.href || "#")}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (item.expandable) {
-                  onExpandableNavClick?.(item.key);
-                  return;
-                }
-                handleNavigate(modifyHref(item.href));
-              }}
-              className={`flex items-center justify-center w-10 h-10 p-2 rounded-lg transition-colors ${selectedMainNavKey === item.key
-                ? "bg-[var(--green-color)] text-white"
-                : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
-                }`}
-              title={item.title}
-            >
-              {item.icon ? (
-                item.icon
-              ) : (
-                <img
-                  src={item.navIcon || `${ASSET_BASE_URL}/images/icons/casino.svg`}
-                  alt={item.title}
-                  className="w-6 h-6 flex-shrink-0 object-contain"
-                />
-              )}
-            </Link>
-          ))}
+        <div className="flex flex-col items-center py-3 gap-2 flex-shrink-0">
+          {topNavItems.map((item) => {
+            const active = selectedMainNavKey === item.key;
+            return (
+              <Link
+                key={item.key}
+                href={modifyHref(item.href || "#")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (item.expandable) {
+                    onExpandableNavClick?.(item.key);
+                    return;
+                  }
+                  handleNavigate(modifyHref(item.href));
+                }}
+                className={railButton(active)}
+                title={item.title}
+              >
+                {item.icon ? (
+                  item.icon
+                ) : (
+                  <img
+                    src={item.navIcon || `${ASSET_BASE_URL}/images/icons/casino.svg`}
+                    alt={item.title}
+                    className="w-6 h-6 flex-shrink-0 object-contain"
+                  />
+                )}
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Divider */}
-        <div className="border-b-2 border-[var(--bar-background-color)] flex-shrink-0" />
+        <div className="mx-auto my-1 h-px w-8 flex-shrink-0 bg-[#2f4553]" />
 
-        <div className="flex flex-col items-center py-2 gap-2 flex-shrink-0">
-          {ExtraNavItems.map((item) => (
-            <Link
-              key={item.key}
-              href={modifyHref(item.href || "#")}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (item.expandable) {
-                  onExpandableNavClick?.(item.key);
-                  return;
-                }
-                handleNavigate(modifyHref(item.href));
-              }}
-              className={`flex items-center justify-center w-10 h-10 p-2 rounded-lg transition-colors ${selectedMainNavKey === item.key
-                ? "bg-[var(--green-color)] text-white"
-                : "text-gray-300 hover:bg-[var(--bar-background-color-hover)]"
-                }`}
-              title={item.title}
-            >
-              {item.icon ? (
-                item.icon
-              ) : (
-                <img
-                  src={item.navIcon || `${ASSET_BASE_URL}/images/icons/menu.svg`}
-                  alt={item.title}
-                  className="w-6 h-6 flex-shrink-0 object-contain"
-                />
-              )}
-            </Link>
-          ))}
+        <div className="flex flex-col items-center py-3 gap-2 flex-shrink-0">
+          {ExtraNavItems.map((item) => {
+            const active = selectedMainNavKey === item.key;
+            return (
+              <Link
+                key={item.key}
+                href={modifyHref(item.href || "#")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (item.expandable) {
+                    onExpandableNavClick?.(item.key);
+                    return;
+                  }
+                  handleNavigate(modifyHref(item.href));
+                }}
+                className={railButton(active)}
+                title={item.title}
+              >
+                {item.icon ? (
+                  item.icon
+                ) : (
+                  <img
+                    src={item.navIcon || `${ASSET_BASE_URL}/images/icons/menu.svg`}
+                    alt={item.title}
+                    className="w-6 h-6 flex-shrink-0 object-contain"
+                  />
+                )}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

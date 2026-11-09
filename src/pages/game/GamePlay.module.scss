@@ -1,19 +1,25 @@
 @use "/src/styles/mixins" as *;
 
+.shell {
+  width: 100%;
+  padding: 12px 12px 0;
+  background: #1a2c38;
+}
+
 .container {
   width: 100%;
-  height: calc(var(--viewport-height) - 74px);
+  height: calc(var(--viewport-height) - 148px);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 16px;
-  background: #000;
+  border-radius: 8px;
+  background: #0b1a24;
 
   @include for-mobile-only {
-    height: calc(var(--viewport-height) - 118px);
-    border-radius: 0;
+    height: calc(var(--viewport-height) - 190px);
+    border-radius: 8px;
     margin: 0;
   }
 
@@ -31,27 +37,44 @@
   }
 }
 
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 48px;
+  margin-top: 8px;
+  padding: 0 8px 0 12px;
+  border-radius: 8px;
+  background: #0f212e;
+}
+
+.gameTitle {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .controls {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 10;
   display: flex;
   gap: 8px;
-  pointer-events: auto;
+  flex-shrink: 0;
 }
 
 .controlBtn {
-  background: rgba(0, 0, 0, 0.55);
+  background: #213743;
   color: #fff;
-  padding: 6px;
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(4px);
 
   &:disabled {
     opacity: 0.5;
@@ -59,7 +82,7 @@
   }
 
   &:hover:not(:disabled) {
-    background: rgba(0, 0, 0, 0.75);
+    background: #2f4553;
   }
 }
 
