@@ -25,10 +25,10 @@ const MainBalanceCard = ({
   const hasAnyBalance = nonZeroBalances.length > 0;
 
   return (
-    <div className="w-full flex flex-col px-5 py-3 gap-2 relative bg-[var(--green-color)] rounded-sm bg-no-repeat shadow-[0_1px_4px_0_#1B1B1B80]">
-      <div className="flex flex-row justify-between items-center">
+    <div className="w-full flex flex-col p-4 gap-3 rounded-lg bg-[#213743]">
+      <div className="flex flex-row justify-between items-start">
         <div className="flex flex-col gap-1">
-          <span className="text-white text-[14px] leading-[20px]">
+          <span className="text-[#b1bad3] text-xs font-medium">
             {t("Main Balance")}
           </span>
           {hasAnyBalance ? (
@@ -38,7 +38,7 @@ const MainBalanceCard = ({
                 return (
                   <span
                     key={cur.code}
-                    className="text-white text-[20px] leading-[110%]"
+                    className="text-white text-lg font-semibold leading-tight"
                   >
                     {isBalanceVisible
                       ? `${cash.toFixed(2)} ${cur.symbol}`
@@ -48,7 +48,7 @@ const MainBalanceCard = ({
               })}
             </div>
           ) : (
-            <span className="text-white text-[20px] leading-[110%]">
+            <span className="text-white text-lg font-semibold leading-tight">
               {isBalanceVisible
                 ? `0.00 ${currencyState.value.symbol}`
                 : `${BALANCE_MASK} ${currencyState.value.symbol}`}
@@ -57,7 +57,7 @@ const MainBalanceCard = ({
         </div>
         <button
           type="button"
-          className="flex flex-row items-center rounded-sm p-3 bg-[#FFFFFF40] hover:bg-[#FFFFFF60] transition-all duration-300"
+          className="flex items-center justify-center w-8 h-8 rounded-md bg-[#2f4553] text-[#b1bad3] hover:text-white transition-colors"
           onClick={() => setIsBalanceVisible((v) => !v)}
           aria-label={isBalanceVisible ? "Hide balance" : "Show balance"}
         >
@@ -71,15 +71,15 @@ const MainBalanceCard = ({
       <div className="grid grid-cols-2 gap-2">
         <button
           onClick={onDepositClick}
-          className="flex flex-row hover:text-white transition-all duration-300 uppercase rounded-md py-2 gap-2 justify-center items-center text-[14px] bg-[#FFFFFF40] hover:bg-[#FFFFFF60]"
+          className="flex flex-row rounded-md py-2 gap-2 justify-center items-center text-sm font-semibold text-white bg-[#1475e1] hover:bg-[#0f62c2] transition-colors"
         >
-          <Wallet /> <span>{t("Deposit")}</span>
+          <Wallet size={16} /> <span>{t("Deposit")}</span>
         </button>
         <button
           onClick={onWithdrawClick}
-          className="flex flex-row hover:text-white transition-all duration-300 uppercase rounded-md py-2 gap-2 justify-center items-center text-[14px] bg-[#FFFFFF40] hover:bg-[#FFFFFF60]"
+          className="flex flex-row rounded-md py-2 gap-2 justify-center items-center text-sm font-semibold text-white bg-[#2f4553] hover:bg-[#3d5564] transition-colors"
         >
-          <BanknoteArrowDown /> <span>{t("Withdraw")}</span>
+          <BanknoteArrowDown size={16} /> <span>{t("Withdraw")}</span>
         </button>
       </div>
     </div>

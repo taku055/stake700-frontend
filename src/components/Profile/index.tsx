@@ -1,11 +1,7 @@
 import MainBalanceCard from "./MainBalanceCard";
 import BonusBalanceCard from "./BonusBalanceCard";
 import UserComponent from "./UserComponent";
-import UserVerifyBox from "./UserVerifyBox";
 import { Modal, ModalContent } from "@/components/common";
-import LoyaltyPoints from "./LoyaltyPoints";
-import ExpandableCard, { ChildTab } from "./ExpandableCard";
-import { Gear, User, History, Exit } from "../icons";
 import AcceptPromoCode from "./AcceptPromoCode";
 import { useCallback, useState, useEffect } from "preact/hooks";
 import PersonalDetailsPage from "./myprofile/PersonalDetails";
@@ -26,6 +22,7 @@ import { useLocation } from "preact-iso";
 import { useMemo } from "preact/hooks";
 import { useTranslations } from "@/context/I18nContext";
 import { HiSpeakerphone } from "react-icons/hi";
+import { ChevronLeft, ChevronRight } from "lucide-preact";
 import { scrollToTop } from "@/helpers/scrollToTop";
 import { BonusPage } from "./userbalance/BonusPage";
 import { localeState } from "@/state/localeState";
@@ -229,6 +226,16 @@ const ProfileComponent = ({
     onClose();
   }, [onClose]);
 
+  const activeKey =
+    !isMobile && !selectedTab ? "/my-profile/personal-details" : selectedTab;
+  const activeTab = tabList.find((tab) => tab.TabKey === activeKey);
+
+  const navSections = [
+    { title: BalanceManagementTab.Title, items: BalanceManagementTab.Children },
+    { title: MyProfileTab.Title, items: MyProfileTab.Children },
+    { title: BetHistoryTabList.Title, items: BetHistoryTabList.Children },
+  ];
+
   const onLogout = useCallback(async () => {
     try {
       userState.value = null;
@@ -252,20 +259,20 @@ const ProfileComponent = ({
       isOpen={isOpen}
       onClose={onModalClose}
       placement="center"
-      scrollBehavior="inside"
+      scrollBehavior="outside"
       classNames={{
         backdrop: "z-[100]",
         wrapper: "z-[100]",
       }}
     >
-      <ModalContent className={`md:max-w-7xl! md:min-w-250! w-full flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} bg-[var(--background)] max-h-[80vh]! min-h-[60vh]!`}>
+      <ModalContent
+        dir={isRTL ? "rtl" : "ltr"}
+        className="md:max-w-6xl! w-full flex flex-col md:flex-row bg-[#1a2c38] max-h-[85vh]! min-h-[70vh]! overflow-hidden border border-[#2f4553]"
+      >
         {(!isMobile || (isMobile && !selectedTab)) && (
-          <div className={`w-full flex flex-col overflow-y-auto md:max-w-[320px]! gap-3 scrollbar-hide p-4 bg-[var(--bar-background-color)] ${isRTL ? 'md:border-l md:border-gray-700' : 'md:border-r md:border-gray-700'}`}>
-            <div className="flex flex-col gap-3">
+          <aside className="w-full md:w-[280px] md:shrink-0 min-h-0 flex flex-col overflow-y-auto scrollbar-hide bg-[#0f212e] border-b md:border-b-0 md:border-e border-[#2f4553]">
+            <div className="flex flex-col gap-4 p-4">
               <UserComponent />
-              {/* <UserVerifyBox
-                onClick={() => setSelectedTab("/my-profile/verify-account")}
-              /> */}
               <MainBalanceCard
                 onDepositClick={() =>
                   setSelectedTab("/balance-management/deposit")
@@ -275,120 +282,79 @@ const ProfileComponent = ({
                 }
               />
               <BonusBalanceCard />
-              {/* <LoyaltyPoints
-                onClick={() => setSelectedTab("/loyalty-points")}
-              /> */}
               {userState.value?.isCallGroup && (
                 <a
-                  className="flex bg-yellow-600 gap-3 p-4 rounded-md items-center"
+                  className="flex items-center gap-3 px-3 py-2 rounded-md text-[#b1bad3] hover:bg-[#213743] hover:text-white transition-colors"
                   href="/affiliates"
                   onClick={() => {
                     onClose();
                     scrollToTop();
                   }}
                 >
-                  <HiSpeakerphone className="text-3xl" />
-                  <span>Referrals</span>
+                  <HiSpeakerphone className="text-lg" />
+                  <span className="text-sm font-semibold">Referrals</span>
                 </a>
               )}
-              <ExpandableCard
-                title={t("Balance Management")}
-                icon={<Gear />}
-                defaultExpanded={true}
-              >
-                <div className="flex flex-col">
-                  {BalanceManagementTab.Children.map((child) => (
-                    <ChildTab
-                      key={child.TabKey}
-                      selected={selectedTab === child.TabKey}
-                      title={child.Title}
-                      onClick={() => setSelectedTab(child.TabKey)}
-                    />
-                  ))}
-                </div>
-              </ExpandableCard>
-              {/* <ExpandableCard title="Bonuses" icon={<Bonus />} defaultExpanded={true}>
-                  <div className="flex flex-col">
-                    {
-                      BonusesTab.Children.map((child) => (
-                        <ChildTab selected={selectedTab === child.TabKey} title={child.Title} onClick={() => setSelectedTab(child.TabKey)} />
-                      ))
-                    }
-                  </div>
-                </ExpandableCard> */}
-              <ExpandableCard
-                title={t("My Profile")}
-                icon={<User />}
-                defaultExpanded={true}
-              >
-                <div className="flex flex-col">
-                  {MyProfileTab.Children.map((child) => (
-                    <ChildTab
-                      key={child.TabKey}
-                      selected={selectedTab === child.TabKey}
-                      title={child.Title}
-                      onClick={() => setSelectedTab(child.TabKey)}
-                    />
-                  ))}
-                </div>
-              </ExpandableCard>
-              <ExpandableCard
-                title={BetHistoryTabList.Title}
-                icon={<History />}
-                defaultExpanded={true}
-              >
-                <div className="flex flex-col">
-                  {BetHistoryTabList.Children.map((child) => (
-                    <ChildTab
-                      key={child.TabKey}
-                      selected={selectedTab === child.TabKey}
-                      title={child.Title}
-                      onClick={() => setSelectedTab(child.TabKey)}
-                    />
-                  ))}
-                </div>
-              </ExpandableCard>
-              {/* <ExpandableCard title="Messages" icon={<Message />} defaultExpanded={true}>
-              <div className="flex flex-col">
-                {
-                  MessagesTab.Children.map((child) => (
-                    <ChildTab selected={selectedTab === child.TabKey} title={child.Title} onClick={() => setSelectedTab(child.TabKey)} />
-                  ))
-                }
-              </div>
-            </ExpandableCard>
-            <ExpandableCard title="Rewards" icon={<Reward />} defaultExpanded={true}>
-              <div className="flex flex-col">
-                {
-                  RewardsTab.Children.map((child) => (
-                    <ChildTab selected={selectedTab === child.TabKey} title={child.Title} onClick={() => setSelectedTab(child.TabKey)} />
-                  ))
-                }
-              </div>
-            </ExpandableCard> */}
-              <AcceptPromoCode />
-              <ExpandableCard
-                title={t("Logout")}
-                icon={<Exit />}
-                defaultExpanded={false}
-                showIcon={false}
-                onToggle={onLogout}
-              />
             </div>
-          </div>
+
+            <nav className="flex flex-col gap-1 px-3 pb-3">
+              {navSections.map((section) => (
+                <div key={section.title} className="flex flex-col">
+                  <div className="px-3 pt-3 pb-1 text-[11px] font-semibold uppercase tracking-wide text-[#557086]">
+                    {section.title}
+                  </div>
+                  {section.items.map((child) => {
+                    const selected = activeKey === child.TabKey;
+                    return (
+                      <button
+                        key={child.TabKey}
+                        type="button"
+                        onClick={() => setSelectedTab(child.TabKey)}
+                        className={`text-start px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                          selected
+                            ? "bg-[#2f4553] text-white"
+                            : "text-[#b1bad3] hover:bg-[#213743] hover:text-white"
+                        }`}
+                      >
+                        {child.Title}
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+            </nav>
+
+            <div className="mt-auto flex flex-col gap-3 p-4 border-t border-[#2f4553]">
+              <AcceptPromoCode />
+              <button
+                type="button"
+                onClick={onLogout}
+                className="text-start px-3 py-2 rounded-md text-sm font-medium text-[#b1bad3] hover:bg-[#213743] hover:text-white transition-colors"
+              >
+                {t("Logout")}
+              </button>
+            </div>
+          </aside>
         )}
 
         {((isMobile && selectedTab) || !isMobile) && (
-          <div className={`w-full flex flex-col overflow-y-auto gap-3 scrollbar-hide ${isRTL ? 'text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-            {
-              tabList.find(
-                (tab) =>
-                  tab.TabKey ===
-                  (!isMobile && !selectedTab
-                    ? "/my-profile/personal-details"
-                    : selectedTab)
-              )?.Content
-            }
+          <div className="flex-1 min-w-0 min-h-0 flex flex-col overflow-y-auto scrollbar-hide p-4 md:p-6 pe-12">
+            <div className="flex items-center gap-2 mb-4">
+              {isMobile && selectedTab && (
+                <button
+                  type="button"
+                  aria-label={t("Back", undefined, "Back")}
+                  onClick={() => setSelectedTab("")}
+                  className="w-8 h-8 shrink-0 flex items-center justify-center rounded-md text-[#b1bad3] hover:bg-[#213743] hover:text-white"
+                >
+                  {isRTL ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+                </button>
+              )}
+              <h2 className="text-lg font-semibold text-white">
+                {activeTab?.Title}
+              </h2>
+            </div>
+            {activeTab?.Content}
           </div>
         )}
       </ModalContent>

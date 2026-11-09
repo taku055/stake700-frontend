@@ -25,14 +25,15 @@ const AcceptPromoCode = () => {
     setLoading(false);
   }
   return (
-    <div className="flex flex-row gap-[10px] mx-5 p-[10px] bg-[#FFFFFF0D] rounded-sm">
+    <div className="flex flex-row gap-2">
       <input
-        className="bg-[#FFFFFF26] flex-1 px-5 py-5 rounded-sm focus:outline-none w-full text-[14px]"
+        className="flex-1 h-10 px-3 rounded-md bg-[#1a2c38] border border-[#2f4553] text-sm text-white placeholder:text-[#557086] focus:outline-none focus:border-[#1475e1]"
         type="text" value={promoCode} placeholder={t("Promo Code")} onChange={(e) => setPromoCode((e.target as HTMLInputElement).value || "")}
       />
       <button
-        className="bg-[#FFFFFF1A] hover:bg-[#FFFFFF26] hover:text-[#FFFFFF] transition-all duration-300 text-[#FFFFFF4D] px-[20px] rounded-sm text-[12px]"
+        className="h-10 px-4 rounded-md bg-[#1475e1] hover:bg-[#0f62c2] text-white text-sm font-semibold transition-colors disabled:opacity-60"
         onClick={onApply}
+        disabled={loading}
       >
         {t("Apply")}
       </button>
