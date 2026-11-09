@@ -4,7 +4,6 @@ const VerfyAccountPage = () => {
   const t = useTranslations("PersonalDetails");
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">{t("Verify Account")}</div>
       <div className="w-full p-5 flex-1">
         <div className="flex flex-row items-center gap-1 pb-2 text-[#FFFFFFCC]">
           {t("Verify Account Description")}

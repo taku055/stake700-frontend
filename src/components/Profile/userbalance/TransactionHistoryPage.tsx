@@ -77,9 +77,6 @@ const TransactionHistoryPage = () => {
 
   return (
     <div className="flex flex-col h-full min-h-0">
-      <div className="w-full p-5 border-b border-[#FFFFFF1A] bg-[#FFFFFF1A] shrink-0">
-        {t("Transaction History")}
-      </div>
       <div className="flex flex-col gap-2 p-4 flex-1 min-h-0 overflow-hidden">
         <div className="flex items-center justify-between md:flex-row flex-col gap-2 shrink-0">
           <div className="flex text-[12px]">

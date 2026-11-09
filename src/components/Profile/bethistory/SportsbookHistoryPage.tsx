@@ -43,9 +43,6 @@ const SportsbookHistoryPage = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">
-        {t("Sportsbook History")}
-      </div>
       <div className="flex flex-col w-full p-5 gap-5">
         <div className="px-5 py-3 bg-[#FFFFFF26] rounded-md">
           <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">

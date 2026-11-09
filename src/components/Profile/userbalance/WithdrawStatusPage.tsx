@@ -140,10 +140,6 @@ const WithdrawStatusPage = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full p-5 border-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">
-        <h2 className="text-[var(--foreground)] text-[18px] font-semibold">{t("Withdraw Status")}</h2>
-      </div>
-
       <div className="flex flex-col w-full p-5 gap-5 flex-1 overflow-hidden">
         {/* Table Container */}
         <div className="flex-1 overflow-auto">

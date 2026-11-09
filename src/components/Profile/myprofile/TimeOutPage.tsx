@@ -6,7 +6,6 @@ const TimeoutPage = () => {
   const [selectedTimeout, setSelectedTimeout] = useState("24-hours");
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">{t("Time-Out")}</div>
       <div className="w-full p-5 flex-1">
         <div className="flex flex-row items-center gap-1 pb-2 text-[#FFFFFFCC]">
           {t("Time-Out Description")}

@@ -36,13 +36,6 @@ const ChangePasswordPage = () => {
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div
-        className={`w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A] ${
-          isRTL ? "text-right" : "text-left"
-        }`}
-      >
-        {t("Change Password")}
-      </div>
-      <div
         className={`w-full p-5 flex-1 ${isRTL ? "text-right" : "text-left"}`}
       >
         <div className="flex flex-col gap-2">

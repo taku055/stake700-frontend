@@ -7,7 +7,6 @@ const SendNewPage = () => {
   const t = useTranslations("MessagePage");
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">{t("Send New")}</div>
       <div className="flex flex-col w-full p-5 gap-5">
         <div className="flex flex-col gap-3 px-3 py-2">
           <Input placeholder={t("Subject")} label={t("Subject")} radius="sm" classNames={{

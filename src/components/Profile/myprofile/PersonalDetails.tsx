@@ -132,13 +132,6 @@ const PersonalDetailsPage = () => {
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div
-        className={`w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A] ${
-          isRTL ? "text-right" : "text-left"
-        }`}
-      >
-        {t("Personal Details")}
-      </div>
-      <div
         className={`w-full p-5 flex-1 ${isRTL ? "text-right" : "text-left"}`}
       >
         <div className="grid grid-cols-2 gap-2">

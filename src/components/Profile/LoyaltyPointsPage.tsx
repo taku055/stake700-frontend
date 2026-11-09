@@ -59,7 +59,6 @@ const LoyaltyPointsPage = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">{t("Loyalty Points")}</div>
       <div className="flex flex-col p-5 gap-5">
         <div className="w-full p-5 flex-1 flex flex-col gap-3 bg-[#FFFFFF0D] p-5 rounded-sm">
           <div className="flex flex-row gap-3">

@@ -54,9 +54,6 @@ const WithdrawPage = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full p-5 boder-b border-[#FFFFFF1A] bg-[#FFFFFF1A]">
-        {t("Withdraw")}
-      </div>
       <div className="flex flex-col w-full py-5 gap-5 px-5">
         <Tabs
           aria-label={t("Withdraw tab options")}

@@ -194,7 +194,7 @@ export default function DepositPanel() {
       <div className="text-center text-sm text-gray-400 my-2 md:mb-10">
         {t("address_confirm")}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 p-2 md:p-6 overflow-y-auto">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 overflow-y-auto">
         <div className="md:col-span-3 space-y-4">
           <h3 className="text-md font-semibold text-white">
             {t("Crypto Payments")}
@@ -211,7 +211,7 @@ export default function DepositPanel() {
           />
         </div>
         {/* Right Side: Deposit Form */}
-        <div className="md:col-span-2 bg-[#21211C] border-1 border-[#515778] rounded-xl p-6 space-y-6">
+        <div className="md:col-span-2 bg-[#213743] border border-[#2f4553] rounded-xl p-6 space-y-6">
           <div>
             <label className="text-sm">{t("DEPOSIT AMOUNT")}</label>
             <Input
@@ -219,7 +219,7 @@ export default function DepositPanel() {
               value={amount}
               onChange={(e: any) => setAmount(e.target.value)}
               classNames={{
-                inputWrapper: "bg-[#D9D9D91C] border border-[#515151]",
+                inputWrapper: "bg-[#0f212e] border border-[#2f4553]",
                 input: "text-white",
               }}
               className="mt-[4px]"
@@ -253,7 +253,7 @@ export default function DepositPanel() {
               value={wallet}
               readOnly
               classNames={{
-                inputWrapper: "bg-[#D9D9D91C] border border-[#515151]",
+                inputWrapper: "bg-[#0f212e] border border-[#2f4553]",
                 input: "text-white cursor-default",
               }}
               onClick={() => copyWallet()}
