@@ -1,9 +1,9 @@
 {
   "background_color": "#1A1D26",
   "categories": [
-    "Mirage888, Casino, Slots, Crypto"
+    "stake700, Casino, Slots, Crypto"
   ],
-  "description": "Mirage888 is operated by Aries Processing Ltd (Registered address, Thiseos, 7, Flat/Office 001 Strovolos 2042, Lefkosia, Cyprus).",
+  "description": "stake700 is operated by Aries Processing Ltd (Registered address, Thiseos, 7, Flat/Office 001 Strovolos 2042, Lefkosia, Cyprus).",
   "dir": "ltr",
   "display": "browser",
   "display_override": [
@@ -15,14 +15,14 @@
     }
   ],
   "lang": "en",
-  "name": "Mirage888",
+  "name": "stake700",
   "orientation": "any",
   "screenshots": [
     {
       "src": "/screenshot.png"
     }
   ],
-  "short_name": "Mirage888",
+  "short_name": "stake700",
   "start_url": "/",
   "theme_color": "#232323"
 }

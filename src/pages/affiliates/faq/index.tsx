@@ -11,19 +11,19 @@ export default function FAQ() {
 
   const faqItems = [
     {
-      question: t("What is the Mirage888 Affiliate Program?"),
+      question: t("What is the stake700 Affiliate Program?"),
       answer: t("FAQAffiliateProgramAnswer"),
     },
     {
-      question: t("Who can join the Mirage888 Affiliate Program?"),
-      answer: t("Anyone can join the Mirage888 Affiliate Program."),
+      question: t("Who can join the stake700 Affiliate Program?"),
+      answer: t("Anyone can join the stake700 Affiliate Program."),
     },
     {
-      question: t("How do I join the Mirage888 Affiliate Program?"),
+      question: t("How do I join the stake700 Affiliate Program?"),
       answer: t("FAQJoinAnswer"),
     },
     {
-      question: t("What are the benefits of joining the Mirage888 Affiliate Program?"),
+      question: t("What are the benefits of joining the stake700 Affiliate Program?"),
       answer: t("FAQBenefitsAnswer"),
     },
   ];

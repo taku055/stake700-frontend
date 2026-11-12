@@ -378,7 +378,7 @@ export default function LiveSupport() {
                   className={styles.headerAvatar}
                 />
                 <div>
-                  <div className={styles.headerTitle}>Mirage888 Support</div>
+                  <div className={styles.headerTitle}>stake700 Support</div>
                   <div className={styles.headerSub}>
                     <span className={styles.onlineDot} />
                     online

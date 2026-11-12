@@ -32,7 +32,7 @@ export default function WelcomeDialog({
         <div className="bg-[var(--background)] p-[16px] pt-[32px] gap-[16px] flex flex-col items-center justify-center rounded-b-[8px]">
           {/* Title */}
           <h2 className="text-white text-[20px] font-semibold leading-[28px] text-center">
-            {t("Welcome to Mirage888!")}
+            {t("Welcome to stake700!")}
           </h2>
 
           {/* Description */}
