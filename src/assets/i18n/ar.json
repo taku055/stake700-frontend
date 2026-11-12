@@ -328,6 +328,13 @@
   },
   "HomePage": {
     "casino-games": "ألعاب الكازينو",
+    "stage_kicker": "الصالة",
+    "stage_title": "اختر غرفة",
+    "stage_search": "ابحث في الصالة",
+    "stage_picks": "ست ألعاب",
+    "stage_tables": "طاولات مباشرة",
+    "stage_open": "إلى الكازينو",
+    "stage_empty": "الصالة هادئة الآن.",
     "live-casino": "كازينو مباشر",
     "Hacksaw": "هاكسو",
     "Top Games": "أفضل الألعاب",

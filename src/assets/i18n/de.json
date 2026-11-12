@@ -329,6 +329,13 @@
   },
   "HomePage": {
     "casino-games": "Casino-Spiele",
+    "stage_kicker": "Der Saal",
+    "stage_title": "Wähle einen Raum",
+    "stage_search": "Im Saal suchen",
+    "stage_picks": "Sechs Spiele",
+    "stage_tables": "Live-Tische",
+    "stage_open": "Zum Casino",
+    "stage_empty": "Der Saal ist gerade ruhig.",
     "live-casino": "Live-Casino",
     "Hacksaw": "Hacksaw Gaming",
     "Top Games": "Top-Spiele",

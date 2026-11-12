@@ -433,6 +433,13 @@
   },
   "HomePage": {
     "casino-games": "Casino Games",
+    "stage_kicker": "The floor",
+    "stage_title": "Choose a room",
+    "stage_search": "Search the floor",
+    "stage_picks": "Six games",
+    "stage_tables": "Live tables",
+    "stage_open": "See the casino",
+    "stage_empty": "The floor is quiet right now.",
     "live-casino": "Live Casino",
     "Hacksaw": "Hacksaw",
     "Top Games": "Top Games",

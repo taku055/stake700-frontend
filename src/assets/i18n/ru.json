@@ -326,6 +326,13 @@
   },
   "HomePage": {
     "casino-games": "Казино Игры",
+    "stage_kicker": "Зал",
+    "stage_title": "Выберите зал",
+    "stage_search": "Искать в зале",
+    "stage_picks": "Шесть игр",
+    "stage_tables": "Живые столы",
+    "stage_open": "В казино",
+    "stage_empty": "Зал сейчас тих.",
     "live-casino": "Живое Казино",
     "Hacksaw": "Хаксо",
     "Top Games": "Топ игры",

@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import { CasinoGameGrid } from "@/pages/casino/components/CasinoGameGrid";
 import { useTranslations } from "@/context/I18nContext";
 import { useLocation } from "preact-iso";
-import { EmblaBanner } from "@/components/EmblaBanner/EmblaBanner";
 import ContentWrapper from "@/provider/ContentWrapper.tsx";
 import { userState } from "@/state/userState.ts";
 import { searchWidgetState } from "@/state/searchWidgetState";
@@ -12,6 +11,7 @@ import CasinoGames from "./CasinoGames.tsx";
 import { HOME_PAGE_TABS, type HomePageMode } from "./tabData";
 import { HOME_PAGE_CATEGORIES, HOME_PAGE_DEFAULT_TAB } from "./categoryData";
 import ProviderGroup from "@/components/ProviderGroup/index.tsx";
+import HomeStage from "./HomeStage.tsx";
 
 const HOME_PAGE_MODE_QUERY_KEY = "page";
 
@@ -94,9 +94,12 @@ export default function HomePage() {
     return null;
   };
 
+  if (activeMode === "home") {
+    return <HomeStage />;
+  }
+
   return (
     <>
-      {activeMode === "home" && <EmblaBanner />}
       <ContentWrapper className="px-4">
         <div className="flex overflow-x-auto scrollbar-hide mb-4 mt-4">
           <div className="flex gap-1 min-w-max">
