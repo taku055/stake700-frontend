@@ -402,7 +402,10 @@
     "login_role_user": "User",
     "login_role_agent": "Agent",
     "login_role_super_agent": "Super Agent",
-    "login_role_area_manager": "Area Manager"
+    "login_role_area_manager": "Area Manager",
+    "welcome_back": "Welcome back",
+    "login_subtitle": "Log in to your account to continue",
+    "login_as_agent": "I'm an agent"
   },
   "SignupDialog": {
     "please_input_all_fields": "Please input all fields",
@@ -430,7 +433,12 @@
     "successfully_registered": "Successfully registered",
     "email_or_username_already_taken": "Email or username is already taken",
     "something_went_wrong": "Something went wrong",
-    "already_have_an_account": "Already have an account"
+    "already_have_an_account": "Already have an account",
+    "create_account": "Create your account",
+    "signup_subtitle": "It only takes a minute to get started",
+    "personal_details": "Personal details",
+    "account_details": "Account details",
+    "optional": "optional"
   },
   "HomePage": {
     "casino-games": "Casino Games",
@@ -1004,7 +1012,13 @@
     "Search": "Search",
     "Results": "Results",
     "Casino": "Casino",
-    "Sports": "Sports"
+    "Sports": "Sports",
+    "placeholder": "Search games",
+    "searching": "Searching…",
+    "results_count": "{count} games found",
+    "explore": "Explore games",
+    "no_results": "No results for “{keyword}”",
+    "no_results_hint": "Check the spelling or try a different game name."
   },
   "BetHistory": {
     "My Bets": "My Bets",
@@ -2212,7 +2226,14 @@
     "Provider selection": "Provider selection",
     "Clear all": "Clear all",
     "view_all": "View all",
-    "providers_back": "Back"
+    "providers_back": "Back",
+    "all_games": "All games",
+    "games_count": "{count} games",
+    "showing_of": "Showing {shown} of {total} games",
+    "search_providers": "Search providers",
+    "no_providers_found": "No providers found",
+    "no_games_hint": "Try removing some filters or choose another category.",
+    "done": "Done"
   },
   "VerifyEmailPage": {
     "title": "Verify email",

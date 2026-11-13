@@ -297,7 +297,10 @@
     "login_role_user": "مستخدم",
     "login_role_agent": "وكيل",
     "login_role_super_agent": "وكيل رئيسي",
-    "login_role_area_manager": "مدير منطقة"
+    "login_role_area_manager": "مدير منطقة",
+    "welcome_back": "مرحبًا بعودتك",
+    "login_subtitle": "سجّل الدخول إلى حسابك للمتابعة",
+    "login_as_agent": "أنا وكيل"
   },
   "SignupDialog": {
     "please_input_all_fields": "يرجى إدخال جميع الحقول",
@@ -325,7 +328,12 @@
     "email_or_username_already_taken": "البريد الإلكتروني أو اسم المستخدم مستخدم بالفعل",
     "something_went_wrong": "حدث خطأ ما",
     "already_have_an_account": "لديك حساب بالفعل؟",
-    "phone": "رقم الجوال"
+    "phone": "رقم الجوال",
+    "create_account": "أنشئ حسابك",
+    "signup_subtitle": "يستغرق الأمر دقيقة واحدة فقط للبدء",
+    "personal_details": "البيانات الشخصية",
+    "account_details": "بيانات الحساب",
+    "optional": "اختياري"
   },
   "HomePage": {
     "casino-games": "ألعاب الكازينو",
@@ -844,7 +852,13 @@
     "Search": "بحث",
     "Results": "النتائج",
     "Casino": "كازينو",
-    "Sports": "رياضة"
+    "Sports": "رياضة",
+    "placeholder": "ابحث عن الألعاب",
+    "searching": "جارٍ البحث…",
+    "results_count": "تم العثور على {count} لعبة",
+    "explore": "استكشف الألعاب",
+    "no_results": "لا توجد نتائج لـ «{keyword}»",
+    "no_results_hint": "تحقق من الإملاء أو جرّب اسم لعبة آخر."
   },
   "BetHistory": {
     "Casino History": "سجلّ الكازينو",
@@ -2263,7 +2277,14 @@
     "Provider selection": "اختيار المزوّد",
     "Clear all": "مسح الكل",
     "view_all": "عرض الكل",
-    "providers_back": "رجوع"
+    "providers_back": "رجوع",
+    "all_games": "جميع الألعاب",
+    "games_count": "{count} لعبة",
+    "showing_of": "عرض {shown} من {total} لعبة",
+    "search_providers": "ابحث عن مزود",
+    "no_providers_found": "لم يتم العثور على مزودين",
+    "no_games_hint": "جرّب إزالة بعض الفلاتر أو اختر فئة أخرى.",
+    "done": "تم"
   },
   "VerifyEmailPage": {
     "title": "Verify email",

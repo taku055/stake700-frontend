@@ -7,7 +7,7 @@ export default function LiveCasinoGames() {
   const t = useTranslations("CasinoPage");
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-8 md:gap-10">
       <GridGameGroup
         category={"rouletteglobal"}
         title={t("International Roulette") || "International Roulette"}

@@ -295,7 +295,10 @@
     "login_role_user": "Utilisateur",
     "login_role_agent": "Agent",
     "login_role_super_agent": "Super agent",
-    "login_role_area_manager": "Responsable de zone"
+    "login_role_area_manager": "Responsable de zone",
+    "welcome_back": "Bon retour",
+    "login_subtitle": "Connectez-vous à votre compte pour continuer",
+    "login_as_agent": "Je suis un agent"
   },
   "SignupDialog": {
     "please_input_all_fields": "Veuillez remplir tous les champs",
@@ -323,7 +326,12 @@
     "something_went_wrong": "Une erreur s'est produite",
     "login_an_account": "Log in",
     "already_have_an_account": "Vous avez déjà un compte ?",
-    "phone": "Numéro de mobile"
+    "phone": "Numéro de mobile",
+    "create_account": "Créez votre compte",
+    "signup_subtitle": "Il suffit d'une minute pour commencer",
+    "personal_details": "Informations personnelles",
+    "account_details": "Informations du compte",
+    "optional": "facultatif"
   },
   "HomePage": {
     "casino-games": "Jeux de casino",
@@ -836,7 +844,13 @@
     "Search": "Rechercher",
     "Results": "Résultats",
     "Casino": "Casino",
-    "Sports": "Sports"
+    "Sports": "Sports",
+    "placeholder": "Rechercher des jeux",
+    "searching": "Recherche…",
+    "results_count": "{count} jeux trouvés",
+    "explore": "Découvrir les jeux",
+    "no_results": "Aucun résultat pour « {keyword} »",
+    "no_results_hint": "Vérifiez l'orthographe ou essayez un autre nom de jeu."
   },
   "BetHistory": {
     "Casino History": "Historique Casino",
@@ -2143,7 +2157,14 @@
     "Provider selection": "Sélection du fournisseur",
     "Clear all": "Tout effacer",
     "view_all": "Tout voir",
-    "providers_back": "Retour"
+    "providers_back": "Retour",
+    "all_games": "Tous les jeux",
+    "games_count": "{count} jeux",
+    "showing_of": "{shown} sur {total} jeux affichés",
+    "search_providers": "Rechercher un fournisseur",
+    "no_providers_found": "Aucun fournisseur trouvé",
+    "no_games_hint": "Essayez de retirer des filtres ou choisissez une autre catégorie.",
+    "done": "Terminé"
   },
   "VerifyEmailPage": {
     "title": "Verify email",

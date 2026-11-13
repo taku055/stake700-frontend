@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { Button } from "@heroui/react";
 import axios from "axios";
+import { Lock, User } from "lucide-react";
 import { toast } from "@/helpers/toast";
 import { accessTokenState } from "@/state/accessTokenState";
 import { userState } from "@/state/userState";
@@ -8,37 +9,35 @@ import { apiLogin } from "@/api/account/apiLogin";
 import { setAxiosAuthToken } from "@/api/instance";
 import { useTranslations } from "@/context/I18nContext";
 import { useLocation } from "@/router";
-import {
-  Modal,
-  ModalContent,
-  ModalBody,
-  ModalHeader,
-  Input,
-} from "@/components/common";
-import { Select, SelectItem } from "@heroui/react";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
-import { Eye, EyeOff } from "lucide-react";
-import { registerOpenedState, signupStep1OpenedState } from "@/state/registerOpenedState";
-import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
+import { registerOpenedState } from "@/state/registerOpenedState";
+import { mobileMediaQuery } from "@/config/constants";
 import { useMediaQuery } from "usehooks-ts";
 import { setViewportCss } from "@/helpers/setViewportCss";
-
+import {
+  AuthModal,
+  AuthField,
+  AuthCheckbox,
+  PasswordToggle,
+  authPrimaryButton,
+  authLinkButton,
+} from "./AuthShell";
 
 interface ILoginComponentProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
 export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
   const [email, setEmail] = useState("");
-  const [userType, setUserType] = useState<string>("NORMAL");
   const [password, setPassword] = useState("");
+  const [isAgent, setIsAgent] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [remember, setRemember] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const t = useTranslations("LoginDialog");
   const tToast = useTranslations("ToastMessages");
   const location = useLocation();
   const emailRef = useRef<HTMLInputElement>(null);
-  const [showPassword, setShowPassword] = useState(false);
   const isMobile = useMediaQuery(mobileMediaQuery);
 
   const handleClose = () => {
@@ -54,8 +53,8 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
   useEffect(() => {
     setEmail("");
     setPassword("");
-    setRemember(false);
-    setUserType("NORMAL");
+    setIsAgent(false);
+    setShowPassword(false);
 
     if (isOpen && !isMobile) {
       setTimeout(() => {
@@ -67,23 +66,16 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
   const onSubmit = useCallback(
     async (e: any) => {
       e.preventDefault();
+      if (loading) return;
 
-      if (loading) {
-        return;
-      }
-
-      if (!email || !password) {
+      if (!email.trim() || !password) {
         toast.error(tToast("validation.all_fields_required"));
         return;
       }
 
       setLoading(true);
       try {
-        const res = await apiLogin(
-          email,
-          password,
-          userType || "NORMAL"
-        );
+        const res = await apiLogin(email.trim(), password, isAgent ? "AGENT" : "NORMAL");
         userState.value = res.user;
         accessTokenState.value = res.accessToken;
         setAxiosAuthToken(res.accessToken);
@@ -98,12 +90,8 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
           location.route("/area_manager");
         }
       } catch (ex) {
-        if (axios.isAxiosError(ex)) {
-          if (ex.response?.status === 401) {
-            toast.error(t("email_or_password_is_incorrect"));
-          } else {
-            toast.error(t("something_went_wrong"));
-          }
+        if (axios.isAxiosError(ex) && ex.response?.status === 401) {
+          toast.error(t("email_or_password_is_incorrect"));
         } else {
           toast.error(t("something_went_wrong"));
         }
@@ -111,139 +99,75 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
         setLoading(false);
       }
     },
-    [remember, email, password, userType, t]
+    [loading, email, password, isAgent, t, tToast]
   );
+
   return (
-    <Modal
-      backdrop="blur"
+    <AuthModal
       isOpen={isOpen}
       onClose={handleClose}
-      placement="center"
-      scrollBehavior="inside"
+      title={t("welcome_back")}
+      subtitle={t("login_subtitle")}
+      footer={
+        <>
+          {t("don_t_have_an_account")}?{" "}
+          <button
+            type="button"
+            onClick={() => {
+              handleClose();
+              registerOpenedState.value = true;
+            }}
+            className={authLinkButton}
+          >
+            {t("register_an_account")}
+          </button>
+        </>
+      }
     >
-      <ModalContent
-        className="bg-[#1a2c38] max-w-[440px] w-full max-h-[calc(var(--viewport-height)-140px)] rounded-lg overflow-y-auto border border-[#2f4553]"
-      >
-        <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
-          <img
-            src={`${ASSET_BASE_URL}/logo.png`}
-            className="h-[36px] md:h-[36px] md:max-w-[180px]"
-            alt={process.env.NEXT_PUBLIC_SITE_NAME as string}
-          />
-        </ModalHeader>
-        <ModalBody className="flex flex-col p-[16px]">
-          <form className="flex flex-col w-full gap-[16px]" onSubmit={onSubmit}>
-            {/* <label className="uppercase text-white text-[18px]">
-              {t("sign_in_waiting")}
-            </label> */}
-            <div className="flex flex-col ">
-              <div className="h-[68px]">
-                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("Email or Username")}</span>
-                  <img src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
-                </label>
-                <Input
-                  type="text"
-                  value={email}
-                  onChange={(e: any) => setEmail(e.target.value)}
-                  classNames={{
-                    inputWrapper: "bg-[#0f212e] border border-[#2f4553] rounded-md! h-[44px] focus-within:bg-[#0f212e] focus-within:border-[#1475e1]",
-                    input: "text-white bg-transparent",
-                  }}
-                  ref={emailRef}
-                />
-              </div>
-              <div className="h-[84px] w-full flex flex-col pt-[16px]">
-                <label className="text-[#FFFFFF] flex text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("Password")}</span>
-                  <img src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`} alt="*" className="h-[20px] pl-[4px]" />
-                </label>
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e: any) => setPassword(e.target.value)}
-                  classNames={{
-                    inputWrapper: "bg-[#0f212e] border border-[#2f4553] rounded-md h-[44px] focus-within:border-[#1475e1]",
-                    input: "text-white",
-                  }}
-                  endContent={
-                    showPassword ? (
-                      <EyeOff
-                        className="w-5 h-5 text-white transition-colors cursor-pointer"
-                        onClick={() => setShowPassword(!showPassword)}
-                      />
-                    ) : (
-                      <Eye
-                        className="w-5 h-5 text-white transition-colors cursor-pointer"
-                        onClick={() => setShowPassword(!showPassword)}
-                      />
-                    )
-                  }
-                />
-              </div>
-              <div className="h-[84px] w-full flex flex-col pt-[16px]">
-                <Select
-                  label={t("are_you_an_agent")}
-                  placeholder={t("select_user_type")}
-                  selectedKeys={userType ? [userType] : []}
-                  onSelectionChange={(keys) =>
-                    setUserType(Array.from(keys as Set<string>)[0] || "NORMAL")
-                  }
-                  classNames={{
-                    trigger: "bg-[#0f212e] border border-[#2f4553] rounded-md!",
-                    value: "text-white",
-                  }}
-                  popoverProps={{
-                    shouldCloseOnScroll: false,
-                    shouldBlockScroll: true,
-                  }}
-                >
-                  <SelectItem key="NORMAL">{t("login_role_user")}</SelectItem>
-                  <SelectItem key="AGENT">{t("login_role_agent")}</SelectItem>
-                  <SelectItem key="SUPERAGENT">{t("login_role_super_agent")}</SelectItem>
-                  <SelectItem key="AREA_MANAGER">{t("login_role_area_manager")}</SelectItem>
-                </Select></div>
-              <button
-                type="button"
-                onClick={() => {
-                  handleClose();
-                  forgotOpenedState.value = true;
-                }}
-                className="text-left text-sm font-semibold text-[#b1bad3] hover:text-white transition-colors mt-[8px]"
-              >
-                {t("forgot_password")}
-              </button>
+      <form className="flex flex-col gap-4" onSubmit={onSubmit} noValidate>
+        <AuthField
+          ref={emailRef}
+          name="username"
+          label={t("Email or Username")}
+          type="text"
+          autoComplete="username"
+          autoCapitalize="off"
+          spellCheck={false}
+          value={email}
+          onChange={setEmail}
+          icon={<User size={17} />}
+        />
+        <AuthField
+          name="password"
+          label={t("Password")}
+          type={showPassword ? "text" : "password"}
+          autoComplete="current-password"
+          value={password}
+          onChange={setPassword}
+          icon={<Lock size={17} />}
+          endContent={
+            <PasswordToggle shown={showPassword} onToggle={() => setShowPassword((v) => !v)} />
+          }
+        />
 
-              <div className="w-full h-[68px] pt-[16px]">
-                <Button
-                  className="w-full h-full text-white text-[16px] font-semibold bg-[#1475e1]! hover:bg-[#0f62c2]! rounded-md py-[14px] px-[28px]"
-                  type="submit"
-                  radius="sm"
-                  isLoading={loading}
-                >
-                  {t("login")}
-                </Button>
-              </div>
-            </div>
+        <div className="flex items-center justify-between gap-3">
+          <AuthCheckbox checked={isAgent} onChange={setIsAgent} label={t("login_as_agent")} />
+          <button
+            type="button"
+            onClick={() => {
+              handleClose();
+              forgotOpenedState.value = true;
+            }}
+            className="text-[14px] font-semibold text-[var(--primary-color)] transition-colors hover:text-white"
+          >
+            {t("forgot_password")}
+          </button>
+        </div>
 
-            <div className="text-center mt-[40px]">
-              <span className="text-[16px] font-normal text-[#FFFFFFB2] leading-[24px] h-[24px]">
-                <span>{t("don_t_have_an_account")}?</span>{" "}
-                <button
-                  type="button"
-                  onClick={() => {
-                    registerOpenedState.value = true;
-                    handleClose();
-                  }}
-                  className="text-[16px] font-semibold text-[#1475e1] hover:underline leading-[24px] h-[24px]"
-                >
-                  {t("register_an_account")}
-                </button>
-              </span>
-            </div>
-          </form>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+        <Button className={`${authPrimaryButton} mt-2`} type="submit" radius="sm" isLoading={loading}>
+          {t("login")}
+        </Button>
+      </form>
+    </AuthModal>
   );
 }

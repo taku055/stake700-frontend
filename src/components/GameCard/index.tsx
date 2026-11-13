@@ -1,20 +1,15 @@
 import styles from "./GameCard.module.scss";
 import { tGame } from "@/types/tGame";
 import { placeholderGameImage } from "@/config/constants";
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { FaStar } from "react-icons/fa";
+import { useCallback, useMemo, useState } from "react";
+import { Play, Star } from "lucide-react";
 import { favoritesGameState } from "@/state/favoritesGameState";
 import { apiAddFavoritesGame } from "@/api/favorites/apiAddFavoritesGame";
 import { apiDeleteFavoritesGame } from "@/api/favorites/apiDeleteFavoritesGame";
 import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
+import { providerState } from "@/state/providerState";
 import { requireLogin } from "@/helpers/requireAuth";
 import { Link } from "../common";
 import { isBonusAvailableForGame } from "@/helpers/isBonusAvailableForGame";
@@ -48,102 +43,68 @@ export default function GameCard({
   onClick,
   useImgCustom = false,
 }: GameCardProps) {
-  const [isTouchLike, setIsTouchLike] = useState(false);
-  const [open, setOpen] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [favPending, setFavPending] = useState(false);
   const tToast = useTranslations("ToastMessages");
   const tCard = useTranslations("GameCard");
   const bonusAvailable = isBonusAvailableForGame(data);
   void bonusAvailabilityState.value;
 
-  useEffect(() => {
-    const mq = window.matchMedia("(hover: none)");
-    const update = () => setIsTouchLike(mq.matches);
-    update();
-    mq.addEventListener?.("change", update);
-    return () => mq.removeEventListener?.("change", update);
-  }, []);
-
-  // Close when clicking outside
-  useEffect(() => {
-    if (!open) return;
-    const onDocPointerDown = (e: PointerEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node))
-        setOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    document.addEventListener("pointerdown", onDocPointerDown);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("pointerdown", onDocPointerDown);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
-  // Desktop: open overlay on hover (see showOverlap). Mobile: image only (overlap/star hidden in SCSS).
-  const onCardPointerEnter = () => {
-    if (!isTouchLike) setOpen(true);
-  };
-  const onCardPointerLeave = () => {
-    if (!isTouchLike) setOpen(false);
-  };
+  const providerName = providerState.value.map[data.providerId]?.name;
+  const isLoggedIn = !!userState.value?.id;
 
   const isFavorite = useMemo(
     () => favoritesGameState.value.some((game) => game.id === data.id),
     [favoritesGameState.value, data.id],
   );
 
-  const setFavorite = useCallback(
-    async (id: string) => {
-      try {
-        if (isFavorite) {
-          await apiDeleteFavoritesGame(id);
-          favoritesGameState.value = favoritesGameState.value.filter(
-            (game) => game.id !== id,
-          );
-        } else {
-          await apiAddFavoritesGame(id);
-          favoritesGameState.value = [...favoritesGameState.value, data];
-        }
+  const toggleFavorite = useCallback(async () => {
+    if (favPending) return;
+    setFavPending(true);
+    const wasFavorite = isFavorite;
+    const previous = favoritesGameState.value;
 
-        toast.success(
-          isFavorite
-            ? tToast("success.removed_from_favorites")
-            : tToast("success.added_to_favorites"),
-        );
-      } catch (ex) {
-        console.error(ex);
-        toast.error(tToast("error.something_wrong"));
+    // Optimistic update — feels instant, rolled back on failure
+    favoritesGameState.value = wasFavorite
+      ? previous.filter((game) => game.id !== data.id)
+      : [...previous, data];
+
+    try {
+      if (wasFavorite) {
+        await apiDeleteFavoritesGame(data.id);
+      } else {
+        await apiAddFavoritesGame(data.id);
       }
-    },
-    [isFavorite, tToast, favoritesGameState],
-  );
+      toast.success(
+        wasFavorite
+          ? tToast("success.removed_from_favorites")
+          : tToast("success.added_to_favorites"),
+      );
+    } catch (ex) {
+      console.error(ex);
+      favoritesGameState.value = previous;
+      toast.error(tToast("error.something_wrong"));
+    } finally {
+      setFavPending(false);
+    }
+  }, [favPending, isFavorite, data, tToast]);
 
   const imgSrc = imgError
     ? placeholderGameImage
-    : (useImgCustom || FORCE_CUSTOM_IMAGE_GAME_IDS.has(data.id))
-        ? data.img_custom || data.img || placeholderGameImage
-        : data.img || placeholderGameImage;
-
-  const showOverlap = open;
+    : useImgCustom || FORCE_CUSTOM_IMAGE_GAME_IDS.has(data.id)
+      ? data.img_custom || data.img || placeholderGameImage
+      : data.img || placeholderGameImage;
 
   return (
-    <div
-      ref={ref}
-      className={styles.cardRoot}
-      onPointerEnter={onCardPointerEnter}
-      onPointerLeave={onCardPointerLeave}
-    >
+    <div className={styles.cardRoot}>
       <Link
         scrollToTop={true}
-        className={`${styles.game} ${showOverlap ? styles.is_open : ""}`}
+        className={styles.game}
         href={data.href || `/game/${data.id}`}
         preventDefaultOnClick={false}
         stopPropagationOnClick={false}
+        aria-label={providerName ? `${data.name} — ${providerName}` : data.name}
         onClick={(e) => {
           if (!requireLogin()) {
             e.preventDefault();
@@ -152,56 +113,70 @@ export default function GameCard({
           onClick?.();
         }}
       >
-        <div className={styles.imgWrapper}>
-          {/* Placeholder shown until image loads */}
+        <div className={styles.media}>
           {!imgLoaded && (
-            <img
-              src={placeholderGameImage}
-              aria-hidden="true"
-              className={styles.gamePlaceholderImage}
-            />
+            <>
+              <img
+                src={placeholderGameImage}
+                aria-hidden="true"
+                alt=""
+                className={styles.placeholder}
+              />
+              <span className={styles.shimmer} aria-hidden="true" />
+            </>
           )}
           <img
-            className={styles.gameImage}
+            className={`${styles.image} ${imgLoaded ? styles.imageLoaded : ""}`}
             src={imgSrc}
             alt={data.name || data.id}
             loading="lazy"
+            decoding="async"
+            draggable={false}
             onLoad={() => setImgLoaded(true)}
             onError={() => {
               setImgError(true);
-              setImgLoaded(true); // still show fallback
+              setImgLoaded(true);
             }}
-            style={{ opacity: imgLoaded ? 1 : 0, transition: "opacity 0.3s" }}
           />
+
+          {/* Hover / focus layer */}
+          <div className={styles.overlay} aria-hidden="true">
+            <span className={styles.playButton}>
+              <Play size={20} fill="currentColor" strokeWidth={0} />
+            </span>
+            <div className={styles.info}>
+              <span className={styles.title}>{data.name}</span>
+              {providerName && <span className={styles.provider}>{providerName}</span>}
+            </div>
+          </div>
+
           <span
-            className={`${styles.bonusBadge} ${
-              bonusAvailable ? styles.bonusOn : styles.bonusOff
-            }`}
+            className={`${styles.badge} ${bonusAvailable ? styles.badgeBonus : styles.badgeCash}`}
           >
+            <span className={styles.badgeDot} />
             {bonusAvailable
               ? tCard("bonus_available", undefined, "Bonus")
               : tCard("cash_only", undefined, "Cash only")}
           </span>
-          {userState.value?.id && (
-            <FaStar
-              size={20}
-              color={isFavorite ? "yellow" : "white"}
-              className={styles.star}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                void setFavorite(data.id);
-              }}
-            />
-          )}
-          <div className={styles.overlap}>
-            <span className={styles.play} aria-hidden="true" />
-            <span title={data.providerId} className={styles.text}>
-              {data.name}
-            </span>
-          </div>
         </div>
       </Link>
+
+      {isLoggedIn && (
+        <button
+          type="button"
+          className={`${styles.favorite} ${isFavorite ? styles.favoriteActive : ""}`}
+          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+          aria-pressed={isFavorite}
+          disabled={favPending}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            void toggleFavorite();
+          }}
+        >
+          <Star size={15} strokeWidth={2.25} fill={isFavorite ? "currentColor" : "none"} />
+        </button>
+      )}
     </div>
   );
 }

@@ -1,275 +1,358 @@
-import { useState, useEffect, useRef } from "react";
-import { Search, X } from "lucide-react";
-import debounce from "lodash/debounce";
+import { useState, useEffect, useRef, useCallback, type RefObject } from "react";
+import { createPortal } from "react-dom";
+import { Loader2, Search, SearchX, X } from "lucide-react";
+import { useMediaQuery } from "usehooks-ts";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { tGame } from "@/types/tGame";
 import { searchWidgetState } from "@/state/searchWidgetState";
 import { useTranslations } from "@/context/I18nContext";
-import { Input } from "@/components/common";
-import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
-import { Select, SelectItem } from "@heroui/react";
 import GameCard from "@/components/GameCard";
-import { useLocation } from "@/router";
-import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 
-export default function SearchWidget() {
+const SEARCH_PAGE_SIZE = 24;
+const DEBOUNCE_MS = 350;
+
+/* -------------------------------------------------------------------------- */
+/*  Data: debounced, paginated, race-safe game search                         */
+/* -------------------------------------------------------------------------- */
+
+function useGameSearch(active: boolean) {
   const [keyword, setKeyword] = useState("");
-  const [searchResult, setSearchResult] = useState<tGame[]>([]);
-  const t = useTranslations("SearchWidget");
-  const widgetRef = useRef<HTMLDivElement>(null);
-  const [showSelection, setShowSelection] = useState(true);
-  const location = useLocation();
-  const [showSearchResult, setShowSearchResult] = useState(false);
-  const [blurBackground, setBlurBackground] = useState(false);
+  const [query, setQuery] = useState("");
+  const [games, setGames] = useState<tGame[]>([]);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const requestId = useRef(0);
+  const loadingRef = useRef(false);
+
+  const hasMore = games.length < total;
 
   useEffect(() => {
-    if (location.path.includes("/casino")) {
-      setShowSelection(false);
-    } else {
-      setShowSelection(true);
-    }
-  }, [location.path]);
-  useEffect(() => {
-    if (keyword.trim() === "") {
-      setSearchResult([]);
-      return;
-    }
-
-    const fetchData = debounce(async () => {
-      const data = (await apiGetGames({ keyword, limit: 24 })).data;
-      setSearchResult(data);
-    }, 700);
-
-    fetchData();
+    const id = window.setTimeout(() => setQuery(keyword.trim()), DEBOUNCE_MS);
+    return () => window.clearTimeout(id);
   }, [keyword]);
 
-  // Handle click outside to close
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        widgetRef.current &&
-        !widgetRef.current.contains(event.target as Node)
-      ) {
-        // setShowSearchWidget(false);
-        setShowSearchResult(false);
-        setKeyword("");
-        setBlurBackground(false);
+  const fetchPage = useCallback(async (q: string, offset: number) => {
+    const myId = ++requestId.current;
+    loadingRef.current = true;
+    setLoading(true);
+    try {
+      const res = await apiGetGames({
+        keyword: q || undefined,
+        limit: SEARCH_PAGE_SIZE,
+        offset,
+      });
+      if (myId !== requestId.current) return; // a newer request superseded this one
+      setGames((prev) => {
+        if (offset === 0) return res.data;
+        const seen = new Set(prev.map((g) => g.id));
+        return [...prev, ...res.data.filter((g) => !seen.has(g.id))];
+      });
+      // Stop paging if the backend returns an empty page before reaching `total`
+      setTotal(res.data.length === 0 ? offset : res.total);
+    } catch (err) {
+      if (myId === requestId.current) setTotal(offset);
+      console.error(err);
+    } finally {
+      if (myId === requestId.current) {
+        loadingRef.current = false;
+        setLoading(false);
       }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    // Prevent body scroll when widget is open
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "";
-    };
+    }
   }, []);
 
-  const togglePanel = () => {
-    searchWidgetState.value = !searchWidgetState.value;
-  };
+  // New query (or widget activated) -> reset and load first page
+  useEffect(() => {
+    if (!active) return;
+    setGames([]);
+    setTotal(0);
+    scrollRef.current?.scrollTo({ top: 0 });
+    fetchPage(query, 0);
+  }, [query, active, fetchPage]);
 
-  const handleSearchChange = (value: string) => {
-    setKeyword(value);
-    setShowSearchResult(true);
-  };
+  // Infinite scroll inside the results container
+  useEffect(() => {
+    const root = scrollRef.current;
+    const target = sentinelRef.current;
+    if (!active || !root || !target || !hasMore) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loadingRef.current) {
+          fetchPage(query, games.length);
+        }
+      },
+      { root, rootMargin: "0px 0px 400px 0px" }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [active, hasMore, games.length, query, fetchPage]);
+
+  const reset = useCallback(() => {
+    requestId.current++;
+    loadingRef.current = false;
+    setKeyword("");
+    setQuery("");
+    setGames([]);
+    setTotal(0);
+    setLoading(false);
+  }, []);
+
+  return { keyword, setKeyword, query, games, total, loading, scrollRef, sentinelRef, reset };
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Presentational pieces                                                     */
+/* -------------------------------------------------------------------------- */
+
+function SearchInput({
+  inputRef,
+  keyword,
+  setKeyword,
+  busy,
+  onFocus,
+}: {
+  inputRef: RefObject<HTMLInputElement | null>;
+  keyword: string;
+  setKeyword: (v: string) => void;
+  busy: boolean;
+  onFocus?: () => void;
+}) {
+  const t = useTranslations("SearchWidget");
+  return (
+    <div className="group flex h-12 flex-1 items-center gap-2.5 rounded-lg border border-[var(--background-secondary)] bg-[var(--bar-background-color)] px-3.5 transition-[border-color,box-shadow] hover:border-[var(--background-tertiary)] focus-within:border-[var(--primary-color)]! focus-within:shadow-[0_0_0_3px_color-mix(in_srgb,var(--primary-color)_25%,transparent)]">
+      {busy ? (
+        <Loader2 size={18} className="shrink-0 animate-spin text-[var(--primary-color)]" />
+      ) : (
+        <Search
+          size={18}
+          className="shrink-0 text-[var(--text-muted-color)] transition-colors group-focus-within:text-[var(--primary-color)]"
+        />
+      )}
+      <input
+        ref={inputRef}
+        type="search"
+        value={keyword}
+        placeholder={t("placeholder")}
+        onChange={(event) => setKeyword(event.target.value)}
+        onFocus={onFocus}
+        autoComplete="off"
+        autoCorrect="off"
+        spellCheck={false}
+        enterKeyHint="search"
+        aria-label={t("Search")}
+        className="h-full min-w-0 flex-1 bg-transparent text-[16px] text-white outline-none placeholder:text-[var(--background-tertiary)] [&::-webkit-search-cancel-button]:hidden"
+      />
+      {keyword && (
+        <button
+          type="button"
+          aria-label="Clear"
+          onClick={() => {
+            setKeyword("");
+            inputRef.current?.focus();
+          }}
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--background-secondary)] text-[var(--text-muted-color)] transition-colors hover:text-white"
+        >
+          <X size={14} />
+        </button>
+      )}
+    </div>
+  );
+}
+
+function SearchResults({
+  search,
+  onGameClick,
+  className = "",
+}: {
+  search: ReturnType<typeof useGameSearch>;
+  onGameClick: () => void;
+  className?: string;
+}) {
+  const t = useTranslations("SearchWidget");
+  const { query, games, total, loading, scrollRef, sentinelRef } = search;
+  const isSearching = query.length > 0;
+  const initialLoading = loading && games.length === 0;
+  const isEmpty = !loading && games.length === 0;
+
+  return (
+    <div
+      ref={scrollRef}
+      className={`min-h-0 overflow-y-auto overscroll-contain px-3 pb-4 sm:px-4 ${className}`}
+    >
+      <div className="sticky top-0 z-20 flex h-11 items-center bg-[var(--background)]">
+        <span className="text-[13px] font-semibold text-[var(--text-muted-color)]">
+          {isSearching
+            ? initialLoading
+              ? t("searching")
+              : t("results_count", { count: total })
+            : t("explore")}
+        </span>
+      </div>
+
+      {isEmpty ? (
+        <div className="flex flex-col items-center justify-center px-6 py-14 text-center">
+          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--bar-background-color)] text-[var(--background-tertiary)]">
+            <SearchX size={26} />
+          </div>
+          <p className="text-[16px] font-semibold text-white">
+            {t("no_results", { keyword: query })}
+          </p>
+          <p className="mt-1 text-[14px] text-[var(--text-muted-color)]">{t("no_results_hint")}</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-4 md:grid-cols-6">
+          {games.map((game) => (
+            <GameCard key={game.id} data={game} onClick={onGameClick} />
+          ))}
+          {loading &&
+            Array.from({ length: initialLoading ? 12 : 6 }).map((_, i) => (
+              <div
+                key={`sk-${i}`}
+                className="aspect-[136/182] animate-pulse rounded-lg bg-[var(--bar-background-color)]"
+              />
+            ))}
+        </div>
+      )}
+
+      <div ref={sentinelRef} className="h-px" />
+    </div>
+  );
+}
+
+function useEscapeAndScrollLock(active: boolean, onEscape: () => void) {
+  useEffect(() => {
+    if (!active) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onEscape();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [active, onEscape]);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Inline search bar (home / casino pages)                                   */
+/* -------------------------------------------------------------------------- */
+
+export default function SearchWidget({ className = "py-3 md:py-4" }: { className?: string } = {}) {
+  const [open, setOpen] = useState(false);
+  const search = useGameSearch(open);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { reset } = search;
+
+  const close = useCallback(() => {
+    setOpen(false);
+    reset();
+    inputRef.current?.blur();
+  }, [reset]);
+
+  useEscapeAndScrollLock(open, close);
 
   return (
     <>
-      {/* Backdrop with blur */}
-      {blurBackground && (
+      {open && (
         <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[105]"
-          onClick={() => {
-            // setShowSearchWidget(false);
-            setShowSearchResult(false);
-            setKeyword("");
-            setBlurBackground(false);
-          }}
+          className="fixed inset-0 z-[105] bg-black/60 backdrop-blur-sm"
+          onMouseDown={close}
+          aria-hidden
         />
       )}
-      {/* Search Widget */}
-      <div
-        ref={widgetRef}
-        className=" flex items-start justify-center z-[110] pointer-events-none"
-      >
-        <div
-          className="w-[1260px] max-w-[1260px] h-auto overflow-y-auto pointer-events-auto"
-          dir={"ltr"}
-        >
-          <div className="flex flex-col md:py-4 gap-[10px] shadow-lg overflow-y-auto rounded-[8px] h-full">
-            <div className="flex w-full h-[52px] md:px-0 ">
-              <div className="flex w-full h-full bg-[var(--background-secondary)] items-center justify-center border-[2px] border-[var(--background-tertiary)] overflow-hidden rounded-[8px]">
-                {showSelection && (
-                  <Select
-                    defaultSelectedKeys={["casino"]}
-                    onSelectionChange={(e) => {}}
-                    classNames={{
-                      base: "flex w-auto items-center justify-center bg-[var(--background-secondary)] text-[16px] leading-[24px] hover:bg-[var(--background-secondary)] focus:bg-[var(--background-secondary)] h-full border-r-[2px] border-[var(--background-tertiary)] bg-transparent",
-                      trigger:
-                        "w-auto whitespace-nowrap min-w-[108px] bg-[var(--background-secondary)] text-[16px] leading-[24px]",
-                      listbox: "w-auto",
-                      value: "w-auto whitespace-nowrap",
-                      popoverContent: "w-auto",
-                    }}
-                  >
-                    <SelectItem
-                      key="casino"
-                      className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap"
-                    >
-                      {t("Casino")}
-                    </SelectItem>
-                    <SelectItem
-                      key="sports"
-                      className="flex items-center justify-center text-[16px] leading-[24px] whitespace-nowrap"
-                    >
-                      {t("Sports")}
-                    </SelectItem>
-                  </Select>
-                )}
-                <div className="flex items-center justify-center p-2">
-                  <Search size={16} className="w-[20px] h-[20px]" />
-                </div>
-                <Input
-                  type="text"
-                  placeholder={t("Search")}
-                  value={keyword}
-                  onChange={(e: any) => handleSearchChange(e.target.value)}
-                  onFocus={(e: any) => {
-                    setBlurBackground(true);
-                  }}
-                  classNames={{
-                    inputWrapper:
-                      "bg-[var(--background-secondary)] border-none rounded-none h-[44px]",
-                    input: "text-white text-[16px]",
-                  }}
-                />
-                <X
-                  size={16}
-                  className="w-[24px] h-[24px] mx-3 text-white cursor-pointer"
-                  onClick={() => {
-                    setShowSearchResult(false);
-                    setBlurBackground(false);
-                    setKeyword("");
-                  }}
-                />
-              </div>
-            </div>
-
-            {showSearchResult && (
-              <div className="flex flex-col rounded-lg h-[450px] overflow-y-auto scrollbar-hide py-[10px] bg-[var(--background)] border-none px-[10px] border-1 border-[#333]">
-                <div className="grid md:grid-cols-8 grid-cols-3 gap-2">
-                  {searchResult.map((game, index) => (
-                    <div key={index}>
-                      <GameCard
-                        data={game}
-                        onClick={() => {
-                          searchWidgetStateHeader.value = false;
-                          setShowSearchResult(false);
-                          setKeyword("");
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+      <div className={`relative w-full ${className} ${open ? "z-[110]" : ""}`}>
+        <SearchInput
+          inputRef={inputRef}
+          keyword={search.keyword}
+          setKeyword={search.setKeyword}
+          busy={open && search.loading && search.query.length > 0}
+          onFocus={() => setOpen(true)}
+        />
+        {open && (
+          <div className="absolute inset-x-0 top-full flex max-h-[min(560px,calc(var(--viewport-height,100vh)-220px))] flex-col overflow-hidden rounded-xl border border-[var(--background-secondary)] bg-[var(--background)] shadow-[0_24px_64px_-12px_rgba(0,0,0,0.6)]">
+            <SearchResults
+              search={search}
+              onGameClick={() => {
+                searchWidgetState.value = false;
+                close();
+              }}
+            />
           </div>
-        </div>
+        )}
       </div>
     </>
   );
 }
 
+/* -------------------------------------------------------------------------- */
+/*  Header search (command-palette style modal)                               */
+/* -------------------------------------------------------------------------- */
+
 export function SearchWidgetHeader() {
-  const [keyword, setKeyword] = useState("");
-  const [searchResult, setSearchResult] = useState<tGame[]>([]);
+  const isOpen = searchWidgetState.value;
   const t = useTranslations("SearchWidget");
-  const widgetRefHeader = useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery(mobileMediaQuery);
+  const search = useGameSearch(isOpen);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const { reset } = search;
+
+  useEffect(() => setMounted(true), []);
+
+  const closePanel = useCallback(() => {
+    searchWidgetState.value = false;
+    reset();
+  }, [reset]);
+
+  useEscapeAndScrollLock(isOpen, closePanel);
 
   useEffect(() => {
-    if (keyword.trim() === "") {
-      setSearchResult([]);
-      return;
-    }
+    if (!isOpen) return;
+    const id = window.setTimeout(() => inputRef.current?.focus(), 50);
+    return () => window.clearTimeout(id);
+  }, [isOpen]);
 
-    const fetchData = debounce(async () => {
-      const data = (await apiGetGames({ keyword, limit: 24 })).data;
-      setSearchResult(data);
-    }, 400);
+  if (!isOpen || !mounted) return null;
 
-    fetchData();
-  }, [keyword]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        widgetRefHeader.current &&
-        !widgetRefHeader.current.contains(event.target as Node)
-      ) {
-        setKeyword("");
-        searchWidgetStateHeader.value = false;
-      }
-    };
-
-    if (!searchWidgetStateHeader.value) return;
-    document.addEventListener("mousedown", handleClickOutside);
-    inputRef.current?.focus();
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [searchWidgetStateHeader.value]);
-
-  const closePanel = () => {
-    searchWidgetStateHeader.value = false;
-    setKeyword("");
-  };
-
-  if (!searchWidgetStateHeader.value) return null;
-
-  return (
-    <>
-    <div
-      className="fixed inset-0 z-[210] bg-[#07141c]/55 backdrop-blur-md"
-      onMouseDown={(event) => {
-        event.stopPropagation();
-        closePanel();
-      }}
-    />
-    <div
-      ref={widgetRefHeader}
-      className="absolute end-0 top-full z-[220] mt-2 w-[min(960px,calc(100vw-1.5rem))] rounded-xl border border-[#2f4553] bg-[#0f212e] p-4 shadow-xl"
-    >
-      <div className="flex h-12 items-center gap-2 rounded-lg bg-[#1a2c38] px-3">
-        <Search size={16} className="shrink-0 text-[#b1bad3]" />
-        <input
-          ref={inputRef}
-          type="text"
-          value={keyword}
-          placeholder={t("Search")}
-          onChange={(event) => setKeyword(event.target.value)}
-          className="h-full min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-[#b1bad3]"
-        />
-        <button type="button" aria-label="Close" onClick={closePanel} className="text-[#b1bad3] hover:text-white">
-          <X size={16} />
-        </button>
+  return createPortal(
+    <div className="fixed inset-0 z-[1100] flex justify-center sm:px-4 sm:pt-[72px]">
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onMouseDown={closePanel} aria-hidden />
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={t("Search")}
+        className="relative flex h-full w-full flex-col overflow-hidden bg-[var(--background)] text-white shadow-[0_24px_64px_-12px_rgba(0,0,0,0.6)] sm:h-auto sm:max-h-[min(760px,calc(100vh-112px))] sm:max-w-[960px] sm:rounded-2xl sm:border sm:border-[var(--background-secondary)]"
+      >
+        <div className="flex shrink-0 items-center gap-2 border-b border-[var(--background-secondary)] bg-[var(--bar-background-color)] p-3 sm:p-4">
+          <SearchInput
+            inputRef={inputRef}
+            keyword={search.keyword}
+            setKeyword={search.setKeyword}
+            busy={search.loading && search.query.length > 0}
+          />
+          <button
+            type="button"
+            onClick={closePanel}
+            aria-label="Close"
+            className="flex h-12 shrink-0 items-center justify-center rounded-lg px-3 text-[var(--text-muted-color)] transition-colors hover:bg-[var(--background-secondary)] hover:text-white"
+          >
+            {isMobile ? (
+              <X size={20} />
+            ) : (
+              <kbd className="rounded-md border border-[var(--background-secondary)] px-1.5 py-0.5 font-sans text-[11px] font-semibold">
+                ESC
+              </kbd>
+            )}
+          </button>
+        </div>
+        <SearchResults search={search} onGameClick={closePanel} className="flex-1" />
       </div>
-      <div className="mt-3 max-h-[min(70vh,640px)] overflow-y-auto">
-        {keyword.trim() === "" ? (
-          <p className="px-2 py-6 text-sm text-[#b1bad3]">{t("Search")}</p>
-        ) : searchResult.length === 0 ? (
-          <p className="px-2 py-6 text-sm text-[#b1bad3]">{t("Results")}</p>
-        ) : (
-          <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
-            {searchResult.map((game) => (
-              <GameCard key={game.id} data={game} onClick={closePanel} />
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-    </>
+    </div>,
+    document.body
   );
 }

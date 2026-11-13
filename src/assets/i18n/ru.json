@@ -295,7 +295,10 @@
     "login_role_user": "Пользователь",
     "login_role_agent": "Агент",
     "login_role_super_agent": "Суперагент",
-    "login_role_area_manager": "Региональный менеджер"
+    "login_role_area_manager": "Региональный менеджер",
+    "welcome_back": "С возвращением",
+    "login_subtitle": "Войдите в аккаунт, чтобы продолжить",
+    "login_as_agent": "Я агент"
   },
   "SignupDialog": {
     "please_input_all_fields": "Пожалуйста, заполните все поля",
@@ -323,7 +326,12 @@
     "something_went_wrong": "Что-то пошло не так",
     "login_an_account": "Войти",
     "already_have_an_account": "Уже есть аккаунт?",
-    "phone": "Номер телефона"
+    "phone": "Номер телефона",
+    "create_account": "Создайте аккаунт",
+    "signup_subtitle": "Регистрация займёт всего минуту",
+    "personal_details": "Личные данные",
+    "account_details": "Данные аккаунта",
+    "optional": "необязательно"
   },
   "HomePage": {
     "casino-games": "Казино Игры",
@@ -836,7 +844,13 @@
     "Search": "Поиск",
     "Results": "Результаты",
     "Casino": "Казино",
-    "Sports": "Спорт"
+    "Sports": "Спорт",
+    "placeholder": "Поиск игр",
+    "searching": "Поиск…",
+    "results_count": "Найдено игр: {count}",
+    "explore": "Все игры",
+    "no_results": "Ничего не найдено по запросу «{keyword}»",
+    "no_results_hint": "Проверьте написание или попробуйте другое название игры."
   },
   "BetHistory": {
     "Casino History": "История казино",
@@ -2143,7 +2157,14 @@
     "Provider selection": "Выбор провайдера",
     "Clear all": "Сбросить всё",
     "view_all": "Показать все",
-    "providers_back": "Назад"
+    "providers_back": "Назад",
+    "all_games": "Все игры",
+    "games_count": "Игр: {count}",
+    "showing_of": "Показано {shown} из {total}",
+    "search_providers": "Поиск провайдера",
+    "no_providers_found": "Провайдеры не найдены",
+    "no_games_hint": "Попробуйте убрать фильтры или выберите другую категорию.",
+    "done": "Готово"
   },
   "VerifyEmailPage": {
     "title": "Verify email",

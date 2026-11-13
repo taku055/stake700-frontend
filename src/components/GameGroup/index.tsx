@@ -1,17 +1,16 @@
 import { Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./GameGroup.module.scss";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { ASSET_BASE_URL, mobilePortraitMediaQuery } from "@/config/constants";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { tGame } from "@/types/tGame";
 import GameCard from "@/components/GameCard";
-import { Button } from "@heroui/react";
+import SectionHeader from "@/components/SectionHeader";
 import { customGamesState } from "@/state/customGamesState";
 import { useTranslations } from "@/context/I18nContext";
 import { matchesCustomCategory } from "@/config/customGameCategories";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 
@@ -50,14 +49,7 @@ export default function GameGroup({
   const [swiper, setSwiper] = useState<any>(null);
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
-  const goToNextSlide = useCallback(() => {
-    console.log("goToNextSlide", swiper);
-    swiper?.slideNext();
-  }, [swiper]);
 
-  const goToPrevSlide = useCallback(() => {
-    swiper?.slidePrev();
-  }, [swiper]);
 
   useEffect(() => {
     (async () => {
@@ -92,56 +84,13 @@ export default function GameGroup({
 
   return (
     <div className={styles.gameGroup}>
-      <div className={styles.titleBar}>
-        <div className={styles.title}>
-          <div className={styles.text}>{title}</div>
-        </div>
-
-        <div className={styles.action}>
-          {isRTL ? (
-            <>
-              <Button
-                onPress={goToNextSlide}
-                size="sm"
-                isIconOnly
-                className={styles.moveButton + " rounded-lg"}
-              >
-                <ChevronRight color="white" size={16} />
-              </Button>
-              <Button
-                onPress={goToPrevSlide}
-                size="sm"
-                isIconOnly
-                className={styles.moveButton + " rounded-lg"}
-              >
-                <ChevronLeft color="white" size={16} />
-              </Button>
-            </>
-          ) : (
-            <>
-              <Button
-                onPress={goToPrevSlide}
-                size="sm"
-                isIconOnly
-                className={styles.moveButton + " rounded-lg"}
-              >
-                <ChevronLeft color="white" size={16} />
-              </Button>
-              <Button
-                onPress={goToNextSlide}
-                size="sm"
-                isIconOnly
-                className={styles.moveButton + " rounded-r-lg"}
-              >
-                <ChevronRight color="white" size={16} />
-              </Button>
-            </>
-          )}
-          <a href={viewallLink || "#"} className={styles.view}>
-            {t("More")} <ChevronRight color="white" size={16} />
-          </a>
-        </div>
-      </div>
+      <SectionHeader
+        title={title}
+        icon={icon}
+        viewallLink={viewallLink}
+        swiper={swiper}
+        isRTL={isRTL}
+      />
       <Swiper
         key={`game-group-${isRTL ? "rtl" : "ltr"}-${localeState.value}`}
         modules={[Mousewheel, Navigation]}

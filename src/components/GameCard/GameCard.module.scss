@@ -1,154 +1,350 @@
-@use "/src/styles/mixins"as *;
+@use "/src/styles/mixins" as *;
+
+$radius: 10px;
+$ease: cubic-bezier(0.22, 1, 0.36, 1);
 
 .cardRoot {
   position: relative;
   width: 100%;
   height: 100%;
+  border-radius: $radius;
 }
 
 .game {
   position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: inherit;
-  // max-width: 200px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 10;
+  width: 100%;
+  height: 100%;
+  border-radius: $radius;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  background: var(--bar-background-color);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.35s $ease;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+
+  // Hairline border drawn above the image so it stays crisp on any artwork
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+    transition: box-shadow 0.35s $ease;
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    &::after {
+      box-shadow: inset 0 0 0 2px var(--primary-color);
+    }
+  }
 
   @include for-mobile-only {
     width: unset;
   }
+}
 
-  .imgWrapper {
-    position: relative;
-    overflow: hidden;
-    flex: 1;
-    display: flex;
-    // aspect-ratio: 136/182;
-    justify-content: center;
-    border-radius: 8px;
-    width: 100%;
+.media {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
 
-    .gameImage {
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-      z-index: 1;
-    }
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.001);
+  transition: opacity 0.4s ease, transform 0.6s $ease;
+  user-select: none;
+}
 
-    .gamePlaceholderImage {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 1;
-    }
+.imageLoaded {
+  opacity: 1;
+}
 
-    .bonusBadge {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      z-index: 4;
-      padding: 2px 6px;
-      border-radius: 6px;
-      font-size: 10px;
-      font-weight: 600;
-      line-height: 1.3;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      pointer-events: none;
-    }
+.placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
 
-    .bonusOn {
-      background: rgba(16, 185, 129, 0.92);
-      color: #fff;
-    }
+.shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
 
-    .bonusOff {
-      background: rgba(15, 23, 42, 0.78);
-      color: #e2e8f0;
-    }
+@keyframes shimmer {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
 
-    .star {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 4;
-      cursor: pointer;
+/* ---------- Hover / focus overlay ---------- */
 
-      @include for-mobile-only {
-        display: none;
-      }
-    }
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: linear-gradient(
+    to top,
+    rgba(5, 12, 18, 0.95) 0%,
+    rgba(5, 12, 18, 0.55) 45%,
+    rgba(5, 12, 18, 0.2) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 
-    .overlap {
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(#0006 0%, #000e 100%);
-      position: absolute;
-      left: 0;
-      top: 0;
-      visibility: hidden;
-      opacity: 0;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s;
-      align-items: center;
-      justify-content: center;
-      z-index: 3;
-      gap: 10px;
-      padding: 10px;
+  @include for-mobile-only {
+    display: none;
+  }
+}
 
-      @include for-mobile-only {
-        display: none;
-      }
+.playButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding-inline-start: 3px; // optical centring of the triangle
+  border-radius: 50%;
+  color: #fff;
+  background: var(--primary-color);
+  box-shadow: 0 8px 24px -6px var(--primary-color), 0 0 0 6px rgba(255, 255, 255, 0.08);
+  transform: scale(0.7);
+  opacity: 0;
+  transition: transform 0.35s $ease, opacity 0.25s ease;
+}
 
-      .play {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: #fff;
-        position: relative;
-        flex-shrink: 0;
+.info {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px 11px;
+  text-align: start;
+  transform: translateY(6px);
+  transition: transform 0.35s $ease;
+}
 
-        &::after {
-          content: "";
-          position: absolute;
-          left: 19px;
-          top: 15px;
-          border-style: solid;
-          border-width: 9px 0 9px 15px;
-          border-color: transparent transparent transparent #1a2c38;
-        }
-      }
+.title {
+  overflow: hidden;
+  font-family: var(--primary-font);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
-      .text {
-        font-family: var(--primary-font);
-        font-size: 14px;
-        font-weight: 600;
-        text-align: center;
-        color: #fff;
+.provider {
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-muted-color);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
-        @include for-mobile-only {
-          font-size: 16px;
-        }
-      }
+@mixin card-active {
+  .game {
+    box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.7);
+
+    &::after {
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary-color) 70%, transparent);
     }
   }
 
-  &.is_open {
-    .imgWrapper .overlap {
-      visibility: visible;
-      opacity: 1;
+  .image {
+    transform: scale(1.06);
+  }
+
+  .overlay {
+    opacity: 1;
+  }
+
+  .playButton {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .info {
+    transform: translateY(0);
+  }
+
+  .favorite {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (hover: hover) {
+  .cardRoot:hover {
+    @include card-active;
+  }
+}
+
+.cardRoot:focus-within {
+  @include card-active;
+}
+
+/* ---------- Badges ---------- */
+
+.badge {
+  position: absolute;
+  top: 8px;
+  inset-inline-start: 8px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: calc(100% - 52px);
+  padding: 3px 8px 3px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #fff;
+  background: rgba(8, 18, 26, 0.72);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+
+  @include for-mobile-only {
+    top: 5px;
+    inset-inline-start: 5px;
+    padding: 2px 6px 2px 5px;
+    font-size: 9px;
+    gap: 4px;
+  }
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.badgeBonus .badgeDot {
+  background: var(--green-color);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--green-color) 30%, transparent);
+}
+
+.badgeCash {
+  color: var(--text-muted-color);
+
+  .badgeDot {
+    background: var(--background-tertiary);
+  }
+}
+
+/* ---------- Favourite ---------- */
+
+.favorite {
+  position: absolute;
+  top: 6px;
+  inset-inline-end: 6px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(8, 18, 26, 0.72);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.25s ease, transform 0.3s $ease, color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    background: rgba(8, 18, 26, 0.9);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  // Touch devices: no hover, so only surface the star when it's already a favourite
+  @media (hover: none) {
+    display: none;
+  }
+}
+
+.favoriteActive {
+  color: #ffc83d;
+  opacity: 1;
+  transform: scale(1);
+
+  @media (hover: none) {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    top: 4px;
+    inset-inline-end: 4px;
+    pointer-events: none;
+
+    svg {
+      width: 12px;
+      height: 12px;
     }
   }
 }

@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { CasinoGameGrid } from "@/site/casino/components/CasinoGameGrid";
+import { CasinoHeader } from "@/site/casino/components/CasinoHeader";
 import { useTranslations } from "@/context/I18nContext";
 import { useLocation } from "@/router";
 import ContentWrapper from "@/provider/ContentWrapper";
 import { userState } from "@/state/userState";
-import { searchWidgetState } from "@/state/searchWidgetState";
+import SearchWidget from "@/components/Header/SearchWidget";
 import LobbyGames from "./LobbyGames";
 import LiveCasinoGames from "./LiveCasinoGames";
 import CasinoGames from "./CasinoGames";
@@ -23,16 +24,6 @@ const HOME_PAGE_MODE_BY_PATH: Record<string, HomePageMode> = {
 
 export default function HomePage() {
   const location = useLocation();
-  if (userState.value?.role === "SUPERAGENT") {
-    location.route("/superagent");
-    return null;
-  } else if (userState.value?.role === "AREA_MANAGER") {
-    location.route("/area_manager");
-    return null;
-  } else if (userState.value?.role === "AGENT") {
-    location.route("/agent");
-    return null;
-  }
 
   const activeMode = useMemo<HomePageMode>(() => {
     const modeFromQuery = location.query?.[HOME_PAGE_MODE_QUERY_KEY];
@@ -46,105 +37,90 @@ export default function HomePage() {
     return HOME_PAGE_MODE_BY_PATH[location.path] ?? "home";
   }, [location.path, location.query]);
 
-  const tabs = useMemo(() => HOME_PAGE_TABS[activeMode], [activeMode]);
-  const defaultTab = useMemo(
-    () => HOME_PAGE_DEFAULT_TAB[activeMode],
-    [activeMode],
-  );
-  const categories = useMemo(
-    () => HOME_PAGE_CATEGORIES[activeMode],
-    [activeMode],
-  );
+  const tabs = HOME_PAGE_TABS[activeMode];
+  const defaultTab = HOME_PAGE_DEFAULT_TAB[activeMode];
+  const categories = HOME_PAGE_CATEGORIES[activeMode];
   const t = useTranslations(activeMode === "home" ? "HomePage" : "CasinoPage");
   const [activeTab, setActiveTab] = useState(defaultTab);
+  const [total, setTotal] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     setActiveTab(defaultTab);
   }, [defaultTab, activeMode]);
 
-  const renderCategory = () => {
-    const categoryConfig = categories[activeTab];
-    if (!categoryConfig || categoryConfig.type === "empty") {
-      return null;
-    }
+  useEffect(() => {
+    setTotal(undefined);
+  }, [activeTab, activeMode]);
 
-    if (categoryConfig.type === "component") {
-      if (categoryConfig.component === "lobby-games") {
-        return <LobbyGames />;
-      }
-      if (categoryConfig.component === "casino-games") {
-        return <CasinoGames />;
-      }
-      if (categoryConfig.component === "live-casino-games") {
-        return <LiveCasinoGames />;
-      }
-      return null;
-    }
-
-    if (categoryConfig.type === "grid") {
-      return (
-        <CasinoGameGrid
-          isCustom={categoryConfig.isCustom}
-          category={categoryConfig.category}
-          gameType={categoryConfig.gameType}
-        />
-      );
-    }
-
+  if (userState.value?.role === "SUPERAGENT") {
+    location.route("/superagent");
     return null;
-  };
+  } else if (userState.value?.role === "AREA_MANAGER") {
+    location.route("/area_manager");
+    return null;
+  } else if (userState.value?.role === "AGENT") {
+    location.route("/agent");
+    return null;
+  }
 
   if (activeMode === "home") {
     return <HomeStage />;
   }
 
+  const section = activeMode === "lobby-live-casino" ? "live-casino" : "slots";
+  const categoryConfig = categories[activeTab];
+  const isGrid = categoryConfig?.type === "grid";
+  const currentTab = tabs.find((tab) => tab.key === activeTab) ?? tabs[0];
+
+  const renderCategory = () => {
+    if (!categoryConfig || categoryConfig.type === "empty") return null;
+
+    if (categoryConfig.type === "component") {
+      if (categoryConfig.component === "lobby-games") return <LobbyGames />;
+      if (categoryConfig.component === "casino-games") return <CasinoGames />;
+      if (categoryConfig.component === "live-casino-games") return <LiveCasinoGames />;
+      return null;
+    }
+
+    return (
+      <CasinoGameGrid
+        key={`${activeMode}-${activeTab}`}
+        isCustom={categoryConfig.isCustom}
+        category={categoryConfig.category}
+        gameType={categoryConfig.gameType}
+        onTotalChange={setTotal}
+      />
+    );
+  };
+
   return (
-    <>
-      <ContentWrapper className="px-4">
-        <div className="flex overflow-x-auto scrollbar-hide mb-4 mt-4">
-          <div className="flex gap-1 min-w-max">
-            {/* Search */}
-            <button
-              type="button"
-              onClick={() =>
-                (searchWidgetState.value = !searchWidgetState.value)
-              }
-              className="flex items-center gap-2 px-3 py-2 rounded-md whitespace-nowrap transition-all flex-shrink-0 text-sm font-semibold text-[#b1bad3] hover:text-white hover:bg-[#2f4553]"
-            >
-              <img
-                src="/images/search.png"
-                className="w-5 h-5 object-contain"
-              />
-              {t("Search") || "Search"}
-            </button>
-            {tabs.map((tab) => (
-              <button
-                onClick={() => {
-                  setActiveTab(tab.key);
-                }}
-                key={tab.key}
-                className={`flex items-center gap-2 px-3 py-2 rounded-md whitespace-nowrap transition-all flex-shrink-0 text-sm font-semibold ${
-                  activeTab === tab.key
-                    ? "bg-[#2f4553] text-white"
-                    : "text-[#b1bad3] hover:text-white hover:bg-[#213743]"
-                }`}
-              >
-                <img
-                  src={tab.icon}
-                  alt={t(tab.name) || tab.name}
-                  className="w-5 h-5 object-contain"
-                />
-                {t(tab.name) || tab.name}
-              </button>
-            ))}
-          </div>
+    <ContentWrapper>
+      <div className="flex w-full flex-col gap-5 md:gap-7">
+        <CasinoHeader
+          section={section}
+          title={activeTab === "" ? t("Lobby") : t(currentTab.name, undefined, currentTab.name)}
+          icon={currentTab.icon}
+          activeTab={activeTab}
+          onTabSelect={setActiveTab}
+          tabs={tabs.map((tab) => ({
+            key: tab.key,
+            label: t(tab.name, undefined, tab.name),
+            icon: tab.icon,
+          }))}
+          total={isGrid ? total : undefined}
+          loading={isGrid && total === undefined}
+        />
+
+        <div className="relative z-30">
+          <SearchWidget className="" />
         </div>
 
-        {renderCategory()}
-        <div className="mt-[20px] w-full">
-          <ProviderGroup />
+        <div className="flex flex-col gap-8 md:gap-10">{renderCategory()}</div>
+
+        <div className="mt-2">
+          <ProviderGroup category={section} />
         </div>
-      </ContentWrapper>
-    </>
+      </div>
+    </ContentWrapper>
   );
 }

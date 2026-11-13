@@ -7,7 +7,7 @@ export default function LobbyGames() {
   const t = useTranslations("HomePage");
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-8 md:gap-10">
       <GridGameGroup
         category={"trending"}
         title={t("Trending Games") || "Trending Games"}

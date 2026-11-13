@@ -1,5 +1,7 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import axios from "axios";
+import { AtSign, Lock, Mail, Phone } from "lucide-react";
+import { passwordStrength } from "check-password-strength";
 import { toast } from "@/helpers/toast";
 import { accessTokenState } from "@/state/accessTokenState";
 import { userState } from "@/state/userState";
@@ -8,16 +10,8 @@ import { apiRegister } from "@/api/account/apiRegister";
 import { validateEmail } from "@/helpers/validateEmail";
 import { Button, DatePicker } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
-import {
-  Modal,
-  ModalContent,
-  ModalBody,
-  ModalHeader,
-  Input,
-} from "@/components/common";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { welcomeDialogOpenedState } from "@/state/registerOpenedState";
-import { Eye, EyeOff } from "lucide-react";
 import {
   parseDate,
   CalendarDate,
@@ -25,9 +19,18 @@ import {
   getLocalTimeZone,
 } from "@internationalized/date";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
+import { mobileMediaQuery } from "@/config/constants";
 import { useMediaQuery } from "usehooks-ts";
 import { setViewportCss } from "@/helpers/setViewportCss";
+import {
+  AuthModal,
+  AuthField,
+  AuthSectionTitle,
+  PasswordToggle,
+  authLabel,
+  authPrimaryButton,
+  authLinkButton,
+} from "./AuthShell";
 
 interface ISignupComponentProps {
   isOpen: boolean;
@@ -44,10 +47,27 @@ function dismissMobileKeyboard() {
   }, 50);
 }
 
-export default function SignupDialog({
-  isOpen,
-  onClose,
-}: ISignupComponentProps) {
+const STRENGTH_COLORS = ["#e5484d", "#f5a524", "#3dd68c", "#01a825"];
+
+function PasswordStrength({ password }: { password: string }) {
+  const level = useMemo(
+    () => (password ? passwordStrength(password).id : -1),
+    [password]
+  );
+  return (
+    <div className="mt-2 grid grid-cols-4 gap-1.5" aria-hidden>
+      {[0, 1, 2, 3].map((i) => (
+        <span
+          key={i}
+          className="h-1 rounded-full bg-[var(--background-secondary)] transition-colors duration-300"
+          style={i <= level ? { backgroundColor: STRENGTH_COLORS[level] } : undefined}
+        />
+      ))}
+    </div>
+  );
+}
+
+export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -77,6 +97,7 @@ export default function SignupDialog({
     setLastName("");
     setMiddleName("");
     setPhone("");
+    setShowPassword(false);
 
     // Avoid auto-focus on mobile — it opens the keyboard and leaves a half-screen layout
     if (isOpen && !isMobile) {
@@ -89,17 +110,9 @@ export default function SignupDialog({
   const onSubmit = useCallback(
     async (e: any) => {
       e.preventDefault();
+      if (loading) return;
 
-      if (loading) {
-        return;
-      }
-
-      if (!email || !password || !phone.trim()) {
-        toast.error(t("please_input_all_fields"));
-        return;
-      }
-
-      if (!userName.trim()) {
+      if (!firstName.trim() || !lastName.trim() || !email || !password || !phone.trim() || !userName.trim()) {
         toast.error(t("please_input_all_fields"));
         return;
       }
@@ -137,12 +150,8 @@ export default function SignupDialog({
         onClose();
         welcomeDialogOpenedState.value = true;
       } catch (ex) {
-        if (axios.isAxiosError(ex)) {
-          if (ex.response?.status === 400) {
-            toast.error(tToast("error.email_taken"));
-          } else {
-            toast.error(tToast("error.something_wrong"));
-          }
+        if (axios.isAxiosError(ex) && ex.response?.status === 400) {
+          toast.error(tToast("error.email_taken"));
         } else {
           toast.error(tToast("error.something_wrong"));
         }
@@ -150,256 +159,145 @@ export default function SignupDialog({
       }
       setLoading(false);
     },
-    [
-      email,
-      userName,
-      password,
-      phone,
-      firstName,
-      lastName,
-      middleName,
-      birthday,
-      refCode,
-      loading,
-      t,
-      tToast,
-      onClose,
-    ]
+    [email, userName, password, phone, firstName, lastName, middleName, birthday, refCode, loading, t, tToast, onClose]
   );
 
   return (
-    <Modal
-      backdrop="blur"
+    <AuthModal
       isOpen={isOpen}
       onClose={handleClose}
-      placement="center"
-      scrollBehavior="inside"
+      size="md"
+      title={t("create_account")}
+      subtitle={t("signup_subtitle")}
+      footer={
+        <>
+          {t("already_have_an_account")}?{" "}
+          <button
+            type="button"
+            onClick={() => {
+              handleClose();
+              loginOpenedState.value = true;
+            }}
+            className={authLinkButton}
+          >
+            {t("login_an_account")}
+          </button>
+        </>
+      }
     >
-      <ModalContent
-        className="bg-[#1a2c38] max-w-[440px] w-full max-h-[calc(var(--viewport-height)-140px)] rounded-lg overflow-y-auto border border-[#2f4553]"
-        dir={"ltr"}
-      >
-        <ModalHeader className="flex justify-between w-full h-[60px] min-h-[60px] py-[10px] px-[16px]">
-          <img
-            src={`${ASSET_BASE_URL}/logo.png`}
-            className="h-[36px] md:h-[36px] md:max-w-[180px]"
-            alt={process.env.NEXT_PUBLIC_SITE_NAME as string}
-          />
-        </ModalHeader>
-        <ModalBody className="flex flex-col p-[16px] h-[656px]">
-          <form className="flex flex-col w-full gap-[16px]" onSubmit={onSubmit}>
-            <div className="flex flex-col gap-[16px] w-full pt-[8px]">
-              <div className="mt-[8px]">
-                <span className="text-[16px] font-normal text-[#FFFFFFB2] leading-[24px] h-[24px]">
-                  <span>{t("already_have_an_account")}?</span>{" "}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      handleClose();
-                      loginOpenedState.value = true;
-                    }}
-                    className="text-[16px] font-semibold text-[#1475e1] hover:underline leading-[24px] h-[24px]"
-                  >
-                    {t("login_an_account")}
-                  </button>
-                </span>
-              </div>
-              <div className="h-[68px]">
-                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("first_name")}</span>
-                  <img
-                    src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
-                    alt="*"
-                    className="h-[20px] pl-[4px]"
-                  />
-                </label>
-                <Input
-                  type="text"
-                  label={t("first_name")}
-                  value={firstName}
-                  onChange={(e: any) => setFirstName(e.target.value)}
-                  variant="bordered"
-                  classNames={{
-                    input: "text-white",
-                  }}
-                  ref={firstNameRef}
-                />
-              </div>
-              <div className="h-[68px]">
-                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("middle_name_optional")}</span>
-                </label>
-                <Input
-                  type="text"
-                  label={t("middle_name_optional")}
-                  value={middleName}
-                  onChange={(e: any) => setMiddleName(e.target.value)}
-                  variant="bordered"
-                  classNames={{
-                    input: "text-white",
-                  }}
-                />
-              </div>
-              <div className="h-[68px]">
-                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("last_name")}</span>
-                  <img
-                    src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
-                    alt="*"
-                    className="h-[20px] pl-[4px]"
-                  />
-                </label>
-                <Input
-                  type="text"
-                  label={t("last_name")}
-                  value={lastName}
-                  onChange={(e: any) => setLastName(e.target.value)}
-                  variant="bordered"
-                  classNames={{
-                    input: "text-white",
-                  }}
-                />
-              </div>
-
-              <div className="h-[68px]">
-                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("username")}</span>
-                  <img
-                    src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
-                    alt="*"
-                    className="h-[20px] pl-[4px]"
-                  />
-                </label>
-                <Input
-                  type="text"
-                  label={t("username")}
-                  value={userName}
-                  onChange={(e: any) => setUserName(e.target.value)}
-                  variant="bordered"
-                  classNames={{
-                    input: "text-white",
-                  }}
-                />
-              </div>
-
-              <div className="h-[68px]">
-                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("birthday")}</span>
-                  <img
-                    src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
-                    alt="*"
-                    className="h-[20px] pl-[4px]"
-                  />
-                </label>
-                <DatePicker
-                  value={birthday}
-                  onChange={(value: CalendarDate | null) => {
-                    if (value) setBirthday(value);
-                  }}
-                  showMonthAndYearPickers
-                  minValue={new CalendarDate(1900, 1, 1)}
-                  maxValue={today(getLocalTimeZone())}
-                  calendarWidth={320}
-                  popoverProps={{
-                    shouldCloseOnScroll: false,
-                    shouldBlockScroll: true,
-                    placement: "bottom-start",
-                  }}
-                  classNames={{
-                    input: "text-white",
-                  }}
-                />
-              </div>
-
-              <div className="h-[68px]">
-                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("email")}</span>
-                  <img
-                    src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
-                    alt="*"
-                    className="h-[20px] pl-[4px]"
-                  />
-                </label>
-                <Input
-                  type="email"
-                  label={t("email")}
-                  value={email}
-                  onChange={(e: any) => setEmail(e.target.value)}
-                  classNames={{
-                    input: "text-white",
-                  }}
-                  variant="bordered"
-                />
-              </div>
-
-              <div className="h-[68px]">
-                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("phone")}</span>
-                  <img
-                    src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
-                    alt="*"
-                    className="h-[20px] pl-[4px]"
-                  />
-                </label>
-                <Input
-                  type="tel"
-                  inputMode="tel"
-                  autoComplete="tel"
-                  label={t("phone")}
-                  value={phone}
-                  onChange={(e: any) => setPhone(e.target.value)}
-                  classNames={{
-                    input: "text-white",
-                  }}
-                  variant="bordered"
-                />
-              </div>
-
-              <div className="h-[68px]">
-                <label className="flex text-[#FFFFFF] text-[14px] leading-[20px] pb-[4px] h-[24px]">
-                  <span>{t("password")}</span>
-                  <img
-                    src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/mark.svg`}
-                    alt="*"
-                    className="h-[20px] pl-[4px]"
-                  />
-                </label>
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  label={t("password")}
-                  value={password}
-                  onChange={(e: any) => setPassword(e.target.value)}
-                  classNames={{
-                    input: "text-white",
-                  }}
-                  endContent={
-                    !showPassword ? (
-                      <Eye
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="w-[16px] h-[16px]"
-                      />
-                    ) : (
-                      <EyeOff
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="w-[16px] h-[16px]"
-                      />
-                    )
-                  }
-                  variant="bordered"
-                />
-              </div>
+      <form className="flex flex-col gap-6" onSubmit={onSubmit} noValidate>
+        <section>
+          <AuthSectionTitle>{t("personal_details")}</AuthSectionTitle>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <AuthField
+              ref={firstNameRef}
+              name="given-name"
+              label={t("first_name")}
+              autoComplete="given-name"
+              value={firstName}
+              onChange={setFirstName}
+            />
+            <AuthField
+              name="family-name"
+              label={t("last_name")}
+              autoComplete="family-name"
+              value={lastName}
+              onChange={setLastName}
+            />
+            <AuthField
+              name="additional-name"
+              label={t("middle_name")}
+              optional={t("optional")}
+              autoComplete="additional-name"
+              value={middleName}
+              onChange={setMiddleName}
+            />
+            <div>
+              <span className={authLabel}>{t("birthday")}</span>
+              <DatePicker
+                aria-label={t("birthday")}
+                value={birthday}
+                onChange={(value: CalendarDate | null) => {
+                  if (value) setBirthday(value);
+                }}
+                showMonthAndYearPickers
+                minValue={new CalendarDate(1900, 1, 1)}
+                maxValue={today(getLocalTimeZone())}
+                calendarWidth={300}
+                popoverProps={{
+                  shouldCloseOnScroll: false,
+                  shouldBlockScroll: true,
+                  placement: "bottom-end",
+                }}
+                classNames={{
+                  inputWrapper:
+                    "h-11 min-h-11 rounded-lg border border-[var(--background-secondary)] bg-[var(--bar-background-color)] shadow-none transition-colors data-[hover=true]:border-[var(--background-tertiary)] data-[hover=true]:bg-[var(--bar-background-color)] group-data-[focus-within=true]:border-[var(--primary-color)] group-data-[focus-within=true]:bg-[var(--bar-background-color)]",
+                  segment: "text-white data-[placeholder=true]:text-[var(--background-tertiary)]",
+                  selectorButton: "text-[var(--text-muted-color)] hover:text-white",
+                }}
+              />
             </div>
-            <Button
-              className="w-full text-white mb-[20px] text-[16px] font-semibold h-12 bg-[#1475e1]! hover:bg-[#0f62c2]! rounded-md"
-              type="submit"
-              radius="sm"
-              isLoading={loading}
-            >
-              {t("register")}
-            </Button>
-          </form>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+          </div>
+        </section>
+
+        <section>
+          <AuthSectionTitle>{t("account_details")}</AuthSectionTitle>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <AuthField
+              name="username"
+              label={t("username")}
+              autoComplete="username"
+              autoCapitalize="off"
+              spellCheck={false}
+              value={userName}
+              onChange={setUserName}
+              icon={<AtSign size={16} />}
+            />
+            <AuthField
+              name="tel"
+              label={t("phone")}
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              value={phone}
+              onChange={setPhone}
+              icon={<Phone size={16} />}
+            />
+            <AuthField
+              className="sm:col-span-2"
+              name="email"
+              label={t("email")}
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              autoCapitalize="off"
+              spellCheck={false}
+              value={email}
+              onChange={setEmail}
+              icon={<Mail size={16} />}
+            />
+            <div className="sm:col-span-2">
+              <AuthField
+                name="new-password"
+                label={t("password")}
+                type={showPassword ? "text" : "password"}
+                autoComplete="new-password"
+                value={password}
+                onChange={setPassword}
+                icon={<Lock size={16} />}
+                endContent={
+                  <PasswordToggle shown={showPassword} onToggle={() => setShowPassword((v) => !v)} />
+                }
+              />
+              <PasswordStrength password={password} />
+            </div>
+          </div>
+        </section>
+
+        <Button className={authPrimaryButton} type="submit" radius="sm" isLoading={loading}>
+          {t("register")}
+        </Button>
+      </form>
+    </AuthModal>
   );
 }
