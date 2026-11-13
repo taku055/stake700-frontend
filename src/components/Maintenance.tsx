@@ -1,5 +1,5 @@
 import { maintenanceState } from "@/state/maintenanceState";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 
 export default function Maintenance() {

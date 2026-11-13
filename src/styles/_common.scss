@@ -1,3 +1,8 @@
+html.game-css-fullscreen,
+body.game-css-fullscreen {
+  overflow: hidden !important;
+}
+
 body {
   color: var(--foreground);
   background-color: var(--background);

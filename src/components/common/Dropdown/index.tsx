@@ -1,16 +1,17 @@
 // Preact + TypeScript headless Dropdown primitives (with portal positioning)
 // -----------------------------------------------------------------------------
 
-import { h, JSX, VNode, createContext } from "preact";
+import { createElement as h, type JSX, type ReactNode as VNode, createContext } from "react";
 import {
   useContext,
   useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
-} from "preact/hooks";
-import { signal, type Signal, computed } from "@preact/signals";
-import { cloneElement, isValidElement, createPortal } from "preact/compat";
+} from "react";
+import { signal, type Signal, computed } from "@preact/signals-react";
+import { cloneElement, isValidElement } from "react";
+import { createPortal } from "react-dom";
 
 // -------------------------------------------------
 // Context
@@ -23,8 +24,8 @@ interface DropdownContextValue {
   setOpen: (next: boolean) => void;
   toggle: () => void;
   close: () => void;
-  triggerRef: preact.RefObject<HTMLElement>;
-  menuRef: preact.RefObject<HTMLDivElement>;
+  triggerRef: React.RefObject<HTMLElement | null>;
+  menuRef: React.RefObject<HTMLDivElement | null>;
   items: Array<HTMLElement | null>;
   registerItem: (el: HTMLElement | null) => number; // returns index
   focusItem: (index: number) => void;
@@ -48,7 +49,7 @@ function useDropdownInternal(): DropdownContextValue {
 // -------------------------------------------------
 
 interface DropdownProps {
-  children: preact.ComponentChildren;
+  children: React.ReactNode;
   className?: string;
   open?: boolean; // controlled (optional)
   onOpenChange?: (open: boolean) => void;
@@ -165,7 +166,7 @@ export function Dropdown({
 // -------------------------------------------------
 
 interface DropdownTriggerProps {
-  children: preact.ComponentChildren;
+  children: React.ReactNode;
   asChild?: boolean; // when true, we clone the only child and attach props
 }
 
@@ -175,7 +176,7 @@ export function DropdownTrigger({
 }: DropdownTriggerProps) {
   const { toggle, open, triggerRef, focusItem } = useDropdownInternal();
 
-  const commonProps: JSX.HTMLAttributes<HTMLElement> = {
+  const commonProps: React.HTMLAttributes<HTMLElement> = {
     "aria-haspopup": "menu",
     "aria-expanded": open.value,
     onClick: (e: MouseEvent) => {
@@ -196,13 +197,13 @@ export function DropdownTrigger({
   } as any;
 
   if (asChild) {
-    const child = children as VNode<any>;
+    const child = children as React.ReactElement<any>;
     if (!isValidElement(child)) {
       throw new Error(
         "<DropdownTrigger asChild> expects a single valid element child."
       );
     }
-    return cloneElement(child, { ...commonProps, ref: triggerRef });
+    return cloneElement(child, { ...commonProps, ref: triggerRef } as any);
   }
 
   return (
@@ -222,7 +223,7 @@ export function DropdownTrigger({
 // -------------------------------------------------
 
 interface DropdownMenuProps {
-  children: preact.ComponentChildren;
+  children: React.ReactNode;
   className?: string;
   ariaLabel?: string;
   align?: "start" | "end" | "center";
@@ -284,8 +285,8 @@ function MenuContent({
   focusedIndex,
   children,
 }: {
-  menuRef: preact.RefObject<HTMLDivElement>;
-  triggerRef: preact.RefObject<HTMLElement>;
+  menuRef: React.RefObject<HTMLDivElement | null>;
+  triggerRef: React.RefObject<HTMLElement | null>;
   align: "start" | "end" | "center";
   widthMatchTrigger: boolean;
   ariaLabel: string;
@@ -293,9 +294,9 @@ function MenuContent({
   items: Array<HTMLElement | null>;
   focusItem: (i: number) => void;
   focusedIndex: Signal<number>;
-  children: preact.ComponentChildren;
+  children: React.ReactNode;
 }) {
-  const styleRef = useRef<JSX.CSSProperties>({ position: "fixed" });
+  const styleRef = useRef<React.CSSProperties>({ position: "fixed" });
 
   const getDirectionContext = (anchor: Element | null): "rtl" | "ltr" => {
     if (typeof document === "undefined") return "ltr";
@@ -349,7 +350,7 @@ function MenuContent({
     // vertical placement (simple: under the trigger)
     const top = rect.bottom;
 
-    const next: JSX.CSSProperties = {
+    const next: React.CSSProperties = {
       position: "fixed",
       top: top + "px",
       left: left + "px",
@@ -443,7 +444,7 @@ function MenuContent({
 // -------------------------------------------------
 
 interface DropdownItemProps {
-  children: preact.ComponentChildren;
+  children: React.ReactNode;
   className?: string;
   value?: string;
   disabled?: boolean;

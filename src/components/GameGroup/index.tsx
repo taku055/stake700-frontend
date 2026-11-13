@@ -1,7 +1,7 @@
 import { Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./GameGroup.module.scss";
-import { useEffect, useState, useCallback } from "preact/hooks";
+import { useEffect, useState, useCallback } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { ASSET_BASE_URL, mobilePortraitMediaQuery } from "@/config/constants";
 import { apiGetGames } from "@/api/common/apiGetGames";
@@ -11,7 +11,7 @@ import { Button } from "@heroui/react";
 import { customGamesState } from "@/state/customGamesState";
 import { useTranslations } from "@/context/I18nContext";
 import { matchesCustomCategory } from "@/config/customGameCategories";
-import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 

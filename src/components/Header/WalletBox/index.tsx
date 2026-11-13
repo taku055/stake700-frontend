@@ -12,15 +12,14 @@ import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";
 import { useTranslations } from "@/context/I18nContext";
 import { cashDetailAmountForUnit } from "@/helpers/multipleBalance";
-import { profileOpenedState } from "@/state/profileOpenedState";
-import { Loader } from "lucide-preact";
+import { openAccountDialog } from "@/state/accountDialogs";
+import { ChevronDown, Loader } from "lucide-react";
 import { Link } from "@/components/common";
 import { requireLogin } from "@/helpers/requireAuth";
 import { placeholderGameImage } from "@/config/constants";
 import { apiGetFreespinAvailableGames } from "@/api/ledger/apiGetFreespinAvailableGames";
 import type { tFreespinAvailableGame } from "@/types/tFreespinAvailableGame";
 import BonusExpiryCountdown from "@/components/BonusExpiryCountdown";
-import { isBonusExpiryUrgent } from "@/helpers/bonusExpiry";
 
 type Pos = { top: number; left: number; width: number };
 
@@ -292,22 +291,10 @@ export default function WalletBox() {
     return freeSpins;
   }, [freespinGames, freeSpins]);
 
-  const userInitial =
-    userState.value?.userName?.trim()?.at(0)?.toUpperCase() ?? "?";
-
   return (
     <div
       ref={wrapperRef}
-      className={[
-        // pill / glass like the header widgets
-        "relative inline-flex items-center gap-1 select-none",
-        "rounded-full p-1",
-        "bg-[var(--green-color)]/20 backdrop-blur-md",
-        "border border-white/10",
-        "shadow-[0_10px_30px_rgba(0,0,0,0.35)]",
-        "transition",
-        "hover:bg-[var(--green-color)]/40 hover:border-white/15",
-      ].join(" ")}
+      className="relative inline-flex items-center select-none"
     >
       {/* Balance trigger */}
       <button
@@ -335,34 +322,23 @@ export default function WalletBox() {
         aria-haspopup="menu"
         aria-expanded={isSelectorOpen}
         className={[
-          "flex items-center gap-1",
-          "rounded-full px-2 py-1",
-          "text-white",
-          "transition",
-          "hover:bg-white/10",
-          isSelectorOpen ? "bg-white/10" : "",
+          "flex h-10 items-center gap-2 rounded-md border border-[#2f4553] bg-[#1a2c38] px-3 text-white",
+          "hover:border-[#1475e1]",
+          isSelectorOpen ? "border-[#1475e1]" : "",
         ].join(" ")}
       >
-        <span className="text-[12px] md:text-[13px] font-semibold tracking-wide opacity-90">
+        <span className="text-[10px] font-bold uppercase tracking-wide text-[#7eb6ff]">
           {symbol}
         </span>
-
-        <span className="text-[12px] md:text-[13px] font-bold tabular-nums">
-          {formattedTotal}
-        </span>
-
-        {/* caret */}
-        <span
+        <span className="text-sm font-bold tabular-nums">{formattedTotal}</span>
+        <ChevronDown
+          size={14}
           className={[
-            "ml-0.5 inline-block",
-            "text-white/70",
-            "transition-transform duration-200",
-            isSelectorOpen ? "rotate-180" : "rotate-0",
+            "text-[#b1bad3] transition-transform duration-200",
+            isSelectorOpen ? "rotate-180" : "",
           ].join(" ")}
           aria-hidden="true"
-        >
-          ▾
-        </span>
+        />
       </button>
 
       {/* Dropdown rendered in a Portal so it won't be clipped */}
@@ -373,9 +349,9 @@ export default function WalletBox() {
             role="menu"
             className={[
               "z-[9999]",
-              "rounded-xl overflow-hidden",
-              "bg-[#323232] backdrop-blur-md",
-              "border border-white/10",
+              "overflow-hidden rounded-md",
+              "bg-[#0f212e]",
+              "border border-[#2f4553]",
               "shadow-[0_18px_60px_rgba(0,0,0,0.55)]",
               "max-w-[calc(100vw-1rem)]",
               "max-h-[min(85vh,calc(100dvh-2rem))] overflow-y-auto",
@@ -389,130 +365,64 @@ export default function WalletBox() {
               maxWidth: `calc(100vw - ${VIEWPORT_MARGIN * 2}px)`,
             }}
           >
-            <div className="flex flex-col gap-3 p-4">
-              {/* Top row: avatar */}
-              <div className="flex items-center gap-3">
-                <div
-                  className={[
-                    "w-10 h-10 rounded-[4px]",
-                    "grid place-items-center",
-                    "bg-white border border-white/10",
-                    "text-black font-bold",
-                  ].join(" ")}
-                  aria-hidden="true"
-                >
-                  {userInitial}
-                </div>
-                <div className="min-w-0">
-                  <div className="text-[11px] tracking-[0.14em] text-white/55">
-                    {userState.value?.email}
-                  </div>
-                  <div className="text-[13px] text-white font-semibold truncate">
-                    {userState.value?.userName}
-                  </div>
-                </div>
-              </div>
-
-              {/* Total balance card + deposit */}
-              <div
-                className={[
-                  "rounded-xl",
-                  "bg-white/10 border border-white/10",
-                  "px-4 py-3",
-                  "flex items-center justify-between gap-[100px] md:gap-[150px]",
-                ].join(" ")}
-              >
-                <div className="min-w-0">
-                  <div className="text-[11px] tracking-[0.14em] text-white/55">
-                    {t("Total Balance")}
-                  </div>
-                  <div className="text-[18px] leading-[22px] font-bold text-white tabular-nums truncate">
-                    {symbol} {formattedTotal}
-                  </div>
-                </div>
-
+            <div className="flex w-[320px] max-w-[calc(100vw-1rem)] flex-col">
+              <div className="border-b border-[#2f4553] px-4 py-4">
+                <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#7eb6ff]">
+                  {t("Total Balance")}
+                </p>
+                <p className="mt-1 text-3xl font-extrabold tabular-nums text-white">
+                  {symbol} {formattedTotal}
+                </p>
                 <button
                   type="button"
-                  className={[
-                    "shrink-0",
-                    "w-10 h-10 rounded-lg",
-                    "grid place-items-center",
-                    "bg-[var(--green-color)]/30 hover:bg-[var(--green-color)]/45",
-                    "border border-white/10",
-                    "text-white text-[20px] leading-none font-semibold",
-                    "transition",
-                    "focus:outline-none focus:ring-2 focus:ring-white/20",
-                  ].join(" ")}
+                  className="mt-3 h-10 w-full rounded-md bg-[#1475e1] text-sm font-bold text-white hover:bg-[#0f62c2]"
                   onClick={(e) => {
                     e.stopPropagation();
-                    profileOpenedState.value = {
-                      isOpen: true,
-                      defaultTab: "/balance-management/deposit",
-                    };
+                    openAccountDialog("/balance-management/deposit");
                     setIsSelectorOpen(false);
                   }}
-                  aria-label={t("Deposit") || "Deposit"}
                 >
-                  +
+                  {t("Deposit") || "Deposit"}
                 </button>
               </div>
 
-              {/* Balances */}
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center justify-between rounded-lg px-3 py-2 bg-black/10">
-                  <span className="text-[13px] text-white/80">
-                    {t("Cash")}
-                  </span>
-                  <span className="text-[13px] font-semibold text-white tabular-nums">
+              <div className="grid grid-cols-3 divide-x divide-[#2f4553]">
+                <div className="px-3 py-3">
+                  <p className="text-[11px] text-[#b1bad3]">{t("Cash")}</p>
+                  <p className="mt-1 text-sm font-bold tabular-nums text-white">
                     {symbol} {cash.toFixed(2)}
-                  </span>
+                  </p>
                 </div>
-                <div className="rounded-lg px-3 py-2 bg-black/10">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[13px] text-white/80">
-                      {t("Bonus")}
-                    </span>
-                    <span className="text-[13px] font-semibold text-white tabular-nums">
-                      {symbol} {bonus.toFixed(2)}
-                    </span>
-                  </div>
+                <div className="px-3 py-3">
+                  <p className="text-[11px] text-[#b1bad3]">{t("Bonus")}</p>
+                  <p className="mt-1 text-sm font-bold tabular-nums text-white">
+                    {symbol} {bonus.toFixed(2)}
+                  </p>
                   {bonusExpiresAt && (
-                    <div
-                      className={[
-                        "mt-1 text-[11px]",
-                        isBonusExpiryUrgent(bonusExpiresAt)
-                          ? "text-amber-300"
-                          : "text-emerald-300/90",
-                      ].join(" ")}
-                    >
-                      <BonusExpiryCountdown
-                        bonusExpiresAt={bonusExpiresAt}
-                        normalClassName="text-emerald-300/90"
-                        urgentClassName="text-amber-300"
-                        expiredClassName="text-red-300"
-                      />
-                    </div>
+                    <BonusExpiryCountdown
+                      bonusExpiresAt={bonusExpiresAt}
+                      className="mt-1 block text-[11px]"
+                      normalClassName="text-emerald-300/90"
+                      urgentClassName="text-amber-300"
+                      expiredClassName="text-red-300"
+                    />
                   )}
                 </div>
-                <div className="rounded-lg px-3 py-2 bg-black/10">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[13px] text-white/80">
-                      {t("Available spins")}
-                    </span>
-                    <div className="flex items-center gap-2">
-                      {freespinGamesLoading && (
-                        <Loader
-                          size={14}
-                          className="animate-spin text-white/60 shrink-0"
-                          aria-hidden="true"
-                        />
-                      )}
-                      <span className="text-[13px] font-semibold text-white tabular-nums shrink-0">
-                        {displayedFreeSpins}
-                      </span>
-                    </div>
-                  </div>
-                  {!freespinGamesLoading && freespinGames.length > 0 && (
+                <div className="px-3 py-3">
+                  <p className="flex items-center gap-1 text-[11px] text-[#b1bad3]">
+                    {freespinGamesLoading && (
+                      <Loader size={12} className="animate-spin" aria-hidden="true" />
+                    )}
+                    {t("Available spins")}
+                  </p>
+                  <p className="mt-1 text-sm font-bold tabular-nums text-white">
+                    {displayedFreeSpins}
+                  </p>
+                </div>
+              </div>
+
+              {!freespinGamesLoading && freespinGames.length > 0 && (
+                <div className="flex flex-col gap-2 border-t border-[#2f4553] px-3 py-3">
                     <div className="mt-2 flex flex-col gap-2">
                       {freespinGames.map((item) => {
                         const game = item.game;
@@ -526,12 +436,7 @@ export default function WalletBox() {
                             scrollToTop
                             preventDefaultOnClick={false}
                             stopPropagationOnClick={false}
-                            className={[
-                              "flex items-center gap-2.5",
-                              "rounded-lg px-2 py-1.5",
-                              "bg-black/20 border border-white/10",
-                              "hover:border-white/25 transition",
-                            ].join(" ")}
+                            className="flex items-center gap-2.5 rounded-md bg-[#1a2c38] px-2 py-1.5 hover:bg-[#213743]"
                             title={game.name}
                             onClick={(e) => {
                               if (!requireLogin()) {
@@ -573,9 +478,8 @@ export default function WalletBox() {
                         );
                       })}
                     </div>
-                  )}
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </Portal>

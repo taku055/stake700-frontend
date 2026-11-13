@@ -1,4 +1,4 @@
-import { signal } from "@preact/signals";
+import { signal } from "@preact/signals-react";
 
 // Cache for category game counts - keyed by category path
 export const categoryCountsCache = signal<Record<string, number>>({});

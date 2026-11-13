@@ -1,4 +1,4 @@
-import { useEffect } from "preact/hooks";
+import { useEffect } from "react";
 import { useSocket } from "../context/SocketContext";
 
 const useSocketEvent = (event: string, handler: (data: any) => void): void => {

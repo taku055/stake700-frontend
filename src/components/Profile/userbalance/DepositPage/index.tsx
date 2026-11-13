@@ -1,4 +1,4 @@
-import { useEffect } from "preact/hooks";
+import { useEffect } from "react";
 import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
 import {
   clearDepositPromoFromUrl,

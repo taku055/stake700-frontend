@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import MessageBox from "./MessageBox";
 import { Input, Textarea } from "@heroui/react";

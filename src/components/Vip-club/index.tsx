@@ -1,4 +1,4 @@
-import { useState, useMemo } from "preact/hooks";
+import { useState, useMemo } from "react";
 import { Modal, ModalContent } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";
 import Overview from "./Overview";

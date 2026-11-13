@@ -69,7 +69,7 @@ export function canChooseEpayclubDepositMethod(
 }
 
 export function getEpayclubCheckoutBaseUrl(): string | null {
-  const raw = import.meta.env.VITE_EPAYCLUB_CHECKOUT_URL?.trim();
+  const raw = process.env.NEXT_PUBLIC_EPAYCLUB_CHECKOUT_URL?.trim();
   if (!raw) return null;
   return raw.replace(/\/$/, "");
 }

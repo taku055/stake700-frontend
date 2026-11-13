@@ -1,6 +1,6 @@
 import { buildEpayclubExternalResultUrl } from "@/helpers/epayclubDeposit";
-import { effect } from "@preact/signals";
-import { useEffect, useRef } from "preact/hooks";
+import { effect } from "@preact/signals-react";
+import { useEffect, useRef } from "react";
 import useSocketEvent from "@/hooks/useSocketEvent";
 import { useSocket, useSocketStatus } from "@/context/SocketContext";
 import { accessTokenState } from "@/state/accessTokenState";
@@ -28,18 +28,19 @@ import { bannerState } from "@/state/bannerState";
 import { apiGetBanners } from "@/api/common/apiGetBanners";
 import { allProvidersModalState } from "@/state/allProvidersModalState";
 import AllProvidersModal from "@/components/AllProvidersModal";
-import { ComponentChildren } from "preact";
+import type { ReactNode as ComponentChildren } from "react";
 import { setViewportCss } from "@/helpers/setViewportCss";
 import { HeroUIProvider, ToastProvider } from "@heroui/react";
 import "swiper/swiper-bundle.css";
-import { LocationProvider, useLocation } from "preact-iso";
+import { LocationProvider, useLocation } from "@/router";
 import { apiAccount } from "@/api/account/apiAccount";
 import { localeState } from "@/state/localeState";
 import { I18nProvider } from "@/context/I18nContext";
 import LoginDialog from "@/components/Auth/LoginDialog";
 import SignupDialog from "@/components/Auth/SignupDialog";
 import FooterNav from "@/components/FooterNav";
-import ProfileComponent from "@/components/Profile";
+import AccountDialogs from "@/components/Profile";
+import { openAccountDialog } from "@/state/accountDialogs";
 import { profileOpenedState } from "@/state/profileOpenedState";
 import { routerQueryState } from "@/state/routerQueryState";
 import {
@@ -96,12 +97,15 @@ const i18nDefinitions = {
 effect(() => {
   const { profileTab, bonusId } = routerQueryState.value;
   if (profileTab) {
-    profileOpenedState.value = {
-      isOpen: true,
-      defaultTab: profileTab,
-      bonusId,
-    };
+    openAccountDialog(profileTab, bonusId);
   }
+});
+
+effect(() => {
+  const { isOpen, defaultTab, bonusId } = profileOpenedState.value;
+  if (!isOpen) return;
+  openAccountDialog(defaultTab, bonusId);
+  profileOpenedState.value = { isOpen: false };
 });
 
 function ProfileQueryHandler() {
@@ -519,14 +523,7 @@ export default function GlobalServiceProvider({
           </div>
 
           <div>
-            <ProfileComponent
-              isOpen={
-                profileOpenedState.value.isOpen && userState.value != null
-              }
-              onClose={() => (profileOpenedState.value = { isOpen: false })}
-              defaultTab={profileOpenedState.value.defaultTab}
-              bonusId={profileOpenedState.value.bonusId}
-            />
+            <AccountDialogs />
             <LoginDialog
               isOpen={loginOpenedState.value}
               onClose={() => (loginOpenedState.value = false)}

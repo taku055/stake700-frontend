@@ -1,5 +1,5 @@
 import { Button, Input } from "@heroui/react";
-import { useEffect, useState, useMemo, useCallback } from "preact/hooks";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { userState } from "@/state/userState";
 import { toast } from "@/helpers/toast";
 import { CryptoCurrencySelects } from "@/components/DepositDialogFull/CryptoCurrencySelects";

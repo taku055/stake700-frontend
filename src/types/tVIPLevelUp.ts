@@ -1,4 +1,4 @@
-import { VNode } from 'preact';
+import type { ReactNode as VNode } from 'react';
 
 export type tVIPLevelUp = {
   level: number;

@@ -1,10 +1,10 @@
-import { FunctionComponent } from "preact";
+import type { FC as FunctionComponent } from "react";
 import LoginRequest from "@/components/LoginRequest";
 import GameCard from "@/components/GameCard";
 import { useTranslations } from "@/context/I18nContext";
 import { favoritesGameState } from "@/state/favoritesGameState";
 import { userState } from "@/state/userState";
-import { useLocation } from "preact-iso";
+import { useLocation } from "@/router";
 
 interface FavoritesGridProps {
   compact?: boolean;

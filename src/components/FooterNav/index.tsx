@@ -1,11 +1,11 @@
 import { useMediaQuery } from "usehooks-ts";
-import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
+import { mobileMediaQuery } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
-import { useEffect, useMemo, useState } from "preact/hooks";
-import { Home, ChartArea, Crown, Users, Menu, Heart } from "lucide-preact";
+import { useEffect, useMemo, useState } from "react";
+import { Home, ChartArea, Crown, Users, Menu } from "lucide-react";
 
 import { userState } from "@/state/userState";
-import { useLocation } from "preact-iso";
+import { useLocation } from "@/router";
 import {
   navigationSidebarExpandedState,
 } from "@/state/navigationSidebarState";
@@ -44,7 +44,7 @@ export default function FooterNav() {
           key: "casino",
           icon: (
             <img
-              src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/casino.png`}
+              src="/images/sidebar/casino.webp"
               width={20}
               height={20}
             />
@@ -56,7 +56,7 @@ export default function FooterNav() {
           key: "live-casino",
           icon: (
             <img
-              src={`https://tekio.s3.eu-north-1.amazonaws.com/betalarab/images/icons/live-casino.svg`}
+              src="/images/sidebar/live-casino.webp"
               width={20}
               height={20}
             />
@@ -66,7 +66,13 @@ export default function FooterNav() {
           title: t("Favorites"),
           href: "/favorites",
           key: "favorites",
-          icon: <Heart width={20} height={20} />,
+          icon: (
+            <img
+              src="/images/sidebar/favorites.webp"
+              width={20}
+              height={20}
+            />
+          ),
         },
       ];
     } else {      

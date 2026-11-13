@@ -1,4 +1,4 @@
-import { ComponentChildren } from "preact";
+import type { ReactNode as ComponentChildren } from "react";
 import styles from "./Checkbox.module.css";
 
 type Props = {
@@ -9,14 +9,14 @@ type Props = {
 
 export const Checkbox = ({ children, isSelected, onValueChange }: Props) => {
   return (
-    <label class={styles.container}>
+    <label className={styles.container}>
       {children}
       <input
         type="checkbox"
         checked={isSelected}
         onChange={(e: any) => onValueChange(e.target.checked)}
       />
-      <span class={styles.checkmark}></span>
+      <span className={styles.checkmark}></span>
     </label>
   );
 };

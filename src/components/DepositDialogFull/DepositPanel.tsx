@@ -1,8 +1,8 @@
 import { Input } from "@heroui/react";
-import { useEffect, useCallback, useState, useMemo } from "preact/hooks";
+import { useEffect, useCallback, useState, useMemo } from "react";
 import { tToken } from "@/types/tToken";
 import { apiGetTokenList } from "@/api/common/apiGetTokenList";
-import { Copy } from "lucide-preact";
+import { Copy } from "lucide-react";
 import { userState } from "@/state/userState";
 import { CryptoCurrencySelects } from "./CryptoCurrencySelects";
 import { apiSetWantBonus } from "@/api/account/apiSetWantBonus";
@@ -185,85 +185,73 @@ export default function DepositPanel() {
     }
   }, [tokens, selectedTokenId]);
 
+  const cryptoAmount =
+    selectedTokenId !== -1 && tokens.length > 0
+      ? (
+          +amount /
+          (tokens.find((token) => token.id === selectedTokenId)?.usdPrice || 1)
+        ).toFixed(5)
+      : "0.00000";
+  const minimumLimit =
+    tokens.find((token) => token.id === selectedTokenId)?.minimumLimit || 0;
+
   return loadingInfo ? (
-    <div className="w-full h-full flex items-center justify-center gap-2 p-2 md:p-6 md:gap-6 md:pt-15">
+    <div className="flex h-full w-full items-center justify-center p-6">
       <Loader />
     </div>
   ) : (
-    <div>
-      <div className="text-center text-sm text-gray-400 my-2 md:mb-10">
-        {t("address_confirm")}
+    <div className="flex flex-col gap-4 py-4">
+      <p className="text-sm text-[#b1bad3]">{t("address_confirm")}</p>
+      <CryptoCurrencySelects
+        tokenGroups={tokenGroups}
+        sortedSymbols={sortedSymbols}
+        selectedCryptoType={selectedCryptoType}
+        selectedBlockchain={selectedBlockchain}
+        onCryptoChange={onCryptoChange}
+        onBlockchainChange={onBlockchainChange}
+        currencyLabel={t("Currency")}
+        blockchainLabel={t("BLOCKCHAIN")}
+      />
+      <div className="rounded-md border border-[#2f4553] bg-[#0f212e] p-4">
+        <p className="text-xs font-semibold uppercase tracking-wide text-[#7eb6ff]">
+          {t("WALLET ADDRESS")}
+        </p>
+        <div className="mt-2 flex items-center gap-3">
+          <p className="min-w-0 flex-1 truncate font-mono text-sm text-white">
+            {wallet || t("Your wallet")}
+          </p>
+          <button
+            type="button"
+            onClick={copyWallet}
+            className="inline-flex h-9 shrink-0 items-center gap-2 rounded-md bg-[#1475e1] px-3 text-sm font-semibold text-white hover:bg-[#0f62c2]"
+          >
+            <Copy size={14} />
+            {t("Copy", undefined, "Copy")}
+          </button>
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 overflow-y-auto">
-        <div className="md:col-span-3 space-y-4">
-          <h3 className="text-md font-semibold text-white">
-            {t("Crypto Payments")}
-          </h3>
-          <CryptoCurrencySelects
-            tokenGroups={tokenGroups}
-            sortedSymbols={sortedSymbols}
-            selectedCryptoType={selectedCryptoType}
-            selectedBlockchain={selectedBlockchain}
-            onCryptoChange={onCryptoChange}
-            onBlockchainChange={onBlockchainChange}
-            currencyLabel={t("Currency")}
-            blockchainLabel={t("BLOCKCHAIN")}
-          />
-        </div>
-        {/* Right Side: Deposit Form */}
-        <div className="md:col-span-2 bg-[#213743] border border-[#2f4553] rounded-xl p-6 space-y-6">
-          <div>
-            <label className="text-sm">{t("DEPOSIT AMOUNT")}</label>
-            <Input
-              type="number"
-              value={amount}
-              onChange={(e: any) => setAmount(e.target.value)}
-              classNames={{
-                inputWrapper: "bg-[#0f212e] border border-[#2f4553]",
-                input: "text-white",
-              }}
-              className="mt-[4px]"
-              startContent={
-                <span className="text-gray-400">{DEFAULT_CURRENCY_SYMBOL}</span>
-              }
-            />
-            <p className="text-xs text-gray-400 mt-1">
-              {t("Deposit Amount")}:
-              {selectedTokenId !== -1 && tokens.length > 0
-                ? `${(
-                    +amount /
-                    (tokens.find((token) => token.id === selectedTokenId)
-                      ?.usdPrice || 1)
-                  ).toFixed(5)} ${selectedCryptoType}`
-                : "0.00000"}
-              <br />
-              {t("Minimum Limit")}:
-              {tokens.find((token) => token.id === selectedTokenId)
-                ?.minimumLimit || 0}{" "}
-              {selectedCryptoType || ""}
-              <br />
-              {t("Network Fee")}: {t("Unknown")}
-            </p>
-          </div>
-
-          <div>
-            <label className="text-sm">{t("WALLET ADDRESS")}</label>
-            <Input
-              placeholder={t("Your wallet")}
-              value={wallet}
-              readOnly
-              classNames={{
-                inputWrapper: "bg-[#0f212e] border border-[#2f4553]",
-                input: "text-white cursor-default",
-              }}
-              onClick={() => copyWallet()}
-              className="mt-[4px]"
-              endContent={
-                <Copy className="cursor-pointer" onClick={() => copyWallet()} />
-              }
-            />
-          </div>
-        </div>
+      <div>
+        <label className="text-sm text-white">{t("DEPOSIT AMOUNT")}</label>
+        <Input
+          type="number"
+          value={amount}
+          onChange={(e: any) => setAmount(e.target.value)}
+          classNames={{
+            inputWrapper:
+              "mt-1 bg-[#0f212e] border border-[#2f4553] data-[hover=true]:bg-[#0f212e]",
+            input: "text-white",
+          }}
+          startContent={
+            <span className="text-[#b1bad3]">{DEFAULT_CURRENCY_SYMBOL}</span>
+          }
+        />
+        <p className="mt-2 text-xs text-[#b1bad3]">
+          {t("Deposit Amount")}: {cryptoAmount} {selectedCryptoType || ""}
+          {" · "}
+          {t("Minimum Limit")}: {minimumLimit} {selectedCryptoType || ""}
+          {" · "}
+          {t("Network Fee")}: {t("Unknown")}
+        </p>
       </div>
     </div>
   );

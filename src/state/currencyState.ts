@@ -1,4 +1,4 @@
-import { signal } from "@preact/signals";
+import { signal } from "@preact/signals-react";
 import { CURRENCY_LIST, DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 
 // Initialize with saved currency from localStorage, or default currency

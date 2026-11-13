@@ -1,4 +1,4 @@
-import { useCallback, useState } from "preact/hooks";
+import { useCallback, useState } from "react";
 import { Button, Input } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { apiGetFineraSaleForm } from "@/api/wallet/apiGetFineraSaleForm";

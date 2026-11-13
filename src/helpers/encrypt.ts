@@ -12,8 +12,8 @@ function bytesToHex(bytes: Uint8Array): string {
 const te = new TextEncoder();
 const td = new TextDecoder();
 
-const keyHex = import.meta.env.VITE_ENCRYPTION_KEY ?? "";
-const ivHex = import.meta.env.VITE_IV ?? ""; // must be 16 bytes (32 hex chars)
+const keyHex = process.env.NEXT_PUBLIC_ENCRYPTION_KEY ?? "";
+const ivHex = process.env.NEXT_PUBLIC_IV ?? ""; // must be 16 bytes (32 hex chars)
 
 const keyBytes = hexToBytes(keyHex); // 32 bytes for AES-256
 const ivBytes = hexToBytes(ivHex); // 16 bytes

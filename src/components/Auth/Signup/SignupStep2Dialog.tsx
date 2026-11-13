@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from "preact/hooks";
+import { useState, useRef, useEffect } from "react";
 import { Modal, ModalContent, ModalBody, Input } from "@/components/common";
 import { Button, DatePicker, Checkbox } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { useTranslations } from "@/context/I18nContext";
-import { Eye, EyeOff } from "lucide-preact";
+import { Eye, EyeOff } from "lucide-react";
 import { parseDate, CalendarDate } from "@internationalized/date";
 import { ASSET_BASE_URL } from "@/config/constants";
 import { signupRequestState } from "@/state/signupRequestState";
@@ -82,7 +82,7 @@ export default function SignupStep2Dialog({
             <img
               src={`${ASSET_BASE_URL}/logo.png`}
               className="h-[36px] md:h-[36px] md:max-w-[180px]"
-              alt={import.meta.env.VITE_SITE_NAME as string}
+              alt={process.env.NEXT_PUBLIC_SITE_NAME as string}
             />
             {/* Progress Bar */}
             <div className="flex flex-col w-full items-center gap-[8px]">

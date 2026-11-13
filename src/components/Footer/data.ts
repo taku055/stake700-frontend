@@ -22,20 +22,6 @@ export const FOOTER_LINK_DATA : Array<{
       { title: "Promos & Competitions", href: "/promotions" },
     ],
   },
-  // {
-  //   title: "Sports",
-  //   links: [
-  //     { title: "Sportsbook", href: "/sportsbook" },
-  //     { title: "Live Sports", href: "/live-sports" },
-  //     { title: "Soccer", href: "/sports/soccer" },
-  //     { title: "Basketball", href: "/sports/basketball" },
-  //     { title: "Tennis", href: "/sports/tennis" },
-  //     { title: "eSports", href: "/sports/esports" },
-  //     { title: "Bet Bonuses", href: "/sports/bonuses" },
-  //     { title: "Sports Rules", href: "/sports/rules" },
-  //     { title: "Racing Rules", href: "/sports/racing-rules" },
-  //   ],
-  // },
   {
     title: "Support",
     links: [
@@ -74,17 +60,17 @@ export const FOOTER_SOCIAL_DATA = [
   {
     title: "Blog",
     icon: `${ASSET_BASE_URL}/images/icons/blog.svg`,
-    href: `https://${import.meta.env.VITE_SITE_DOMAIN}/blog`,
+    href: `https://${process.env.NEXT_PUBLIC_SITE_DOMAIN}/blog`,
   },
   {
     title: "Forum",
     icon: `${ASSET_BASE_URL}/images/icons/forum.svg`,
-    href: `https://${import.meta.env.VITE_SITE_DOMAIN}/forum`,
+    href: `https://${process.env.NEXT_PUBLIC_SITE_DOMAIN}/forum`,
   },
   {
     title: "Facebook",
     icon: `${ASSET_BASE_URL}/images/icons/facebook.svg`,
-    // href: `https://www.facebook.com/${import.meta.env.VITE_SITE_NAME}`,
+    // href: `https://www.facebook.com/${process.env.NEXT_PUBLIC_SITE_NAME}`,
     href: "#"
   },
   {
@@ -105,6 +91,6 @@ export const FOOTER_SOCIAL_DATA = [
   {
     title: "Shop",
     icon: `${ASSET_BASE_URL}/images/icons/shop.svg`,
-    href: `https://${import.meta.env.VITE_SITE_DOMAIN}/shop`
+    href: `https://${process.env.NEXT_PUBLIC_SITE_DOMAIN}/shop`
   },
 ];

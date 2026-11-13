@@ -1,9 +1,9 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-preact";
+import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "../common";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useTranslations } from "@/context/I18nContext";
-import { useState, useMemo } from "preact/hooks";
+import { useState, useMemo } from "react";
 import { localeState } from "@/state/localeState";
 import {
   ASSET_BASE_URL,
@@ -87,7 +87,7 @@ export default function MobileDrawer({
     }`;
 
   const iconChip = (_active: boolean) =>
-    "flex h-5 w-5 shrink-0 items-center justify-center";
+    "flex h-6 w-6 shrink-0 items-center justify-center";
 
   const close = () => { navigationSidebarExpandedState.value = false; };
 

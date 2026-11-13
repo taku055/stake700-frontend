@@ -1,5 +1,5 @@
 
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "react";
 import Loader from "@/components/Loader";
 import {
   Pagination,

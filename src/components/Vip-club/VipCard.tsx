@@ -1,7 +1,7 @@
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { vipData } from "@/config/vipData";
-import { Star, Info } from "lucide-preact";
+import { Star, Info } from "lucide-react";
 
 
 export default function VipCard() {

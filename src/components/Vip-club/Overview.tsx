@@ -1,8 +1,8 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { vipData } from "@/config/vipData";
-import { ChevronUp, ChevronDown, Star, Info } from "lucide-preact";
+import { ChevronUp, ChevronDown, Star, Info } from "lucide-react";
 import { ASSET_BASE_URL } from "@/config/constants";
 import VipCard from "./VipCard";
 

@@ -1,19 +1,11 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import Loader from "@/components/Loader";
-import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  DateRangePicker,
-} from "@heroui/react";
+import { DateRangePicker } from "@heroui/react";
 import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
 import { useMediaQuery } from "usehooks-ts";
 import moment from "moment";
-import { apiGetPaymentTransaction } from "@/api/transaction/apiGetPaymentTransaction.ts.ts";
+import { apiGetPaymentTransaction } from "@/api/transaction/apiGetPaymentTransaction.ts";
 import { tTransaction } from "@/types/tTransaction";
 import { eTransactionType } from "@/types/tTransaction";
 import { userState } from "@/state/userState";
@@ -76,83 +68,68 @@ const TransactionHistoryPage = () => {
   }, [period.start, period.end, userState.value?.id]);
 
   return (
-    <div className="flex flex-col h-full min-h-0">
-      <div className="flex flex-col gap-2 p-4 flex-1 min-h-0 overflow-hidden">
-        <div className="flex items-center justify-between md:flex-row flex-col gap-2 shrink-0">
-          <div className="flex text-[12px]">
-            {tBet("total_history", { total: String(total) })}
-          </div>
-          <DateRangePicker
-            className="w-full md:w-[300px] md:ml-auto md:flex-[unset]"
-            label={tBet("Select period")}
-            value={period}
-            onChange={(value) => {
-              if (value) {
-                setPeriod({ start: value.start, end: value.end });
-              }
-            }}
-            visibleMonths={isMobile ? 1 : 3}
-          />
-        </div>
-        {loading ? (
-          <div className="flex-1 min-h-0 flex items-center justify-center">
-            <Loader />
-          </div>
-        ) : (
-          <div className="flex-1 min-h-0 overflow-auto rounded-medium border border-[#FFFFFF1A] max-h-[min(70vh,calc(80vh-12rem))]">
-            <Table removeWrapper aria-label={t("Transaction History")}>
-              <TableHeader>
-                <TableColumn>ID</TableColumn>
-                <TableColumn>{tBet("Type")}</TableColumn>
-                <TableColumn>{tBet("Provider")}</TableColumn>
-                <TableColumn>{t("Amount")}</TableColumn>
-                <TableColumn>{t("Bonus", undefined, "Bonus")}</TableColumn>
-                <TableColumn>{tBet("Currency")}</TableColumn>
-                <TableColumn>{tBet("Date")}</TableColumn>
-              </TableHeader>
-              <TableBody>
-                {data.map((e) => (
-                  <TableRow key={e.id}>
-                    <TableCell className="font-mono text-[11px]">
-                      {e.id}
-                    </TableCell>
-                    <TableCell>
-                      {e.type === eTransactionType.deposit ||
-                      e.type === eTransactionType.user_deposit ? (
-                        <span className="text-white bg-primary rounded-xl p-1 text-[10px]">
-                          {transactionTypeLabel(t, e.type)}
-                        </span>
-                      ) : e.type === eTransactionType.withdrawal ||
-                        e.type === eTransactionType.user_withdrawal ? (
-                        <span className="text-black bg-success rounded-xl p-1 text-[10px]">
-                          {transactionTypeLabel(t, e.type)}
-                        </span>
-                      ) : (
-                        <span className="text-default-600 bg-default-100 rounded-xl p-1 text-[10px]">
-                          {transactionTypeLabel(t, e.type)}
-                        </span>
-                      )}
-                    </TableCell>
-                    <TableCell className="max-w-[140px] truncate text-[12px]">
-                      {transactionPlatformLabel(t, e.platform)}
-                    </TableCell>
-                    <TableCell>{Number(e.cash || 0)}</TableCell>
-                    <TableCell>{Number(e.bonus || 0)}</TableCell>
-                    <TableCell>
-                      <span className="text-black bg-success rounded-xl p-1 text-[10px]">
-                        {e.currency}
-                      </span>
-                    </TableCell>
-                    <TableCell>
-                      {moment(e.createdAt).format("YYYY-MM-DD HH:mm")}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        )}
+    <div className="flex h-full min-h-0 flex-col">
+      <div className="flex shrink-0 flex-col gap-3 border-b border-[#2f4553] px-4 py-3 md:flex-row md:items-center md:justify-between">
+        <p className="text-xs text-[#b1bad3]">
+          {tBet("total_history", { total: String(total) })}
+        </p>
+        <DateRangePicker
+          className="w-full md:w-[300px]"
+          label={tBet("Select period")}
+          value={period}
+          onChange={(value) => {
+            if (value) {
+              setPeriod({ start: value.start, end: value.end });
+            }
+          }}
+          visibleMonths={isMobile ? 1 : 2}
+        />
       </div>
+      {loading ? (
+        <div className="flex flex-1 items-center justify-center py-16">
+          <Loader />
+        </div>
+      ) : data.length === 0 ? (
+        <p className="px-4 py-10 text-sm text-[#b1bad3]">{t("Transaction History")}</p>
+      ) : (
+        <ul>
+          {data.map((e) => {
+            const outgoing =
+              e.type === eTransactionType.withdrawal ||
+              e.type === eTransactionType.user_withdrawal;
+            return (
+              <li
+                key={e.id}
+                className="flex items-center justify-between gap-4 border-b border-[#2f4553] px-4 py-3"
+              >
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold text-white">
+                    {transactionTypeLabel(t, e.type)}
+                  </p>
+                  <p className="mt-0.5 truncate text-xs text-[#b1bad3]">
+                    {transactionPlatformLabel(t, e.platform)}
+                    {" · "}
+                    {e.currency}
+                  </p>
+                </div>
+                <div className="shrink-0 text-end">
+                  <p
+                    className={`text-sm font-semibold tabular-nums ${
+                      outgoing ? "text-[#f0b4b4]" : "text-[#7dffa8]"
+                    }`}
+                  >
+                    {outgoing ? "−" : "+"}
+                    {Number(e.cash || 0)}
+                  </p>
+                  <p className="mt-0.5 text-xs text-[#557086]">
+                    {moment(e.createdAt).format("YYYY-MM-DD HH:mm")}
+                  </p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };

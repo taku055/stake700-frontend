@@ -1,5 +1,5 @@
 import styles from "./SearchGameItem.module.scss";
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "react";
 import { tGame } from "@/types/tGame";
 import { searchWidgetState } from "@/state/searchWidgetState";
 import { providerState } from "@/state/providerState";

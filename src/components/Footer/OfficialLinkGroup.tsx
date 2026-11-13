@@ -1,5 +1,5 @@
 import { OFFICIAL_LINKS } from "@/config/constants";
-import { FunctionalComponent } from "preact";
+import type { FC as FunctionalComponent } from "react";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";

@@ -1,7 +1,7 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ChevronUp, ChevronDown } from "lucide-preact";
+import { ChevronUp, ChevronDown } from "lucide-react";
 import { Link } from "../common";
-import { useState, useMemo, useLayoutEffect, useEffect } from "preact/hooks";
+import { useState, useMemo, useLayoutEffect, useEffect } from "react";
 import { localeState } from "@/state/localeState";
 import { ASSET_BASE_URL, RTL_LANGUAGES } from "@/config/constants";
 
@@ -98,7 +98,7 @@ export default function ExpandedDrawer({
     }`;
 
   const iconChip = (_active: boolean) =>
-    "flex h-5 w-5 shrink-0 items-center justify-center";
+    "flex h-6 w-6 shrink-0 items-center justify-center";
 
   return (
     <div
@@ -165,7 +165,7 @@ export default function ExpandedDrawer({
           );
         })}
 
-        <div className="my-2 h-px bg-[#2f4553]" />
+        {ExtraNavItems.length > 0 && <div className="my-2 h-px bg-[#2f4553]" />}
 
         {ExtraNavItems.map((item) => {
           const active = selectedMainNavKey === item.key;

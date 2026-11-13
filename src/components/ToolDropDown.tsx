@@ -5,13 +5,13 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@heroui/react";
-import { EllipsisVerticalIcon } from "lucide-preact";
-import { h } from "preact";
+import { EllipsisVerticalIcon } from "lucide-react";
+import { createElement as h } from "react";
 
 const ToolDropDown = ({
   items,
 }: {
-  items: { label: string; id: string; icon: h.JSX.Element }[];
+  items: { label: string; id: string; icon: React.JSX.Element }[];
 }) => {
   return (
     <Dropdown

@@ -13,16 +13,16 @@
 // - Minimal styling; bring your own styles (Tailwind friendly)
 // - RTL/LTR support via `dir` on <ModalContent>
 
-import { createContext, h, JSX, VNode } from "preact";
+import { createContext, createElement as h, type JSX, type ReactNode as VNode } from "react";
 import {
   useContext,
   useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
-} from "preact/hooks";
-import { signal, type Signal } from "@preact/signals";
-import { createPortal } from "preact/compat";
+} from "react";
+import { signal, type Signal } from "@preact/signals-react";
+import { createPortal } from "react-dom";
 
 // -------------------------------------------------
 // Context
@@ -38,8 +38,8 @@ interface ModalContextValue {
   placement: "center" | "top" | "bottom";
   scrollBehavior: "inside" | "outside";
   closeOnBackdropClick: boolean;
-  wrapperRef: preact.RefObject<HTMLDivElement>;
-  contentRef: preact.RefObject<HTMLDivElement>;
+  wrapperRef: React.RefObject<HTMLDivElement | null>;
+  contentRef: React.RefObject<HTMLDivElement | null>;
   lastActiveElement: { current: Element | null };
   shared: SharedState;
   classNames?: {
@@ -102,7 +102,7 @@ function useBodyScrollLock(locked: boolean) {
 // -------------------------------------------------
 
 interface ModalProps {
-  children: preact.ComponentChildren;
+  children: React.ReactNode;
   isOpen?: boolean; // controlled
   defaultOpen?: boolean; // uncontrolled
   onOpenChange?: (open: boolean) => void;
@@ -277,7 +277,7 @@ function Backdrop() {
 // -------------------------------------------------
 // Wrapper (internal container that handles placement)
 // -------------------------------------------------
-function Wrapper({ children }: { children: preact.ComponentChildren }) {
+function Wrapper({ children }: { children: React.ReactNode }) {
   const {
     placement,
     wrapperRef,
@@ -293,7 +293,7 @@ function Wrapper({ children }: { children: preact.ComponentChildren }) {
         ? "items-start"
         : "items-end";
 
-  const onBackdropAreaPointerDown: JSX.MouseEventHandler<HTMLDivElement> = (
+  const onBackdropAreaPointerDown: React.MouseEventHandler<HTMLDivElement> = (
     e
   ) => {
     // Only close if the click is on the wrapper itself (i.e., outside the modal content)
@@ -326,8 +326,8 @@ function Wrapper({ children }: { children: preact.ComponentChildren }) {
 // <ModalContent>
 // -------------------------------------------------
 
-interface ModalContentProps extends JSX.HTMLAttributes<HTMLDivElement> {
-  children: preact.ComponentChildren;
+interface ModalContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
   className?: string;
   dir?: "ltr" | "rtl" | "auto";
   noCloseButton?: boolean;
@@ -402,7 +402,7 @@ export function ModalClose({ className, label = "Close" }: ModalCloseProps) {
         <path
           d="M14 2.38531L8.4082 7.97711L14 13.5689L12.5918 14.9771L7 9.38531L1.4082 14.9771L0 13.5689L5.5918 7.97711L0 2.38531L1.4082 0.977112L7 6.56891L12.5918 0.977112L14 2.38531Z"
           fill="white"
-          fill-opacity="0.6"
+          fillOpacity="0.6"
         />
       </svg>
     </button>
@@ -414,7 +414,7 @@ export function ModalClose({ className, label = "Close" }: ModalCloseProps) {
 // -------------------------------------------------
 
 interface SectionProps {
-  children: preact.ComponentChildren;
+  children: React.ReactNode;
   className?: string;
 }
 
@@ -458,7 +458,7 @@ export function ModalFooter({ children, className }: SectionProps) {
 // -------------------------------------------------
 
 /*
-import { signal } from '@preact/signals';
+import { signal } from '@preact/signals-react';
 import { Modal, ModalContent, ModalBody } from './Modal';
 
 const isOpen = signal(false);

@@ -1,4 +1,4 @@
-import { FunctionComponent } from "preact";
+import type { FC as FunctionComponent } from "react";
 import { liveSupportExpandedState } from "@/state/liveSupportExpandedState";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { userState } from "@/state/userState";

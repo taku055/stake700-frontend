@@ -1,7 +1,7 @@
 import { abbr } from "@/helpers/abbr";
-import { Check, CheckCheck, Copy } from "lucide-preact";
+import { Check, CheckCheck, Copy } from "lucide-react";
 import { toast } from "@/helpers/toast";
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect } from "react";
 
 interface ITextWithCopyProps {
   text: string;

@@ -1,4 +1,4 @@
-import { signal } from "@preact/signals";
+import { signal } from "@preact/signals-react";
 import { tBonusAvailabilityPublic } from "@/api/bonus/apiGetBonusAvailability";
 
 export const bonusAvailabilityState = signal<tBonusAvailabilityPublic>({

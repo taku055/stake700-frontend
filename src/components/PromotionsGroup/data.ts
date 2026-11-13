@@ -13,7 +13,7 @@ export const promotionsData : Array<tPromotionInformation> = [
     title: "Blackjack Boost",
     description: "Get a 10% bonus",
     image: "buffer/promotion1.png",
-    label: `Only on ${capitalize(import.meta.env.VITE_SITE_NAME)}`,
+    label: `Only on ${capitalize(process.env.NEXT_PUBLIC_SITE_NAME)}`,
     readMoreLink: "#",
   },
   {

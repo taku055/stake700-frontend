@@ -1,6 +1,7 @@
 export type ProfileMenuIconSrc = `/images/profile/${string}`;
 
 export type ProfileMenuLabelKey =
+  | "ProfileMenuWallet"
   | "ProfileMenuPersonalBalance"
   | "ProfileMenuChangePassword"
   | "ProfileMenuKyc"
@@ -36,6 +37,12 @@ export function isProfileMenuHrefItem(
 }
 
 export const PROFILE_MENU_ITEMS: ProfileMenuItem[] = [
+  {
+    id: "wallet",
+    labelKey: "ProfileMenuWallet",
+    action: "openProfile",
+    defaultTab: "/balance-management/deposit",
+  },
   {
     id: "personal-balance",
     labelKey: "ProfileMenuPersonalBalance",

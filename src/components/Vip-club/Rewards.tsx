@@ -1,8 +1,8 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
-import { ChevronUp, ChevronDown, Lock } from "lucide-preact";
-import { VNode } from "preact";
+import { ChevronUp, ChevronDown, Lock } from "lucide-react";
+import type { ReactNode as VNode } from "react";
 import { ASSET_BASE_URL } from "@/config/constants";
 
 interface IReward {

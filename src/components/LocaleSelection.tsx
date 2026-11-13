@@ -1,6 +1,6 @@
 import { localeState } from "@/state/localeState";
-import { useEffect, useRef, useState } from "preact/hooks";
-import { ChevronDown } from "lucide-preact";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 export const options = [
   { label: "Русский", value: "ru", flag: "ru" },
@@ -37,39 +37,48 @@ export default function LocaleSelection({
       <button
         type="button"
         onClick={() => setIsOpen((v) => !v)}
-        className={`flex items-center gap-[10px] h-full rounded-sm p-2 cursor-pointer`}
+        className={
+          headerMode
+            ? "flex h-9 items-center gap-2 rounded-md bg-[#1a2c38] px-2.5 text-[#b1bad3] hover:text-white"
+            : "flex h-full cursor-pointer items-center gap-[10px] rounded-sm p-2"
+        }
       >
-        <span className={`fi fi-${currentOption?.flag || "us"}`}></span>
-        {!headerMode && (
-          <span className="text-[var(--text-transparent-color)]">
-            {currentOption?.label}
-          </span>
-        )}
+        <img src="/images/sidebar/language.webp" alt="" className="h-5 w-5 object-contain" />
+        <span className={headerMode ? "text-xs font-bold uppercase" : "text-[var(--text-transparent-color)]"}>
+          {headerMode ? currentOption?.value : currentOption?.label}
+        </span>
         <ChevronDown
-          size={16}
+          size={headerMode ? 12 : 16}
           className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute z-[9999] mt-1 right-0 bg-white rounded-lg shadow-lg py-1 min-w-[160px] max-h-[320px] overflow-y-auto">
-          {options.map((lang) => (
-            <button
-              key={lang.value}
-              type="button"
-              onClick={() => {
-                localeState.value = lang.value;
-                window.localStorage.setItem("locale", lang.value);
-                setIsOpen(false);
-              }}
-              className={`w-full text-left flex items-center gap-3 px-3 py-2 text-[#000000] hover:bg-[#0000002a] ${
-                lang.value === localeState.value ? "bg-[#b4b4b4]" : ""
-              }`}
-            >
-              <span className={`fi fi-${lang.flag}`}></span>
-              {lang.label}
-            </button>
-          ))}
+        <div className="absolute end-0 z-[9999] mt-2 min-w-[168px] overflow-hidden rounded-md border border-[#2f4553] bg-[#0f212e] shadow-xl">
+          {options.map((lang) => {
+            const selected = lang.value === localeState.value;
+            return (
+              <button
+                key={lang.value}
+                type="button"
+                onClick={() => {
+                  localeState.value = lang.value;
+                  window.localStorage.setItem("locale", lang.value);
+                  setIsOpen(false);
+                }}
+                className={`flex w-full items-center justify-between border-s-2 px-3 py-2.5 text-left text-sm ${
+                  selected
+                    ? "border-[#1475e1] bg-[#1a2c38] font-bold text-white"
+                    : "border-transparent text-[#b1bad3] hover:bg-[#213743] hover:text-white"
+                }`}
+              >
+                <span>{lang.label}</span>
+                <span className="text-[10px] font-bold uppercase tracking-wide text-[#7eb6ff]">
+                  {lang.value}
+                </span>
+              </button>
+            );
+          })}
         </div>
       )}
     </div>

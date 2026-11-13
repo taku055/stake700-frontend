@@ -1,5 +1,5 @@
 import { userState } from "@/state/userState";
-import { ShieldAlert, ShieldIcon } from "lucide-preact";
+import { ShieldAlert, ShieldIcon } from "lucide-react";
 import { useTranslations } from "@/context/I18nContext";
 interface UserVerifyBoxProps {
   onClick?: () => void;

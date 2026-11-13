@@ -1,7 +1,7 @@
-import { useMemo } from "preact/hooks";
+import { useMemo } from "react";
 import { Swiper, SwiperProps, SwiperRef } from "swiper/react";
-import { ArrowLeft, ArrowRight } from "lucide-preact";
-import { PropsWithChildren, RefAttributes } from "preact/compat";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import type { PropsWithChildren, RefAttributes } from "react";
 import styles from "./TekioSwiper.module.scss";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";

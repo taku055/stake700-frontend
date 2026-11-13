@@ -1,12 +1,12 @@
-import { useEffect } from "preact/hooks";
-import { useLocation } from "preact-iso";
-import { profileOpenedState } from "@/state/profileOpenedState";
+import { useEffect } from "react";
+import { useLocation } from "@/router";
+import { closeAccountDialogs } from "@/state/accountDialogs";
 
 export const BonusPage = () => {
   const location = useLocation();
 
   useEffect(() => {
-    profileOpenedState.value = { isOpen: false };
+    closeAccountDialogs();
     location.route("/promotions?tab=active");
   }, []);
 

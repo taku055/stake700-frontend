@@ -1,9 +1,9 @@
-import { useState, useMemo } from "preact/hooks";
+import { useState, useMemo } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { apiUpdateUserDetails } from "@/api/account/apiUpdateUserDetails";
 import { toast } from "@/helpers/toast";
-import { LoaderCircle } from "lucide-preact";
+import { LoaderCircle } from "lucide-react";
 import { DatePicker, Select, SelectItem, Input } from "@heroui/react";
 import { parseDate } from "@internationalized/date";
 import { localeState } from "@/state/localeState";
@@ -286,7 +286,7 @@ const PersonalDetailsPage = () => {
             disabled={isLoading}
           >
             {isLoading ? (
-              <LoaderCircle class="text-white animate-spin" size={16} />
+              <LoaderCircle className="text-white animate-spin" size={16} />
             ) : null}
             {t("Save Changes")}
           </button>

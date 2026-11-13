@@ -1,5 +1,5 @@
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { useMemo } from "preact/hooks";
+import { useMemo } from "react";
 import { ASSET_BASE_URL } from "@/config/constants";
 import { Link } from "../common";
 interface CollapsedSidebarProps {
@@ -86,7 +86,7 @@ export default function CollapsedSidebar({
           })}
         </div>
 
-        <div className="mx-auto my-1 h-px w-8 flex-shrink-0 bg-[#2f4553]" />
+        {ExtraNavItems.length > 0 && <div className="mx-auto my-1 h-px w-8 flex-shrink-0 bg-[#2f4553]" />}
 
         <div className="flex flex-col items-center py-3 gap-2 flex-shrink-0">
           {ExtraNavItems.map((item) => {

@@ -20,17 +20,17 @@ const STATIC_CATEGORIES: CategoryItem[] = [
   {
     name: "Roulette",
     path: "/casino/live-casino?custom=1&category=rouletteglobal",
-    icon: "/images/category_logo/roulette.png",
+    icon: "/images/category_logo/roulette.webp",
   },
   {
     name: "Blackjack",
     path: "/casino/live-casino?custom=1&category=blackjacks",
-    icon: "/images/category_logo/blackjack.png",
+    icon: "/images/category_logo/blackjack.webp",
   },
   {
     name: "Baccarat",
     path: "/casino/live-casino?custom=1&category=baccaratglobal",
-    icon: "/images/category_logo/baccarat.svg",
+    icon: "/images/category_logo/baccarat.webp",
   },
   {
     name: "Video Poker",

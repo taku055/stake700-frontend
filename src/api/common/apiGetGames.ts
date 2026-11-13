@@ -17,7 +17,7 @@ export type tGameSearchParams = {
 
 export const apiGetGames = async (params: tGameSearchParams) => {
   const response = await instance.get<tPaginationResult<tGame>>(
-    `${import.meta.env.VITE_BACKEND_URL}/v1/game/games?${queryString.stringify(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/game/games?${queryString.stringify(
       params
     )}`
   );

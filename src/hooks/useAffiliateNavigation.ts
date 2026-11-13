@@ -1,5 +1,5 @@
-import { useLocation } from "preact-iso";
-import { useMemo, useCallback } from "preact/hooks";
+import { useLocation } from "@/router";
+import { useMemo, useCallback } from "react";
 import { scrollToTop } from "@/helpers/scrollToTop";
 
 export const REF_STORAGE_KEY = "ref";

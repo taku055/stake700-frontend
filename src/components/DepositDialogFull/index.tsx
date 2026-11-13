@@ -1,5 +1,5 @@
 import { Modal, ModalContent } from "@/components/common";
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import DepositPanel from "./DepositPanel";
 import WithdrawalPanel from "./WithdrawalPanel";
 // import HistoryPanel from "./HistoryPanel";
@@ -28,9 +28,9 @@ export default function DepositDialogFull({
         <div className="relative">
           <img
             src={`https://tekio.s3.eu-north-1.amazonaws.com/${(
-              import.meta.env.VITE_SITE_NAME as string
+              process.env.NEXT_PUBLIC_SITE_NAME as string
             ).toLowerCase()}/logo.png`}
-            alt={import.meta.env.VITE_SITE_NAME as string}
+            alt={process.env.NEXT_PUBLIC_SITE_NAME as string}
             className="absolute md:left-[20px] left-[10px] md:top-[20px] top-[10px] md:w-[144px] w-[92px] z-[60]"
           />
 

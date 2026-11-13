@@ -1,4 +1,4 @@
-import { Info } from "lucide-preact";
+import { Info } from "lucide-react";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 

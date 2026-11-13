@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
-import { useLocation } from "preact-iso";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useLocation } from "@/router";
 import { Button, Input, Spinner } from "@heroui/react";
 import axios from "axios";
 import {
@@ -14,7 +14,7 @@ import {
   getEpayclubProfileMissing,
   type EpayclubProfileField,
 } from "@/helpers/epayclubProfile";
-import { profileOpenedState } from "@/state/profileOpenedState";
+import { closeAccountDialogs, openAccountDialog } from "@/state/accountDialogs";
 import { saveEpayclubCheckout } from "@/helpers/epayclubSession";
 import {
   DEFAULT_EPAYCLUB_DEPOSIT_OPTIONS,
@@ -24,7 +24,7 @@ import {
   type EpayclubDepositMethod,
   type EpayclubDepositOptions,
 } from "@/helpers/epayclubDeposit";
-import { VisaIcon } from "@/pages/payment/epayclub/components/PaymentBrandIcons";
+import { VisaIcon } from "@/site/payment/epayclub/components/PaymentBrandIcons";
 
 const PROFILE_FIELD_KEYS: Record<EpayclubProfileField, string> = {
   firstName: "EPayClub_missing_field_firstName",
@@ -155,7 +155,7 @@ export default function EpayclubDeposit() {
       }
 
       if (checkoutTarget?.type === "internal") {
-        profileOpenedState.value = { isOpen: false };
+        closeAccountDialogs();
         const checkoutUrl = new URL(checkoutTarget.path, window.location.origin);
         checkoutUrl.searchParams.set("amount", String(num));
         checkoutUrl.searchParams.set("currency", options.currency);
@@ -164,7 +164,7 @@ export default function EpayclubDeposit() {
       }
 
       if (checkoutTarget?.type === "external") {
-        profileOpenedState.value = { isOpen: false };
+        closeAccountDialogs();
         const checkoutUrl = new URL(checkoutTarget.url);
         if (method === "card") {
           checkoutUrl.searchParams.set("amount", String(num));
@@ -222,10 +222,7 @@ export default function EpayclubDeposit() {
   // );
 
   const openProfile = useCallback(() => {
-    profileOpenedState.value = {
-      isOpen: true,
-      defaultTab: "/my-profile/personal-details",
-    };
+    openAccountDialog("/my-profile/personal-details");
   }, []);
 
   if (!optionsLoaded) {

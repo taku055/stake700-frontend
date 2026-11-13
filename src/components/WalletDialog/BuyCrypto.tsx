@@ -1,8 +1,8 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import { Button, Select, SelectItem, Input } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { ASSET_BASE_URL } from "@/config/constants";
-import { ChevronDown, Search } from "lucide-preact";
+import { ChevronDown, Search } from "lucide-react";
 import { allChains } from "@/config/chains";
 import { CURRENCY_LIST } from "@/config/constants";
 

@@ -1,60 +1,12 @@
 import { useTranslations } from "@/context/I18nContext";
 import { apiGetCasinoTransaction } from "@/api/transaction/apiGetCasinoTransaction";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "react";
 import { tMergedTransaction } from "@/types/tTransaction";
 import moment from "moment";
-import {
-  SortDescriptor,
-  TableCell,
-  TableRow,
-  TableBody,
-  Table,
-  Chip,
-  TableHeader,
-  TableColumn,
-  Pagination,
-} from "@heroui/react";
+import { Pagination, SortDescriptor } from "@heroui/react";
 import { numberRound } from "@/helpers/numberRound";
 import Loader from "@/components/Loader";
-import TextWithCopy from "@/components/TextWithCopy";
 import { CURRENCY_LIST } from "@/config/constants";
-
-const columns: {
-  title: string;
-  key: string;
-  sotable: boolean;
-}[] = [
-    {
-      title: "Game",
-      key: "context.game.name",
-      sotable: false,
-    },
-    {
-      title: "Provider",
-      key: "provider",
-      sotable: false,
-    },
-    {
-      title: "RoundId",
-      key: "eventId",
-      sotable: false,
-    },
-    {
-      title: "Bet",
-      key: "bet_amount",
-      sotable: true,
-    },
-    {
-      title: "Win",
-      key: "win_amount",
-      sotable: true,
-    },
-    {
-      title: "Date",
-      key: "first_tx_at",
-      sotable: true,
-    },
-  ];
 
 const CasinoHistoryPage = () => {
   const t = useTranslations("BetHistory");
@@ -62,7 +14,7 @@ const CasinoHistoryPage = () => {
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
+  const [sortDescriptor] = useState<SortDescriptor>({
     column: '"first_tx_at"',
     direction: "descending",
   });
@@ -87,103 +39,68 @@ const CasinoHistoryPage = () => {
       });
   }, [currentPage, sortDescriptor]);
 
-  function handleSortChange(descriptor: SortDescriptor) {
-    setSortDescriptor(descriptor);
-  }
+  const symbolFor = (currency: string) =>
+    CURRENCY_LIST.find((item) => item.unit === currency)?.symbol ?? "";
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex flex-col w-full p-5 gap-5">
-        <div className="px-5 py-3 bg-[#FFFFFF26] rounded-md">
-          <div className="flex items-center justify-between md:flex-row flex-col gap-2 p-4">
-            <div className="flex text-[12px]">
-              {t("total_history", { total })}
-            </div>
-            <Pagination
-              showControls
-              total={Math.ceil(total / 10)}
-              color="success"
-              radius="full"
-              page={currentPage}
-              onChange={setCurrentPage}
-              isCompact
-            />
-          </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            <Table
-              removeWrapper
-              aria-label={t("casino_history_table_aria")}
-              className="overflow-x-auto"
-              classNames={{
-                th: "text-[10px] md:text-[14px] md:py-3",
-                td: "text-[12px] md:text-[14px] md:py-3",
-              }}
-              sortDescriptor={sortDescriptor}
-              onSortChange={handleSortChange}
-            >
-              <TableHeader>
-                {columns.map((e) => (
-                  <TableColumn key={e.key} allowsSorting={e.sotable}>
-                    {t(e.title)}
-                  </TableColumn>
-                ))}
-              </TableHeader>
-              <TableBody>
-                {data.map((e) => (
-                  <TableRow key={e.first_tx_at + e.eventId}>
-                    <TableCell>{e.context?.game?.name || ""}</TableCell>
-                    <TableCell>{e.provider}</TableCell>
-                    <TableCell>
-                      {e.eventId && <TextWithCopy text={e.eventId} />}
-                    </TableCell>
-                    <TableCell>
-                      <Chip color="primary" size="sm">
-                        {
-                          CURRENCY_LIST.find(
-                            (currency) => currency.unit === e.currency
-                          )?.symbol
-                        }
-                        {numberRound(e.bet_amount, 100)}
-                      </Chip>
-                      <Chip color="success" size="sm">
-                        {
-                          CURRENCY_LIST.find(
-                            (currency) => currency.unit === e.currency
-                          )?.symbol
-                        }
-                        {numberRound(e.bet_bonus_amount, 100)}
-                      </Chip>
-                    </TableCell>
-                    <TableCell>
-                      <Chip color="danger" size="sm">
-                        {
-                          CURRENCY_LIST.find(
-                            (currency) => currency.unit === e.currency
-                          )?.symbol
-                        }
-                        {numberRound(e.win_amount, 100)}
-                      </Chip>
-                      <Chip color="warning" size="sm">
-                        {
-                          CURRENCY_LIST.find(
-                            (currency) => currency.unit === e.currency
-                          )?.symbol
-                        }
-                        {numberRound(e.win_bonus_amount, 100)}
-                      </Chip>
-                    </TableCell>
-                    <TableCell>
-                      {moment(e.last_tx_at).format("YYYY-MM-DD hh:mm A")}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </div>
+    <div className="flex h-full flex-col">
+      <div className="flex shrink-0 items-center justify-between gap-3 border-b border-[#2f4553] px-4 py-3">
+        <p className="text-xs text-[#b1bad3]">{t("total_history", { total })}</p>
+        <Pagination
+          showControls
+          total={Math.max(1, Math.ceil(total / 10))}
+          color="primary"
+          radius="sm"
+          page={currentPage}
+          onChange={setCurrentPage}
+          isCompact
+        />
       </div>
+      {loading ? (
+        <div className="flex flex-1 items-center justify-center py-16">
+          <Loader />
+        </div>
+      ) : (
+        <ul>
+          {data.map((e) => {
+            const symbol = symbolFor(e.currency);
+            const won = Number(e.win_amount) > 0;
+            return (
+              <li
+                key={e.first_tx_at + e.eventId}
+                className="flex items-center justify-between gap-4 border-b border-[#2f4553] px-4 py-3"
+              >
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold text-white">
+                    {e.context?.game?.name || e.provider}
+                  </p>
+                  <p className="mt-0.5 truncate text-xs text-[#b1bad3]">
+                    {e.provider}
+                    {e.eventId ? ` · ${e.eventId}` : ""}
+                  </p>
+                </div>
+                <div className="shrink-0 text-end">
+                  <p className="text-sm font-semibold tabular-nums text-white">
+                    {t("Bet")} {symbol}
+                    {numberRound(e.bet_amount, 100)}
+                  </p>
+                  <p
+                    className={`mt-0.5 text-xs tabular-nums ${
+                      won ? "text-[#7dffa8]" : "text-[#b1bad3]"
+                    }`}
+                  >
+                    {t("Win")} {symbol}
+                    {numberRound(e.win_amount, 100)}
+                  </p>
+                  <p className="mt-0.5 text-xs text-[#557086]">
+                    {moment(e.last_tx_at).format("YYYY-MM-DD hh:mm A")}
+                  </p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };

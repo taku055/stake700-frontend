@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import {
   BonusExpiryCountdownLabels,

@@ -1,14 +1,14 @@
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
-import { useMemo, useState, useEffect, useCallback } from "preact/hooks";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
-import { useLocation } from "preact-iso";
+import { useLocation } from "@/router";
 import {
   useTablist,
   SIDEBAR_EVOLUTION_PROVIDER_ID,
   SIDEBAR_PRAGMATIC_PROVIDER_ID,
 } from "@/hooks/useTablist";
-import { tPageType } from "@/pages/casino/data";
+import { tPageType } from "@/site/casino/data";
 import CollapsedSidebar from "./CollapsedSidebar";
 import ExpandedDrawer from "./ExpandedDrawer";
 import MobileDrawer from "./MobileDrawer";
@@ -20,7 +20,7 @@ import {
   SLOTS_CATEGORY_PAGES,
   CASINO_CATEGORY_PAGE_QUERY_KEY,
   type CasinoCategoryPageKey,
-} from "@/pages/casino-category/data";
+} from "@/site/casino-category/data";
 
 interface NavigationItem {
   title: string;
@@ -82,7 +82,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["home", "promotions", "vip", "slots", "live-casino", "evolution-live", "pragmatic-live", "table-games", "jackpots"].includes(
+        ["home", "favorites", "slots", "live-casino", "evolution-live", "pragmatic-live", "table-games", "promotions", "vip"].includes(
           item.key
         )
       )
@@ -116,11 +116,7 @@ export default function NavigationSidebar() {
     }>;
   }> = useMemo(() => {
     return tabList
-      .filter((item) =>
-        [
-          "language",
-        ].includes(item.key)
-      )
+      .filter(() => false)
       .map((item: any) => ({
         title: item.title,
         href: item.href || "",

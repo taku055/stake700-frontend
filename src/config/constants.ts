@@ -8,7 +8,7 @@ export const TRON_CHAIN_ID = 728126428;
 // export const RTL_LANGUAGES = ["ar", "he", "fa"];
 export const RTL_LANGUAGES = ["ar", "fa"];
 
-export const ASSET_BASE_URL = `https://tekio.s3.eu-north-1.amazonaws.com/${import.meta.env.VITE_SITE_NAME.toLowerCase()}`;
+export const ASSET_BASE_URL = `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}`;
 
 const VIP_OTHERS_BASE =
   "https://tekio.s3.eu-north-1.amazonaws.com/mirage888/vip";
@@ -33,17 +33,17 @@ export const mobilePortraitMediaQuery =
 export const placeholderGameImage = "/images/img-placeholder-dark.jpg";
 
 export const OFFICIAL_LINKS = {
-  telegram: `https://t.me/${import.meta.env.VITE_SITE_NAME}ofc`,
+  telegram: `https://t.me/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
   whatsapp: "#",
-  instagram: `https://www.instagram.com/${import.meta.env.VITE_SITE_NAME}ofc`,
-  facebook: `https://www.facebook.com/${import.meta.env.VITE_SITE_NAME}ofc`,
-  twitter: `https://x.com/${import.meta.env.VITE_SITE_NAME}ofc`,
-  youtube: `https://www.youtube.com/${import.meta.env.VITE_SITE_NAME}ofc`,
-  tiktok: `https://www.tiktok.com/@${import.meta.env.VITE_SITE_NAME}ofc`,
-  twitch: `https://www.twitch.tv/${import.meta.env.VITE_SITE_NAME}ofc`,
-  discord: `https://discord.gg/${import.meta.env.VITE_SITE_NAME}ofc`,
-  officialWebsite: `https://www.${import.meta.env.VITE_SITE_DOMAIN}`,
-  supportEmail: `support@${getRootDomain(import.meta.env.VITE_SITE_DOMAIN)}`,
+  instagram: `https://www.instagram.com/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
+  facebook: `https://www.facebook.com/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
+  twitter: `https://x.com/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
+  youtube: `https://www.youtube.com/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
+  tiktok: `https://www.tiktok.com/@${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
+  twitch: `https://www.twitch.tv/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
+  discord: `https://discord.gg/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
+  officialWebsite: `https://www.${process.env.NEXT_PUBLIC_SITE_DOMAIN}`,
+  supportEmail: `support@${getRootDomain(process.env.NEXT_PUBLIC_SITE_DOMAIN)}`,
 };
 
 export const PAYMENT_METHOD_LIST = [
@@ -191,10 +191,10 @@ export const CURRENCY_LIST: {
 
 export const DEFAULT_CURRENCY_SYMBOL =
   CURRENCY_LIST.find(
-    (currency) => currency.unit === import.meta.env.VITE_DEFAULT_CURRENCY
+    (currency) => currency.unit === process.env.NEXT_PUBLIC_DEFAULT_CURRENCY
   )?.symbol || "$";
 
-export const AFFILIATE_COMMISSION_PERCENTAGE = import.meta.env
-  .VITE_AFFILIATE_COMMISSION_PERCENTAGE;
+export const AFFILIATE_COMMISSION_PERCENTAGE =
+  process.env.NEXT_PUBLIC_AFFILIATE_COMMISSION_PERCENTAGE;
 
 export const PRELOAD_IMAGE_URLS = [];

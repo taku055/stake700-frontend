@@ -27,7 +27,7 @@ export const apiRegister = async (data: tRegisterReq) => {
       data.password.length +
       data.userName +
       data.userName.length +
-      (import.meta.env.VITE_SITE_NAME as string).toLowerCase()
+      (process.env.NEXT_PUBLIC_SITE_NAME as string).toLowerCase()
   );
   const res = await instance.post<tRegisterRes>(`/auth/signup`, {
     ...data,

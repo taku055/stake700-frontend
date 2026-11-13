@@ -9,4 +9,4 @@ export type BbbetRacingKey = keyof typeof BBBET_LAUNCH_URLS;
 
 /** Theme id from GET /game/bbbet-templates — override via VITE_BBBET_CUSTOM_THEME */
 export const BBBET_CUSTOM_THEME =
-  import.meta.env.VITE_BBBET_CUSTOM_THEME || "black-green-sidebar";
+  process.env.NEXT_PUBLIC_BBBET_CUSTOM_THEME || "black-green-sidebar";

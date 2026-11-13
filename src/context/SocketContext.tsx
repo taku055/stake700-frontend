@@ -1,6 +1,6 @@
 import { io, Socket } from "socket.io-client";
-import { createContext, ComponentChildren } from "preact";
-import { useContext, useEffect, useState } from "preact/hooks";
+import { createContext, type ReactNode as ComponentChildren } from "react";
+import { useContext, useEffect, useState } from "react";
 
 interface SocketContextProps {
   socket: Socket | null;
@@ -21,7 +21,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
   const [isConnected, setIsConnected] = useState<boolean>(false);
 
   useEffect(() => {
-    const socketInstance = io(import.meta.env.VITE_BACKEND_URL || "", {
+    const socketInstance = io(process.env.NEXT_PUBLIC_BACKEND_URL || "", {
       autoConnect: true,
       transports: ["websocket", "polling"],
     });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "react";
 import { userState } from "@/state/userState";
 import { currencyState } from "@/state/currencyState";
 import { localeState } from "@/state/localeState";

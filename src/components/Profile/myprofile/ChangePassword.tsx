@@ -1,8 +1,8 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import { apiChangePassword } from "@/api/account/apiChangePassword";
 import { toast } from "@/helpers/toast";
-import { Loader } from "lucide-preact";
+import { Loader } from "lucide-react";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 import { Input } from "@heroui/react";

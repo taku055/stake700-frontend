@@ -5,7 +5,7 @@ export const apiChangeAvatar = async (file: File) => {
   formData.append("file", file, file.name);
 
   const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_URL}/v1/auth/change-avatar`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/auth/change-avatar`,
     {
       method: "POST",
       body: formData,

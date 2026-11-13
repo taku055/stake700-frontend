@@ -1,9 +1,9 @@
 import { InputProps } from "@heroui/react";
-import { useMemo } from "preact/hooks";
-import type { JSX } from 'preact/jsx-runtime';
+import { useMemo } from "react";
+import type { JSX } from 'react';
 
 export default function Input(props: InputProps) {
-  const inputProps: JSX.HTMLAttributes<HTMLInputElement> = useMemo(
+  const inputProps: React.HTMLAttributes<HTMLInputElement> = useMemo(
     () => ({
       type: props.type,
       placeholder: props.placeholder,

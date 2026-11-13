@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "preact/hooks";
+import { useEffect, useState, useRef } from "react";
 import type { Swiper as SwiperInstance } from "swiper";
 import { providerState } from "@/state/providerState";
 import { Link } from "@/components/common";
@@ -10,10 +10,10 @@ import { useTranslations } from "@/context/I18nContext";
 import styles from "./ProviderGroup.module.scss";
 import { tProvider } from "@/types/tProvider";
 import { apiGetProviders } from "@/api/common/apiGetProviders";
-import { useSignal } from "@preact/signals";
+import { useSignal } from "@preact/signals-react";
 import { localeState } from "@/state/localeState";
 import { mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
-import { ChevronLeft, ChevronRight, Users, ArrowLeft } from "lucide-preact";
+import { ChevronLeft, ChevronRight, Users, ArrowLeft } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
 
 interface IProviderGroupProps {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -33,7 +33,7 @@ import { LiaTimesSolid, LiaFireAltSolid } from "react-icons/lia";
 import { slice } from "lodash";
 import { emulateBettingState } from "@/state/emulateBettingState";
 import { tEmulateBet } from "@/types/tEmulateBet";
-import { createElement } from "preact";
+import { createElement } from "react";
 import { allChains } from "@/config/chains";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery, mobilePortraitMediaQuery } from "@/config/constants";

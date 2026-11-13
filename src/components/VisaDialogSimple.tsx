@@ -1,6 +1,6 @@
 import { Button, Select, SelectItem } from "@heroui/react";
-import { CreditCard, DollarSign, Key } from "lucide-preact";
-import { useEffect, useState } from "preact/hooks";
+import { CreditCard, DollarSign, Key } from "lucide-react";
+import { useEffect, useState } from "react";
 import { toast } from "@/helpers/toast";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPayWithPayit123 } from "@/api/wallet/apiPayWithPayit123";

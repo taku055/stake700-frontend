@@ -1,6 +1,6 @@
 // Sidebar.tsx
-import { useEffect, useRef } from 'preact/hooks';
-import type { FunctionComponent, ComponentChildren } from 'preact';
+import { useEffect, useRef } from 'react';
+import type { FC as FunctionComponent, ReactNode as ComponentChildren } from 'react';
 
 export type SidebarProps = {
   /** Controls whether the sidebar is open */
@@ -90,7 +90,7 @@ export const Sidebar: FunctionComponent<SidebarProps> = ({
   return (
     <div
       aria-hidden={!isOpen}
-      class={`fixed inset-0 z-50 ${isOpen ? '' : 'pointer-events-none'} ${classNames?.wrapper ?? ''}`}
+      className={`fixed inset-0 z-50 ${isOpen ? '' : 'pointer-events-none'} ${classNames?.wrapper ?? ''}`}
     >
       {/* Backdrop */}
       <button
@@ -99,7 +99,7 @@ export const Sidebar: FunctionComponent<SidebarProps> = ({
         onClick={() => {
           if (!disableBackdropClose) onClose();
         }}
-        class={[
+        className={[
           'absolute inset-0',
           'bg-black/50 transition-opacity duration-300 ease-out',
           isOpen ? 'opacity-100' : 'opacity-0',
@@ -115,7 +115,7 @@ export const Sidebar: FunctionComponent<SidebarProps> = ({
         aria-modal="true"
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
-        class={[
+        className={[
           'absolute inset-y-0 right-0',
           'bg-white dark:bg-neutral-900 shadow-2xl',
           'flex flex-col',
@@ -129,7 +129,7 @@ export const Sidebar: FunctionComponent<SidebarProps> = ({
       >
         {(showCloseButton || classNames?.header) && (
           <div
-            class={[
+            className={[
               'flex items-center justify-between',
               'p-3 border-b border-neutral-200/70 dark:border-neutral-800',
               classNames?.header ?? '',
@@ -142,7 +142,7 @@ export const Sidebar: FunctionComponent<SidebarProps> = ({
                 type="button"
                 aria-label={closeButtonAriaLabel}
                 onClick={onClose}
-                class={[
+                className={[
                   'inline-flex items-center justify-center',
                   'h-9 w-9 rounded-xl',
                   'hover:bg-neutral-100 dark:hover:bg-neutral-800',
@@ -156,18 +156,18 @@ export const Sidebar: FunctionComponent<SidebarProps> = ({
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  class="h-5 w-5"
+                  strokeWidth={2}
+                  className="h-5 w-5"
                   aria-hidden="true"
                 >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6L6 18" />
                 </svg>
               </button>
             )}
           </div>
         )}
 
-        <div class="min-h-0 flex-1 overflow-auto p-4">{children}</div>
+        <div className="min-h-0 flex-1 overflow-auto p-4">{children}</div>
       </div>
     </div>
   );

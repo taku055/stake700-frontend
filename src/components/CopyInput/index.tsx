@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import styles from "./CopyInput.module.scss";
 import { useTranslations } from "@/context/I18nContext";
 

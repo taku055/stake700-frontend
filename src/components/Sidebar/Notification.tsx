@@ -1,4 +1,4 @@
-import { FunctionComponent } from "preact";
+import type { FC as FunctionComponent } from "react";
 
 export const Notification: FunctionComponent = () => {
   return (

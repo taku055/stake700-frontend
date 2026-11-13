@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect, useMemo } from "preact/hooks";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { Modal, ModalContent, ModalBody, Input } from "@/components/common";
 import { toast } from "@/helpers/toast";
 import { validateEmail } from "@/helpers/validateEmail";
 import { apiForgotPassword } from "@/api/account/apiForgotPassword";
-import { Settings } from "lucide-preact";
+import { Settings } from "lucide-react";
 import { useTranslations } from "@/context/I18nContext";
 import { Button } from "@heroui/react";
 import { ASSET_BASE_URL } from "@/config/constants";
@@ -53,7 +53,7 @@ export default function ForgotPasswordDialog({
       } catch (ex) {
         setError(
           (t("EmailCheckError") +
-            " " + import.meta.env.VITE_SITE_NAME) as string
+            " " + process.env.NEXT_PUBLIC_SITE_NAME) as string
         );
         setMsg("");
       }

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from "preact/hooks";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { Modal, ModalContent } from "@/components/common";
 import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
 import { useMediaQuery } from "usehooks-ts";

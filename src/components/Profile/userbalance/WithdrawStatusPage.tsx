@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
-import { X, CheckCircle, Clock, AlertCircle } from "lucide-preact";
+import { X, CheckCircle, Clock, AlertCircle } from "lucide-react";
 import { apiCancelLazyWithdraw } from "@/api/wallet/apiCancelLazyWithdraw";
 import { allChainsMap } from "@/config/chains";
 import { addressLink } from "@/helpers/addressLink";
@@ -166,7 +166,9 @@ const WithdrawStatusPage = () => {
 
                   {/* Paid Time */}
                   <div className="text-[var(--foreground)] text-[13px]">
-                    {item.createdAt}
+                    {item.createdAt instanceof Date
+                      ? item.createdAt.toLocaleString()
+                      : item.createdAt}
                   </div>
 
                   {/* System */}

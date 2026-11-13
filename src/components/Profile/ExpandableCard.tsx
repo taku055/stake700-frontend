@@ -1,17 +1,17 @@
-import { useState } from "preact/hooks";
-import { ChevronDown, ChevronUp } from "lucide-preact";
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 
 interface ExpandableCardProps {
   title: string;
-  children?: preact.ComponentChildren;
+  children?: React.ReactNode;
   defaultExpanded?: boolean;
   className?: string;
   headerClassName?: string;
   contentClassName?: string;
   showIcon?: boolean;
-  icon?: preact.ComponentChildren;
+  icon?: React.ReactNode;
   onToggle?: (expanded: boolean) => void;
 }
 
@@ -79,7 +79,7 @@ export default ExpandableCard;
 interface ChildTabProps {
   selected?: boolean;
   title: string;
-  icon?: preact.ComponentChildren;
+  icon?: React.ReactNode;
   onClick?: () => void;
 }
 
@@ -96,7 +96,7 @@ const ChildTab = ({ selected = false, title, icon, onClick }: ChildTabProps) => 
   
   return (
     <button 
-      class={`flex flex-row items-center gap-2 ${borderClass} cursor-pointer ${selected ? `${gradientClass} ${borderColorClass} text-white` : `${borderColorClass} text-[#FFFFFF89] hover:text-[#FFFFFF] transition-all duration-300`} ${paddingClass} py-2`} 
+      className={`flex flex-row items-center gap-2 ${borderClass} cursor-pointer ${selected ? `${gradientClass} ${borderColorClass} text-white` : `${borderColorClass} text-[#FFFFFF89] hover:text-[#FFFFFF] transition-all duration-300`} ${paddingClass} py-2`} 
       onClick={onClick}
     >
       {icon && <div className="flex items-center">{icon}</div>}

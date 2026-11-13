@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 
 interface SupportMessageInputProps {
   onSendMessage: (message: string) => void;
@@ -7,7 +7,7 @@ interface SupportMessageInputProps {
 export default function SupportMessageInput({ onSendMessage }: SupportMessageInputProps) {
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (message.trim()) {
       onSendMessage(message.trim());

@@ -1,8 +1,8 @@
 import { Button, Input } from "@heroui/react";
-import { useEffect, useRef, useCallback, useState, useMemo } from "preact/hooks";
+import { useEffect, useRef, useCallback, useState, useMemo } from "react";
 import { tToken } from "@/types/tToken";
 import { apiGetTokenList } from "@/api/common/apiGetTokenList";
-import { ChevronDown, ChevronLeft, Copy, RefreshCw, Search } from "lucide-preact";
+import { ChevronDown, ChevronLeft, Copy, RefreshCw, Search } from "lucide-react";
 import { userState } from "@/state/userState";
 import { chainNames } from "@/config/chains";
 import { apiSetWantBonus } from "@/api/account/apiSetWantBonus";
@@ -11,7 +11,6 @@ import { visaOpenedState } from "@/state/visaOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
 import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID, ASSET_BASE_URL } from "@/config/constants";
-import { effect } from "@preact/signals";
 import { toast } from "@/helpers/toast";
 import { QRCodeSVG } from "qrcode.react";
 import { Modal, ModalContent } from "@/components/common";
@@ -56,27 +55,28 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
     },
   ], [t]);
 
+  const userId = userState.value?.id;
+
   useEffect(() => {
-    const dispose = effect(() => {
-      (async () => {
-        if (userState.value?.id) {
-          try {
-            setLoadingInfo(true);
-            const tokens1 = await apiGetTokenList(0);
-            setTokens(tokens1);
-          } catch (ex) {
-            console.error(ex);
-          } finally {
-            setLoadingInfo(false);
-          }
-        }
-      })();
-    });
+    if (!isOpen || !userId) return;
+    let cancelled = false;
+
+    (async () => {
+      try {
+        setLoadingInfo(true);
+        const tokens1 = await apiGetTokenList(0);
+        if (!cancelled) setTokens(tokens1);
+      } catch {
+        if (!cancelled) setTokens([]);
+      } finally {
+        if (!cancelled) setLoadingInfo(false);
+      }
+    })();
 
     return () => {
-      dispose();
+      cancelled = true;
     };
-  }, []);
+  }, [isOpen, userId]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

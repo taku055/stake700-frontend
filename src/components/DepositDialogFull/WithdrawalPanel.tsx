@@ -4,7 +4,7 @@ import {
   useState,
   useMemo,
   useCallback,
-} from "preact/hooks";
+} from "react";
 import { userState } from "@/state/userState";
 import { toast } from "@/helpers/toast";
 import { CryptoCurrencySelects } from "./CryptoCurrencySelects";
@@ -174,89 +174,85 @@ export default function WithdrawalPanel() {
   ]);
 
   const selectedToken = tokens.find((tok) => tok.id === selectedTokenId);
+  const cryptoAmount =
+    selectedTokenId !== -1 && tokens.length > 0
+      ? (
+          +amount / (selectedToken?.usdPrice || 1)
+        ).toFixed(5)
+      : "0.00000";
+  const available =
+    balanceState.value?.[currencyState.value?.code]?.cash?.balance ?? 0;
 
   return loadingInfo ? (
-    <div className="w-full h-full flex items-center justify-center gap-2 p-2 md:p-6 md:gap-6 md:pt-15">
+    <div className="flex h-full w-full items-center justify-center p-6">
       <Loader />
     </div>
   ) : (
-    <div>
-      <div className="text-center text-sm text-gray-400 my-2 md:mb-10">
-        {t("address_confirm")}
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 p-2 md:p-6 overflow-y-auto">
-        <div className="md:col-span-3 space-y-4">
-          <h3 className="text-md font-semibold text-white">
-            {t("Crypto Withdrawals")}
-          </h3>
-          <CryptoCurrencySelects
-            tokenGroups={tokenGroups}
-            sortedSymbols={sortedSymbols}
-            selectedCryptoType={selectedCryptoType}
-            selectedBlockchain={selectedBlockchain}
-            onCryptoChange={onCryptoChange}
-            onBlockchainChange={onBlockchainChange}
-            currencyLabel={t("Currency")}
-            blockchainLabel={t("BLOCKCHAIN")}
-          />
+    <div className="flex flex-col gap-4 py-4">
+      <div>
+        <div className="flex items-end justify-between gap-3">
+          <label className="text-sm text-white">{t("WITHDRAW AMOUNT")}</label>
+          <span className="text-xs text-[#b1bad3]">
+            {DEFAULT_CURRENCY_SYMBOL} {Number(available).toFixed(2)}
+          </span>
         </div>
-
-        <div className="md:col-span-2 bg-[#21211C] border-1 border-[#515778] rounded-xl p-6 space-y-6">
-          <div>
-            <label className="text-sm">{t("WITHDRAW AMOUNT")}</label>
-            <Input
-              type="number"
-              value={amount}
-              onChange={(e: any) => setAmount(e.target.value)}
-              classNames={{
-                inputWrapper: "bg-[#D9D9D91C] border border-[#515151]",
-                input: "text-white",
-              }}
-              className="mt-[4px]"
-              startContent={
-                <span className="text-gray-400">{DEFAULT_CURRENCY_SYMBOL}</span>
-              }
-            />
-            <p className="text-xs text-gray-400 mt-1">
-              {t("WITHDRAW AMOUNT")}:
-              {selectedTokenId !== -1 && tokens.length > 0
-                ? `${(
-                    +amount /
-                    (tokens.find((tok) => tok.id === selectedTokenId)?.usdPrice ||
-                      1)
-                  ).toFixed(5)} ${selectedCryptoType}`
-                : "0.00000"}
-              <br />
-              {t("Minimum Withdraw")}:
-              {selectedToken?.minimumLimit ?? 0} {selectedCryptoType || ""}
-              <br />
-              {t("Network Fee")}: {t("Unknown")}
-            </p>
-          </div>
-
-          <div>
-            <label className="text-sm">{t("DESTINATION WALLET ADDRESS")}</label>
-            <Input
-              placeholder={t("wallet_placeholder")}
-              value={wallet}
-              onChange={(e: any) => setWallet(e.target.value)}
-              classNames={{
-                inputWrapper: "bg-[#D9D9D91C] border border-[#515151]",
-                input: "text-white",
-              }}
-              className="mt-[4px]"
-            />
-          </div>
-
-          <Button
-            className="w-full justify-center bg-[var(--green-color)] text-white font-medium rounded-lg"
-            isLoading={loading}
-            onPress={onRequest}
-          >
-            {t("Initiate Withdrawal")}
-          </Button>
-        </div>
+        <Input
+          type="number"
+          value={amount}
+          onChange={(e: any) => setAmount(e.target.value)}
+          classNames={{
+            inputWrapper:
+              "mt-1 h-14 bg-[#0f212e] border border-[#2f4553] data-[hover=true]:bg-[#0f212e]",
+            input: "text-lg text-white",
+          }}
+          startContent={
+            <span className="text-[#b1bad3]">{DEFAULT_CURRENCY_SYMBOL}</span>
+          }
+        />
+        <p className="mt-2 text-xs text-[#b1bad3]">
+          {cryptoAmount} {selectedCryptoType || ""}
+          {" · "}
+          {t("Minimum Withdraw")}: {selectedToken?.minimumLimit ?? 0}{" "}
+          {selectedCryptoType || ""}
+          {" · "}
+          {t("Network Fee")}: {t("Unknown")}
+        </p>
       </div>
+
+      <CryptoCurrencySelects
+        tokenGroups={tokenGroups}
+        sortedSymbols={sortedSymbols}
+        selectedCryptoType={selectedCryptoType}
+        selectedBlockchain={selectedBlockchain}
+        onCryptoChange={onCryptoChange}
+        onBlockchainChange={onBlockchainChange}
+        currencyLabel={t("Currency")}
+        blockchainLabel={t("BLOCKCHAIN")}
+      />
+
+      <div>
+        <label className="text-sm text-white">
+          {t("DESTINATION WALLET ADDRESS")}
+        </label>
+        <Input
+          placeholder={t("wallet_placeholder")}
+          value={wallet}
+          onChange={(e: any) => setWallet(e.target.value)}
+          classNames={{
+            inputWrapper:
+              "mt-1 bg-[#0f212e] border border-[#2f4553] data-[hover=true]:bg-[#0f212e]",
+            input: "font-mono text-sm text-white",
+          }}
+        />
+      </div>
+
+      <Button
+        className="h-11 w-full justify-center rounded-md bg-[#1475e1] text-sm font-semibold text-white"
+        isLoading={loading}
+        onPress={onRequest}
+      >
+        {t("Initiate Withdrawal")}
+      </Button>
     </div>
   );
 }

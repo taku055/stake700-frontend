@@ -1,7 +1,7 @@
 // i18n.ts
 import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
-import { ComponentChildren, createContext, FunctionalComponent } from "preact";
-import { useContext, useEffect, useMemo, useState } from "preact/hooks";
+import { type ReactNode as ComponentChildren, createContext, type FC as FunctionalComponent } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 
 interface I18nContexttProps {
   messages: Record<string, any>;

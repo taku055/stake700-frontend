@@ -1,4 +1,4 @@
-import { useLocation } from "preact-iso";
+import { useLocation } from "@/router";
 
 export function useSelectedTab() {
   const location = useLocation();

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "react";
 import EmblaCarousel, { EmblaCarouselType } from "embla-carousel";
 import "./embla.css";
 import Autoplay from "embla-carousel-autoplay";
@@ -55,12 +55,12 @@ export const EmblaBanner = () => {
   }, [isRTL, isMobile]);
 
   return (
-    <div class="embla">
-      <div class="embla__viewport" ref={viewportRef}>
-        <div class="embla__container">
+    <div className="embla">
+      <div className="embla__viewport" ref={viewportRef}>
+        <div className="embla__container">
           {slides.map((slide) => {
             return (
-              <div key={slide.id} class="embla__slide relative">
+              <div key={slide.id} className="embla__slide relative">
                 <img
                   src={slide.img}
                   className="w-full h-full object-cover [object-position:right_bottom]"
@@ -71,7 +71,7 @@ export const EmblaBanner = () => {
           })}
         </div>
       </div>
-      <div class="flex justify-center items-center gap-[6px] ">
+      <div className="flex justify-center items-center gap-[6px] ">
         {slides.map((_, idx) => (
           <button
             key={idx}

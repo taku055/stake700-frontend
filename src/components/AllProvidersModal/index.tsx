@@ -1,4 +1,4 @@
-import { useMemo, useState } from "preact/hooks";
+import { useMemo, useState } from "react";
 import { providerState } from "@/state/providerState";
 import {
   Modal,
@@ -7,7 +7,7 @@ import {
   ModalHeader,
   Input,
 } from "@heroui/react";
-import { Search } from "lucide-preact";
+import { Search } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
 

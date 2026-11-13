@@ -17,7 +17,7 @@ import { apiSetSmUserCursor } from "@/api/live_support/apiSetSmUserCursor";
 import { tLiveSupportMessage } from "@/types/tLiveSupportMessage";
 import useSocketEvent from "@/hooks/useSocketEvent";
 import { loginOpenedState } from "@/state/loginOpenedState";
-import { useLocation } from "preact-iso";
+import { useLocation } from "@/router";
 
 type SupportSocketPayload = {
   tempId: number;
@@ -354,7 +354,7 @@ export default function LiveSupport() {
       {smUnseenCount > 0 && (
         <div className={styles.badge}>{smUnseenCount}</div>
       )}
-      <img src="/images/icons/icons/live-support.svg" alt="Live Support" />
+      <img src="/images/sidebar/support.webp" alt="Live Support" />
     </motion.button>
   );
 
@@ -373,7 +373,7 @@ export default function LiveSupport() {
             <div className={styles.header}>
               <div className={styles.headerMeta}>
                 <img
-                  src="/images/support-avatar.svg"
+                  src="/images/sidebar/support.webp"
                   alt="Support"
                   className={styles.headerAvatar}
                 />
@@ -398,7 +398,7 @@ export default function LiveSupport() {
             <div className={styles.messages} ref={divRef}>
               {liveSupportMessages.length === 0 ? (
                 <div className={styles.emptyState}>
-                  <img src="/images/support-avatar.svg" alt="" />
+                  <img src="/images/sidebar/support.webp" alt="" />
                   <h3>How can we help?</h3>
                   <p>
                     Send a message, photo, voice note, or screen recording. Paste

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "preact/hooks";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { Button } from "@heroui/react";
 import axios from "axios";
 import { toast } from "@/helpers/toast";
@@ -7,7 +7,7 @@ import { userState } from "@/state/userState";
 import { apiLogin } from "@/api/account/apiLogin";
 import { setAxiosAuthToken } from "@/api/instance";
 import { useTranslations } from "@/context/I18nContext";
-import { useLocation } from "preact-iso";
+import { useLocation } from "@/router";
 import {
   Modal,
   ModalContent,
@@ -17,9 +17,9 @@ import {
 } from "@/components/common";
 import { Select, SelectItem } from "@heroui/react";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
-import { Eye, EyeOff } from "lucide-preact";
+import { Eye, EyeOff } from "lucide-react";
 import { registerOpenedState, signupStep1OpenedState } from "@/state/registerOpenedState";
-import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants.ts";
+import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
 import { useMediaQuery } from "usehooks-ts";
 import { setViewportCss } from "@/helpers/setViewportCss";
 
@@ -128,7 +128,7 @@ export default function LoginDialog({ isOpen, onClose }: ILoginComponentProps) {
           <img
             src={`${ASSET_BASE_URL}/logo.png`}
             className="h-[36px] md:h-[36px] md:max-w-[180px]"
-            alt={import.meta.env.VITE_SITE_NAME as string}
+            alt={process.env.NEXT_PUBLIC_SITE_NAME as string}
           />
         </ModalHeader>
         <ModalBody className="flex flex-col p-[16px]">

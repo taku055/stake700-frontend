@@ -7,7 +7,7 @@ import {
   useMemo,
   useRef,
   useState,
-} from "preact/hooks";
+} from "react";
 import { FaStar } from "react-icons/fa";
 import { favoritesGameState } from "@/state/favoritesGameState";
 import { apiAddFavoritesGame } from "@/api/favorites/apiAddFavoritesGame";

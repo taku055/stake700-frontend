@@ -1,8 +1,8 @@
 import IconSlots from "./slots.svg?component";
 import IconMybets from "./mybets.svg?component";
-import { ChartArea, User } from "lucide-preact";
-import { Heart } from "lucide-preact";
-import { ComponentChild } from "preact";
+import { ChartArea, User } from "lucide-react";
+import { Heart } from "lucide-react";
+import type { ReactNode as ComponentChild } from "react";
 
 export const navbarItems: {
   icon: ComponentChild;

@@ -1,7 +1,7 @@
-import { JSX } from "preact/jsx-runtime";
-import { useId } from "preact/hooks";
+import type { JSX } from "react";
+import { useId } from "react";
 import { clsx } from "clsx";
-import { forwardRef } from "preact/compat";
+import { forwardRef } from "react";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 
@@ -17,7 +17,7 @@ type Props = Omit<JSX.IntrinsicElements["input"], "class" | "onChange"> & {
   label?: string;
   value?: string | null;
   defaultValue?: string;
-  onChange?: (e: JSX.TargetedEvent<HTMLInputElement, Event>) => void;
+  onChange?: (e: React.SyntheticEvent<HTMLInputElement, Event>) => void;
   helperText?: string;
   error?: boolean | string;
   variant?: "bordered" | "flat";
@@ -60,10 +60,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(
       : "";
 
     return (
-      <div class={clsx("w-full", classNames?.container)} dir={isRTL ? "rtl" : "ltr"}>
-        <label htmlFor={inputId} class="block">
+      <div className={clsx("w-full", classNames?.container)} dir={isRTL ? "rtl" : "ltr"}>
+        <label htmlFor={inputId} className="block">
           <div
-            class={clsx(
+            className={clsx(
               "relative flex items-center",
               borderBase,
               "bg-[#fff1] border-none rounded-sm!",
@@ -76,7 +76,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           >
             {/* Left slot (icon) */}
             {startContent && (
-              <div class={clsx("shrink-0 pointer-events-none", isRTL ? "pr-3 pl-1" : "pl-3 pr-1")}>
+              <div className={clsx("shrink-0 pointer-events-none", isRTL ? "pr-3 pl-1" : "pl-3 pr-1")}>
                 {startContent}
               </div>
             )}
@@ -93,7 +93,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               aria-invalid={!!error || undefined}
               aria-describedby={describedBy}
               dir={isRTL ? "rtl" : "ltr"}
-              class={clsx(
+              className={clsx(
                 "peer w-full outline-none",
                 "px-3",
                 "text-white placeholder:text-white/60",
@@ -106,7 +106,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 
             {/* The floating label */}
             {/* <span
-              class={clsx(
+              className={clsx(
                 "pointer-events-none absolute",
                 isRTL ? "right-3" : "left-3",
                 // Base state = floated (top, small). When input is empty, the
@@ -128,7 +128,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               <button
                 type="button"
                 tabIndex={-1}
-                class={clsx("shrink-0", isRTL ? "pl-3 pr-1" : "pr-3 pl-1")}
+                className={clsx("shrink-0", isRTL ? "pl-3 pr-1" : "pr-3 pl-1")}
                 onMouseDown={(e) => e.preventDefault()}
               >
                 {endContent}
@@ -140,7 +140,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
         {(helperText || typeof error === "string") && (
           <p
             id={describedBy}
-            class={clsx(
+            className={clsx(
               "mt-1 text-xs",
               typeof error === "string" || error
                 ? "text-red-400"

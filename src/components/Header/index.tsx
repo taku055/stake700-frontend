@@ -1,47 +1,32 @@
 import { userState } from "@/state/userState";
-import {
-  ASSET_BASE_URL,
-  RTL_LANGUAGES,
-} from "@/config/constants";
+import { RTL_LANGUAGES } from "@/config/constants";
 import { Button } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { registerOpenedState } from "@/state/registerOpenedState";
 import WalletBox from "./WalletBox";
 import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
-import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { SearchWidgetHeader } from "./SearchWidget";
 import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 import LocaleSelection from "../LocaleSelection";
-import { ChevronLeft, Dices, Heart, Search, Trophy } from "lucide-preact";
+import { ChevronLeft, Search } from "lucide-react";
 import {
   navigationSidebarExpandedState,
 } from "@/state/navigationSidebarState";
 import { Link } from "@/components/common";
 import ProfileMenu from "./ProfileMenu";
-import { useLocation } from "preact-iso";
 
 export default function Header() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
   const t = useTranslations("Header");
-  const { modifyHref } = useAffiliateNavigation();
-  const location = useLocation();
-  const path = location.path || "/";
-  const isSports = path.startsWith("/sports");
-
-  const productTabClass = (active: boolean) =>
-    `flex items-center gap-2 h-9 px-4 rounded-full text-sm font-semibold transition-colors ${
-      active ? "bg-[#2f4553] text-white" : "text-[#b1bad3] hover:text-white"
-    }`;
-
+  const tSearch = useTranslations("HomePage");
   return (
-    <header className="relative z-[200] bg-[var(--header-background)] w-full mx-auto h-[60px] flex items-center justify-center border-b border-[#213743]">
-      <div className="flex flex-col items-center px-3 w-full mx-auto">
-        <div className="flex flex-row items-center justify-between w-full h-[60px] gap-2">
-          <div className="flex flex-row items-center gap-3 min-w-0">
+    <header className="relative z-[200] h-[80px] w-full shrink-0 border-b border-[#2f4553] bg-[#0f212e]">
+      <div className="flex h-full items-center gap-3 px-3 md:px-5">
+        <div className="flex min-w-0 items-center gap-3">
             <button
               type="button"
-              className="w-10 h-10 hidden sm:flex! items-center justify-center rounded-md text-[#b1bad3] hover:bg-[#2f4553] hover:text-white transition-colors shrink-0"
+              className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#2f4553] text-[#b1bad3] hover:bg-[#213743] hover:text-white sm:flex!"
               aria-label="Toggle sidebar"
               onClick={() => {
                 navigationSidebarExpandedState.value = !navigationSidebarExpandedState.value;
@@ -54,62 +39,58 @@ export default function Header() {
             </button>
             <Link href="/" className="shrink-0">
               <img
-                src={`${ASSET_BASE_URL}/logo.png`}
+                src="/images/brand/logo.png"
                 alt="Logo"
-                className="h-[32px] object-contain"
+                className="h-16 w-auto object-contain"
               />
             </Link>
           </div>
 
-          <nav className="absolute left-1/2 -translate-x-1/2 hidden md:flex! items-center h-11 px-1 rounded-full bg-[#0f212e]">
-            <Link href="/?page=lobby-casino" className={productTabClass(!isSports)}>
-              <Dices size={16} />
-              {t("Casino")}
-            </Link>
-            <Link href="/sports" className={productTabClass(isSports)}>
-              <Trophy size={16} />
-              {t("Sports")}
-            </Link>
+          <nav className="mx-auto hidden items-center gap-1 lg:flex!">
+            {[
+              { href: "/?page=lobby-casino", label: t("Casino"), icon: "/images/sidebar/casino.webp" },
+              { href: "/?page=lobby-live-casino", label: t("Live Casino"), icon: "/images/sidebar/live-casino.webp" },
+              { href: "/promotions", label: t("Promotions"), icon: "/images/sidebar/promotions.webp" },
+              { href: "/vip", label: t("VIP"), icon: "/images/sidebar/vip.webp" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                scrollToTop
+                preventDefaultOnClick={false}
+                className="flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-[#b1bad3] hover:bg-[#213743] hover:text-white"
+              >
+                <img src={item.icon} alt="" className="h-6 w-6 object-contain" />
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
-          <div
-            className={`${isRTL ? "mr-auto" : "ml-auto"
-              } text-[14px] leading-[20px] flex flex-row items-center gap-2`}
-          >
-            <div className="flex flex-row items-center gap-2 w-[60px]">
-              <LocaleSelection headerMode={true} />
-            </div>
-            <div className="flex flex-row items-center">
-              <div>
-                <button
-                  type="button"
-                  className="flex md:w-[44px] md:h-[44px] w-[32px] h-[32px] items-center justify-center"
-                  aria-label={t("Search")}
-                  onClick={() =>
-                  (searchWidgetStateHeader.value =
-                    !searchWidgetStateHeader.value)
-                  }
-                >
-                  <Search aria-hidden="true" className="w-[20px] h-[20px]" />
-                </button>
-                <SearchWidgetHeader />
-              </div>
-            </div>
-            {userState.value?.id && (
+          <div className="ms-auto flex flex-row items-center gap-2 text-[14px] leading-[20px] lg:ms-0">
+            <LocaleSelection headerMode={true} />
+            <div className="relative flex items-center">
               <button
                 type="button"
-                className="flex md:w-[44px] md:h-[44px] w-[32px] h-[32px] items-center justify-center"
-                aria-label={t("Favorites")}
-                onClick={() => location.route("/favorites")}
+                className="flex h-10 items-center overflow-hidden rounded-md border border-[#2f4553] bg-[#1a2c38] text-sm font-semibold text-white"
+                aria-label={tSearch("Search")}
+                onMouseDown={(event) => event.stopPropagation()}
+                onClick={() =>
+                (searchWidgetStateHeader.value =
+                  !searchWidgetStateHeader.value)
+                }
               >
-                <Heart aria-hidden="true" className="w-[20px] h-[20px]" />
+                <span className="grid h-10 w-10 place-items-center bg-[#1475e1]">
+                  <Search aria-hidden="true" className="h-4 w-4" />
+                </span>
+                <span className="px-3">{tSearch("Search")}</span>
               </button>
-            )}
+              <SearchWidgetHeader />
+            </div>
             {!userState.value?.id ? (
               <>
                 <Button
                   variant="light"
-                  className="btn bg-[#2f4553]! text-white! text-sm font-semibold min-w-0 w-auto h-10 rounded-md px-4"
+                  className="btn bg-transparent! text-sm font-semibold text-[#b1bad3]! min-w-0 w-auto h-9 rounded-md px-2"
                   size="sm"
                   onPress={() => (loginOpenedState.value = true)}
                 >
@@ -117,7 +98,7 @@ export default function Header() {
                 </Button>
                 <Button
                   variant="light"
-                  className="btn text-sm font-semibold min-w-0 w-auto h-10 bg-[#1475e1]! hover:bg-[#0f62c2]! px-4 text-white rounded-md"
+                  className="btn text-sm font-semibold min-w-0 w-auto h-9 bg-[#1475e1]! hover:bg-[#0f62c2]! px-4 text-white rounded-md"
                   size="sm"
                   onPress={() => (registerOpenedState.value = true)}
                 >
@@ -131,7 +112,6 @@ export default function Header() {
               </div>
             )}
           </div>
-        </div>
       </div>
     </header>
   );

@@ -1,4 +1,4 @@
-import { signal } from "@preact/signals";
+import { signal } from "@preact/signals-react";
 
 export interface ISidebarItem {
   name: string;
@@ -25,17 +25,17 @@ export const STATIC_CATEGORIES: ISidebarItem[] = [
   {
     name: "Roulette",
     path: "/casino/live-casino?custom=1&category=rouletteglobal",
-    icon: "/images/category_logo/roulette.png",
+    icon: "/images/category_logo/roulette.webp",
   },
   {
     name: "Blackjack",
     path: "/casino/live-casino?custom=1&category=blackjacks",
-    icon: "/images/category_logo/blackjack.png",
+    icon: "/images/category_logo/blackjack.webp",
   },
   {
     name: "Baccarat",
     path: "/casino/live-casino?custom=1&category=baccaratglobal",
-    icon: "/images/category_logo/baccarat.svg",
+    icon: "/images/category_logo/baccarat.webp",
   },
   {
     name: "Video Poker",
@@ -45,7 +45,7 @@ export const STATIC_CATEGORIES: ISidebarItem[] = [
   {
     name: "Table Games",
     path: "/casino/live-casino?custom=1&category=tablegames",
-    icon: "/images/sidebar/table-games.svg",
+    icon: "/images/sidebar/table-games.webp",
   },
   {
     name: "Top Slots",

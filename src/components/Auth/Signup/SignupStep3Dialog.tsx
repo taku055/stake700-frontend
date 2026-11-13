@@ -1,4 +1,4 @@
-import { useCallback, useState } from "preact/hooks";
+import { useCallback, useState } from "react";
 import { Modal, ModalContent, ModalBody } from "@/components/common";
 import { Button, Checkbox } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
@@ -123,7 +123,7 @@ export default function SignupStep3Dialog({
             <img
               src={`${ASSET_BASE_URL}/logo.png`}
               className="h-[36px] md:h-[36px] md:max-w-[180px]"
-              alt={import.meta.env.VITE_SITE_NAME as string}
+              alt={process.env.NEXT_PUBLIC_SITE_NAME as string}
             />
             {/* Progress Bar */}
             <div className="flex flex-col w-full items-center gap-[8px]">

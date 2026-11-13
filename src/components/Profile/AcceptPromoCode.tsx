@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 // import { apiApplyPromoCode } from "@/api/promotion/apiApplyPromoCode";
 

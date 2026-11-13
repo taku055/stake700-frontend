@@ -1,5 +1,5 @@
-import { useState } from "preact/hooks";
-import { BanknoteArrowDown, Eye, EyeOff, Wallet } from "lucide-preact";
+import { useState } from "react";
+import { BanknoteArrowDown, Eye, EyeOff, Wallet } from "lucide-react";
 import { useTranslations } from "@/context/I18nContext";
 import { balanceState } from "@/state/balanceState";
 import { currencyState } from "@/state/currencyState";

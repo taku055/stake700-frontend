@@ -11,7 +11,7 @@ export type tCategoryCountParam = {
 
 export const apiGetCategoryCount = async (params: tCategoryCountParam) => {
   const response = await instance.post<tCategoryCountParam>(
-    `${import.meta.env.VITE_BACKEND_URL}/v1/game/category-count`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/game/category-count`,
     params
   );
   return response.data;

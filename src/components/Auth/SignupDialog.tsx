@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "preact/hooks";
+import { useState, useCallback, useEffect, useRef } from "react";
 import axios from "axios";
 import { toast } from "@/helpers/toast";
 import { accessTokenState } from "@/state/accessTokenState";
@@ -17,7 +17,7 @@ import {
 } from "@/components/common";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { welcomeDialogOpenedState } from "@/state/registerOpenedState";
-import { Eye, EyeOff } from "lucide-preact";
+import { Eye, EyeOff } from "lucide-react";
 import {
   parseDate,
   CalendarDate,
@@ -183,7 +183,7 @@ export default function SignupDialog({
           <img
             src={`${ASSET_BASE_URL}/logo.png`}
             className="h-[36px] md:h-[36px] md:max-w-[180px]"
-            alt={import.meta.env.VITE_SITE_NAME as string}
+            alt={process.env.NEXT_PUBLIC_SITE_NAME as string}
           />
         </ModalHeader>
         <ModalBody className="flex flex-col p-[16px] h-[656px]">

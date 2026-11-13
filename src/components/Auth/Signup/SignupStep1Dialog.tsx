@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import { Modal, ModalContent, ModalBody, ModalHeader } from "@/components/common";
 import { Button, Select, SelectItem } from "@heroui/react";
 import { localeState } from "@/state/localeState";
@@ -48,7 +48,7 @@ export default function SignupStep1Dialog({
             <img
               src={`${ASSET_BASE_URL}/logo.png`}
               className="h-[36px] md:h-[36px] md:max-w-[180px]"
-              alt={import.meta.env.VITE_SITE_NAME as string}
+              alt={process.env.NEXT_PUBLIC_SITE_NAME as string}
             />
             {/* Progress Bar */}
             <div className="flex flex-col w-full items-center gap-[8px]">

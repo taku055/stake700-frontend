@@ -1,4 +1,4 @@
-import { FunctionComponent } from "preact";
+import type { FC as FunctionComponent } from "react";
 import LocaleSelection from "../LocaleSelection";
 import { useTranslations } from "@/context/I18nContext";
 

@@ -1,5 +1,5 @@
-import { CircleAlert } from "lucide-preact";
-import { useState } from "preact/hooks";
+import { CircleAlert } from "lucide-react";
+import { useState } from "react";
 import { Input, Switch } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";
 

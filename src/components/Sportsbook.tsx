@@ -9,7 +9,7 @@ import { currencyState } from "@/state/currencyState";
 import { localeState } from "@/state/localeState";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { userState } from "@/state/userState";
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "react";
 
 const waitForSportsbookSDK = (): Promise<void> => {
   if (checkTurbostarsSDKLoaded()) {

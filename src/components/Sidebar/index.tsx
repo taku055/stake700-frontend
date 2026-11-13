@@ -1,6 +1,6 @@
 import { Sidebar } from "@/components/common";
 import { sidebarExpandedState } from "@/state/sidebarExpandedState";
-import { ComponentChildren } from "preact";
+import type { ReactNode as ComponentChildren } from "react";
 import { Favorite } from "./Favorite";
 import { LiveSupport } from "./LiveSupport";
 import { Setting } from "./Setting";

@@ -3,36 +3,35 @@ import { chainNames, getChainIconUrl } from "@/config/chains";
 import type { tToken } from "@/types/tToken";
 
 const SELECT_CLASSNAMES = {
-  base: "max-w-md",
+  base: "w-full",
   trigger:
-    "rounded-[8px]! bg-white! border border-neutral-200 min-h-[52px] h-auto py-1.5 data-[hover=true]:bg-neutral-50!",
-  value: "text-black! text-sm font-medium gap-2",
+    "rounded-md! bg-[#0f212e]! border border-[#2f4553] min-h-[52px] h-auto py-1.5 data-[hover=true]:bg-[#213743]!",
+  value: "text-white! text-sm font-medium gap-2",
   label:
-    "text-neutral-500! group-data-[filled=true]:text-neutral-700! font-normal text-xs",
-  listboxWrapper: "max-h-[280px] !bg-white bg-white",
-  listbox: "!bg-white bg-white p-0",
+    "text-[#b1bad3]! group-data-[filled=true]:text-[#b1bad3]! font-normal text-xs",
+  listboxWrapper: "max-h-[280px] !bg-[#0f212e] bg-[#0f212e]",
+  listbox: "!bg-[#0f212e] bg-[#0f212e] p-0",
   popoverContent:
-    "!bg-white bg-white rounded-[8px] border border-neutral-200 shadow-lg p-0 overflow-hidden",
+    "!bg-[#0f212e] bg-[#0f212e] rounded-md border border-[#2f4553] shadow-lg p-0 overflow-hidden",
 } as const;
 
-/** Light dropdown surface (popover + list + rows) over dark app theme */
 const SELECT_POPOVER_PROPS = {
   shouldCloseOnScroll: false,
   shouldBlockScroll: true,
   classNames: {
     content:
-      "!bg-white bg-white rounded-[8px] border border-neutral-200 shadow-lg p-0 overflow-hidden",
+      "!bg-[#0f212e] bg-[#0f212e] rounded-md border border-[#2f4553] shadow-lg p-0 overflow-hidden",
   },
 } as const;
 
 const SELECT_LISTBOX_PROPS = {
   classNames: {
-    base: "!bg-white bg-white p-0 min-w-[var(--trigger-width)]",
+    base: "!bg-[#0f212e] bg-[#0f212e] p-0 min-w-[var(--trigger-width)]",
   },
   itemClasses: {
     base:
-      "!bg-transparent text-neutral-900 data-[hover=true]:!bg-neutral-100 data-[selectable=true]:focus:!bg-neutral-100 data-[pressed=true]:!bg-neutral-100",
-    title: "text-neutral-900",
+      "!bg-transparent text-white data-[hover=true]:!bg-[#213743] data-[selectable=true]:focus:!bg-[#213743] data-[pressed=true]:!bg-[#213743]",
+    title: "text-white",
   },
 } as const;
 
@@ -71,7 +70,7 @@ export function CryptoCurrencySelects({
     chainNames[selectedBlockchain] ?? `Chain ${selectedBlockchain}`;
 
   return (
-    <div className="flex flex-col gap-4 max-w-md">
+    <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
       <Select
         label={currencyLabel}
         labelPlacement="inside"
@@ -89,7 +88,7 @@ export function CryptoCurrencySelects({
         renderValue={(items) => {
           const sym = (items[0]?.key as string | undefined) ?? selectedCryptoType;
           if (!sym) {
-            return <span className="text-neutral-500">{currencyLabel}</span>;
+            return <span className="text-[#b1bad3]">{currencyLabel}</span>;
           }
           const tok =
             tokenGroups[sym]?.find((t) => t.chainId === selectedBlockchain) ??
@@ -103,9 +102,9 @@ export function CryptoCurrencySelects({
                   className="h-5 w-5 shrink-0 rounded-full object-contain"
                 />
               ) : (
-                <span className="h-5 w-5 shrink-0 rounded-full bg-neutral-200" />
+                <span className="h-5 w-5 shrink-0 rounded-full bg-[#2f4553]" />
               )}
-              <span className="text-black">{sym}</span>
+              <span className="text-white">{sym}</span>
             </div>
           );
         }}
@@ -123,9 +122,9 @@ export function CryptoCurrencySelects({
                     className="h-5 w-5 shrink-0 rounded-full object-contain"
                   />
                 ) : (
-                  <span className="h-5 w-5 shrink-0 rounded-full bg-neutral-200" />
+                  <span className="h-5 w-5 shrink-0 rounded-full bg-[#2f4553]" />
                 )}
-                <span className="font-medium text-neutral-900">{symbol}</span>
+                <span className="font-medium text-white">{symbol}</span>
               </div>
             </SelectItem>
           );
@@ -155,7 +154,7 @@ export function CryptoCurrencySelects({
               alt=""
               className="h-5 w-5 shrink-0 rounded-full object-contain"
             />
-            <span className="text-black">{selectedChainLabel}</span>
+            <span className="text-white">{selectedChainLabel}</span>
           </div>
         )}
       >
@@ -172,7 +171,7 @@ export function CryptoCurrencySelects({
                   alt=""
                   className="h-5 w-5 shrink-0 rounded-full object-contain"
                 />
-                <span className="font-medium text-neutral-900">{label}</span>
+                <span className="font-medium text-white">{label}</span>
               </div>
             </SelectItem>
           );

@@ -1,7 +1,7 @@
 import { Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./PromotionsGroup.module.scss";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import {
   ASSET_BASE_URL,
@@ -11,10 +11,10 @@ import {
 import { Button } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { promotionsData } from "./data";
-import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import PromotionCard from "../PromotionCard";
 import { localeState } from "@/state/localeState";
-import { effect } from "@preact/signals";
+import { effect } from "@preact/signals-react";
 
 export default function PromotionsGroup() {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);

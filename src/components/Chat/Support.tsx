@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "react";
 import { ChatIcon } from "./ChatIcon";
 import styles from "./Chat.module.scss";
 import { chatExpandedState } from "@/state/chatExpandedState";

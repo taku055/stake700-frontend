@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import { Button } from "@heroui/react";
 import { Switch } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";

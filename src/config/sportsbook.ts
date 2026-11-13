@@ -3,19 +3,19 @@
 
 export const SPORTSBOOK_CONFIG = {
   // Your personal sportsbook URL
-  HOST: import.meta.env.VITE_SPORTSBOOK_URL || "",
+  HOST: process.env.NEXT_PUBLIC_SPORTSBOOK_URL || "",
 
   // Partner ID provided by the account manager
-  PARTNER_ID: import.meta.env.VITE_SPORTSBOOK_PARTNER_ID || "",
+  PARTNER_ID: process.env.NEXT_PUBLIC_SPORTSBOOK_PARTNER_ID || "",
 
   // Sub-partner ID (optional)
-  SUB_PARTNER_ID: import.meta.env.VITE_SPORTSBOOK_SUB_PARTNER_ID || "",
+  SUB_PARTNER_ID: process.env.NEXT_PUBLIC_SPORTSBOOK_SUB_PARTNER_ID || "",
 
   // Theme editor data (optional)
-  //THEME_EDITOR_DATA: import.meta.env.VITE_SPORTSBOOK_THEME_DATA || '',
-  THEME_EDITOR_DATA: import.meta.env.VITE_SPORTSBOOK_THEME_DATA || "{}",
+  //THEME_EDITOR_DATA: process.env.NEXT_PUBLIC_SPORTSBOOK_THEME_DATA || '',
+  THEME_EDITOR_DATA: process.env.NEXT_PUBLIC_SPORTSBOOK_THEME_DATA || "{}",
   // Custom styles URL (optional)
-  CUSTOM_STYLES: import.meta.env.VITE_SPORTSBOOK_CUSTOM_STYLES || "",
+  CUSTOM_STYLES: process.env.NEXT_PUBLIC_SPORTSBOOK_CUSTOM_STYLES || "",
 
   // SDK script URL
   get SDK_SCRIPT_URL() {

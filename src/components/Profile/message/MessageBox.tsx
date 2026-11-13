@@ -1,15 +1,15 @@
-import { useState } from "preact/hooks";
-import { ChevronDown, ChevronUp } from "lucide-preact";;
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";;
 
 interface MessageBoxProps {
   title: string;
-  children?: preact.ComponentChildren;
+  children?: React.ReactNode;
   defaultExpanded?: boolean;
   className?: string;
   headerClassName?: string;
   contentClassName?: string;
   showIcon?: boolean;
-  icon?: preact.ComponentChildren;
+  icon?: React.ReactNode;
   onToggle?: (expanded: boolean) => void;
   receivedAt?: string;
 }

@@ -6,8 +6,8 @@ import { currencyState } from "@/state/currencyState";
 import { userState } from "@/state/userState";
 import { Button, Input } from "@heroui/react";
 import axios from "axios";
-import { Eye, EyeOff } from "lucide-preact";
-import { useCallback, useState } from "preact/hooks";
+import { Eye, EyeOff } from "lucide-react";
+import { useCallback, useState } from "react";
 import { tFineraWithdrawMethod } from "@/api/wallet/apiGetPaymentProviders";
 
 export default function FineraWithdraw({
@@ -31,7 +31,7 @@ export default function FineraWithdraw({
   const [success, setSuccess] = useState("");
 
   const handleSubmit = useCallback(
-    async (e: Event) => {
+    async (e: React.FormEvent) => {
       e.preventDefault();
       if (!userState.value?.id) {
         setError(t("Please login to withdraw."));

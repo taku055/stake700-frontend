@@ -1,4 +1,4 @@
-import { ComponentChildren } from "preact";
+import type { ReactNode as ComponentChildren } from "react";
 
 export default function ContentWrapper({
   children,

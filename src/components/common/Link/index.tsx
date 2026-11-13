@@ -1,7 +1,7 @@
-import type { JSX } from "preact/jsx-runtime";
+import type { JSX } from "react";
 import { scrollToTop } from "@/helpers/scrollToTop";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
-import { ComponentChildren } from "preact";
+import type { ReactNode as ComponentChildren } from "react";
 
 type LinkProps = JSX.IntrinsicElements["a"] & {
   scrollToTop?: boolean;
@@ -19,7 +19,7 @@ export const Link = ({
 }: LinkProps) => {
   const { modifyHref } = useAffiliateNavigation();
 
-  const handleClick = (e: JSX.TargetedMouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick && typeof onClick === "function") {
       if (preventDefaultOnClick) {
         e.preventDefault();

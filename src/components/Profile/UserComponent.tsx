@@ -1,6 +1,6 @@
 import { userState } from "@/state/userState";
-import { Check, Copy } from "lucide-preact";
-import { useEffect, useState } from "preact/hooks";
+import { Check, Copy } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 
 const UserComponent = () => {

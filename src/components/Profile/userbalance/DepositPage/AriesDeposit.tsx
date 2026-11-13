@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "react";
 import { Button, Input } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
@@ -42,7 +42,7 @@ const AriesDeposit = ({ bonusId }: AriesDepositProps) => {
   }, [userState.value]);
 
   const handleSubmit = useCallback(
-    async (e: Event) => {
+    async (e: React.FormEvent) => {
       e.preventDefault();
       setError("");
       setIsSubmitting(true);

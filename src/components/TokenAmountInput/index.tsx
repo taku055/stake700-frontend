@@ -1,7 +1,7 @@
-import { useMemo } from "preact/hooks";
+import { useMemo } from "react";
 import styles from "./TokenAmountInput.module.scss";
 import { numberRound } from "@/helpers/numberRound";
-import { JSX } from "preact/jsx-runtime";
+import type { JSX } from "react";
 import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 
 type TokenAmountInputProps = JSX.IntrinsicElements["input"] & {
