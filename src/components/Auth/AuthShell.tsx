@@ -116,7 +116,7 @@ export const AuthField = forwardRef<HTMLInputElement, FieldProps>(
             name={name}
             {...rest}
             onChange={(e) => onChange(e.target.value)}
-            className={`h-11 w-full rounded-lg border border-[var(--background-secondary)] bg-[var(--bar-background-color)] text-[15px] text-white outline-none transition-[border-color,box-shadow] placeholder:text-[var(--background-tertiary)] hover:border-[var(--background-tertiary)] focus:border-[var(--primary-color)] focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--primary-color)_25%,transparent)] ${
+            className={`h-11 w-full rounded-lg border border-[var(--background-secondary)] bg-[var(--bar-background-color)] text-[16px] text-white outline-none transition-[border-color,box-shadow] placeholder:text-[var(--background-tertiary)] hover:border-[var(--background-tertiary)] focus:border-[var(--primary-color)] focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--primary-color)_25%,transparent)] ${
               icon ? "ps-10" : "ps-3.5"
             } ${endContent ? "pe-11" : "pe-3.5"}`}
           />

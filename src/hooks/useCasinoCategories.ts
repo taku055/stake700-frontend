@@ -9,67 +9,67 @@ export interface CategoryItem {
 const STATIC_CATEGORIES: CategoryItem[] = [
   {
     name: "All Slots",
-    path: "/casino/slots",
+    path: "/casino/games",
     icon: "/images/sidebar/all-games.svg",
   },
   {
     name: "Live Casino",
-    path: "/casino/live-casino",
+    path: "/live-casino/games",
     icon: "/images/category_logo/video-poker.svg",
   },
   {
     name: "Roulette",
-    path: "/casino/live-casino?custom=1&category=rouletteglobal",
+    path: "/live-casino/roulette",
     icon: "/images/category_logo/roulette.webp",
   },
   {
     name: "Blackjack",
-    path: "/casino/live-casino?custom=1&category=blackjacks",
+    path: "/live-casino/blackjack",
     icon: "/images/category_logo/blackjack.webp",
   },
   {
     name: "Baccarat",
-    path: "/casino/live-casino?custom=1&category=baccaratglobal",
+    path: "/live-casino/baccarat",
     icon: "/images/category_logo/baccarat.webp",
   },
   {
     name: "Video Poker",
-    path: "/casino/live-casino?custom=1&category=videopoker",
+    path: "/live-casino/video-poker",
     icon: "/images/category_logo/video-poker.svg",
   },
   {
     name: "Table Games",
-    path: "/casino/live-casino?custom=1&category=tablegames",
+    path: "/live-casino/table-games",
     icon: "/images/category_logo/table-games.svg",
   },
   {
     name: "Top Slots",
-    path: "/casino/slots?custom=1&category=top-games",
+    path: "/casino/top",
     icon: "/images/category_logo/top-slots.png",
   },
   {
     name: "Popular Games",
-    path: "/casino/slots?custom=1&category=slot-top-slots",
+    path: "/casino/popular",
     icon: "/images/category_logo/popular-games.svg",
   },
   {
     name: "New",
-    path: "/casino/slots?custom=1&category=slot-new",
+    path: "/casino/new",
     icon: "/images/category_logo/new.svg",
   },
   {
     name: "Megaways",
-    path: "/casino/slots?custom=1&category=megaways",
+    path: "/casino/megaways",
     icon: "/images/category_logo/megaways.svg",
   },
   {
     name: "Classic Slots",
-    path: "/casino/slots?custom=1&category=classic-slots",
+    path: "/casino/classics",
     icon: "/images/category_logo/classic-slots.svg",
   },
   {
     name: "Instant Game",
-    path: "/casino/slots?custom=1&category=instant-game",
+    path: "/casino/instant-games",
     icon: "/images/category_logo/instant-game.svg",
   },
 ];

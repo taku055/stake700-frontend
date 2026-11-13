@@ -1,3 +1,5 @@
+"use client";
+
 import { Router, Route, useLocation } from "@/router";
 import Overview from "./casino";
 import NotFound404 from "../not-found";

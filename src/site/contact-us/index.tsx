@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Textarea, Button, Input } from "@heroui/react";
 import { localeState } from "@/state/localeState";

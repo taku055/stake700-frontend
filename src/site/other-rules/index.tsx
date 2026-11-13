@@ -1,3 +1,5 @@
+"use client";
+
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";
 import { capitalize } from "@/helpers/capitalize";

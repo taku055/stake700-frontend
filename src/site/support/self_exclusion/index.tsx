@@ -1,3 +1,5 @@
+"use client";
+
 /** SelfExclusionPage.tsx
  * Preact + TypeScript + TailwindCSS (dark theme)
  * No footer (per request)
@@ -7,6 +9,7 @@ import { type FC as FunctionalComponent, createElement as h } from "react";
 import { useMemo, useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import { capitalize } from "@/helpers/capitalize";
+import { Link } from "@/components/common";
 
 export const BRAND_NAME = capitalize(process.env.NEXT_PUBLIC_SITE_NAME);
 
@@ -82,18 +85,18 @@ const SelfExclusionPage: FunctionalComponent = () => {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              <a
-                href="/responsible-gaming"
+              <Link
+                href="/support/responsible-gambling"
                 className="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
                 {t("ResponsibleGaming")}
-              </a>
-              <a
-                href="/gambling-helpline"
+              </Link>
+              <Link
+                href="/support/gambling-helpline"
                 className="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
                 {t("Helplines")}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -262,19 +265,19 @@ const SelfExclusionPage: FunctionalComponent = () => {
 
               <div className="mt-3 text-sm text-zinc-400">
                 {t("NeedHelpChoosing")}{" "}
-                <a
+                <Link
                   className="font-extrabold text-zinc-200 hover:underline"
-                  href="/gambling-helpline"
+                  href="/support/gambling-helpline"
                 >
                   {t("ViewHelplines")}
-                </a>{" "}
+                </Link>{" "}
                 or{" "}
-                <a
+                <Link
                   className="font-extrabold text-zinc-200 hover:underline"
-                  href="/help"
+                  href="/support/help-center"
                 >
                   {t("ContactSupport")}
-                </a>
+                </Link>
                 .
               </div>
 
@@ -284,12 +287,12 @@ const SelfExclusionPage: FunctionalComponent = () => {
                 </div>
                 <div className="mt-1 text-sm leading-relaxed text-zinc-400">
                   {t("PreferLighterOptionDescBefore")}
-                  <a
+                  <Link
                     className="font-extrabold text-zinc-200 hover:underline"
-                    href="/responsible-gaming"
+                    href="/support/responsible-gambling"
                   >
                     {t("PreferLighterOptionLink")}
-                  </a>
+                  </Link>
                   {t("PreferLighterOptionDescAfter")}
                 </div>
               </div>

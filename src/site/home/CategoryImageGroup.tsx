@@ -18,12 +18,12 @@ const images = [
   {
     title: "Live Casino",
     image: "/images/categories/live-casino.png",
-    link: "/casino/live-casino",
+    link: "/live-casino/games",
   },
   {
     title: "Slot Games",
     image: "/images/categories/slot-games.png",
-    link: "/casino/slots",
+    link: "/casino/games",
   },
   {
     title: "Sports Betting",

@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";

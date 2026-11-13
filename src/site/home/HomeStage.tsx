@@ -13,15 +13,16 @@ import { requireLogin } from "@/helpers/requireAuth";
 import { tGame } from "@/types/tGame";
 import { tBanner } from "@/types/tBanner";
 import { localeState } from "@/state/localeState";
+import { routes } from "@/config/routes";
 
 const ROOMS = [
   {
-    href: "/?page=lobby-casino",
+    href: "/casino",
     labelKey: "Casino",
     image: "/images/sidebar/casino.webp",
   },
   {
-    href: "/?page=lobby-live-casino",
+    href: "/live-casino",
     labelKey: "Live Casino",
     image: "/images/sidebar/live-casino.webp",
   },
@@ -51,10 +52,10 @@ const SLOT_TABS = [
 type SlotTabKey = (typeof SLOT_TABS)[number]["key"];
 
 const TABLE_DOORS = [
-  { href: "/casino-category?page=roulette-livecasino", labelKey: "Roulette", image: "/images/category_logo/roulette.webp" },
-  { href: "/casino-category?page=blackjack-livecasino", labelKey: "Blackjack", image: "/images/category_logo/blackjack.webp" },
-  { href: "/casino-category?page=baccarat-livecasino", labelKey: "Baccarat", image: "/images/category_logo/baccarat.webp" },
-  { href: "/casino-category?page=shows-livecasino", labelKey: "Game Shows", image: "/images/category_logo/shows.webp" },
+  { href: "/live-casino/roulette", labelKey: "Roulette", image: "/images/category_logo/roulette.webp" },
+  { href: "/live-casino/blackjack", labelKey: "Blackjack", image: "/images/category_logo/blackjack.webp" },
+  { href: "/live-casino/baccarat", labelKey: "Baccarat", image: "/images/category_logo/baccarat.webp" },
+  { href: "/live-casino/game-shows", labelKey: "Game Shows", image: "/images/category_logo/shows.webp" },
 ] as const;
 
 const HERO_TILES = [
@@ -242,7 +243,7 @@ export default function HomeStage() {
             <h2 className="text-xl font-extrabold text-white">{tHome("stage_picks")}</h2>
           </div>
           <Link
-            href="/?page=lobby-casino"
+            href="/casino"
             scrollToTop
             preventDefaultOnClick={false}
             className="text-sm font-semibold text-[#1475e1]"
@@ -287,7 +288,7 @@ export default function HomeStage() {
               return (
               <Link
                 key={game.id}
-                href={game.href || `/game/${game.id}`}
+                href={game.href || routes.game(game.id, game.name)}
                 scrollToTop
                 preventDefaultOnClick={false}
                 onClick={openGame}
@@ -362,7 +363,7 @@ export default function HomeStage() {
             {tables.map((game) => (
               <Link
                 key={game.id}
-                href={game.href || `/game/${game.id}`}
+                href={game.href || routes.game(game.id, game.name)}
                 scrollToTop
                 preventDefaultOnClick={false}
                 onClick={openGame}

@@ -1,3 +1,5 @@
+"use client";
+
 import { userState } from "@/state/userState";
 import Dashboard from "./dashboard";
 import NotFound404 from "../not-found";

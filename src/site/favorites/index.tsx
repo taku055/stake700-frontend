@@ -1,3 +1,5 @@
+"use client";
+
 import ContentWrapper from "@/provider/ContentWrapper";
 import { FavoritesGrid } from "@/components/FavoritesGrid";
 import { useTranslations } from "@/context/I18nContext";

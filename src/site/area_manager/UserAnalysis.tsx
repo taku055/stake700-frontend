@@ -19,6 +19,7 @@ import { CURRENCY_LIST, DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 import CurrencySelector from "@/components/CurrencySelector";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import { userState } from "@/state/userState";
+import { Link } from "@/components/common";
 
 const today = new Date();
 
@@ -128,28 +129,28 @@ export default function UserAnalysisPage() {
                 >
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>
-                    <a
+                    <Link
                       href={`/area_manager/users/${e.userId}`}
                       className="hover:underline flex items-center md:gap-[12px] gap-[6px]"
                     >
                       {e.userId}
-                    </a>
+                    </Link>
                   </TableCell>
                   <TableCell>
-                    <a
+                    <Link
                       href={`/area_manager/users/${e.userId}`}
                       className="hover:underline flex items-center md:gap-[12px] gap-[6px]"
                     >
                       {e.userName}
-                    </a>
+                    </Link>
                   </TableCell>
                   <TableCell>
-                    <a
+                    <Link
                       href={`/area_manager/users/${e.userId}`}
                       className="hover:underline flex items-center md:gap-[12px] gap-[6px]"
                     >
                       {e.email}
-                    </a>
+                    </Link>
                   </TableCell>
                   <TableCell className="text-right">
                     {selectedCurrencySymbol}{" "}

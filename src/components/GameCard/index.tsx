@@ -14,6 +14,7 @@ import { requireLogin } from "@/helpers/requireAuth";
 import { Link } from "../common";
 import { isBonusAvailableForGame } from "@/helpers/isBonusAvailableForGame";
 import { bonusAvailabilityState } from "@/state/bonusAvailabilityState";
+import { routes } from "@/config/routes";
 
 interface GameCardProps {
   data: tGame;
@@ -101,7 +102,7 @@ export default function GameCard({
       <Link
         scrollToTop={true}
         className={styles.game}
-        href={data.href || `/game/${data.id}`}
+        href={data.href || routes.game(data.id, data.name)}
         preventDefaultOnClick={false}
         stopPropagationOnClick={false}
         aria-label={providerName ? `${data.name} — ${providerName}` : data.name}

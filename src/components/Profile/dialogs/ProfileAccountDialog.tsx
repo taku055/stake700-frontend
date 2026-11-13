@@ -15,6 +15,7 @@ import {
   type ProfileTab,
 } from "@/state/accountDialogs";
 import SiteDialog from "./SiteDialog";
+import { Link } from "@/components/common";
 
 const TABS: { key: ProfileTab; labelKey: string }[] = [
   { key: PROFILE_TAB.details, labelKey: "Personal Details" },
@@ -120,8 +121,8 @@ export default function ProfileAccountDialog() {
 
       <div className="flex shrink-0 items-center justify-between border-t border-[#2f4553] px-4 py-3">
         {user?.isCallGroup ? (
-          <a
-            href="/affiliates"
+          <Link
+            href="/affiliate"
             className="text-sm font-semibold text-[#b1bad3] hover:text-white"
             onClick={() => {
               onClose();
@@ -129,7 +130,7 @@ export default function ProfileAccountDialog() {
             }}
           >
             Referrals
-          </a>
+          </Link>
         ) : (
           <span />
         )}

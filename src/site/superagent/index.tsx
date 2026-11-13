@@ -1,3 +1,5 @@
+"use client";
+
 import { userState } from "@/state/userState";
 import AgentsPage from "./AgentsPage";
 import NotFound404 from "../not-found";

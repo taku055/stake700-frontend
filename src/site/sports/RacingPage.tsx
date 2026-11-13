@@ -1,3 +1,5 @@
+"use client";
+
 import BBSportsbook from "@/components/BBSportsbook";
 import {
   BBBET_LAUNCH_URLS,

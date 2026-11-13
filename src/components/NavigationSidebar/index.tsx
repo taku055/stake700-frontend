@@ -3,11 +3,8 @@ import { mobileMediaQuery } from "@/config/constants";
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";
 import { useLocation } from "@/router";
-import {
-  useTablist,
-  SIDEBAR_EVOLUTION_PROVIDER_ID,
-  SIDEBAR_PRAGMATIC_PROVIDER_ID,
-} from "@/hooks/useTablist";
+import { useTablist } from "@/hooks/useTablist";
+import { routes } from "@/config/routes";
 import { tPageType } from "@/site/casino/data";
 import CollapsedSidebar from "./CollapsedSidebar";
 import ExpandedDrawer from "./ExpandedDrawer";
@@ -15,12 +12,6 @@ import MobileDrawer from "./MobileDrawer";
 import { userState } from "@/state/userState";
 import { useSelectedTab } from "@/hooks/useSelectedTab";
 import { useTranslations } from "@/context/I18nContext";
-import {
-  LIVE_CATEGORY_PAGES,
-  SLOTS_CATEGORY_PAGES,
-  CASINO_CATEGORY_PAGE_QUERY_KEY,
-  type CasinoCategoryPageKey,
-} from "@/site/casino-category/data";
 
 interface NavigationItem {
   title: string;
@@ -82,7 +73,7 @@ export default function NavigationSidebar() {
   const mainNavItems: NavigationItem[] = useMemo(() => {
     return tabList
       .filter((item) =>
-        ["home", "favorites", "slots", "live-casino", "evolution-live", "pragmatic-live", "table-games", "promotions", "vip"].includes(
+        ["home", "favorites", "slots", "live-casino", "evolution-live", "pragmatic-live", "table-games", "providers", "promotions", "vip"].includes(
           item.key
         )
       )
@@ -130,71 +121,30 @@ export default function NavigationSidebar() {
       }));
   }, [tabList]);
 
-  // Determine selected main nav item (most specific routes first — avoids /casino/live-casino matching "slots")
+  // Determine selected main nav item from the clean, locale-less path
   const selectedMainNav = useMemo(() => {
     const path = (location.path.split("?")[0] || "").replace(/\/$/, "") || "/";
-    const q = location.query ?? {};
-    const queryVal = (key: string) => {
-      const v = q[key];
-      return (Array.isArray(v) ? v[0] : v) as string | undefined;
-    };
-
-    const categoryPage = (queryVal(CASINO_CATEGORY_PAGE_QUERY_KEY) ||
-      "") as CasinoCategoryPageKey;
-    const isSlotsCategoryPath =
-      path === "/casino-category" &&
-      SLOTS_CATEGORY_PAGES.includes(categoryPage);
-    const isLiveCategoryPath =
-      path === "/casino-category" &&
-      LIVE_CATEGORY_PAGES.includes(categoryPage);
-
-    const homePageMode = queryVal("page");
     const byKey = (key: string) => mainNavItems.find((i) => i.key === key);
+    const isUnder = (base: string) => path === base || path.startsWith(`${base}/`);
 
-    if (path === "/" || path === "") {
-      if (homePageMode === "lobby-casino") return byKey("slots");
-      if (homePageMode === "lobby-live-casino") return byKey("live-casino");
-      return byKey("home");
-    }
+    if (path === "/") return byKey("home");
 
-    if (path.startsWith("/promotions")) return byKey("promotions");
+    // Provider shortcuts (Evolution / Pragmatic Live) before the generic providers entry
+    const providerItem = mainNavItems.find(
+      (i) => (i.key === "evolution-live" || i.key === "pragmatic-live") && i.href && isUnder(i.href),
+    );
+    if (providerItem) return providerItem;
 
-    if (path.startsWith("/vip")) return byKey("vip");
-
-    if (path === "/casino-category") {
-      if (isSlotsCategoryPath) return byKey("slots");
-      if (isLiveCategoryPath) return byKey("live-casino");
-    }
-
-    if (path.startsWith("/casino/live-casino")) {
-      const providerId = queryVal("providerId");
-      if (providerId === SIDEBAR_EVOLUTION_PROVIDER_ID)
-        return byKey("evolution-live");
-      if (providerId === SIDEBAR_PRAGMATIC_PROVIDER_ID)
-        return byKey("pragmatic-live");
-      const custom = queryVal("custom");
-      const category = queryVal("category");
-      if (custom === "1" && category === "tablegames")
-        return byKey("table-games");
-      return byKey("live-casino");
-    }
-
-    if (path.startsWith("/casino/slots")) {
-      const custom = queryVal("custom");
-      const category = queryVal("category");
-      if (custom === "1" && (category === "jackpots" || category === "slot-jackpots"))
-        return byKey("jackpots");
-      return byKey("slots");
-    }
-
-    if (path.startsWith("/sports/racing")) return byKey("live-racing");
+    if (isUnder(routes.category("live-casino", "table-games"))) return byKey("table-games");
+    if (isUnder(routes.liveCasino())) return byKey("live-casino");
+    if (isUnder(routes.casino())) return byKey("slots");
 
     return mainNavItems.find((item) => {
       if (!item.href) return false;
       const base = item.href.split("?")[0];
-      return path === base || path.startsWith(`${base}/`);
+      return base !== "/" && isUnder(base);
     });
-  }, [mainNavItems, location.path, location.query]);
+  }, [mainNavItems, location.path]);
 
   // Mobile: Show drawer when open
   if (isMobile) {

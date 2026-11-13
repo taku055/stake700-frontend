@@ -13,7 +13,7 @@ import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
 import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID, ASSET_BASE_URL } from "@/config/constants";
 import { toast } from "@/helpers/toast";
 import { QRCodeSVG } from "qrcode.react";
-import { Modal, ModalContent } from "@/components/common";
+import { Modal, ModalContent, Link } from "@/components/common";
 import { DepositSection } from "./DepositSection";
 import { WithdrawSection } from "./WithdrawSection";
 
@@ -281,12 +281,12 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
                 {t("first_deposit_bonus_question")}
                 <br />
                 {t("first_deposit_bonus_restriction")}{" "}
-                <a
-                  href="/privacy_policy/withdrawal_policy"
+                <Link
+                  href="/privacy-policy"
                   className="font-semibold text-white hover:underline"
                 >
                   {t("terms_conditions_link")}
-                </a>
+                </Link>
                 {t("for_details")}
               </div>
 

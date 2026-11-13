@@ -1,4 +1,5 @@
 import { userState } from "@/state/userState";
+import { sessionHydratedState } from "@/state/sessionHydratedState";
 import { RTL_LANGUAGES } from "@/config/constants";
 import { Button } from "@heroui/react";
 import { loginOpenedState } from "@/state/loginOpenedState";
@@ -48,8 +49,8 @@ export default function Header() {
 
           <nav className="mx-auto hidden items-center gap-1 lg:flex!">
             {[
-              { href: "/?page=lobby-casino", label: t("Casino"), icon: "/images/sidebar/casino.webp" },
-              { href: "/?page=lobby-live-casino", label: t("Live Casino"), icon: "/images/sidebar/live-casino.webp" },
+              { href: "/casino", label: t("Casino"), icon: "/images/sidebar/casino.webp" },
+              { href: "/live-casino", label: t("Live Casino"), icon: "/images/sidebar/live-casino.webp" },
               { href: "/promotions", label: t("Promotions"), icon: "/images/sidebar/promotions.webp" },
               { href: "/vip", label: t("VIP"), icon: "/images/sidebar/vip.webp" },
             ].map((item) => (
@@ -86,7 +87,13 @@ export default function Header() {
               </button>
               <SearchWidgetHeader />
             </div>
-            {!userState.value?.id ? (
+            {!sessionHydratedState.value ? (
+              // Session check in progress: reserve the space instead of flashing Login/Register
+              <div className="flex items-center gap-2" aria-hidden>
+                <span className="h-9 w-16 animate-pulse rounded-md bg-[var(--background-secondary)]" />
+                <span className="h-9 w-24 animate-pulse rounded-md bg-[var(--background-secondary)]" />
+              </div>
+            ) : !userState.value?.id ? (
               <>
                 <Button
                   variant="light"

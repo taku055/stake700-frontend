@@ -37,6 +37,7 @@ import { createElement } from "react";
 import { allChains } from "@/config/chains";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery, mobilePortraitMediaQuery } from "@/config/constants";
+import { routes } from "@/config/routes";
 
 export default function EmulateBetting() {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
@@ -200,7 +201,7 @@ export default function EmulateBetting() {
                   <span className="flex items-center gap-2">
                     {getIcon(e.gameId)}
                     <Link
-                      href={`/game/${encodeURIComponent(e.gameId)}`}
+                      href={routes.game(e.gameId)}
                       className="hover:underline"
                       preventDefaultOnClick={false}
                       onClick={(event) => {

@@ -12,59 +12,59 @@ export default function LiveCasinoGames() {
         category={"rouletteglobal"}
         title={t("International Roulette") || "International Roulette"}
         isCustom={true}
-        viewallLink={`/casino/live-casino?custom=1&category=${"rouletteglobal"}`}
+        viewallLink={`/live-casino/roulette`}
       />
       <GameGroup
         category={"live-tables"}
         title={t("Live Tables") || "Live Tables"}
         isCustom={true}
-        viewallLink={`/casino/live-casino/?custom=1&category=${"live-tables"}`}
+        viewallLink={`/live-casino/live-tables`}
       />
       <GridGameGroup
         category={"tablegames"}
         title={t("Top Tables") || "Top Tables"}
         isCustom={true}
-        viewallLink={`/casino/live-casino?custom=1&category=${"tablegames"}`}
+        viewallLink={`/live-casino/table-games`}
       />
       <GameGroup
         category={"highstakes"}
         title={t("High Stakes") || "High Stakes"}
         isCustom={true}
-        viewallLink={`/casino/live-casino?custom=1&category=${"highstakes"}`}
+        viewallLink={`/live-casino/high-stakes`}
       />
       <GameGroup
         category={"tablegames"}
         title={t("All Tables") || "All Tables"}
         useImgCustom={false}
         isCustom={true}
-        viewallLink={`/casino/live-casino?custom=1&category=${"tablegames"}`}
+        viewallLink={`/live-casino/table-games`}
       />
       <GameGroup
         category={"blackjacks"}
         title={t("Blackjack") || "Blackjack"}
         useImgCustom={false}
         isCustom={true}
-        viewallLink={`/casino/live-casino?custom=1&category=${"blackjacks"}`}
+        viewallLink={`/live-casino/blackjack`}
       />
       <GameGroup
         category={"baccaratglobal"}
         title={t("Baccarat") || "Baccarat"}
         useImgCustom={false}
         isCustom={true}
-        viewallLink={`/casino/live-casino?custom=1&category=${"baccaratglobal"}`}
+        viewallLink={`/live-casino/baccarat`}
       />
       <GridGameGroup
         category={"show"}
         title={t("Game Shows") || "Game Shows"}
         isCustom={true}
-        viewallLink={`/casino/live-casino?custom=1&category=${"show"}`}
+        viewallLink={`/live-casino/game-shows`}
       />
       <GameGroup
         category={"sic-bo"}
         title={t("Sic Bo") || "Sic Bo"}
         useImgCustom={false}
         isCustom={true}
-        viewallLink={`/casino/live-casino?custom=1&category=${"sic-bo"}`}
+        viewallLink={`/live-casino/sic-bo`}
       />
     </div>
   );

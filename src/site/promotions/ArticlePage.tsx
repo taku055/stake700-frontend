@@ -1,3 +1,5 @@
+"use client";
+
 import { useLocation } from "@/router";
 import { useEffect, useState } from "react";
 import { promotionArticles, PromotionArticle } from "./articleData";

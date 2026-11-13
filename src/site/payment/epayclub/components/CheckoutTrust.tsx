@@ -1,6 +1,7 @@
 import { Lock } from "lucide-react";
 import { useTranslations } from "@/context/I18nContext";
 import { VisaIcon } from "./PaymentBrandIcons";
+import { Link } from "@/components/common";
 
 export function CheckoutTrustBadges() {
   const t = useTranslations("EpayclubCheckout");
@@ -41,24 +42,24 @@ export function CheckoutFooter() {
         className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs"
         aria-label={t("footer_nav_label")}
       >
-        <a
+        <Link
           href="/privacy-policy"
           className="text-[#64748B] transition-colors duration-200 hover:text-[#94A3B8]"
         >
           {t("privacy_policy")}
-        </a>
-        <a
+        </Link>
+        <Link
           href="/other-rules"
           className="text-[#64748B] transition-colors duration-200 hover:text-[#94A3B8]"
         >
           {t("terms")}
-        </a>
-        <a
+        </Link>
+        <Link
           href="/support/help-center"
           className="text-[#64748B] transition-colors duration-200 hover:text-[#94A3B8]"
         >
           {t("support")}
-        </a>
+        </Link>
       </nav>
     </footer>
   );

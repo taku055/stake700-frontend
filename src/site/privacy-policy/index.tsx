@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";

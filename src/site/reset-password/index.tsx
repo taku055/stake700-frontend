@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useMemo, useState } from "react";
 import axios from "axios";
 import { useLocation } from "@/router";

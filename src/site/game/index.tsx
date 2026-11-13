@@ -1,3 +1,5 @@
+"use client";
+
 import { apiGetGameById } from "@/api/common/apiGetGameById";
 import GamePlay from "./GamePlay";
 import { useState, useEffect } from "react";
@@ -8,13 +10,20 @@ import ProviderGroup from "@/components/ProviderGroup";
 
 interface IGamePageComponentProps {
   gameId: string;
+  /** Game fetched on the server — renders immediately, no client round-trip */
+  initialGame?: tGame | null;
 }
 
-export default function GamePageComponent({ gameId }: IGamePageComponentProps) {
-  const [game, setGame] = useState<tGame | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
+export default function GamePageComponent({ gameId, initialGame }: IGamePageComponentProps) {
+  const [game, setGame] = useState<tGame | undefined>(initialGame ?? undefined);
+  const [loading, setLoading] = useState(!initialGame);
 
   useEffect(() => {
+    if (initialGame && initialGame.id === gameId) {
+      setGame(initialGame);
+      setLoading(false);
+      return;
+    }
     if (gameId) {
       setLoading(true);
       apiGetGameById(gameId)
@@ -28,7 +37,7 @@ export default function GamePageComponent({ gameId }: IGamePageComponentProps) {
           setLoading(false);
         });
     }
-  }, [gameId]);
+  }, [gameId, initialGame]);
 
   if (loading) {
     return (

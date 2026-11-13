@@ -1,3 +1,5 @@
+"use client";
+
 import { apiGetPromotions } from "@/api/ledger/apiPromotions";
 import { apiGetGameById } from "@/api/common/apiGetGameById";
 import {

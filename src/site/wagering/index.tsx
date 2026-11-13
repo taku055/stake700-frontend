@@ -17,6 +17,7 @@ import { Link } from "@/components/common";
 import { placeholderGameImage } from "@/config/constants";
 import type { tFreespinAvailableGame } from "@/types/tFreespinAvailableGame";
 import { requireLogin } from "@/helpers/requireAuth";
+import { routes } from "@/config/routes";
 
 function formatMoney(n: number | string | null | undefined) {
   const v = typeof n === "string" ? Number(n) : (n ?? 0);
@@ -228,7 +229,7 @@ function FreespinsCard({
                 return (
                   <Link
                     key={item.gameId}
-                    href={`/game/${game.id}`}
+                    href={routes.game(game.id, game.name)}
                     scrollToTop
                     preventDefaultOnClick={false}
                     onClick={(e) => {

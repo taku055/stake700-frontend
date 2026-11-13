@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useMemo } from "react";
 import { useLocation } from "@/router";
 import { Button, Card, CardBody } from "@heroui/react";

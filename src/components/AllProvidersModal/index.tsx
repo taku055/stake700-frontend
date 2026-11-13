@@ -10,6 +10,7 @@ import {
 import { Search } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
 import { mobileMediaQuery } from "@/config/constants";
+import { providerHref } from "@/helpers/providerHref";
 
 interface IAllProvidersModalProps {
   isOpen: boolean;
@@ -68,7 +69,7 @@ export default function AllProvidersModal({
             {providerList.map((p) => (
               <a
                 key={p.id}
-                href={`/gallery/all?providerId=${p.id}`}
+                href={providerHref(p.id)}
                 onClick={() => onClose()}
                 className="flex flex-col justify-center items-center rounded-lg p-3 hover:shadow-md transition text-center text-[#F9FAFA] bg-[var(--background)]"
               >

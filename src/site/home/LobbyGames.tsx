@@ -2,6 +2,7 @@ import GameGroup from "@/components/GameGroup";
 import GridGameGroup from "@/components/GridGameGroup";
 import TwoRowGameGroup from "@/components/TwoRowGameGroup";
 import { useTranslations } from "@/context/I18nContext";
+import { providerHref } from "@/helpers/providerHref";
 
 export default function LobbyGames() {
   const t = useTranslations("HomePage");
@@ -12,31 +13,31 @@ export default function LobbyGames() {
         category={"trending"}
         title={t("Trending Games") || "Trending Games"}
         isCustom={true}
-        viewallLink={`/casino/slots/?custom=1&category=${"trending"}`}
+        viewallLink={`/casino/trending`}
       />
       <GridGameGroup
         category={"slot-new"}
         title={t("New Games") || "New Games"}
         isCustom={true}
-        viewallLink={`/casino/slots/?custom=1&category=${"slot-new"}`}
+        viewallLink={`/casino/new`}
       />
       <GameGroup
         category={"live-tables"}
         title={t("Live Tables") || "Live Tables"}
         isCustom={true}
-        viewallLink={`/casino/live-casino/?custom=1&category=${"live-tables"}`}
+        viewallLink={`/live-casino/live-tables`}
       />
       <TwoRowGameGroup
         category={"megaways"}
         title={t("Megaways") || "Megaways"}
         isCustom={true}
-        viewallLink={`/casino/slots/?custom=1&category=${"megaways"}`}
+        viewallLink={`/casino/megaways`}
       />
       <GameGroup
         category={"jackpots"}
         title={t("Jackpots") || "Jackpots"}
         isCustom={true}
-        viewallLink={`/casino/slots/?custom=1&category=${"jackpots"}`}
+        viewallLink={`/casino/jackpots`}
       />
       <GameGroup
         category={"hacksaw"}
@@ -44,7 +45,7 @@ export default function LobbyGames() {
         isCustom={false}
         provider={"6645919a6bf2f0cb6ce4b25f6f054975d443f17e"}
         useImgCustom={false}
-        viewallLink={`/casino/search?providerId=6645919a6bf2f0cb6ce4b25f6f054975d443f17e `}
+        viewallLink={providerHref("6645919a6bf2f0cb6ce4b25f6f054975d443f17e")}
       />
       <GameGroup
         category={"pragmatic"}
@@ -52,7 +53,7 @@ export default function LobbyGames() {
         isCustom={false}
         provider={"1e418d617fc706f42f4a0b6580297f870d877ec9"}
         useImgCustom={false}
-        viewallLink={`/casino/search?providerId=1e418d617fc706f42f4a0b6580297f870d877ec9`}
+        viewallLink={providerHref("1e418d617fc706f42f4a0b6580297f870d877ec9")}
       />
       <GameGroup
         category={"nolimit"}
@@ -60,14 +61,14 @@ export default function LobbyGames() {
         isCustom={false}
         provider={"17fbedea2386ee51d7684f36f89e0876ff6be5ce"}
         useImgCustom={false}
-        viewallLink={`/casino/search?providerId=17fbedea2386ee51d7684f36f89e0876ff6be5ce`}
+        viewallLink={providerHref("17fbedea2386ee51d7684f36f89e0876ff6be5ce")}
       />
       {/* <GameGroup
         category={"book-of"}
         title={t("Book Of") || "Book Of"}
         isCustom={true}
         useImgCustom={false}
-        viewallLink={`/casino/slots/?custom=1&category=${"book-of"}`}
+        viewallLink={`/casino/book-of`}
       /> */}
     </div>
   );

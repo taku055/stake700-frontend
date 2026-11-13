@@ -21,6 +21,7 @@ import { userState } from "@/state/userState";
 import { useTranslations } from "@/context/I18nContext";
 import { multipleBalanceRows } from "@/helpers/multipleBalance";
 import BackButton from "@/components/BackButton";
+import { Link } from "@/components/common";
 
 export default function UsersPage() {
   const [data, setData] = useState<tUser[]>([]);
@@ -110,12 +111,12 @@ export default function UsersPage() {
                     <TextWithCopy text={e.id} />
                   </TableCell>
                   <TableCell>
-                    <a
+                    <Link
                       className="hover:underline"
                       href={`/agent/users/${e.id}`}
                     >
                       {e.userName}
-                    </a>
+                    </Link>
                   </TableCell>
                   <TableCell>{multipleBalanceRows(e.cashDetails)}</TableCell>
                   <TableCell>

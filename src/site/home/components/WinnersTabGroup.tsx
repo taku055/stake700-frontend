@@ -8,6 +8,7 @@ import { customGamesState } from "@/state/customGamesState";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { scrollToTop } from "@/helpers/scrollToTop";
 import { requireLogin } from "@/helpers/requireAuth";
+import { routes } from "@/config/routes";
 
 interface WinnerData {
   game: tGame;
@@ -37,7 +38,7 @@ const WinnerCard: FunctionalComponent<WinnerCardProps> = ({ winner, isLast = fal
   const handleCardClick = () => {
     if (!requireLogin()) return;
     scrollToTop();
-    handleNavigate(`/game/${winner.game.id}`);
+    handleNavigate(routes.game(winner.game.id, winner.game.name));
   };
 
   return (

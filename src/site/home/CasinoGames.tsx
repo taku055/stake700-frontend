@@ -1,6 +1,7 @@
 import GameGroup from "@/components/GameGroup";
 import TwoRowGameGroup from "@/components/TwoRowGameGroup";
 import { useTranslations } from "@/context/I18nContext";
+import { providerHref } from "@/helpers/providerHref";
 
 export default function CasinoGames() {
   const t = useTranslations("CasinoPage");
@@ -11,21 +12,21 @@ export default function CasinoGames() {
         category={"top-games"}
         title={t("Top Games") || "Top Games"}
         isCustom={true}
-        viewallLink={`/casino/slots?custom=1&category=${"top-games"}`}
+        viewallLink={`/casino/top`}
       />
       <GameGroup
         category={"slot-popular"}
         title={t("Popular Games") || "Popular Games"}
         isCustom={true}
         useImgCustom={false}
-        viewallLink={`/casino/slots?custom=1&category=${"slot-popular"}`}
+        viewallLink={`/casino/popular`}
       />
       <GameGroup
         category={"classic-slots"}
         title={t("Classics") || "Classics"}
         isCustom={true}
         useImgCustom={false}
-        viewallLink={`/casino/slots?custom=1&category=${"classic-slots"}`}
+        viewallLink={`/casino/classics`}
       />
       <GameGroup
         category={"hacksaw"}
@@ -33,7 +34,7 @@ export default function CasinoGames() {
         isCustom={false}
         useImgCustom={false}
         provider={"6645919a6bf2f0cb6ce4b25f6f054975d443f17e"}
-        viewallLink={`/casino/search?providerId=6645919a6bf2f0cb6ce4b25f6f054975d443f17e `}
+        viewallLink={providerHref("6645919a6bf2f0cb6ce4b25f6f054975d443f17e")}
       />
       <GameGroup
         category={"pragmatic"}
@@ -41,7 +42,7 @@ export default function CasinoGames() {
         isCustom={false}
         useImgCustom={false}
         provider={"1e418d617fc706f42f4a0b6580297f870d877ec9"}
-        viewallLink={`/casino/search?providerId=1e418d617fc706f42f4a0b6580297f870d877ec9`}
+        viewallLink={providerHref("1e418d617fc706f42f4a0b6580297f870d877ec9")}
       />
       <GameGroup
         category={"nolimit"}
@@ -49,14 +50,14 @@ export default function CasinoGames() {
         isCustom={false}
         provider={"17fbedea2386ee51d7684f36f89e0876ff6be5ce"}
         useImgCustom={false}
-        viewallLink={`/casino/search?providerId=17fbedea2386ee51d7684f36f89e0876ff6be5ce`}
+        viewallLink={providerHref("17fbedea2386ee51d7684f36f89e0876ff6be5ce")}
       />
       {/* <GameGroup
         category={"book-of"}
         title={t("Book Of") || "Book Of"}
         isCustom={true}
         useImgCustom={false}
-        viewallLink={`/casino/slots/?custom=1&category=${"book-of"}`}
+        viewallLink={`/casino/book-of`}
       /> */}
     </div>
   );

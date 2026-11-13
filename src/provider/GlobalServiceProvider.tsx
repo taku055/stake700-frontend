@@ -317,22 +317,24 @@ export default function GlobalServiceProvider({
       }
     }
 
+    // Bootstrap in the background — the page stays visible (no blocking splash);
+    // session-dependent UI waits on sessionHydratedState instead.
     (async () => {
-      globalLoadingState.value = true;
+      // Session-dependent UI (header auth area, game launch) only needs the account
+      const accountReady = Promise.resolve(getAccount()).finally(() => {
+        sessionHydratedState.value = true;
+      });
       await Promise.all([
         getProviders(),
         getCustomGames(),
         getMaintenance(),
-        getAccount(),
+        accountReady,
         getBanners(),
         getBonusAvailability(),
         getSidebarData(),
         // loadGameCategoryImages(),
       ]);
       sessionHydratedState.value = true;
-      setTimeout(() => {
-        globalLoadingState.value = false;
-      }, 2000);
     })();
 
     // define resize event for mobile

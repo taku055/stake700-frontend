@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useEffect, useState } from "react";
 import ContentWrapper from "@/provider/ContentWrapper";
 import { useTranslations } from "@/context/I18nContext";

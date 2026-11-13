@@ -27,7 +27,7 @@ export const navbarItems: {
     icon: <IconMybets />,
     text: "My bets",
     mobileText: "My bets",
-    path: "/profile/mybets/casino",
+    path: "/my-bets/casino",
   },
   {
     icon: (

@@ -12,6 +12,7 @@ import {
   type ReactNode,
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { DEFAULT_LOCALE, localizeHref, splitLocale, type Locale } from "@/config/i18n";
 
 type Match = { params: Record<string, string>; rest: string };
 type Scope = { rest: string | null };
@@ -71,11 +72,24 @@ export function LocationProvider({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
-export function useLocation() {
+/** Active locale, taken from the URL prefix (/ar/..., /en/...). */
+export function useLocale(): Locale {
   const pathname = usePathname() || "/";
+  return splitLocale(pathname).locale ?? DEFAULT_LOCALE;
+}
+
+/**
+ * Locale-aware location. `path` is returned WITHOUT the locale prefix so route
+ * comparisons stay simple ("/casino/new"), and `route()` adds the active locale
+ * to internal hrefs automatically.
+ */
+export function useLocation() {
+  const rawPathname = usePathname() || "/";
+  const { locale: urlLocale, path: pathname } = splitLocale(rawPathname);
+  const locale = urlLocale ?? DEFAULT_LOCALE;
   const searchParams = useSearchParams();
   const router = useRouter();
-  const search = searchParams.toString();
+  const search = searchParams?.toString() ?? "";
 
   const query = useMemo(() => {
     const parsed: Record<string, string> = {};
@@ -88,12 +102,13 @@ export function useLocation() {
 
   const route = useCallback(
     (href: string, replace?: boolean) => {
+      const target = localizeHref(href, locale);
       queueMicrotask(() => {
-        if (replace) router.replace(href);
-        else router.push(href);
+        if (replace) router.replace(target);
+        else router.push(target);
       });
     },
-    [router],
+    [router, locale],
   );
 
   return useMemo(
@@ -102,9 +117,25 @@ export function useLocation() {
       path: pathname,
       query,
       route,
+      locale,
     }),
-    [pathname, search, query, route],
+    [pathname, search, query, route, locale],
   );
+}
+
+/**
+ * Scopes nested <Router> matching to a base path, e.g. a page mounted at
+ * /agent/[[...rest]] wraps its router in <RouteBase base="/agent"> so inner
+ * routes keep matching "/users/:userId".
+ */
+export function RouteBase({ base, children }: { base: string; children: ReactNode }) {
+  const { path } = useLocation();
+  const normalizedBase = normalize(base);
+  let rest = path;
+  if (normalizedBase !== "/" && (path === normalizedBase || path.startsWith(`${normalizedBase}/`))) {
+    rest = path.slice(normalizedBase.length) || "/";
+  }
+  return <RouteScope.Provider value={{ rest }}>{children}</RouteScope.Provider>;
 }
 
 function isComponent(value: unknown): value is ComponentType<any> {

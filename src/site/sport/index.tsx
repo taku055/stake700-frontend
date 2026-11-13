@@ -1,3 +1,5 @@
+"use client";
+
 import Sportsbook from "@/components/Sportsbook";
 
 export default function Sport() {

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useLocation } from "@/router";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";

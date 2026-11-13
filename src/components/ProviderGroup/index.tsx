@@ -15,6 +15,7 @@ import { localeState } from "@/state/localeState";
 import { mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import { ChevronLeft, ChevronRight, Users, ArrowLeft } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
+import { providerHref } from "@/helpers/providerHref";
 
 interface IProviderGroupProps {
   category?: string;
@@ -29,7 +30,7 @@ function ProviderTile({
 }) {
   return (
     <Link
-      href={`/casino/search?providerId=${p.id}`}
+      href={providerHref(p.id)}
       className={tileClassName}
       aria-label={p.name}
       title={p.name}

@@ -3,8 +3,12 @@ import { userState } from "@/state/userState";
 import { Users, Crown, ChartArea } from "lucide-react";
 import { useLocation } from "@/router";
 import { useMemo } from "react";
+import { routes } from "@/config/routes";
+import { SECTION_META, getSectionCategories, type CatalogSection } from "@/config/catalog";
+import { providerHref } from "@/helpers/providerHref";
+import { providerState } from "@/state/providerState";
 
-/** Sidebar + `/casino/live-casino` deep links — keep in sync with active-state logic in NavigationSidebar. */
+/** Sidebar + `/live-casino/games` deep links — keep in sync with active-state logic in NavigationSidebar. */
 export const SIDEBAR_EVOLUTION_PROVIDER_ID =
   "18b8a984dcf16829f687eb35990662a06aa8a12f";
   export const SIDEBAR_PRAGMATIC_PROVIDER_ID =
@@ -38,7 +42,17 @@ export const useTablist = () => {
   const tc = useTranslations("CasinoPage");
   const pathname = useLocation();
   const user = userState.value;
+  const providerMap = providerState.value.map;
   const tabList = useMemo(() => {
+    const sectionLinks = (section: CatalogSection) => [
+      { title: tc("Lobby"), href: routes.section(section), icon: "/images/category_logo/lobby.webp" },
+      { title: tc("all_games"), href: routes.sectionAll(section), icon: SECTION_META[section].icon },
+      ...getSectionCategories(section, true).map((c) => ({
+        title: tc(c.titleKey, undefined, c.titleKey),
+        href: routes.category(section, c.slug),
+        icon: c.icon,
+      })),
+    ];
     if (!user?.isAgent) {
       return [
         {
@@ -58,46 +72,38 @@ export const useTablist = () => {
           key: "slots",
           navIcon: "/images/sidebar/casino.webp",
           expandable: true,
-          expandableItems: [
-            { title: tc("Lobby"), href: "/?page=lobby-casino", icon: "/images/category_logo/lobby.webp" },
-            { title: tc("Popular"), href: "/casino-category?page=popular-casino", icon: "/images/category_logo/popular.webp" },
-            { title: tc("Megaways"), href: "/casino-category?page=megaways-casino", icon: "/images/category_logo/megaways.webp" },
-            { title: tc("Jackpots"), href: "/casino-category?page=jackpots-casino", icon: "/images/category_logo/jackpots.webp" },
-            { title: tc("New"), href: "/casino-category?page=new-casino", icon: "/images/category_logo/new.webp" },
-            { title: tc("Top"), href: "/casino-category?page=top-casino", icon: "/images/category_logo/top.webp" },
-          ],
+          expandableItems: sectionLinks("casino"),
         },
         {
           title: t("Live Casino"),
           key: "live-casino",
           navIcon: "/images/sidebar/live-casino.webp",
           expandable: true,
-          expandableItems: [
-            { title: tc("Lobby"), href: "/?page=lobby-live-casino", icon: "/images/category_logo/lobby.webp" },
-            { title: tc("Roulette"), href: "/casino-category?page=roulette-livecasino", icon: "/images/category_logo/roulette.webp" },
-            { title: tc("Blackjack"), href: "/casino-category?page=blackjack-livecasino", icon: "/images/category_logo/blackjack.webp" },
-            { title: tc("Baccarat"), href: "/casino-category?page=baccarat-livecasino", icon: "/images/category_logo/baccarat.webp" },
-            { title: tc("Shows"), href: "/casino-category?page=shows-livecasino", icon: "/images/category_logo/shows.webp" },
-            { title: tc("Top Live Games"), href: "/casino-category?page=top-livecasino", icon: "/images/category_logo/top-live-games.webp" },
-          ],
+          expandableItems: sectionLinks("live-casino"),
         },
         {
           title: t("Evolution Live"),
-          href: `/casino/live-casino?providerId=${SIDEBAR_EVOLUTION_PROVIDER_ID}`,
+          href: providerHref(SIDEBAR_EVOLUTION_PROVIDER_ID),
           key: "evolution-live",
           navIcon: "/images/sidebar/evolution-live.webp",
         },
         {
           title: t("Pragmatic Live"),
-          href: `/casino/live-casino?providerId=${SIDEBAR_PRAGMATIC_PROVIDER_ID}`,
+          href: providerHref(SIDEBAR_PRAGMATIC_PROVIDER_ID),
           key: "pragmatic-live",
           navIcon: "/images/sidebar/pragmatic-live.webp",
         },
         {
           title: t("Table Games"),
-          href: "/casino/live-casino?custom=1&category=tablegames",
+          href: routes.category("live-casino", "table-games"),
           key: "table-games",
           navIcon: "/images/sidebar/table-games.webp",
+        },
+        {
+          title: tc("Providers"),
+          href: routes.providers(),
+          key: "providers",
+          navIcon: "/images/sidebar/casino.webp",
         },
         {
           title: t("Promotions"),
@@ -160,7 +166,7 @@ export const useTablist = () => {
         ];
       }
     }
-  }, [user, t, tc]);
+  }, [user, t, tc, providerMap]);
 
   const selectedKey = useMemo(() => {
     // if you use i18n like /en/..., strip the locale prefix here if needed

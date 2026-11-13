@@ -1,3 +1,5 @@
+"use client";
+
 import { localeState } from "@/state/localeState";
 import FAQAccordion from "./components/FAQAccordion";
 import { getFAQData } from "./data";
@@ -17,7 +19,7 @@ export default function FAQ() {
       dir={isRTL ? "rtl" : "ltr"}
     >
       <h1 className="text-[#ffffff] text-[20px] font-semibold leading-[24px] mb-8 flex items-center gap-2 h-[28px]">
-        {<img src={'images/icons/icons/info-icon.svg'} className="w-8 h-8" alt="FAQ"/>}{t("title") || "Still Have Questions?"}
+        {<img src="/images/icons/icons/info-icon.svg" className="w-8 h-8" alt="FAQ"/>}{t("title") || "Still Have Questions?"}
       </h1>
 
       <div className="flex flex-col gap-[8px]">

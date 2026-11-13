@@ -1,3 +1,5 @@
+"use client";
+
 /** ResponsibleGamblingPage.tsx
  * Preact + TypeScript + TailwindCSS (dark theme)
  * Brand name is a variable: BRAND_NAME

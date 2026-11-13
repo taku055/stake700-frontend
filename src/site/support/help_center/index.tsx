@@ -1,3 +1,5 @@
+"use client";
+
 /** HelpCenterPage.tsx
  * Preact + TypeScript + TailwindCSS (dark theme)
  * Brand name is a variable: BRAND_NAME
@@ -7,6 +9,7 @@ import { useMemo, useState } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import { BRAND_NAME, HELP_CATEGORY_DATA, HelpArticle } from "./data";
 import { getRootDomain } from "@/helpers/getRootDomain";
+import { Link } from "@/components/common";
 
 const HelpCenterPage: FunctionalComponent = () => {
   const t = useTranslations("HelpCenter");
@@ -126,12 +129,12 @@ const HelpCenterPage: FunctionalComponent = () => {
                   >
                     {t("ContactSupport")}
                   </a>
-                  <a
+                  <Link
                     href="/faq"
                     className="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold text-zinc-100 hover:bg-zinc-900/70"
                   >
                     {t("ViewFaqs")}
-                  </a>
+                  </Link>
                 </div>
               </div>
 

@@ -2,7 +2,7 @@ import type { FC as FunctionalComponent } from "react";
 import { Loader2, SearchX } from "lucide-react";
 import GameCard from "@/components/GameCard";
 import { useTranslations } from "@/context/I18nContext";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { tGame } from "@/types/tGame";
 import { customGamesState } from "@/state/customGamesState";
 import { apiGetGames } from "@/api/common/apiGetGames";
@@ -24,6 +24,8 @@ interface CasinoGameGridProps {
   onTotalChange?: (total: number | undefined) => void;
   /** Shown as an action in the empty state when filters are active. */
   onClearFilters?: () => void;
+  /** First page rendered on the server; the grid continues paging from it. */
+  initialData?: { games: tGame[]; total: number };
 }
 
 export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
@@ -33,14 +35,16 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
   gameType,
   onTotalChange,
   onClearFilters,
+  initialData,
 }) => {
   const t = useTranslations("HomePage");
   const tc = useTranslations("CasinoPage");
-  const [games, setGames] = useState<tGame[]>([]);
-  const [initialLoading, setInitialLoading] = useState(true);
+  const [games, setGames] = useState<tGame[]>(() => initialData?.games ?? []);
+  const [initialLoading, setInitialLoading] = useState(!initialData);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [total, setTotal] = useState(0);
-  const [offset, setOffset] = useState(0);
+  const [total, setTotal] = useState(initialData?.total ?? 0);
+  const [offset, setOffset] = useState(initialData?.games.length ?? 0);
+  const usedInitialData = useRef(false);
   const isMobile = useMediaQuery(mobileMediaQuery);
   const GAME_LOAD_COUNT = useMemo(() => (isMobile ? 8 : 24), [isMobile]);
 
@@ -215,6 +219,13 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
   );
 
   useEffect(() => {
+    // Server already rendered the first page for these filters — keep it (unless the
+    // provider "priority games" mode applies, which is resolved on the client).
+    if (initialData && !usedInitialData.current && !hybridEnabled) {
+      usedInitialData.current = true;
+      return;
+    }
+    usedInitialData.current = true;
     setInitialLoading(true);
     setGames([]);
     setOffset(0);

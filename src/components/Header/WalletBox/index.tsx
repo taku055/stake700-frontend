@@ -20,6 +20,7 @@ import { placeholderGameImage } from "@/config/constants";
 import { apiGetFreespinAvailableGames } from "@/api/ledger/apiGetFreespinAvailableGames";
 import type { tFreespinAvailableGame } from "@/types/tFreespinAvailableGame";
 import BonusExpiryCountdown from "@/components/BonusExpiryCountdown";
+import { routes } from "@/config/routes";
 
 type Pos = { top: number; left: number; width: number };
 
@@ -432,7 +433,7 @@ export default function WalletBox() {
                         return (
                           <Link
                             key={item.gameId}
-                            href={`/game/${game.id}`}
+                            href={routes.game(game.id, game.name)}
                             scrollToTop
                             preventDefaultOnClick={false}
                             stopPropagationOnClick={false}

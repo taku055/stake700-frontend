@@ -32,7 +32,7 @@ export const FavoritesGrid: FunctionComponent<FavoritesGridProps> = ({
           <button
             type="button"
             className="text-sm text-[var(--green-color)] hover:underline"
-            onClick={() => location.route("/casino/slots")}
+            onClick={() => location.route("/casino/games")}
           >
             {t("browse_games")}
           </button>

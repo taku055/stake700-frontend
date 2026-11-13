@@ -9,6 +9,7 @@ import { tGame } from "@/types/tGame";
 import GameCard from "@/components/GameCard";
 import SectionHeader from "@/components/SectionHeader";
 import { customGamesState } from "@/state/customGamesState";
+import { pickCustomGames } from "@/helpers/customGames";
 import { useTranslations } from "@/context/I18nContext";
 import { matchesCustomCategory } from "@/config/customGameCategories";
 import { localeState } from "@/state/localeState";
@@ -43,7 +44,10 @@ export default function TwoRowGameGroup({
   gameList,
 }: IGameGroupProps) {
   const isMobilePortrait = useMediaQuery(mobilePortraitMediaQuery);
-  const [games, setGames] = useState<tGame[]>([]);
+  // Curated rows start from the (possibly server-seeded) state so they render on the server
+  const [games, setGames] = useState<tGame[]>(
+    () => gameList ?? (isCustom ? pickCustomGames(category, 30, exceptGameId) : []),
+  );
   const t = useTranslations("GameGroup");
   const [swiper, setSwiper] = useState<any>(null);
   const isRTL = RTL_LANGUAGES.includes(localeState.value);

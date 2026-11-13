@@ -1,3 +1,5 @@
+"use client";
+
 /** LawEnforcementRequestPage.tsx
  * Preact + TypeScript + TailwindCSS (dark theme)
  * Brand name is a variable: BRAND_NAME
@@ -6,6 +8,7 @@ import { type FC as FunctionalComponent, createElement as h } from "react";
 import { useMemo } from "react";
 import { useTranslations } from "@/context/I18nContext";
 import { capitalize } from "@/helpers/capitalize";
+import { Link } from "@/components/common";
 
 export const BRAND_NAME = capitalize(process.env.NEXT_PUBLIC_SITE_NAME);
 
@@ -128,18 +131,18 @@ const LawEnforcementRequestPage: FunctionalComponent = () => {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              <a
-                href="/privacy"
+              <Link
+                href="/privacy-policy"
                 className="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
                 {t("Privacy")}
-              </a>
-              <a
-                href="/help"
+              </Link>
+              <Link
+                href="/support/help-center"
                 className="inline-flex items-center justify-center rounded-full border border-white/10 bg-zinc-900/40 px-4 py-2.5 text-sm font-extrabold hover:bg-zinc-900/70"
               >
                 {t("HelpCenter")}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

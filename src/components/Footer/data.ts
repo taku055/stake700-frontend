@@ -13,12 +13,12 @@ export const FOOTER_LINK_DATA : Array<{
   {
     title: "Casino",
     links: [
-      { title: "Casino Games", href: "/casino/search"},
-      { title: "Slots", href: "/casino/slots" },
-      { title: "Live Casino", href: "/casino/live-casino" },
-      { title: "Roulette", href: "/casino/live-casino?custom=1&category=rouletteglobal" },
-      { title: "Blackjack", href: "/casino/live-casino?custom=1&category=blackjacks" },
-      { title: "Baccarat", href: "/casino/live-casino?custom=1&category=baccaratglobal" },
+      { title: "Casino Games", href: "/casino" },
+      { title: "Slots", href: "/casino/games" },
+      { title: "Live Casino", href: "/live-casino" },
+      { title: "Roulette", href: "/live-casino/roulette" },
+      { title: "Blackjack", href: "/live-casino/blackjack" },
+      { title: "Baccarat", href: "/live-casino/baccarat" },
       { title: "Promos & Competitions", href: "/promotions" },
     ],
   },

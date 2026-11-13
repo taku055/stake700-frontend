@@ -1,7 +1,7 @@
 // i18n.ts
 import { DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 import { type ReactNode as ComponentChildren, createContext, type FC as FunctionalComponent } from "react";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useMemo } from "react";
 
 interface I18nContexttProps {
   messages: Record<string, any>;
@@ -17,17 +17,10 @@ interface I18nProviderProps {
 }
 
 export const I18nProvider: FunctionalComponent<I18nProviderProps> = (props) => {
-  const [messages, setMessages] = useState<Record<string, any>>({});
+  // Use the messages directly (not via an effect) so server-rendered HTML is translated
+  const value = useMemo(() => ({ messages: props.messages ?? {} }), [props.messages]);
 
-  useEffect(() => {
-    setMessages(props.messages);
-  }, [props.messages]);
-
-  return (
-    <I18nContext.Provider value={{ messages: messages }}>
-      {props.children}
-    </I18nContext.Provider>
-  );
+  return <I18nContext.Provider value={value}>{props.children}</I18nContext.Provider>;
 };
 
 // --- helpers ---

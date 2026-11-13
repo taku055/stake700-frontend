@@ -1,3 +1,5 @@
+"use client";
+
 import { Router, Route, useLocation } from "@/router";
 import Overview from "./overview";
 import Campaigns from "./campaigns";

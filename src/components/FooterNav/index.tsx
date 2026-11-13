@@ -40,7 +40,7 @@ export default function FooterNav() {
         },
         {
           title: t("Casino"),
-          href: "/?page=lobby-casino",
+          href: "/casino",
           key: "casino",
           icon: (
             <img
@@ -52,7 +52,7 @@ export default function FooterNav() {
         },
         {
           title: t("Live Casino"),
-          href: "/?page=lobby-live-casino",
+          href: "/live-casino",
           key: "live-casino",
           icon: (
             <img
