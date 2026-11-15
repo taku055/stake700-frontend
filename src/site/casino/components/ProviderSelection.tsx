@@ -64,7 +64,7 @@ export function ProviderSelection({ providers, value, onChange }: ProviderSelect
         }`}
       >
         <SlidersHorizontal size={17} />
-        <span className="hidden sm:inline">{t("Providers")}</span>
+        <span className="max-sm:hidden">{t("Providers")}</span>
         {value.length > 0 && (
           <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--primary-color)] px-1.5 text-[11px] font-bold text-white">
             {value.length}
@@ -72,7 +72,7 @@ export function ProviderSelection({ providers, value, onChange }: ProviderSelect
         )}
         <ChevronDown
           size={16}
-          className={`hidden transition-transform sm:block ${open ? "rotate-180" : ""}`}
+          className={`transition-transform max-sm:hidden ${open ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -172,45 +172,6 @@ export function ProviderSelection({ providers, value, onChange }: ProviderSelect
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-/** Removable chips for the currently selected providers. */
-export function SelectedProviderChips({
-  providers,
-  value,
-  onChange,
-}: ProviderSelectionProps) {
-  const t = useTranslations("CasinoPage");
-  if (value.length === 0) return null;
-  const byId = new Map(providers.map((p) => [p.id, p]));
-
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      {value.map((id) => (
-        <span
-          key={id}
-          className="inline-flex h-8 items-center gap-1.5 rounded-full border border-[var(--background-secondary)] bg-[var(--bar-background-color)] ps-3 pe-1 text-[13px] font-semibold text-white"
-        >
-          {byId.get(id)?.name ?? "…"}
-          <button
-            type="button"
-            aria-label="Remove"
-            onClick={() => onChange(value.filter((v) => v !== id))}
-            className="flex h-6 w-6 items-center justify-center rounded-full text-[var(--text-muted-color)] transition-colors hover:bg-[var(--background-secondary)] hover:text-white"
-          >
-            <X size={13} />
-          </button>
-        </span>
-      ))}
-      <button
-        type="button"
-        onClick={() => onChange([])}
-        className="px-1 text-[13px] font-semibold text-[var(--primary-color)] transition-colors hover:text-white"
-      >
-        {t("Clear all")}
-      </button>
     </div>
   );
 }

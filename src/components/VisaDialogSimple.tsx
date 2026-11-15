@@ -13,7 +13,7 @@ import {
   ModalHeader,
   ModalFooter,
 } from "@/components/common";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 
 interface IVisaDepositSimpleProps {

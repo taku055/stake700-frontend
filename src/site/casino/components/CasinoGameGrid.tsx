@@ -1,19 +1,22 @@
 import type { FC as FunctionalComponent } from "react";
 import { Loader2, SearchX } from "lucide-react";
-import GameCard from "@/components/GameCard";
+import GameCard, { GameCardSkeleton } from "@/components/GameCard";
 import { useTranslations } from "@/context/I18nContext";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { tGame } from "@/types/tGame";
 import { customGamesState } from "@/state/customGamesState";
 import { apiGetGames } from "@/api/common/apiGetGames";
 import { matchesCustomCategory } from "@/config/customGameCategories";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import {
   buildPriorityGamesForProvider,
   getPriorityCustomCategoriesForProvider,
   getSingleProviderIdFromQuery,
 } from "@/site/casino/utils/providerHybridGames";
+
+/** Pages loaded automatically on scroll before falling back to the button. */
+const AUTO_LOAD_PAGES = 3;
 
 interface CasinoGameGridProps {
   isCustom: boolean;
@@ -239,6 +242,30 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
     onTotalChange?.(initialLoading ? undefined : total);
   }, [initialLoading, total, onTotalChange]);
 
+  // Load the next pages automatically as the end of the grid comes into view,
+  // then switch to the button so the footer stays reachable.
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const autoLoads = useRef(0);
+  const canLoadMore = games.length > 0 && games.length < total;
+  useEffect(() => {
+    autoLoads.current = 0;
+  }, [category, isCustom, provider, gameType]);
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el || !canLoadMore || loadingMore || initialLoading || autoLoads.current >= AUTO_LOAD_PAGES) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        autoLoads.current += 1;
+        void onLoadMore(offset, "append");
+      },
+      { rootMargin: "600px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [canLoadMore, loadingMore, initialLoading, offset, onLoadMore]);
+
   const gridClass =
     "grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 md:gap-3 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8";
 
@@ -246,10 +273,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
     return (
       <div className={gridClass} aria-busy="true">
         {Array.from({ length: GAME_LOAD_COUNT }).map((_, i) => (
-          <div
-            key={i}
-            className="aspect-[136/182] animate-pulse rounded-[10px] bg-[var(--bar-background-color)]"
-          />
+          <GameCardSkeleton key={i} />
         ))}
       </div>
     );
@@ -280,7 +304,6 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
 
   const shown = games.length;
   const progress = total > 0 ? Math.min(100, Math.round((shown / total) * 100)) : 100;
-  const canLoadMore = shown < total;
 
   return (
     <div className="flex min-w-0 flex-1 flex-col">
@@ -294,21 +317,23 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
         ))}
         {loadingMore &&
           Array.from({ length: Math.min(GAME_LOAD_COUNT, total - shown) }).map((_, i) => (
-            <div
-              key={`sk-${i}`}
-              className="aspect-[136/182] animate-pulse rounded-[10px] bg-[var(--bar-background-color)]"
-            />
+            <GameCardSkeleton key={`sk-${i}`} />
           ))}
       </div>
 
+      <div ref={sentinelRef} aria-hidden className="h-px" />
+
       {total > 0 && (
-        <div className="mt-10 flex flex-col items-center gap-3">
-          <p className="text-[13px] font-medium text-[var(--text-muted-color)]">
-            {tc("showing_of", { shown: shown.toLocaleString(), total: total.toLocaleString() })}
-          </p>
-          <div className="h-1 w-56 overflow-hidden rounded-full bg-[var(--background-secondary)]">
+        <div className="mx-auto mt-10 flex w-full max-w-[360px] flex-col items-center gap-3 rounded-2xl border border-[var(--background-secondary)] bg-[var(--bar-background-color)] p-4">
+          <div className="flex w-full items-center justify-between text-[13px] font-semibold">
+            <span className="text-[var(--text-muted-color)]">
+              {tc("showing_of", { shown: shown.toLocaleString(), total: total.toLocaleString() })}
+            </span>
+            <span className="tabular-nums text-white">{progress}%</span>
+          </div>
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-[var(--background-secondary)]">
             <div
-              className="h-full rounded-full bg-[var(--primary-color)] transition-[width] duration-500"
+              className="h-full rounded-full bg-[var(--primary-color)] shadow-[0_0_10px_var(--primary-color)] transition-[width] duration-500"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -317,7 +342,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
               type="button"
               onClick={() => onLoadMore(offset, "append")}
               disabled={loadingMore || offset >= total || initialLoading}
-              className="mt-2 flex h-11 min-w-[180px] items-center justify-center gap-2 rounded-lg border border-[var(--background-secondary)] bg-[var(--bar-background-color)] px-6 text-[14px] font-semibold text-white transition-colors hover:border-[var(--background-tertiary)] hover:bg-[var(--background-secondary)] disabled:cursor-default disabled:opacity-70"
+              className="mt-1 flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary-color)] px-6 text-[14px] font-bold text-white shadow-[0_10px_24px_-12px_var(--primary-color)] transition-colors hover:bg-[var(--primary-hover-color)] disabled:cursor-default disabled:opacity-70"
             >
               {loadingMore && <Loader2 size={16} className="animate-spin" />}
               {t("load_more") || "Load More"}

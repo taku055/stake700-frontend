@@ -1,5 +1,4 @@
 import GameGroup from "@/components/GameGroup";
-import GridGameGroup from "@/components/GridGameGroup";
 import TwoRowGameGroup from "@/components/TwoRowGameGroup";
 import { useTranslations } from "@/context/I18nContext";
 import { providerHref } from "@/helpers/providerHref";
@@ -9,13 +8,15 @@ export default function LobbyGames() {
 
   return (
     <div className="flex flex-col gap-8 md:gap-10">
-      <GridGameGroup
+      <GameGroup
+        useImgCustom={false}
         category={"trending"}
         title={t("Trending Games") || "Trending Games"}
         isCustom={true}
         viewallLink={`/casino/trending`}
       />
-      <GridGameGroup
+      <GameGroup
+        useImgCustom={false}
         category={"slot-new"}
         title={t("New Games") || "New Games"}
         isCustom={true}

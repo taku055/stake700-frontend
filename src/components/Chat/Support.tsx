@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChatIcon } from "./ChatIcon";
 import styles from "./Chat.module.scss";
 import { chatExpandedState } from "@/state/chatExpandedState";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import { MdClose } from "react-icons/md";
 import SupportMessage from "./SupportMessage";

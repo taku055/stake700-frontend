@@ -14,7 +14,7 @@ import {
 } from "@heroui/react";
 import moment from "moment";
 import CreateSubuserModal from "./CreateSubuserModal";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import TextWithCopy from "@/components/TextWithCopy";
 import { userState } from "@/state/userState";

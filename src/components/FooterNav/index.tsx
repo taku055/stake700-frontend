@@ -1,4 +1,4 @@
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
 import { useEffect, useMemo, useState } from "react";

@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { Modal, ModalContent } from "@/components/common";
 import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
 import { RTL_LANGUAGES } from "@/config/constants";

@@ -14,7 +14,7 @@ import moment from "moment";
 import { tAgent } from "@/types/tAgent";
 import CreateAgentModal from "./CreateSubagentModal";
 import { abbr } from "@/helpers/abbr";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { userState } from "@/state/userState";
 import { apiAdminGetSubagents } from "@/api/agent/apiAdminGetSubagents";
 import PlatformAnalysis from "@/components/PlatformAnalysis/PlatformAnalysis";

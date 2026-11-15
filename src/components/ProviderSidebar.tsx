@@ -6,7 +6,7 @@ import type { FC as FunctionalComponent } from "react";
 import { useLocation } from "@/router";
 import { useMemo, useState } from "react";
 import queryString from "query-string";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import TekioSwiper from "@/components/TekioSwiper";
 import { Mousewheel, Navigation } from "swiper/modules";
 import { SwiperSlide } from "swiper/react";

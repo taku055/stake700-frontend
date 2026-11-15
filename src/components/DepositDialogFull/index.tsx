@@ -3,7 +3,7 @@ import { useState } from "react";
 import DepositPanel from "./DepositPanel";
 import WithdrawalPanel from "./WithdrawalPanel";
 // import HistoryPanel from "./HistoryPanel";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import { useTranslations } from "@/context/I18nContext";
 import styles from "./DepositDialogFull.module.scss";

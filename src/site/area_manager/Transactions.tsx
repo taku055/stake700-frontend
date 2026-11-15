@@ -12,7 +12,7 @@ import {
   Chip,
 } from "@heroui/react";
 import moment from "moment";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { userState } from "@/state/userState";
 import { apiAgentGetTransactions } from "@/api/agent/agent/apiAgentGetTransactions";
 import { CalendarDate } from "@internationalized/date";

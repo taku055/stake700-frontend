@@ -35,7 +35,7 @@ import { emulateBettingState } from "@/state/emulateBettingState";
 import { tEmulateBet } from "@/types/tEmulateBet";
 import { createElement } from "react";
 import { allChains } from "@/config/chains";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery, mobilePortraitMediaQuery } from "@/config/constants";
 import { routes } from "@/config/routes";
 

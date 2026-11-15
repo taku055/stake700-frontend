@@ -19,7 +19,7 @@ import { apiAdminUserCasinoHistoryMerged } from "@/api/agent/area_manager/apiAdm
 import { DateRangePicker } from "@heroui/date-picker";
 import { RangeValue } from "@react-types/shared";
 import { CalendarDate } from "@internationalized/date";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import { userState } from "@/state/userState";
 import { useTranslations } from "@/context/I18nContext";

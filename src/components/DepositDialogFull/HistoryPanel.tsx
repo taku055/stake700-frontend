@@ -15,7 +15,7 @@ import {
 
 import moment from "moment";
 import { abbr } from "@/helpers/abbr";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import { apiGetLazyWithdraws } from "@/api/wallet/apiGetLazyWithdraws";
 import { tWithdrawRequest } from "@/types/tWithdrawRequest";

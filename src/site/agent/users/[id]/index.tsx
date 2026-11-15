@@ -13,7 +13,7 @@ import {
 import TransactionsPage from "./TransactionsPage";
 import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
 import { apiAgentGetSubuserTransactionSum } from "@/api/agent/apiAgentGetSubuserTransactionSum";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { CURRENCY_LIST, mobileMediaQuery } from "@/config/constants";
 import CasinoHistoryPage from "./CasinoHistoryPage";
 import { useTranslations } from "@/context/I18nContext";

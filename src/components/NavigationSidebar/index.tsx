@@ -1,4 +1,4 @@
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { navigationSidebarExpandedState } from "@/state/navigationSidebarState";

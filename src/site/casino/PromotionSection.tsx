@@ -4,7 +4,7 @@ import { Autoplay, Mousewheel, Navigation, EffectFade } from "swiper/modules";
 import { SwiperSlide } from "swiper/react";
 import { bannerState } from "@/state/bannerState";
 import { mobileMediaQuery } from "@/config/constants";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useMemo } from "react";
 import { gameCategoryImagesState } from "@/state/gameCategoryImagesState";
 import { useLocation } from "@/router";

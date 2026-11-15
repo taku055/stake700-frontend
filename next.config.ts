@@ -4,6 +4,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: false,
   outputFileTracingRoot: path.join(process.cwd()),
+  // Browsers request /favicon.ico on their own; serve the PNG we have.
+  async rewrites() {
+    return [{ source: "/favicon.ico", destination: "/favicon.png" }];
+  },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(
       (rule: { test?: RegExp }) => rule.test instanceof RegExp && rule.test.test(".svg"),

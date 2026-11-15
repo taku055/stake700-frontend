@@ -3,7 +3,7 @@ import { useTranslations } from "@/context/I18nContext";
 import Loader from "@/components/Loader";
 import { DateRangePicker } from "@heroui/react";
 import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import moment from "moment";
 import { apiGetPaymentTransaction } from "@/api/transaction/apiGetPaymentTransaction.ts";
 import { tTransaction } from "@/types/tTransaction";

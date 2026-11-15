@@ -2,10 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { Search, X } from "lucide-react";
-import { Link } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";
 import { routes } from "@/config/routes";
-import { CasinoHeader } from "@/site/casino/components/CasinoHeader";
+import { SectionHero } from "@/site/casino/components/SectionHero";
+import { ProviderCard } from "@/components/ProviderCard";
 
 export type ProviderCard = { id: string; slug: string; name: string; img?: string | null; count: number };
 
@@ -21,12 +21,17 @@ export default function ProvidersPage({ providers }: { providers: ProviderCard[]
 
   return (
     <div className="flex w-full flex-col gap-5 p-2 md:gap-6">
-      <CasinoHeader
+      <SectionHero
         section={null}
+        variant="page"
         title={t("all_providers")}
-        eyebrow={t("Casino")}
+        subtitle={t("providers_tagline")}
+        crumbs={[{ label: t("Casino"), href: routes.casino() }, { label: t("all_providers") }]}
         icon="/images/sidebar/casino.webp"
-        total={providers.reduce((sum, p) => sum + (p.count || 0), 0)}
+        stats={[
+          { label: t("Providers"), value: providers.length.toLocaleString() },
+          { label: t("stat_games"), value: providers.reduce((sum, p) => sum + (p.count || 0), 0).toLocaleString() },
+        ]}
       />
 
       <div className="group flex h-12 items-center gap-2.5 rounded-lg border border-[var(--background-secondary)] bg-[var(--bar-background-color)] px-3.5 transition-[border-color,box-shadow] focus-within:border-[var(--primary-color)] focus-within:shadow-[0_0_0_3px_color-mix(in_srgb,var(--primary-color)_25%,transparent)]">
@@ -54,35 +59,10 @@ export default function ProvidersPage({ providers }: { providers: ProviderCard[]
       {visible.length === 0 ? (
         <p className="py-16 text-center text-[14px] text-[var(--text-muted-color)]">{t("no_providers_found")}</p>
       ) : (
-        <ul className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+        <ul className="grid grid-cols-1 gap-2.5 min-[420px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {visible.map((p) => (
             <li key={p.id}>
-              <Link
-                href={routes.provider(p.slug)}
-                className="group flex h-full flex-col items-center justify-center gap-3 rounded-xl border border-[var(--background-secondary)] bg-[var(--bar-background-color)] px-4 py-5 text-center transition-colors hover:border-[var(--primary-color)] hover:bg-[var(--background)]"
-              >
-                <span className="flex h-12 w-full items-center justify-center">
-                  {p.img ? (
-                    <img
-                      src={p.img}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="max-h-12 max-w-[85%] object-contain opacity-90 transition-opacity group-hover:opacity-100"
-                    />
-                  ) : (
-                    <span className="text-[16px] font-bold text-white">{p.name}</span>
-                  )}
-                </span>
-                <span className="flex flex-col gap-0.5">
-                  <span className="truncate text-[14px] font-semibold text-white">{p.name}</span>
-                  {p.count > 0 && (
-                    <span className="text-[12px] text-[var(--text-muted-color)]">
-                      {t("provider_games", { count: p.count })}
-                    </span>
-                  )}
-                </span>
-              </Link>
+              <ProviderCard name={p.name} href={routes.provider(p.slug)} count={p.count} />
             </li>
           ))}
         </ul>

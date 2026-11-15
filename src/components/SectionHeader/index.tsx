@@ -85,7 +85,7 @@ export default function SectionHeader({ title, icon, viewallLink, swiper, isRTL 
           </Link>
         )}
         {swiper && !edges.locked && (
-          <div className="hidden h-9 items-stretch overflow-hidden rounded-full border border-[var(--background-secondary)] bg-[var(--bar-background-color)] sm:flex">
+          <div className="flex h-9 items-stretch overflow-hidden rounded-full border border-[var(--background-secondary)] bg-[var(--bar-background-color)]">
             {isRTL ? [next, divider, prev] : [prev, divider, next]}
           </div>
         )}

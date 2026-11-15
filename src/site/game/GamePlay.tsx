@@ -3,7 +3,7 @@ import { userState } from "@/state/userState";
 import { sessionHydratedState } from "@/state/sessionHydratedState";
 import { Spinner } from "@heroui/spinner";
 import { apiStartGame } from "@/api/game/apiStartGame";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery, placeholderGameImage } from "@/config/constants";
 import styles from "./GamePlay.module.scss";
 import { MdFullscreen, MdRefresh } from "react-icons/md";

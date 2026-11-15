@@ -19,7 +19,7 @@ import { Chip } from "@heroui/chip";
 import { DateRangePicker } from "@heroui/date-picker";
 import { RangeValue } from "@react-types/shared";
 import { CalendarDate } from "@internationalized/date";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery, DEFAULT_CURRENCY_SYMBOL } from "@/config/constants";
 import { userState } from "@/state/userState";
 

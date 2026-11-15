@@ -20,7 +20,7 @@ import {
 } from "@internationalized/date";
 import { useAffiliateNavigation } from "@/hooks/useAffiliateNavigation";
 import { mobileMediaQuery } from "@/config/constants";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { setViewportCss } from "@/helpers/setViewportCss";
 import {
   AuthModal,

@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from "react";
 import type { Swiper as SwiperInstance } from "swiper";
 import { providerState } from "@/state/providerState";
-import { Link } from "@/components/common";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Navigation } from "swiper/modules";
 import { useTranslations } from "@/context/I18nContext";
@@ -14,42 +13,16 @@ import { useSignal } from "@preact/signals-react";
 import { localeState } from "@/state/localeState";
 import { mobileMediaQuery, RTL_LANGUAGES } from "@/config/constants";
 import { ChevronLeft, ChevronRight, Users, ArrowLeft } from "lucide-react";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { providerHref } from "@/helpers/providerHref";
+import { ProviderCard } from "@/components/ProviderCard";
 
 interface IProviderGroupProps {
   category?: string;
 }
 
-function ProviderTile({
-  p,
-  tileClassName,
-}: {
-  p: tProvider;
-  tileClassName: string;
-}) {
-  return (
-    <Link
-      href={providerHref(p.id)}
-      className={tileClassName}
-      aria-label={p.name}
-      title={p.name}
-    >
-      <span className={styles.logoWrap}>
-        {p.img ? (
-          <img
-            src={p.img}
-            alt=""
-            className={styles.logoImg}
-            loading="lazy"
-            decoding="async"
-          />
-        ) : (
-          <span className={styles.providerName}>{p.name}</span>
-        )}
-      </span>
-    </Link>
-  );
+function ProviderTile({ p }: { p: tProvider }) {
+  return <ProviderCard name={p.name} href={providerHref(p.id)} count={p.count} size="sm" />;
 }
 
 export default function ProviderGroup({ category }: IProviderGroupProps) {
@@ -207,7 +180,7 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
         >
           {providerList.map((p) => (
             <SwiperSlide key={p.id} className={styles.providerSlider}>
-              <ProviderTile p={p} tileClassName={styles.provider} />
+              <ProviderTile p={p} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -215,11 +188,7 @@ export default function ProviderGroup({ category }: IProviderGroupProps) {
         <div className={styles.gridPanel}>
           <div className={styles.providerGrid}>
             {providerList.map((p) => (
-              <ProviderTile
-                key={p.id}
-                p={p}
-                tileClassName={`${styles.provider} ${styles.providerGridTile}`}
-              />
+              <ProviderTile key={p.id} p={p} />
             ))}
           </div>
         </div>

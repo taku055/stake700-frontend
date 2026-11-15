@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import HomePage from "@/site/home";
 import SeedCustomGames from "@/provider/SeedCustomGames";
 import { getCustomGamesSeed } from "@/lib/server-data";
+import { sectionCounts } from "@/lib/catalog-routes";
+import CategoryCountsProvider from "@/site/casino/CategoryCountsProvider";
 import { buildMetadata, resolveLang, translate } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -16,10 +18,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export default async function Page() {
-  const seed = await getCustomGamesSeed();
+  // Slot category counts let the home tabs skip empty categories on the first render
+  const [seed, counts] = await Promise.all([getCustomGamesSeed(), sectionCounts("casino")]);
   return (
     <SeedCustomGames entries={seed}>
-      <HomePage />
+      <CategoryCountsProvider counts={counts}>
+        <HomePage />
+      </CategoryCountsProvider>
     </SeedCustomGames>
   );
 }

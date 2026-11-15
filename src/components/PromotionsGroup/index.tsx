@@ -2,7 +2,7 @@ import { Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./PromotionsGroup.module.scss";
 import { useEffect, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import {
   ASSET_BASE_URL,
   mobilePortraitMediaQuery,

@@ -8,8 +8,9 @@ import {
   Input,
 } from "@heroui/react";
 import { Search } from "lucide-react";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
+import { ProviderCard } from "@/components/ProviderCard";
 import { providerHref } from "@/helpers/providerHref";
 
 interface IAllProvidersModalProps {
@@ -65,25 +66,9 @@ export default function AllProvidersModal({
             variant="bordered"
             endContent={<Search size={24} />}
           />
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-h-[calc(var(--viewport-height)-158px)] md:max-h-[calc(var(--viewport-height)-300px)] overflow-auto">
+          <div className="grid grid-cols-1 gap-2.5 p-0.5 sm:grid-cols-2 lg:grid-cols-3 max-h-[calc(var(--viewport-height)-158px)] md:max-h-[calc(var(--viewport-height)-300px)] overflow-auto">
             {providerList.map((p) => (
-              <a
-                key={p.id}
-                href={providerHref(p.id)}
-                onClick={() => onClose()}
-                className="flex flex-col justify-center items-center rounded-lg p-3 hover:shadow-md transition text-center text-[#F9FAFA] bg-[var(--background)]"
-              >
-                {p.img ? (
-                  <img
-                    src={p.img}
-                    alt={p.name}
-                    className="w-full h-full object-contain"
-                    title={p.name}
-                  />
-                ) : (
-                  <span>{p.name}</span>
-                )}
-              </a>
+              <ProviderCard key={p.id} name={p.name} href={providerHref(p.id)} count={p.count} onClick={() => onClose()} />
             ))}
           </div>
         </ModalBody>

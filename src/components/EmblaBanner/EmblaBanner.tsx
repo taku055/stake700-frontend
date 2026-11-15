@@ -8,7 +8,7 @@ import {
 } from "@/config/constants";
 import { localeState } from "@/state/localeState";
 import { bannerState } from "@/state/bannerState";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { isVisibleOnValidDays } from "@/helpers/bannerUtils";
 
 export const EmblaBanner = () => {

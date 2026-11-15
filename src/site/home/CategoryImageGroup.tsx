@@ -1,5 +1,5 @@
 import { mobileMediaQuery } from "@/config/constants";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import TekioSwiper from "@/components/TekioSwiper";
 import { Mousewheel, Navigation } from "swiper/modules";
 import { SwiperSlide } from "swiper/react";

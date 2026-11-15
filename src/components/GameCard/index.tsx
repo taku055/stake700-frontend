@@ -1,7 +1,7 @@
 import styles from "./GameCard.module.scss";
 import { tGame } from "@/types/tGame";
 import { placeholderGameImage } from "@/config/constants";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Play, Star } from "lucide-react";
 import { favoritesGameState } from "@/state/favoritesGameState";
 import { apiAddFavoritesGame } from "@/api/favorites/apiAddFavoritesGame";
@@ -12,15 +12,24 @@ import { userState } from "@/state/userState";
 import { providerState } from "@/state/providerState";
 import { requireLogin } from "@/helpers/requireAuth";
 import { Link } from "../common";
-import { isBonusAvailableForGame } from "@/helpers/isBonusAvailableForGame";
-import { bonusAvailabilityState } from "@/state/bonusAvailabilityState";
 import { routes } from "@/config/routes";
+import { providerAccent } from "@/components/ProviderCard";
 
 interface GameCardProps {
   data: tGame;
   onClick?: () => void;
   useImgCustom?: boolean;
+  /**
+   * "card" (default): fixed-ratio artwork with the name and provider underneath.
+   * "tile": artwork fills its container (fixed-size slots); name shows on hover.
+   */
+  variant?: "card" | "tile";
 }
+
+/** Card artwork frame (width / height); keep in sync with .media in GameCard.module.scss */
+const CARD_RATIO = 5 / 4;
+/** Artwork further than this from the frame ratio is shown whole over a blurred backdrop instead of cropped. */
+const FIT_TOLERANCE = 0.22;
 
 const FORCE_CUSTOM_IMAGE_GAME_IDS = new Set<string>([
   "129614017fcaf209c4782e7a41b742f6e702bd68",
@@ -39,21 +48,21 @@ const FORCE_CUSTOM_IMAGE_GAME_IDS = new Set<string>([
   "4756da36fd6774a76012328d842b6ccd01ba6c97",
 ]);
 
-export default function GameCard({
-  data,
-  onClick,
-  useImgCustom = false,
-}: GameCardProps) {
+export default function GameCard({ data, onClick, useImgCustom = false, variant = "card" }: GameCardProps) {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [fit, setFit] = useState(false);
   const [favPending, setFavPending] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const mediaRef = useRef<HTMLDivElement>(null);
+  const frame = useRef(0);
   const tToast = useTranslations("ToastMessages");
   const tCard = useTranslations("GameCard");
-  const bonusAvailable = isBonusAvailableForGame(data);
-  void bonusAvailabilityState.value;
 
   const providerName = providerState.value.map[data.providerId]?.name;
   const isLoggedIn = !!userState.value?.id;
+  const accent = providerName ? providerAccent(providerName)[1] : undefined;
+  const isTile = variant === "tile";
 
   const isFavorite = useMemo(
     () => favoritesGameState.value.some((game) => game.id === data.id),
@@ -61,6 +70,8 @@ export default function GameCard({
   );
 
   const toggleFavorite = useCallback(async () => {
+    // Guests get the login dialog instead
+    if (!requireLogin()) return;
     if (favPending) return;
     setFavPending(true);
     const wasFavorite = isFavorite;
@@ -78,9 +89,7 @@ export default function GameCard({
         await apiAddFavoritesGame(data.id);
       }
       toast.success(
-        wasFavorite
-          ? tToast("success.removed_from_favorites")
-          : tToast("success.added_to_favorites"),
+        wasFavorite ? tToast("success.removed_from_favorites") : tToast("success.added_to_favorites"),
       );
     } catch (ex) {
       console.error(ex);
@@ -97,11 +106,56 @@ export default function GameCard({
       ? data.img_custom || data.img || placeholderGameImage
       : data.img || placeholderGameImage;
 
+  // Server-rendered images often finish loading before hydration, so React never
+  // sees their load event — check the element directly on mount / src change.
+  const handleLoaded = useCallback((img: HTMLImageElement) => {
+    const ratio = img.naturalWidth / img.naturalHeight;
+    setFit(Math.abs(ratio - CARD_RATIO) / CARD_RATIO > FIT_TOLERANCE);
+    setImgLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img?.complete) {
+      if (img.naturalWidth > 0) handleLoaded(img);
+      else setImgError(true);
+    }
+  }, [imgSrc, handleLoaded]);
+
+  // 3D tilt + glare that follow the mouse (CSS vars; no re-renders)
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (e.pointerType !== "mouse" || isTile) return;
+    const el = mediaRef.current;
+    if (!el) return;
+    const { clientX, clientY } = e;
+    cancelAnimationFrame(frame.current);
+    frame.current = requestAnimationFrame(() => {
+      const r = el.getBoundingClientRect();
+      const x = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+      const y = Math.min(1, Math.max(0, (clientY - r.top) / r.height));
+      el.style.setProperty("--mx", `${(x * 100).toFixed(1)}%`);
+      el.style.setProperty("--my", `${(y * 100).toFixed(1)}%`);
+      el.style.setProperty("--rx", `${((0.5 - y) * 10).toFixed(2)}deg`);
+      el.style.setProperty("--ry", `${((x - 0.5) * 12).toFixed(2)}deg`);
+    });
+  };
+  const onPointerLeave = () => {
+    cancelAnimationFrame(frame.current);
+    const el = mediaRef.current;
+    if (!el) return;
+    el.style.setProperty("--rx", "0deg");
+    el.style.setProperty("--ry", "0deg");
+  };
+
   return (
-    <div className={styles.cardRoot}>
+    <div
+      className={`${styles.root} ${isTile ? styles.tile : ""}`}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+    >
       <Link
         scrollToTop={true}
-        className={styles.game}
+        className={styles.link}
         href={data.href || routes.game(data.id, data.name)}
         preventDefaultOnClick={false}
         stopPropagationOnClick={false}
@@ -114,70 +168,87 @@ export default function GameCard({
           onClick?.();
         }}
       >
-        <div className={styles.media}>
-          {!imgLoaded && (
-            <>
-              <img
-                src={placeholderGameImage}
-                aria-hidden="true"
-                alt=""
-                className={styles.placeholder}
-              />
-              <span className={styles.shimmer} aria-hidden="true" />
-            </>
-          )}
+        <div ref={mediaRef} className={styles.media}>
+          {!imgLoaded && <span className={styles.shimmer} aria-hidden="true" />}
+          {fit && !isTile && <img className={styles.backdrop} src={imgSrc} alt="" aria-hidden="true" draggable={false} />}
           <img
-            className={`${styles.image} ${imgLoaded ? styles.imageLoaded : ""}`}
+            ref={imgRef}
+            className={`${styles.image} ${imgLoaded ? styles.imageLoaded : ""} ${fit && !isTile ? styles.imageFit : ""}`}
             src={imgSrc}
-            alt={data.name || data.id}
+            alt=""
             loading="lazy"
             decoding="async"
             draggable={false}
-            onLoad={() => setImgLoaded(true)}
+            onLoad={(e) => handleLoaded(e.currentTarget)}
             onError={() => {
               setImgError(true);
               setImgLoaded(true);
             }}
           />
 
-          {/* Hover / focus layer */}
-          <div className={styles.overlay} aria-hidden="true">
-            <span className={styles.playButton}>
-              <Play size={20} fill="currentColor" strokeWidth={0} />
-            </span>
-            <div className={styles.info}>
-              <span className={styles.title}>{data.name}</span>
-              {providerName && <span className={styles.provider}>{providerName}</span>}
-            </div>
-          </div>
-
-          <span
-            className={`${styles.badge} ${bonusAvailable ? styles.badgeBonus : styles.badgeCash}`}
-          >
-            <span className={styles.badgeDot} />
-            {bonusAvailable
-              ? tCard("bonus_available", undefined, "Bonus")
-              : tCard("cash_only", undefined, "Cash only")}
+          {/* Hover / focus layer (pointer devices) */}
+          <span className={styles.scrim} aria-hidden="true" />
+          <span className={styles.shine} aria-hidden="true" />
+          <span className={styles.glare} aria-hidden="true" />
+          <span className={styles.play} aria-hidden="true">
+            <Play size={14} fill="currentColor" strokeWidth={0} />
+            {tCard("play", undefined, "Play")}
           </span>
+
+          {isTile && (
+            <span className={styles.tileInfo} aria-hidden="true">
+              <span className={styles.name}>{data.name}</span>
+              {providerName && <span className={styles.provider}>{providerName}</span>}
+            </span>
+          )}
+          <span className={styles.ring} aria-hidden="true" />
         </div>
+
+        {!isTile && (
+          <span className={styles.caption}>
+            <span className={styles.name} title={data.name}>
+              {data.name}
+            </span>
+            <span className={styles.provider}>
+              {accent && <span className={styles.providerDot} style={{ background: accent }} />}
+              {providerName || " "}
+            </span>
+          </span>
+        )}
       </Link>
 
-      {isLoggedIn && (
-        <button
-          type="button"
-          className={`${styles.favorite} ${isFavorite ? styles.favoriteActive : ""}`}
-          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-          aria-pressed={isFavorite}
-          disabled={favPending}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            void toggleFavorite();
-          }}
-        >
-          <Star size={15} strokeWidth={2.25} fill={isFavorite ? "currentColor" : "none"} />
-        </button>
-      )}
+      <button
+        type="button"
+        className={`${styles.favorite} ${isFavorite && isLoggedIn ? styles.favoriteActive : ""}`}
+        aria-label={isFavorite && isLoggedIn ? tCard("remove_favorite") : tCard("add_favorite")}
+        title={isFavorite && isLoggedIn ? tCard("remove_favorite") : tCard("add_favorite")}
+        aria-pressed={isLoggedIn ? isFavorite : false}
+        disabled={favPending}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          void toggleFavorite();
+        }}
+      >
+        <Star size={15} strokeWidth={2.25} fill={isFavorite && isLoggedIn ? "currentColor" : "none"} />
+      </button>
+    </div>
+  );
+}
+
+/** Loading placeholder with the same footprint as a "card" GameCard. */
+export function GameCardSkeleton() {
+  return (
+    <div className={styles.root} aria-hidden="true">
+      <div className={styles.link}>
+        <div className={`${styles.media} ${styles.skeletonMedia}`}>
+          <span className={styles.shimmer} />
+        </div>
+        <span className={styles.caption}>
+          <span className={styles.skeletonLine} style={{ width: "78%" }} />
+          <span className={styles.skeletonLine} style={{ width: "48%", height: 9 }} />
+        </span>
+      </div>
     </div>
   );
 }

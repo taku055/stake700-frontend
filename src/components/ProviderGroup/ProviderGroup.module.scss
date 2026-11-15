@@ -276,7 +276,7 @@
 
   .providerGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 10px;
     padding: 12px;
     max-height: min(72vh, 680px);
@@ -310,10 +310,10 @@
     .providerSlider {
       flex-shrink: 0;
       box-sizing: border-box;
-      width: 148px;
+      width: 220px;
 
       @media (max-width: 768px) {
-        width: 112px;
+        width: 180px;
       }
     }
 

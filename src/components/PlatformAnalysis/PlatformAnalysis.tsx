@@ -3,7 +3,7 @@ import { userState } from "@/state/userState";
 import { DateRangePicker, RangeValue, Tabs, Tab } from "@heroui/react";
 import { CalendarDate } from "@internationalized/date";
 import { tProviderAnalysis } from "@/types/tProviderAnalysis";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import {
   CURRENCY_LIST,
   DEFAULT_CURRENCY_SYMBOL,

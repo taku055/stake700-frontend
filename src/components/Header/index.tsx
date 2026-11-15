@@ -8,7 +8,7 @@ import WalletBox from "./WalletBox";
 import { useTranslations } from "@/context/I18nContext";
 import { localeState } from "@/state/localeState";
 import { SearchWidgetHeader } from "./SearchWidget";
-import { searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
+import { openSearch, searchWidgetState as searchWidgetStateHeader } from "@/state/searchWidgetState";
 import LocaleSelection from "../LocaleSelection";
 import { ChevronLeft, Search } from "lucide-react";
 import {
@@ -75,10 +75,7 @@ export default function Header() {
                 className="flex h-10 items-center overflow-hidden rounded-md border border-[#2f4553] bg-[#1a2c38] text-sm font-semibold text-white"
                 aria-label={tSearch("Search")}
                 onMouseDown={(event) => event.stopPropagation()}
-                onClick={() =>
-                (searchWidgetStateHeader.value =
-                  !searchWidgetStateHeader.value)
-                }
+                onClick={() => (searchWidgetStateHeader.value ? (searchWidgetStateHeader.value = false) : openSearch("all"))}
               >
                 <span className="grid h-10 w-10 place-items-center bg-[#1475e1]">
                   <Search aria-hidden="true" className="h-4 w-4" />

@@ -13,7 +13,7 @@ import {
 import moment from "moment";
 import { eTransactionType } from "@/types/tTransaction";
 import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { CURRENCY_LIST } from "@/config/constants";
 import { eTransactionCurrency } from "@/types/tTransaction";
 import CurrencySelector from "@/components/CurrencySelector";

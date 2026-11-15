@@ -3,7 +3,7 @@ import { Button, Input } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { userState } from "@/state/userState";
 import { apiPayWithAries } from "@/api/wallet/apiPayWithAries";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import { localeState } from "@/state/localeState";
 import { toast } from "@/helpers/toast";

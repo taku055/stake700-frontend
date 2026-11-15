@@ -8,7 +8,7 @@ import { useMemo } from "react";
 import { userState } from "@/state/userState";
 import { Archive, Users } from "lucide-react";
 import { ASSET_BASE_URL, mobileMediaQuery } from "@/config/constants";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import CasinoHistoryPage from "./casino";
 import SportsHistoryPage from "./sports";
 

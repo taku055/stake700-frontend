@@ -1,72 +1,72 @@
 @use "/src/styles/mixins" as *;
 
-$radius: 10px;
+$radius: 12px;
 $ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-.cardRoot {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: $radius;
-}
+/* ---------- Layout ---------- */
 
-.game {
+.root {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
-  border-radius: $radius;
-  overflow: hidden;
+  min-width: 0;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
   color: inherit;
   text-decoration: none;
-  background: var(--bar-background-color);
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.35);
-  transition: box-shadow 0.35s $ease;
-  isolation: isolate;
+  outline: none;
   -webkit-tap-highlight-color: transparent;
 
-  // Hairline border drawn above the image so it stays crisp on any artwork
+  @include for-mobile-only {
+    gap: 6px;
+  }
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 4; // keep in sync with CARD_RATIO
+  overflow: hidden;
+  border-radius: $radius;
+  background: var(--bar-background-color);
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.6);
+  isolation: isolate;
+  // --lift / --rx / --ry are driven on hover (tilt follows the mouse)
+  transform: perspective(800px) translateY(var(--lift, 0px)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.45s $ease, box-shadow 0.35s $ease;
+  will-change: transform;
+
+  // Hairline ring drawn above the artwork so edges stay crisp on any image
   &::after {
     content: "";
     position: absolute;
     inset: 0;
     z-index: 5;
     border-radius: inherit;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
     pointer-events: none;
     transition: box-shadow 0.35s $ease;
   }
 
-  &:focus-visible {
-    outline: none;
-
-    &::after {
-      box-shadow: inset 0 0 0 2px var(--primary-color);
-    }
-  }
-
   @include for-mobile-only {
-    width: unset;
+    border-radius: 10px;
   }
-}
-
-.media {
-  position: relative;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  overflow: hidden;
 }
 
 .image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   opacity: 0;
-  transform: scale(1.001);
   transition: opacity 0.4s ease, transform 0.6s $ease;
   user-select: none;
 }
@@ -75,25 +75,28 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   opacity: 1;
 }
 
-.placeholder {
+// Artwork with a very different shape: shown whole, over a blurred copy of itself
+.imageFit {
+  z-index: 1;
+  object-fit: contain;
+}
+
+.backdrop {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
   object-fit: cover;
-  opacity: 0.5;
+  filter: blur(18px) saturate(1.2);
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 .shimmer {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    100deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.06) 50%,
-    transparent 80%
-  );
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.06) 50%, transparent 80%);
   background-size: 200% 100%;
   animation: shimmer 1.4s linear infinite;
 }
@@ -107,62 +110,17 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
-/* ---------- Hover / focus overlay ---------- */
+/* ---------- Caption ---------- */
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
+.caption {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  background: linear-gradient(
-    to top,
-    rgba(5, 12, 18, 0.95) 0%,
-    rgba(5, 12, 18, 0.55) 45%,
-    rgba(5, 12, 18, 0.2) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-
-  @include for-mobile-only {
-    display: none;
-  }
+  gap: 3px;
+  min-width: 0;
+  padding-inline: 2px;
 }
 
-.playButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  padding-inline-start: 3px; // optical centring of the triangle
-  border-radius: 50%;
-  color: #fff;
-  background: var(--primary-color);
-  box-shadow: 0 8px 24px -6px var(--primary-color), 0 0 0 6px rgba(255, 255, 255, 0.08);
-  transform: scale(0.7);
-  opacity: 0;
-  transition: transform 0.35s $ease, opacity 0.25s ease;
-}
-
-.info {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 10px 12px 11px;
-  text-align: start;
-  transform: translateY(6px);
-  transition: transform 0.35s $ease;
-}
-
-.title {
+.name {
   overflow: hidden;
   font-family: var(--primary-font);
   font-size: 13px;
@@ -171,112 +129,225 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   color: #fff;
   white-space: nowrap;
   text-overflow: ellipsis;
+  transition: color 0.2s ease;
+
+  @include for-mobile-only {
+    font-size: 12px;
+  }
 }
 
 .provider {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
   overflow: hidden;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 500;
   line-height: 1.2;
   color: var(--text-muted-color);
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-@mixin card-active {
-  .game {
-    box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.7);
-
-    &::after {
-      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary-color) 70%, transparent);
-    }
-  }
-
-  .image {
-    transform: scale(1.06);
-  }
-
-  .overlay {
-    opacity: 1;
-  }
-
-  .playButton {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  .info {
-    transform: translateY(0);
-  }
-
-  .favorite {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@media (hover: hover) {
-  .cardRoot:hover {
-    @include card-active;
-  }
-}
-
-.cardRoot:focus-within {
-  @include card-active;
-}
-
-/* ---------- Badges ---------- */
-
-.badge {
-  position: absolute;
-  top: 8px;
-  inset-inline-start: 8px;
-  z-index: 4;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  max-width: calc(100% - 52px);
-  padding: 3px 8px 3px 7px;
-  border-radius: 999px;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: #fff;
-  background: rgba(8, 18, 26, 0.72);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  pointer-events: none;
 
   @include for-mobile-only {
-    top: 5px;
-    inset-inline-start: 5px;
-    padding: 2px 6px 2px 5px;
-    font-size: 9px;
-    gap: 4px;
+    font-size: 10.5px;
   }
 }
 
-.badgeDot {
+.providerDot {
   width: 6px;
   height: 6px;
   flex-shrink: 0;
   border-radius: 50%;
 }
 
-.badgeBonus .badgeDot {
-  background: var(--green-color);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--green-color) 30%, transparent);
+/* ---------- Hover layer ---------- */
+
+// Soft light that follows the cursor
+.glare {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.06) 35%, transparent 60%);
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-.badgeCash {
-  color: var(--text-muted-color);
+// Diagonal light streak that sweeps across the artwork on hover
+.shine {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
 
-  .badgeDot {
-    background: var(--background-tertiary);
+  &::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    bottom: -20%;
+    left: -60%;
+    width: 45%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    transform: skewX(-18deg) translateX(0);
+    opacity: 0;
+  }
+}
+
+// Gradient outline shown on hover (sky -> brand blue -> indigo)
+.ring {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #56ccf2, var(--primary-color) 45%, #7c8cff);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+@keyframes sweep {
+  from {
+    opacity: 1;
+    transform: skewX(-18deg) translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: skewX(-18deg) translateX(420%);
+  }
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(6, 14, 22, 0.88) 0%, rgba(6, 14, 22, 0.35) 55%, rgba(6, 14, 22, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px 0 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  background: var(--primary-color);
+  box-shadow: 0 10px 24px -8px var(--primary-color), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translate(-50%, -30%);
+  transition: opacity 0.25s ease, transform 0.35s $ease;
+  pointer-events: none;
+}
+
+// Touch devices: tapping opens the game directly, so no hover layer
+@media (hover: none) {
+  .scrim,
+  .play {
+    display: none;
+  }
+}
+
+@mixin card-active {
+  .media {
+    --lift: -6px;
+    transition: transform 0.12s ease-out, box-shadow 0.35s $ease;
+    box-shadow: 0 18px 32px -14px rgba(0, 0, 0, 0.85), 0 12px 32px -12px color-mix(in srgb, var(--primary-color) 65%, transparent);
+  }
+
+  .image {
+    transform: scale(1.06);
+  }
+
+  .scrim,
+  .play,
+  .tileInfo,
+  .ring,
+  .glare {
+    opacity: 1;
+  }
+
+  .shine::before {
+    animation: sweep 0.9s $ease forwards;
+  }
+
+  .play {
+    transform: translate(-50%, -50%);
+  }
+
+  .favorite {
+    opacity: 1;
+    transform: translateY(-6px) scale(1);
+  }
+}
+
+@media (hover: hover) {
+  .root:hover {
+    @include card-active;
+  }
+}
+
+.root:focus-within {
+  @include card-active;
+}
+
+.link:focus-visible .media::after {
+  box-shadow: inset 0 0 0 2px var(--primary-color);
+}
+
+/* ---------- Tile variant (fills a fixed-size slot) ---------- */
+
+.tile {
+  height: 100%;
+
+  .link {
+    height: 100%;
+  }
+
+  .media {
+    flex: 1;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .image {
+    object-position: center;
+  }
+}
+
+.tileInfo {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px 11px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+
+  @media (hover: none) {
+    display: none;
   }
 }
 
@@ -284,8 +355,8 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
 
 .favorite {
   position: absolute;
-  top: 6px;
-  inset-inline-end: 6px;
+  top: 8px;
+  inset-inline-end: 8px;
   z-index: 6;
   display: flex;
   align-items: center;
@@ -295,21 +366,17 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   border: 0;
   border-radius: 50%;
   color: #fff;
-  background: rgba(8, 18, 26, 0.72);
+  background: rgba(8, 18, 26, 0.7);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
   cursor: pointer;
   opacity: 0;
   transform: scale(0.85);
-  transition: opacity 0.25s ease, transform 0.3s $ease, color 0.2s ease, background-color 0.2s ease;
+  transition: opacity 0.25s ease, transform 0.35s $ease, color 0.2s ease, background-color 0.2s ease;
 
   &:hover {
-    background: rgba(8, 18, 26, 0.9);
-  }
-
-  &:active {
-    transform: scale(0.9);
+    background: rgba(8, 18, 26, 0.92);
   }
 
   &:focus-visible {
@@ -323,9 +390,19 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
     cursor: default;
   }
 
-  // Touch devices: no hover, so only surface the star when it's already a favourite
+  // Touch devices have no hover: keep the star visible (smaller) on every card
   @media (hover: none) {
-    display: none;
+    top: 6px;
+    inset-inline-end: 6px;
+    width: 28px;
+    height: 28px;
+    opacity: 1;
+    transform: none;
+
+    svg {
+      width: 13px;
+      height: 13px;
+    }
   }
 }
 
@@ -333,18 +410,44 @@ $ease: cubic-bezier(0.22, 1, 0.36, 1);
   color: #ffc83d;
   opacity: 1;
   transform: scale(1);
+  box-shadow: inset 0 0 0 1px rgba(255, 200, 61, 0.45), 0 0 14px -2px rgba(255, 200, 61, 0.55);
 
-  @media (hover: none) {
-    display: flex;
-    width: 24px;
-    height: 24px;
-    top: 4px;
-    inset-inline-end: 4px;
-    pointer-events: none;
+  svg {
+    animation: pop 0.35s $ease;
+  }
+}
 
-    svg {
-      width: 12px;
-      height: 12px;
-    }
+@keyframes pop {
+  0% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------- Skeleton ---------- */
+
+.skeletonMedia {
+  box-shadow: none;
+}
+
+.skeletonLine {
+  display: block;
+  height: 11px;
+  border-radius: 4px;
+  background: var(--bar-background-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media {
+    transform: none !important;
+  }
+
+  .shine::before {
+    animation: none !important;
   }
 }

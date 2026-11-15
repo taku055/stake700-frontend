@@ -12,7 +12,7 @@ import { useLocation } from "@/router";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
 import { registerOpenedState } from "@/state/registerOpenedState";
 import { mobileMediaQuery } from "@/config/constants";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { setViewportCss } from "@/helpers/setViewportCss";
 import {
   AuthModal,

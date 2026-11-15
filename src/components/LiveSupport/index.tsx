@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./LiveSupport.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { mobileMediaQuery } from "@/config/constants";
 import { MdClose } from "react-icons/md";
 import ChatMessageInput from "./LiveSupportMessageInput";

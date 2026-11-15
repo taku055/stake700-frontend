@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import CatalogPage from "@/site/casino/CatalogPage";
 import LobbyPage from "@/site/casino/LobbyPage";
 import SeedCustomGames from "@/provider/SeedCustomGames";
-import { getCustomCategoryCount, getCustomGamesSeed, getInitialGames, type InitialGames } from "@/lib/server-data";
-import { PROVIDERS_QUERY_KEY, SECTION_META, getCategory, type CatalogSection } from "@/config/catalog";
+import { getCustomCategoryCount, getCustomCategoryCounts, getCustomGamesSeed, getInitialGames, type InitialGames } from "@/lib/server-data";
+import { PROVIDERS_QUERY_KEY, SECTION_META, getCategory, getSectionCategories, type CatalogSection } from "@/config/catalog";
 import { routes } from "@/config/routes";
 import type { Locale } from "@/config/i18n";
 import { buildMetadata, resolveLang, translate } from "@/lib/seo";
@@ -33,6 +33,13 @@ function sectionCrumbs(lang: Locale, section: CatalogSection): Crumb[] {
     { name: translate(lang, "Seo.home"), path: routes.home() },
     { name: translate(lang, `CasinoPage.${SECTION_META[section].titleKey}`), path: routes.section(section) },
   ];
+}
+
+/** Curated game counts per category slug for a section (undefined if the backend is down). */
+export async function sectionCounts(section: CatalogSection): Promise<Record<string, number> | undefined> {
+  const categories = getSectionCategories(section);
+  const counts = await getCustomCategoryCounts(categories.map((c) => c.category));
+  return counts ? Object.fromEntries(categories.map((c) => [c.slug, counts[c.category] ?? 0])) : undefined;
 }
 
 /** Breadcrumbs + the server-rendered games as an ItemList. */
@@ -66,12 +73,12 @@ export function sectionLobby(section: CatalogSection) {
     },
     Page: async ({ params }: LangParams) => {
       const lang = await resolveLang(params);
-      const seed = await getCustomGamesSeed();
+      const [seed, categoryCounts] = await Promise.all([getCustomGamesSeed(), sectionCounts(section)]);
       return (
         <>
           <JsonLd data={breadcrumbLd(lang, sectionCrumbs(lang, section))} />
           <SeedCustomGames entries={seed}>
-            <LobbyPage section={section} />
+            <LobbyPage section={section} categoryCounts={categoryCounts} />
           </SeedCustomGames>
         </>
       );
@@ -93,11 +100,14 @@ export function sectionAll(section: CatalogSection) {
     },
     Page: async ({ params, searchParams }: LangParams & Search) => {
       const lang = await resolveLang(params);
-      const initialData = await getInitialGames({
-        isCustom: false,
-        gameType: SECTION_META[section].gameType,
-        provider: await providersFilter(searchParams),
-      });
+      const [initialData, categoryCounts] = await Promise.all([
+        getInitialGames({
+          isCustom: false,
+          gameType: SECTION_META[section].gameType,
+          provider: await providersFilter(searchParams),
+        }),
+        sectionCounts(section),
+      ]);
       const crumbs = [
         ...sectionCrumbs(lang, section),
         { name: translate(lang, "CasinoPage.all_games"), path: routes.sectionAll(section) },
@@ -105,7 +115,7 @@ export function sectionAll(section: CatalogSection) {
       return (
         <>
           <CatalogJsonLd lang={lang} crumbs={crumbs} data={initialData} />
-          <CatalogPage section={section} slug="games" initialData={initialData} />
+          <CatalogPage section={section} slug="games" initialData={initialData} categoryCounts={categoryCounts} />
         </>
       );
     },
@@ -136,12 +146,15 @@ export function sectionCategory(section: CatalogSection) {
       const { category: slug } = await params;
       const category = getCategory(section, slug);
       if (!category) notFound();
-      const initialData = await getInitialGames({
-        isCustom: category.isCustom,
-        category: category.category,
-        gameType: category.gameType,
-        provider: await providersFilter(searchParams),
-      });
+      const [initialData, categoryCounts] = await Promise.all([
+        getInitialGames({
+          isCustom: category.isCustom,
+          category: category.category,
+          gameType: category.gameType,
+          provider: await providersFilter(searchParams),
+        }),
+        sectionCounts(section),
+      ]);
       const crumbs = [
         ...sectionCrumbs(lang, section),
         { name: translate(lang, `CasinoPage.${category.titleKey}`), path: routes.category(section, slug) },
@@ -149,7 +162,7 @@ export function sectionCategory(section: CatalogSection) {
       return (
         <>
           <CatalogJsonLd lang={lang} crumbs={crumbs} data={initialData} />
-          <CatalogPage section={section} slug={slug} initialData={initialData} />
+          <CatalogPage section={section} slug={slug} initialData={initialData} categoryCounts={categoryCounts} />
         </>
       );
     },

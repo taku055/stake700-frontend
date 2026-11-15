@@ -13,7 +13,7 @@ export default function TwoRowMosaic4Games({ games }: Props) {
     <div className={styles.mosaic4}>
       {slice.map((game) => (
         <div className={styles.mosaicCard} key={game.id}>
-          <GameCard data={game} />
+          <GameCard data={game} variant="tile" />
         </div>
       ))}
     </div>

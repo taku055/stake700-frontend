@@ -9,7 +9,7 @@ import {
   TableRow,
   TableCell,
 } from "@heroui/react";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { CalendarDate } from "@internationalized/date";
 import { numberRound } from "@/helpers/numberRound";
 import { apiAdminGetUserAnalysis } from "@/api/agent/area_manager/apiAdminGetUserAnalysis";

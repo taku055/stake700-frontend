@@ -10,17 +10,44 @@ import { matchesCustomCategory } from "@/config/customGameCategories";
  */
 const API = `${process.env.NEXT_PUBLIC_BACKEND_URL}/v1`;
 const REVALIDATE = 300;
+/** Give up quickly so a slow/down backend never stalls page rendering. */
+const TIMEOUT_MS = 5000;
+/** Log each failing endpoint at most once per minute. */
+const LOG_INTERVAL_MS = 60_000;
+const lastLogged = new Map<string, number>();
+
+function errorCode(err: unknown): string {
+  const e = err as { name?: string; code?: string; message?: string; cause?: any };
+  if (e?.name === "TimeoutError") return `timeout after ${TIMEOUT_MS}ms`;
+  const cause = e?.cause;
+  const codes = new Set<string>(
+    [cause?.code, ...(cause?.errors ?? []).map((x: any) => x?.code)].filter(Boolean),
+  );
+  return codes.size ? [...codes].join("/") : (e?.message ?? String(err));
+}
+
+function logFailure(path: string, reason: string) {
+  const now = Date.now();
+  if (now - (lastLogged.get(path) ?? 0) < LOG_INTERVAL_MS) return;
+  lastLogged.set(path, now);
+  console.warn(`[server-data] ${API}${path} unavailable (${reason}); rendering without it`);
+}
 
 async function getJson<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${API}${path}`, {
       next: { revalidate: REVALIDATE },
       headers: { "ngrok-skip-browser-warning": "true" },
+      signal: AbortSignal.timeout(TIMEOUT_MS),
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      // 4xx (e.g. unknown game id) is a normal "not found", not an outage
+      if (res.status >= 500) logFailure(path, `HTTP ${res.status}`);
+      return null;
+    }
     return (await res.json()) as T;
   } catch (err) {
-    console.error(`[server-data] ${path}`, err);
+    logFailure(path, errorCode(err));
     return null;
   }
 }
@@ -100,6 +127,17 @@ export async function getCustomGamesSeed(perCategory = 30): Promise<tCustomGame[
     });
   }
   return seed;
+}
+
+/** Game counts for several curated categories, keyed by backend category (null if unavailable). */
+export async function getCustomCategoryCounts(categories: string[]): Promise<Record<string, number> | null> {
+  const all = await getCustomGames();
+  if (!all) return null;
+  const counts: Record<string, number> = {};
+  for (const category of categories) {
+    counts[category] = all.filter((c) => c.Game && matchesCustomCategory(c.category, category)).length;
+  }
+  return counts;
 }
 
 /** Number of games in a curated category (aliases included). */

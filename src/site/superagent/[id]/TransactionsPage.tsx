@@ -14,7 +14,7 @@ import moment from "moment";
 import { tAgentTransaction } from "@/types/tAgentTransaction";
 import { eTransactionType } from "@/types/tTransaction";
 import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { apiAdminGetSuperTransfers } from "@/api/agent/apiAdminGetSuperTransfers";
 import { CURRENCY_LIST } from "@/config/constants";
 import { eTransactionCurrency } from "@/types/tTransaction";

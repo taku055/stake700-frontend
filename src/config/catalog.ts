@@ -57,28 +57,34 @@ const C = (
 const ICON = "/images/category_logo";
 
 export const CATALOG: CatalogCategory[] = [
-  // Casino (slots)
-  C("casino", "top", "top-games", "Top Games", `${ICON}/top.webp`, true),
-  C("casino", "new", "slot-new", "New", `${ICON}/new.webp`, true),
-  { ...C("casino", "popular", "slot-popular", "Popular", `${ICON}/popular.webp`, true), aliases: ["slot-top-slots"] },
-  C("casino", "jackpots", "jackpots", "Jackpots", `${ICON}/jackpots.webp`, true),
-  C("casino", "megaways", "megaways", "Megaways", `${ICON}/megaways.webp`, true),
-  C("casino", "trending", "trending", "Trending Games", `${ICON}/popular.webp`),
-  C("casino", "classics", "classic-slots", "Classics", `${ICON}/top.webp`),
-  C("casino", "book-of", "book-of", "Book Of", `${ICON}/top.webp`),
-  C("casino", "instant-games", "instant-game", "Instant Win", `${ICON}/top.webp`),
+  // Casino (slots). Order = display order. Backend keys must exist in the
+  // back office's custom_game_category_navs table.
+  C("casino", "top", "top-games", "cat_top", `${ICON}/top.webp`, true),
+  C("casino", "trending", "trending", "cat_trending", `${ICON}/popular.webp`, true),
+  C("casino", "most-played", "slot-top-slots", "cat_most_played", `${ICON}/top.webp`, true),
+  C("casino", "new", "slot-new", "cat_new", `${ICON}/new.webp`, true),
+  C("casino", "popular", "slot-popular", "cat_popular", `${ICON}/popular.webp`),
+  C("casino", "jackpots", "jackpots", "cat_jackpots", `${ICON}/jackpots.webp`, true),
+  C("casino", "megaways", "megaways", "cat_megaways", `${ICON}/megaways.webp`, true),
+  C("casino", "bonus-buy", "slot-bonus-buy", "cat_bonus_buy", `${ICON}/top.webp`),
+  C("casino", "hold-and-win", "slot-hold-and-win", "cat_hold_and_win", `${ICON}/top.webp`),
+  C("casino", "fruit-slots", "slot-fruits", "cat_fruit_slots", `${ICON}/top.webp`),
+  C("casino", "classics", "classic-slots", "cat_classics", `${ICON}/top.webp`),
+  C("casino", "book-of", "book-of", "cat_book_of", `${ICON}/top.webp`),
+  { ...C("casino", "instant-games", "instant-win", "cat_instant", `${ICON}/top.webp`), aliases: ["instant-game"] },
 
   // Live casino
-  C("live-casino", "table-games", "tablegames", "Table Games", `${ICON}/top-live-games.webp`, true),
-  C("live-casino", "roulette", "rouletteglobal", "Roulette", `${ICON}/roulette.webp`, true),
-  C("live-casino", "blackjack", "blackjacks", "Blackjack", `${ICON}/blackjack.webp`, true),
-  C("live-casino", "baccarat", "baccaratglobal", "Baccarat", `${ICON}/baccarat.webp`, true),
-  C("live-casino", "game-shows", "show", "Game Shows", `${ICON}/shows.webp`, true),
-  C("live-casino", "top-tables", "toptables", "Top Tables", `${ICON}/top-live-games.webp`),
-  C("live-casino", "live-tables", "live-tables", "Live Tables", `${ICON}/top-live-games.webp`),
-  C("live-casino", "high-stakes", "highstakes", "High Stakes", `${ICON}/top-live-games.webp`),
-  C("live-casino", "sic-bo", "sic-bo", "Sic Bo", `${ICON}/top-live-games.webp`),
-  C("live-casino", "video-poker", "videopoker", "Video Poker", `${ICON}/top-live-games.webp`),
+  C("live-casino", "table-games", "tablegames", "cat_table_games", `${ICON}/top-live-games.webp`, true),
+  C("live-casino", "live-tables", "live-tables", "cat_live_tables", `${ICON}/top-live-games.webp`),
+  C("live-casino", "top-tables", "toptables", "cat_top_tables", `${ICON}/top-live-games.webp`),
+  C("live-casino", "roulette", "rouletteglobal", "cat_roulette", `${ICON}/roulette.webp`, true),
+  C("live-casino", "blackjack", "blackjacks", "cat_blackjack", `${ICON}/blackjack.webp`, true),
+  C("live-casino", "baccarat", "baccaratglobal", "cat_baccarat", `${ICON}/baccarat.webp`, true),
+  C("live-casino", "game-shows", "show", "cat_game_shows", `${ICON}/shows.webp`, true),
+  C("live-casino", "poker", "live-poker", "cat_poker", `${ICON}/top-live-games.webp`),
+  C("live-casino", "asian-games", "live-asian", "cat_asian_games", `${ICON}/top-live-games.webp`),
+  C("live-casino", "sic-bo", "sic-bo", "cat_dice", `${ICON}/top-live-games.webp`),
+  C("live-casino", "high-stakes", "highstakes", "cat_high_stakes", `${ICON}/top-live-games.webp`),
 ];
 
 export function getCategory(section: CatalogSection, slug: string): CatalogCategory | undefined {
