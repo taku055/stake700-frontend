@@ -1,15 +1,20 @@
 import { instance } from "../instance";
 import { tUserBalance } from "@/types/tUserLedger";
 
-export const apiCancelWagering = async (
-  userId: string,
-  currencyCode : string = "USD",
-) => {
-  const res = await instance.get<{
+/**
+ * Cancels the logged-in player's active bonus / promotion (and its free spins).
+ * The backend uses the session user, so a player can only cancel their own.
+ */
+export const apiCancelWagering = async (_userId: string, currencyCode: string = "USD") => {
+  const res = await instance.post<{
     hasError: boolean;
-    code: string;
-    message: string;
+    code?: string;
+    message?: string;
     data: tUserBalance;
-  }>(`/ledger/user/${userId}/cancel-wagering?currencyCode=${currencyCode}`);
+    cancelledFreespins?: number;
+  }>(`/ledger/cancel-promotion`, { currency: currencyCode });
+  if (res.data?.hasError) {
+    throw new Error(res.data.message || "Failed to cancel wagering");
+  }
   return res.data.data;
 };

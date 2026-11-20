@@ -1,68 +1,41 @@
 "use client";
 
+import { useCallback, useEffect, useMemo, useState, type CSSProperties } from "react";
+import { FileText, Gift, Percent, Sparkles, Ticket } from "lucide-react";
+import { Link } from "@/components/common/Link";
+import { routes } from "@/config/routes";
 import { apiGetPromotions } from "@/api/ledger/apiPromotions";
-import { apiGetGameById } from "@/api/common/apiGetGameById";
-import {
-  formatEligibility,
-  formatPromoType,
-  formatVipRange,
-  isDepositPromoType,
-  isDepositSequenceEligibility,
-  isNoDepositPromoType,
-  isPlayerVisiblePromotion,
-} from "@/config/promoConstants";
+import { isNoDepositPromoType, isPlayerVisiblePromotion } from "@/config/promoConstants";
 import { currencyState } from "@/state/currencyState";
 import { userState } from "@/state/userState";
-import { tLedgerPromotion } from "@/types/tUserLedger";
-import { useEffect, useState } from "react";
+import type { tLedgerPromotion } from "@/types/tUserLedger";
 import { useLocation } from "@/router";
 import { openAccountDialog } from "@/state/accountDialogs";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { requireLogin } from "@/helpers/requireAuth";
 import WageringPage from "@/site/wagering";
 import { useTranslations } from "@/context/I18nContext";
+import PromoOfferCard from "./PromoOfferCard";
+import CashbackPanel from "./CashbackPanel";
+import { KIND_LOOK, promoKind, type PromoKind } from "./promoDisplay";
 
 type PromoTab = "offers" | "active";
+type Filter = "all" | PromoKind;
 
 function getTabFromQuery(tab: string | string[] | undefined): PromoTab {
   const value = Array.isArray(tab) ? tab[0] : tab;
   return value === "active" ? "active" : "offers";
 }
 
-type PromoResponse = {
-  promotions: tLedgerPromotion[];
-  total: number;
-};
-
-function ctaLabel(
-  type: string,
-  t: (key: string, values?: Record<string, string>) => string,
-) {
-  switch (type) {
-    case "DEPOSIT":
-    case "DEPOSIT_BONUS":
-    case "WELCOME_BONUS":
-      return t("deposit_now");
-    case "SIGNUP":
-    case "SIGNUP_BONUS":
-      return t("sign_up_now");
-    default:
-      return t("claim_offer");
-  }
-}
+const FILTERS: Filter[] = ["all", "deposit", "spins", "vip"];
 
 export default function PromoPage() {
   const t = useTranslations("PromotionsPage");
-  const tWagering = useTranslations("Wagering");
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState<PromoTab>(() =>
-    getTabFromQuery(location.query?.tab)
-  );
-  const [data, setData] = useState<PromoResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<PromoTab>(() => getTabFromQuery(location.query?.tab));
+  const [filter, setFilter] = useState<Filter>("all");
+  const [promos, setPromos] = useState<tLedgerPromotion[] | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [modalPromo, setModalPromo] = useState<tLedgerPromotion | null>(null);
-  const [freeSpinGameName, setFreeSpinGameName] = useState<string | null>(null);
 
   useEffect(() => {
     setActiveTab(getTabFromQuery(location.query?.tab));
@@ -80,500 +53,204 @@ export default function PromoPage() {
     location.route(tab === "active" ? "/promotions?tab=active" : "/promotions");
   };
 
-  const openDepositForPromo = (promo: tLedgerPromotion) => {
-    if (isNoDepositPromoType(promo.type)) return;
+  const claim = useCallback((promo: tLedgerPromotion) => {
+    if (isNoDepositPromoType(promo.type) || !promo.available) return;
     if (!requireLogin()) return;
     history.pushState(null, "", `?promo=${promo.id}`);
     openAccountDialog("/balance-management/deposit", String(promo.id));
-  };
-
-  useEffect(() => {
-    if (!modalPromo?.freeSpinGameId || modalPromo.freeSpins <= 0) {
-      setFreeSpinGameName(null);
-      return;
-    }
-
-    let alive = true;
-    apiGetGameById(modalPromo.freeSpinGameId)
-      .then((game) => {
-        if (alive) setFreeSpinGameName(game.name);
-      })
-      .catch(() => {
-        if (alive) setFreeSpinGameName(null);
-      });
-
-    return () => {
-      alive = false;
-    };
-  }, [modalPromo?.id, modalPromo?.freeSpinGameId, modalPromo?.freeSpins]);
+  }, []);
 
   useEffect(() => {
     if (activeTab !== "offers") return;
-
     let alive = true;
-
     (async () => {
       try {
-        setLoading(true);
         setError(null);
-
-        const userId = userState.value?.id ?? "";
-        const currencyCode = currencyState.value.unit;
-        const promotionList = await apiGetPromotions("NORMAL", userId, currencyCode);
+        setPromos(null);
+        const list = await apiGetPromotions("NORMAL", userState.value?.id ?? "", currencyState.value.unit);
         if (!alive) return;
-
-        const visible = (promotionList.promotions ?? []).filter(
-          isPlayerVisiblePromotion
-        );
-        setData({
-          promotions: visible,
-          total: visible.length,
-        });
+        // The backend answers errors as { hasError, message } without `data`
+        if (!list) throw new Error(t("load_error"));
+        setPromos((list.promotions ?? []).filter((p) => p.isActive && isPlayerVisiblePromotion(p)));
       } catch (e: any) {
         if (!alive) return;
-        setError(e?.message ?? t("load_error"));
-        setData(null);
-      } finally {
-        if (!alive) return;
-        setLoading(false);
+        setError(t("load_error"));
+        setPromos([]);
       }
     })();
-
     return () => {
       alive = false;
     };
   }, [activeTab, userState.value?.id, currencyState.value.unit]);
 
-  const promos = (data?.promotions ?? []).filter(isPlayerVisiblePromotion);
+  const counts = useMemo(() => {
+    const c: Record<Filter, number> = { all: 0, deposit: 0, spins: 0, vip: 0 };
+    for (const p of promos ?? []) {
+      c.all += 1;
+      c[promoKind(p)] += 1;
+    }
+    return c;
+  }, [promos]);
+
+  const visible = useMemo(
+    () => (promos ?? []).filter((p) => filter === "all" || promoKind(p) === filter),
+    [promos, filter],
+  );
+  const availableCount = (promos ?? []).filter((p) => p.available).length;
 
   return (
-    <div
-      className="min-h-screen text-white flex flex-col gap-3 overflow-none"
-    >
-      <div className="mx-auto w-full max-w-6xl px-4 py-6">
-        <div className="flex items-center gap-3 w-full mt-4 mb-6">
-          <div
-            className="flex-1 h-[2px]"
-            style={{
-              background: "linear-gradient(90deg, transparent, #2e7d4f)",
-            }}
-          />
-          <h1
-            className="font-bold uppercase whitespace-nowrap tracking-[0.12em]"
-            style={{
-              fontFamily: "Montserrat, sans-serif",
-              color: "#4caf78",
-              fontSize: "1.1rem",
-              textShadow: "0 0 18px #2e7d4f66, 0 2px 4px #000",
-            }}
-          >
-            {t("title")}
-          </h1>
-          <div
-            className="flex-1 h-[2px]"
-            style={{
-              background: "linear-gradient(270deg, transparent, #2e7d4f)",
-            }}
-          />
+    <div className="flex w-full flex-col gap-6 p-2 md:gap-8">
+      {/* Hero */}
+      <section className="relative rounded-3xl border border-[var(--background-secondary)]">
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
+          <div className="absolute inset-0 bg-[linear-gradient(115deg,#1d2f6b_0%,#14284a_40%,var(--bar-background-color)_75%)]" />
+          <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.035)_0_2px,transparent_2px_22px)]" />
+          <div className="absolute -end-16 -top-24 h-80 w-80 rounded-full bg-[#b28cff] opacity-20 blur-[100px]" />
+          <div className="absolute -bottom-28 start-1/3 h-72 w-72 rounded-full bg-[var(--primary-color)] opacity-20 blur-[100px]" />
         </div>
 
-        <p className="text-center text-sm mb-6 -mt-2" style={{ color: "#6b8c78" }}>
-          {activeTab === "offers" ? t("subtitle_offers") : t("subtitle_active")}
-        </p>
+        <div className="relative flex items-center gap-8 p-6 md:p-10">
+          <div className="min-w-0 flex-1">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white/85">
+              <Ticket size={13} className="text-[#b28cff]" />
+              {t("hero_kicker")}
+            </span>
+            <h1 className="mt-4 text-[32px] font-extrabold leading-[1.05] tracking-[-0.02em] text-white md:text-[44px]">
+              {t("title")}
+            </h1>
+            <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-[var(--text-muted-color)] md:text-[15px]">
+              {activeTab === "offers" ? t("subtitle_offers") : t("subtitle_active")}
+            </p>
 
-        <div className="mb-6 flex justify-center">
-          <div
-            className="inline-flex rounded-full border p-1"
-            style={{ borderColor: "#1e3328", background: "rgba(15,26,19,0.9)" }}
-          >
-            {(
-              [
-                { key: "offers" as const, label: t("tab_all") },
-                { key: "active" as const, label: t("tab_active") },
-              ] as const
-            ).map((tab) => (
-              <button
-                key={tab.key}
-                type="button"
-                onClick={() => switchTab(tab.key)}
-                className="rounded-full px-4 py-2 text-sm font-semibold transition"
-                style={
-                  activeTab === tab.key
-                    ? {
-                        background: "linear-gradient(145deg, #2e7d4f, #1a4d30)",
-                        color: "#d4f5e2",
-                        boxShadow: "0 0 16px #2e7d4f44",
-                      }
-                    : { color: "#6b8c78" }
-                }
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="inline-flex rounded-2xl border border-white/10 bg-black/25 p-1 backdrop-blur">
+                {(["offers", "active"] as const).map((tab) => {
+                  const on = activeTab === tab;
+                  return (
+                    <button
+                      key={tab}
+                      type="button"
+                      onClick={() => switchTab(tab)}
+                      aria-pressed={on}
+                      className={`h-10 rounded-xl px-4 text-[14px] font-bold transition-colors md:px-5 ${
+                        on
+                          ? "bg-white text-[#0f212e] shadow-[0_8px_20px_-10px_rgba(255,255,255,0.6)]"
+                          : "text-white/70 hover:text-white"
+                      }`}
+                    >
+                      {tab === "offers" ? t("tab_offers") : t("tab_mine")}
+                    </button>
+                  );
+                })}
+              </div>
+              <Link
+                href={routes.promotionTerms()}
+                className="inline-flex h-12 items-center gap-2 rounded-2xl px-3 text-[13px] font-semibold text-white/70 transition-colors hover:text-white"
               >
-                {tab.label}
-              </button>
-            ))}
+                <FileText size={16} />
+                {t("terms_link")}
+              </Link>
+            </div>
           </div>
-        </div>
 
-        {activeTab === "active" && <WageringPage embedded />}
-
-        {activeTab === "offers" && (
-          <>
-        <div className="hidden md:flex justify-center mb-4">
-          <span
-            className="rounded-full px-3 py-1 text-xs"
-            style={{ background: "rgba(46,125,79,0.25)", color: "#a0c8b0" }}
-          >
-            {t("total_count", { total: String(data?.total ?? 0) })}
-          </span>
-        </div>
-
-        {loading && (
-          <div
-            className="rounded-[10px] border p-6 text-center"
-            style={{
-              borderColor: "#1e3328",
-              background: "rgba(15,26,19,0.9)",
-              color: "#8aab96",
-            }}
-          >
-            {t("loading")}
-          </div>
-        )}
-
-        {!loading && error && (
-          <div
-            className="rounded-[10px] border p-6 text-center"
-            style={{
-              borderColor: "#2e7d4f66",
-              background: "rgba(15,26,19,0.9)",
-              color: "#8aab96",
-            }}
-          >
-            {error}
-          </div>
-        )}
-
-        {!loading && !error && promos.length === 0 && (
-          <div
-            className="rounded-[10px] border p-6 text-center"
-            style={{
-              borderColor: "#1e3328",
-              background: "rgba(15,26,19,0.9)",
-              color: "#8aab96",
-            }}
-          >
-            {t("empty")}
-          </div>
-        )}
-
-        {!loading && !error && promos.length > 0 && (
-          <>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 font-serif items-stretch">
-              {promos.filter(promo => promo.isActive).map((promo) => (
+          {/* Stat bubbles */}
+          {activeTab === "offers" && (
+            <div className="grid shrink-0 grid-cols-2 gap-3 max-md:hidden">
+              {[
+                { icon: Gift, label: t("stat_offers"), value: promos ? String(counts.all) : "–", color: "#4aa3ff" },
+                {
+                  icon: Sparkles,
+                  label: t("stat_for_you"),
+                  value: promos ? (userState.value?.id ? String(availableCount) : "–") : "–",
+                  color: "#b28cff",
+                },
+              ].map(({ icon: StatIcon, label, value, color }) => (
                 <div
-                  key={promo.id}
-                  className="flex h-full w-full max-w-[561px] mx-auto flex-col overflow-hidden shadow-lg"
+                  key={label}
+                  style={{ "--accent": color } as CSSProperties}
+                  className="flex w-[150px] flex-col gap-3 rounded-2xl border border-white/10 bg-black/25 p-4 backdrop-blur"
                 >
-                  <div className="aspect-[16/9] w-full shrink-0 bg-[#0C0C0C]">
-                    <img
-                      src={promo.imageUrl || "/images/new-promo.svg"}
-                      alt={t("promo_alt")}
-                      className="block h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col bg-[#0C0C0C] px-5 pt-6 pb-5">
-                    <div className="flex min-h-[148px] flex-1 flex-col">
-                      <div className="mb-2 min-h-[3.25rem] text-center text-[20px] font-bold tracking-wide text-[#CEA30E] line-clamp-2">
-                        {promo.description}
-                      </div>
-                      <div className="my-3 shrink-0 border-b border-[1.35px] border-[#CEA30E]" />
-                      <div className="mb-2 text-[16px] font-semibold text-white">
-                        {t("deposit_code")}{" "}
-                        <span className="text-[#CEA30E]">{promo.code}</span>
-                      </div>
-                      <div className="min-h-[2.75rem]">
-                        {!promo.available && promo.ineligibleReason && (
-                          <p className="text-xs leading-relaxed text-amber-200/80 line-clamp-3">
-                            {promo.ineligibleReason}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <div className="mt-auto flex shrink-0 gap-3 pt-5">
-                      <button
-                        type="button"
-                        className={[
-                          "flex-1 font-bold text-[16px] rounded-lg py-3 font-serif transition shadow-md",
-                          promo.available
-                            ? "bg-[#01A825] text-white cursor-pointer shadow-[#01A825] hover:brightness-110"
-                            : "bg-[#1e2520] text-white/35 cursor-not-allowed border border-white/10 opacity-80 shadow-none",
-                        ].join(" ")}
-                        disabled={!promo.available}
-                        aria-disabled={!promo.available}
-                        onClick={() => {
-                          if (!promo.available) return;
-                          openDepositForPromo(promo);
-                        }}
-                      >
-                        {ctaLabel(promo.type, t)}
-                      </button>
-                      <button
-                        className="flex-1 bg-transparent text-[#CEA30E] font-bold text-[16px] border-2 border-[#CEA30E] rounded-lg py-3 cursor-pointer transition hover:bg-yellow-400/10"
-                        style={{
-                          boxShadow: '0 0 15px 0 #01a8256f',
-                        }}
-                        onClick={() => setModalPromo(promo)}
-                      >
-                        <span style={{
-                          textShadow: '0px 2px 8px rgba(255,255,255,0.49)',
-                          letterSpacing: 2,
-                          fontFamily: 'serif',
-                          display: 'block',
-
-                        }}>
-                          {t("learn_more")}
-                        </span>
-                      </button>
-                    </div>
-                  </div>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[color-mix(in_srgb,var(--accent)_18%,transparent)] text-[var(--accent)]">
+                    <StatIcon size={18} />
+                  </span>
+                  <span>
+                    <span className="block text-[26px] font-extrabold leading-none text-white tabular-nums">{value}</span>
+                    <span className="mt-1 block text-[12px] font-semibold text-[var(--text-muted-color)]">{label}</span>
+                  </span>
                 </div>
               ))}
             </div>
-            {modalPromo && (
-              <div
-                className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
-                onClick={e => {
-                  if (e.target === e.currentTarget) setModalPromo(null);
-                }}
-              >
-                <div
-                  role="dialog"
-                  aria-modal="true"
-                  aria-label={modalPromo.name}
-                  className="relative bg-[#13201a] rounded-[10px] border border-[#1e3328] shadow-2xl w-full max-w-lg animate-fadeIn overflow-hidden max-h-[90vh] flex flex-col"
+          )}
+        </div>
+      </section>
+
+      {activeTab === "active" && (
+        <>
+          <CashbackPanel showHistory />
+          <WageringPage embedded />
+        </>
+      )}
+
+      {activeTab === "offers" && (
+        <>
+          <CashbackPanel />
+
+          {/* Filters */}
+          <div className="flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {FILTERS.map((f) => {
+              const on = filter === f;
+              const look = f === "all" ? { Icon: Percent, accent: "#7c8cff" } : KIND_LOOK[f];
+              if (f !== "all" && counts[f] === 0) return null;
+              return (
+                <button
+                  key={f}
+                  type="button"
+                  onClick={() => setFilter(f)}
+                  aria-pressed={on}
+                  style={{ "--accent": look.accent } as CSSProperties}
+                  className={`flex h-10 shrink-0 items-center gap-2 rounded-full border ps-1.5 pe-4 text-[14px] font-semibold transition-colors ${
+                    on
+                      ? "border-[var(--accent)] bg-[color-mix(in_srgb,var(--accent)_16%,var(--bar-background-color))] text-white"
+                      : "border-[var(--background-secondary)] bg-[var(--bar-background-color)] text-[var(--text-muted-color)] hover:text-white"
+                  }`}
                 >
-                  {/* Sticky header (close + availability) */}
-                  <div className="sticky top-0 z-10 bg-[#13201a] border-b" style={{ borderColor: "#1e3328" }}>
-                    <button
-                      className="absolute top-3 right-3 text-white text-xl font-bold rounded-full w-8 h-8 flex items-center justify-center bg-[#222]/60 hover:bg-[#222]/80 transition"
-                      onClick={() => setModalPromo(null)}
-                      aria-label={t("close")}
-                    >
-                      ×
-                    </button>
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--accent)_18%,transparent)] text-[var(--accent)]">
+                    <look.Icon size={14} />
+                  </span>
+                  {t(`filter_${f}`)}
+                  <span className="text-[12px] font-bold tabular-nums text-[var(--text-muted-color)]">{counts[f]}</span>
+                </button>
+              );
+            })}
+          </div>
 
-                    <div className="flex justify-center pt-4 pb-2">
-                      <span
-                        className="px-3 py-1 rounded-full font-bold uppercase text-xs tracking-wider shadow"
-                        style={modalPromo.available
-                          ? { background: "#2e7d4f", color: "#d4f5e2" }
-                          : { background: "#5a2020", color: "#f5a0a0" }
-                        }
-                      >
-                        {modalPromo.available ? t("available") : t("unavailable")}
-                      </span>
-                    </div>
+          {error && (
+            <p className="rounded-2xl border border-red-400/20 bg-red-500/[0.08] p-5 text-center text-[14px] text-red-100/90">{error}</p>
+          )}
 
-                    <div className="px-5 pb-3">
-                      <div className="flex items-start justify-between gap-2 pr-10">
-                        <div>
-                          <h3
-                            className="text-base font-bold leading-snug"
-                            style={{ fontFamily: "Montserrat, sans-serif", color: "#a0c8b0" }}
-                          >
-                            {modalPromo.name}
-                          </h3>
-                          <span className="text-[11px]" style={{ color: "#4a6a56" }}>
-                            {t("code")}{" "}
-                            <span style={{ color: "#6b9c80" }}>{modalPromo.code}</span>
-                          </span>
-                        </div>
-                      </div>
+          {promos === null ? (
+            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3 min-[1800px]:grid-cols-4">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="h-[440px] animate-pulse rounded-[26px] bg-[var(--bar-background-color)]" />
+              ))}
+            </div>
+          ) : visible.length === 0 && !error ? (
+            <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-[var(--background-secondary)] px-6 py-16 text-center">
+              <span className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--bar-background-color)] text-[var(--background-tertiary)]">
+                <Gift size={26} />
+              </span>
+              <p className="text-[16px] font-semibold text-white">{t("empty")}</p>
+            </div>
+          ) : (
+            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3 min-[1800px]:grid-cols-4">
+              {visible.map((promo) => (
+                <PromoOfferCard key={promo.id} promo={promo} onClaim={() => claim(promo)} />
+              ))}
+            </div>
+          )}
+        </>
+      )}
 
-                      <div className="flex flex-wrap gap-1.5 mt-2">
-                        <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase" style={{ background: "rgba(46,125,79,0.2)", color: "#8aab96" }}>
-                          {formatPromoType(modalPromo.type, t)}
-                        </span>
-                        {modalPromo.eligibility && modalPromo.eligibility !== "ALL" && (
-                          <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase" style={{ background: "rgba(180,130,20,0.2)", color: "#c8a84a" }}>
-                            {formatEligibility(modalPromo.eligibility, t)}
-                          </span>
-                        )}
-                        {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel, t) && (
-                          <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase" style={{ background: "rgba(120,80,200,0.25)", color: "#c4a8f0" }}>
-                            {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel, t)}
-                          </span>
-                        )}
-                        {modalPromo.forWhom && modalPromo.forWhom !== "ALL" && (
-                          <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase" style={{ background: "rgba(60,80,160,0.25)", color: "#8aaad4" }}>
-                            {modalPromo.forWhom}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  {!modalPromo.available && modalPromo.ineligibleReason && (
-                    <div
-                      className="mx-5 mb-3 rounded-lg border px-3 py-2.5 text-xs leading-relaxed"
-                      style={{
-                        borderColor: "#5a4020",
-                        background: "rgba(180,130,20,0.12)",
-                        color: "#e8c878",
-                      }}
-                    >
-                      {modalPromo.ineligibleReason}
-                      {isDepositSequenceEligibility(modalPromo.eligibility) &&
-                        modalPromo.requiredDepositNumber != null &&
-                        modalPromo.userQualifyingDepositCount != null && (
-                          <span className="mt-1 block opacity-80">
-                            {t("qualifying_deposits", {
-                              current: String(modalPromo.userQualifyingDepositCount),
-                              required: String(modalPromo.requiredDepositNumber),
-                            })}
-                          </span>
-                        )}
-                    </div>
-                  )}
-
-                  {/* Scrollable body */}
-                  <div className="overflow-y-auto overscroll-contain">
-                    {/* Description */}
-                    <div className="px-5 py-3">
-                      <p className="text-xs leading-relaxed" style={{ color: "#7a9a88" }}>
-                        {modalPromo.description}
-                      </p>
-                    </div>
-
-                    {/* Bonus highlights */}
-                    <div className="px-5 py-3 border-b border-t grid grid-cols-2 gap-x-4 gap-y-2 mt-auto" style={{ borderColor: "#1e3328" }}>
-                      {modalPromo.isPercentBonus ? (
-                        <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("bonus")}</div>
-                          <div className="text-sm font-bold" style={{ color: "#4caf78" }}>{modalPromo.bonusValue}%</div>
-                        </div>
-                      ) : (
-                        parseFloat(String(modalPromo.bonusValue)) > 0 && (
-                          <div>
-                            <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("bonus_amount")}</div>
-                            <div className="text-sm font-bold" style={{ color: "#4caf78" }}>
-                              {modalPromo.bonusValue} {modalPromo.currency}
-                            </div>
-                          </div>
-                        )
-                      )}
-                      {parseFloat(modalPromo.maxBonusLimit) > 0 && (
-                        <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("max_bonus")}</div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>{modalPromo.maxBonusLimit} {modalPromo.currency}</div>
-                        </div>
-                      )}
-                      {modalPromo.wageringMultiplier > 0 && (
-                        <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("wagering")}</div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>{modalPromo.wageringMultiplier}x <span className="text-[10px] font-normal" style={{ color: "#4a6a56" }}>({modalPromo.wageringBase})</span></div>
-                        </div>
-                      )}
-                      {modalPromo.wageringMaxWithdrawMultiplier > 0 && (
-                        <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("max_withdraw")}</div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>{t("max_withdraw_multiplier", { multiplier: String(modalPromo.wageringMaxWithdrawMultiplier) })}</div>
-                        </div>
-                      )}
-                      {modalPromo.freeSpins > 0 && (
-                        <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("free_spins")}</div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
-                            {modalPromo.freeSpins}{" "}
-                            <span className="text-[10px] font-normal" style={{ color: "#4a6a56" }}>
-                              @ {modalPromo.perSpinCost} {modalPromo.currency}
-                            </span>
-                          </div>
-                          {modalPromo.freeSpinGameId && (
-                            <div className="mt-0.5 text-[10px]" style={{ color: "#4a6a56" }}>
-                              {t("game")}{" "}
-                              <span style={{ color: "#6b8c78" }}>
-                                {freeSpinGameName ?? modalPromo.freeSpinGameId}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                      {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel, t) && (
-                        <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("vip_range")}</div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
-                            {formatVipRange(modalPromo.minVipLevel, modalPromo.maxVipLevel, t)}
-                          </div>
-                        </div>
-                      )}
-                      {isDepositSequenceEligibility(modalPromo.eligibility) && (
-                        <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>{t("deposit_tier")}</div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
-                            {formatEligibility(modalPromo.eligibility, t)}
-                          </div>
-                        </div>
-                      )}
-                      {modalPromo.expiresAfterhours > 0 && (
-                        <div>
-                          <div className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "#4a6a56" }}>
-                            {tWagering("wagering_window_label")}
-                          </div>
-                          <div className="text-sm font-bold" style={{ color: "#a0c8b0" }}>
-                            {tWagering("wagering_window_after_claim", {
-                              hours: String(modalPromo.expiresAfterhours),
-                            })}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Validity */}
-                    <div className="px-5 py-2.5 border-b text-[11px]" style={{ borderColor: "#1e3328", color: "#4a6a56" }}>
-                      <div>{t("valid")} <span style={{ color: "#6b8c78" }}>{modalPromo.validFrom} – {modalPromo.validTo}</span></div>
-                      {modalPromo.validDays && modalPromo.validDays.length > 0 && (
-                        <div className="mt-0.5">{t("days")} <span style={{ color: "#6b8c78" }}>{modalPromo.validDays.join(", ")}</span></div>
-                      )}
-                    </div>
-
-                    <div className="px-5 py-4">
-                      {isDepositPromoType(modalPromo.type) && (
-                        <button
-                          disabled={!modalPromo.available}
-                          onClick={() => {
-                            if (!modalPromo.available) return;
-                            openDepositForPromo(modalPromo);
-                          }}
-                          className="inline-flex w-full items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-semibold text-white transition"
-                          style={
-                            modalPromo.available
-                              ? {
-                                  background: "linear-gradient(145deg, #2e7d4f, #1a4d30)",
-                                  boxShadow: "0 0 24px #2e7d4f44, 0 4px 12px #000",
-                                  border: "2px solid rgba(255,255,255,0.15)",
-                                  cursor: "pointer",
-                                }
-                              : {
-                                  background: "#1e2a22",
-                                  border: "2px solid #2a3a2e",
-                                  color: "#4a6a56",
-                                  cursor: "not-allowed",
-                                }
-                          }
-                        >
-                          {ctaLabel(modalPromo.type, t)}
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </>
-        )}
-          </>
-        )}
-      </div>
     </div>
   );
 }

@@ -29,8 +29,8 @@ export default function ProvidersPage({ providers }: { providers: ProviderCard[]
         crumbs={[{ label: t("Casino"), href: routes.casino() }, { label: t("all_providers") }]}
         icon="/images/sidebar/casino.webp"
         stats={[
-          { label: t("Providers"), value: providers.length.toLocaleString() },
-          { label: t("stat_games"), value: providers.reduce((sum, p) => sum + (p.count || 0), 0).toLocaleString() },
+          { label: t("Providers"), value: providers.length.toLocaleString("en-US") },
+          { label: t("stat_games"), value: providers.reduce((sum, p) => sum + (p.count || 0), 0).toLocaleString("en-US") },
         ]}
       />
 

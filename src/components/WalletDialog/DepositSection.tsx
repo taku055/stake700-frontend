@@ -7,7 +7,6 @@ import { userState } from "@/state/userState";
 import { chainNames } from "@/config/chains";
 import { apiSetWantBonus } from "@/api/account/apiSetWantBonus";
 import Loader from "../Loader";
-import { visaOpenedState } from "@/state/visaOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
 import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID, ASSET_BASE_URL } from "@/config/constants";
@@ -104,15 +103,6 @@ export const DepositSection = () => {
       setWallet("");
     }
   }, [selectedBlockchain]);
-
-  const openVisaDeposit = async () => {
-    // if (!userState.value?.id) {
-    //   toast.error("Please login first");
-    //   return;
-    // }
-
-    // visaOpenedState.value = true;
-  };
 
   const onSetBonus = useCallback(
     async (v: boolean) => {
@@ -429,45 +419,6 @@ export const DepositSection = () => {
         </div>
       )}
 
-      {/* Or Separator */}
-      {/* <div className="flex items-center gap-4">
-        <div className="flex-1 h-px bg-[var(--bar-background-color)]"></div>
-        <span className="text-white leading-[24px] text-[16px]">{tWallet("Or")}</span>
-        <div className="flex-1 h-px bg-[var(--bar-background-color)]"></div>
-      </div> */}
-
-      {/* Direct Deposit Button */}
-      {/* <Button
-        className="w-full h-[48px] min-h-[44px] text-white text-[16px] font-medium bg-[var(--background-secondary)] hover:bg-[var(--bar-background-color)]/80 rounded-lg border border-[var(--background-secondary)]"
-        onPress={() => {
-          openVisaDeposit();
-        }}
-      >
-        <div className="flex items-center gap-2 w-full h-full py-2 px-4 justify-center">
-          {tWallet("Direct Deposit")}
-          <img
-            src={`${BASE_URL}/images/icons/binance.png`}
-            alt="binance"
-            className="w-[18px] h-[18px]"
-          />
-          <img
-            src={`${BASE_URL}/images/icons/coin_base.png`}
-            alt="coinbase"
-            className="w-[18px] h-[18px]"
-          />
-          <img
-            src={`${BASE_URL}/images/icons/meta_mask.png`}
-            alt="metamask"
-            className="w-[18px] h-[18px]"
-          />
-          <img
-            src={`${BASE_URL}/images/icons/trust_wallet.png`}
-            alt="trustwallet"
-            className="w-[18px] h-[18px]"
-          />
-          <span className="ml-2 text-white/60 text-[14px]">+300</span>
-        </div>
-      </Button> */}
 
       {/* divider */}
       <div className="h-px w-full bg-[var(--bar-background-color)]"></div>

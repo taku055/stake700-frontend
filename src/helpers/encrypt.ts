@@ -34,7 +34,6 @@ export async function encrypt(text: string): Promise<string> {
     key,
     te.encode(text)
   );
-  console.log(ct);
   return bytesToHex(new Uint8Array(ct));
 }
 

@@ -330,7 +330,7 @@ export default function WageringPage({ embedded = false }: WageringPageProps) {
     setIsCancelModalOpen(false);
     setLoading(true);
     try {
-      const res = await apiCancelWagering(userId);
+      await apiCancelWagering(userId, currencyState.value.unit);
       toast.success(t("Wagering cancelled"));
     } catch (e: any) {
       toast.error(e?.message ?? t("Failed to cancel wagering"));

@@ -1,4 +1,3 @@
-import { buildEpayclubExternalResultUrl } from "@/helpers/epayclubDeposit";
 import { effect } from "@preact/signals-react";
 import { useEffect, useRef } from "react";
 import useSocketEvent from "@/hooks/useSocketEvent";
@@ -21,10 +20,8 @@ import ForgotPasswordDialog from "@/components/Auth/ForgotPasswordDialog";
 import { apiGetSetting } from "@/api/setting/apiGetSetting";
 import { maintenanceState } from "@/state/maintenanceState";
 import axios from "axios";
-import { visaOpenedState } from "@/state/visaOpenedState";
-import VisaDialogSimple from "@/components/VisaDialogSimple";
 import WalletDialog from "@/components/WalletDialog";
-import { bannerState } from "@/state/bannerState";
+import { bannerState, bannersLoadedState } from "@/state/bannerState";
 import { apiGetBanners } from "@/api/common/apiGetBanners";
 import { allProvidersModalState } from "@/state/allProvidersModalState";
 import AllProvidersModal from "@/components/AllProvidersModal";
@@ -121,30 +118,6 @@ function ProfileQueryHandler() {
   return null;
 }
 
-function EpayclubReturnHandler() {
-  const location = useLocation();
-
-  useEffect(() => {
-    const reference = location.query?.reference;
-    const checkoutToken = location.query?.checkoutToken;
-    if (!reference || !checkoutToken) return;
-    if (location.path !== "/") return;
-
-    const external = buildEpayclubExternalResultUrl(reference, checkoutToken);
-    if (external) {
-      window.location.replace(external);
-      return;
-    }
-
-    const url = new URL("/payment/epayclub/result", window.location.origin);
-    url.searchParams.set("reference", reference);
-    url.searchParams.set("checkoutToken", checkoutToken);
-    window.location.replace(url.toString());
-  }, [location.path, location.query]);
-
-  return null;
-}
-
 interface GlobalServiceProviderProps {
   children: ComponentChildren;
 }
@@ -219,6 +192,8 @@ export default function GlobalServiceProvider({
         bannerState.value = res;
       } catch (ex) {
         console.error(ex);
+      } finally {
+        bannersLoadedState.value = true;
       }
     };
 
@@ -504,7 +479,6 @@ export default function GlobalServiceProvider({
       {globalLoadingState.value && <Loading />}
       <LocationProvider>
         <ProfileQueryHandler />
-        <EpayclubReturnHandler />
         <I18nProvider
           messages={
             i18nDefinitions[localeState.value as keyof typeof i18nDefinitions]
@@ -571,10 +545,6 @@ export default function GlobalServiceProvider({
               onClose={() => (welcomeDialogOpenedState.value = false)}
             />
 
-            <VisaDialogSimple
-              isOpen={visaOpenedState.value}
-              onClose={() => (visaOpenedState.value = false)}
-            />
             {/* <DepositDialogFull
               isOpen={depositDialogState.value.isOpen}
               tab={depositDialogState.value.defaultTab}

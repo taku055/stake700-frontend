@@ -158,7 +158,7 @@ function CategoryTile({ tile }: { tile: Tile }) {
           <span className="relative h-4 text-[12px] font-semibold">
             <span className="absolute inset-0 text-[var(--text-muted-color)] transition-all duration-300 group-hover:-translate-y-1 group-hover:opacity-0">
               {typeof tile.count === "number" && tile.count > 0
-                ? t("games_count", { count: tile.count.toLocaleString() })
+                ? t("games_count", { count: tile.count.toLocaleString("en-US") })
                 : " "}
             </span>
             <span className="absolute inset-0 flex translate-y-1 items-center gap-1 text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">

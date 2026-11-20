@@ -7,11 +7,21 @@ import { useTranslations } from "@/context/I18nContext";
 import { apiVerifyEmail } from "@/api/account/apiVerifyEmail";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { Link } from "@/components/common";
+import { AuthField } from "@/components/Auth/AuthShell";
+import { ResendVerificationButton } from "@/components/Auth/ResendVerificationButton";
+
+// Backend error codes from ProfileService.verifyEmail → translation keys.
+const ERROR_KEYS: Record<string, string> = {
+  "token.expired": "link_expired",
+  "token.not-found": "link_invalid",
+};
 
 type Status = "loading" | "success" | "error" | "missing";
 
 export default function VerifyEmailPage() {
   const t = useTranslations("VerifyEmailPage");
+  const tVerify = useTranslations("EmailVerification");
+  const [resendEmail, setResendEmail] = useState("");
   const location = useLocation();
   const [status, setStatus] = useState<Status>("loading");
   const [error, setError] = useState("");
@@ -41,9 +51,8 @@ export default function VerifyEmailPage() {
         setStatus("error");
         if (axios.isAxiosError(ex)) {
           const message = ex.response?.data?.message;
-          setError(
-            typeof message === "string" ? message : t("request_failed")
-          );
+          const key = typeof message === "string" ? ERROR_KEYS[message] : undefined;
+          setError(key ? tVerify(key) : t("request_failed"));
         } else {
           setError(t("request_failed"));
         }
@@ -53,7 +62,7 @@ export default function VerifyEmailPage() {
     return () => {
       cancelled = true;
     };
-  }, [token, t]);
+  }, [token, t, tVerify]);
 
   const openLogin = () => {
     loginOpenedState.value = true;
@@ -87,6 +96,21 @@ export default function VerifyEmailPage() {
             <p className="rounded-md border border-red-500/40 bg-red-500/10 p-4 text-red-300">
               {error || t("request_failed")}
             </p>
+            <div className="space-y-3 text-start">
+              <p className="text-sm text-white/70">{tVerify("enter_email_to_resend")}</p>
+              <AuthField
+                name="verify-email"
+                label={tVerify("email")}
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                autoCapitalize="off"
+                spellCheck={false}
+                value={resendEmail}
+                onChange={setResendEmail}
+              />
+              <ResendVerificationButton email={resendEmail} label={tVerify("send_new_link")} />
+            </div>
             <Link href="/" className="text-[var(--green-color)] hover:underline">
               {t("go_home")}
             </Link>

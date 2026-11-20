@@ -7,8 +7,11 @@ export const REF_STORAGE_KEY = "ref";
 function addRefToPath(path: string, refCode?: string): string {
   if (!refCode) return path;
 
-  // Check if path already has query parameters
-  const [basePath, existingQuery] = path.split("?");
+  // The query must go before any #hash, or the hash link breaks
+  const hashAt = path.indexOf("#");
+  const hash = hashAt >= 0 ? path.slice(hashAt) : "";
+  const withoutHash = hashAt >= 0 ? path.slice(0, hashAt) : path;
+  const [basePath, existingQuery] = withoutHash.split("?");
 
   if (existingQuery) {
     // Path has existing query parameters, merge them
@@ -17,11 +20,10 @@ function addRefToPath(path: string, refCode?: string): string {
     if (!params.has("ref")) {
       params.set("ref", refCode);
     }
-    return `${basePath}?${params.toString()}`;
-  } else {
-    // No existing query parameters, just append ref
-    return `${path}?ref=${encodeURIComponent(refCode)}`;
+    return `${basePath}?${params.toString()}${hash}`;
   }
+  // No existing query parameters, just append ref
+  return `${basePath}?ref=${encodeURIComponent(refCode)}${hash}`;
 }
 
 export function useAffiliateNavigation() {

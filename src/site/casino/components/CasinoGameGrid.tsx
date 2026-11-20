@@ -327,7 +327,7 @@ export const CasinoGameGrid: FunctionalComponent<CasinoGameGridProps> = ({
         <div className="mx-auto mt-10 flex w-full max-w-[360px] flex-col items-center gap-3 rounded-2xl border border-[var(--background-secondary)] bg-[var(--bar-background-color)] p-4">
           <div className="flex w-full items-center justify-between text-[13px] font-semibold">
             <span className="text-[var(--text-muted-color)]">
-              {tc("showing_of", { shown: shown.toLocaleString(), total: total.toLocaleString() })}
+              {tc("showing_of", { shown: shown.toLocaleString("en-US"), total: total.toLocaleString("en-US") })}
             </span>
             <span className="tabular-nums text-white">{progress}%</span>
           </div>

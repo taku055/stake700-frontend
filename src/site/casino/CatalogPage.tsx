@@ -136,7 +136,7 @@ export default function CatalogPage({
           stats={[
             {
               label: t("stat_games"),
-              value: total === undefined ? undefined : total.toLocaleString(),
+              value: total === undefined ? undefined : total.toLocaleString("en-US"),
             },
             ...(!provider && providers && providers.length > 0
               ? [{ label: t("Providers"), value: String(providers.length) }]

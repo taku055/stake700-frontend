@@ -35,6 +35,11 @@ const STATIC_ALIASES: Record<string, string> = {
   "/profile/mybets/sports": "/my-bets/sports",
   "/my-bets": "/my-bets/casino",
   "/casino-category": "/casino",
+  // Card payments were removed: old provider return URLs land on the home page
+  "/profile/deposit": "/",
+  "/payment": "/",
+  "/payment/aries/result": "/",
+  "/payment/epayclub/result": "/",
 };
 
 // Old "/top-casino" style category paths

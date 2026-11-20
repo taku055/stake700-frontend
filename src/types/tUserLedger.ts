@@ -38,6 +38,7 @@ export interface tLedgerPromotion {
   isPercentBonus: boolean;
   bonusValue: string;
   maxBonusLimit: string;
+  minDeposit?: string | number;
   wageringMultiplier: number;
   wageringBase: string;
   wageringMaxWithdrawMultiplier: number;

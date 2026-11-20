@@ -457,7 +457,7 @@ export function SearchWidgetHeader() {
               isSearching
                 ? initialLoading
                   ? t("searching")
-                  : t("results_count", { count: search.total.toLocaleString() })
+                  : t("results_count", { count: search.total.toLocaleString("en-US") })
                 : t("popular_now")
             }
           >

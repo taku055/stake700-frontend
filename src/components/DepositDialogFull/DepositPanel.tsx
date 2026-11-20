@@ -7,7 +7,6 @@ import { userState } from "@/state/userState";
 import { CryptoCurrencySelects } from "./CryptoCurrencySelects";
 import { apiSetWantBonus } from "@/api/account/apiSetWantBonus";
 import Loader from "../Loader";
-import { visaOpenedState } from "@/state/visaOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
 import {
@@ -95,15 +94,6 @@ export default function DepositPanel() {
       setWallet("");
     }
   }, [selectedBlockchain]);
-
-  const openVisaDeposit = async () => {
-    if (!userState.value?.id) {
-      toast.error(tToast("error.login_first"));
-      return;
-    }
-
-    visaOpenedState.value = true;
-  };
 
   const onSetBonus = useCallback(
     async (v: boolean) => {

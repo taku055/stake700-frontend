@@ -29,6 +29,7 @@ export const routes = {
   favorites: () => "/favorites",
   promotions: () => "/promotions",
   promotion: (id: string) => `/promotions/${encodeURIComponent(id)}`,
+  promotionTerms: (anchor?: string) => `/promotions/terms${anchor ? `#${anchor}` : ""}`,
   vip: () => "/vip",
 
   sports: () => "/sports",

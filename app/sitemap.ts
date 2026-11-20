@@ -17,6 +17,7 @@ const STATIC: Entry[] = [
   { path: routes.liveCasinoAll(), priority: 0.8, changeFrequency: "daily" },
   { path: routes.providers(), priority: 0.7, changeFrequency: "weekly" },
   { path: routes.promotions(), priority: 0.7, changeFrequency: "daily" },
+  { path: routes.promotionTerms(), priority: 0.4, changeFrequency: "weekly" },
   { path: routes.vip(), priority: 0.6, changeFrequency: "monthly" },
   { path: routes.sports(), priority: 0.7, changeFrequency: "daily" },
   { path: routes.racing(), priority: 0.5, changeFrequency: "daily" },

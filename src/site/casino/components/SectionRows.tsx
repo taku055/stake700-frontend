@@ -6,7 +6,11 @@ import { useTranslations } from "@/context/I18nContext";
 import type { CatalogSection } from "@/config/catalog";
 import { routes } from "@/config/routes";
 import { providerHref } from "@/helpers/providerHref";
-import { useSectionCategories } from "../hooks/useSectionCategories";
+import { useContext } from "react";
+import { CategoryCountsContext, useSectionCategories } from "../hooks/useSectionCategories";
+import { categoryLook } from "../categoryIcons";
+import { ProviderMonogram, providerAccent } from "@/components/ProviderCard";
+import { providerState } from "@/state/providerState";
 
 /** Studio rows shown after the category rows (curated per-provider lists). */
 const PROVIDER_ROWS: Record<CatalogSection, { category: string; title: string; providerId: string }[]> = {
@@ -29,6 +33,22 @@ export function SectionRows({ section }: { section: CatalogSection }) {
   const t = useTranslations("CasinoPage");
   const categories = useSectionCategories(section);
   const featured = categories.find((c) => c.slug === FEATURED[section]);
+  const counts = useContext(CategoryCountsContext);
+
+  const gamesLabel = (count?: number) =>
+    typeof count === "number" && count > 0 ? t("games_count", { count: count.toLocaleString("en-US") }) : undefined;
+  const categoryHeader = (slug: string) => {
+    const { Icon, accent } = categoryLook(slug);
+    return { icon: <Icon size={20} strokeWidth={2.25} />, accent, subtitle: gamesLabel(counts?.[slug]) };
+  };
+  const providerHeader = (providerId: string, name: string) => {
+    const provider = providerState.value.map[providerId];
+    return {
+      icon: <ProviderMonogram name={provider?.name || name} size="sm" />,
+      accent: providerAccent(provider?.name || name)[1],
+      subtitle: gamesLabel(provider?.count),
+    };
+  };
 
   return (
     <div className="flex flex-col gap-8 md:gap-10">
@@ -38,6 +58,7 @@ export function SectionRows({ section }: { section: CatalogSection }) {
           title={t(featured.titleKey)}
           isCustom
           viewallLink={routes.category(section, featured.slug)}
+          {...categoryHeader(featured.slug)}
         />
       )}
       {categories
@@ -50,6 +71,7 @@ export function SectionRows({ section }: { section: CatalogSection }) {
             isCustom={c.isCustom}
             useImgCustom={false}
             viewallLink={routes.category(section, c.slug)}
+            {...categoryHeader(c.slug)}
           />
         ))}
       {PROVIDER_ROWS[section].map((row) => (
@@ -61,6 +83,7 @@ export function SectionRows({ section }: { section: CatalogSection }) {
           useImgCustom={false}
           provider={row.providerId}
           viewallLink={providerHref(row.providerId)}
+          {...providerHeader(row.providerId, row.title)}
         />
       ))}
     </div>

@@ -7,12 +7,8 @@ import { ASSET_BASE_URL } from "@/config/constants";
 import { toast } from "@/helpers/toast";
 import { validateEmail } from "@/helpers/validateEmail";
 import { apiRegister } from "@/api/account/apiRegister";
-import { setAxiosAuthToken } from "@/api/instance";
-import { userState } from "@/state/userState";
-import { accessTokenState } from "@/state/accessTokenState";
 import { signupRequestState } from "@/state/signupRequestState";
 import axios from "axios";
-import { welcomeDialogOpenedState } from "@/state/registerOpenedState";
 
 interface ISignupStep3DialogProps {
   isOpen: boolean;
@@ -28,6 +24,7 @@ export default function SignupStep3Dialog({
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const t = useTranslations("SignupStep3");
   const tToast = useTranslations("ToastMessages");
+  const tVerify = useTranslations("EmailVerification");
   const [loading, setLoading] = useState(false);
   const { email, password, userName, referCode, firstName, lastName, middleName, birthDay } = signupRequestState.value;
 
@@ -69,7 +66,7 @@ export default function SignupStep3Dialog({
 
       setLoading(true);
       try {
-        const res = await apiRegister({
+        await apiRegister({
           email,
           password,
           userName: userName,
@@ -80,12 +77,9 @@ export default function SignupStep3Dialog({
           birthDay: birthDay.toString(),
         });
 
-        userState.value = res.user;
-        accessTokenState.value = res.accessToken;
-        setAxiosAuthToken(res.accessToken);
-        toast.success(tToast("success.registered"));
+        // No session until the user confirms the emailed verification link.
+        toast.success(tVerify("check_inbox_desc") + " " + email);
         onClose();
-        welcomeDialogOpenedState.value = true;
       } catch (ex) {
         if (axios.isAxiosError(ex)) {
           if (ex.response?.status === 400) {

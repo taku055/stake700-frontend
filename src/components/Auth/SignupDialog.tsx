@@ -1,17 +1,13 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import axios from "axios";
-import { AtSign, Lock, Mail, Phone } from "lucide-react";
+import { AtSign, Lock, Mail, MailCheck, Phone } from "lucide-react";
 import { passwordStrength } from "check-password-strength";
 import { toast } from "@/helpers/toast";
-import { accessTokenState } from "@/state/accessTokenState";
-import { userState } from "@/state/userState";
-import { setAxiosAuthToken } from "@/api/instance";
 import { apiRegister } from "@/api/account/apiRegister";
 import { validateEmail } from "@/helpers/validateEmail";
 import { Button, DatePicker } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { loginOpenedState } from "@/state/loginOpenedState";
-import { welcomeDialogOpenedState } from "@/state/registerOpenedState";
 import {
   parseDate,
   CalendarDate,
@@ -31,6 +27,7 @@ import {
   authPrimaryButton,
   authLinkButton,
 } from "./AuthShell";
+import { ResendVerificationButton, RESEND_COOLDOWN_SECONDS } from "./ResendVerificationButton";
 
 interface ISignupComponentProps {
   isOpen: boolean;
@@ -78,7 +75,10 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [birthday, setBirthday] = useState(parseDate("1990-01-01"));
+  // Set after a successful sign-up: the address the verification link went to.
+  const [sentTo, setSentTo] = useState<{ email: string; emailSent: boolean } | null>(null);
   const t = useTranslations("SignupDialog");
+  const tVerify = useTranslations("EmailVerification");
   const tToast = useTranslations("ToastMessages");
   const firstNameRef = useRef<HTMLInputElement>(null);
   const { refCode } = useAffiliateNavigation();
@@ -98,6 +98,7 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
     setMiddleName("");
     setPhone("");
     setShowPassword(false);
+    setSentTo(null);
 
     // Avoid auto-focus on mobile — it opens the keyboard and leaves a half-screen layout
     if (isOpen && !isMobile) {
@@ -142,13 +143,9 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
           phone: phone.trim(),
         });
 
-        userState.value = res.user;
-        accessTokenState.value = res.accessToken;
-        setAxiosAuthToken(res.accessToken);
-        toast.success(tToast("success.registered"));
+        // Account created, but no session until the email link is confirmed.
         dismissMobileKeyboard();
-        onClose();
-        welcomeDialogOpenedState.value = true;
+        setSentTo({ email: res.email || email, emailSent: res.emailSent !== false });
       } catch (ex) {
         if (axios.isAxiosError(ex) && ex.response?.status === 400) {
           toast.error(tToast("error.email_taken"));
@@ -159,8 +156,43 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
       }
       setLoading(false);
     },
-    [email, userName, password, phone, firstName, lastName, middleName, birthday, refCode, loading, t, tToast, onClose]
+    [email, userName, password, phone, firstName, lastName, middleName, birthday, refCode, loading, t, tToast]
   );
+
+  const goToLogin = useCallback(() => {
+    handleClose();
+    loginOpenedState.value = true;
+  }, [handleClose]);
+
+  if (sentTo) {
+    return (
+      <AuthModal isOpen={isOpen} onClose={handleClose} title={tVerify("check_inbox_title")}>
+        <div className="flex flex-col items-center gap-5 text-center">
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--primary-color)_18%,transparent)] text-[var(--primary-color)]">
+            <MailCheck size={30} />
+          </span>
+          <div className="space-y-2">
+            <p className="text-[15px] text-white">
+              {sentTo.emailSent ? tVerify("check_inbox_desc") : tVerify("send_failed_after_signup")}
+            </p>
+            <p dir="ltr" className="break-all text-[15px] font-semibold text-[var(--primary-color)]">
+              {sentTo.email}
+            </p>
+            <p className="text-[13px] text-[var(--text-muted-color)]">{tVerify("check_spam")}</p>
+          </div>
+          <div className="flex w-full flex-col gap-3">
+            <Button className={authPrimaryButton} type="button" radius="sm" onPress={goToLogin}>
+              {tVerify("go_to_login")}
+            </Button>
+            <ResendVerificationButton
+              email={sentTo.email}
+              initialCooldown={sentTo.emailSent ? RESEND_COOLDOWN_SECONDS : 0}
+            />
+          </div>
+        </div>
+      </AuthModal>
+    );
+  }
 
   return (
     <AuthModal

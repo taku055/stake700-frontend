@@ -58,7 +58,7 @@ export default function LobbyPage({
               label: t("stat_games"),
               value:
                 providers && gameTotal
-                  ? gameTotal.toLocaleString()
+                  ? gameTotal.toLocaleString("en-US")
                   : providers
                     ? "—"
                     : undefined,

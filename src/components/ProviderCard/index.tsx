@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties, MouseEventHandler } from "react";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Crown } from "lucide-react";
 import { Link } from "@/components/common/Link";
 import { useTranslations } from "@/context/I18nContext";
 
@@ -80,11 +80,14 @@ export function ProviderMonogram({
  * Provider card: monogram, name and game count, with a soft accent glow and a
  * large initials watermark. "sm" is the compact version for carousels.
  */
+const RANK_COLORS = ["#ffc83d", "#c7d0de", "#d98b4a"] as const;
+
 export function ProviderCard({
   name,
   href,
   count,
   size = "md",
+  rank,
   onClick,
   className = "",
 }: {
@@ -92,11 +95,14 @@ export function ProviderCard({
   href: string;
   count?: number;
   size?: "sm" | "md";
+  /** 1-based popularity rank; 1–3 get a crown badge */
+  rank?: number;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
   className?: string;
 }) {
   const t = useTranslations("CasinoPage");
   const small = size === "sm";
+  const rankColor = rank && rank <= 3 ? RANK_COLORS[rank - 1] : null;
 
   return (
     <Link
@@ -104,43 +110,83 @@ export function ProviderCard({
       onClick={onClick}
       title={name}
       style={accentStyle(name)}
-      className={`group relative flex items-center overflow-hidden border border-[var(--background-secondary)] bg-[linear-gradient(150deg,color-mix(in_srgb,var(--bar-background-color)_86%,var(--accent)),var(--bar-background-color)_60%)] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--accent)_65%,transparent)] hover:shadow-[0_16px_32px_-18px_var(--accent)] focus-visible:border-[var(--accent)] focus-visible:outline-none ${
-        small ? "h-[64px] gap-2.5 rounded-xl px-3" : "h-[76px] gap-3 rounded-2xl px-3.5"
+      className={`group relative isolate flex items-center overflow-hidden border border-[var(--background-secondary)] bg-[linear-gradient(150deg,color-mix(in_srgb,var(--bar-background-color)_82%,var(--accent)),var(--bar-background-color)_62%)] shadow-[0_8px_20px_-14px_rgba(0,0,0,0.8)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_22px_40px_-20px_var(--accent)] focus-visible:outline-none ${
+        small ? "h-[64px] gap-2.5 rounded-xl px-3" : "h-[88px] gap-3.5 rounded-2xl ps-3.5 pe-3"
       } ${className}`}
     >
+      {/* gradient outline on hover / focus */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-20 rounded-[inherit] bg-[linear-gradient(135deg,var(--accent-2),var(--accent)_45%,transparent_80%)] p-[1.5px] opacity-0 transition-opacity duration-300 [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] [mask-composite:exclude] group-hover:opacity-100 group-focus-visible:opacity-100"
+      />
+      {/* light sweep */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 -start-1/2 z-10 w-1/3 -skew-x-12 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.14),transparent)] transition-transform duration-700 ease-out group-hover:translate-x-[420%] rtl:group-hover:-translate-x-[420%]"
+      />
       {/* accent glow + initials watermark */}
       <span
         aria-hidden
-        className="pointer-events-none absolute -end-8 -top-10 h-24 w-24 rounded-full bg-[var(--accent)] opacity-[0.12] blur-2xl transition-opacity duration-300 group-hover:opacity-30"
+        className="pointer-events-none absolute -end-10 -top-12 h-28 w-28 rounded-full bg-[var(--accent)] opacity-[0.14] blur-2xl transition-opacity duration-300 group-hover:opacity-35"
       />
       <span
         aria-hidden
-        className={`pointer-events-none absolute -bottom-4 -end-1 select-none font-black leading-none tracking-[-0.06em] text-white/[0.035] transition-colors duration-300 group-hover:text-[color-mix(in_srgb,var(--accent)_16%,transparent)] ${
-          small ? "text-[48px]" : "text-[64px]"
+        className={`pointer-events-none absolute -bottom-5 end-8 select-none font-black italic leading-none tracking-[-0.06em] text-white/[0.04] transition-colors duration-300 group-hover:text-[color-mix(in_srgb,var(--accent)_18%,transparent)] ${
+          small ? "text-[48px]" : "text-[76px]"
         }`}
       >
         {providerInitials(name)}
       </span>
+      {/* growing accent line */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 start-0 h-[2px] w-0 bg-[linear-gradient(90deg,var(--accent),var(--accent-2))] transition-[width] duration-500 ease-out group-hover:w-full"
+      />
 
-      <ProviderMonogram name={name} size={small ? "sm" : "md"} className="relative" />
+      {/* monogram with halo */}
+      <span
+        className={`relative z-10 shrink-0 rounded-[14px] p-[3px] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110 ${
+          small ? "" : "bg-[color-mix(in_srgb,var(--accent)_18%,transparent)] shadow-[0_0_0_1px_color-mix(in_srgb,var(--accent)_30%,transparent)]"
+        }`}
+      >
+        <ProviderMonogram name={name} size={small ? "sm" : "md"} />
+      </span>
 
-      <span className="relative flex min-w-0 flex-1 flex-col gap-0.5">
-        <span className={`truncate font-bold leading-tight text-white ${small ? "text-[13px]" : "text-[14px]"}`}>
+      <span className="relative z-10 flex min-w-0 flex-1 flex-col gap-1">
+        <span className={`truncate font-extrabold leading-tight text-white ${small ? "text-[13px]" : "text-[15px]"}`}>
           {name}
         </span>
         {typeof count === "number" && count > 0 && (
-          <span className={`font-semibold tabular-nums text-[var(--text-muted-color)] ${small ? "text-[11px]" : "text-[12px]"}`}>
-            {t("provider_games", { count: count.toLocaleString() })}
+          <span
+            className={`inline-flex w-fit items-center gap-1.5 rounded-full font-semibold tabular-nums text-[var(--text-muted-color)] ${
+              small ? "text-[11px]" : "bg-black/20 px-2 py-0.5 text-[12px]"
+            }`}
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] shadow-[0_0_6px_var(--accent)]" />
+            {t("provider_games", { count: count.toLocaleString("en-US") })}
           </span>
         )}
       </span>
 
+      {rankColor && (
+        <span
+          aria-label={`#${rank}`}
+          style={{ "--rank": rankColor } as CSSProperties}
+          className="absolute end-2 top-2 z-10 inline-flex items-center gap-0.5 rounded-full bg-[color-mix(in_srgb,var(--rank)_18%,transparent)] px-1.5 py-0.5 text-[10px] font-extrabold text-[var(--rank)] ring-1 ring-[color-mix(in_srgb,var(--rank)_45%,transparent)]"
+        >
+          <Crown size={10} strokeWidth={2.6} />
+          {rank}
+        </span>
+      )}
+
       {!small && (
         <span
           aria-hidden
-          className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/[0.04] text-[var(--text-muted-color)] transition-colors duration-300 group-hover:bg-[var(--accent)] group-hover:text-white"
+          className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/[0.05] text-[var(--text-muted-color)] transition-colors duration-300 group-hover:bg-[var(--accent)] group-hover:text-white ${
+            rankColor ? "mt-5" : ""
+          }`}
         >
-          <ChevronRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
+          <ChevronRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
         </span>
       )}
     </Link>

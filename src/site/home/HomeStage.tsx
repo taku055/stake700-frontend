@@ -4,7 +4,7 @@ import GameCard from "@/components/GameCard";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Link } from "@/components/common";
 import { useTranslations } from "@/context/I18nContext";
-import { bannerState } from "@/state/bannerState";
+import { bannerState, bannersLoadedState } from "@/state/bannerState";
 import { customGamesState } from "@/state/customGamesState";
 import SearchWidget from "@/components/Header/SearchWidget";
 import SlotPicks from "./SlotPicks";
@@ -45,13 +45,6 @@ const TABLE_DOORS = [
   { href: "/live-casino/game-shows", labelKey: "Game Shows", image: "/images/category_logo/shows.webp" },
 ] as const;
 
-const HERO_TILES = [
-  "/images/category_logo/top.webp",
-  "/images/category_logo/new.webp",
-  "/images/category_logo/jackpots.webp",
-  "/images/category_logo/popular.webp",
-];
-
 function takeGames(category: string, limit: number): tGame[] {
   return customGamesState.value
     .filter((entry) => matchesCustomCategory(entry.category, category) && entry.Game)
@@ -60,14 +53,7 @@ function takeGames(category: string, limit: number): tGame[] {
 }
 
 function SideBanner({ banners }: { banners: tBanner[] }) {
-  const slides = banners.length
-    ? banners
-    : HERO_TILES.map((src, index) => ({
-        id: index,
-        img: src,
-        buttonLink: "/promotions",
-        buttonTitle: "",
-      }));
+  const slides = banners;
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -77,6 +63,11 @@ function SideBanner({ banners }: { banners: tBanner[] }) {
     }, 5000);
     return () => window.clearInterval(timer);
   }, [slides.length]);
+
+  // Real banners only: an empty frame until the API answers
+  if (slides.length === 0) {
+    return <div aria-hidden className="absolute inset-0 animate-pulse bg-[#0f212e]" />;
+  }
 
   const slide = slides[index % slides.length];
 
@@ -109,12 +100,21 @@ export default function HomeStage() {
   const isRTL = RTL_LANGUAGES.includes(localeState.value);
 
   const banners = useMemo(() => {
-    return bannerState.value.filter(
+    const visible = bannerState.value.filter(
       (banner) =>
         banner.size === (isMobile ? "sm" : "lg") &&
         isVisibleOnValidDays(banner.validDays),
     );
-  }, [isMobile, bannerState.value]);
+    // Banners in the visitor's language; fall back to English (then any) when none exist.
+    const lang = String(localeState.value);
+    const inLang = visible.filter((b) => b.language === lang);
+    if (inLang.length) return inLang;
+    const inEnglish = visible.filter((b) => b.language === "en");
+    return inEnglish.length ? inEnglish : visible;
+  }, [isMobile, bannerState.value, localeState.value]);
+
+  // Loaded but nothing for this size / language: drop the banner slot
+  const noBanners = bannersLoadedState.value && banners.length === 0;
 
   const tables = useMemo(() => {
     // The same title can exist under several providers; show each table once
@@ -141,12 +141,18 @@ export default function HomeStage() {
       </header>
 
       <section dir="ltr" className="grid grid-cols-1 items-stretch gap-3 lg:grid-cols-12">
-        <div className="relative aspect-[16/9] w-full lg:col-span-7 lg:aspect-[2/1]">
-          <SideBanner banners={banners} />
-        </div>
+        {!noBanners && (
+          <div className="relative aspect-[16/9] w-full lg:col-span-7 lg:aspect-[2/1]">
+            <SideBanner banners={banners} />
+          </div>
+        )}
         <div
           dir={isRTL ? "rtl" : "ltr"}
-          className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:col-span-5 lg:h-full lg:grid-cols-1 lg:grid-rows-4"
+          className={
+            noBanners
+              ? "grid grid-cols-2 gap-3 sm:grid-cols-4 lg:col-span-12"
+              : "grid grid-cols-2 gap-3 sm:grid-cols-2 lg:col-span-5 lg:h-full lg:grid-cols-1 lg:grid-rows-4"
+          }
         >
           {ROOMS.map((room) => (
             <Link

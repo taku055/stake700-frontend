@@ -1,10 +1,11 @@
-import { tUser } from "@/types/tUser";
 import { instance } from "../instance";
 import { encrypt } from "@/helpers/encrypt";
 
+// Sign-up no longer logs the user in — they must confirm their email first.
 type tRegisterRes = {
-  accessToken: string;
-  user: tUser;
+  success: boolean;
+  email: string;
+  emailSent: boolean;
 };
 
 type tRegisterReq = {

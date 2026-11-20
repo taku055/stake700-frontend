@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./GameGroup.module.scss";
@@ -26,7 +27,9 @@ interface IGameGroupProps {
   bigMode?: boolean;
   animated?: boolean;
   template?: number;
-  icon?: string;
+  icon?: ReactNode;
+  accent?: string;
+  subtitle?: string;
   gameList?: tGame[];
 }
 
@@ -41,6 +44,8 @@ export default function GameGroup({
   bigMode,
   animated,
   icon,
+  accent,
+  subtitle,
   template = 0,
   gameList,
 }: IGameGroupProps) {
@@ -91,6 +96,8 @@ export default function GameGroup({
       <SectionHeader
         title={title}
         icon={icon}
+        accent={accent}
+        subtitle={subtitle}
         viewallLink={viewallLink}
         swiper={swiper}
         isRTL={isRTL}

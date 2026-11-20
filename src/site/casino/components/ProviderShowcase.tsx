@@ -35,13 +35,13 @@ export function ProviderShowcase({ providers }: { providers: tProvider[] | undef
 
       <ul className="grid grid-cols-1 gap-2.5 min-[420px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
         {top
-          ? top.map((p) => (
+          ? top.map((p, i) => (
               <li key={p.id}>
-                <ProviderCard name={p.name} href={providerHref(p.id)} count={p.count} />
+                <ProviderCard name={p.name} href={providerHref(p.id)} count={p.count} rank={i + 1} />
               </li>
             ))
           : Array.from({ length: LIMIT }).map((_, i) => (
-              <li key={i} className="h-[76px] animate-pulse rounded-2xl bg-[var(--bar-background-color)]" />
+              <li key={i} className="h-[88px] animate-pulse rounded-2xl bg-[var(--bar-background-color)]" />
             ))}
       </ul>
     </section>

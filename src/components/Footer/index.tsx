@@ -45,7 +45,7 @@ export const Footer = () => {
           />
           <div className="flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-[#1a2c38] px-4 py-2 text-sm font-semibold text-white">
-              1 BTC = ${price ? numberRound(price, 100).toLocaleString() : "93,023.26"}
+              1 BTC = ${price ? numberRound(price, 100).toLocaleString("en-US") : "93,023.26"}
             </span>
             <LocaleSelection headerMode={false} />
           </div>

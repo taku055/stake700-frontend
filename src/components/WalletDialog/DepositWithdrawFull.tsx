@@ -7,7 +7,6 @@ import { userState } from "@/state/userState";
 import { chainNames } from "@/config/chains";
 import { apiSetWantBonus } from "@/api/account/apiSetWantBonus";
 import Loader from "../Loader";
-import { visaOpenedState } from "@/state/visaOpenedState";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
 import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID, ASSET_BASE_URL } from "@/config/constants";
@@ -117,15 +116,6 @@ export default function DepositPanel({ isOpen, onClose }: IDepositPanelProps) {
       setWallet("");
     }
   }, [selectedBlockchain]);
-
-  const openVisaDeposit = async () => {
-    // if (!userState.value?.id) {
-    //   toast.error("Please login first");
-    //   return;
-    // }
-
-    // visaOpenedState.value = true;
-  };
 
   const onSetBonus = useCallback(
     async (v: boolean) => {
