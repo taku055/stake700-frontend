@@ -1,3 +1,4 @@
+import { SITE_KEY } from "@/config/site";
 import { instance } from "../instance";
 import { encrypt } from "@/helpers/encrypt";
 
@@ -28,7 +29,7 @@ export const apiRegister = async (data: tRegisterReq) => {
       data.password.length +
       data.userName +
       data.userName.length +
-      (process.env.NEXT_PUBLIC_SITE_NAME as string).toLowerCase()
+      SITE_KEY
   );
   const res = await instance.post<tRegisterRes>(`/auth/signup`, {
     ...data,

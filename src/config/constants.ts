@@ -1,3 +1,4 @@
+import { SITE_KEY, SITE_NAME } from "./site";
 import { getRootDomain } from "@/helpers/getRootDomain";
 import { eTransactionCurrency } from "@/types/tTransaction";
 
@@ -8,7 +9,7 @@ export const TRON_CHAIN_ID = 728126428;
 // export const RTL_LANGUAGES = ["ar", "he", "fa"];
 export const RTL_LANGUAGES = ["ar", "fa"];
 
-export const ASSET_BASE_URL = `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}`;
+export const ASSET_BASE_URL = `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}`;
 
 const VIP_OTHERS_BASE =
   "https://tekio.s3.eu-north-1.amazonaws.com/mirage888/vip";
@@ -33,15 +34,15 @@ export const mobilePortraitMediaQuery =
 export const placeholderGameImage = "/images/img-placeholder-dark.jpg";
 
 export const OFFICIAL_LINKS = {
-  telegram: `https://t.me/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
+  telegram: `https://t.me/${SITE_NAME}ofc`,
   whatsapp: "#",
-  instagram: `https://www.instagram.com/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
-  facebook: `https://www.facebook.com/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
-  twitter: `https://x.com/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
-  youtube: `https://www.youtube.com/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
-  tiktok: `https://www.tiktok.com/@${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
-  twitch: `https://www.twitch.tv/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
-  discord: `https://discord.gg/${process.env.NEXT_PUBLIC_SITE_NAME}ofc`,
+  instagram: `https://www.instagram.com/${SITE_NAME}ofc`,
+  facebook: `https://www.facebook.com/${SITE_NAME}ofc`,
+  twitter: `https://x.com/${SITE_NAME}ofc`,
+  youtube: `https://www.youtube.com/${SITE_NAME}ofc`,
+  tiktok: `https://www.tiktok.com/@${SITE_NAME}ofc`,
+  twitch: `https://www.twitch.tv/${SITE_NAME}ofc`,
+  discord: `https://discord.gg/${SITE_NAME}ofc`,
   officialWebsite: `https://www.${process.env.NEXT_PUBLIC_SITE_DOMAIN}`,
   supportEmail: `support@${getRootDomain(process.env.NEXT_PUBLIC_SITE_DOMAIN)}`,
 };

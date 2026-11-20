@@ -1,3 +1,4 @@
+import { SITE_KEY } from "@/config/site";
 import type { FC as FunctionalComponent } from "react";
 import TekioSwiper from "@/components/TekioSwiper";
 import { Autoplay, Mousewheel, Navigation, EffectFade } from "swiper/modules";
@@ -25,16 +26,16 @@ export const PromotionSection: FunctionalComponent<{
       // Home page banners
       return {
         desktop: [
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/desktop/power-chance.jpg`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/desktop/power-chance.jpg`,
         ],
         mobile: [
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/mobile/power-chance-mobile.jpg`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/mobile/power-chance-mobile.jpg`,
         ],
       };
     } else if (currentPath.startsWith("/casino")) {
       return {
         desktop: [
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/desktop/cashback.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/desktop/cashback.webp`,
           "https://tekio.s3.eu-north-1.amazonaws.com/ichancy/promotions/desktop/personal-offer.webp",
         ],
         mobile: [
@@ -47,24 +48,24 @@ export const PromotionSection: FunctionalComponent<{
       // Live casino page banners
       return {
         desktop: [
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/desktop/cashback.webp`,
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/desktop/personal-offer.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/desktop/cashback.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/desktop/personal-offer.webp`,
         ],
         mobile: [
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/mobile/cashback-mobile.webp`,
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/mobile/personal-offer-mobile.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/mobile/cashback-mobile.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/mobile/personal-offer-mobile.webp`,
         ],
       };
     } else {
       // Default banners
       return {
         desktop: [
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/desktop/promotion-cashback.webp`,
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/desktop/promotion-loyalty.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/desktop/promotion-cashback.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/desktop/promotion-loyalty.webp`,
         ],
         mobile: [
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/mobile/promotion-cashback-mobile.webp`,
-          `https://tekio.s3.eu-north-1.amazonaws.com/${process.env.NEXT_PUBLIC_SITE_NAME.toLowerCase()}/promotions/mobile/promotion-loyalty-mobile.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/mobile/promotion-cashback-mobile.webp`,
+          `https://tekio.s3.eu-north-1.amazonaws.com/${SITE_KEY}/promotions/mobile/promotion-loyalty-mobile.webp`,
         ],
       };
     }

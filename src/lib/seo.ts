@@ -13,7 +13,8 @@ import de from "@/assets/i18n/de.json";
 import fr from "@/assets/i18n/fr.json";
 import ru from "@/assets/i18n/ru.json";
 
-export const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "Stake700";
+export { SITE_NAME } from "@/config/site";
+import { SITE_NAME } from "@/config/site";
 const DEFAULT_OG_IMAGE = "/og.png";
 
 const DICTIONARIES: Record<Locale, Record<string, any>> = { ar, en, de, fr, ru };

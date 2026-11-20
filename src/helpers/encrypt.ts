@@ -15,22 +15,31 @@ const td = new TextDecoder();
 const keyHex = process.env.NEXT_PUBLIC_ENCRYPTION_KEY ?? "";
 const ivHex = process.env.NEXT_PUBLIC_IV ?? ""; // must be 16 bytes (32 hex chars)
 
-const keyBytes = hexToBytes(keyHex); // 32 bytes for AES-256
-const ivBytes = hexToBytes(ivHex); // 16 bytes
-
-const keyPromise = crypto.subtle.importKey(
-  "raw",
-  keyBytes as any,
-  { name: "AES-CBC", length: 256 },
-  false,
-  ["encrypt", "decrypt"]
-);
+// Imported on first use, so a missing/invalid key only fails sign-up, not page load
+let keyPromise: Promise<CryptoKey> | null = null;
+let ivBytes: Uint8Array | null = null;
+function getKey(): Promise<CryptoKey> {
+  if (!keyPromise) {
+    if (keyHex.length !== 64 || ivHex.length !== 32) {
+      return Promise.reject(new Error("NEXT_PUBLIC_ENCRYPTION_KEY / NEXT_PUBLIC_IV are not configured"));
+    }
+    ivBytes = hexToBytes(ivHex); // 16 bytes
+    keyPromise = crypto.subtle.importKey(
+      "raw",
+      hexToBytes(keyHex) as any, // 32 bytes for AES-256
+      { name: "AES-CBC", length: 256 },
+      false,
+      ["encrypt", "decrypt"]
+    );
+  }
+  return keyPromise;
+}
 
 // Mirrors your API and returns hex
 export async function encrypt(text: string): Promise<string> {
-  const key = await keyPromise;
+  const key = await getKey();
   const ct = await crypto.subtle.encrypt(
-    { name: "AES-CBC", iv: ivBytes as any },
+    { name: "AES-CBC", iv: ivBytes! as any },
     key,
     te.encode(text)
   );
@@ -38,9 +47,9 @@ export async function encrypt(text: string): Promise<string> {
 }
 
 export async function decrypt(textHex: string): Promise<string> {
-  const key = await keyPromise;
+  const key = await getKey();
   const pt = await crypto.subtle.decrypt(
-    { name: "AES-CBC", iv: ivBytes as any },
+    { name: "AES-CBC", iv: ivBytes! as any },
     key,
     hexToBytes(textHex) as any
   );
