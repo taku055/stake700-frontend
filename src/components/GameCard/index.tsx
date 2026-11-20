@@ -1,6 +1,5 @@
 import styles from "./GameCard.module.scss";
 import { tGame } from "@/types/tGame";
-import { placeholderGameImage } from "@/config/constants";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Play, Star } from "lucide-react";
 import { favoritesGameState } from "@/state/favoritesGameState";
@@ -13,7 +12,7 @@ import { providerState } from "@/state/providerState";
 import { requireLogin } from "@/helpers/requireAuth";
 import { Link } from "../common";
 import { routes } from "@/config/routes";
-import { providerAccent } from "@/components/ProviderCard";
+import { accentStyle, providerAccent, providerInitials } from "@/components/ProviderCard";
 
 interface GameCardProps {
   data: tGame;
@@ -100,11 +99,12 @@ export default function GameCard({ data, onClick, useImgCustom = false, variant 
     }
   }, [favPending, isFavorite, data, tToast]);
 
-  const imgSrc = imgError
-    ? placeholderGameImage
-    : useImgCustom || FORCE_CUSTOM_IMAGE_GAME_IDS.has(data.id)
-      ? data.img_custom || data.img || placeholderGameImage
-      : data.img || placeholderGameImage;
+  const imgSrc =
+    (useImgCustom || FORCE_CUSTOM_IMAGE_GAME_IDS.has(data.id)
+      ? data.img_custom || data.img
+      : data.img) || "";
+  // No artwork (missing or failed to load): draw a branded monogram instead of a stock image.
+  const showFallback = imgError || !imgSrc;
 
   // Server-rendered images often finish loading before hydration, so React never
   // sees their load event — check the element directly on mount / src change.
@@ -169,22 +169,37 @@ export default function GameCard({ data, onClick, useImgCustom = false, variant 
         }}
       >
         <div ref={mediaRef} className={styles.media}>
-          {!imgLoaded && <span className={styles.shimmer} aria-hidden="true" />}
-          {fit && !isTile && <img className={styles.backdrop} src={imgSrc} alt="" aria-hidden="true" draggable={false} />}
-          <img
-            ref={imgRef}
-            className={`${styles.image} ${imgLoaded ? styles.imageLoaded : ""} ${fit && !isTile ? styles.imageFit : ""}`}
-            src={imgSrc}
-            alt={providerName ? `${data.name} – ${providerName}` : data.name}
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-            onLoad={(e) => handleLoaded(e.currentTarget)}
-            onError={() => {
-              setImgError(true);
-              setImgLoaded(true);
-            }}
-          />
+          {showFallback ? (
+            <span
+              className={styles.fallback}
+              style={accentStyle(providerName || data.name)}
+              role="img"
+              aria-label={providerName ? `${data.name} – ${providerName}` : data.name}
+            >
+              <span className={styles.fallbackMono}>{providerInitials(data.name)}</span>
+            </span>
+          ) : (
+            <>
+              {!imgLoaded && <span className={styles.shimmer} aria-hidden="true" />}
+              {fit && !isTile && (
+                <img className={styles.backdrop} src={imgSrc} alt="" aria-hidden="true" draggable={false} />
+              )}
+              <img
+                ref={imgRef}
+                className={`${styles.image} ${imgLoaded ? styles.imageLoaded : ""} ${fit && !isTile ? styles.imageFit : ""}`}
+                src={imgSrc}
+                alt={providerName ? `${data.name} – ${providerName}` : data.name}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                onLoad={(e) => handleLoaded(e.currentTarget)}
+                onError={() => {
+                  setImgError(true);
+                  setImgLoaded(true);
+                }}
+              />
+            </>
+          )}
 
           {/* Hover / focus layer (pointer devices) */}
           <span className={styles.scrim} aria-hidden="true" />

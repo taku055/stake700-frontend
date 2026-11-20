@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
-import axios from "axios";
 import { AtSign, Lock, Mail, MailCheck, Phone } from "lucide-react";
 import { passwordStrength } from "check-password-strength";
 import { toast } from "@/helpers/toast";
 import { apiRegister } from "@/api/account/apiRegister";
+import { signupError } from "@/helpers/signupError";
 import { validateEmail } from "@/helpers/validateEmail";
 import { Button, DatePicker } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
@@ -147,12 +147,10 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
         dismissMobileKeyboard();
         setSentTo({ email: res.email || email, emailSent: res.emailSent !== false });
       } catch (ex) {
-        if (axios.isAxiosError(ex) && ex.response?.status === 400) {
-          toast.error(tToast("error.email_taken"));
-        } else {
-          toast.error(tToast("error.something_wrong"));
-        }
-        console.error(ex);
+        // Tell the player what actually failed; details go to the console
+        console.error("[signup]", ex);
+        const err = signupError(ex);
+        toast.error("key" in err ? tToast(err.key) : err.text);
       }
       setLoading(false);
     },

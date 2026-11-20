@@ -8,7 +8,7 @@ import { JsonLd, organizationLd, websiteLd } from "@/lib/jsonld";
 import "@/styles/index.css";
 import "@/styles/globals.scss";
 
-const FAVICON = "https://tekio.s3.eu-north-1.amazonaws.com/stake700/logos";
+const FAVICON = "/images/brand/favicons";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -32,15 +32,17 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         : undefined,
     },
     other: { "msapplication-TileColor": "#232323" },
+    // Brand icon set in public/images/brand/favicons (the old S3 URLs return 403).
     icons: {
       shortcut: `${FAVICON}/favicon.ico`,
-      apple: `${FAVICON}/apple-touch-icon.png`,
+      apple: { url: `${FAVICON}/stake700-favicon-180.png`, sizes: "180x180", type: "image/png" },
       icon: [
-        { url: `${FAVICON}/favicon.ico` },
-        { url: `${FAVICON}/favicon-16x16.png`, sizes: "16x16", type: "image/png" },
-        { url: `${FAVICON}/favicon-32x32.png`, sizes: "32x32", type: "image/png" },
-        { url: `${FAVICON}/favicon-192x192.png`, sizes: "192x192", type: "image/png" },
-        { url: `${FAVICON}/favicon-512x512.png`, sizes: "512x512", type: "image/png" },
+        { url: `${FAVICON}/favicon.ico`, sizes: "any" },
+        { url: `${FAVICON}/stake700-favicon-16.png`, sizes: "16x16", type: "image/png" },
+        { url: `${FAVICON}/stake700-favicon-32.png`, sizes: "32x32", type: "image/png" },
+        { url: `${FAVICON}/stake700-favicon-48.png`, sizes: "48x48", type: "image/png" },
+        { url: `${FAVICON}/stake700-favicon-192.png`, sizes: "192x192", type: "image/png" },
+        { url: `${FAVICON}/stake700-favicon-512.png`, sizes: "512x512", type: "image/png" },
       ],
     },
   };

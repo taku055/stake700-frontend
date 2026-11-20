@@ -11,31 +11,39 @@ export const FOOTER_LINK_DATA : Array<{
   }>;
 }> = [
   {
-    title: "Casino",
+    title: "Games",
     links: [
-      { title: "Casino Games", href: "/casino" },
+      { title: "Casino", href: "/casino" },
       { title: "Slots", href: "/casino/games" },
       { title: "Live Casino", href: "/live-casino" },
-      { title: "Roulette", href: "/live-casino/roulette" },
-      { title: "Blackjack", href: "/live-casino/blackjack" },
-      { title: "Baccarat", href: "/live-casino/baccarat" },
-      { title: "Promos & Competitions", href: "/promotions" },
+      { title: "Sports", href: "/sports" },
+      { title: "Publishers", href: "/providers" },
       { title: "Best Slots This Month", href: "/best-slots" },
+    ],
+  },
+  {
+    title: "Promotions",
+    links: [
+      { title: "Promos & Competitions", href: "/promotions" },
+      { title: "VIP Club", href: "/vip" },
+      { title: "Affiliate", href: "/affiliate" },
+      { title: "General Bonus Terms and Conditions", href: "/promotions/terms" },
       { title: "Blog & Reviews", href: "/blog" },
     ],
   },
   {
-    title: "Support",
+    title: "Help",
     links: [
       { title: "Help Center", href: "/support/help-center" },
-      // { title: "Fairness", href: "/support/fairness" },
-      { title: "Responsible Gambling", href: "/support/responsible-gambling" },
-      { title: "Gambling Helpline", href: "/support/gambling-helpline" },
-      { title: "Live Support", onClick: () => {
-        liveSupportExpandedState.value = true;
-      } },
-      // { title: "Self Exclusion", href: "/support/self-exclusion" },
-      // { title: "Law Enforcement Request", href: "/support/law-enforcement-request" },
+      { title: "FAQ", href: "/faq" },
+      { title: "Fairness", href: "/provably-fair" },
+      { title: "Contact Us", href: "/contact-us" },
+      {
+        title: "Live Support",
+        onClick: () => {
+          liveSupportExpandedState.value = true;
+        },
+      },
     ],
   },
   {
@@ -43,17 +51,9 @@ export const FOOTER_LINK_DATA : Array<{
     links: [
       { title: "Privacy Policy", href: "/privacy-policy" },
       { title: "AML Policy", href: "/about-us/aml-policy" },
-      { title: "Contact Us", href: "/contact-us" },
-    ],
-  },
-  {
-    title: "FAQ",
-    links: [
-      { title: "question_1", href: "/faq" },
-      { title: "question_2", href: "/faq" },
-      { title: "question_3", href: "/faq" },
-      { title: "question_4", href: "/faq" },
-      { title: "question_5", href: "/faq" },
+      { title: "Other Rules", href: "/other-rules" },
+      { title: "Self Exclusion", href: "/support/self-exclusion" },
+      { title: "Gambling Helpline", href: "/support/gambling-helpline" },
     ],
   },
 ];

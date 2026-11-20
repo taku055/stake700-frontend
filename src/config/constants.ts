@@ -31,7 +31,7 @@ export const mobileLandscapeMediaQuery =
 export const mobilePortraitMediaQuery =
   "screen and ((max-width: 1023px) and (orientation: portrait))";
 
-export const placeholderGameImage = "/images/img-placeholder-dark.jpg";
+export const placeholderGameImage = "/images/game-placeholder.svg";
 
 export const OFFICIAL_LINKS = {
   telegram: `https://t.me/${SITE_NAME}ofc`,

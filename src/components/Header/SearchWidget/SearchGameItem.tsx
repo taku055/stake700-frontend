@@ -13,7 +13,7 @@ interface SearchGameItemProps {
 }
 
 export default function SearchGameItem({ data }: SearchGameItemProps) {
-  const [imgSrc, setImgSrc] = useState("/images/placeholder-gamecard.png");
+  const [imgSrc, setImgSrc] = useState(data.img_custom || data.img || placeholderGameImage);
 
   useEffect(() => {
     setImgSrc(data.img_custom || data.img || placeholderGameImage);

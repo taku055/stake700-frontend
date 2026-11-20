@@ -8,7 +8,7 @@ import { toast } from "@/helpers/toast";
 import { validateEmail } from "@/helpers/validateEmail";
 import { apiRegister } from "@/api/account/apiRegister";
 import { signupRequestState } from "@/state/signupRequestState";
-import axios from "axios";
+import { signupError } from "@/helpers/signupError";
 
 interface ISignupStep3DialogProps {
   isOpen: boolean;
@@ -83,29 +83,8 @@ export default function SignupStep3Dialog({
       } catch (ex) {
         // Tell the player what actually failed; details go to the console
         console.error("[signup]", ex);
-        if (axios.isAxiosError(ex)) {
-          const message = (ex.response?.data as { message?: unknown } | undefined)?.message;
-          const code = typeof message === "string" ? message : "";
-          if (!ex.response) {
-            toast.error(tToast("error.signup_network"));
-          } else if (code === "user.already-exist") {
-            toast.error(tToast("error.email_taken"));
-          } else if (code === "username.error") {
-            toast.error(tToast("error.signup_username"));
-          } else if (code === "token.error") {
-            toast.error(tToast("error.signup_check_failed"));
-          } else if (Array.isArray(message) && message.length) {
-            // Field validation from the server (e.g. "email must be an email")
-            toast.error(String(message[0]));
-          } else if (ex.response.status === 400) {
-            toast.error(tToast("error.email_taken"));
-          } else {
-            toast.error(tToast("error.signup_server"));
-          }
-        } else {
-          // Failed before the request was sent (e.g. sign-up keys not configured)
-          toast.error(tToast("error.signup_unavailable"));
-        }
+        const err = signupError(ex);
+        toast.error("key" in err ? tToast(err.key) : err.text);
       }
       setLoading(false);
       

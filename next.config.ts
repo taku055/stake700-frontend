@@ -1,13 +1,14 @@
 import path from "path";
 import type { NextConfig } from "next";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
+import { envHex } from "./src/helpers/envHex";
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
   outputFileTracingRoot: path.join(process.cwd()),
-  // Browsers request /favicon.ico on their own; serve the PNG we have.
+  // Browsers request /favicon.ico on their own; serve the brand icon.
   async rewrites() {
-    return [{ source: "/favicon.ico", destination: "/favicon.png" }];
+    return [{ source: "/favicon.ico", destination: "/images/brand/favicons/favicon.ico" }];
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(
@@ -80,6 +81,13 @@ function assertBuildEnv() {
   else if (!/^https?:\/\/[^/]/.test(api)) problem = `NEXT_PUBLIC_BACKEND_URL must be an absolute URL (got "${api}")`;
   else if (process.env.VERCEL && /\/\/(localhost|127\.|0\.0\.0\.0)/.test(api)) {
     problem = `NEXT_PUBLIC_BACKEND_URL points to ${api}, which visitors cannot reach`;
+  }
+  // Sign-up encrypts a token with these; a wrong length breaks registration
+  // silently in the browser, so catch it here instead.
+  else if (envHex(process.env.NEXT_PUBLIC_ENCRYPTION_KEY).length !== 64) {
+    problem = "NEXT_PUBLIC_ENCRYPTION_KEY must be 64 hex characters (paste only the value, without the name or quotes)";
+  } else if (envHex(process.env.NEXT_PUBLIC_IV).length !== 32) {
+    problem = "NEXT_PUBLIC_IV must be 32 hex characters (paste only the value, without the name or quotes)";
   }
   if (problem) {
     throw new Error(`${problem}. Set it in the deployment's environment variables (Vercel: Settings → Environment Variables) and build again.`);

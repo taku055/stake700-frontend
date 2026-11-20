@@ -1,3 +1,5 @@
+import { envHex } from "./envHex";
+
 function hexToBytes(hex: string): Uint8Array {
   if (!/^[0-9a-fA-F]*$/.test(hex) || hex.length % 2 !== 0)
     throw new Error("Invalid hex");
@@ -12,8 +14,8 @@ function bytesToHex(bytes: Uint8Array): string {
 const te = new TextEncoder();
 const td = new TextDecoder();
 
-const keyHex = process.env.NEXT_PUBLIC_ENCRYPTION_KEY ?? "";
-const ivHex = process.env.NEXT_PUBLIC_IV ?? ""; // must be 16 bytes (32 hex chars)
+const keyHex = envHex(process.env.NEXT_PUBLIC_ENCRYPTION_KEY); // 32 bytes (64 hex chars)
+const ivHex = envHex(process.env.NEXT_PUBLIC_IV); // must be 16 bytes (32 hex chars)
 
 // Imported on first use, so a missing/invalid key only fails sign-up, not page load
 let keyPromise: Promise<CryptoKey> | null = null;
