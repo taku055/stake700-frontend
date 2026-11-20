@@ -1154,7 +1154,12 @@
       "failed_update_details": "Aktualisierung der Benutzerdetails fehlgeschlagen",
       "password_changed_failed": "Passwortänderung fehlgeschlagen",
       "cash_wagering_active": "Sie können kein Geld abheben, bis Sie die Umsatzanforderungen für Ihr Guthaben erfüllt haben.",
-      "bonus_wagering_active": "Sie können keinen Bonus abheben, bis Sie die Umsatzanforderungen für Ihr Bonusguthaben erfüllt haben."
+      "bonus_wagering_active": "Sie können keinen Bonus abheben, bis Sie die Umsatzanforderungen für Ihr Bonusguthaben erfüllt haben.",
+      "signup_unavailable": "Die Registrierung ist vorübergehend nicht verfügbar. Bitte versuche es später erneut oder kontaktiere den Support.",
+      "signup_network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "signup_username": "Der Benutzername muss mit einem Buchstaben beginnen und darf nur Buchstaben, Zahlen und _ enthalten.",
+      "signup_check_failed": "Die Registrierungsprüfung ist fehlgeschlagen. Lade die Seite neu und versuche es erneut.",
+      "signup_server": "Dein Konto konnte gerade nicht erstellt werden. Bitte versuche es gleich noch einmal."
     },
     "info": {
       "address_copied": "Wallet-Adresse in die Zwischenablage kopiert!",

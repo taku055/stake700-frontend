@@ -1342,7 +1342,12 @@
       "failed_update_details": "Failed to update user details",
       "password_changed_failed": "Password changed failed",
       "cash_wagering_active": "You cannot withdraw cash until you have met the wagering requirements for your cash balance.",
-      "bonus_wagering_active": "You cannot withdraw bonus until you have met the wagering requirements for your bonus balance."
+      "bonus_wagering_active": "You cannot withdraw bonus until you have met the wagering requirements for your bonus balance.",
+      "signup_unavailable": "Sign-up is temporarily unavailable. Please try again later or contact support.",
+      "signup_network": "Can't reach the server. Check your connection and try again.",
+      "signup_username": "Username must start with a letter and use only letters, numbers and _.",
+      "signup_check_failed": "Sign-up check failed. Reload the page and try again.",
+      "signup_server": "We couldn't create your account right now. Please try again in a moment."
     },
     "info": {
       "wallet_address_copied": "Wallet address copied to clipboard!",

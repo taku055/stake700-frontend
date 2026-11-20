@@ -23,8 +23,9 @@ export default function Header() {
   const tSearch = useTranslations("HomePage");
   return (
     <header className="relative z-[200] h-[80px] w-full shrink-0 border-b border-[#2f4553] bg-[#0f212e]">
-      <div className="flex h-full items-center gap-3 px-3 md:px-5">
-        <div className="flex min-w-0 items-center gap-3">
+      <div className="flex h-full items-center gap-2 px-3 sm:gap-3 md:px-5">
+        {/* Takes whatever room is left so the logo shrinks instead of sliding under the buttons */}
+        <div className="flex min-w-0 flex-1 items-center gap-3 lg:flex-none">
             <button
               type="button"
               className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#2f4553] text-[#b1bad3] hover:bg-[#213743] hover:text-white sm:flex!"
@@ -38,11 +39,11 @@ export default function Header() {
                 : <img src="/images/icons/menu.svg" alt="Menu" className={`w-5 h-5 ${isRTL ? "scale-x-[-1]" : ""}`} />
               }
             </button>
-            <Link href="/" className="shrink-0">
+            <Link href="/" className="block min-w-0">
               <img
                 src="/images/brand/logo.png"
                 alt="Logo"
-                className="h-16 w-auto object-contain"
+                className="block h-auto max-h-10 w-auto max-w-full object-contain object-left sm:max-h-12 lg:max-h-16"
               />
             </Link>
           </div>
@@ -67,8 +68,11 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="ms-auto flex flex-row items-center gap-2 text-[14px] leading-[20px] lg:ms-0">
-            <LocaleSelection headerMode={true} />
+          <div className="ms-auto flex shrink-0 flex-row items-center gap-1.5 text-[14px] leading-[20px] sm:gap-2 lg:ms-0">
+            {/* Very narrow phones: language lives in the footer and settings instead */}
+            <div className="max-[399px]:hidden">
+              <LocaleSelection headerMode={true} />
+            </div>
             <div className="relative flex items-center">
               <button
                 type="button"
@@ -80,7 +84,7 @@ export default function Header() {
                 <span className="grid h-10 w-10 place-items-center bg-[#1475e1]">
                   <Search aria-hidden="true" className="h-4 w-4" />
                 </span>
-                <span className="px-3">{tSearch("Search")}</span>
+                <span className="hidden px-3 sm:inline">{tSearch("Search")}</span>
               </button>
               <SearchWidgetHeader />
             </div>
@@ -102,7 +106,7 @@ export default function Header() {
                 </Button>
                 <Button
                   variant="light"
-                  className="btn text-sm font-semibold min-w-0 w-auto h-9 bg-[#1475e1]! hover:bg-[#0f62c2]! px-4 text-white rounded-md"
+                  className="btn text-sm font-semibold min-w-0 w-auto h-9 bg-[#1475e1]! hover:bg-[#0f62c2]! px-3 sm:px-4 text-white rounded-md"
                   size="sm"
                   onPress={() => (registerOpenedState.value = true)}
                 >

@@ -1145,7 +1145,12 @@
       "failed_update_details": "Failed to update user details",
       "password_changed_failed": "Password changed failed",
       "cash_wagering_active": "Vous ne pouvez pas retirer en espèces tant que vous n'avez pas rempli les exigences de mise pour votre solde en espèces.",
-      "bonus_wagering_active": "Vous ne pouvez pas retirer le bonus tant que vous n'avez pas rempli les exigences de mise pour votre solde bonus."
+      "bonus_wagering_active": "Vous ne pouvez pas retirer le bonus tant que vous n'avez pas rempli les exigences de mise pour votre solde bonus.",
+      "signup_unavailable": "L'inscription est temporairement indisponible. Veuillez réessayer plus tard ou contacter le support.",
+      "signup_network": "Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.",
+      "signup_username": "Le nom d'utilisateur doit commencer par une lettre et ne contenir que des lettres, des chiffres et _.",
+      "signup_check_failed": "La vérification de l'inscription a échoué. Rechargez la page et réessayez.",
+      "signup_server": "Impossible de créer votre compte pour le moment. Veuillez réessayer dans un instant."
     },
     "info": {
       "address_copied": "Adresse du portefeuille copiée dans le presse-papiers !",

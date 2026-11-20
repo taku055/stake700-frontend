@@ -39,7 +39,7 @@ export default function LocaleSelection({
         onClick={() => setIsOpen((v) => !v)}
         className={
           headerMode
-            ? "flex h-9 items-center gap-2 rounded-md bg-[#1a2c38] px-2.5 text-[#b1bad3] hover:text-white"
+            ? "flex h-9 items-center gap-1.5 rounded-md bg-[#1a2c38] px-2 text-[#b1bad3] hover:text-white sm:gap-2 sm:px-2.5"
             : "flex h-full cursor-pointer items-center gap-[10px] rounded-sm p-2"
         }
       >
@@ -49,7 +49,7 @@ export default function LocaleSelection({
         </span>
         <ChevronDown
           size={headerMode ? 12 : 16}
-          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""} ${headerMode ? "hidden sm:block" : ""}`}
         />
       </button>
 
