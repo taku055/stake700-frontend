@@ -20,6 +20,8 @@ export const FOOTER_LINK_DATA : Array<{
       { title: "Blackjack", href: "/live-casino/blackjack" },
       { title: "Baccarat", href: "/live-casino/baccarat" },
       { title: "Promos & Competitions", href: "/promotions" },
+      { title: "Best Slots This Month", href: "/best-slots" },
+      { title: "Blog & Reviews", href: "/blog" },
     ],
   },
   {

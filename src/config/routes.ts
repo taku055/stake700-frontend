@@ -30,6 +30,19 @@ export const routes = {
   promotions: () => "/promotions",
   promotion: (id: string) => `/promotions/${encodeURIComponent(id)}`,
   promotionTerms: (anchor?: string) => `/promotions/terms${anchor ? `#${anchor}` : ""}`,
+  /** One page per live offer: "/promotions/offer/sunday50" */
+  promotionOffer: (code: string) => `/promotions/offer/${encodeURIComponent(code.toLowerCase())}`,
+
+  blog: (opts: { category?: string; page?: number } = {}) => {
+    const q = new URLSearchParams();
+    if (opts.category) q.set("category", opts.category.toLowerCase());
+    if (opts.page && opts.page > 1) q.set("page", String(opts.page));
+    const qs = q.toString();
+    return `/blog${qs ? `?${qs}` : ""}`;
+  },
+  blogPost: (slug: string) => `/blog/${encodeURIComponent(slug)}`,
+  /** Most played games: latest month at "/best-slots", archive at "/best-slots/2026-10" */
+  bestSlots: (month?: string) => (month ? `/best-slots/${month}` : "/best-slots"),
   vip: () => "/vip",
 
   sports: () => "/sports",

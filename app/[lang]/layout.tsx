@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import AppProviders from "@/provider/AppProviders";
@@ -24,6 +23,14 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description: translate(locale, "Seo.site_description"),
     manifest: "/manifest.json",
     formatDetection: { telephone: false },
+    // Search Console / Webmaster ownership tags, set per deployment
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+      yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || undefined,
+      other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+        ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+        : undefined,
+    },
     other: { "msapplication-TileColor": "#232323" },
     icons: {
       shortcut: `${FAVICON}/favicon.ico`,
@@ -67,10 +74,6 @@ export default async function LangLayout({
       <body>
         <JsonLd data={[organizationLd(), websiteLd(lang, translate(lang, "Seo.site_description"))]} />
         <AppProviders lang={lang}>{children}</AppProviders>
-        <Script
-          src="https://ta-betinovio-wr5yui56.btgpub.online/assets/sdk/shadow/init.js"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );

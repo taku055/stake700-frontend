@@ -56,13 +56,36 @@ export type SeoInput = {
   image?: string;
   /** Use the title as-is instead of the "%s | Site" template */
   absoluteTitle?: boolean;
+  /** Languages the page exists in (hreflang); defaults to every locale */
+  languages?: Locale[];
+  /** With noindex: still let crawlers follow the page's links (paginated lists) */
+  follow?: boolean;
+  /** Canonical locale-less path when it differs from `path` */
+  canonicalPath?: string;
+  /** Article pages: Open Graph type "article" with dates */
+  article?: { publishedTime?: string; modifiedTime?: string; section?: string };
 };
 
-export function buildMetadata({ lang, path, title, description, noindex, image, absoluteTitle }: SeoInput): Metadata {
+export function buildMetadata({
+  lang,
+  path,
+  title,
+  description,
+  noindex,
+  image,
+  absoluteTitle,
+  languages: available,
+  follow,
+  canonicalPath,
+  article,
+}: SeoInput): Metadata {
   const clean = path === "/" ? "" : path;
+  const canonical = canonicalPath === undefined ? clean : canonicalPath === "/" ? "" : canonicalPath;
+  const locales = available?.length ? LOCALES.filter((l) => available.includes(l)) : LOCALES;
   const languages: Record<string, string> = {};
-  for (const l of LOCALES) languages[LOCALE_HREFLANG[l]] = `/${l}${clean}`;
-  languages["x-default"] = `/${DEFAULT_LOCALE}${clean}`;
+  for (const l of locales) languages[LOCALE_HREFLANG[l]] = `/${l}${canonical}`;
+  const xDefault = locales.includes(DEFAULT_LOCALE) ? DEFAULT_LOCALE : locales.includes("en") ? "en" : locales[0];
+  if (xDefault) languages["x-default"] = `/${xDefault}${canonical}`;
 
   const desc = description ?? translate(lang, "Seo.site_description");
   // Pages without their own artwork share the branded default (app/og.png/route.tsx)
@@ -71,16 +94,23 @@ export function buildMetadata({ lang, path, title, description, noindex, image, 
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description: desc,
-    alternates: noindex ? undefined : { canonical: `/${lang}${clean}`, languages },
-    robots: noindex ? { index: false, follow: false } : { index: true, follow: true },
+    alternates: noindex ? undefined : { canonical: `/${lang}${canonical}`, languages },
+    robots: noindex ? { index: false, follow: !!follow } : { index: true, follow: true },
     openGraph: {
-      type: "website",
+      ...(article
+        ? {
+            type: "article" as const,
+            publishedTime: article.publishedTime,
+            modifiedTime: article.modifiedTime,
+            section: article.section,
+          }
+        : { type: "website" as const }),
       siteName: SITE_NAME,
       title,
       description: desc,
-      url: `/${lang}${clean}`,
+      url: `/${lang}${canonical}`,
       locale: OG_LOCALE[lang],
-      alternateLocale: LOCALES.filter((l) => l !== lang).map((l) => OG_LOCALE[l]),
+      alternateLocale: locales.filter((l) => l !== lang).map((l) => OG_LOCALE[l]),
       images: [image ? { url: ogImage } : { url: ogImage, width: 1200, height: 630, alt: SITE_NAME }],
     },
     twitter: {

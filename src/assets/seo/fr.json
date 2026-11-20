@@ -1,0 +1,503 @@
+{
+  "ui": {
+    "read_more": "Lire la suite",
+    "show_less": "Voir moins",
+    "faq_title": "Questions fréquentes",
+    "explore": "Découvrir {site}",
+    "popular_providers": "Fournisseurs de jeux populaires",
+    "more_from": "Plus de jeux {provider}",
+    "all_provider_games": "Tous les jeux {provider}",
+    "blog_link": "Blog & avis de jeux",
+    "best_slots_link": "Meilleures slots du mois"
+  },
+  "pages": {
+    "home": {
+      "title": "{site} – casino crypto, machines à sous en ligne, casino en direct et paris sportifs",
+      "intro": "{site} est un casino crypto en ligne où vous pouvez jouer à plus de {games} machines à sous en argent réel, aux tables de casino en direct avec croupiers et aux paris sportifs, le tout avec un seul compte. Déposez en Bitcoin ou en USDT, profitez de tours gratuits et d'un cashback quotidien, et jouez instantanément sur ordinateur ou mobile – sans aucun téléchargement.",
+      "sections": [
+        {
+          "h": "Machines à sous en ligne des meilleurs fournisseurs",
+          "p": [
+            "Notre lobby de casino réunit {providers} studios de jeux, des grands noms aux nouveaux développeurs indépendants. Faites tourner des machines à sous classiques à fruits, des slots Megaways aux milliers de façons de gagner, des jeux à achat de bonus, des fonctions hold-and-win et des machines à sous à jackpot progressif. De nouvelles machines à sous sont ajoutées chaque semaine : il y a toujours une nouveauté à essayer.",
+            "Chaque page de jeu indique le fournisseur et la catégorie, pour que vous trouviez rapidement d'autres titres qui vous plaisent. Utilisez la recherche pour accéder directement à votre machine à sous préférée, ou parcourez nos sélections comme Tendances, Les plus joués et Nouveautés."
+          ]
+        },
+        {
+          "h": "Casino en direct avec de vrais croupiers",
+          "p": [
+            "Vous préférez une vraie table ? Le casino en direct diffuse en HD la roulette, le blackjack, le baccarat, le poker, le sic bo et des game shows, avec des croupiers professionnels 24 h/24. Choisissez parmi des tables à petites mises ou des salons high roller, et discutez avec le croupier pendant que vous jouez."
+          ]
+        },
+        {
+          "h": "Dépôts en crypto et retraits rapides",
+          "p": [
+            "{site} est un casino crypto : vous déposez et retirez en Bitcoin (BTC) et en Tether (USDT sur les réseaux ERC-20 et TRC-20). Chaque joueur reçoit une adresse de dépôt personnelle, les dépôts sont crédités automatiquement après confirmation sur le réseau, et il n'y a ni frais de carte ni délais bancaires."
+          ]
+        },
+        {
+          "h": "Bonus, tours gratuits, cashback et VIP",
+          "p": [
+            "Les nouveaux joueurs peuvent profiter de tours gratuits de bienvenue, et chaque dépôt en crypto éligible peut débloquer une offre de tours gratuits. Les amateurs de machines à sous reçoivent aussi un cashback quotidien sur leurs pertes nettes, versé en argent réel sans condition de mise. Au fil de vos parties, vous gravissez les niveaux VIP et débloquez des récompenses à chaque palier. Le règlement complet figure toujours sur la page des conditions des bonus."
+          ]
+        },
+        {
+          "h": "Paris sportifs",
+          "p": [
+            "La section paris sportifs couvre le football, le basketball, le tennis, l'esport, les courses hippiques et bien plus encore, avec des cotes avant-match et des paris en direct. Votre solde casino et votre solde sport partagent le même portefeuille : passez d'une machine à sous à un pari en direct en quelques secondes."
+          ]
+        },
+        {
+          "h": "Jeu sûr et responsable",
+          "p": [
+            "Les comptes sont protégés par une vérification de l'adresse e-mail et des connexions chiffrées. Nous proposons l'auto-exclusion et des outils de jeu responsable, et notre équipe d'assistance est disponible si vous avez besoin d'aide. Jouez de manière responsable et ne misez que ce que vous pouvez vous permettre de perdre. Vous devez avoir 18 ans ou plus pour jouer."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "{site} est-il un casino crypto ?",
+          "a": "Oui. Les dépôts et les retraits se font en cryptomonnaie – Bitcoin (BTC) et USDT sur les réseaux ERC-20 et TRC-20."
+        },
+        {
+          "q": "À combien de jeux puis-je jouer ?",
+          "a": "Plus de {games} jeux de {providers} fournisseurs, dont des machines à sous en ligne, des Megaways, des jackpots, des jeux instantanés et des tables de casino en direct."
+        },
+        {
+          "q": "Puis-je jouer sur mon téléphone ?",
+          "a": "Oui. {site} fonctionne dans n'importe quel navigateur mobile récent sur Android et iPhone, sans application à télécharger."
+        },
+        {
+          "q": "Quels bonus sont disponibles ?",
+          "a": "Des tours gratuits de bienvenue, des offres de tours gratuits sur dépôt, un cashback quotidien sur les machines à sous et des récompenses de niveau VIP. Consultez la page des promotions pour découvrir les offres en cours."
+        },
+        {
+          "q": "Quel est le délai des retraits ?",
+          "a": "Les demandes de retrait sont traitées par notre équipe puis envoyées vers votre portefeuille crypto ; le transfert lui-même prend le temps nécessaire à sa confirmation sur la blockchain."
+        }
+      ]
+    },
+    "casino": {
+      "title": "Jouez aux machines à sous en ligne et aux jeux de casino en argent réel",
+      "intro": "Le lobby casino de {site} propose plus de {games} machines à sous en ligne et jeux de casino de {providers} fournisseurs. Jouez en Bitcoin ou en USDT, découvrez des nouveautés chaque semaine et choisissez vos favoris parmi nos catégories sélectionnées.",
+      "sections": [
+        {
+          "h": "Des catégories de machines à sous pour tous les styles",
+          "p": [
+            "Les machines à sous Megaways modifient le nombre de symboles à chaque tour, pour offrir jusqu'à des centaines de milliers de façons de gagner. Les machines à sous à jackpot alimentent une cagnotte qui peut tomber à tout moment. Les jeux à achat de bonus vous permettent d'accéder directement aux tours gratuits, et les slots hold-and-win bloquent des pièces sur les rouleaux pour des relances. Les amateurs de tradition apprécieront les machines à sous classiques et à fruits, ou la célèbre série d'aventure « Book of »."
+          ]
+        },
+        {
+          "h": "Comment choisir une machine à sous",
+          "p": [
+            "Regardez le fournisseur, le thème et la volatilité. Les machines à sous à faible volatilité versent de petits gains plus souvent, tandis que celles à forte volatilité paient moins souvent mais peuvent offrir des gains bien plus importants. Chaque page de jeu indique le studio qui l'a créé, pour que vous puissiez explorer d'autres titres d'un fournisseur que vous aimez."
+          ]
+        },
+        {
+          "h": "Tours gratuits et cashback quotidien sur les machines à sous",
+          "p": [
+            "C'est sur les machines à sous que nos bonus brillent : offres de tours gratuits sur les dépôts en crypto éligibles, tours gratuits de bienvenue pour les nouveaux joueurs et cashback quotidien sur les pertes nettes aux machines à sous, versé en argent réel. Consultez la page des promotions pour les offres en cours."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Puis-je jouer aux machines à sous en Bitcoin ?",
+          "a": "Oui. Déposez en Bitcoin ou en USDT et votre solde est utilisable sur toutes les machines à sous et tous les jeux de casino."
+        },
+        {
+          "q": "Que sont les machines à sous Megaways ?",
+          "a": "Les machines à sous Megaways utilisent des rouleaux dont le nombre de symboles change à chaque tour, ce qui crée des milliers de façons de gagner au lieu de lignes de paiement fixes."
+        },
+        {
+          "q": "Quelles sont les machines à sous les plus populaires ?",
+          "a": "Consultez les catégories Tendances et Les plus joués – elles se mettent à jour automatiquement selon les jeux auxquels les joueurs jouent en ce moment."
+        }
+      ]
+    },
+    "casino_all": {
+      "title": "Toutes les machines à sous et tous les jeux de casino",
+      "intro": "Parcourez toute la ludothèque de machines à sous de {site} – plus de {games} jeux réunis au même endroit. Filtrez par fournisseur pour trouver les titres de votre studio préféré, ou faites défiler la liste pour découvrir quelque chose de nouveau.",
+      "sections": [
+        {
+          "h": "La ludothèque complète",
+          "p": [
+            "Cette liste comprend toutes les machines à sous et tous les jeux de casino de {site} : machines à sous vidéo, Megaways, jackpots, achats de bonus, machines à sous classiques et à fruits, et jeux à gain instantané. Utilisez le filtre par fournisseur en haut de page pour affiner la liste, puis ouvrez n'importe quel jeu pour jouer avec votre solde crypto."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Comment filtrer les jeux par fournisseur ?",
+          "a": "Utilisez le filtre par fournisseur au-dessus de la grille de jeux et choisissez un ou plusieurs studios. La liste se met à jour instantanément."
+        }
+      ]
+    },
+    "live": {
+      "title": "Casino en direct – roulette, blackjack, baccarat et game shows",
+      "intro": "Jouez aux jeux de casino en direct avec de vrais croupiers sur {site}. Roulette en direct, blackjack, baccarat, poker, sic bo et game shows sont diffusés en HD 24 h/24 et 7 j/7, et vous pouvez miser en Bitcoin ou en USDT.",
+      "sections": [
+        {
+          "h": "Roulette en direct",
+          "p": [
+            "Choisissez parmi des tables de roulette européenne, américaine, française, lightning et speed, avec différentes limites de mise. Misez sur les numéros, les couleurs, les douzaines ou les voisins pendant que la roue tourne en direct."
+          ]
+        },
+        {
+          "h": "Blackjack et baccarat en direct",
+          "p": [
+            "Prenez place à des tables de blackjack en direct avec paris annexes et variantes à places illimitées, ou jouez au baccarat en direct – y compris aux tables speed et squeeze –, l'un des jeux de cartes de casino les plus populaires au monde."
+          ]
+        },
+        {
+          "h": "Game shows et tables à hautes mises",
+          "p": [
+            "Les game shows en direct réunissent un animateur, une grande roue ou un plateau bonus avec des multiplicateurs, pour une manche divertissante chaque minute. Les high rollers trouveront des tables dédiées aux hautes mises, avec des limites de mise plus élevées."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Les croupiers en direct sont-ils réels ?",
+          "a": "Oui. Les jeux de casino en direct sont diffusés depuis des studios professionnels, avec de vrais croupiers et de vraies cartes, roues et dés."
+        },
+        {
+          "q": "Puis-je jouer au casino en direct sur mobile ?",
+          "a": "Oui. Les tables en direct s'adaptent à l'écran de votre téléphone et sont diffusées de manière fluide en données mobiles ou en Wi-Fi."
+        },
+        {
+          "q": "Quelle est la mise minimum aux tables en direct ?",
+          "a": "Les limites dépendent de la table ; chaque jeu affiche ses mises minimum et maximum à l'ouverture."
+        }
+      ]
+    },
+    "live_all": {
+      "title": "Tous les jeux avec croupier en direct",
+      "intro": "Toutes les tables avec croupier en direct de {site} réunies dans une seule liste : roulette, blackjack, baccarat, poker, sic bo, jeux asiatiques et game shows des meilleurs studios live.",
+      "sections": [
+        {
+          "h": "Trouvez la table en direct qui vous convient",
+          "p": [
+            "Filtrez par fournisseur pour choisir votre studio live préféré, puis ouvrez une table pour voir ses limites. Toutes les tables utilisent le même solde crypto que les machines à sous : vous passez librement d'un jeu à l'autre."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Les tables en direct sont-elles ouvertes toute la journée ?",
+          "a": "La plupart des tables en direct fonctionnent 24 h/24 et 7 j/7. Quelques tables spéciales ont des horaires fixes, indiqués dans le jeu."
+        }
+      ]
+    },
+    "providers": {
+      "title": "Fournisseurs de jeux de casino",
+      "intro": "{site} travaille avec {providers} fournisseurs de jeux de casino. Choisissez un studio pour voir toutes ses machines à sous et tous ses jeux en direct au même endroit.",
+      "sections": [
+        {
+          "h": "Pourquoi le fournisseur compte",
+          "p": [
+            "Chaque studio a son propre style – modèles mathématiques, fonctions bonus, graphismes et son. Si vous aimez un jeu, il y a de fortes chances que d'autres titres du même fournisseur vous plaisent. Les pages fournisseurs listent tous les jeux de ce studio disponibles sur {site}."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Les jeux sont-ils équitables ?",
+          "a": "Les jeux proviennent de fournisseurs reconnus dont les générateurs de nombres aléatoires sont testés par des laboratoires indépendants."
+        }
+      ]
+    },
+    "promotions": {
+      "title": "Bonus de casino, tours gratuits et cashback",
+      "intro": "Découvrez toutes les promotions en cours sur {site} : tours gratuits de bienvenue, offres de tours gratuits sur les dépôts en crypto, l'offre hebdomadaire du dimanche, le cashback quotidien sur les machines à sous et les récompenses VIP.",
+      "sections": [
+        {
+          "h": "Tours gratuits sur les dépôts en crypto",
+          "p": [
+            "Les dépôts éligibles en Bitcoin et en USDT peuvent débloquer des packs de tours gratuits sur une sélection de machines à sous. Choisissez l'offre avant votre dépôt : les tours sont crédités automatiquement dès que le dépôt est confirmé."
+          ]
+        },
+        {
+          "h": "Cashback quotidien sur les machines à sous",
+          "p": [
+            "Chaque jour, nous vous reversons une partie de vos pertes nettes aux machines à sous en argent réel, sans condition de mise. Le cashback est calculé automatiquement et ajouté à votre solde le lendemain."
+          ]
+        },
+        {
+          "h": "Des conditions de bonus claires",
+          "p": [
+            "Chaque offre dispose d'un règlement complet – éligibilité, conditions de mise, plafonds de gains et date d'expiration – sur la page des conditions des bonus, pour que vous sachiez toujours exactement ce que vous obtenez."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Comment obtenir un bonus ?",
+          "a": "Choisissez l'offre sur cette page ou dans la fenêtre de dépôt avant de déposer. Les tours gratuits et les bonus sont crédités automatiquement lorsque le dépôt est confirmé."
+        },
+        {
+          "q": "Le cashback est-il soumis à des conditions de mise ?",
+          "a": "Non. Le cashback quotidien sur les machines à sous est versé en argent réel et peut être retiré ou rejoué immédiatement."
+        }
+      ]
+    },
+    "vip": {
+      "title": "Club VIP – des récompenses à chaque niveau pour les joueurs fidèles",
+      "intro": "Le club VIP de {site} récompense chaque joueur. Misez sur les machines à sous et les jeux en direct pour gravir les niveaux VIP et débloquer un bonus et des tours gratuits à chaque nouveau niveau.",
+      "sections": [
+        {
+          "h": "Comment fonctionnent les niveaux VIP",
+          "p": [
+            "Votre progression VIP augmente à chaque mise en argent réel. Chaque fois que vous atteignez un nouveau niveau, vous pouvez réclamer la récompense correspondante depuis la page VIP. Plus le niveau est élevé, plus les récompenses sont importantes."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Dois-je m'inscrire au club VIP ?",
+          "a": "Non. Chaque joueur inscrit fait automatiquement partie du programme VIP dès sa première mise."
+        }
+      ]
+    },
+    "sports": {
+      "title": "Paris sportifs en crypto – cotes en direct sur le football, le tennis, l'esport et plus",
+      "intro": "Pariez sur le sport en Bitcoin et en USDT sur {site}. La section paris sportifs propose des cotes avant-match et en direct sur le football, le basketball, le tennis, le hockey sur glace, l'esport, les courses hippiques et des dizaines d'autres sports.",
+      "sections": [
+        {
+          "h": "Paris en direct",
+          "p": [
+            "Les cotes se mettent à jour en temps réel pendant les matchs : vous pouvez parier sur le prochain but, le prochain point ou le résultat final au fil de la rencontre."
+          ]
+        },
+        {
+          "h": "Paris sur le football",
+          "p": [
+            "Pariez sur les meilleurs championnats du monde et les tournois internationaux, avec des marchés comme le résultat du match, les deux équipes marquent, plus/moins de buts, les handicaps et le score exact."
+          ]
+        },
+        {
+          "h": "Esport et plus encore",
+          "p": [
+            "Les fans d'esport peuvent parier sur les jeux et tournois populaires, tandis que les amateurs de courses trouveront chaque jour des courses de chevaux, de lévriers et de trot attelé."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Puis-je parier sur le sport avec des cryptomonnaies ?",
+          "a": "Oui. Votre solde en Bitcoin ou en USDT fonctionne à la fois pour le casino et pour les paris sportifs."
+        },
+        {
+          "q": "Qu'est-ce que le pari en direct ?",
+          "a": "Le pari en direct (live) vous permet de placer des paris après le début d'un match, avec des cotes qui évoluent au fil de l'action."
+        }
+      ]
+    },
+    "racing": {
+      "title": "Paris sur les courses de chevaux, de lévriers et de trot attelé",
+      "intro": "Pariez sur les courses hippiques, les courses de lévriers et le trot attelé sur {site}, avec des programmes de courses quotidiens et des cotes en direct, en utilisant votre solde crypto.",
+      "sections": [
+        {
+          "h": "Des courses tous les jours",
+          "p": [
+            "Suivez les réunions de courses du monde entier, comparez les partants et placez des paris gagnant, placé et each-way (gagnant-placé). Les résultats sont réglés automatiquement sur votre solde."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Puis-je parier sur les courses de lévriers ?",
+          "a": "Oui. Les courses de lévriers et de trot attelé ont leurs propres sections, avec des courses tous les jours."
+        }
+      ]
+    }
+  },
+  "categories": {
+    "casino:top": "Nos meilleures machines à sous – une sélection des meilleures machines à sous en ligne de {site}, choisies pour leur gameplay, leurs fonctionnalités et la préférence des joueurs.",
+    "casino:trending": "Les machines à sous tendance sont les jeux auxquels les joueurs jouent le plus en ce moment. La liste se met à jour automatiquement et montre toujours ce qui cartonne.",
+    "casino:most-played": "Les machines à sous les plus jouées de tous les temps sur {site} – des valeurs sûres aux fonctionnalités spectaculaires et aux fans fidèles.",
+    "casino:new": "Les nouvelles machines à sous de nos fournisseurs. Soyez parmi les premiers à jouer aux dernières sorties de machines à sous en ligne, ajoutées chaque semaine.",
+    "casino:popular": "Les machines à sous populaires préférées de nos joueurs, des grands classiques aux machines à sous vidéo modernes riches en fonctionnalités.",
+    "casino:jackpots": "Machines à sous à jackpot fixe ou progressif, qui peut tomber à tout moment. Tentez votre chance pour des gains qui changent une vie.",
+    "casino:megaways": "Les machines à sous Megaways modifient le nombre de symboles à chaque tour et offrent jusqu'à des centaines de milliers de façons de gagner.",
+    "casino:bonus-buy": "Les machines à sous à achat de bonus vous permettent d'acheter directement la fonction tours gratuits, sans attendre l'apparition des scatters.",
+    "casino:hold-and-win": "Les machines à sous hold and win bloquent des symboles pièces spéciaux sur les rouleaux et offrent des relances pour tenter de remporter de gros gains.",
+    "casino:fruit-slots": "Les machines à sous à fruits remettent à l'honneur cerises, citrons, BAR et 7 – un gameplay classique simple, rapide et amusant.",
+    "casino:classics": "Des machines à sous classiques avec peu de rouleaux, des règles simples et un style rétro, pour les amateurs de machines à fruits traditionnelles.",
+    "casino:book-of": "Machines à sous « Book of » – des jeux sur le thème de l'aventure avec symboles extensibles pendant les tours gratuits, inspirés de la célèbre série Book.",
+    "casino:instant-games": "Jeux instantanés et crash games aux manches rapides – dont mines, plinko, dés et jeux à multiplicateur.",
+    "live-casino:table-games": "Jeux de table en direct avec de vrais croupiers : roulette, blackjack, baccarat, poker et plus, diffusés en HD.",
+    "live-casino:live-tables": "Nos tables en direct – les jeux avec croupier en direct les plus populaires, ouverts jour et nuit.",
+    "live-casino:top-tables": "Les meilleures tables de casino en direct choisies par nos joueurs, de la roulette rapide au blackjack classique.",
+    "live-casino:roulette": "Roulette en direct avec de vraies roues et de vrais croupiers : roulette européenne, américaine, française, lightning et speed.",
+    "live-casino:blackjack": "Tables de blackjack en direct avec de vrais croupiers, paris annexes et options pour tous les budgets, des petites limites au VIP.",
+    "live-casino:baccarat": "Baccarat en direct, y compris des tables speed, squeeze et sans commission – misez sur le Joueur, la Banque ou l'Égalité.",
+    "live-casino:game-shows": "Game shows en direct avec animateurs, roues de la fortune, manches bonus et multiplicateurs – le divertissement du casino en temps réel.",
+    "live-casino:poker": "Jeux de poker en direct comme le Casino Hold'em et le Three Card Poker, joués contre un vrai croupier.",
+    "live-casino:asian-games": "Jeux asiatiques en direct comme le dragon tiger, le fan tan et des variantes de baccarat, très populaires en Asie.",
+    "live-casino:sic-bo": "Sic bo et jeux de dés en direct – pariez sur le résultat de trois dés secoués par un croupier en direct.",
+    "live-casino:high-stakes": "Tables en direct à hautes mises, avec des limites de mise plus élevées pour les high rollers et les joueurs VIP."
+  },
+  "category_template": {
+    "title": "{category} – {section} : jeux en ligne",
+    "sections": [
+      {
+        "h": "Jouez à {category} en crypto",
+        "p": [
+          "Tous les jeux {category} de {site} sont jouables avec votre solde en Bitcoin ou en USDT, sur ordinateur comme sur mobile. Ouvrez un jeu pour voir son fournisseur, puis découvrez d'autres titres du même studio."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Puis-je jouer aux jeux {category} sur mobile ?",
+        "a": "Oui. Tous les jeux {category} de {site} fonctionnent dans votre navigateur mobile, sans téléchargement."
+      },
+      {
+        "q": "Quels fournisseurs proposent des jeux {category} ?",
+        "a": "Utilisez le filtre par fournisseur sur cette page pour voir quels studios proposent des jeux {category} sur {site}."
+      }
+    ]
+  },
+  "provider_template": {
+    "title": "Machines à sous et jeux de casino {provider}",
+    "intro": "Jouez à {count} jeux {provider} en ligne sur {site}. Tous les titres {provider} de notre lobby sont réunis ici, jouables en Bitcoin ou en USDT sur ordinateur et mobile.",
+    "sections": [
+      {
+        "h": "À propos de {provider}",
+        "p": [
+          "{provider} fait partie des {providers} studios de jeux disponibles sur {site}. Ses jeux fonctionnent dans votre navigateur, se chargent rapidement sur mobile et utilisent des générateurs de nombres aléatoires testés par des laboratoires indépendants.",
+          "Les nouveautés {provider} sont ajoutées automatiquement à cette page : revenez régulièrement pour essayer les derniers jeux."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Combien de jeux {provider} y a-t-il sur {site} ?",
+        "a": "Il y a actuellement {count} jeux {provider} disponibles."
+      },
+      {
+        "q": "Puis-je jouer aux jeux {provider} en crypto ?",
+        "a": "Oui. Déposez en Bitcoin ou en USDT et jouez à n'importe quel jeu {provider} avec votre solde."
+      }
+    ]
+  },
+  "game_template": {
+    "sections": [
+      {
+        "h": "Comment jouer à {game}",
+        "p": [
+          "Connectez-vous, déposez en Bitcoin ou en USDT et ouvrez {game}. Choisissez votre mise dans le jeu, puis lancez les rouleaux ou placez votre pari. Vos gains sont ajoutés instantanément à votre solde {site}.",
+          "{game} fonctionne dans tous les navigateurs récents sur ordinateur, Android et iPhone – rien à télécharger."
+        ]
+      },
+      {
+        "h": "Bonus utilisables sur {game}",
+        "p": [
+          "Consultez la page des promotions pour les offres en cours. Les amateurs de machines à sous reçoivent aussi un cashback quotidien sur leurs pertes nettes, et chaque mise compte pour votre niveau VIP."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Qui a créé {game} ?",
+        "a": "{game} est développé par {provider}."
+      },
+      {
+        "q": "Puis-je jouer à {game} sur mobile ?",
+        "a": "Oui. {game} fonctionne dans votre navigateur mobile sur Android et iPhone."
+      },
+      {
+        "q": "Puis-je jouer à {game} en Bitcoin ?",
+        "a": "Oui. Déposez en Bitcoin ou en USDT et utilisez votre solde pour jouer à {game}."
+      }
+    ]
+  },
+  "blog": {
+    "meta_title": "Blog casino – Avis de machines à sous, guides et actualités",
+    "meta_description": "Avis de machines à sous, guides casino, classements et actualités de l'équipe {site}. Trouvez votre prochain jeu et apprenez à tirer le meilleur parti de vos parties en crypto.",
+    "title": "Blog : avis de machines à sous, guides et actualités casino",
+    "intro": "Avis sur les machines à sous et les jeux en direct de notre lobby, guides sur les bonus et le jeu en crypto, classements mensuels et actualités de {site}.",
+    "all": "Tous les articles",
+    "categories": {
+      "NEWS": "Actualités",
+      "REVIEW": "Avis de jeux",
+      "GUIDE": "Guides",
+      "TOP_LIST": "Classements"
+    },
+    "read_time": "{min} min de lecture",
+    "published": "Publié le {date}",
+    "updated": "Mis à jour le {date}",
+    "games_title": "Jeux présentés dans cet article",
+    "latest": "Plus d'articles",
+    "empty": "Aucun article pour le moment – revenez bientôt.",
+    "prev": "Plus récents",
+    "next": "Plus anciens",
+    "page": "Page {page}",
+    "reviews_of": "En savoir plus sur {game}",
+    "author": "Équipe éditoriale de {site}",
+    "play": "Jouer"
+  },
+  "top": {
+    "meta_title": "Meilleures slots {month} – Machines à sous les plus jouées",
+    "meta_description": "Les machines à sous en ligne et jeux de casino en direct les plus joués sur {site} en {month}, classés par de vrais joueurs. Jouez aux meilleures slots du mois en Bitcoin ou USDT.",
+    "title": "Les meilleures slots en {month}",
+    "kicker": "Les plus jouées ce mois-ci",
+    "intro_live": "Voici les machines à sous que les joueurs de {site} font le plus tourner en {month}. Le classement repose sur le jeu réel – le nombre de joueurs différents et de tours joués sur chaque jeu – et il est actualisé toutes les heures jusqu'à la fin du mois.",
+    "intro_final": "Voici les machines à sous les plus jouées sur {site} en {month}, classées selon le jeu réel – le nombre de joueurs différents et de tours joués sur chaque jeu. Il s'agit du classement définitif du mois.",
+    "slots_title": "Top {count} des machines à sous – {month}",
+    "live_title": "Jeux de casino en direct les plus joués – {month}",
+    "archive_title": "Classements des mois précédents",
+    "latest_badge": "Mis à jour toutes les heures",
+    "final_badge": "Classement définitif",
+    "empty": "Il n'y a pas encore assez de données de jeu pour ce mois.",
+    "faq": [
+      {
+        "q": "Comment le classement est-il calculé ?",
+        "a": "Nous comptons combien de joueurs différents ont joué à chaque jeu au cours du mois, puis le nombre de tours. Des gains ou des mises plus élevés ne modifient pas l'ordre."
+      },
+      {
+        "q": "À quelle fréquence la liste change-t-elle ?",
+        "a": "Le mois en cours est actualisé toutes les heures. À la fin du mois, le classement est figé et rejoint les archives."
+      },
+      {
+        "q": "Puis-je jouer à ces machines à sous en crypto ?",
+        "a": "Oui. Tous les jeux de la liste se jouent avec votre solde en Bitcoin ou en USDT, sur ordinateur comme sur mobile."
+      }
+    ]
+  },
+  "promo_page": {
+    "meta_title": "{name} – {headline}",
+    "meta_description": "{name} sur {site} : {headline}. Découvrez comment obtenir l'offre, qui peut en profiter et les conditions complètes.",
+    "kicker": "Offre bonus",
+    "how_title": "Comment obtenir {name}",
+    "steps_deposit": [
+      "Connectez-vous ou créez gratuitement un compte {site}.",
+      "Ouvrez la fenêtre de dépôt et sélectionnez {name} avant d'effectuer votre dépôt.",
+      "Déposez des Bitcoin ou des USDT – au moins le montant minimum indiqué dans les conditions.",
+      "La récompense est créditée automatiquement dès que le dépôt est confirmé sur la blockchain."
+    ],
+    "steps_other": [
+      "Connectez-vous ou créez gratuitement un compte {site}.",
+      "Vérifiez que vous remplissez les conditions indiquées ci-dessous.",
+      "Réclamez l'offre sur la page des promotions – la récompense est ajoutée automatiquement à votre compte."
+    ],
+    "terms_title": "Conditions de l'offre",
+    "full_terms": "Lire les conditions complètes des bonus",
+    "other_offers": "Autres offres",
+    "all_offers": "Toutes les promotions",
+    "faq": [
+      {
+        "q": "À quelle fréquence puis-je obtenir {name} ?",
+        "a": "Aussi souvent qu'indiqué sous « Limite » dans les conditions ci-dessus – une fois par compte pour la plupart des offres, une fois par semaine pour les offres hebdomadaires."
+      },
+      {
+        "q": "Les gains des tours gratuits sont-ils soumis à des conditions de mise ?",
+        "a": "Les gains des tours gratuits sont crédités en argent bonus, avec l'exigence de mise indiquée dans les conditions ci-dessus ; une fois celle-ci remplie, cet argent devient de l'argent réel retirable."
+      },
+      {
+        "q": "Quels dépôts sont éligibles ?",
+        "a": "Les offres sont uniquement disponibles pour les dépôts en crypto (Bitcoin ou USDT) qui atteignent le montant minimum indiqué dans les conditions."
+      }
+    ]
+  }
+}

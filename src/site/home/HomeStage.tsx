@@ -128,12 +128,12 @@ export default function HomeStage() {
     <div className="w-full px-4 md:px-8 pt-6 pb-16 flex flex-col gap-10">
       <header className="flex flex-col gap-4 border-b border-[#2f4553] pb-5 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#7eb6ff]">
+          <h1 className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#7eb6ff]">
             {tHome("stage_kicker")}
-          </p>
-          <h1 className="mt-2 text-4xl md:text-6xl font-extrabold leading-[0.95] text-white">
-            {tHome("stage_title")}
           </h1>
+          <p className="mt-2 text-4xl md:text-6xl font-extrabold leading-[0.95] text-white">
+            {tHome("stage_title")}
+          </p>
         </div>
         <div className="w-full md:w-[340px]">
           <SearchWidget />

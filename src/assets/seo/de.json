@@ -1,0 +1,503 @@
+{
+  "ui": {
+    "read_more": "Weiterlesen",
+    "show_less": "Weniger anzeigen",
+    "faq_title": "Häufig gestellte Fragen",
+    "explore": "{site} entdecken",
+    "popular_providers": "Beliebte Spieleanbieter",
+    "more_from": "Mehr Spiele von {provider}",
+    "all_provider_games": "Alle {provider} Spiele",
+    "blog_link": "Blog & Slot-Reviews",
+    "best_slots_link": "Beste Slots des Monats"
+  },
+  "pages": {
+    "home": {
+      "title": "{site} – Krypto Casino, Online Slots, Live Casino und Sportwetten",
+      "intro": "{site} ist ein Online Krypto Casino, in dem du mit einem einzigen Konto {games}+ Echtgeld-Slots, Live-Dealer-Tische und Sportwetten spielen kannst. Zahle mit Bitcoin oder USDT ein, hol dir Freispiele und tägliches Cashback und spiele sofort am Desktop oder mobil – ganz ohne Download.",
+      "sections": [
+        {
+          "h": "Online Slots von den besten Anbietern",
+          "p": [
+            "Unsere Casino-Lobby vereint {providers} Spielestudios – von großen Namen bis zu neuen unabhängigen Entwicklern. Dreh klassische Früchte-Spielautomaten, Megaways Slots mit Tausenden Gewinnwegen, Bonus-Buy-Spiele, Hold-and-Win-Features und progressive Jackpot-Slots. Jede Woche kommen neue Slots hinzu, sodass es immer einen frischen Release zum Ausprobieren gibt.",
+            "Auf jeder Spielseite siehst du Anbieter und Kategorie, damit du schnell weitere Titel findest, die dir gefallen. Nutze die Suche, um direkt zu deinem Lieblingsslot zu springen, oder stöbere in kuratierten Listen wie Trending, Meistgespielt und Neuerscheinungen."
+          ]
+        },
+        {
+          "h": "Live Casino mit echten Dealern",
+          "p": [
+            "Lieber an einem echten Tisch? Das Live Casino überträgt Roulette, Blackjack, Baccarat, Poker, Sic Bo und Gameshows in HD – mit professionellen Dealern rund um die Uhr. Wähle zwischen Tischen mit niedrigen Einsätzen und High-Roller-Räumen und chatte beim Spielen mit dem Dealer."
+          ]
+        },
+        {
+          "h": "Krypto-Einzahlungen und schnelle Auszahlungen",
+          "p": [
+            "{site} ist ein Krypto Casino: Du zahlst mit Bitcoin (BTC) und Tether (USDT in den Netzwerken ERC-20 und TRC-20) ein und aus. Jeder Spieler erhält eine persönliche Einzahlungsadresse, Einzahlungen werden nach der Netzwerkbestätigung automatisch gutgeschrieben, und es gibt keine Kartengebühren oder Verzögerungen durch Banken."
+          ]
+        },
+        {
+          "h": "Boni, Freispiele, Cashback und VIP",
+          "p": [
+            "Neue Spieler können Willkommens-Freispiele erhalten, und jede qualifizierende Krypto-Einzahlung kann ein Freispiel-Angebot freischalten. Slot-Spieler bekommen außerdem täglich Cashback auf Nettoverluste, ausgezahlt als Echtgeld ohne Umsatzbedingungen. Beim Spielen steigst du die VIP-Leiter hinauf und schaltest Level-up-Prämien frei. Die vollständigen Regeln findest du jederzeit auf der Seite mit den Bonusbedingungen."
+          ]
+        },
+        {
+          "h": "Sportwetten",
+          "p": [
+            "Das Sportwetten-Angebot umfasst Fußball, Basketball, Tennis, Esports, Pferderennen und vieles mehr – mit Pre-Match- und Live-Wetten-Quoten. Dein Casino- und dein Sportguthaben liegen in derselben Wallet, sodass du in Sekunden zwischen einem Slot und einer Live-Wette wechseln kannst."
+          ]
+        },
+        {
+          "h": "Sicheres und verantwortungsvolles Spielen",
+          "p": [
+            "Konten sind durch E-Mail-Verifizierung und verschlüsselte Verbindungen geschützt. Wir bieten Selbstausschluss und Tools für verantwortungsvolles Spielen an, und unser Support-Team hilft dir, wenn du Unterstützung brauchst. Bitte spiele verantwortungsvoll und setze nur, was du dir leisten kannst zu verlieren. Du musst mindestens 18 Jahre alt sein, um zu spielen."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Ist {site} ein Krypto Casino?",
+          "a": "Ja. Ein- und Auszahlungen erfolgen in Kryptowährung – Bitcoin (BTC) und USDT in den Netzwerken ERC-20 und TRC-20."
+        },
+        {
+          "q": "Wie viele Spiele kann ich spielen?",
+          "a": "Es gibt {games}+ Spiele von {providers} Anbietern, darunter Online Slots, Megaways, Jackpots, Instant Games und Live-Dealer-Tische."
+        },
+        {
+          "q": "Kann ich auf meinem Handy spielen?",
+          "a": "Ja. {site} läuft in jedem modernen mobilen Browser auf Android und iPhone – ganz ohne App-Download."
+        },
+        {
+          "q": "Welche Boni gibt es?",
+          "a": "Willkommens-Freispiele, Freispiel-Angebote auf Einzahlungen, tägliches Cashback auf Slots und VIP-Level-up-Prämien. Die aktuellen Angebote findest du auf der Aktionsseite."
+        },
+        {
+          "q": "Wie schnell sind Auszahlungen?",
+          "a": "Auszahlungsanfragen werden von unserem Team bearbeitet und an deine Krypto-Wallet gesendet; die Überweisung selbst dauert so lange, wie die Blockchain für die Bestätigung braucht."
+        }
+      ]
+    },
+    "casino": {
+      "title": "Online Slots und Casinospiele um Echtgeld spielen",
+      "intro": "Die Casino-Lobby von {site} bietet {games}+ Online Slots und Casinospiele von {providers} Anbietern. Spiele mit Bitcoin oder USDT, entdecke jede Woche neue Releases und finde deine Favoriten in kuratierten Kategorien.",
+      "sections": [
+        {
+          "h": "Slot-Kategorien für jeden Spielstil",
+          "p": [
+            "Megaways Slots ändern bei jedem Dreh die Anzahl der Symbole – für bis zu Hunderttausende Gewinnwege. Jackpot-Slots bauen einen Preispool auf, der jederzeit fallen kann. Bei Bonus-Buy-Spielen springst du direkt in die Freispielrunde, und Hold-and-Win-Slots halten Münzen auf den Walzen für Respins fest. Fans des Klassischen genießen Klassik- und Früchte-Slots oder die beliebte Abenteuerreihe „Book of“."
+          ]
+        },
+        {
+          "h": "So wählst du einen Slot aus",
+          "p": [
+            "Achte auf Anbieter, Thema und Volatilität. Slots mit niedriger Volatilität zahlen häufiger kleinere Gewinne aus, während Slots mit hoher Volatilität seltener, dafür aber deutlich größere Gewinne auszahlen können. Auf jeder Spielseite siehst du das Studio dahinter, sodass du weitere Titel eines Anbieters entdecken kannst, der dir gefällt."
+          ]
+        },
+        {
+          "h": "Freispiele und tägliches Cashback auf Slots",
+          "p": [
+            "Bei Slots glänzen unsere Boni: Freispiel-Angebote auf qualifizierende Krypto-Einzahlungen, Willkommens-Freispiele für neue Spieler und tägliches Cashback auf Netto-Slotverluste, ausgezahlt als Echtgeld. Die aktuellen Angebote findest du auf der Aktionsseite."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Kann ich Slots mit Bitcoin spielen?",
+          "a": "Ja. Zahle Bitcoin oder USDT ein und nutze dein Guthaben für jeden Slot und jedes Casinospiel."
+        },
+        {
+          "q": "Was sind Megaways Slots?",
+          "a": "Megaways Slots nutzen Walzen, deren Symbolanzahl sich bei jedem Dreh ändert – so entstehen statt fester Gewinnlinien Tausende Gewinnwege."
+        },
+        {
+          "q": "Welche Slots sind am beliebtesten?",
+          "a": "Sieh dir die Kategorien Trending und Meistgespielt an – sie aktualisieren sich automatisch mit den Spielen, die gerade am häufigsten gedreht werden."
+        }
+      ]
+    },
+    "casino_all": {
+      "title": "Alle Slots und Casinospiele",
+      "intro": "Durchstöbere die komplette Slot-Bibliothek von {site} – {games}+ Spiele an einem Ort. Filtere nach Anbieter, um Titel deines Lieblingsstudios zu finden, oder scrolle, um Neues zu entdecken.",
+      "sections": [
+        {
+          "h": "Die komplette Spielebibliothek",
+          "p": [
+            "Diese Liste enthält jeden Slot und jedes Casinospiel auf {site}: Video-Slots, Megaways, Jackpots, Bonus Buys, Klassik- und Früchte-Slots sowie Sofortgewinnspiele. Grenze die Liste oben mit dem Anbieterfilter ein und öffne dann ein beliebiges Spiel, um mit deinem Krypto-Guthaben zu spielen."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Wie filtere ich Spiele nach Anbieter?",
+          "a": "Nutze den Anbieterfilter über dem Spieleraster und wähle ein oder mehrere Studios aus. Die Liste wird sofort aktualisiert."
+        }
+      ]
+    },
+    "live": {
+      "title": "Live Casino – Roulette, Blackjack, Baccarat und Gameshows",
+      "intro": "Spiele Live-Casino-Spiele mit echten Dealern bei {site}. Live Roulette, Blackjack, Baccarat, Poker, Sic Bo und Gameshows werden rund um die Uhr in HD übertragen, und du kannst mit Bitcoin oder USDT setzen.",
+      "sections": [
+        {
+          "h": "Live Roulette",
+          "p": [
+            "Wähle aus europäischen, amerikanischen, französischen, Lightning- und Speed-Roulette-Tischen mit unterschiedlichen Limits. Setze auf Zahlen, Farben, Dutzende oder Nachbarn, während sich der Kessel live dreht."
+          ]
+        },
+        {
+          "h": "Live Blackjack und Baccarat",
+          "p": [
+            "Nimm an Live-Blackjack-Tischen mit Nebenwetten und Varianten mit unbegrenzten Plätzen Platz oder spiele Live Baccarat – inklusive Speed- und Squeeze-Tischen –, eines der beliebtesten Casino-Kartenspiele der Welt."
+          ]
+        },
+        {
+          "h": "Gameshows und High-Stakes-Tische",
+          "p": [
+            "Live-Gameshows kombinieren einen Moderator, ein großes Glücksrad oder ein Bonusbrett mit Multiplikatoren für eine unterhaltsame Runde jede Minute. High Roller finden eigene High-Stakes-Tische mit höheren Einsatzlimits."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Sind die Live-Dealer echt?",
+          "a": "Ja. Live-Casino-Spiele werden aus professionellen Studios mit echten Dealern sowie echten Karten, Rädern und Würfeln übertragen."
+        },
+        {
+          "q": "Kann ich das Live Casino mobil spielen?",
+          "a": "Ja. Die Live-Tische passen sich deinem Handybildschirm an und laufen flüssig über mobile Daten oder WLAN."
+        },
+        {
+          "q": "Wie hoch ist der Mindesteinsatz an den Live-Tischen?",
+          "a": "Die Limits hängen vom Tisch ab; jedes Spiel zeigt beim Öffnen seinen Mindest- und Höchsteinsatz an."
+        }
+      ]
+    },
+    "live_all": {
+      "title": "Alle Live-Dealer-Spiele",
+      "intro": "Alle Live-Dealer-Tische bei {site} in einer Liste: Roulette, Blackjack, Baccarat, Poker, Sic Bo, asiatische Spiele und Gameshows von den führenden Live-Studios.",
+      "sections": [
+        {
+          "h": "Finde den passenden Live-Tisch",
+          "p": [
+            "Filtere nach Anbieter, um dein Lieblings-Live-Studio auszuwählen, und öffne dann einen Tisch, um seine Limits zu sehen. Alle Tische nutzen dasselbe Krypto-Guthaben wie die Slots, sodass du frei zwischen den Spielen wechseln kannst."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Sind die Live-Tische den ganzen Tag geöffnet?",
+          "a": "Die meisten Live-Tische laufen rund um die Uhr. Einige spezielle Tische haben feste Öffnungszeiten, die im Spiel angezeigt werden."
+        }
+      ]
+    },
+    "providers": {
+      "title": "Casino-Spieleanbieter",
+      "intro": "{site} arbeitet mit {providers} Casino-Spieleanbietern zusammen. Wähle ein Studio, um alle seine Slots und Live-Spiele an einem Ort zu sehen.",
+      "sections": [
+        {
+          "h": "Warum der Anbieter wichtig ist",
+          "p": [
+            "Jedes Studio hat seinen eigenen Stil – Mathematikmodelle, Bonusfeatures, Grafik und Sound. Wenn dir ein Spiel gefällt, stehen die Chancen gut, dass dir auch andere Titel desselben Anbieters gefallen. Auf den Anbieterseiten findest du jedes Spiel dieses Studios, das auf {site} verfügbar ist."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Sind die Spiele fair?",
+          "a": "Die Spiele stammen von etablierten Anbietern, deren Zufallszahlengeneratoren von unabhängigen Prüflaboren getestet werden."
+        }
+      ]
+    },
+    "promotions": {
+      "title": "Casino-Boni, Freispiele und Cashback",
+      "intro": "Alle aktuellen Aktionen bei {site} im Überblick: Willkommens-Freispiele, Freispiel-Angebote auf Krypto-Einzahlungen, das wöchentliche Sonntagsangebot, tägliches Slot-Cashback und VIP-Prämien.",
+      "sections": [
+        {
+          "h": "Freispiele auf Krypto-Einzahlungen",
+          "p": [
+            "Qualifizierende Bitcoin- und USDT-Einzahlungen können Freispielpakete für ausgewählte Slots freischalten. Wähle das Angebot vor deiner Einzahlung, und die Freispiele werden automatisch gutgeschrieben, sobald die Einzahlung bestätigt ist."
+          ]
+        },
+        {
+          "h": "Tägliches Cashback auf Slots",
+          "p": [
+            "Jeden Tag erstatten wir dir einen Teil deiner Netto-Slotverluste als Echtgeld – ohne Umsatzbedingungen. Das Cashback wird automatisch berechnet und am nächsten Tag deinem Guthaben gutgeschrieben."
+          ]
+        },
+        {
+          "h": "Klare Bonusbedingungen",
+          "p": [
+            "Für jedes Angebot gibt es auf der Seite mit den Bonusbedingungen ein vollständiges Regelwerk – Teilnahmeberechtigung, Umsatzbedingungen, Gewinnobergrenzen und Ablaufdatum –, damit du immer genau weißt, was du in Anspruch nimmst."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Wie erhalte ich einen Bonus?",
+          "a": "Wähle das Angebot vor deiner Einzahlung auf dieser Seite oder im Einzahlungsfenster aus. Freispiele und Boni werden automatisch gutgeschrieben, sobald die Einzahlung bestätigt ist."
+        },
+        {
+          "q": "Gibt es Umsatzbedingungen für das Cashback?",
+          "a": "Nein. Das tägliche Slot-Cashback wird als Echtgeld ausgezahlt und kann sofort ausgezahlt oder verspielt werden."
+        }
+      ]
+    },
+    "vip": {
+      "title": "VIP-Club – Level-up-Prämien für treue Spieler",
+      "intro": "Der VIP-Club von {site} belohnt jeden Spieler. Setze auf Slots und Live-Spiele, um die VIP-Leiter hinaufzusteigen und auf jedem neuen Level einen Bonus und Freispiele freizuschalten.",
+      "sections": [
+        {
+          "h": "So funktionieren die VIP-Level",
+          "p": [
+            "Dein VIP-Fortschritt wächst mit jedem Echtgeld-Einsatz. Jedes Mal, wenn du ein neues Level erreichst, kannst du dir die Prämie dieses Levels auf der VIP-Seite abholen. Höhere Level bringen größere Prämien."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Muss ich mich für den VIP-Club anmelden?",
+          "a": "Nein. Jeder registrierte Spieler ist ab seinem ersten Einsatz automatisch Teil des VIP-Programms."
+        }
+      ]
+    },
+    "sports": {
+      "title": "Krypto-Sportwetten – Live-Quoten auf Fußball, Tennis, Esports und mehr",
+      "intro": "Platziere Sportwetten mit Bitcoin und USDT bei {site}. Das Wettangebot bietet Pre-Match- und Live-Quoten auf Fußball, Basketball, Tennis, Eishockey, Esports, Pferderennen und Dutzende weitere Sportarten.",
+      "sections": [
+        {
+          "h": "Live-Wetten",
+          "p": [
+            "Die Quoten werden während der Spiele in Echtzeit aktualisiert, sodass du im Spielverlauf auf das nächste Tor, den nächsten Punkt oder das Endergebnis wetten kannst."
+          ]
+        },
+        {
+          "h": "Fußballwetten",
+          "p": [
+            "Wette auf die Top-Ligen der Welt und internationale Turniere – mit Märkten wie Spielergebnis, beide Teams treffen, Über/Unter Tore, Handicaps und genaues Ergebnis."
+          ]
+        },
+        {
+          "h": "Esports und mehr",
+          "p": [
+            "Esports-Fans können auf beliebte Titel und Turniere wetten, während Rennsport-Fans jeden Tag Pferde-, Windhund- und Trabrennen finden."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Kann ich mit Krypto auf Sport wetten?",
+          "a": "Ja. Dein Bitcoin- oder USDT-Guthaben funktioniert sowohl im Casino als auch bei den Sportwetten."
+        },
+        {
+          "q": "Was sind Live-Wetten?",
+          "a": "Mit Live-Wetten (In-Play) kannst du Wetten platzieren, nachdem ein Spiel bereits begonnen hat – mit Quoten, die sich mit dem Spielgeschehen ändern."
+        }
+      ]
+    },
+    "racing": {
+      "title": "Wetten auf Pferderennen, Windhundrennen und Trabrennen",
+      "intro": "Wette bei {site} auf Pferderennen, Windhundrennen und Trabrennen – mit täglichen Rennprogrammen und Live-Quoten, direkt mit deinem Krypto-Guthaben.",
+      "sections": [
+        {
+          "h": "Jeden Tag Rennen",
+          "p": [
+            "Verfolge Renntage aus aller Welt, vergleiche die Starter und platziere Sieg-, Platz- und Each-Way-Wetten. Die Ergebnisse werden automatisch mit deinem Guthaben abgerechnet."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Kann ich auf Windhundrennen wetten?",
+          "a": "Ja. Windhund- und Trabrennen haben eigene Bereiche mit täglichen Rennen."
+        }
+      ]
+    }
+  },
+  "categories": {
+    "casino:top": "Unsere Top-Slots – die handverlesen besten Online Slots auf {site}, ausgewählt nach Gameplay, Features und Lieblingen der Spieler.",
+    "casino:trending": "Trending Slots sind die Spiele, die Spieler gerade am häufigsten drehen. Die Liste aktualisiert sich automatisch und zeigt immer, was gerade angesagt ist.",
+    "casino:most-played": "Die meistgespielten Slots auf {site} aller Zeiten – bewährte Favoriten mit starken Features und treuen Fans.",
+    "casino:new": "Neue Slots unserer Anbieter. Spiele als Erster die neuesten Online Slots – jede Woche kommen neue hinzu.",
+    "casino:popular": "Beliebte Slots, die unsere Spieler lieben – von klassischen Hits bis zu modernen Video-Slots voller Features.",
+    "casino:jackpots": "Jackpot-Slots mit festen und progressiven Jackpots, die jederzeit fallen können. Dreh für lebensverändernde Gewinne.",
+    "casino:megaways": "Megaways Slots ändern bei jedem Dreh die Anzahl der Symbole und bieten bis zu Hunderttausende Gewinnwege.",
+    "casino:bonus-buy": "Bei Bonus-Buy-Slots kaufst du das Freispiel-Feature direkt, statt darauf zu warten, dass Scatter landen.",
+    "casino:hold-and-win": "Hold-and-Win-Slots halten spezielle Münzsymbole auf den Walzen fest und vergeben Respins für die Chance auf große Gewinne.",
+    "casino:fruit-slots": "Früchte-Slots bringen Kirschen, Zitronen, Bars und Siebenen zurück – einfaches, schnelles und unterhaltsames klassisches Gameplay.",
+    "casino:classics": "Klassische Slots mit wenigen Walzen, einfachen Regeln und Retro-Stil für Spieler, die traditionelle Früchte-Spielautomaten mögen.",
+    "casino:book-of": "„Book of“-Slots – Spiele mit Abenteuerthema und expandierenden Symbolen während der Freispiele, inspiriert von der berühmten Book-Reihe.",
+    "casino:instant-games": "Instant Games und Crash Games mit schnellen Runden – darunter Mines, Plinko, Dice und Multiplikator-Spiele.",
+    "live-casino:table-games": "Live-Tischspiele mit echten Dealern: Roulette, Blackjack, Baccarat, Poker und mehr, übertragen in HD.",
+    "live-casino:live-tables": "Unsere Live-Tische – die beliebtesten Live-Dealer-Spiele, rund um die Uhr geöffnet.",
+    "live-casino:top-tables": "Top-Tische im Live Casino, ausgewählt von unseren Spielern – von rasantem Roulette bis zu klassischem Blackjack.",
+    "live-casino:roulette": "Live Roulette mit echten Kesseln und Dealern: europäisches, amerikanisches, französisches, Lightning- und Speed-Roulette.",
+    "live-casino:blackjack": "Live-Blackjack-Tische mit echten Dealern, Nebenwetten und Optionen für jedes Budget – von niedrigen Limits bis VIP.",
+    "live-casino:baccarat": "Live Baccarat inklusive Speed-, Squeeze- und No-Commission-Tischen – setze auf Player, Banker oder Tie.",
+    "live-casino:game-shows": "Live-Gameshows mit Moderatoren, Glücksrädern, Bonusrunden und Multiplikatoren – Casino-Unterhaltung in Echtzeit.",
+    "live-casino:poker": "Live-Pokerspiele wie Casino Hold'em und Three Card Poker, gespielt gegen einen echten Dealer.",
+    "live-casino:asian-games": "Asiatische Live-Spiele wie Dragon Tiger, Fan Tan und Baccarat-Varianten, die in ganz Asien beliebt sind.",
+    "live-casino:sic-bo": "Live Sic Bo und Würfelspiele – setze auf das Ergebnis von drei Würfeln, die ein Live-Dealer schüttelt.",
+    "live-casino:high-stakes": "High-Stakes-Live-Tische mit höheren Einsatzlimits für High Roller und VIP-Spieler."
+  },
+  "category_template": {
+    "title": "{category} – {section} Spiele online",
+    "sections": [
+      {
+        "h": "{category} mit Krypto spielen",
+        "p": [
+          "Alle {category} Spiele auf {site} kannst du mit deinem Bitcoin- oder USDT-Guthaben am Desktop und mobil spielen. Öffne ein Spiel, um seinen Anbieter zu sehen, und entdecke weitere Titel desselben Studios."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Kann ich {category} Spiele mobil spielen?",
+        "a": "Ja. Jedes {category} Spiel auf {site} läuft ohne Download in deinem mobilen Browser."
+      },
+      {
+        "q": "Welche Anbieter entwickeln {category} Spiele?",
+        "a": "Nutze den Anbieterfilter auf dieser Seite, um zu sehen, welche Studios {category} Spiele auf {site} anbieten."
+      }
+    ]
+  },
+  "provider_template": {
+    "title": "{provider} Slots und Casinospiele",
+    "intro": "Spiele {count} {provider} Spiele online bei {site}. Jeder {provider} Titel in unserer Lobby ist hier aufgeführt und mit Bitcoin oder USDT am Desktop und mobil spielbar.",
+    "sections": [
+      {
+        "h": "Über {provider}",
+        "p": [
+          "{provider} ist eines der {providers} Spielestudios auf {site}. Seine Spiele laufen in deinem Browser, laden mobil schnell und nutzen Zufallszahlengeneratoren, die von unabhängigen Prüflaboren getestet werden.",
+          "Neue {provider} Releases werden dieser Seite automatisch hinzugefügt – schau also wieder vorbei, um die neuesten Spiele auszuprobieren."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Wie viele {provider} Spiele gibt es auf {site}?",
+        "a": "Derzeit sind {count} {provider} Spiele verfügbar."
+      },
+      {
+        "q": "Kann ich {provider} Spiele mit Krypto spielen?",
+        "a": "Ja. Zahle Bitcoin oder USDT ein und spiele jedes {provider} Spiel mit deinem Guthaben."
+      }
+    ]
+  },
+  "game_template": {
+    "sections": [
+      {
+        "h": "So spielst du {game}",
+        "p": [
+          "Melde dich an, zahle Bitcoin oder USDT ein und öffne {game}. Wähle im Spiel deinen Einsatz, dann drehst du oder platzierst deine Wette. Gewinne werden sofort deinem {site} Guthaben gutgeschrieben.",
+          "{game} funktioniert in jedem modernen Browser am Desktop, auf Android und auf dem iPhone – es gibt nichts herunterzuladen."
+        ]
+      },
+      {
+        "h": "Boni, die du bei {game} nutzen kannst",
+        "p": [
+          "Die aktuellen Angebote findest du auf der Aktionsseite. Slot-Spieler erhalten außerdem tägliches Cashback auf Nettoverluste, und jeder Einsatz zählt für dein VIP-Level."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Wer hat {game} entwickelt?",
+        "a": "{game} wurde von {provider} entwickelt."
+      },
+      {
+        "q": "Kann ich {game} mobil spielen?",
+        "a": "Ja. {game} läuft in deinem mobilen Browser auf Android und iPhone."
+      },
+      {
+        "q": "Kann ich {game} mit Bitcoin spielen?",
+        "a": "Ja. Zahle Bitcoin oder USDT ein und spiele {game} mit deinem Guthaben."
+      }
+    ]
+  },
+  "blog": {
+    "meta_title": "Casino Blog – Slot-Reviews, Ratgeber & News",
+    "meta_description": "Slot-Reviews, Casino-Ratgeber, Top-Listen und News vom {site} Team. Finde dein nächstes Spiel und erfahre, wie du mehr aus deinem Krypto-Spiel herausholst.",
+    "title": "Blog: Slot-Reviews, Ratgeber und Casino-News",
+    "intro": "Reviews der Slots und Live-Spiele in unserer Lobby, Ratgeber zu Boni und Krypto-Spiel, monatliche Top-Listen und News von {site}.",
+    "all": "Alle Artikel",
+    "categories": {
+      "NEWS": "News",
+      "REVIEW": "Spiele-Reviews",
+      "GUIDE": "Ratgeber",
+      "TOP_LIST": "Top-Listen"
+    },
+    "read_time": "{min} Min. Lesezeit",
+    "published": "Veröffentlicht am {date}",
+    "updated": "Aktualisiert am {date}",
+    "games_title": "Spiele in diesem Artikel",
+    "latest": "Weitere Artikel",
+    "empty": "Hier gibt es noch keine Artikel – schau bald wieder vorbei.",
+    "prev": "Neuer",
+    "next": "Älter",
+    "page": "Seite {page}",
+    "reviews_of": "Mehr über {game} lesen",
+    "author": "{site} Redaktion",
+    "play": "Spielen"
+  },
+  "top": {
+    "meta_title": "Beste Slots {month} – Meistgespielte Online Slots",
+    "meta_description": "Die meistgespielten Online Slots und Live-Casino-Spiele bei {site} im {month}, gerankt nach echten Spielern. Spiele die Top-Slots des Monats mit Bitcoin oder USDT.",
+    "title": "Beste Slots im {month}",
+    "kicker": "Diesen Monat meistgespielt",
+    "intro_live": "Das sind die Slots, die {site} Spieler im {month} am häufigsten drehen. Das Ranking basiert auf echtem Spielbetrieb – der Anzahl verschiedener Spieler und Runden pro Spiel – und wird bis zum Monatsende stündlich aktualisiert.",
+    "intro_final": "Das waren die meistgespielten Slots bei {site} im {month}, gerankt nach echtem Spielbetrieb – der Anzahl verschiedener Spieler und Runden pro Spiel. Dies ist das endgültige Ranking für den Monat.",
+    "slots_title": "Top {count} Slots – {month}",
+    "live_title": "Meistgespielte Live-Casino-Spiele – {month}",
+    "archive_title": "Rankings der Vormonate",
+    "latest_badge": "Stündlich aktualisiert",
+    "final_badge": "Endgültiges Ranking",
+    "empty": "Für diesen Monat gibt es noch nicht genug Spieldaten.",
+    "faq": [
+      {
+        "q": "Wie wird das Ranking berechnet?",
+        "a": "Wir zählen, wie viele verschiedene Spieler jedes Spiel im Laufe des Monats gespielt haben, und danach die Anzahl der Runden. Höhere Gewinne oder Einsätze ändern die Reihenfolge nicht."
+      },
+      {
+        "q": "Wie oft ändert sich die Liste?",
+        "a": "Der aktuelle Monat wird jede Stunde aktualisiert. Am Monatsende wird das Ranking eingefroren und wandert ins Archiv."
+      },
+      {
+        "q": "Kann ich diese Slots mit Krypto spielen?",
+        "a": "Ja. Jedes Spiel auf der Liste kannst du mit deinem Bitcoin- oder USDT-Guthaben am Desktop und mobil spielen."
+      }
+    ]
+  },
+  "promo_page": {
+    "meta_title": "{name} – {headline}",
+    "meta_description": "{name} bei {site}: {headline}. So holst du dir das Angebot, wer es bekommen kann und alle Bedingungen.",
+    "kicker": "Bonusangebot",
+    "how_title": "So holst du dir {name}",
+    "steps_deposit": [
+      "Melde dich an oder erstelle ein kostenloses {site} Konto.",
+      "Öffne das Einzahlungsfenster und wähle {name}, bevor du einzahlst.",
+      "Zahle Bitcoin oder USDT ein – mindestens den in den Bedingungen angegebenen Mindestbetrag.",
+      "Die Belohnung wird automatisch gutgeschrieben, sobald die Einzahlung auf der Blockchain bestätigt ist."
+    ],
+    "steps_other": [
+      "Melde dich an oder erstelle ein kostenloses {site} Konto.",
+      "Prüfe, ob du die unten in den Bedingungen genannten Voraussetzungen erfüllst.",
+      "Hol dir das Angebot auf der Aktionsseite – die Belohnung wird deinem Konto automatisch gutgeschrieben."
+    ],
+    "terms_title": "Angebotsbedingungen",
+    "full_terms": "Vollständige Bonusbedingungen lesen",
+    "other_offers": "Weitere Angebote",
+    "all_offers": "Alle Aktionen",
+    "faq": [
+      {
+        "q": "Wie oft kann ich {name} nutzen?",
+        "a": "So oft, wie unter „Limit“ in den Bedingungen oben angegeben – die meisten Angebote einmal pro Konto, wöchentliche Angebote einmal pro Woche."
+      },
+      {
+        "q": "Gibt es Umsatzbedingungen für Gewinne aus Freispielen?",
+        "a": "Gewinne aus Freispielen werden als Bonusgeld mit der oben in den Bedingungen angegebenen Umsatzanforderung gutgeschrieben; sobald sie erfüllt ist, wird das Geld zu auszahlbarem Echtgeld."
+      },
+      {
+        "q": "Welche Einzahlungen sind berechtigt?",
+        "a": "Angebote gelten nur für Krypto-Einzahlungen (Bitcoin oder USDT), die den Mindestbetrag laut Bedingungen erreichen."
+      }
+    ]
+  }
+}

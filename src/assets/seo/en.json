@@ -1,0 +1,503 @@
+{
+  "ui": {
+    "read_more": "Read more",
+    "show_less": "Show less",
+    "faq_title": "Frequently asked questions",
+    "explore": "Explore {site}",
+    "popular_providers": "Popular game providers",
+    "more_from": "More games from {provider}",
+    "all_provider_games": "All {provider} games",
+    "blog_link": "Blog & game reviews",
+    "best_slots_link": "Best slots this month"
+  },
+  "pages": {
+    "home": {
+      "title": "{site} – crypto casino, online slots, live casino and sports betting",
+      "intro": "{site} is an online crypto casino where you can play {games}+ real-money slots, live dealer tables and sports bets in one account. Deposit with Bitcoin or USDT, claim free spins and daily cashback, and play instantly on desktop or mobile – no downloads needed.",
+      "sections": [
+        {
+          "h": "Online slots from the best providers",
+          "p": [
+            "Our casino lobby brings together {providers} game studios, from big names to new independent developers. Spin classic fruit machines, Megaways slots with thousands of ways to win, bonus buy games, hold-and-win features and progressive jackpot slots. New slots are added every week, so there is always a fresh release to try.",
+            "Every game page shows the provider and category, so you can quickly find more titles you like. Use search to jump straight to a favourite slot, or browse curated lists such as Trending, Most played and New releases."
+          ]
+        },
+        {
+          "h": "Live casino with real dealers",
+          "p": [
+            "Prefer a real table? The live casino streams roulette, blackjack, baccarat, poker, sic bo and game shows in HD, with professional dealers around the clock. Choose from low-stakes tables to high-roller rooms and chat with the dealer while you play."
+          ]
+        },
+        {
+          "h": "Crypto deposits and fast withdrawals",
+          "p": [
+            "{site} is a crypto casino: you deposit and withdraw with Bitcoin (BTC) and Tether (USDT on the ERC-20 and TRC-20 networks). Each player gets a personal deposit address, deposits are credited automatically after network confirmation, and there are no card charges or bank delays."
+          ]
+        },
+        {
+          "h": "Bonuses, free spins, cashback and VIP",
+          "p": [
+            "New players can claim welcome free spins, and every qualifying crypto deposit can unlock a free-spin offer. Slots players also get daily cashback on net losses, paid in cash with no wagering. As you play you climb the VIP ladder and unlock level-up rewards. Full rules are always listed on the bonus terms page."
+          ]
+        },
+        {
+          "h": "Sports betting",
+          "p": [
+            "The sportsbook covers football, basketball, tennis, esports, horse racing and much more, with pre-match and live in-play odds. Your casino balance and sports balance are the same wallet, so you can switch between a slot and a live bet in seconds."
+          ]
+        },
+        {
+          "h": "Safe and responsible play",
+          "p": [
+            "Accounts are protected with email verification and encrypted connections. We offer self-exclusion and responsible gambling tools, and our support team is available if you need help. Please play responsibly and only bet what you can afford to lose. You must be 18 or older to play."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is {site} a crypto casino?",
+          "a": "Yes. Deposits and withdrawals are made in cryptocurrency – Bitcoin (BTC) and USDT on the ERC-20 and TRC-20 networks."
+        },
+        {
+          "q": "How many games can I play?",
+          "a": "There are {games}+ games from {providers} providers, including online slots, Megaways, jackpots, instant games and live dealer tables."
+        },
+        {
+          "q": "Can I play on my phone?",
+          "a": "Yes. {site} runs in any modern mobile browser on Android and iPhone, with no app download required."
+        },
+        {
+          "q": "What bonuses are available?",
+          "a": "Welcome free spins, deposit free-spin offers, daily cashback on slots and VIP level-up rewards. See the promotions page for the current offers."
+        },
+        {
+          "q": "How fast are withdrawals?",
+          "a": "Withdrawal requests are processed by our team and sent to your crypto wallet; the transfer itself takes as long as the blockchain needs to confirm it."
+        }
+      ]
+    },
+    "casino": {
+      "title": "Play online slots and casino games for real money",
+      "intro": "The {site} casino lobby has {games}+ online slots and casino games from {providers} providers. Play with Bitcoin or USDT, discover new releases every week and pick your favourites from curated categories.",
+      "sections": [
+        {
+          "h": "Slot categories for every style",
+          "p": [
+            "Megaways slots change the number of symbols on every spin for up to hundreds of thousands of ways to win. Jackpot slots build a prize pool that can drop at any moment. Bonus buy games let you skip straight to the free spins round, and hold-and-win slots lock coins on the reels for respins. Fans of tradition can enjoy classic and fruit slots, or the popular \"Book of\" adventure series."
+          ]
+        },
+        {
+          "h": "How to choose a slot",
+          "p": [
+            "Look at the provider, the theme and the volatility. Low-volatility slots pay smaller wins more often, while high-volatility slots pay less often but can pay much bigger wins. Each game page shows the studio behind it, so you can explore more titles from a provider you enjoy."
+          ]
+        },
+        {
+          "h": "Free spins and daily cashback on slots",
+          "p": [
+            "Slots are where our bonuses shine: free-spin offers on qualifying crypto deposits, welcome free spins for new players and daily cashback on net slot losses paid in cash. Check the promotions page for current offers."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can I play slots with Bitcoin?",
+          "a": "Yes. Deposit Bitcoin or USDT and your balance can be used on every slot and casino game."
+        },
+        {
+          "q": "What are Megaways slots?",
+          "a": "Megaways slots use reels with a changing number of symbols on each spin, creating thousands of ways to win instead of fixed paylines."
+        },
+        {
+          "q": "Which slots are the most popular?",
+          "a": "See the Trending and Most played categories – they update automatically with what players are spinning right now."
+        }
+      ]
+    },
+    "casino_all": {
+      "title": "All slots and casino games",
+      "intro": "Browse the full {site} slot library – {games}+ games in one place. Filter by provider to find titles from your favourite studio, or scroll to discover something new.",
+      "sections": [
+        {
+          "h": "The complete game library",
+          "p": [
+            "This list includes every slot and casino game on {site}: video slots, Megaways, jackpots, bonus buys, classic and fruit slots and instant-win games. Use the provider filter at the top to narrow the list, then open any game to play with your crypto balance."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "How do I filter games by provider?",
+          "a": "Use the provider filter above the game grid and pick one or more studios. The list updates instantly."
+        }
+      ]
+    },
+    "live": {
+      "title": "Live casino – roulette, blackjack, baccarat and game shows",
+      "intro": "Play live casino games with real dealers at {site}. Live roulette, blackjack, baccarat, poker, sic bo and game shows stream in HD 24/7, and you can bet with Bitcoin or USDT.",
+      "sections": [
+        {
+          "h": "Live roulette",
+          "p": [
+            "Choose European, American, French, lightning and speed roulette tables with different limits. Bet on numbers, colours, dozens or neighbours while the wheel spins live."
+          ]
+        },
+        {
+          "h": "Live blackjack and baccarat",
+          "p": [
+            "Take a seat at live blackjack tables with side bets and unlimited-seat variants, or play live baccarat – including speed and squeeze tables – one of the most popular casino card games in the world."
+          ]
+        },
+        {
+          "h": "Game shows and high-stakes tables",
+          "p": [
+            "Live game shows combine a host, a big wheel or a bonus board with multipliers for an entertaining round every minute. High rollers can find dedicated high-stakes tables with higher betting limits."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Are the live dealers real?",
+          "a": "Yes. Live casino games are streamed from professional studios with real dealers and physical cards, wheels and dice."
+        },
+        {
+          "q": "Can I play live casino on mobile?",
+          "a": "Yes. Live tables adapt to your phone screen and stream smoothly over mobile data or Wi-Fi."
+        },
+        {
+          "q": "What is the minimum bet at live tables?",
+          "a": "Limits depend on the table; each game shows its minimum and maximum bet when you open it."
+        }
+      ]
+    },
+    "live_all": {
+      "title": "All live dealer games",
+      "intro": "Every live dealer table at {site} in one list: roulette, blackjack, baccarat, poker, sic bo, Asian games and game shows from the leading live studios.",
+      "sections": [
+        {
+          "h": "Find the right live table",
+          "p": [
+            "Filter by provider to pick your favourite live studio, then open a table to see its limits. All tables use the same crypto balance as the slots, so you can move between games freely."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Are live tables open all day?",
+          "a": "Most live tables run 24/7. A few special tables have scheduled hours, shown inside the game."
+        }
+      ]
+    },
+    "providers": {
+      "title": "Casino game providers",
+      "intro": "{site} works with {providers} casino game providers. Pick a studio to see all of its slots and live games in one place.",
+      "sections": [
+        {
+          "h": "Why the provider matters",
+          "p": [
+            "Every studio has its own style – maths models, bonus features, graphics and sound. If you enjoy one game, there is a good chance you will like other titles from the same provider. Provider pages list every game from that studio that is available on {site}."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Are the games fair?",
+          "a": "Games come from established providers whose random number generators are tested by independent labs."
+        }
+      ]
+    },
+    "promotions": {
+      "title": "Casino bonuses, free spins and cashback",
+      "intro": "See every current {site} promotion: welcome free spins, free-spin offers on crypto deposits, the weekly Sunday offer, daily slot cashback and VIP rewards.",
+      "sections": [
+        {
+          "h": "Free spins on crypto deposits",
+          "p": [
+            "Qualifying Bitcoin and USDT deposits can unlock free-spin packages on selected slots. Choose the offer before you deposit, and the spins are credited automatically once the deposit is confirmed."
+          ]
+        },
+        {
+          "h": "Daily cashback on slots",
+          "p": [
+            "Every day we return part of your net slot losses as real cash, with no wagering requirement. The cashback is calculated automatically and added to your balance the next day."
+          ]
+        },
+        {
+          "h": "Clear bonus terms",
+          "p": [
+            "Every offer has a full set of rules – eligibility, wagering, win caps and expiry – on the bonus terms page, so you always know exactly what you are claiming."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "How do I claim a bonus?",
+          "a": "Pick the offer on this page or in the deposit window before you deposit. Free spins and bonuses are credited automatically when the deposit is confirmed."
+        },
+        {
+          "q": "Does cashback have wagering?",
+          "a": "No. Daily slot cashback is paid as cash and can be withdrawn or played straight away."
+        }
+      ]
+    },
+    "vip": {
+      "title": "VIP club – level-up rewards for loyal players",
+      "intro": "The {site} VIP club rewards every player. Wager on slots and live games to climb the VIP ladder and unlock a bonus and free spins at each new level.",
+      "sections": [
+        {
+          "h": "How VIP levels work",
+          "p": [
+            "Your VIP progress grows with every real-money bet. Each time you reach a new level you can claim that level's reward from the VIP page. Higher levels bring bigger rewards."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Do I need to sign up for the VIP club?",
+          "a": "No. Every registered player is automatically part of the VIP programme from their first bet."
+        }
+      ]
+    },
+    "sports": {
+      "title": "Crypto sports betting – live odds on football, tennis, esports and more",
+      "intro": "Bet on sports with Bitcoin and USDT at {site}. The sportsbook offers pre-match and live in-play odds on football, basketball, tennis, ice hockey, esports, horse racing and dozens more sports.",
+      "sections": [
+        {
+          "h": "Live betting",
+          "p": [
+            "Odds update in real time while matches are played, so you can bet on the next goal, the next point or the final result as the game unfolds."
+          ]
+        },
+        {
+          "h": "Football betting",
+          "p": [
+            "Bet on the world's top leagues and international tournaments, with markets such as match result, both teams to score, over/under goals, handicaps and correct score."
+          ]
+        },
+        {
+          "h": "Esports and more",
+          "p": [
+            "Esports fans can bet on popular titles and tournaments, while racing fans can find horse, greyhound and harness racing every day."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can I bet on sports with crypto?",
+          "a": "Yes. Your Bitcoin or USDT balance works for both the casino and the sportsbook."
+        },
+        {
+          "q": "What is in-play betting?",
+          "a": "In-play (live) betting lets you place bets after a match has started, with odds that change as the action happens."
+        }
+      ]
+    },
+    "racing": {
+      "title": "Horse, greyhound and harness racing betting",
+      "intro": "Bet on horse racing, greyhounds and harness racing at {site}, with daily race cards and live odds, using your crypto balance.",
+      "sections": [
+        {
+          "h": "Racing every day",
+          "p": [
+            "Follow race meetings from around the world, compare runners and place win, place and each-way bets. Results settle automatically to your balance."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can I bet on greyhound racing?",
+          "a": "Yes. Greyhound and harness racing have their own sections with daily races."
+        }
+      ]
+    }
+  },
+  "categories": {
+    "casino:top": "Our top slots – the hand-picked best online slots on {site}, chosen for gameplay, features and player favourites.",
+    "casino:trending": "Trending slots are the games players are spinning most right now. The list updates automatically, so it always shows what is hot.",
+    "casino:most-played": "The most played slots on {site} of all time – proven favourites with big features and loyal fans.",
+    "casino:new": "New slots released by our providers. Be among the first to play the latest online slot releases, added every week.",
+    "casino:popular": "Popular slots loved by our players, from classic hits to modern feature-packed video slots.",
+    "casino:jackpots": "Jackpot slots with fixed and progressive jackpots that can drop at any time. Spin for life-changing prizes.",
+    "casino:megaways": "Megaways slots change the number of symbols on every spin, offering up to hundreds of thousands of ways to win.",
+    "casino:bonus-buy": "Bonus buy slots let you purchase the free spins feature directly instead of waiting for scatters to land.",
+    "casino:hold-and-win": "Hold and win slots lock special coin symbols on the reels and award respins for a chance at big prizes.",
+    "casino:fruit-slots": "Fruit slots bring back cherries, lemons, bars and sevens – simple, fast and fun classic gameplay.",
+    "casino:classics": "Classic slots with few reels, simple rules and retro style, for players who like traditional fruit machines.",
+    "casino:book-of": "\"Book of\" slots – adventure-themed games with expanding symbols during free spins, inspired by the famous Book series.",
+    "casino:instant-games": "Instant games and crash games with quick rounds – including mines, plinko, dice and multiplier games.",
+    "live-casino:table-games": "Live table games with real dealers: roulette, blackjack, baccarat, poker and more, streamed in HD.",
+    "live-casino:live-tables": "Our live tables – the most popular live dealer games, open around the clock.",
+    "live-casino:top-tables": "Top live casino tables chosen by our players, from fast-paced roulette to classic blackjack.",
+    "live-casino:roulette": "Live roulette with real wheels and dealers: European, American, French, lightning and speed roulette.",
+    "live-casino:blackjack": "Live blackjack tables with real dealers, side bets and options for every budget, from low limits to VIP.",
+    "live-casino:baccarat": "Live baccarat including speed, squeeze and no-commission tables – bet on Player, Banker or Tie.",
+    "live-casino:game-shows": "Live game shows with hosts, money wheels, bonus rounds and multipliers – casino entertainment in real time.",
+    "live-casino:poker": "Live poker games such as Casino Hold'em and Three Card Poker, played against a real dealer.",
+    "live-casino:asian-games": "Asian live games like dragon tiger, fan tan and baccarat variants, popular across Asia.",
+    "live-casino:sic-bo": "Live sic bo and dice games – bet on the outcome of three dice shaken by a live dealer.",
+    "live-casino:high-stakes": "High-stakes live tables with higher betting limits for high rollers and VIP players."
+  },
+  "category_template": {
+    "title": "{category} – {section} games online",
+    "sections": [
+      {
+        "h": "Play {category} with crypto",
+        "p": [
+          "All {category} games on {site} can be played with your Bitcoin or USDT balance on desktop and mobile. Open a game to see its provider, then explore more titles from the same studio."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can I play {category} games on mobile?",
+        "a": "Yes. Every {category} game on {site} runs in your mobile browser without a download."
+      },
+      {
+        "q": "Which providers make {category} games?",
+        "a": "Use the provider filter on this page to see which studios offer {category} games on {site}."
+      }
+    ]
+  },
+  "provider_template": {
+    "title": "{provider} slots and casino games",
+    "intro": "Play {count} {provider} games online at {site}. Every {provider} title in our lobby is listed here, playable with Bitcoin or USDT on desktop and mobile.",
+    "sections": [
+      {
+        "h": "About {provider}",
+        "p": [
+          "{provider} is one of the {providers} game studios available on {site}. Its games run in your browser, load quickly on mobile and use random number generators tested by independent labs.",
+          "New {provider} releases are added to this page automatically, so check back to try the latest games."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "How many {provider} games are on {site}?",
+        "a": "There are currently {count} {provider} games available."
+      },
+      {
+        "q": "Can I play {provider} games with crypto?",
+        "a": "Yes. Deposit Bitcoin or USDT and play any {provider} game with your balance."
+      }
+    ]
+  },
+  "game_template": {
+    "sections": [
+      {
+        "h": "How to play {game}",
+        "p": [
+          "Sign in, deposit Bitcoin or USDT and open {game}. Choose your stake inside the game, then spin or place your bet. Winnings are added to your {site} balance instantly.",
+          "{game} works in every modern browser on desktop, Android and iPhone – there is nothing to download."
+        ]
+      },
+      {
+        "h": "Bonuses you can use on {game}",
+        "p": [
+          "Check the promotions page for current offers. Slots players also receive daily cashback on net losses, and every bet counts towards your VIP level."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Who made {game}?",
+        "a": "{game} is developed by {provider}."
+      },
+      {
+        "q": "Can I play {game} on mobile?",
+        "a": "Yes. {game} runs in your mobile browser on Android and iPhone."
+      },
+      {
+        "q": "Can I play {game} with Bitcoin?",
+        "a": "Yes. Deposit Bitcoin or USDT and use your balance to play {game}."
+      }
+    ]
+  },
+  "blog": {
+    "meta_title": "Casino Blog – Slot Reviews, Guides & News",
+    "meta_description": "Slot reviews, casino guides, top lists and news from the {site} team. Find your next game and learn how to get more from your crypto play.",
+    "title": "Blog: slot reviews, guides and casino news",
+    "intro": "Reviews of the slots and live games in our lobby, guides to bonuses and crypto play, monthly top lists and news from {site}.",
+    "all": "All articles",
+    "categories": {
+      "NEWS": "News",
+      "REVIEW": "Game reviews",
+      "GUIDE": "Guides",
+      "TOP_LIST": "Top lists"
+    },
+    "read_time": "{min} min read",
+    "published": "Published {date}",
+    "updated": "Updated {date}",
+    "games_title": "Games in this article",
+    "latest": "More articles",
+    "empty": "No articles here yet – check back soon.",
+    "prev": "Newer",
+    "next": "Older",
+    "page": "Page {page}",
+    "reviews_of": "Read more about {game}",
+    "author": "{site} editorial team",
+    "play": "Play"
+  },
+  "top": {
+    "meta_title": "Best Slots {month} – Most Played Online Slots",
+    "meta_description": "The most played online slots and live casino games at {site} in {month}, ranked by real players. Play the month's top slots with Bitcoin or USDT.",
+    "title": "Best slots of {month}",
+    "kicker": "Most played this month",
+    "intro_live": "These are the slots {site} players are spinning most in {month}. The ranking is based on real play – the number of different players and rounds on each game – and refreshes every hour until the month ends.",
+    "intro_final": "These were the most played slots at {site} in {month}, ranked by real play – the number of different players and rounds on each game. This is the final ranking for the month.",
+    "slots_title": "Top {count} slots – {month}",
+    "live_title": "Most played live casino games – {month}",
+    "archive_title": "Rankings from previous months",
+    "latest_badge": "Updated hourly",
+    "final_badge": "Final ranking",
+    "empty": "There is not enough play data for this month yet.",
+    "faq": [
+      {
+        "q": "How is the ranking calculated?",
+        "a": "We count how many different players played each game during the month, then the number of rounds. Bigger wins or stakes do not change the order."
+      },
+      {
+        "q": "How often does the list change?",
+        "a": "The current month refreshes every hour. When the month ends the ranking is frozen and moves to the archive."
+      },
+      {
+        "q": "Can I play these slots with crypto?",
+        "a": "Yes. Every game on the list can be played with your Bitcoin or USDT balance on desktop and mobile."
+      }
+    ]
+  },
+  "promo_page": {
+    "meta_title": "{name} – {headline}",
+    "meta_description": "{name} at {site}: {headline}. See how to claim the offer, who can get it and the full terms.",
+    "kicker": "Bonus offer",
+    "how_title": "How to claim {name}",
+    "steps_deposit": [
+      "Sign in or create a free {site} account.",
+      "Open the deposit window and choose {name} before you deposit.",
+      "Deposit Bitcoin or USDT – at least the minimum shown in the terms.",
+      "The reward is credited automatically once the deposit is confirmed on the blockchain."
+    ],
+    "steps_other": [
+      "Sign in or create a free {site} account.",
+      "Check that you meet the conditions listed in the terms below.",
+      "Claim the offer on the promotions page – the reward is added to your account automatically."
+    ],
+    "terms_title": "Offer terms",
+    "full_terms": "Read the full bonus terms",
+    "other_offers": "Other offers",
+    "all_offers": "All promotions",
+    "faq": [
+      {
+        "q": "How often can I claim {name}?",
+        "a": "As often as shown under \"Limit\" in the terms above – most offers once per account, weekly offers once a week."
+      },
+      {
+        "q": "Do free spin winnings have wagering?",
+        "a": "Free spin winnings are added as bonus money with the wagering requirement shown in the terms above; once it is met, the money becomes withdrawable cash."
+      },
+      {
+        "q": "Which deposits qualify?",
+        "a": "Offers are only available for crypto deposits (Bitcoin or USDT) that reach the minimum amount in the terms."
+      }
+    ]
+  }
+}

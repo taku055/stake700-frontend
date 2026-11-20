@@ -9,6 +9,9 @@ import { routes } from "@/config/routes";
 import type { Locale } from "@/config/i18n";
 import { buildMetadata, resolveLang, translate } from "@/lib/seo";
 import { JsonLd, breadcrumbLd, itemListLd, type Crumb } from "@/lib/jsonld";
+import SeoArticle from "@/components/Seo/SeoArticle";
+import { categoryArticle, pageArticle, siteVars } from "@/lib/seo-content";
+import { categoryLinks, providerLinks, siteLinks } from "@/lib/seo-links";
 
 /**
  * Page/metadata factories shared by /casino/* and /live-casino/*, so both
@@ -23,10 +26,12 @@ async function providersFilter(searchParams: Search["searchParams"]): Promise<st
   return (Array.isArray(value) ? value[0] : value) || undefined;
 }
 
-const SEO_KEY: Record<CatalogSection, { lobby: string; all: string }> = {
+const SEO_KEY = {
   casino: { lobby: "casino", all: "casino_all" },
   "live-casino": { lobby: "live", all: "live_all" },
-};
+} as const satisfies Record<CatalogSection, { lobby: string; all: string }>;
+
+const providerType = (section: CatalogSection) => SECTION_META[section].gameType;
 
 function sectionCrumbs(lang: Locale, section: CatalogSection): Crumb[] {
   return [
@@ -73,13 +78,23 @@ export function sectionLobby(section: CatalogSection) {
     },
     Page: async ({ params }: LangParams) => {
       const lang = await resolveLang(params);
-      const [seed, categoryCounts] = await Promise.all([getCustomGamesSeed(), sectionCounts(section)]);
+      const [seed, categoryCounts, vars, providers] = await Promise.all([
+        getCustomGamesSeed(),
+        sectionCounts(section),
+        siteVars(),
+        providerLinks(lang, providerType(section)),
+      ]);
       return (
         <>
           <JsonLd data={breadcrumbLd(lang, sectionCrumbs(lang, section))} />
           <SeedCustomGames entries={seed}>
             <LobbyPage section={section} categoryCounts={categoryCounts} />
           </SeedCustomGames>
+          <SeoArticle
+            lang={lang}
+            article={pageArticle(lang, SEO_KEY[section].lobby, vars)}
+            links={[categoryLinks(lang, section), providers, siteLinks(lang)]}
+          />
         </>
       );
     },
@@ -100,13 +115,15 @@ export function sectionAll(section: CatalogSection) {
     },
     Page: async ({ params, searchParams }: LangParams & Search) => {
       const lang = await resolveLang(params);
-      const [initialData, categoryCounts] = await Promise.all([
+      const [initialData, categoryCounts, vars, providers] = await Promise.all([
         getInitialGames({
           isCustom: false,
           gameType: SECTION_META[section].gameType,
           provider: await providersFilter(searchParams),
         }),
         sectionCounts(section),
+        siteVars(),
+        providerLinks(lang, providerType(section)),
       ]);
       const crumbs = [
         ...sectionCrumbs(lang, section),
@@ -116,6 +133,11 @@ export function sectionAll(section: CatalogSection) {
         <>
           <CatalogJsonLd lang={lang} crumbs={crumbs} data={initialData} />
           <CatalogPage section={section} slug="games" initialData={initialData} categoryCounts={categoryCounts} />
+          <SeoArticle
+            lang={lang}
+            article={pageArticle(lang, SEO_KEY[section].all, vars)}
+            links={[categoryLinks(lang, section), providers]}
+          />
         </>
       );
     },
@@ -146,7 +168,7 @@ export function sectionCategory(section: CatalogSection) {
       const { category: slug } = await params;
       const category = getCategory(section, slug);
       if (!category) notFound();
-      const [initialData, categoryCounts] = await Promise.all([
+      const [initialData, categoryCounts, vars, providers] = await Promise.all([
         getInitialGames({
           isCustom: category.isCustom,
           category: category.category,
@@ -154,15 +176,24 @@ export function sectionCategory(section: CatalogSection) {
           provider: await providersFilter(searchParams),
         }),
         sectionCounts(section),
+        siteVars(),
+        providerLinks(lang, providerType(section)),
       ]);
+      const categoryName = translate(lang, `CasinoPage.${category.titleKey}`);
       const crumbs = [
         ...sectionCrumbs(lang, section),
-        { name: translate(lang, `CasinoPage.${category.titleKey}`), path: routes.category(section, slug) },
+        { name: categoryName, path: routes.category(section, slug) },
       ];
+      const article = categoryArticle(lang, section, slug, {
+        ...vars,
+        category: categoryName,
+        section: translate(lang, `CasinoPage.${SECTION_META[section].titleKey}`),
+      });
       return (
         <>
           <CatalogJsonLd lang={lang} crumbs={crumbs} data={initialData} />
           <CatalogPage section={section} slug={slug} initialData={initialData} categoryCounts={categoryCounts} />
+          <SeoArticle lang={lang} article={article} links={[categoryLinks(lang, section), providers]} />
         </>
       );
     },

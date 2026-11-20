@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev --webpack -H 0.0.0.0 -p 3000",
     "build": "next build --webpack",
-    "start": "next start -H 0.0.0.0 -p 3000"
+    "start": "next start -H 0.0.0.0 -p 3000",
+    "indexnow": "node --env-file-if-exists=.env scripts/indexnow.mjs"
   },
   "dependencies": {
     "@heroui/react": "^2.8.4",

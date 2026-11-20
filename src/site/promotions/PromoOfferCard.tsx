@@ -8,7 +8,7 @@ import { useTranslations } from "@/context/I18nContext";
 import { isDepositPromoType } from "@/config/promoConstants";
 import { localeState } from "@/state/localeState";
 import type { tLedgerPromotion } from "@/types/tUserLedger";
-import { KIND_LOOK, money, promoBonusValue, promoKind, promoMaxBonus, termsAnchor, weekdayName } from "./promoDisplay";
+import { KIND_LOOK, money, promoBonusValue, promoKind, promoMaxBonus, weekdayName } from "./promoDisplay";
 
 /** Copyable promo code chip. */
 export function PromoCode({ code, className = "" }: { code: string; className?: string }) {
@@ -201,7 +201,7 @@ export default function PromoOfferCard({ promo, onClaim }: { promo: tLedgerPromo
               <span />
             )}
             <Link
-              href={routes.promotionTerms(termsAnchor(promo.code))}
+              href={routes.promotionOffer(promo.code)}
               className="shrink-0 font-semibold text-white/45 underline-offset-4 transition-colors hover:text-white hover:underline"
             >
               {t("terms_apply")}

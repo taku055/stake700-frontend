@@ -5,6 +5,9 @@ import { findProvider, getInitialGames } from "@/lib/server-data";
 import { buildMetadata, resolveLang, translate } from "@/lib/seo";
 import { routes } from "@/config/routes";
 import { JsonLd, breadcrumbLd, itemListLd } from "@/lib/jsonld";
+import SeoArticle from "@/components/Seo/SeoArticle";
+import { providerArticle, siteVars } from "@/lib/seo-content";
+import { categoryLinks, providerLinks } from "@/lib/seo-links";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -33,8 +36,19 @@ export default async function Page({ params }: Props) {
 
   const { provider } = match;
   const locale = await resolveLang(params);
-  const initialData = await getInitialGames({ isCustom: false, provider: provider.id });
+  const [initialData, vars, others] = await Promise.all([
+    getInitialGames({ isCustom: false, provider: provider.id }),
+    siteVars(),
+    providerLinks(locale, null, 25),
+  ]);
+  const isLive = provider.gameType?.includes("LIVECASINO") && !provider.gameType?.includes("SLOT");
+  const article = providerArticle(locale, {
+    ...vars,
+    provider: provider.name,
+    count: (initialData?.total ?? provider.count ?? 0).toLocaleString("en-US"),
+  });
   const path = routes.provider(provider.slug);
+  const otherProviders = { ...others, items: others.items.filter((i) => i.path !== path).slice(0, 24) };
   const crumbs = [
     { name: translate(locale, "Seo.home"), path: routes.home() },
     { name: translate(locale, "Seo.providers_title"), path: routes.providers() },
@@ -59,6 +73,11 @@ export default async function Page({ params }: Props) {
         section={null}
         provider={{ id: provider.id, name: provider.name, img: provider.img }}
         initialData={initialData}
+      />
+      <SeoArticle
+        lang={locale}
+        article={article}
+        links={[otherProviders, categoryLinks(locale, isLive ? "live-casino" : "casino")]}
       />
     </>
   );

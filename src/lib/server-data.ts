@@ -3,6 +3,8 @@ import type { tGame } from "@/types/tGame";
 import type { tCustomGame } from "@/types/tCustomGame";
 import { buildProviderSlugs } from "@/config/catalog";
 import { matchesCustomCategory } from "@/config/customGameCategories";
+import { isPlayerVisiblePromotion } from "@/config/promoConstants";
+import type { tLedgerPromotion } from "@/types/tUserLedger";
 
 /**
  * Server-side reads for routing and metadata (provider slugs, game titles).
@@ -177,4 +179,92 @@ export async function getInitialGames(opts: {
   if (opts.gameType) params.set("gameType", opts.gameType);
   const res = await getJson<{ data: tGame[]; total: number }>(`/game/games?${params}`);
   return res ? { games: res.data, total: res.total } : undefined;
+}
+
+
+// ---------------------------------------------------------------- promotions
+
+/** Active, player-visible offers (guest view), for the per-offer pages. */
+export async function getPublicPromotions(): Promise<tLedgerPromotion[]> {
+  const res = await getJson<{ data?: { promotions?: tLedgerPromotion[] } }>(
+    "/ledger/promotions?category=NORMAL&userId=&currencyCode=USD&page=1&pageSize=50",
+  );
+  return (res?.data?.promotions ?? []).filter((p) => p.isActive && isPlayerVisiblePromotion(p));
+}
+
+export async function findPublicPromotion(code: string): Promise<tLedgerPromotion | undefined> {
+  const wanted = decodeURIComponent(code).toLowerCase();
+  return (await getPublicPromotions()).find((p) => p.code.toLowerCase() === wanted);
+}
+
+// ---------------------------------------------------------------- blog
+
+export type BlogCategory = "NEWS" | "REVIEW" | "GUIDE" | "TOP_LIST";
+export const BLOG_CATEGORIES: BlogCategory[] = ["REVIEW", "GUIDE", "TOP_LIST", "NEWS"];
+
+export type BlogListItem = {
+  slug: string;
+  category: BlogCategory;
+  coverImage: string | null;
+  publishedAt: string;
+  updatedAt: string;
+  title: string;
+  excerpt: string;
+  langs: string[];
+};
+
+export type BlogGame = Pick<tGame, "id" | "name" | "img" | "img_custom" | "providerId" | "gameType">;
+
+export type BlogPost = {
+  slug: string;
+  category: BlogCategory;
+  coverImage: string | null;
+  publishedAt: string;
+  updatedAt: string;
+  langs: string[];
+  translation: {
+    lang: string;
+    title: string;
+    excerpt: string;
+    body: string;
+    metaTitle: string | null;
+    metaDescription: string | null;
+  } | null;
+  games: BlogGame[];
+};
+
+export async function getBlogList(
+  lang: string,
+  opts: { page?: number; pageSize?: number; category?: BlogCategory } = {},
+): Promise<{ total: number; page: number; pageSize: number; items: BlogListItem[] } | null> {
+  const q = new URLSearchParams({ lang, page: String(opts.page ?? 1), pageSize: String(opts.pageSize ?? 12) });
+  if (opts.category) q.set("category", opts.category);
+  return getJson(`/content/blog?${q}`);
+}
+
+export async function getBlogPost(slug: string, lang: string): Promise<BlogPost | null> {
+  return getJson(`/content/blog/${encodeURIComponent(slug)}?lang=${lang}`);
+}
+
+export async function getBlogSitemap(): Promise<{ slug: string; langs: string[]; updatedAt: string }[]> {
+  return (await getJson<{ slug: string; langs: string[]; updatedAt: string }[]>("/content/blog-sitemap")) ?? [];
+}
+
+export async function getPostsForGame(gameId: string, lang: string): Promise<{ slug: string; category: string; title: string }[]> {
+  return (await getJson<{ slug: string; category: string; title: string }[]>(
+    `/content/blog/by-game/${encodeURIComponent(gameId)}?lang=${lang}`,
+  )) ?? [];
+}
+
+// ---------------------------------------------------------------- most played
+
+export type TopGames = { month: string; type: "SLOT" | "LIVECASINO"; isFinal: boolean; games: BlogGame[] };
+
+export async function getTopGames(month: string, type: "SLOT" | "LIVECASINO", limit = 24): Promise<TopGames | null> {
+  return getJson(`/content/top-games?month=${month}&type=${type}&limit=${limit}`);
+}
+
+/** Months (newest first) that have a ranking page. */
+export async function getTopMonths(): Promise<string[]> {
+  return (await getJson<string[]>("/content/top-games/months")) ?? [];
 }

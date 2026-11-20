@@ -71,7 +71,7 @@ function ClauseList({ items }: { items: ReactNode[] }) {
 }
 
 /** One offer's full terms as a definition table. */
-function OfferTerms({ promo, gameName }: { promo: tLedgerPromotion; gameName?: string }) {
+export function OfferTerms({ promo, gameName }: { promo: tLedgerPromotion; gameName?: string }) {
   const t = useTranslations("BonusTerms");
   const tp = useTranslations("PromotionsPage");
   const kind = promoKind(promo);
