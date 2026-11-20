@@ -1,11 +1,11 @@
-import { instance } from "../instance";
+import { API_BASE, instance } from "../instance";
 
 export const apiChangeAvatar = async (file: File) => {
   const formData = new FormData();
   formData.append("file", file, file.name);
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/auth/change-avatar`,
+    `${API_BASE}/auth/change-avatar`,
     {
       method: "POST",
       body: formData,

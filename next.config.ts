@@ -1,5 +1,6 @@
 import path from "path";
 import type { NextConfig } from "next";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
@@ -67,4 +68,25 @@ function finalize(config: { module: { rules: unknown[] }; watchOptions?: object 
   return config;
 }
 
-export default nextConfig;
+/**
+ * NEXT_PUBLIC_* values are baked into the bundle at build time. Building
+ * without the API address ships a site that calls "/undefined/v1/...", so
+ * stop the build instead (e.g. env vars missing in the Vercel project).
+ */
+function assertBuildEnv() {
+  const api = process.env.NEXT_PUBLIC_BACKEND_URL?.trim();
+  let problem = "";
+  if (!api) problem = "NEXT_PUBLIC_BACKEND_URL is not set";
+  else if (!/^https?:\/\/[^/]/.test(api)) problem = `NEXT_PUBLIC_BACKEND_URL must be an absolute URL (got "${api}")`;
+  else if (process.env.VERCEL && /\/\/(localhost|127\.|0\.0\.0\.0)/.test(api)) {
+    problem = `NEXT_PUBLIC_BACKEND_URL points to ${api}, which visitors cannot reach`;
+  }
+  if (problem) {
+    throw new Error(`${problem}. Set it in the deployment's environment variables (Vercel: Settings → Environment Variables) and build again.`);
+  }
+}
+
+export default function config(phase: string): NextConfig {
+  if (phase === PHASE_PRODUCTION_BUILD) assertBuildEnv();
+  return nextConfig;
+}
