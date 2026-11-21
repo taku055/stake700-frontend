@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import GameCard from "@/components/GameCard";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Link } from "@/components/common";
@@ -52,43 +52,134 @@ function takeGames(category: string, limit: number): tGame[] {
     .map((entry) => entry.Game as tGame);
 }
 
+const BANNER_INTERVAL_MS = 5000;
+const SWIPE_MIN_PX = 40;
+
+const bannerArrow =
+  "absolute top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full " +
+  "bg-black/45 text-white backdrop-blur-sm transition hover:scale-105 hover:bg-black/75 " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-color)] " +
+  "md:h-11 md:w-11";
+
 function SideBanner({ banners }: { banners: tBanner[] }) {
+  const tHome = useTranslations("HomePage");
   const slides = banners;
+  const count = slides.length;
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  // Bumped on manual navigation so autoplay waits a full interval again
+  const [manualTick, setManualTick] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
-    if (slides.length < 2) return;
+    if (count < 2 || paused) return;
     const timer = window.setInterval(() => {
-      setIndex((current) => (current + 1) % slides.length);
-    }, 5000);
+      setIndex((current) => (current + 1) % count);
+    }, BANNER_INTERVAL_MS);
     return () => window.clearInterval(timer);
-  }, [slides.length]);
+  }, [count, paused, manualTick]);
+
+  const goTo = useCallback(
+    (next: number) => {
+      if (count === 0) return;
+      setIndex(((next % count) + count) % count);
+      setManualTick((t) => t + 1);
+    },
+    [count],
+  );
 
   // Real banners only: an empty frame until the API answers
-  if (slides.length === 0) {
+  if (count === 0) {
     return <div aria-hidden className="absolute inset-0 animate-pulse bg-[#0f212e]" />;
   }
 
-  const slide = slides[index % slides.length];
+  const active = index % count;
+  const slide = slides[active];
 
   return (
-    <Link
-      href={slide.buttonLink || "/promotions"}
-      scrollToTop
-      preventDefaultOnClick={false}
-      className="absolute inset-0 block overflow-hidden bg-[#0f212e]"
+    <div
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={tHome("banner_label")}
+      className="group absolute inset-0 overflow-hidden bg-[#0f212e]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={(e) => {
+        touchStartX.current = e.touches[0]?.clientX ?? null;
+      }}
+      onTouchEnd={(e) => {
+        const start = touchStartX.current;
+        touchStartX.current = null;
+        const end = e.changedTouches[0]?.clientX;
+        if (start == null || end == null || count < 2) return;
+        const dx = end - start;
+        if (Math.abs(dx) >= SWIPE_MIN_PX) goTo(active + (dx < 0 ? 1 : -1));
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowLeft") goTo(active - 1);
+        else if (e.key === "ArrowRight") goTo(active + 1);
+      }}
     >
-      {slides.map((item, itemIndex) => (
-        <img
-          key={item.id}
-          src={item.img}
-          alt={item.buttonTitle || ""}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out ${
-            itemIndex === index ? "opacity-100" : "opacity-0"
-          }`}
-        />
-      ))}
-    </Link>
+      <Link
+        href={slide.buttonLink || "/promotions"}
+        scrollToTop
+        preventDefaultOnClick={false}
+        className="absolute inset-0 block"
+      >
+        {slides.map((item, itemIndex) => (
+          <img
+            key={item.id}
+            src={item.img}
+            alt={itemIndex === active ? item.buttonTitle || "" : ""}
+            aria-hidden={itemIndex !== active}
+            draggable={false}
+            className={`absolute inset-0 h-full w-full select-none object-cover transition-opacity duration-700 ease-in-out ${
+              itemIndex === active ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+      </Link>
+
+      {count > 1 && (
+        <>
+          <button
+            type="button"
+            aria-label={tHome("banner_prev")}
+            onClick={() => goTo(active - 1)}
+            className={`${bannerArrow} left-2 md:left-3`}
+          >
+            <ChevronLeft size={22} />
+          </button>
+          <button
+            type="button"
+            aria-label={tHome("banner_next")}
+            onClick={() => goTo(active + 1)}
+            className={`${bannerArrow} right-2 md:right-3`}
+          >
+            <ChevronRight size={22} />
+          </button>
+
+          <div className="absolute inset-x-0 bottom-2.5 z-10 flex justify-center gap-1.5 md:bottom-3">
+            {slides.map((item, itemIndex) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-label={tHome("banner_go_to", { n: String(itemIndex + 1), total: String(count) })}
+                aria-current={itemIndex === active}
+                onClick={() => goTo(itemIndex)}
+                className="flex h-5 items-center px-0.5"
+              >
+                <span
+                  className={`block h-1.5 rounded-full transition-all duration-300 ${
+                    itemIndex === active ? "w-5 bg-white" : "w-1.5 bg-white/45 hover:bg-white/75"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
   );
 }
 
