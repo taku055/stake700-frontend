@@ -1452,6 +1452,14 @@
     "Submitting": "Отправка..."
   },
   "ForgotDialog": {
+    "subtitle": "Введите email, указанный при регистрации, и мы отправим ссылку для сброса пароля.",
+    "sent_title": "Проверьте почту",
+    "sent_desc": "Если аккаунт с этим email существует, мы отправили ссылку для сброса пароля на:",
+    "sent_hint": "Ссылка действует 30 минут. Не нашли письмо? Проверьте папку «Спам».",
+    "resend": "Отправить ещё раз",
+    "resend_in": "Повторить через {seconds} с",
+    "send_failed": "Не удалось отправить письмо. Попробуйте ещё раз через минуту.",
+    "back_to_login": "Вернуться ко входу",
     "Forgot your password?": "Забыли пароль?",
     "Submit": "Отправить",
     "Enter your email address": "Введите адрес email",
@@ -2330,6 +2338,8 @@
     "go_home": "Go to home"
   },
   "ResetPasswordPage": {
+    "confirm_label": "Повторите новый пароль",
+    "password_mismatch": "Пароли не совпадают.",
     "title": "Reset password",
     "description": "Choose a new password for your account.",
     "password_label": "New password",

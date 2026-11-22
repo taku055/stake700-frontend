@@ -1201,6 +1201,14 @@
     "Submitting": "Wird gesendet..."
   },
   "ForgotDialog": {
+    "subtitle": "Gib die E-Mail-Adresse deiner Registrierung ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.",
+    "sent_title": "Prüfe deinen Posteingang",
+    "sent_desc": "Falls ein Konto mit dieser E-Mail existiert, haben wir einen Link zum Zurücksetzen gesendet an:",
+    "sent_hint": "Der Link ist 30 Minuten gültig. Nicht gefunden? Prüfe deinen Spam-Ordner.",
+    "resend": "Erneut senden",
+    "resend_in": "Erneut senden in {seconds}s",
+    "send_failed": "Die E-Mail konnte gerade nicht gesendet werden. Bitte versuche es gleich noch einmal.",
+    "back_to_login": "Zurück zur Anmeldung",
     "Forgot your password?": "Passwort vergessen?",
     "Submit": "Absenden",
     "Enter your email address": "E-Mail-Adresse eingeben",
@@ -2449,6 +2457,8 @@
     "go_home": "Go to home"
   },
   "ResetPasswordPage": {
+    "confirm_label": "Neues Passwort bestätigen",
+    "password_mismatch": "Die Passwörter stimmen nicht überein.",
     "title": "Reset password",
     "description": "Choose a new password for your account.",
     "password_label": "New password",

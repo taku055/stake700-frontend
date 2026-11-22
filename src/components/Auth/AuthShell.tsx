@@ -50,7 +50,7 @@ export function AuthModal({
 
           <div className="relative flex items-center justify-between px-6 pt-5">
             <img
-              src={`${ASSET_BASE_URL}/logo.png`}
+              src="/images/brand/logo-600.png"
               alt={siteName}
               className="h-7 w-auto max-w-[140px] object-contain"
             />

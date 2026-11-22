@@ -1389,6 +1389,14 @@
     "Submitting": "Submitting..."
   },
   "ForgotDialog": {
+    "subtitle": "Enter the email you signed up with and we'll send you a link to reset your password.",
+    "sent_title": "Check your inbox",
+    "sent_desc": "If an account exists for this email, we've sent a password reset link to:",
+    "sent_hint": "The link expires in 30 minutes. Can't find it? Check your spam folder.",
+    "resend": "Send again",
+    "resend_in": "Send again in {seconds}s",
+    "send_failed": "We couldn't send the email right now. Please try again in a moment.",
+    "back_to_login": "Back to login",
     "Forgot your password?": "Forgot your password?",
     "Submit": "Submit",
     "Enter your email address": "Enter your email address",
@@ -2399,6 +2407,8 @@
     "go_home": "Go to home"
   },
   "ResetPasswordPage": {
+    "confirm_label": "Confirm new password",
+    "password_mismatch": "The passwords don't match.",
     "title": "Reset password",
     "description": "Choose a new password for your account.",
     "password_label": "New password",

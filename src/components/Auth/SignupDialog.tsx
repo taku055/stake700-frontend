@@ -9,7 +9,6 @@ import { Button, DatePicker } from "@heroui/react";
 import { useTranslations } from "@/context/I18nContext";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import {
-  parseDate,
   CalendarDate,
   today,
   getLocalTimeZone,
@@ -74,13 +73,14 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [birthday, setBirthday] = useState(parseDate("1990-01-01"));
+  // Optional: empty until the player picks a date
+  const [birthday, setBirthday] = useState<CalendarDate | null>(null);
   // Set after a successful sign-up: the address the verification link went to.
   const [sentTo, setSentTo] = useState<{ email: string; emailSent: boolean } | null>(null);
   const t = useTranslations("SignupDialog");
   const tVerify = useTranslations("EmailVerification");
   const tToast = useTranslations("ToastMessages");
-  const firstNameRef = useRef<HTMLInputElement>(null);
+  const userNameRef = useRef<HTMLInputElement>(null);
   const { refCode } = useAffiliateNavigation();
   const isMobile = useMediaQuery(mobileMediaQuery);
 
@@ -97,13 +97,14 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
     setLastName("");
     setMiddleName("");
     setPhone("");
+    setBirthday(null);
     setShowPassword(false);
     setSentTo(null);
 
     // Avoid auto-focus on mobile — it opens the keyboard and leaves a half-screen layout
     if (isOpen && !isMobile) {
       setTimeout(() => {
-        firstNameRef.current?.focus();
+        userNameRef.current?.focus();
       }, 300);
     }
   }, [isOpen, isMobile]);
@@ -113,7 +114,8 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
       e.preventDefault();
       if (loading) return;
 
-      if (!firstName.trim() || !lastName.trim() || !email || !password || !phone.trim() || !userName.trim()) {
+      // Only username, email and password are required; the rest is optional
+      if (!userName.trim() || !email.trim() || !password) {
         toast.error(t("please_input_all_fields"));
         return;
       }
@@ -124,28 +126,30 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
         return;
       }
 
-      if (!validateEmail(email)) {
+      if (!validateEmail(email.trim())) {
         toast.error(t("correct_email_request"));
         return;
       }
 
       setLoading(true);
       try {
+        // Empty optional fields are left out, so the account stores nothing for them
+        const optional = (value: string) => value.trim() || undefined;
         const res = await apiRegister({
-          email,
+          email: email.trim(),
           password,
           userName: userName.trim(),
           referCode: refCode || null,
-          firstName,
-          lastName,
-          middleName: middleName.trim(),
-          birthDay: birthday.toString(),
-          phone: phone.trim(),
+          firstName: optional(firstName),
+          lastName: optional(lastName),
+          middleName: optional(middleName),
+          birthDay: birthday ? birthday.toString() : undefined,
+          phone: optional(phone),
         });
 
         // Account created, but no session until the email link is confirmed.
         dismissMobileKeyboard();
-        setSentTo({ email: res.email || email, emailSent: res.emailSent !== false });
+        setSentTo({ email: res.email || email.trim(), emailSent: res.emailSent !== false });
       } catch (ex) {
         // Tell the player what actually failed; details go to the console
         console.error("[signup]", ex);
@@ -217,12 +221,61 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
     >
       <form className="flex flex-col gap-6" onSubmit={onSubmit} noValidate>
         <section>
-          <AuthSectionTitle>{t("personal_details")}</AuthSectionTitle>
+          <AuthSectionTitle>{t("account_details")}</AuthSectionTitle>
+          <div className="grid grid-cols-1 gap-4">
+            <AuthField
+              ref={userNameRef}
+              name="username"
+              label={t("username")}
+              autoComplete="username"
+              autoCapitalize="off"
+              spellCheck={false}
+              required
+              value={userName}
+              onChange={setUserName}
+              icon={<AtSign size={16} />}
+            />
+            <AuthField
+              name="email"
+              label={t("email")}
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              autoCapitalize="off"
+              spellCheck={false}
+              required
+              value={email}
+              onChange={setEmail}
+              icon={<Mail size={16} />}
+            />
+            <div>
+              <AuthField
+                name="new-password"
+                label={t("password")}
+                type={showPassword ? "text" : "password"}
+                autoComplete="new-password"
+                required
+                value={password}
+                onChange={setPassword}
+                icon={<Lock size={16} />}
+                endContent={
+                  <PasswordToggle shown={showPassword} onToggle={() => setShowPassword((v) => !v)} />
+                }
+              />
+              <PasswordStrength password={password} />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <AuthSectionTitle>
+            {t("personal_details")} ({t("optional")})
+          </AuthSectionTitle>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <AuthField
-              ref={firstNameRef}
               name="given-name"
               label={t("first_name")}
+              optional={t("optional")}
               autoComplete="given-name"
               value={firstName}
               onChange={setFirstName}
@@ -230,6 +283,7 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
             <AuthField
               name="family-name"
               label={t("last_name")}
+              optional={t("optional")}
               autoComplete="family-name"
               value={lastName}
               onChange={setLastName}
@@ -242,14 +296,26 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
               value={middleName}
               onChange={setMiddleName}
             />
-            <div>
-              <span className={authLabel}>{t("birthday")}</span>
+            <AuthField
+              name="tel"
+              label={t("phone")}
+              optional={t("optional")}
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              value={phone}
+              onChange={setPhone}
+              icon={<Phone size={16} />}
+            />
+            <div className="sm:col-span-2">
+              <span className={authLabel}>
+                {t("birthday")}
+                <span className="ms-1 font-normal text-[var(--text-muted-color)]/70">({t("optional")})</span>
+              </span>
               <DatePicker
                 aria-label={t("birthday")}
                 value={birthday}
-                onChange={(value: CalendarDate | null) => {
-                  if (value) setBirthday(value);
-                }}
+                onChange={(value: CalendarDate | null) => setBirthday(value)}
                 showMonthAndYearPickers
                 minValue={new CalendarDate(1900, 1, 1)}
                 maxValue={today(getLocalTimeZone())}
@@ -266,60 +332,6 @@ export default function SignupDialog({ isOpen, onClose }: ISignupComponentProps)
                   selectorButton: "text-[var(--text-muted-color)] hover:text-white",
                 }}
               />
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <AuthSectionTitle>{t("account_details")}</AuthSectionTitle>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <AuthField
-              name="username"
-              label={t("username")}
-              autoComplete="username"
-              autoCapitalize="off"
-              spellCheck={false}
-              value={userName}
-              onChange={setUserName}
-              icon={<AtSign size={16} />}
-            />
-            <AuthField
-              name="tel"
-              label={t("phone")}
-              type="tel"
-              inputMode="tel"
-              autoComplete="tel"
-              value={phone}
-              onChange={setPhone}
-              icon={<Phone size={16} />}
-            />
-            <AuthField
-              className="sm:col-span-2"
-              name="email"
-              label={t("email")}
-              type="email"
-              inputMode="email"
-              autoComplete="email"
-              autoCapitalize="off"
-              spellCheck={false}
-              value={email}
-              onChange={setEmail}
-              icon={<Mail size={16} />}
-            />
-            <div className="sm:col-span-2">
-              <AuthField
-                name="new-password"
-                label={t("password")}
-                type={showPassword ? "text" : "password"}
-                autoComplete="new-password"
-                value={password}
-                onChange={setPassword}
-                icon={<Lock size={16} />}
-                endContent={
-                  <PasswordToggle shown={showPassword} onToggle={() => setShowPassword((v) => !v)} />
-                }
-              />
-              <PasswordStrength password={password} />
             </div>
           </div>
         </section>

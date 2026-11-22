@@ -10,10 +10,10 @@ type tRegisterRes = {
 };
 
 type tRegisterReq = {
-  firstName: string;
-  lastName: string;
-  middleName: string;
-  birthDay: string;
+  firstName?: string;
+  lastName?: string;
+  middleName?: string;
+  birthDay?: string;
   email: string;
   password: string;
   userName: string;

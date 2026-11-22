@@ -25,11 +25,6 @@ interface GameCardProps {
   variant?: "card" | "tile";
 }
 
-/** Card artwork frame (width / height); keep in sync with .media in GameCard.module.scss */
-const CARD_RATIO = 5 / 4;
-/** Artwork further than this from the frame ratio is shown whole over a blurred backdrop instead of cropped. */
-const FIT_TOLERANCE = 0.22;
-
 const FORCE_CUSTOM_IMAGE_GAME_IDS = new Set<string>([
   "129614017fcaf209c4782e7a41b742f6e702bd68",
   "78a1587cc5cb4772c4ff0ae7cda6028d8e807dc1",
@@ -50,7 +45,6 @@ const FORCE_CUSTOM_IMAGE_GAME_IDS = new Set<string>([
 export default function GameCard({ data, onClick, useImgCustom = false, variant = "card" }: GameCardProps) {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
-  const [fit, setFit] = useState(false);
   const [favPending, setFavPending] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
@@ -108,9 +102,8 @@ export default function GameCard({ data, onClick, useImgCustom = false, variant 
 
   // Server-rendered images often finish loading before hydration, so React never
   // sees their load event — check the element directly on mount / src change.
-  const handleLoaded = useCallback((img: HTMLImageElement) => {
-    const ratio = img.naturalWidth / img.naturalHeight;
-    setFit(Math.abs(ratio - CARD_RATIO) / CARD_RATIO > FIT_TOLERANCE);
+  // Artwork always fills the frame (object-fit: cover), whatever its shape.
+  const handleLoaded = useCallback((_img: HTMLImageElement) => {
     setImgLoaded(true);
   }, []);
 
@@ -181,12 +174,9 @@ export default function GameCard({ data, onClick, useImgCustom = false, variant 
           ) : (
             <>
               {!imgLoaded && <span className={styles.shimmer} aria-hidden="true" />}
-              {fit && !isTile && (
-                <img className={styles.backdrop} src={imgSrc} alt="" aria-hidden="true" draggable={false} />
-              )}
               <img
                 ref={imgRef}
-                className={`${styles.image} ${imgLoaded ? styles.imageLoaded : ""} ${fit && !isTile ? styles.imageFit : ""}`}
+                className={`${styles.image} ${imgLoaded ? styles.imageLoaded : ""}`}
                 src={imgSrc}
                 alt={providerName ? `${data.name} – ${providerName}` : data.name}
                 loading="lazy"

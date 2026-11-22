@@ -1192,6 +1192,14 @@
     "Submitting": "Envoi..."
   },
   "ForgotDialog": {
+    "subtitle": "Saisissez l'e-mail utilisé lors de l'inscription et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "sent_title": "Vérifiez votre boîte de réception",
+    "sent_desc": "Si un compte existe pour cet e-mail, nous avons envoyé un lien de réinitialisation à :",
+    "sent_hint": "Le lien expire dans 30 minutes. Introuvable ? Vérifiez vos spams.",
+    "resend": "Renvoyer",
+    "resend_in": "Renvoyer dans {seconds} s",
+    "send_failed": "Impossible d'envoyer l'e-mail pour le moment. Veuillez réessayer dans un instant.",
+    "back_to_login": "Retour à la connexion",
     "Forgot your password?": "Mot de passe oublié ?",
     "Submit": "Valider",
     "Enter your email address": "Saisissez votre adresse email",
@@ -2330,6 +2338,8 @@
     "go_home": "Go to home"
   },
   "ResetPasswordPage": {
+    "confirm_label": "Confirmer le nouveau mot de passe",
+    "password_mismatch": "Les mots de passe ne correspondent pas.",
     "title": "Reset password",
     "description": "Choose a new password for your account.",
     "password_label": "New password",

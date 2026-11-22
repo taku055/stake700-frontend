@@ -5,7 +5,7 @@ import axios from "axios";
 import { useLocation } from "@/router";
 import { useTranslations } from "@/context/I18nContext";
 import { apiResetPassword } from "@/api/account/apiResetPassword";
-import { Input } from "@/components/common";
+import { AuthField, PasswordToggle } from "@/components/Auth/AuthShell";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { forgotOpenedState } from "@/state/forgotOpenedState";
 
@@ -13,6 +13,8 @@ export default function ResetPasswordPage() {
   const t = useTranslations("ResetPasswordPage");
   const location = useLocation();
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -31,6 +33,10 @@ export default function ResetPasswordPage() {
       if (loading || !token) return;
       if (!password.trim()) {
         setError(t("password_required"));
+        return;
+      }
+      if (password !== confirm) {
+        setError(t("password_mismatch"));
         return;
       }
 
@@ -52,7 +58,7 @@ export default function ResetPasswordPage() {
         setLoading(false);
       }
     },
-    [loading, password, t, token]
+    [loading, password, confirm, t, token]
   );
 
   const openLogin = () => {
@@ -103,15 +109,28 @@ export default function ResetPasswordPage() {
           </div>
         ) : (
           <form onSubmit={onSubmit} className="space-y-5">
-            <Input
+            <AuthField
+              name="new-password"
               label={t("password_label")}
-              type="password"
+              type={showPassword ? "text" : "password"}
+              autoComplete="new-password"
               value={password}
-              onChange={(e: any) => setPassword(e.target.value)}
+              onChange={setPassword}
+              endContent={
+                <PasswordToggle shown={showPassword} onToggle={() => setShowPassword((v) => !v)} />
+              }
+            />
+            <AuthField
+              name="confirm-password"
+              label={t("confirm_label")}
+              type={showPassword ? "text" : "password"}
+              autoComplete="new-password"
+              value={confirm}
+              onChange={setConfirm}
             />
             <button
               type="submit"
-              disabled={loading || !password.trim()}
+              disabled={loading || !password.trim() || !confirm}
               className="w-full rounded-lg bg-[var(--green-color)] px-6 py-3 font-semibold text-white hover:opacity-90 disabled:opacity-50"
             >
               {loading ? t("submitting") : t("submit")}

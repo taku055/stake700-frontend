@@ -1200,6 +1200,14 @@
     "Submitting": "جارٍ الإرسال..."
   },
   "ForgotDialog": {
+    "subtitle": "أدخل البريد الإلكتروني الذي سجّلت به وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.",
+    "sent_title": "تحقق من بريدك الوارد",
+    "sent_desc": "إذا كان هناك حساب مرتبط بهذا البريد، فقد أرسلنا رابط إعادة تعيين كلمة المرور إلى:",
+    "sent_hint": "تنتهي صلاحية الرابط خلال 30 دقيقة. لم تجده؟ تحقق من مجلد الرسائل غير المرغوب فيها.",
+    "resend": "إرسال مرة أخرى",
+    "resend_in": "إرسال مرة أخرى بعد {seconds} ث",
+    "send_failed": "تعذّر إرسال الرسالة الآن. يرجى المحاولة مرة أخرى بعد قليل.",
+    "back_to_login": "العودة إلى تسجيل الدخول",
     "Forgot your password?": "نسيت كلمة المرور؟",
     "Submit": "إرسال",
     "Enter your email address": "أدخل بريدك الإلكتروني",
@@ -2450,6 +2458,8 @@
     "go_home": "Go to home"
   },
   "ResetPasswordPage": {
+    "confirm_label": "تأكيد كلمة المرور الجديدة",
+    "password_mismatch": "كلمتا المرور غير متطابقتين.",
     "title": "Reset password",
     "description": "Choose a new password for your account.",
     "password_label": "New password",
