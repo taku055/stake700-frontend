@@ -2542,5 +2542,16 @@
     "empty_history": "Pas encore de cashback. Il est versé le lendemain d'une perte nette aux machines à sous.",
     "register": "Inscrivez-vous et recevez du cashback",
     "how_it_works": "Comment ça marche"
+  },
+  "EarnedOffers": {
+    "title": "Bonus qui vous attendent",
+    "earned_with_nth": "Obtenu avec votre dépôt n° {n} ({amount})",
+    "earned_with": "Obtenu avec votre dépôt de {amount}",
+    "reward_bonus": "{amount} de bonus",
+    "reward_spins": "{count} tours gratuits",
+    "claim": "Réclamer",
+    "claimed": "{name} a été ajouté à votre compte",
+    "blocked": "Terminez ou annulez d'abord votre bonus et vos tours gratuits en cours. Cette offre reste enregistrée pour vous.",
+    "claim_failed": "Impossible de réclamer cette offre. Veuillez réessayer."
   }
 }

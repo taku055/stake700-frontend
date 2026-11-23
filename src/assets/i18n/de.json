@@ -2661,5 +2661,16 @@
     "empty_history": "Noch kein Cashback. Es wird am Tag nach einem Nettoverlust an Slots gezahlt.",
     "register": "Registrieren & Cashback sichern",
     "how_it_works": "So funktioniert's"
+  },
+  "EarnedOffers": {
+    "title": "Boni, die auf dich warten",
+    "earned_with_nth": "Verdient mit deiner Einzahlung Nr. {n} ({amount})",
+    "earned_with": "Verdient mit deiner Einzahlung von {amount}",
+    "reward_bonus": "{amount} Bonus",
+    "reward_spins": "{count} Freispiele",
+    "claim": "Abholen",
+    "claimed": "{name} wurde deinem Konto gutgeschrieben",
+    "blocked": "Beende oder storniere zuerst deinen aktuellen Bonus und deine Freispiele. Dieses Angebot bleibt für dich gespeichert.",
+    "claim_failed": "Das Angebot konnte nicht abgeholt werden. Bitte versuche es erneut."
   }
 }

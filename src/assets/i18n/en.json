@@ -2611,5 +2611,16 @@
     "empty_history": "No cashback yet. It's paid the day after a net loss on slots.",
     "register": "Join and get cashback",
     "how_it_works": "How it works"
+  },
+  "EarnedOffers": {
+    "title": "Bonuses waiting for you",
+    "earned_with_nth": "Earned with your deposit #{n} ({amount})",
+    "earned_with": "Earned with your deposit of {amount}",
+    "reward_bonus": "{amount} bonus",
+    "reward_spins": "{count} free spins",
+    "claim": "Claim",
+    "claimed": "{name} added to your account",
+    "blocked": "Finish or cancel your current bonus and free spins first. This offer stays saved for you.",
+    "claim_failed": "Could not claim this offer. Please try again."
   }
 }

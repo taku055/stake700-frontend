@@ -17,6 +17,7 @@ import WageringPage from "@/site/wagering";
 import { useTranslations } from "@/context/I18nContext";
 import PromoOfferCard from "./PromoOfferCard";
 import CashbackPanel from "./CashbackPanel";
+import EarnedOffers from "./EarnedOffers";
 import { KIND_LOOK, promoKind, type PromoKind } from "./promoDisplay";
 
 type PromoTab = "offers" | "active";
@@ -186,6 +187,7 @@ export default function PromoPage() {
 
       {activeTab === "active" && (
         <>
+          <EarnedOffers />
           <CashbackPanel showHistory />
           <WageringPage embedded />
         </>
@@ -193,6 +195,7 @@ export default function PromoPage() {
 
       {activeTab === "offers" && (
         <>
+          <EarnedOffers />
           <CashbackPanel />
 
           {/* Filters */}
