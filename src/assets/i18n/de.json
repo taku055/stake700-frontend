@@ -2467,6 +2467,7 @@
     "submit": "Passwort ändern",
     "submitting": "Wird aktualisiert…",
     "success_message": "Dein Passwort wurde geändert. Melde dich mit deinem neuen Passwort an.",
+    "success_account": "Konto:",
     "login_now": "Anmelden",
     "missing_token": "Dieser Link ist unvollständig. Öffne den Link aus der E-Mail erneut oder fordere einen neuen an.",
     "token_not_found": "Dieser Link ist nicht mehr gültig. Möglicherweise wurde er bereits verwendet. Fordere unten einen neuen Link an.",

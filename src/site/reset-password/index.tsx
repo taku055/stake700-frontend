@@ -18,6 +18,8 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  // The account the server changed, so players with several accounts know which one to use
+  const [account, setAccount] = useState<string>("");
 
   const token = useMemo(() => {
     return (
@@ -43,7 +45,8 @@ export default function ResetPasswordPage() {
       setLoading(true);
       setError("");
       try {
-        await apiResetPassword(token, password);
+        const res = await apiResetPassword(token, password);
+        setAccount(typeof res === "object" && res ? res.userName || res.email || "" : "");
         setSuccess(true);
       } catch (ex) {
         if (axios.isAxiosError(ex)) {
@@ -99,6 +102,12 @@ export default function ResetPasswordPage() {
             <p className="rounded-md border border-emerald-500/40 bg-emerald-500/10 p-4 text-emerald-300">
               {t("success_message")}
             </p>
+            {account ? (
+              <p className="text-sm text-white/80">
+                {t("success_account")}{" "}
+                <span dir="ltr" className="font-semibold text-white">{account}</span>
+              </p>
+            ) : null}
             <button
               type="button"
               onClick={openLogin}

@@ -2417,6 +2417,7 @@
     "submit": "Update password",
     "submitting": "Updating…",
     "success_message": "Your password has been updated. Log in with your new password.",
+    "success_account": "Account:",
     "login_now": "Log in",
     "missing_token": "This reset link is missing or incomplete. Open the link from the email again, or request a new one.",
     "token_not_found": "This reset link is no longer valid. It may have been used already. Request a new link below.",

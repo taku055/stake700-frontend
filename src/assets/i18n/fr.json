@@ -2348,6 +2348,7 @@
     "submit": "Mettre à jour le mot de passe",
     "submitting": "Mise à jour…",
     "success_message": "Votre mot de passe a été mis à jour. Connectez-vous avec votre nouveau mot de passe.",
+    "success_account": "Compte :",
     "login_now": "Se connecter",
     "missing_token": "Ce lien de réinitialisation est incomplet. Ouvrez à nouveau le lien de l'e-mail ou demandez-en un nouveau.",
     "token_not_found": "Ce lien n'est plus valide. Il a peut-être déjà été utilisé. Demandez un nouveau lien ci-dessous.",
