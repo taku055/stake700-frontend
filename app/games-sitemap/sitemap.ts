@@ -7,7 +7,8 @@ import { GAMES_PER_SITEMAP, MAX_GAME_SITEMAPS } from "@/config/sitemaps";
 
 /**
  * Game pages, split into /games-sitemap/sitemap/{n}.xml files of
- * GAMES_PER_SITEMAP games (x5 languages = 10k URLs, well under Google's 50k).
+ * GAMES_PER_SITEMAP games (one URL per language each), sized to stay well
+ * under Vercel's 20 MB page limit (see src/config/sitemaps.ts).
  * The slot count is fixed so the build never depends on the API being up;
  * robots.txt only advertises the files that currently contain games.
  */
@@ -33,10 +34,9 @@ export default async function sitemap(props: { id: Promise<string> }): Promise<M
         LOCALES.map((l) => [LOCALE_HREFLANG[l], abs(l, path)]),
       );
       languages["x-default"] = abs(DEFAULT_LOCALE, path);
+      // No changefreq / priority: Google ignores both, and they add ~4% per URL
       return LOCALES.map((lang) => ({
         url: abs(lang, path),
-        changeFrequency: "weekly" as const,
-        priority: 0.5,
         alternates: { languages },
         ...(game.img_custom || game.img ? { images: [game.img_custom || game.img] } : {}),
       }));
