@@ -145,9 +145,12 @@ export default function WalletAccountDialog() {
         {isOpen && panel.tab === WALLET_TAB.bonus && <BonusPage />}
       </div>
 
-      <div className="shrink-0 border-t border-[#2f4553] px-4 py-3">
-        <AcceptPromoCode />
-      </div>
+      {/* Promo codes only apply to deposits */}
+      {isOpen && panel.tab === WALLET_TAB.deposit && (
+        <div className="shrink-0 border-t border-[#2f4553] px-4 py-3">
+          <AcceptPromoCode />
+        </div>
+      )}
     </SiteDialog>
   );
 }

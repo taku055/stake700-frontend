@@ -43,7 +43,7 @@ export function PromoCode({ code, className = "" }: { code: string; className?: 
 type T = (k: string, v?: Record<string, string>) => string;
 
 /** Translated reason an offer can't be claimed (the backend reason is English-only). */
-function ineligibleNote(p: tLedgerPromotion, t: T): string {
+export function ineligibleNote(p: tLedgerPromotion, t: T): string {
   switch (p.eligibility) {
     case "FIRST_DEPOSIT":
     case "FIRST_CRYPTO_DEPOSIT":

@@ -214,8 +214,6 @@ export default function WithdrawalPanel() {
           {" · "}
           {t("Minimum Withdraw")}: {selectedToken?.minimumLimit ?? 0}{" "}
           {selectedCryptoType || ""}
-          {" · "}
-          {t("Network Fee")}: {t("Unknown")}
         </p>
       </div>
 

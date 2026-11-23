@@ -1,19 +1,15 @@
-import { Input } from "@heroui/react";
 import { useEffect, useCallback, useState, useMemo } from "react";
 import { tToken } from "@/types/tToken";
 import { apiGetTokenList } from "@/api/common/apiGetTokenList";
 import { Copy } from "lucide-react";
 import { userState } from "@/state/userState";
 import { CryptoCurrencySelects } from "./CryptoCurrencySelects";
-import { apiSetWantBonus } from "@/api/account/apiSetWantBonus";
 import Loader from "../Loader";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
-import {
-  DEFAULT_CURRENCY_SYMBOL,
-  SOLANA_CHAIN_ID,
-  TRON_CHAIN_ID,
-} from "@/config/constants";
+import { depositPromoIdState } from "@/state/depositPromoState";
+import { chainNames } from "@/config/chains";
+import { SOLANA_CHAIN_ID, TRON_CHAIN_ID } from "@/config/constants";
 import { toast } from "@/helpers/toast";
 import {
   buildTokenGroups,
@@ -27,11 +23,9 @@ export default function DepositPanel() {
   );
   const [selectedTokenId, setSelectedTokenId] = useState(-1);
   const [selectedBlockchain, setSelectedBlockchain] = useState(0);
-  const [amount, setAmount] = useState("0");
   const [wallet, setWallet] = useState("");
   const [tokens, setTokens] = useState<tToken[]>([]);
   const [selectionInitialized, setSelectionInitialized] = useState(false);
-  const [loadingWantBonus, setLoadingWantBonus] = useState(false);
   const [loadingInfo, setLoadingInfo] = useState(false);
   const t = useTranslations("DepositDialogFull");
   const tToast = useTranslations("ToastMessages");
@@ -95,22 +89,6 @@ export default function DepositPanel() {
     }
   }, [selectedBlockchain]);
 
-  const onSetBonus = useCallback(
-    async (v: boolean) => {
-      setLoadingWantBonus(true);
-      try {
-        await apiSetWantBonus(v);
-        if (userState.value?.id) {
-          userState.value = { ...userState.value, wantBonus: v };
-        }
-      } catch (ex) {
-        console.error(ex);
-      }
-      setLoadingWantBonus(false);
-    },
-    [userState.value?.id],
-  );
-
   const copyWallet = () => {
     if (wallet === "") return;
     navigator.clipboard.writeText(wallet);
@@ -140,20 +118,15 @@ export default function DepositPanel() {
     [selectedCryptoType, tokenGroups],
   );
 
+  // Tell the backend which coin and bonus the next deposit is for; re-sent
+  // when the player applies or removes a promo code.
+  const promoId = depositPromoIdState.value;
   useEffect(() => {
     const token = tokens.find((t) => t.id === selectedTokenId);
     if (token) {
       (async () => {
         try {
-          const promoId =
-            new URLSearchParams(window.location.search).get("promo") ??
-            undefined;
-
-          const res = await apiPredictDeposit(
-            token.chainId,
-            token.tokenAddress,
-            promoId,
-          );
+          await apiPredictDeposit(token.chainId, token.tokenAddress, promoId ?? "");
         } catch (error) {
           console.error("Error predicting deposit:", error);
           const errorMessage =
@@ -173,17 +146,11 @@ export default function DepositPanel() {
         }
       })();
     }
-  }, [tokens, selectedTokenId]);
+  }, [tokens, selectedTokenId, promoId]);
 
-  const cryptoAmount =
-    selectedTokenId !== -1 && tokens.length > 0
-      ? (
-          +amount /
-          (tokens.find((token) => token.id === selectedTokenId)?.usdPrice || 1)
-        ).toFixed(5)
-      : "0.00000";
   const minimumLimit =
     tokens.find((token) => token.id === selectedTokenId)?.minimumLimit || 0;
+  const network = chainNames[selectedBlockchain] ?? "";
 
   return loadingInfo ? (
     <div className="flex h-full w-full items-center justify-center p-6">
@@ -191,7 +158,6 @@ export default function DepositPanel() {
     </div>
   ) : (
     <div className="flex flex-col gap-4 py-4">
-      <p className="text-sm text-[#b1bad3]">{t("address_confirm")}</p>
       <CryptoCurrencySelects
         tokenGroups={tokenGroups}
         sortedSymbols={sortedSymbols}
@@ -219,29 +185,16 @@ export default function DepositPanel() {
             {t("Copy", undefined, "Copy")}
           </button>
         </div>
-      </div>
-      <div>
-        <label className="text-sm text-white">{t("DEPOSIT AMOUNT")}</label>
-        <Input
-          type="number"
-          value={amount}
-          onChange={(e: any) => setAmount(e.target.value)}
-          classNames={{
-            inputWrapper:
-              "mt-1 bg-[#0f212e] border border-[#2f4553] data-[hover=true]:bg-[#0f212e]",
-            input: "text-white",
-          }}
-          startContent={
-            <span className="text-[#b1bad3]">{DEFAULT_CURRENCY_SYMBOL}</span>
-          }
-        />
-        <p className="mt-2 text-xs text-[#b1bad3]">
-          {t("Deposit Amount")}: {cryptoAmount} {selectedCryptoType || ""}
-          {" · "}
-          {t("Minimum Limit")}: {minimumLimit} {selectedCryptoType || ""}
-          {" · "}
-          {t("Network Fee")}: {t("Unknown")}
-        </p>
+        {wallet && selectedCryptoType && (
+          <div className="mt-3 space-y-1 border-t border-[#2f4553] pt-3 text-xs leading-relaxed text-[#b1bad3]">
+            {network && <p>{t("send_only", { coin: selectedCryptoType, network })}</p>}
+            {minimumLimit > 0 && (
+              <p className="font-semibold text-white/80">
+                {t("min_deposit", { amount: String(minimumLimit), coin: selectedCryptoType })}
+              </p>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

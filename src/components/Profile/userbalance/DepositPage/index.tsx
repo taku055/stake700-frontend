@@ -1,16 +1,13 @@
 import { useEffect } from "react";
 import DepositPanel from "@/components/DepositDialogFull/DepositPanel";
-import {
-  clearDepositPromoFromUrl,
-  currentUserHasActiveBonusCycle,
-} from "@/helpers/hasActiveBonusCycle";
+import { walletPanelState } from "@/state/accountDialogs";
+import { initDepositPromo } from "@/state/depositPromoState";
 
 const DepositPage = () => {
+  // The promotion this wallet was opened for (offer "Deposit" button or ?promo=)
   useEffect(() => {
-    if (currentUserHasActiveBonusCycle()) {
-      clearDepositPromoFromUrl();
-    }
-  }, []);
+    initDepositPromo(walletPanelState.value.bonusId);
+  }, [walletPanelState.value.bonusId]);
 
   return (
     <div className="flex flex-col h-full">

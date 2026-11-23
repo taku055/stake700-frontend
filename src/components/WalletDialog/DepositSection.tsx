@@ -1,25 +1,17 @@
-import { Button, Input } from "@heroui/react";
+import { Input } from "@heroui/react";
 import { useEffect, useRef, useCallback, useState } from "react";
 import { tToken } from "@/types/tToken";
 import { apiGetTokenList } from "@/api/common/apiGetTokenList";
-import { ChevronDown, ChevronLeft, Copy, RefreshCw, Search } from "lucide-react";
+import { ChevronDown, Copy, Search } from "lucide-react";
 import { userState } from "@/state/userState";
 import { chainNames } from "@/config/chains";
-import { apiSetWantBonus } from "@/api/account/apiSetWantBonus";
-import Loader from "../Loader";
 import { useTranslations } from "@/context/I18nContext";
 import { apiPredictDeposit } from "@/api/wallet/apiPredictDeposit";
-import { DEFAULT_CURRENCY_SYMBOL, SOLANA_CHAIN_ID, TRON_CHAIN_ID, ASSET_BASE_URL } from "@/config/constants";
+import { depositPromoIdState, initDepositPromo } from "@/state/depositPromoState";
+import { SOLANA_CHAIN_ID, TRON_CHAIN_ID } from "@/config/constants";
 import { effect } from "@preact/signals-react";
 import { toast } from "@/helpers/toast";
 import { QRCodeSVG } from "qrcode.react";
-import { Modal, ModalContent } from "@/components/common";
-
-interface ICryptoOption {
-  symbol: string;
-  name: string;
-  icon: string;
-}
 
 export const DepositSection = () => {
   const blockchainPanelRef = useRef<HTMLDivElement | null>(null);
@@ -28,15 +20,12 @@ export const DepositSection = () => {
   );
   const [selectedTokenId, setSelectedTokenId] = useState(-1);
   const [selectedBlockchain, setSelectedBlockchain] = useState(0);
-  const [amount, setAmount] = useState("0");
   const [wallet, setWallet] = useState("");
   const [showBlockchainSelector, setShowBlockchainSelector] = useState(false);
   const [showCryptoDropdown, setShowCryptoDropdown] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [tokens, setTokens] = useState<tToken[]>([]);
-  const [loadingWantBonus, setLoadingWantBonus] = useState(false);
-  const [loadingInfo, setLoadingInfo] = useState(false);
-  const [confirmations, setConfirmations] = useState<number>(1);
+  const confirmations = 1;
   const dropdownRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("DepositDialogFull");
   const tWallet = useTranslations("WalletBox");
@@ -47,13 +36,9 @@ export const DepositSection = () => {
       (async () => {
         if (userState.value?.id) {
           try {
-            setLoadingInfo(true);
-            const tokens1 = await apiGetTokenList(0);
-            setTokens(tokens1);
+            setTokens(await apiGetTokenList(0));
           } catch (ex) {
             console.error(ex);
-          } finally {
-            setLoadingInfo(false);
           }
         }
       })();
@@ -104,31 +89,10 @@ export const DepositSection = () => {
     }
   }, [selectedBlockchain]);
 
-  const onSetBonus = useCallback(
-    async (v: boolean) => {
-      setLoadingWantBonus(true);
-      try {
-        await apiSetWantBonus(v);
-        if (userState.value?.id) {
-          userState.value = { ...userState.value, wantBonus: v };
-        }
-      } catch (ex) {
-        console.error(ex);
-      }
-      setLoadingWantBonus(false);
-    },
-    [userState.value?.id]
-  );
-
   const copyWallet = () => {
     if (wallet === "") return;
     navigator.clipboard.writeText(wallet);
     toast.info(tToast("info.wallet_address_copied"));
-  };
-
-  const handleRefreshAddress = () => {
-    // Refresh address logic - can be implemented if needed
-    console.log("Refreshing address...");
   };
 
   // Get token groups by symbol
@@ -171,8 +135,6 @@ export const DepositSection = () => {
       }
       setShowCryptoDropdown(false);
       setSearchQuery("");
-      console.log("tokenSymbol", tokenSymbol);
-      console.log("tokenGroup", tokenGroup);
     },
     [selectedCryptoType]
   );
@@ -181,18 +143,17 @@ export const DepositSection = () => {
     setSelectedBlockchain(token.chainId);
     setSelectedTokenId(token.id || 0);
     setShowBlockchainSelector(false);
-    console.log("token onSelectChain", token);
   };
 
+  // Tell the backend which coin (and bonus, if one is selected) the next deposit is for
+  useEffect(() => initDepositPromo(), []);
+  const promoId = depositPromoIdState.value;
   useEffect(() => {
     const token = tokens.find((t) => t.id === selectedTokenId);
     if (token) {
       (async () => {
         try {
-          const res = await apiPredictDeposit(
-            token.chainId,
-            token.tokenAddress
-          );
+          await apiPredictDeposit(token.chainId, token.tokenAddress, promoId ?? "");
         } catch (error) {
           console.error("Error predicting deposit:", error);
           const errorMessage =
@@ -212,7 +173,11 @@ export const DepositSection = () => {
         }
       })();
     }
-  }, [tokens, selectedTokenId]);
+  }, [tokens, selectedTokenId, promoId]);
+
+  const minimumLimit = selectedToken?.minimumLimit || 0;
+  const network = chainNames[selectedBlockchain] ?? "";
+
   return (
     <div className="flex flex-col p-4 gap-[16px]">
       {/* Currency Selection */}
@@ -333,49 +298,6 @@ export const DepositSection = () => {
         </div>
       </div>
 
-      {/* Deposit Amount */}
-      {selectedTokenId !== -1 && (
-        <div className="flex flex-col gap-2">
-          <label className="text-white/70 text-[14px]">
-            {t("DEPOSIT AMOUNT")}
-          </label>
-          <Input
-            type="number"
-            value={amount}
-            onChange={(e: any) => setAmount(e.target.value)}
-            classNames={{
-              inputWrapper:
-                "bg-[var(--background-secondary)] border-[2px] border-[var(--background-secondary)] h-[44px]",
-              input: "text-white text-[14px]",
-            }}
-            startContent={
-              <span className="text-white/60">{DEFAULT_CURRENCY_SYMBOL}</span>
-            }
-          />
-          {/* <div className="text-xs text-white/60 mt-1">
-                <div>
-                  {t("Deposit Amount")}:{" "}
-                  {selectedTokenId !== -1 && tokens.length > 0
-                    ? `${(
-                        +amount /
-                        (tokens.find((token) => token.id === selectedTokenId)
-                          ?.usdPrice || 1)
-                      ).toFixed(5)} ${selectedCryptoType}`
-                    : "0.00000"}
-                </div>
-                <div>
-                  {t("Minimum Limit")}:{" "}
-                  {tokens.find((token) => token.id === selectedTokenId)
-                    ?.minimumLimit || 0}{" "}
-                  {selectedCryptoType || ""}
-                </div>
-                <div>
-                  {t("Network Fee")}: {t("Unknown")}
-                </div>
-              </div> */}
-        </div>
-      )}
-
       {/* Address Section */}
       <div className="flex flex-col gap-2">
         <label className="text-white/70 text-[14px]">{tWallet("Address")}</label>
@@ -393,14 +315,6 @@ export const DepositSection = () => {
           />
           <button
             type="button"
-            onClick={handleRefreshAddress}
-            className="p-2 border-none cursor-pointer transition-colors"
-            aria-label={tToast("aria.refresh_address")}
-          >
-            <RefreshCw className="w-5 h-5 text-white" />
-          </button>
-          <button
-            type="button"
             onClick={copyWallet}
             className="p-2 border-none cursor-pointer transition-colors"
             aria-label={tToast("aria.copy_address")}
@@ -408,6 +322,16 @@ export const DepositSection = () => {
             <Copy className="w-5 h-5 text-white" />
           </button>
         </div>
+        {wallet && selectedCryptoType && (
+          <div className="space-y-1 text-xs leading-relaxed text-white/60">
+            {network && <p>{t("send_only", { coin: selectedCryptoType, network })}</p>}
+            {minimumLimit > 0 && (
+              <p className="font-semibold text-white/80">
+                {t("min_deposit", { amount: String(minimumLimit), coin: selectedCryptoType })}
+              </p>
+            )}
+          </div>
+        )}
       </div>
 
       {/* QR Code */}
