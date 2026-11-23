@@ -16,7 +16,7 @@ import { providerState } from "@/state/providerState";
 const PROVIDER_ROWS: Record<CatalogSection, { category: string; title: string; providerId: string }[]> = {
   casino: [
     { category: "hacksaw", title: "Hacksaw", providerId: "6645919a6bf2f0cb6ce4b25f6f054975d443f17e" },
-    { category: "pragmatic", title: "Pragmatic", providerId: "1e418d617fc706f42f4a0b6580297f870d877ec9" },
+    { category: "pragmatic", title: "Pragmatic", providerId: "11858297870e9cc0faef0857094e5b320cf98cd4" },
     { category: "nolimit", title: "No Limit", providerId: "17fbedea2386ee51d7684f36f89e0876ff6be5ce" },
   ],
   "live-casino": [],

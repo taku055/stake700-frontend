@@ -52,9 +52,9 @@ export default function LobbyGames() {
         category={"pragmatic"}
         title={t("Pragmatic") || "Pragmatic"}
         isCustom={false}
-        provider={"1e418d617fc706f42f4a0b6580297f870d877ec9"}
+        provider={"11858297870e9cc0faef0857094e5b320cf98cd4"}
         useImgCustom={false}
-        viewallLink={providerHref("1e418d617fc706f42f4a0b6580297f870d877ec9")}
+        viewallLink={providerHref("11858297870e9cc0faef0857094e5b320cf98cd4")}
       />
       <GameGroup
         category={"nolimit"}
