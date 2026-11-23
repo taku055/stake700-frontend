@@ -12,12 +12,16 @@ import en from "@/assets/i18n/en.json";
 import de from "@/assets/i18n/de.json";
 import fr from "@/assets/i18n/fr.json";
 import ru from "@/assets/i18n/ru.json";
+import tr from "@/assets/i18n/tr.json";
+import mn from "@/assets/i18n/mn.json";
+import pt from "@/assets/i18n/pt.json";
+import es from "@/assets/i18n/es.json";
 
 export { SITE_NAME } from "@/config/site";
 import { SITE_NAME } from "@/config/site";
 const DEFAULT_OG_IMAGE = "/og.png";
 
-const DICTIONARIES: Record<Locale, Record<string, any>> = { ar, en, de, fr, ru };
+const DICTIONARIES: Record<Locale, Record<string, any>> = { ar, en, de, fr, ru, tr, mn, pt, es };
 
 /** Absolute site origin, used for canonical/hreflang/sitemap URLs. */
 export function siteUrl(): URL {

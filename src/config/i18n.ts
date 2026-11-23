@@ -2,7 +2,8 @@
  * Locale configuration shared by the server (proxy, layouts, metadata) and the client.
  * Must stay free of browser APIs so it can run anywhere.
  */
-export const LOCALES = ["ar", "en", "de", "fr", "ru"] as const;
+// "ar" is Arabic, so Argentina uses "es" (Spanish) and Brazil "pt" (Portuguese).
+export const LOCALES = ["en", "ar", "de", "fr", "ru", "tr", "mn", "pt", "es"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "ar";
@@ -10,21 +11,42 @@ export const LOCALE_COOKIE = "NEXT_LOCALE";
 
 export const RTL_LOCALES: readonly Locale[] = ["ar"];
 
-/** BCP-47 tags used for hreflang / og:locale. */
+/** Language picker entries, in display order. `flag` is a flag-icons country code. */
+export const LOCALE_OPTIONS: readonly { label: string; value: Locale; flag: string }[] = [
+  { label: "English", value: "en", flag: "us" },
+  { label: "العربية", value: "ar", flag: "ae" },
+  { label: "Deutsch", value: "de", flag: "de" },
+  { label: "Français", value: "fr", flag: "fr" },
+  { label: "Русский", value: "ru", flag: "ru" },
+  { label: "Türkçe", value: "tr", flag: "tr" },
+  { label: "Монгол", value: "mn", flag: "mn" },
+  { label: "Português (Brasil)", value: "pt", flag: "br" },
+  { label: "Español (Argentina)", value: "es", flag: "ar" },
+];
+
+/** BCP-47 tags used for hreflang and <html lang>. */
 export const LOCALE_HREFLANG: Record<Locale, string> = {
-  ar: "ar",
   en: "en",
+  ar: "ar",
   de: "de",
   fr: "fr",
   ru: "ru",
+  tr: "tr",
+  mn: "mn",
+  pt: "pt-BR",
+  es: "es-AR",
 };
 
 export const OG_LOCALE: Record<Locale, string> = {
-  ar: "ar_AR",
   en: "en_US",
+  ar: "ar_AR",
   de: "de_DE",
   fr: "fr_FR",
   ru: "ru_RU",
+  tr: "tr_TR",
+  mn: "mn_MN",
+  pt: "pt_BR",
+  es: "es_AR",
 };
 
 export function isLocale(value: unknown): value is Locale {

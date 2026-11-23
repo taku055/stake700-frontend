@@ -1,14 +1,7 @@
 import { localeState } from "@/state/localeState";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
-
-export const options = [
-  { label: "Русский", value: "ru", flag: "ru" },
-  { label: "English", value: "en", flag: "us" },
-  { label: "Deutsch", value: "de", flag: "de" },
-  { label: "Français", value: "fr", flag: "fr" },
-  { label: "العربية", value: "ar", flag: "ae", dir: "rtl" },
-];
+import { LOCALE_OPTIONS as options } from "@/config/i18n";
 
 interface LocaleSelectionProps {
   headerMode?: boolean;
@@ -54,7 +47,7 @@ export default function LocaleSelection({
       </button>
 
       {isOpen && (
-        <div className="absolute end-0 z-[9999] mt-2 min-w-[168px] overflow-hidden rounded-md border border-[#2f4553] bg-[#0f212e] shadow-xl">
+        <div className="absolute end-0 z-[9999] mt-2 min-w-[168px] max-h-[70vh] overflow-y-auto rounded-md border border-[#2f4553] bg-[#0f212e] shadow-xl">
           {options.map((lang) => {
             const selected = lang.value === localeState.value;
             return (

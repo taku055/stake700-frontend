@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import AppProviders from "@/provider/AppProviders";
-import { isLocale, isRtlLocale } from "@/config/i18n";
+import { LOCALE_HREFLANG, isLocale, isRtlLocale } from "@/config/i18n";
 import { SITE_NAME, siteUrl, translate } from "@/lib/seo";
 import { JsonLd, organizationLd, websiteLd } from "@/lib/jsonld";
 import "@/styles/index.css";
@@ -69,7 +69,7 @@ export default async function LangLayout({
   await connection();
 
   return (
-    <html lang={lang} dir={isRtlLocale(lang) ? "rtl" : "ltr"} className="dark">
+    <html lang={LOCALE_HREFLANG[lang]} dir={isRtlLocale(lang) ? "rtl" : "ltr"} className="dark">
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
       </head>

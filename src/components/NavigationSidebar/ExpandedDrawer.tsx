@@ -4,14 +4,7 @@ import { Link } from "../common";
 import { useState, useMemo, useLayoutEffect, useEffect } from "react";
 import { localeState } from "@/state/localeState";
 import { ASSET_BASE_URL, RTL_LANGUAGES } from "@/config/constants";
-
-const supportedLanguageOptions = [
-  { label: "English", value: "en", flag: "us" },
-  { label: "العربية", value: "ar", flag: "ae" },
-  { label: "Deutsch", value: "de", flag: "de" },
-  { label: "Français", value: "fr", flag: "fr" },
-  { label: "Русский", value: "ru", flag: "ru" },
-];
+import { LOCALE_OPTIONS as supportedLanguageOptions } from "@/config/i18n";
 
 interface ExpandedDrawerProps {
   mainNavItems: Array<{

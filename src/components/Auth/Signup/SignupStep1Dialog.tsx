@@ -4,7 +4,7 @@ import { Button, Select, SelectItem } from "@heroui/react";
 import { localeState } from "@/state/localeState";
 import { loginOpenedState } from "@/state/loginOpenedState";
 import { useTranslations } from "@/context/I18nContext";
-import { options } from "@/components/LocaleSelection";
+import { LOCALE_OPTIONS as options } from "@/config/i18n";
 import { ASSET_BASE_URL } from "@/config/constants";
 
 interface ISignupStep1DialogProps {

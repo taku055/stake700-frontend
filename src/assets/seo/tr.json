@@ -1,0 +1,503 @@
+{
+  "ui": {
+    "read_more": "Devamını oku",
+    "show_less": "Daha az göster",
+    "faq_title": "Sıkça sorulan sorular",
+    "explore": "{site} sitesini keşfedin",
+    "popular_providers": "Popüler oyun sağlayıcıları",
+    "more_from": "Diğer {provider} oyunları",
+    "all_provider_games": "Tüm {provider} oyunları",
+    "blog_link": "Blog ve oyun incelemeleri",
+    "best_slots_link": "Bu ayın en iyi slotları"
+  },
+  "pages": {
+    "home": {
+      "title": "{site} – kripto casino, online slot, canlı casino ve spor bahisleri",
+      "intro": "{site}, tek bir hesapla {games}+ gerçek parayla oynanan slot oyununa, canlı krupiye masalarına ve spor bahislerine erişebileceğiniz bir online kripto casino sitesidir. Bitcoin veya USDT ile para yatırın, ücretsiz dönüş (free spin) ve günlük nakit iade (cashback) fırsatlarından yararlanın; masaüstünde veya mobilde indirme gerektirmeden hemen oynayın.",
+      "sections": [
+        {
+          "h": "En iyi sağlayıcılardan online slot oyunları",
+          "p": [
+            "Casino lobimiz, büyük isimlerden yeni bağımsız geliştiricilere kadar {providers} oyun stüdyosunu bir araya getiriyor. Klasik meyve makinelerini, binlerce kazanma yolu sunan Megaways slotlarını, bonus satın alma oyunlarını, hold-and-win özellikli slotları ve progresif jackpot slotlarını çevirin. Her hafta yeni slotlar eklendiği için her zaman deneyebileceğiniz yeni bir oyun vardır.",
+            "Her oyun sayfasında sağlayıcı ve kategori bilgisi yer alır; böylece sevdiğiniz oyunlara benzer yeni oyunları hızla bulabilirsiniz. Favori slotunuza doğrudan ulaşmak için aramayı kullanın veya Şu An Popüler, En Çok Oynananlar ve Yeni Çıkanlar gibi özenle hazırlanmış listelere göz atın."
+          ]
+        },
+        {
+          "h": "Gerçek krupiyelerle canlı casino",
+          "p": [
+            "Gerçek bir masayı mı tercih edersiniz? Canlı casino; rulet, blackjack, bakara, poker, sic bo ve oyun şovlarını profesyonel krupiyelerle günün her saati HD kalitede yayınlar. Düşük limitli masalardan high roller salonlarına kadar seçiminizi yapın ve oynarken krupiyeyle sohbet edin."
+          ]
+        },
+        {
+          "h": "Kripto ile para yatırma ve hızlı para çekme",
+          "p": [
+            "{site} bir kripto casinodur: Bitcoin (BTC) ve Tether (ERC-20 ve TRC-20 ağlarında USDT) ile para yatırır ve çekersiniz. Her oyuncuya kişisel bir yatırım adresi verilir, yatırımlar ağ onayının ardından otomatik olarak hesaba geçer; kart masrafı veya banka gecikmesi yoktur."
+          ]
+        },
+        {
+          "h": "Bonuslar, ücretsiz dönüşler, nakit iade ve VIP",
+          "p": [
+            "Yeni oyuncular hoş geldin ücretsiz dönüşlerini alabilir ve her uygun kripto yatırım bir ücretsiz dönüş teklifinin kilidini açabilir. Slot oyuncuları ayrıca net kayıplarından günlük nakit iade (cashback) alır; bu iade çevrim şartı olmadan nakit olarak ödenir. Oynadıkça VIP basamaklarını tırmanır ve seviye atlama ödüllerinin kilidini açarsınız. Tüm kurallar her zaman bonus şartları sayfasında yer alır."
+          ]
+        },
+        {
+          "h": "Spor bahisleri",
+          "p": [
+            "Spor bahisleri bölümü futbol, basketbol, tenis, e-spor, at yarışı ve çok daha fazlasını maç öncesi ve canlı bahis oranlarıyla sunar. Casino bakiyeniz ve spor bakiyeniz aynı cüzdandır; böylece bir slot oyunu ile canlı bahis arasında saniyeler içinde geçiş yapabilirsiniz."
+          ]
+        },
+        {
+          "h": "Güvenli ve sorumlu oyun",
+          "p": [
+            "Hesaplar e-posta doğrulaması ve şifreli bağlantılarla korunur. Kendini hariç tutma ve sorumlu oyun araçları sunarız; yardıma ihtiyacınız olursa destek ekibimiz yanınızdadır. Lütfen sorumlu bir şekilde oynayın ve yalnızca kaybetmeyi göze alabileceğiniz tutarla bahis yapın. Oynamak için 18 yaşında veya daha büyük olmalısınız."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "{site} bir kripto casino mu?",
+          "a": "Evet. Para yatırma ve çekme işlemleri kripto para ile yapılır: Bitcoin (BTC) ve ERC-20 ile TRC-20 ağlarında USDT."
+        },
+        {
+          "q": "Kaç oyun oynayabilirim?",
+          "a": "{providers} sağlayıcıdan online slotlar, Megaways, jackpotlar, anlık oyunlar ve canlı krupiye masaları dahil {games}+ oyun bulunur."
+        },
+        {
+          "q": "Telefonumdan oynayabilir miyim?",
+          "a": "Evet. {site}, Android ve iPhone'daki tüm modern mobil tarayıcılarda çalışır; uygulama indirmenize gerek yoktur."
+        },
+        {
+          "q": "Hangi bonuslar mevcut?",
+          "a": "Hoş geldin ücretsiz dönüşleri, yatırıma özel ücretsiz dönüş teklifleri, slotlarda günlük nakit iade ve VIP seviye atlama ödülleri. Güncel teklifler için promosyonlar sayfasına göz atın."
+        },
+        {
+          "q": "Para çekme işlemleri ne kadar hızlı?",
+          "a": "Para çekme talepleri ekibimiz tarafından işleme alınır ve kripto cüzdanınıza gönderilir; transferin kendisi, blokzincirin işlemi onaylaması için gereken süre kadar sürer."
+        }
+      ]
+    },
+    "casino": {
+      "title": "Gerçek parayla online slot ve casino oyunları oynayın",
+      "intro": "{site} casino lobisinde {providers} sağlayıcıdan {games}+ online slot ve casino oyunu bulunur. Bitcoin veya USDT ile oynayın, her hafta yeni çıkan oyunları keşfedin ve özenle hazırlanmış kategorilerden favorilerinizi seçin.",
+      "sections": [
+        {
+          "h": "Her tarza uygun slot kategorileri",
+          "p": [
+            "Megaways slotları her dönüşte sembol sayısını değiştirerek yüz binlerce kazanma yoluna varan seçenekler sunar. Jackpot slotları her an düşebilecek bir ödül havuzu biriktirir. Bonus satın alma oyunları doğrudan ücretsiz dönüş turuna geçmenizi sağlar; hold-and-win slotları ise yeniden dönüşler için makaralardaki jetonları sabitler. Geleneksel oyun sevenler klasik ve meyve slotlarının ya da popüler \"Book of\" macera serisinin keyfini çıkarabilir."
+          ]
+        },
+        {
+          "h": "Slot nasıl seçilir?",
+          "p": [
+            "Sağlayıcıya, temaya ve volatiliteye bakın. Düşük volatiliteli slotlar daha küçük kazançları daha sık öder; yüksek volatiliteli slotlar ise daha seyrek öder ancak çok daha büyük kazançlar verebilir. Her oyun sayfası oyunun arkasındaki stüdyoyu gösterir; böylece beğendiğiniz bir sağlayıcının diğer oyunlarını keşfedebilirsiniz."
+          ]
+        },
+        {
+          "h": "Slotlarda ücretsiz dönüş ve günlük nakit iade",
+          "p": [
+            "Bonuslarımız en çok slotlarda parlıyor: uygun kripto yatırımlarda ücretsiz dönüş teklifleri, yeni oyunculara hoş geldin ücretsiz dönüşleri ve net slot kayıplarınız için nakit olarak ödenen günlük nakit iade. Güncel teklifler için promosyonlar sayfasını kontrol edin."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Bitcoin ile slot oynayabilir miyim?",
+          "a": "Evet. Bitcoin veya USDT yatırın; bakiyenizi tüm slot ve casino oyunlarında kullanabilirsiniz."
+        },
+        {
+          "q": "Megaways slotları nedir?",
+          "a": "Megaways slotları, her dönüşte sembol sayısı değişen makaralar kullanır ve sabit ödeme çizgileri yerine binlerce kazanma yolu oluşturur."
+        },
+        {
+          "q": "En popüler slotlar hangileri?",
+          "a": "Şu An Popüler ve En Çok Oynananlar kategorilerine göz atın; bu listeler oyuncuların o anda en çok çevirdiği oyunlarla otomatik olarak güncellenir."
+        }
+      ]
+    },
+    "casino_all": {
+      "title": "Tüm slot ve casino oyunları",
+      "intro": "{site} slot kütüphanesinin tamamına göz atın: {games}+ oyun tek bir yerde. Favori stüdyonuzun oyunlarını bulmak için sağlayıcıya göre filtreleyin veya yeni bir şey keşfetmek için sayfayı kaydırın.",
+      "sections": [
+        {
+          "h": "Eksiksiz oyun kütüphanesi",
+          "p": [
+            "Bu liste {site} üzerindeki tüm slot ve casino oyunlarını içerir: video slotlar, Megaways, jackpotlar, bonus satın alma oyunları, klasik ve meyve slotları ile anında kazan oyunları. Listeyi daraltmak için üstteki sağlayıcı filtresini kullanın, ardından kripto bakiyenizle oynamak için herhangi bir oyunu açın."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Oyunları sağlayıcıya göre nasıl filtrelerim?",
+          "a": "Oyun listesinin üzerindeki sağlayıcı filtresini kullanın ve bir veya daha fazla stüdyo seçin. Liste anında güncellenir."
+        }
+      ]
+    },
+    "live": {
+      "title": "Canlı casino – rulet, blackjack, bakara ve oyun şovları",
+      "intro": "{site} üzerinde gerçek krupiyelerle canlı casino oyunları oynayın. Canlı rulet, blackjack, bakara, poker, sic bo ve oyun şovları 7/24 HD kalitede yayınlanır; Bitcoin veya USDT ile bahis yapabilirsiniz.",
+      "sections": [
+        {
+          "h": "Canlı rulet",
+          "p": [
+            "Farklı limitlere sahip Avrupa, Amerikan, Fransız, lightning ve speed rulet masaları arasından seçim yapın. Çark canlı olarak dönerken sayılara, renklere, düzinelere veya komşu sayılara bahis yapın."
+          ]
+        },
+        {
+          "h": "Canlı blackjack ve bakara",
+          "p": [
+            "Yan bahisli ve sınırsız koltuklu varyantlar sunan canlı blackjack masalarında yerinizi alın ya da dünyanın en popüler casino kart oyunlarından biri olan canlı bakarayı speed ve squeeze masaları dahil oynayın."
+          ]
+        },
+        {
+          "h": "Oyun şovları ve yüksek limitli masalar",
+          "p": [
+            "Canlı oyun şovları; bir sunucuyu, büyük bir çarkı veya çarpanlı bir bonus panosunu bir araya getirerek her dakika eğlenceli bir tur sunar. High roller oyuncular, daha yüksek bahis limitlerine sahip özel yüksek limitli masalar bulabilir."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Canlı krupiyeler gerçek mi?",
+          "a": "Evet. Canlı casino oyunları, gerçek krupiyeler ve fiziksel kartlar, çarklar ve zarlarla profesyonel stüdyolardan yayınlanır."
+        },
+        {
+          "q": "Canlı casinoyu mobilde oynayabilir miyim?",
+          "a": "Evet. Canlı masalar telefon ekranınıza uyum sağlar ve mobil veri veya Wi-Fi üzerinden sorunsuz yayın yapar."
+        },
+        {
+          "q": "Canlı masalarda minimum bahis ne kadar?",
+          "a": "Limitler masaya göre değişir; her oyun açıldığında minimum ve maksimum bahis tutarını gösterir."
+        }
+      ]
+    },
+    "live_all": {
+      "title": "Tüm canlı krupiye oyunları",
+      "intro": "{site} sitesindeki tüm canlı krupiye masaları tek listede: önde gelen canlı stüdyolardan rulet, blackjack, bakara, poker, sic bo, Asya oyunları ve oyun şovları.",
+      "sections": [
+        {
+          "h": "Doğru canlı masayı bulun",
+          "p": [
+            "Favori canlı stüdyonuzu seçmek için sağlayıcıya göre filtreleyin, ardından limitlerini görmek için bir masa açın. Tüm masalar slotlarla aynı kripto bakiyesini kullanır; böylece oyunlar arasında özgürce geçiş yapabilirsiniz."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Canlı masalar gün boyu açık mı?",
+          "a": "Canlı masaların çoğu 7/24 açıktır. Birkaç özel masanın, oyun içinde gösterilen belirli çalışma saatleri vardır."
+        }
+      ]
+    },
+    "providers": {
+      "title": "Casino oyun sağlayıcıları",
+      "intro": "{site}, {providers} casino oyun sağlayıcısıyla çalışır. Tüm slot ve canlı oyunlarını tek bir yerde görmek için bir stüdyo seçin.",
+      "sections": [
+        {
+          "h": "Sağlayıcı neden önemlidir?",
+          "p": [
+            "Her stüdyonun kendine özgü bir tarzı vardır: matematik modelleri, bonus özellikleri, grafikleri ve sesleri. Bir oyunu beğendiyseniz aynı sağlayıcının diğer oyunlarını da beğenme olasılığınız yüksektir. Sağlayıcı sayfaları, o stüdyonun {site} üzerinde bulunan tüm oyunlarını listeler."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Oyunlar adil mi?",
+          "a": "Oyunlar, rastgele sayı üreteçleri bağımsız laboratuvarlar tarafından test edilen köklü sağlayıcılardan gelir."
+        }
+      ]
+    },
+    "promotions": {
+      "title": "Casino bonusları, ücretsiz dönüşler ve nakit iade",
+      "intro": "Tüm güncel {site} promosyonlarını görün: hoş geldin ücretsiz dönüşleri, kripto yatırımlarda ücretsiz dönüş teklifleri, haftalık Pazar teklifi, günlük slot nakit iadesi (cashback) ve VIP ödülleri.",
+      "sections": [
+        {
+          "h": "Kripto yatırımlarda ücretsiz dönüş",
+          "p": [
+            "Uygun Bitcoin ve USDT yatırımları, seçili slotlarda ücretsiz dönüş paketlerinin kilidini açabilir. Para yatırmadan önce teklifi seçin; dönüşler, yatırım onaylandığında otomatik olarak hesabınıza tanımlanır."
+          ]
+        },
+        {
+          "h": "Slotlarda günlük nakit iade",
+          "p": [
+            "Her gün net slot kayıplarınızın bir kısmını çevrim şartı olmadan gerçek nakit olarak iade ediyoruz. Nakit iade otomatik olarak hesaplanır ve ertesi gün bakiyenize eklenir."
+          ]
+        },
+        {
+          "h": "Açık ve net bonus şartları",
+          "p": [
+            "Her teklifin uygunluk, çevrim şartı, kazanç limitleri ve geçerlilik süresi gibi eksiksiz kuralları bonus şartları sayfasında yer alır; böylece neyi talep ettiğinizi her zaman tam olarak bilirsiniz."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Bonusu nasıl alırım?",
+          "a": "Para yatırmadan önce teklifi bu sayfada veya para yatırma penceresinde seçin. Ücretsiz dönüşler ve bonuslar, yatırım onaylandığında otomatik olarak hesabınıza tanımlanır."
+        },
+        {
+          "q": "Nakit iadenin çevrim şartı var mı?",
+          "a": "Hayır. Günlük slot nakit iadesi nakit olarak ödenir; hemen çekebilir veya oyunda kullanabilirsiniz."
+        }
+      ]
+    },
+    "vip": {
+      "title": "VIP kulübü – sadık oyunculara seviye atlama ödülleri",
+      "intro": "{site} VIP kulübü her oyuncuyu ödüllendirir. VIP basamaklarını tırmanmak için slot ve canlı oyunlarda bahis yapın; her yeni seviyede bonus ve ücretsiz dönüşlerin kilidini açın.",
+      "sections": [
+        {
+          "h": "VIP seviyeleri nasıl çalışır?",
+          "p": [
+            "VIP ilerlemeniz, gerçek parayla yaptığınız her bahisle artar. Her yeni seviyeye ulaştığınızda o seviyenin ödülünü VIP sayfasından talep edebilirsiniz. Daha yüksek seviyeler daha büyük ödüller getirir."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "VIP kulübüne kaydolmam gerekiyor mu?",
+          "a": "Hayır. Kayıtlı her oyuncu, ilk bahsinden itibaren otomatik olarak VIP programının bir parçasıdır."
+        }
+      ]
+    },
+    "sports": {
+      "title": "Kripto spor bahisleri – futbol, tenis, e-spor ve daha fazlasında canlı oranlar",
+      "intro": "{site} üzerinde Bitcoin ve USDT ile spor bahisleri yapın. Spor bahisleri bölümü futbol, basketbol, tenis, buz hokeyi, e-spor, at yarışı ve onlarca başka spor dalında maç öncesi ve canlı bahis oranları sunar.",
+      "sections": [
+        {
+          "h": "Canlı bahis",
+          "p": [
+            "Maçlar oynanırken oranlar gerçek zamanlı olarak güncellenir; böylece oyun ilerledikçe bir sonraki gole, bir sonraki sayıya veya maç sonucuna bahis yapabilirsiniz."
+          ]
+        },
+        {
+          "h": "Futbol bahisleri",
+          "p": [
+            "Dünyanın en iyi liglerine ve uluslararası turnuvalara; maç sonucu, karşılıklı gol, alt/üst gol, handikap ve kesin skor gibi bahis seçenekleriyle bahis yapın."
+          ]
+        },
+        {
+          "h": "E-spor ve daha fazlası",
+          "p": [
+            "E-spor tutkunları popüler oyunlara ve turnuvalara bahis yapabilirken, yarış severler her gün at, tazı ve tırıs yarışları bulabilir."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Kripto ile spor bahsi yapabilir miyim?",
+          "a": "Evet. Bitcoin veya USDT bakiyeniz hem casino hem de spor bahisleri için geçerlidir."
+        },
+        {
+          "q": "Canlı bahis nedir?",
+          "a": "Canlı bahis (in-play), maç başladıktan sonra, oyunun akışına göre değişen oranlarla bahis yapmanızı sağlar."
+        }
+      ]
+    },
+    "racing": {
+      "title": "At yarışı, tazı yarışı ve tırıs yarışı bahisleri",
+      "intro": "{site} üzerinde kripto bakiyenizle, günlük yarış programları ve canlı oranlarla at yarışı, tazı yarışı ve tırıs yarışlarına bahis yapın.",
+      "sections": [
+        {
+          "h": "Her gün yarış",
+          "p": [
+            "Dünyanın dört bir yanındaki yarış programlarını takip edin, katılımcıları karşılaştırın ve ganyan, plase ve each-way bahisleri yapın. Sonuçlar bakiyenize otomatik olarak yansır."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Tazı yarışlarına bahis yapabilir miyim?",
+          "a": "Evet. Tazı ve tırıs yarışlarının, günlük yarışların yer aldığı kendi bölümleri vardır."
+        }
+      ]
+    }
+  },
+  "categories": {
+    "casino:top": "En iyi slotlarımız: oynanış, özellikler ve oyuncu favorileri göz önünde bulundurularak {site} üzerinde özenle seçilmiş en iyi online slotlar.",
+    "casino:trending": "Trend slotlar, oyuncuların şu anda en çok çevirdiği oyunlardır. Liste otomatik olarak güncellenir; böylece her zaman en popüler oyunları gösterir.",
+    "casino:most-played": "{site} üzerinde tüm zamanların en çok oynanan slotları: büyük özelliklere ve sadık hayranlara sahip, kendini kanıtlamış favoriler.",
+    "casino:new": "Sağlayıcılarımızın yayınladığı yeni slotlar. Her hafta eklenen en yeni online slot oyunlarını ilk oynayanlardan olun.",
+    "casino:popular": "Klasik hitlerden özelliklerle dolu modern video slotlara kadar oyuncularımızın sevdiği popüler slotlar.",
+    "casino:jackpots": "Her an düşebilen sabit ve progresif jackpotlara sahip jackpot slotları. Hayatınızı değiştirebilecek ödüller için çevirin.",
+    "casino:megaways": "Megaways slotları her dönüşte sembol sayısını değiştirir ve yüz binlerce kazanma yoluna varan seçenekler sunar.",
+    "casino:bonus-buy": "Bonus satın alma slotları, scatter sembollerinin gelmesini beklemek yerine ücretsiz dönüş özelliğini doğrudan satın almanızı sağlar.",
+    "casino:hold-and-win": "Hold and win slotları özel jeton sembollerini makaralarda sabitler ve büyük ödül şansı için yeniden dönüşler verir.",
+    "casino:fruit-slots": "Meyve slotları kirazları, limonları, barları ve yedileri geri getiriyor: basit, hızlı ve eğlenceli klasik oynanış.",
+    "casino:classics": "Geleneksel meyve makinelerini seven oyuncular için az makaralı, basit kurallı ve retro tarzda klasik slotlar.",
+    "casino:book-of": "\"Book of\" slotları: ünlü Book serisinden ilham alan, ücretsiz dönüşler sırasında genişleyen sembollere sahip macera temalı oyunlar.",
+    "casino:instant-games": "Hızlı turlara sahip anlık oyunlar ve crash oyunları: mines, plinko, zar ve çarpan oyunları dahil.",
+    "live-casino:table-games": "Gerçek krupiyelerle canlı masa oyunları: rulet, blackjack, bakara, poker ve daha fazlası HD kalitede yayında.",
+    "live-casino:live-tables": "Canlı masalarımız: günün her saati açık olan en popüler canlı krupiye oyunları.",
+    "live-casino:top-tables": "Hızlı tempolu ruletten klasik blackjack'e kadar oyuncularımızın seçtiği en iyi canlı casino masaları.",
+    "live-casino:roulette": "Gerçek çarklar ve krupiyelerle canlı rulet: Avrupa, Amerikan, Fransız, lightning ve speed rulet.",
+    "live-casino:blackjack": "Gerçek krupiyeler, yan bahisler ve düşük limitlerden VIP masalara kadar her bütçeye uygun seçeneklerle canlı blackjack masaları.",
+    "live-casino:baccarat": "Speed, squeeze ve komisyonsuz masalar dahil canlı bakara: Oyuncu (Player), Banka (Banker) veya Beraberlik (Tie) üzerine bahis yapın.",
+    "live-casino:game-shows": "Sunucular, para çarkları, bonus turları ve çarpanlarla canlı oyun şovları: gerçek zamanlı casino eğlencesi.",
+    "live-casino:poker": "Gerçek bir krupiyeye karşı oynanan Casino Hold'em ve Three Card Poker gibi canlı poker oyunları.",
+    "live-casino:asian-games": "Asya genelinde popüler olan dragon tiger, fan tan ve bakara varyantları gibi canlı Asya oyunları.",
+    "live-casino:sic-bo": "Canlı sic bo ve zar oyunları: canlı krupiyenin salladığı üç zarın sonucuna bahis yapın.",
+    "live-casino:high-stakes": "High roller ve VIP oyuncular için daha yüksek bahis limitlerine sahip yüksek limitli canlı masalar."
+  },
+  "category_template": {
+    "title": "{category} – online {section} oyunları",
+    "sections": [
+      {
+        "h": "Kripto ile {category} oyunları oynayın",
+        "p": [
+          "{site} üzerindeki tüm {category} oyunları masaüstünde ve mobilde Bitcoin veya USDT bakiyenizle oynanabilir. Sağlayıcısını görmek için bir oyun açın, ardından aynı stüdyonun diğer oyunlarını keşfedin."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "{category} oyunlarını mobilde oynayabilir miyim?",
+        "a": "Evet. {site} üzerindeki tüm {category} oyunları indirme gerektirmeden mobil tarayıcınızda çalışır."
+      },
+      {
+        "q": "{category} oyunlarını hangi sağlayıcılar üretiyor?",
+        "a": "{site} üzerinde hangi stüdyoların {category} oyunları sunduğunu görmek için bu sayfadaki sağlayıcı filtresini kullanın."
+      }
+    ]
+  },
+  "provider_template": {
+    "title": "{provider} slot ve casino oyunları",
+    "intro": "{site} üzerinde {count} {provider} oyununu online oynayın. Lobimizdeki tüm {provider} oyunları burada listelenir ve masaüstünde ve mobilde Bitcoin veya USDT ile oynanabilir.",
+    "sections": [
+      {
+        "h": "{provider} hakkında",
+        "p": [
+          "{provider}, {site} üzerinde bulunan {providers} oyun stüdyosundan biridir. Oyunları tarayıcınızda çalışır, mobilde hızlı yüklenir ve bağımsız laboratuvarlar tarafından test edilen rastgele sayı üreteçleri kullanır.",
+          "Yeni {provider} oyunları bu sayfaya otomatik olarak eklenir; en yeni oyunları denemek için tekrar uğrayın."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "{site} üzerinde kaç {provider} oyunu var?",
+        "a": "Şu anda {count} {provider} oyunu mevcuttur."
+      },
+      {
+        "q": "{provider} oyunlarını kripto ile oynayabilir miyim?",
+        "a": "Evet. Bitcoin veya USDT yatırın ve bakiyenizle dilediğiniz {provider} oyununu oynayın."
+      }
+    ]
+  },
+  "game_template": {
+    "sections": [
+      {
+        "h": "{game} nasıl oynanır?",
+        "p": [
+          "Giriş yapın, Bitcoin veya USDT yatırın ve {game} oyununu açın. Oyun içinde bahis tutarınızı seçin, ardından çevirin veya bahsinizi yapın. Kazançlar anında {site} bakiyenize eklenir.",
+          "{game}; masaüstünde, Android'de ve iPhone'da tüm modern tarayıcılarda çalışır, indirmeniz gereken hiçbir şey yoktur."
+        ]
+      },
+      {
+        "h": "{game} oyununda kullanabileceğiniz bonuslar",
+        "p": [
+          "Güncel teklifler için promosyonlar sayfasına göz atın. Slot oyuncuları ayrıca net kayıplarından günlük nakit iade alır ve her bahis VIP seviyenize katkı sağlar."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "{game} oyununu kim yaptı?",
+        "a": "{game}, {provider} tarafından geliştirilmiştir."
+      },
+      {
+        "q": "{game} oyununu mobilde oynayabilir miyim?",
+        "a": "Evet. {game}, Android ve iPhone'da mobil tarayıcınızda çalışır."
+      },
+      {
+        "q": "{game} oyununu Bitcoin ile oynayabilir miyim?",
+        "a": "Evet. Bitcoin veya USDT yatırın ve {game} oyununu bakiyenizle oynayın."
+      }
+    ]
+  },
+  "blog": {
+    "meta_title": "Casino Blogu – Slot İncelemeleri, Rehberler ve Haberler",
+    "meta_description": "{site} ekibinden slot incelemeleri, casino rehberleri, en iyiler listeleri ve haberler. Bir sonraki oyununuzu bulun ve kripto ile oynarken daha fazlasını nasıl elde edeceğinizi öğrenin.",
+    "title": "Blog: slot incelemeleri, rehberler ve casino haberleri",
+    "intro": "Lobimizdeki slot ve canlı oyunların incelemeleri, bonuslar ve kripto ile oyun hakkında rehberler, aylık en iyiler listeleri ve {site} haberleri.",
+    "all": "Tüm yazılar",
+    "categories": {
+      "NEWS": "Haberler",
+      "REVIEW": "Oyun incelemeleri",
+      "GUIDE": "Rehberler",
+      "TOP_LIST": "En iyiler listeleri"
+    },
+    "read_time": "{min} dk okuma",
+    "published": "Yayınlanma: {date}",
+    "updated": "Güncellenme: {date}",
+    "games_title": "Bu yazıdaki oyunlar",
+    "latest": "Diğer yazılar",
+    "empty": "Burada henüz yazı yok; yakında tekrar göz atın.",
+    "prev": "Daha yeni",
+    "next": "Daha eski",
+    "page": "Sayfa {page}",
+    "reviews_of": "{game} hakkında devamını okuyun",
+    "author": "{site} editör ekibi",
+    "play": "Oyna"
+  },
+  "top": {
+    "meta_title": "En İyi Slotlar {month} – En Çok Oynanan Online Slotlar",
+    "meta_description": "{month} ayında {site} üzerinde en çok oynanan online slotlar ve canlı casino oyunları, gerçek oyunculara göre sıralandı. Ayın en iyi slotlarını Bitcoin veya USDT ile oynayın.",
+    "title": "{month} ayının en iyi slotları",
+    "kicker": "Bu ay en çok oynananlar",
+    "intro_live": "Bunlar, {site} oyuncularının {month} ayında en çok çevirdiği slotlardır. Sıralama gerçek oyun verilerine, yani her oyundaki farklı oyuncu ve tur sayısına dayanır ve ay sonuna kadar her saat yenilenir.",
+    "intro_final": "Bunlar, {month} ayında {site} üzerinde en çok oynanan slotlardı; sıralama gerçek oyun verilerine, yani her oyundaki farklı oyuncu ve tur sayısına göre yapıldı. Bu, ayın kesinleşmiş sıralamasıdır.",
+    "slots_title": "En iyi {count} slot – {month}",
+    "live_title": "En çok oynanan canlı casino oyunları – {month}",
+    "archive_title": "Önceki ayların sıralamaları",
+    "latest_badge": "Saatlik güncellenir",
+    "final_badge": "Kesin sıralama",
+    "empty": "Bu ay için henüz yeterli oyun verisi yok.",
+    "faq": [
+      {
+        "q": "Sıralama nasıl hesaplanıyor?",
+        "a": "Ay boyunca her oyunu kaç farklı oyuncunun oynadığını, ardından tur sayısını sayarız. Daha büyük kazançlar veya bahisler sıralamayı değiştirmez."
+      },
+      {
+        "q": "Liste ne sıklıkla değişiyor?",
+        "a": "İçinde bulunulan ayın listesi her saat yenilenir. Ay sona erdiğinde sıralama sabitlenir ve arşive taşınır."
+      },
+      {
+        "q": "Bu slotları kripto ile oynayabilir miyim?",
+        "a": "Evet. Listedeki tüm oyunlar masaüstünde ve mobilde Bitcoin veya USDT bakiyenizle oynanabilir."
+      }
+    ]
+  },
+  "promo_page": {
+    "meta_title": "{name} – {headline}",
+    "meta_description": "{site} üzerinde {name}: {headline}. Teklifi nasıl alacağınızı, kimlerin yararlanabileceğini ve tüm şartları görün.",
+    "kicker": "Bonus teklifi",
+    "how_title": "{name} nasıl alınır?",
+    "steps_deposit": [
+      "Giriş yapın veya ücretsiz bir {site} hesabı oluşturun.",
+      "Para yatırma penceresini açın ve para yatırmadan önce {name} teklifini seçin.",
+      "Bitcoin veya USDT yatırın; yatırımınız en az şartlarda belirtilen minimum tutar kadar olmalıdır.",
+      "Yatırımınız blokzincirde onaylandığında ödül otomatik olarak hesabınıza tanımlanır."
+    ],
+    "steps_other": [
+      "Giriş yapın veya ücretsiz bir {site} hesabı oluşturun.",
+      "Aşağıdaki şartlarda listelenen koşulları karşıladığınızdan emin olun.",
+      "Teklifi promosyonlar sayfasından talep edin; ödül otomatik olarak hesabınıza eklenir."
+    ],
+    "terms_title": "Teklif şartları",
+    "full_terms": "Tüm bonus şartlarını okuyun",
+    "other_offers": "Diğer teklifler",
+    "all_offers": "Tüm promosyonlar",
+    "faq": [
+      {
+        "q": "{name} teklifinden ne sıklıkla yararlanabilirim?",
+        "a": "Yukarıdaki şartlarda \"Ne sıklıkla\" altında gösterildiği kadar: tekliflerin çoğu hesap başına bir kez, haftalık teklifler ise haftada bir kez alınabilir."
+      },
+      {
+        "q": "Ücretsiz dönüş kazançlarının çevrim şartı var mı?",
+        "a": "Ücretsiz dönüş kazançları, yukarıdaki şartlarda gösterilen çevrim şartıyla bonus para olarak eklenir; şart karşılandığında bu para çekilebilir nakde dönüşür."
+      },
+      {
+        "q": "Hangi yatırımlar teklife uygundur?",
+        "a": "Teklifler yalnızca şartlarda belirtilen minimum tutara ulaşan kripto yatırımlar (Bitcoin veya USDT) için geçerlidir."
+      }
+    ]
+  }
+}

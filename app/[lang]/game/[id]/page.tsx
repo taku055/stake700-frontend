@@ -14,7 +14,18 @@ import type { tGame } from "@/types/tGame";
 
 type Props = { params: Promise<{ lang: string; id: string }> };
 
-const BY: Record<Locale, string> = { en: " by", ar: " من", de: " von", fr: " de", ru: " от" };
+// Turkish and Mongolian put "by" after the name, so they use a dash instead: "Game – Provider".
+const BY: Record<Locale, string> = {
+  en: " by",
+  ar: " من",
+  de: " von",
+  fr: " de",
+  ru: " от",
+  tr: " –",
+  mn: " –",
+  pt: " da",
+  es: " de",
+};
 
 async function loadGame(param: string) {
   const { id } = parseGameParam(param);

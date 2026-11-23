@@ -53,6 +53,10 @@ import deDefinition from "@/assets/i18n/de.json";
 import enDefinition from "@/assets/i18n/en.json";
 import frDefinition from "@/assets/i18n/fr.json";
 import ruDefinition from "@/assets/i18n/ru.json";
+import trDefinition from "@/assets/i18n/tr.json";
+import mnDefinition from "@/assets/i18n/mn.json";
+import ptDefinition from "@/assets/i18n/pt.json";
+import esDefinition from "@/assets/i18n/es.json";
 import { globalLoadingState } from "@/state/globalLoadingState";
 import { sessionHydratedState } from "@/state/sessionHydratedState";
 import Loading from "@/components/Loading";
@@ -84,11 +88,15 @@ import { apiGetBonusAvailability } from "@/api/bonus/apiGetBonusAvailability";
 import { bonusAvailabilityState } from "@/state/bonusAvailabilityState";
 
 const i18nDefinitions = {
-  ru: ruDefinition,
   en: enDefinition,
-  fr: frDefinition,
   ar: arDefinition,
   de: deDefinition,
+  fr: frDefinition,
+  ru: ruDefinition,
+  tr: trDefinition,
+  mn: mnDefinition,
+  pt: ptDefinition,
+  es: esDefinition,
 };
 
 effect(() => {

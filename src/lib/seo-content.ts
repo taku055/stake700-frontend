@@ -6,6 +6,10 @@ import ar from "@/assets/seo/ar.json";
 import de from "@/assets/seo/de.json";
 import fr from "@/assets/seo/fr.json";
 import ru from "@/assets/seo/ru.json";
+import tr from "@/assets/seo/tr.json";
+import mn from "@/assets/seo/mn.json";
+import pt from "@/assets/seo/pt.json";
+import es from "@/assets/seo/es.json";
 
 /**
  * Long-form, crawlable page copy (intro, sections, FAQ) per locale.
@@ -18,7 +22,17 @@ type Faq = { q: string; a: string };
 type RawArticle = { title?: string; intro?: string; sections?: Section[]; faq?: Faq[] };
 type Content = typeof en;
 
-const CONTENT: Record<Locale, Content> = { en, ar: ar as Content, de: de as Content, fr: fr as Content, ru: ru as Content };
+const CONTENT: Record<Locale, Content> = {
+  en,
+  ar: ar as Content,
+  de: de as Content,
+  fr: fr as Content,
+  ru: ru as Content,
+  tr: tr as Content,
+  mn: mn as Content,
+  pt: pt as Content,
+  es: es as Content,
+};
 
 export type SeoArticleData = { title: string; intro?: string; sections: Section[]; faq: Faq[] };
 export type Vars = Record<string, string | number>;

@@ -1,0 +1,503 @@
+{
+  "ui": {
+    "read_more": "Leia mais",
+    "show_less": "Mostrar menos",
+    "faq_title": "Perguntas frequentes",
+    "explore": "Explore a {site}",
+    "popular_providers": "Provedores de jogos populares",
+    "more_from": "Mais jogos da {provider}",
+    "all_provider_games": "Todos os jogos da {provider}",
+    "blog_link": "Blog e análises de jogos",
+    "best_slots_link": "Melhores slots do mês"
+  },
+  "pages": {
+    "home": {
+      "title": "{site} – cassino cripto, slots online, cassino ao vivo e apostas esportivas",
+      "intro": "A {site} é um cassino online cripto onde você joga mais de {games} slots a dinheiro real, mesas com dealer ao vivo e faz apostas esportivas em uma única conta. Deposite com Bitcoin ou USDT, resgate rodadas grátis e cashback diário e jogue na hora no computador ou no celular, sem precisar baixar nada.",
+      "sections": [
+        {
+          "h": "Slots online dos melhores provedores",
+          "p": [
+            "Nosso lobby de cassino reúne {providers} estúdios de jogos, dos grandes nomes aos novos desenvolvedores independentes. Gire caça-níqueis clássicos de frutas, slots Megaways com milhares de formas de ganhar, jogos com compra de bônus, recursos hold-and-win e slots com jackpot progressivo. Novos slots chegam toda semana, então sempre há um lançamento para experimentar.",
+            "Cada página de jogo mostra o provedor e a categoria, para você encontrar rapidamente mais títulos de que gosta. Use a busca para ir direto ao seu slot favorito ou navegue por listas selecionadas, como Em alta, Mais jogados e Lançamentos."
+          ]
+        },
+        {
+          "h": "Cassino ao vivo com dealers reais",
+          "p": [
+            "Prefere uma mesa de verdade? O cassino ao vivo transmite roleta, blackjack, bacará, poker, sic bo e game shows em HD, com dealers profissionais 24 horas por dia. Escolha entre mesas de apostas baixas e salas para high rollers e converse com o dealer pelo chat enquanto joga."
+          ]
+        },
+        {
+          "h": "Depósitos em cripto e saques rápidos",
+          "p": [
+            "A {site} é um cassino cripto: você deposita e saca com Bitcoin (BTC) e Tether (USDT nas redes ERC-20 e TRC-20). Cada jogador recebe um endereço de depósito exclusivo, os depósitos são creditados automaticamente após a confirmação da rede e não há tarifas de cartão nem atrasos bancários."
+          ]
+        },
+        {
+          "h": "Bônus, rodadas grátis, cashback e VIP",
+          "p": [
+            "Novos jogadores podem resgatar rodadas grátis de boas-vindas, e cada depósito em cripto elegível pode liberar uma oferta de rodadas grátis. Quem joga slots também recebe cashback diário sobre as perdas líquidas, pago em dinheiro real e sem rollover. Conforme você joga, sobe na escada VIP e desbloqueia recompensas a cada novo nível. As regras completas estão sempre na página de termos de bônus."
+          ]
+        },
+        {
+          "h": "Apostas esportivas",
+          "p": [
+            "A casa de apostas cobre futebol, basquete, tênis, eSports, corridas de cavalos e muito mais, com odds pré-jogo e ao vivo. O saldo do cassino e o das apostas esportivas ficam na mesma carteira, então você troca de um slot para uma aposta ao vivo em segundos."
+          ]
+        },
+        {
+          "h": "Jogo seguro e responsável",
+          "p": [
+            "As contas são protegidas com verificação de e-mail e conexões criptografadas. Oferecemos autoexclusão e ferramentas de jogo responsável, e nossa equipe de suporte está disponível se você precisar de ajuda. Jogue com responsabilidade e aposte apenas o que pode perder. É preciso ter 18 anos ou mais para jogar."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "A {site} é um cassino cripto?",
+          "a": "Sim. Os depósitos e saques são feitos em criptomoeda: Bitcoin (BTC) e USDT nas redes ERC-20 e TRC-20."
+        },
+        {
+          "q": "Quantos jogos posso jogar?",
+          "a": "São mais de {games} jogos de {providers} provedores, incluindo slots online, Megaways, jackpots, jogos instantâneos e mesas com dealer ao vivo."
+        },
+        {
+          "q": "Posso jogar no celular?",
+          "a": "Sim. A {site} funciona em qualquer navegador móvel moderno no Android e no iPhone, sem precisar baixar aplicativo."
+        },
+        {
+          "q": "Quais bônus estão disponíveis?",
+          "a": "Rodadas grátis de boas-vindas, ofertas de rodadas grátis em depósitos, cashback diário em slots e recompensas por subir de nível VIP. Confira a página de promoções para ver as ofertas atuais."
+        },
+        {
+          "q": "Quanto tempo demoram os saques?",
+          "a": "As solicitações de saque são processadas pela nossa equipe e enviadas para a sua carteira cripto; a transferência em si leva o tempo que a blockchain precisar para confirmá-la."
+        }
+      ]
+    },
+    "casino": {
+      "title": "Jogue slots online e jogos de cassino a dinheiro real",
+      "intro": "O lobby de cassino da {site} tem mais de {games} slots online e jogos de cassino de {providers} provedores. Jogue com Bitcoin ou USDT, descubra lançamentos toda semana e escolha seus favoritos em categorias selecionadas.",
+      "sections": [
+        {
+          "h": "Categorias de slots para todos os estilos",
+          "p": [
+            "Os slots Megaways mudam o número de símbolos a cada giro, com até centenas de milhares de formas de ganhar. Os slots com jackpot acumulam um prêmio que pode sair a qualquer momento. Os jogos com compra de bônus permitem ir direto para a rodada de giros grátis, e os slots hold-and-win travam moedas nos rolos para rodadas extras (respins). Os fãs do tradicional podem curtir caça-níqueis clássicos e de frutas ou a popular série de aventura \"Book of\"."
+          ]
+        },
+        {
+          "h": "Como escolher um slot",
+          "p": [
+            "Observe o provedor, o tema e a volatilidade. Slots de baixa volatilidade pagam prêmios menores com mais frequência, enquanto slots de alta volatilidade pagam com menos frequência, mas podem pagar prêmios bem maiores. Cada página de jogo mostra o estúdio responsável, para você explorar mais títulos de um provedor de que goste."
+          ]
+        },
+        {
+          "h": "Rodadas grátis e cashback diário em slots",
+          "p": [
+            "É nos slots que os nossos bônus brilham: ofertas de rodadas grátis em depósitos em cripto elegíveis, rodadas grátis de boas-vindas para novos jogadores e cashback diário sobre as perdas líquidas em slots, pago em dinheiro real. Confira a página de promoções para ver as ofertas atuais."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Posso jogar slots com Bitcoin?",
+          "a": "Sim. Deposite Bitcoin ou USDT e use seu saldo em todos os slots e jogos de cassino."
+        },
+        {
+          "q": "O que são slots Megaways?",
+          "a": "Os slots Megaways usam rolos com um número variável de símbolos a cada giro, criando milhares de formas de ganhar em vez de linhas de pagamento fixas."
+        },
+        {
+          "q": "Quais slots são os mais populares?",
+          "a": "Veja as categorias Em alta e Mais jogados: elas são atualizadas automaticamente com o que os jogadores estão girando agora."
+        }
+      ]
+    },
+    "casino_all": {
+      "title": "Todos os slots e jogos de cassino",
+      "intro": "Navegue pela biblioteca completa de slots da {site}: mais de {games} jogos em um só lugar. Filtre por provedor para encontrar títulos do seu estúdio favorito ou role a página para descobrir algo novo.",
+      "sections": [
+        {
+          "h": "A biblioteca de jogos completa",
+          "p": [
+            "Esta lista inclui todos os slots e jogos de cassino da {site}: video slots, Megaways, jackpots, compra de bônus, caça-níqueis clássicos e de frutas e jogos de ganho instantâneo. Use o filtro de provedores no topo para refinar a lista e abra qualquer jogo para jogar com seu saldo em cripto."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Como filtro os jogos por provedor?",
+          "a": "Use o filtro de provedores acima da grade de jogos e escolha um ou mais estúdios. A lista é atualizada na hora."
+        }
+      ]
+    },
+    "live": {
+      "title": "Cassino ao vivo – roleta, blackjack, bacará e game shows",
+      "intro": "Jogue jogos de cassino ao vivo com dealers reais na {site}. Roleta ao vivo, blackjack, bacará, poker, sic bo e game shows são transmitidos em HD 24/7, e você pode apostar com Bitcoin ou USDT.",
+      "sections": [
+        {
+          "h": "Roleta ao vivo",
+          "p": [
+            "Escolha mesas de roleta europeia, americana e francesa, Lightning Roulette e roleta speed, com limites diferentes. Aposte em números, cores, dúzias ou vizinhos enquanto a roda gira ao vivo."
+          ]
+        },
+        {
+          "h": "Blackjack e bacará ao vivo",
+          "p": [
+            "Sente-se em mesas de blackjack ao vivo com apostas paralelas e variantes com lugares ilimitados, ou jogue bacará ao vivo, incluindo mesas speed e squeeze, um dos jogos de cartas de cassino mais populares do mundo."
+          ]
+        },
+        {
+          "h": "Game shows e mesas de apostas altas",
+          "p": [
+            "Os game shows ao vivo combinam um apresentador, uma grande roda ou um painel de bônus com multiplicadores para uma rodada divertida a cada minuto. Os high rollers encontram mesas exclusivas de apostas altas, com limites de aposta maiores."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Os dealers ao vivo são reais?",
+          "a": "Sim. Os jogos de cassino ao vivo são transmitidos de estúdios profissionais, com dealers reais e cartas, rodas e dados físicos."
+        },
+        {
+          "q": "Posso jogar no cassino ao vivo pelo celular?",
+          "a": "Sim. As mesas ao vivo se adaptam à tela do seu celular e a transmissão roda bem pelos dados móveis ou pelo Wi-Fi."
+        },
+        {
+          "q": "Qual é a aposta mínima nas mesas ao vivo?",
+          "a": "Os limites dependem da mesa; cada jogo mostra a aposta mínima e a máxima quando você o abre."
+        }
+      ]
+    },
+    "live_all": {
+      "title": "Todos os jogos com dealer ao vivo",
+      "intro": "Todas as mesas com dealer ao vivo da {site} em uma só lista: roleta, blackjack, bacará, poker, sic bo, jogos asiáticos e game shows dos principais estúdios ao vivo.",
+      "sections": [
+        {
+          "h": "Encontre a mesa ao vivo ideal",
+          "p": [
+            "Filtre por provedor para escolher seu estúdio ao vivo favorito e abra uma mesa para ver os limites. Todas as mesas usam o mesmo saldo em cripto dos slots, então você pode alternar entre os jogos à vontade."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "As mesas ao vivo ficam abertas o dia todo?",
+          "a": "A maioria das mesas ao vivo funciona 24/7. Algumas mesas especiais têm horários programados, exibidos dentro do jogo."
+        }
+      ]
+    },
+    "providers": {
+      "title": "Provedores de jogos de cassino",
+      "intro": "A {site} trabalha com {providers} provedores de jogos de cassino. Escolha um estúdio para ver todos os slots e jogos ao vivo dele em um só lugar.",
+      "sections": [
+        {
+          "h": "Por que o provedor faz diferença",
+          "p": [
+            "Cada estúdio tem seu próprio estilo: modelos matemáticos, recursos de bônus, gráficos e som. Se você gosta de um jogo, há uma boa chance de gostar de outros títulos do mesmo provedor. As páginas de provedores listam todos os jogos desse estúdio disponíveis na {site}."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Os jogos são justos?",
+          "a": "Os jogos vêm de provedores consagrados, cujos geradores de números aleatórios (RNG) são testados por laboratórios independentes."
+        }
+      ]
+    },
+    "promotions": {
+      "title": "Bônus de cassino, rodadas grátis e cashback",
+      "intro": "Veja todas as promoções atuais da {site}: rodadas grátis de boas-vindas, ofertas de rodadas grátis em depósitos em cripto, a oferta semanal de domingo, cashback diário em slots e recompensas VIP.",
+      "sections": [
+        {
+          "h": "Rodadas grátis em depósitos em cripto",
+          "p": [
+            "Depósitos elegíveis em Bitcoin e USDT podem liberar pacotes de rodadas grátis em slots selecionados. Escolha a oferta antes de depositar, e as rodadas são creditadas automaticamente assim que o depósito é confirmado."
+          ]
+        },
+        {
+          "h": "Cashback diário em slots",
+          "p": [
+            "Todos os dias devolvemos parte das suas perdas líquidas em slots como dinheiro real, sem requisito de apostas. O cashback é calculado automaticamente e adicionado ao seu saldo no dia seguinte."
+          ]
+        },
+        {
+          "h": "Termos de bônus claros",
+          "p": [
+            "Cada oferta tem um conjunto completo de regras (elegibilidade, rollover, limites de ganho e validade) na página de termos de bônus, para que você sempre saiba exatamente o que está resgatando."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Como resgato um bônus?",
+          "a": "Escolha a oferta nesta página ou na janela de depósito antes de depositar. As rodadas grátis e os bônus são creditados automaticamente quando o depósito é confirmado."
+        },
+        {
+          "q": "O cashback tem rollover?",
+          "a": "Não. O cashback diário em slots é pago em dinheiro real e pode ser sacado ou usado para jogar na hora."
+        }
+      ]
+    },
+    "vip": {
+      "title": "Clube VIP – recompensas por nível para jogadores fiéis",
+      "intro": "O clube VIP da {site} recompensa todos os jogadores. Aposte em slots e jogos ao vivo para subir na escada VIP e desbloquear um bônus e rodadas grátis a cada novo nível.",
+      "sections": [
+        {
+          "h": "Como funcionam os níveis VIP",
+          "p": [
+            "Seu progresso VIP aumenta a cada aposta com dinheiro real. Sempre que você alcança um novo nível, pode resgatar a recompensa desse nível na página VIP. Níveis mais altos trazem recompensas maiores."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Preciso me inscrever no clube VIP?",
+          "a": "Não. Todo jogador cadastrado faz parte automaticamente do programa VIP a partir da primeira aposta."
+        }
+      ]
+    },
+    "sports": {
+      "title": "Apostas esportivas com cripto – odds ao vivo em futebol, tênis, eSports e mais",
+      "intro": "Aposte em esportes com Bitcoin e USDT na {site}. A casa de apostas oferece odds pré-jogo e ao vivo em futebol, basquete, tênis, hóquei no gelo, eSports, corridas de cavalos e dezenas de outros esportes.",
+      "sections": [
+        {
+          "h": "Apostas ao vivo",
+          "p": [
+            "As odds são atualizadas em tempo real durante as partidas, então você pode apostar no próximo gol, no próximo ponto ou no resultado final conforme o jogo se desenrola."
+          ]
+        },
+        {
+          "h": "Apostas em futebol",
+          "p": [
+            "Aposte nas principais ligas do mundo e em torneios internacionais, com mercados como resultado final, ambas marcam, mais/menos gols, handicap e placar exato."
+          ]
+        },
+        {
+          "h": "eSports e muito mais",
+          "p": [
+            "Os fãs de eSports podem apostar em jogos e torneios populares, e os fãs de turfe encontram corridas de cavalos, de galgos e de trote todos os dias."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Posso apostar em esportes com cripto?",
+          "a": "Sim. Seu saldo em Bitcoin ou USDT vale tanto para o cassino quanto para as apostas esportivas."
+        },
+        {
+          "q": "O que são apostas in-play?",
+          "a": "As apostas in-play (ao vivo) permitem fazer apostas depois que a partida já começou, com odds que mudam conforme a ação acontece."
+        }
+      ]
+    },
+    "racing": {
+      "title": "Apostas em corridas de cavalos, galgos e trote",
+      "intro": "Aposte em corridas de cavalos, galgos e trote na {site}, com programação diária de corridas e odds ao vivo, usando seu saldo em cripto.",
+      "sections": [
+        {
+          "h": "Corridas todos os dias",
+          "p": [
+            "Acompanhe reuniões de corridas do mundo todo, compare os competidores e faça apostas de vitória, colocação e each-way (vitória e colocação). Os resultados são liquidados automaticamente no seu saldo."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Posso apostar em corridas de galgos?",
+          "a": "Sim. As corridas de galgos e de trote têm seções próprias, com corridas diárias."
+        }
+      ]
+    }
+  },
+  "categories": {
+    "casino:top": "Nossos slots top: os melhores slots online da {site}, escolhidos a dedo pela jogabilidade, pelos recursos e pela preferência dos jogadores.",
+    "casino:trending": "Os slots em alta são os jogos que os jogadores mais estão girando agora. A lista é atualizada automaticamente, então sempre mostra o que está bombando.",
+    "casino:most-played": "Os slots mais jogados da {site} de todos os tempos: favoritos comprovados, com grandes recursos e fãs fiéis.",
+    "casino:new": "Novos slots lançados pelos nossos provedores. Seja um dos primeiros a jogar os lançamentos de slots online mais recentes, adicionados toda semana.",
+    "casino:popular": "Slots populares adorados pelos nossos jogadores, dos sucessos clássicos aos video slots modernos cheios de recursos.",
+    "casino:jackpots": "Slots com jackpots fixos e progressivos que podem sair a qualquer momento. Gire em busca de prêmios que mudam a sua vida.",
+    "casino:megaways": "Os slots Megaways mudam o número de símbolos a cada giro, oferecendo até centenas de milhares de formas de ganhar.",
+    "casino:bonus-buy": "Os slots com compra de bônus permitem comprar diretamente o recurso de giros grátis, em vez de esperar os símbolos scatter aparecerem.",
+    "casino:hold-and-win": "Os slots hold and win travam símbolos especiais de moedas nos rolos e dão rodadas extras (respins) com chance de grandes prêmios.",
+    "casino:fruit-slots": "Os slots de frutas trazem de volta cerejas, limões, barras e setes: jogabilidade clássica simples, rápida e divertida.",
+    "casino:classics": "Slots clássicos com poucos rolos, regras simples e estilo retrô, para quem gosta dos caça-níqueis de frutas tradicionais.",
+    "casino:book-of": "Slots \"Book of\": jogos com tema de aventura e símbolos expansivos durante os giros grátis, inspirados na famosa série Book.",
+    "casino:instant-games": "Jogos instantâneos e jogos crash com rodadas rápidas, incluindo Mines, Plinko, dados e jogos de multiplicador.",
+    "live-casino:table-games": "Jogos de mesa ao vivo com dealers reais: roleta, blackjack, bacará, poker e muito mais, transmitidos em HD.",
+    "live-casino:live-tables": "Nossas mesas ao vivo: os jogos com dealer ao vivo mais populares, abertos 24 horas por dia.",
+    "live-casino:top-tables": "As melhores mesas de cassino ao vivo escolhidas pelos nossos jogadores, da roleta acelerada ao blackjack clássico.",
+    "live-casino:roulette": "Roleta ao vivo com rodas e dealers reais: roleta europeia, americana e francesa, Lightning Roulette e roleta speed.",
+    "live-casino:blackjack": "Mesas de blackjack ao vivo com dealers reais, apostas paralelas e opções para todos os bolsos, de limites baixos a VIP.",
+    "live-casino:baccarat": "Bacará ao vivo, incluindo mesas speed, squeeze e sem comissão: aposte em Jogador (Player), Banca (Banker) ou Empate (Tie).",
+    "live-casino:game-shows": "Game shows ao vivo com apresentadores, rodas da fortuna, rodadas de bônus e multiplicadores: entretenimento de cassino em tempo real.",
+    "live-casino:poker": "Jogos de poker ao vivo como Casino Hold'em e Three Card Poker, jogados contra um dealer real.",
+    "live-casino:asian-games": "Jogos asiáticos ao vivo como Dragon Tiger, Fan Tan e variantes de bacará, populares em toda a Ásia.",
+    "live-casino:sic-bo": "Sic bo ao vivo e jogos de dados: aposte no resultado de três dados agitados por um dealer ao vivo.",
+    "live-casino:high-stakes": "Mesas ao vivo de apostas altas, com limites de aposta maiores para high rollers e jogadores VIP."
+  },
+  "category_template": {
+    "title": "{category} – jogos de {section} online",
+    "sections": [
+      {
+        "h": "Jogue {category} com cripto",
+        "p": [
+          "Todos os jogos de {category} da {site} podem ser jogados com seu saldo em Bitcoin ou USDT no computador e no celular. Abra um jogo para ver o provedor e explore mais títulos do mesmo estúdio."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Posso jogar jogos de {category} no celular?",
+        "a": "Sim. Todos os jogos de {category} da {site} rodam no navegador do celular, sem download."
+      },
+      {
+        "q": "Quais provedores fazem jogos de {category}?",
+        "a": "Use o filtro de provedores nesta página para ver quais estúdios oferecem jogos de {category} na {site}."
+      }
+    ]
+  },
+  "provider_template": {
+    "title": "Slots e jogos de cassino {provider}",
+    "intro": "Jogue {count} jogos da {provider} online na {site}. Todos os títulos da {provider} do nosso lobby estão listados aqui, para jogar com Bitcoin ou USDT no computador e no celular.",
+    "sections": [
+      {
+        "h": "Sobre a {provider}",
+        "p": [
+          "A {provider} é um dos {providers} estúdios de jogos disponíveis na {site}. Seus jogos rodam no navegador, carregam rápido no celular e usam geradores de números aleatórios testados por laboratórios independentes.",
+          "Os novos lançamentos da {provider} são adicionados a esta página automaticamente, então volte sempre para experimentar os jogos mais recentes."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Quantos jogos da {provider} há na {site}?",
+        "a": "No momento, há {count} jogos da {provider} disponíveis."
+      },
+      {
+        "q": "Posso jogar os jogos da {provider} com cripto?",
+        "a": "Sim. Deposite Bitcoin ou USDT e jogue qualquer jogo da {provider} com seu saldo."
+      }
+    ]
+  },
+  "game_template": {
+    "sections": [
+      {
+        "h": "Como jogar {game}",
+        "p": [
+          "Entre na sua conta, deposite Bitcoin ou USDT e abra {game}. Escolha o valor da aposta dentro do jogo e depois gire ou faça sua aposta. Os ganhos são adicionados ao seu saldo da {site} na hora.",
+          "{game} funciona em qualquer navegador moderno no computador, no Android e no iPhone, sem precisar baixar nada."
+        ]
+      },
+      {
+        "h": "Bônus que você pode usar em {game}",
+        "p": [
+          "Confira a página de promoções para ver as ofertas atuais. Quem joga slots também recebe cashback diário sobre as perdas líquidas, e cada aposta conta para o seu nível VIP."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Quem desenvolveu {game}?",
+        "a": "{game} é desenvolvido pela {provider}."
+      },
+      {
+        "q": "Posso jogar {game} no celular?",
+        "a": "Sim. {game} roda no navegador do celular no Android e no iPhone."
+      },
+      {
+        "q": "Posso jogar {game} com Bitcoin?",
+        "a": "Sim. Deposite Bitcoin ou USDT e use seu saldo para jogar {game}."
+      }
+    ]
+  },
+  "blog": {
+    "meta_title": "Blog de Cassino – Análises de Slots, Guias e Notícias",
+    "meta_description": "Análises de slots, guias de cassino, rankings e notícias da equipe da {site}. Encontre seu próximo jogo e aprenda a aproveitar melhor o seu jogo com cripto.",
+    "title": "Blog: análises de slots, guias e notícias de cassino",
+    "intro": "Análises dos slots e jogos ao vivo do nosso lobby, guias sobre bônus e jogo com cripto, rankings mensais e notícias da {site}.",
+    "all": "Todos os artigos",
+    "categories": {
+      "NEWS": "Notícias",
+      "REVIEW": "Análises de jogos",
+      "GUIDE": "Guias",
+      "TOP_LIST": "Rankings"
+    },
+    "read_time": "{min} min de leitura",
+    "published": "Publicado em {date}",
+    "updated": "Atualizado em {date}",
+    "games_title": "Jogos neste artigo",
+    "latest": "Mais artigos",
+    "empty": "Ainda não há artigos aqui. Volte em breve.",
+    "prev": "Mais recentes",
+    "next": "Mais antigos",
+    "page": "Página {page}",
+    "reviews_of": "Saiba mais sobre {game}",
+    "author": "Equipe editorial da {site}",
+    "play": "Jogar"
+  },
+  "top": {
+    "meta_title": "Melhores Slots de {month} – Slots Online Mais Jogados",
+    "meta_description": "Os slots online e jogos de cassino ao vivo mais jogados na {site} em {month}, classificados por jogadores reais. Jogue os slots top do mês com Bitcoin ou USDT.",
+    "title": "Melhores slots de {month}",
+    "kicker": "Mais jogados este mês",
+    "intro_live": "Estes são os slots que os jogadores da {site} mais estão girando em {month}. O ranking é baseado no jogo real (o número de jogadores diferentes e de rodadas em cada jogo) e é atualizado a cada hora até o fim do mês.",
+    "intro_final": "Estes foram os slots mais jogados na {site} em {month}, classificados pelo jogo real: o número de jogadores diferentes e de rodadas em cada jogo. Este é o ranking final do mês.",
+    "slots_title": "Os {count} melhores slots – {month}",
+    "live_title": "Jogos de cassino ao vivo mais jogados – {month}",
+    "archive_title": "Rankings dos meses anteriores",
+    "latest_badge": "Atualizado a cada hora",
+    "final_badge": "Ranking final",
+    "empty": "Ainda não há dados de jogo suficientes para este mês.",
+    "faq": [
+      {
+        "q": "Como o ranking é calculado?",
+        "a": "Contamos quantos jogadores diferentes jogaram cada jogo durante o mês e, depois, o número de rodadas. Ganhos ou apostas maiores não alteram a ordem."
+      },
+      {
+        "q": "Com que frequência a lista muda?",
+        "a": "O mês atual é atualizado a cada hora. Quando o mês termina, o ranking é congelado e vai para o arquivo."
+      },
+      {
+        "q": "Posso jogar esses slots com cripto?",
+        "a": "Sim. Todos os jogos da lista podem ser jogados com seu saldo em Bitcoin ou USDT no computador e no celular."
+      }
+    ]
+  },
+  "promo_page": {
+    "meta_title": "{name} – {headline}",
+    "meta_description": "{name} na {site}: {headline}. Veja como resgatar a oferta, quem pode recebê-la e os termos completos.",
+    "kicker": "Oferta de bônus",
+    "how_title": "Como resgatar {name}",
+    "steps_deposit": [
+      "Entre ou crie uma conta grátis na {site}.",
+      "Abra a janela de depósito e escolha {name} antes de depositar.",
+      "Deposite Bitcoin ou USDT, no mínimo o valor indicado nos termos.",
+      "A recompensa é creditada automaticamente assim que o depósito é confirmado na blockchain."
+    ],
+    "steps_other": [
+      "Entre ou crie uma conta grátis na {site}.",
+      "Confira se você atende às condições listadas nos termos abaixo.",
+      "Resgate a oferta na página de promoções: a recompensa é adicionada à sua conta automaticamente."
+    ],
+    "terms_title": "Termos da oferta",
+    "full_terms": "Leia os termos de bônus completos",
+    "other_offers": "Outras ofertas",
+    "all_offers": "Todas as promoções",
+    "faq": [
+      {
+        "q": "Com que frequência posso resgatar {name}?",
+        "a": "Conforme indicado em \"Frequência\" nos termos acima: a maioria das ofertas pode ser resgatada uma vez por conta, e as ofertas semanais, uma vez por semana."
+      },
+      {
+        "q": "Os ganhos das rodadas grátis têm rollover?",
+        "a": "Os ganhos das rodadas grátis são adicionados como dinheiro de bônus, com o requisito de apostas (rollover) indicado nos termos acima; depois de cumprido, o dinheiro vira saldo real disponível para saque."
+      },
+      {
+        "q": "Quais depósitos são elegíveis?",
+        "a": "As ofertas estão disponíveis apenas para depósitos em cripto (Bitcoin ou USDT) que atinjam o valor mínimo indicado nos termos."
+      }
+    ]
+  }
+}

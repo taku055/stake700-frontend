@@ -110,14 +110,30 @@ export default function PromoOfferCard({ promo, onClaim }: { promo: tLedgerPromo
       <div className="relative flex flex-1 flex-col overflow-hidden rounded-[24.5px] bg-[#0c1a25]">
         {/* Artwork */}
         <div className="relative h-[180px] shrink-0 overflow-hidden">
-          <img
-            src={promo.imageUrl || "/images/new-promo.svg"}
-            alt=""
-            loading="lazy"
-            className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 ${
-              promo.available || closedToday ? "" : "grayscale-[0.6]"
-            }`}
-          />
+          {promo.imageUrl ? (
+            <img
+              src={promo.imageUrl}
+              alt=""
+              loading="lazy"
+              className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 ${
+                promo.available || closedToday ? "" : "grayscale-[0.6]"
+              }`}
+            />
+          ) : (
+            // No artwork uploaded: a branded backdrop in the offer's own colours
+            <span
+              aria-hidden
+              className={`absolute inset-0 overflow-hidden bg-[radial-gradient(120%_90%_at_85%_0%,color-mix(in_srgb,var(--accent)_45%,transparent),transparent_60%),radial-gradient(90%_80%_at_0%_100%,color-mix(in_srgb,var(--accent-2)_35%,transparent),transparent_65%),#0f2230] ${
+                promo.available || closedToday ? "" : "grayscale-[0.6]"
+              }`}
+            >
+              <Icon
+                size={170}
+                strokeWidth={1.25}
+                className="absolute -bottom-6 -end-6 rotate-[-12deg] text-white/[0.09] transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110"
+              />
+            </span>
+          )}
           <span className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(12,26,37,0.15),rgba(12,26,37,0.55)_55%,#0c1a25)]" />
           <span
             aria-hidden

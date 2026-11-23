@@ -1,0 +1,503 @@
+{
+  "ui": {
+    "read_more": "Leer más",
+    "show_less": "Mostrar menos",
+    "faq_title": "Preguntas frecuentes",
+    "explore": "Explorá {site}",
+    "popular_providers": "Proveedores de juegos populares",
+    "more_from": "Más juegos de {provider}",
+    "all_provider_games": "Todos los juegos de {provider}",
+    "blog_link": "Blog y reseñas de juegos",
+    "best_slots_link": "Las mejores tragamonedas del mes"
+  },
+  "pages": {
+    "home": {
+      "title": "{site} – casino online cripto, tragamonedas, casino en vivo y apuestas deportivas",
+      "intro": "{site} es un casino online cripto donde podés jugar a más de {games} tragamonedas con dinero real, mesas con crupier en vivo y apuestas deportivas desde una sola cuenta. Depositá con Bitcoin o USDT, reclamá giros gratis y cashback diario, y jugá al instante desde la PC o el celular, sin descargar nada.",
+      "sections": [
+        {
+          "h": "Tragamonedas online de los mejores proveedores",
+          "p": [
+            "Nuestro lobby de casino reúne a {providers} estudios de juegos, desde los grandes nombres hasta nuevos desarrolladores independientes. Girá en tragamonedas clásicas de frutas, slots Megaways con miles de formas de ganar, juegos con compra de bono, funciones hold-and-win y tragamonedas con jackpot progresivo. Todas las semanas sumamos nuevas tragamonedas, así que siempre hay un lanzamiento nuevo para probar.",
+            "Cada página de juego muestra el proveedor y la categoría, para que encuentres rápido más títulos que te gusten. Usá el buscador para ir directo a tu slot favorito o recorré listas seleccionadas como Tendencia, Más jugados y Nuevos lanzamientos."
+          ]
+        },
+        {
+          "h": "Casino en vivo con crupieres reales",
+          "p": [
+            "¿Preferís una mesa de verdad? El casino en vivo transmite ruleta, blackjack, baccarat, póker, sic bo y game shows en HD, con crupieres profesionales las 24 horas. Elegí entre mesas de apuestas bajas y salas para high rollers, y chateá con el crupier mientras jugás."
+          ]
+        },
+        {
+          "h": "Depósitos en cripto y retiros rápidos",
+          "p": [
+            "{site} es un casino cripto: depositás y retirás con Bitcoin (BTC) y Tether (USDT en las redes ERC-20 y TRC-20). Cada jugador recibe una dirección de depósito personal, los depósitos se acreditan automáticamente después de la confirmación en la red y no hay cargos de tarjeta ni demoras bancarias."
+          ]
+        },
+        {
+          "h": "Bonos, giros gratis, cashback y VIP",
+          "p": [
+            "Los jugadores nuevos pueden reclamar giros gratis de bienvenida, y cada depósito en cripto que califique puede desbloquear una oferta de giros gratis. Los que juegan a las tragamonedas también reciben cashback diario sobre las pérdidas netas, pagado en saldo real y sin requisito de apuesta. A medida que jugás, subís en la escalera VIP y desbloqueás recompensas por subir de nivel. Las reglas completas siempre están en la página de términos de los bonos."
+          ]
+        },
+        {
+          "h": "Apuestas deportivas",
+          "p": [
+            "La sección de apuestas deportivas cubre fútbol, básquet, tenis, esports, carreras de caballos y mucho más, con cuotas previas al partido y en vivo. Tu saldo de casino y tu saldo de apuestas deportivas son la misma billetera, así que podés pasar de una tragamonedas a una apuesta en vivo en segundos."
+          ]
+        },
+        {
+          "h": "Juego seguro y responsable",
+          "p": [
+            "Las cuentas están protegidas con verificación por correo electrónico y conexiones cifradas. Ofrecemos autoexclusión y herramientas de juego responsable, y nuestro equipo de soporte está disponible si necesitás ayuda. Jugá de forma responsable y apostá solo lo que te puedas permitir perder. Tenés que ser mayor de 18 años para jugar."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿{site} es un casino cripto?",
+          "a": "Sí. Los depósitos y retiros se hacen en criptomonedas: Bitcoin (BTC) y USDT en las redes ERC-20 y TRC-20."
+        },
+        {
+          "q": "¿Cuántos juegos hay para jugar?",
+          "a": "Hay más de {games} juegos de {providers} proveedores, entre ellos tragamonedas online, Megaways, jackpots, juegos instantáneos y mesas con crupier en vivo."
+        },
+        {
+          "q": "¿Puedo jugar desde el celular?",
+          "a": "Sí. {site} funciona en cualquier navegador móvil actual en Android y iPhone, sin necesidad de descargar una app."
+        },
+        {
+          "q": "¿Qué bonos hay disponibles?",
+          "a": "Giros gratis de bienvenida, ofertas de giros gratis por depósito, cashback diario en tragamonedas y recompensas por subir de nivel VIP. Mirá la página de promociones para ver las ofertas vigentes."
+        },
+        {
+          "q": "¿Qué tan rápidos son los retiros?",
+          "a": "Nuestro equipo procesa las solicitudes de retiro y las envía a tu billetera cripto; la transferencia en sí tarda lo que la blockchain necesite para confirmarla."
+        }
+      ]
+    },
+    "casino": {
+      "title": "Jugá a tragamonedas online y juegos de casino con dinero real",
+      "intro": "El lobby de casino de {site} tiene más de {games} tragamonedas online y juegos de casino de {providers} proveedores. Jugá con Bitcoin o USDT, descubrí nuevos lanzamientos todas las semanas y elegí tus favoritos entre categorías seleccionadas.",
+      "sections": [
+        {
+          "h": "Categorías de tragamonedas para todos los gustos",
+          "p": [
+            "Las slots Megaways cambian la cantidad de símbolos en cada giro y ofrecen hasta cientos de miles de formas de ganar. Las tragamonedas con jackpot acumulan un pozo de premios que puede caer en cualquier momento. Los juegos con compra de bono te permiten saltar directo a la ronda de giros gratis, y las slots hold-and-win fijan monedas en los rodillos para darte re-giros. Los fans de lo tradicional pueden disfrutar de las tragamonedas clásicas y de frutas, o de la popular saga de aventuras \"Book of\"."
+          ]
+        },
+        {
+          "h": "Cómo elegir una tragamonedas",
+          "p": [
+            "Fijate en el proveedor, la temática y la volatilidad. Las tragamonedas de baja volatilidad pagan premios más chicos con más frecuencia, mientras que las de alta volatilidad pagan con menos frecuencia, pero pueden dar premios mucho más grandes. Cada página de juego muestra el estudio que lo desarrolló, así podés explorar más títulos de un proveedor que te guste."
+          ]
+        },
+        {
+          "h": "Giros gratis y cashback diario en tragamonedas",
+          "p": [
+            "Las tragamonedas son donde más brillan nuestros bonos: ofertas de giros gratis por depósitos en cripto que califiquen, giros gratis de bienvenida para jugadores nuevos y cashback diario sobre las pérdidas netas en tragamonedas, pagado en saldo real. Mirá la página de promociones para ver las ofertas vigentes."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo jugar a las tragamonedas con Bitcoin?",
+          "a": "Sí. Depositá Bitcoin o USDT y vas a poder usar tu saldo en todas las tragamonedas y juegos de casino."
+        },
+        {
+          "q": "¿Qué son las slots Megaways?",
+          "a": "Las slots Megaways usan rodillos con una cantidad de símbolos que cambia en cada giro, lo que genera miles de formas de ganar en lugar de líneas de pago fijas."
+        },
+        {
+          "q": "¿Cuáles son las tragamonedas más populares?",
+          "a": "Mirá las categorías Tendencia y Más jugados: se actualizan automáticamente con lo que los jugadores están girando en este momento."
+        }
+      ]
+    },
+    "casino_all": {
+      "title": "Todas las tragamonedas y juegos de casino",
+      "intro": "Recorré la biblioteca completa de tragamonedas de {site}: más de {games} juegos en un solo lugar. Filtrá por proveedor para encontrar títulos de tu estudio favorito o deslizá para descubrir algo nuevo.",
+      "sections": [
+        {
+          "h": "La biblioteca completa de juegos",
+          "p": [
+            "Esta lista incluye todas las tragamonedas y juegos de casino de {site}: video slots, Megaways, jackpots, compra de bono, tragamonedas clásicas y de frutas, y juegos de premio instantáneo. Usá el filtro de proveedores de arriba para acotar la lista y después abrí cualquier juego para jugar con tu saldo en cripto."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Cómo filtro los juegos por proveedor?",
+          "a": "Usá el filtro de proveedores que está arriba de la grilla de juegos y elegí uno o más estudios. La lista se actualiza al instante."
+        }
+      ]
+    },
+    "live": {
+      "title": "Casino en vivo – ruleta, blackjack, baccarat y game shows",
+      "intro": "Jugá a juegos de casino en vivo con crupieres reales en {site}. La ruleta en vivo, el blackjack, el baccarat, el póker, el sic bo y los game shows se transmiten en HD las 24 horas, todos los días, y podés apostar con Bitcoin o USDT.",
+      "sections": [
+        {
+          "h": "Ruleta en vivo",
+          "p": [
+            "Elegí entre mesas de ruleta europea, americana, francesa, lightning y speed con distintos límites. Apostá a números, colores, docenas o vecinos mientras la rueda gira en vivo."
+          ]
+        },
+        {
+          "h": "Blackjack y baccarat en vivo",
+          "p": [
+            "Sentate en mesas de blackjack en vivo con apuestas laterales y variantes con asientos ilimitados, o jugá al baccarat en vivo, incluidas las mesas speed y squeeze: uno de los juegos de cartas de casino más populares del mundo."
+          ]
+        },
+        {
+          "h": "Game shows y mesas de apuestas altas",
+          "p": [
+            "Los game shows en vivo combinan un presentador, una gran rueda o un tablero de bonos con multiplicadores para que tengas una ronda entretenida cada minuto. Los high rollers pueden encontrar mesas exclusivas de apuestas altas con límites de apuesta más elevados."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Los crupieres en vivo son reales?",
+          "a": "Sí. Los juegos de casino en vivo se transmiten desde estudios profesionales con crupieres reales y cartas, ruedas y dados físicos."
+        },
+        {
+          "q": "¿Puedo jugar al casino en vivo desde el celular?",
+          "a": "Sí. Las mesas en vivo se adaptan a la pantalla de tu celular y se transmiten sin cortes con datos móviles o wifi."
+        },
+        {
+          "q": "¿Cuál es la apuesta mínima en las mesas en vivo?",
+          "a": "Los límites dependen de la mesa; cada juego muestra su apuesta mínima y máxima cuando lo abrís."
+        }
+      ]
+    },
+    "live_all": {
+      "title": "Todos los juegos con crupier en vivo",
+      "intro": "Todas las mesas con crupier en vivo de {site} en una sola lista: ruleta, blackjack, baccarat, póker, sic bo, juegos asiáticos y game shows de los principales estudios en vivo.",
+      "sections": [
+        {
+          "h": "Encontrá la mesa en vivo ideal",
+          "p": [
+            "Filtrá por proveedor para elegir tu estudio en vivo favorito y después abrí una mesa para ver sus límites. Todas las mesas usan el mismo saldo en cripto que las tragamonedas, así que podés pasar de un juego a otro libremente."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Las mesas en vivo están abiertas todo el día?",
+          "a": "La mayoría de las mesas en vivo funcionan las 24 horas, todos los días. Algunas mesas especiales tienen horarios programados, que se muestran dentro del juego."
+        }
+      ]
+    },
+    "providers": {
+      "title": "Proveedores de juegos de casino",
+      "intro": "{site} trabaja con {providers} proveedores de juegos de casino. Elegí un estudio para ver todas sus tragamonedas y juegos en vivo en un solo lugar.",
+      "sections": [
+        {
+          "h": "Por qué importa el proveedor",
+          "p": [
+            "Cada estudio tiene su propio estilo: modelos matemáticos, funciones de bono, gráficos y sonido. Si te gusta un juego, es muy probable que también te gusten otros títulos del mismo proveedor. Las páginas de cada proveedor muestran todos los juegos de ese estudio disponibles en {site}."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Los juegos son justos?",
+          "a": "Los juegos provienen de proveedores reconocidos cuyos generadores de números aleatorios son auditados por laboratorios independientes."
+        }
+      ]
+    },
+    "promotions": {
+      "title": "Bonos de casino, giros gratis y cashback",
+      "intro": "Mirá todas las promociones vigentes de {site}: giros gratis de bienvenida, ofertas de giros gratis por depósitos en cripto, la oferta semanal de los domingos, cashback diario en tragamonedas y recompensas VIP.",
+      "sections": [
+        {
+          "h": "Giros gratis por depósitos en cripto",
+          "p": [
+            "Los depósitos en Bitcoin y USDT que califiquen pueden desbloquear paquetes de giros gratis en tragamonedas seleccionadas. Elegí la oferta antes de depositar y los giros se acreditan automáticamente una vez confirmado el depósito."
+          ]
+        },
+        {
+          "h": "Cashback diario en tragamonedas",
+          "p": [
+            "Todos los días te devolvemos parte de tus pérdidas netas en tragamonedas como dinero real, sin requisito de apuesta. El cashback se calcula automáticamente y se suma a tu saldo al día siguiente."
+          ]
+        },
+        {
+          "h": "Términos de bonos claros",
+          "p": [
+            "Cada oferta tiene su reglamento completo (requisitos para participar, requisito de apuesta, topes de ganancia y vencimiento) en la página de términos de los bonos, así siempre sabés exactamente qué estás reclamando."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Cómo reclamo un bono?",
+          "a": "Elegí la oferta en esta página o en la ventana de depósito antes de depositar. Los giros gratis y los bonos se acreditan automáticamente cuando se confirma el depósito."
+        },
+        {
+          "q": "¿El cashback tiene requisito de apuesta?",
+          "a": "No. El cashback diario en tragamonedas se paga en saldo real y lo podés retirar o usar para jugar de inmediato."
+        }
+      ]
+    },
+    "vip": {
+      "title": "Club VIP – recompensas por subir de nivel para jugadores fieles",
+      "intro": "El club VIP de {site} premia a todos los jugadores. Apostá en tragamonedas y juegos en vivo para subir en la escalera VIP y desbloquear un bono y giros gratis en cada nuevo nivel.",
+      "sections": [
+        {
+          "h": "Cómo funcionan los niveles VIP",
+          "p": [
+            "Tu progreso VIP crece con cada apuesta con dinero real. Cada vez que llegás a un nuevo nivel, podés reclamar la recompensa de ese nivel desde la página VIP. Cuanto más alto el nivel, más grandes las recompensas."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Tengo que inscribirme en el club VIP?",
+          "a": "No. Todos los jugadores registrados forman parte automáticamente del programa VIP desde su primera apuesta."
+        }
+      ]
+    },
+    "sports": {
+      "title": "Apuestas deportivas con cripto – cuotas en vivo de fútbol, tenis, esports y más",
+      "intro": "Apostá en deportes con Bitcoin y USDT en {site}. La sección de apuestas deportivas ofrece cuotas previas al partido y en vivo de fútbol, básquet, tenis, hockey sobre hielo, esports, carreras de caballos y decenas de deportes más.",
+      "sections": [
+        {
+          "h": "Apuestas en vivo",
+          "p": [
+            "Las cuotas se actualizan en tiempo real mientras se juegan los partidos, así que podés apostar al próximo gol, al próximo punto o al resultado final a medida que avanza el juego."
+          ]
+        },
+        {
+          "h": "Apuestas de fútbol",
+          "p": [
+            "Apostá en las mejores ligas del mundo y en torneos internacionales, con mercados como resultado del partido, ambos equipos marcan, más/menos goles, hándicaps y resultado exacto."
+          ]
+        },
+        {
+          "h": "Esports y mucho más",
+          "p": [
+            "Los fans de los esports pueden apostar en los títulos y torneos más populares, y los fanáticos de las carreras encuentran carreras de caballos, galgos y trote todos los días."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo apostar en deportes con cripto?",
+          "a": "Sí. Tu saldo en Bitcoin o USDT sirve tanto para el casino como para las apuestas deportivas."
+        },
+        {
+          "q": "¿Qué son las apuestas en vivo?",
+          "a": "Las apuestas en vivo te permiten apostar una vez que el partido ya empezó, con cuotas que cambian según lo que pasa en el juego."
+        }
+      ]
+    },
+    "racing": {
+      "title": "Apuestas hípicas: carreras de caballos, galgos y trote",
+      "intro": "Apostá a carreras de caballos, galgos y trote en {site}, con programas de carreras diarios y cuotas en vivo, usando tu saldo en cripto.",
+      "sections": [
+        {
+          "h": "Carreras todos los días",
+          "p": [
+            "Seguí reuniones hípicas de todo el mundo, compará a los competidores y hacé apuestas a ganador, a placé y each-way. Los resultados se liquidan automáticamente en tu saldo."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo apostar a carreras de galgos?",
+          "a": "Sí. Las carreras de galgos y de trote tienen sus propias secciones con carreras diarias."
+        }
+      ]
+    }
+  },
+  "categories": {
+    "casino:top": "Nuestras mejores tragamonedas: las slots online elegidas a mano en {site} por su jugabilidad, sus funciones y por ser las favoritas de los jugadores.",
+    "casino:trending": "Las tragamonedas en tendencia son los juegos que más están girando los jugadores en este momento. La lista se actualiza automáticamente, así que siempre muestra lo que está de moda.",
+    "casino:most-played": "Las tragamonedas más jugadas de todos los tiempos en {site}: favoritas comprobadas, con grandes funciones y fans fieles.",
+    "casino:new": "Las nuevas tragamonedas que lanzan nuestros proveedores. Sé de los primeros en jugar los últimos lanzamientos de slots online, que sumamos todas las semanas.",
+    "casino:popular": "Las tragamonedas populares que más eligen nuestros jugadores, desde éxitos clásicos hasta modernas video slots llenas de funciones.",
+    "casino:jackpots": "Tragamonedas con jackpots fijos y progresivos que pueden caer en cualquier momento. Girá por premios que te cambian la vida.",
+    "casino:megaways": "Las slots Megaways cambian la cantidad de símbolos en cada giro y ofrecen hasta cientos de miles de formas de ganar.",
+    "casino:bonus-buy": "Las tragamonedas con compra de bono te permiten comprar directamente la función de giros gratis en lugar de esperar a que caigan los scatters.",
+    "casino:hold-and-win": "Las tragamonedas hold and win fijan símbolos especiales de monedas en los rodillos y otorgan re-giros para que tengas la chance de ganar grandes premios.",
+    "casino:fruit-slots": "Las tragamonedas de frutas traen de vuelta las cerezas, los limones, las barras y los sietes: juego clásico, simple, rápido y divertido.",
+    "casino:classics": "Tragamonedas clásicas con pocos rodillos, reglas simples y estilo retro, para los jugadores a los que les gustan las tradicionales máquinas de frutas.",
+    "casino:book-of": "Tragamonedas \"Book of\": juegos de temática de aventuras con símbolos expansivos durante los giros gratis, inspirados en la famosa saga Book.",
+    "casino:instant-games": "Juegos instantáneos y juegos crash con rondas rápidas, incluidos mines, plinko, dados y juegos de multiplicadores.",
+    "live-casino:table-games": "Juegos de mesa en vivo con crupieres reales: ruleta, blackjack, baccarat, póker y más, transmitidos en HD.",
+    "live-casino:live-tables": "Nuestras mesas en vivo: los juegos con crupier en vivo más populares, abiertos las 24 horas.",
+    "live-casino:top-tables": "Las mejores mesas de casino en vivo elegidas por nuestros jugadores, desde la ruleta más rápida hasta el blackjack clásico.",
+    "live-casino:roulette": "Ruleta en vivo con ruedas y crupieres reales: ruleta europea, americana, francesa, lightning y speed.",
+    "live-casino:blackjack": "Mesas de blackjack en vivo con crupieres reales, apuestas laterales y opciones para todos los presupuestos, desde límites bajos hasta VIP.",
+    "live-casino:baccarat": "Baccarat en vivo, con mesas speed, squeeze y sin comisión: apostá a Jugador, Banca o Empate.",
+    "live-casino:game-shows": "Game shows en vivo con presentadores, ruedas de dinero, rondas de bonos y multiplicadores: entretenimiento de casino en tiempo real.",
+    "live-casino:poker": "Juegos de póker en vivo como Casino Hold'em y Three Card Poker, que se juegan contra un crupier real.",
+    "live-casino:asian-games": "Juegos asiáticos en vivo como dragon tiger, fan tan y variantes de baccarat, muy populares en toda Asia.",
+    "live-casino:sic-bo": "Sic bo en vivo y juegos de dados: apostá al resultado de tres dados que agita un crupier en vivo.",
+    "live-casino:high-stakes": "Mesas en vivo de apuestas altas, con límites de apuesta más elevados para high rollers y jugadores VIP."
+  },
+  "category_template": {
+    "title": "{category} – juegos de {section} online",
+    "sections": [
+      {
+        "h": "Jugá a {category} con cripto",
+        "p": [
+          "Todos los juegos de {category} de {site} se pueden jugar con tu saldo en Bitcoin o USDT desde la PC o el celular. Abrí un juego para ver su proveedor y después explorá más títulos del mismo estudio."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Puedo jugar a juegos de {category} desde el celular?",
+        "a": "Sí. Todos los juegos de {category} de {site} funcionan en el navegador de tu celular sin descargar nada."
+      },
+      {
+        "q": "¿Qué proveedores desarrollan juegos de {category}?",
+        "a": "Usá el filtro de proveedores de esta página para ver qué estudios ofrecen juegos de {category} en {site}."
+      }
+    ]
+  },
+  "provider_template": {
+    "title": "Tragamonedas y juegos de casino de {provider}",
+    "intro": "Jugá online a {count} juegos de {provider} en {site}. Acá están todos los títulos de {provider} de nuestro lobby, para jugar con Bitcoin o USDT desde la PC o el celular.",
+    "sections": [
+      {
+        "h": "Sobre {provider}",
+        "p": [
+          "{provider} es uno de los {providers} estudios de juegos disponibles en {site}. Sus juegos funcionan en el navegador, cargan rápido en el celular y usan generadores de números aleatorios auditados por laboratorios independientes.",
+          "Los nuevos lanzamientos de {provider} se suman automáticamente a esta página, así que volvé seguido para probar los últimos juegos."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Cuántos juegos de {provider} hay en {site}?",
+        "a": "Actualmente hay {count} juegos de {provider} disponibles."
+      },
+      {
+        "q": "¿Puedo jugar a los juegos de {provider} con cripto?",
+        "a": "Sí. Depositá Bitcoin o USDT y jugá a cualquier juego de {provider} con tu saldo."
+      }
+    ]
+  },
+  "game_template": {
+    "sections": [
+      {
+        "h": "Cómo jugar a {game}",
+        "p": [
+          "Iniciá sesión, depositá Bitcoin o USDT y abrí {game}. Elegí tu apuesta dentro del juego y después girá o hacé tu jugada. Las ganancias se suman al instante a tu saldo de {site}.",
+          "{game} funciona en cualquier navegador actual de PC, Android y iPhone: no hace falta descargar nada."
+        ]
+      },
+      {
+        "h": "Bonos que podés usar en {game}",
+        "p": [
+          "Mirá la página de promociones para ver las ofertas vigentes. Los que juegan a las tragamonedas también reciben cashback diario sobre las pérdidas netas, y cada apuesta suma para tu nivel VIP."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Quién creó {game}?",
+        "a": "{game} fue desarrollado por {provider}."
+      },
+      {
+        "q": "¿Puedo jugar a {game} desde el celular?",
+        "a": "Sí. {game} funciona en el navegador de tu celular en Android y iPhone."
+      },
+      {
+        "q": "¿Puedo jugar a {game} con Bitcoin?",
+        "a": "Sí. Depositá Bitcoin o USDT y usá tu saldo para jugar a {game}."
+      }
+    ]
+  },
+  "blog": {
+    "meta_title": "Blog de casino – Reseñas de tragamonedas, guías y novedades",
+    "meta_description": "Reseñas de tragamonedas, guías de casino, rankings y novedades del equipo de {site}. Encontrá tu próximo juego y aprendé a sacarle más provecho a tu juego con cripto.",
+    "title": "Blog: reseñas de tragamonedas, guías y novedades del casino",
+    "intro": "Reseñas de las tragamonedas y juegos en vivo de nuestro lobby, guías sobre bonos y juego con cripto, rankings mensuales y novedades de {site}.",
+    "all": "Todos los artículos",
+    "categories": {
+      "NEWS": "Novedades",
+      "REVIEW": "Reseñas de juegos",
+      "GUIDE": "Guías",
+      "TOP_LIST": "Rankings"
+    },
+    "read_time": "{min} min de lectura",
+    "published": "Publicado el {date}",
+    "updated": "Actualizado el {date}",
+    "games_title": "Juegos de este artículo",
+    "latest": "Más artículos",
+    "empty": "Todavía no hay artículos acá. Volvé pronto.",
+    "prev": "Más recientes",
+    "next": "Más antiguos",
+    "page": "Página {page}",
+    "reviews_of": "Leé más sobre {game}",
+    "author": "Equipo editorial de {site}",
+    "play": "Jugar"
+  },
+  "top": {
+    "meta_title": "Las mejores tragamonedas de {month} – Las slots online más jugadas",
+    "meta_description": "Las tragamonedas online y juegos de casino en vivo más jugados en {site} en {month}, según el ranking de jugadores reales. Jugá a las mejores slots del mes con Bitcoin o USDT.",
+    "title": "Las mejores tragamonedas de {month}",
+    "kicker": "Las más jugadas del mes",
+    "intro_live": "Estas son las tragamonedas que más están jugando los usuarios de {site} en {month}. El ranking se basa en el juego real (la cantidad de jugadores distintos y de rondas en cada juego) y se actualiza cada hora hasta que termine el mes.",
+    "intro_final": "Estas fueron las tragamonedas más jugadas en {site} en {month}, según el juego real: la cantidad de jugadores distintos y de rondas en cada juego. Este es el ranking final del mes.",
+    "slots_title": "Top {count} tragamonedas – {month}",
+    "live_title": "Juegos de casino en vivo más jugados – {month}",
+    "archive_title": "Rankings de meses anteriores",
+    "latest_badge": "Se actualiza cada hora",
+    "final_badge": "Ranking final",
+    "empty": "Todavía no hay suficientes datos de juego para este mes.",
+    "faq": [
+      {
+        "q": "¿Cómo se calcula el ranking?",
+        "a": "Contamos cuántos jugadores distintos jugaron a cada juego durante el mes y después la cantidad de rondas. Las ganancias o apuestas más grandes no cambian el orden."
+      },
+      {
+        "q": "¿Cada cuánto cambia la lista?",
+        "a": "El mes en curso se actualiza cada hora. Cuando termina el mes, el ranking queda fijo y pasa al archivo."
+      },
+      {
+        "q": "¿Puedo jugar a estas tragamonedas con cripto?",
+        "a": "Sí. Todos los juegos de la lista se pueden jugar con tu saldo en Bitcoin o USDT desde la PC o el celular."
+      }
+    ]
+  },
+  "promo_page": {
+    "meta_title": "{name} – {headline}",
+    "meta_description": "{name} en {site}: {headline}. Mirá cómo reclamar la oferta, quién puede obtenerla y los términos completos.",
+    "kicker": "Oferta de bono",
+    "how_title": "Cómo reclamar {name}",
+    "steps_deposit": [
+      "Iniciá sesión o creá una cuenta gratis en {site}.",
+      "Abrí la ventana de depósito y elegí {name} antes de depositar.",
+      "Depositá Bitcoin o USDT: como mínimo, el monto que indican los términos.",
+      "La recompensa se acredita automáticamente una vez que el depósito se confirma en la blockchain."
+    ],
+    "steps_other": [
+      "Iniciá sesión o creá una cuenta gratis en {site}.",
+      "Verificá que cumplís con las condiciones que figuran en los términos de abajo.",
+      "Reclamá la oferta en la página de promociones: la recompensa se suma automáticamente a tu cuenta."
+    ],
+    "terms_title": "Términos de la oferta",
+    "full_terms": "Leé los términos completos de los bonos",
+    "other_offers": "Otras ofertas",
+    "all_offers": "Todas las promociones",
+    "faq": [
+      {
+        "q": "¿Cada cuánto puedo reclamar {name}?",
+        "a": "Con la frecuencia que se indica en \"Frecuencia\" en los términos de arriba: la mayoría de las ofertas, una vez por cuenta; las ofertas semanales, una vez por semana."
+      },
+      {
+        "q": "¿Las ganancias de los giros gratis tienen requisito de apuesta?",
+        "a": "Las ganancias de los giros gratis se suman como dinero de bono con el requisito de apuesta que se indica en los términos de arriba; una vez cumplido, el dinero pasa a ser saldo real que podés retirar."
+      },
+      {
+        "q": "¿Qué depósitos califican?",
+        "a": "Las ofertas solo están disponibles para depósitos en cripto (Bitcoin o USDT) que alcancen el monto mínimo que indican los términos."
+      }
+    ]
+  }
+}

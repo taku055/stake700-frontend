@@ -271,7 +271,7 @@ const SelfExclusionPage: FunctionalComponent = () => {
                 >
                   {t("ViewHelplines")}
                 </Link>{" "}
-                or{" "}
+                {t("or")}{" "}
                 <Link
                   className="font-extrabold text-zinc-200 hover:underline"
                   href="/support/help-center"
