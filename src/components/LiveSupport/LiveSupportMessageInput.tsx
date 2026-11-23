@@ -1,25 +1,34 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import {
-  MdAttachFile,
-  MdMic,
-  MdFiberManualRecord,
-  MdScreenShare,
-  MdSend,
-  MdClose,
-  MdStop,
-  MdPhotoCamera,
-} from "react-icons/md";
+  AudioLines,
+  FileText,
+  ImagePlus,
+  Mic,
+  MonitorUp,
+  Paperclip,
+  SendHorizontal,
+  Square,
+  X,
+} from "lucide-react";
 import { userState } from "@/state/userState";
 import { apiSendSupportMessage } from "@/api/live_support/apiSendSupportMessage";
 import { apiUploadSupportFiles } from "@/api/live_support/apiUploadSupportFiles";
 import { liveSupportMessagesState } from "@/state/liveSupportMessagesState";
 import { tLiveSupportMessage } from "@/types/tLiveSupportMessage";
+import { useTranslations } from "@/context/I18nContext";
 import { isAudioFile, isImageFile, isVideoFile } from "./mediaUtils";
 import styles from "./LiveSupport.module.scss";
 
-const MAX_FILES = 5;
+export const MAX_SUPPORT_FILES = 5;
 const ACCEPT_ALL =
   "image/*,video/*,audio/*,.pdf,.doc,.docx,.zip,.txt,application/pdf,.heic,.heif";
 const ACCEPT_PHOTO = "image/*,.heic,.heif";
@@ -28,6 +37,12 @@ type PendingFile = {
   id: string;
   file: File;
   previewUrl?: string;
+};
+
+/** What the chat panel can do with the composer (topic chips, dropping files on the panel). */
+export type LiveSupportComposerHandle = {
+  prefill: (text: string) => void;
+  addFiles: (files: File[]) => void;
 };
 
 function extFromMime(mime: string): string {
@@ -73,20 +88,20 @@ function normalizePastedFile(file: File, index = 0): File {
   });
 }
 
-function filesFromClipboard(clipboard: DataTransfer | null): File[] {
-  if (!clipboard) return [];
+export function filesFromTransfer(transfer: DataTransfer | null): File[] {
+  if (!transfer) return [];
   const out: File[] = [];
 
-  if (clipboard.items?.length) {
-    Array.from(clipboard.items).forEach((item, i) => {
+  if (transfer.items?.length) {
+    Array.from(transfer.items).forEach((item, i) => {
       if (item.kind !== "file") return;
       const file = item.getAsFile();
       if (file && file.size > 0) out.push(normalizePastedFile(file, i));
     });
   }
 
-  if (!out.length && clipboard.files?.length) {
-    Array.from(clipboard.files).forEach((file, i) => {
+  if (!out.length && transfer.files?.length) {
+    Array.from(transfer.files).forEach((file, i) => {
       if (file && file.size > 0) out.push(normalizePastedFile(file, i));
     });
   }
@@ -94,7 +109,26 @@ function filesFromClipboard(clipboard: DataTransfer | null): File[] {
   return out;
 }
 
-const LiveSupportMessageInput: React.FC = () => {
+function formatElapsed(seconds: number) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function placeCaretAtEnd(el: HTMLElement) {
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  range.collapse(false);
+  const sel = window.getSelection();
+  sel?.removeAllRanges();
+  sel?.addRange(range);
+}
+
+const LiveSupportMessageInput = forwardRef<LiveSupportComposerHandle>(function LiveSupportMessageInput(
+  _props,
+  ref,
+) {
+  const t = useTranslations("LiveSupport");
   const user = userState.value;
   const divRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -106,14 +140,12 @@ const LiveSupportMessageInput: React.FC = () => {
   const [pending, setPending] = useState<PendingFile[]>([]);
   const [uploading, setUploading] = useState(false);
   const [hasText, setHasText] = useState(false);
-  const [recordingKind, setRecordingKind] = useState<
-    null | "voice" | "screen"
-  >(null);
+  const [recordingKind, setRecordingKind] = useState<null | "voice" | "screen">(null);
+  const [elapsed, setElapsed] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const input = document.getElementById("live-support-message-input");
-    if (input) input.focus();
+    divRef.current?.focus();
   }, []);
 
   useEffect(() => {
@@ -126,43 +158,75 @@ const LiveSupportMessageInput: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (!recordingKind) return;
+    setElapsed(0);
+    const started = Date.now();
+    const id = window.setInterval(() => setElapsed(Math.floor((Date.now() - started) / 1000)), 500);
+    return () => window.clearInterval(id);
+  }, [recordingKind]);
+
   const stopMediaTracks = () => {
-    mediaStreamRef.current?.getTracks().forEach((t) => t.stop());
+    mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
     mediaStreamRef.current = null;
     mediaRecorderRef.current = null;
     mediaChunksRef.current = [];
   };
 
-  const addFiles = useCallback((files: FileList | File[]) => {
-    setError(null);
-    const list = Array.from(files).filter((f) => f && f.size > 0);
-    if (!list.length) {
-      setError("Could not read selected file");
-      return;
-    }
-    setPending((prev) => {
-      const room = MAX_FILES - prev.length;
-      if (room <= 0) {
-        setError(`Maximum ${MAX_FILES} attachments`);
-        return prev;
+  const addFiles = useCallback(
+    (files: FileList | File[]) => {
+      setError(null);
+      const list = Array.from(files).filter((f) => f && f.size > 0);
+      if (!list.length) {
+        setError(t("err_read"));
+        return;
       }
-      const next = list.slice(0, room).map((file) => {
-        const preview =
-          isImageFile(file) || isVideoFile(file) || isAudioFile(file)
-            ? URL.createObjectURL(file)
-            : undefined;
-        return {
+      setPending((prev) => {
+        const room = MAX_SUPPORT_FILES - prev.length;
+        if (room <= 0) {
+          setError(t("err_max", { max: String(MAX_SUPPORT_FILES) }));
+          return prev;
+        }
+        const next = list.slice(0, room).map((file) => ({
           id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
           file,
-          previewUrl: preview,
-        };
+          previewUrl:
+            isImageFile(file) || isVideoFile(file) || isAudioFile(file)
+              ? URL.createObjectURL(file)
+              : undefined,
+        }));
+        if (list.length > room) {
+          setError(t("err_extra", { max: String(MAX_SUPPORT_FILES) }));
+        }
+        return [...prev, ...next];
       });
-      if (list.length > room) {
-        setError(`Only ${MAX_FILES} files allowed; extra files ignored`);
-      }
-      return [...prev, ...next];
-    });
-  }, []);
+    },
+    [t],
+  );
+
+  const syncHasText = () => {
+    const text = (divRef.current?.innerText || "").replace(/ /g, " ").trim();
+    setHasText(Boolean(text));
+  };
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      prefill: (text: string) => {
+        const el = divRef.current;
+        if (!el) return;
+        if (text) el.innerText = text;
+        el.focus();
+        placeCaretAtEnd(el);
+        syncHasText();
+      },
+      addFiles: (files: File[]) => {
+        if (!user?.id || uploading || recordingKind) return;
+        addFiles(files);
+      },
+    }),
+    [addFiles, user?.id, uploading, recordingKind],
+  );
 
   const removePending = (id: string) => {
     setPending((prev) => {
@@ -180,10 +244,7 @@ const LiveSupportMessageInput: React.FC = () => {
       const stream =
         kind === "voice"
           ? await navigator.mediaDevices.getUserMedia({ audio: true })
-          : await navigator.mediaDevices.getDisplayMedia({
-              video: true,
-              audio: true,
-            });
+          : await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
 
       mediaStreamRef.current = stream;
       mediaChunksRef.current = [];
@@ -201,25 +262,18 @@ const LiveSupportMessageInput: React.FC = () => {
               ? "video/webm"
               : undefined;
 
-      const recorder = mimeType
-        ? new MediaRecorder(stream, { mimeType })
-        : new MediaRecorder(stream);
+      const recorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
 
       mediaRecorderRef.current = recorder;
       recorder.ondataavailable = (e) => {
         if (e.data.size > 0) mediaChunksRef.current.push(e.data);
       };
       recorder.onstop = () => {
-        const blobType =
-          recorder.mimeType || (kind === "voice" ? "audio/webm" : "video/webm");
+        const blobType = recorder.mimeType || (kind === "voice" ? "audio/webm" : "video/webm");
         const blob = new Blob(mediaChunksRef.current, { type: blobType });
         const ext = blobType.includes("ogg") ? "ogg" : "webm";
-        const filename =
-          kind === "voice"
-            ? `voice-${Date.now()}.${ext}`
-            : `screen-${Date.now()}.${ext}`;
-        const file = new File([blob], filename, { type: blobType });
-        addFiles([file]);
+        const filename = kind === "voice" ? `voice-${Date.now()}.${ext}` : `screen-${Date.now()}.${ext}`;
+        addFiles([new File([blob], filename, { type: blobType })]);
         stopMediaTracks();
         setRecordingKind(null);
       };
@@ -238,11 +292,7 @@ const LiveSupportMessageInput: React.FC = () => {
       console.error(ex);
       stopMediaTracks();
       setRecordingKind(null);
-      setError(
-        kind === "voice"
-          ? "Microphone access denied or unavailable"
-          : "Screen recording cancelled or unavailable",
-      );
+      setError(kind === "voice" ? t("err_mic") : t("err_screen"));
     }
   };
 
@@ -255,17 +305,10 @@ const LiveSupportMessageInput: React.FC = () => {
     }
   };
 
-  const syncHasText = () => {
-    const text = (divRef.current?.innerText || "")
-      .replace(/\u00a0/g, " ")
-      .trim();
-    setHasText(Boolean(text));
-  };
-
   const sendMessage = useCallback(async () => {
     if (!divRef.current || !user?.id || uploading || recordingKind) return;
 
-    const message = divRef.current.innerText.replace(/\u00a0/g, " ").trim();
+    const message = divRef.current.innerText.replace(/ /g, " ").trim();
     if (!message && pending.length === 0) return;
 
     setUploading(true);
@@ -292,10 +335,7 @@ const LiveSupportMessageInput: React.FC = () => {
       status: 1,
     };
 
-    liveSupportMessagesState.value = [
-      ...liveSupportMessagesState.value,
-      optimistic,
-    ];
+    liveSupportMessagesState.value = [...liveSupportMessagesState.value, optimistic];
     divRef.current.innerText = "";
     setHasText(false);
     const toCleanup = [...pending];
@@ -325,34 +365,29 @@ const LiveSupportMessageInput: React.FC = () => {
         if (p.previewUrl) URL.revokeObjectURL(p.previewUrl);
       });
 
-      liveSupportMessagesState.value = liveSupportMessagesState.value.map(
-        (msg) =>
-          msg.id === tempId
-            ? {
-                ...saved,
-                status: saved.deliveryStatus === "FAILED" ? 2 : 0,
-              }
-            : msg,
+      liveSupportMessagesState.value = liveSupportMessagesState.value.map((msg) =>
+        msg.id === tempId ? { ...saved, status: saved.deliveryStatus === "FAILED" ? 2 : 0 } : msg,
       );
     } catch (ex: any) {
       console.error(ex);
-      const apiMsg =
-        ex?.response?.data?.message ||
-        ex?.message ||
-        "Failed to send attachment.";
-      setError(Array.isArray(apiMsg) ? apiMsg.join(", ") : String(apiMsg));
-      // Restore unsent attachments so the user can retry without re-picking files
-      setPending((prev) => (prev.length ? prev : toCleanup));
-      liveSupportMessagesState.value = liveSupportMessagesState.value.filter(
-        (msg) => msg.id !== tempId,
+      const apiMsg = ex?.response?.data?.message;
+      setError(
+        Array.isArray(apiMsg) ? apiMsg.join(", ") : typeof apiMsg === "string" && apiMsg ? apiMsg : t("err_send"),
       );
+      // Restore unsent attachments and text so the user can retry without redoing anything
+      setPending((prev) => (prev.length ? prev : toCleanup));
+      if (divRef.current && message && !divRef.current.innerText.trim()) {
+        divRef.current.innerText = message;
+        setHasText(true);
+      }
+      liveSupportMessagesState.value = liveSupportMessagesState.value.filter((msg) => msg.id !== tempId);
     } finally {
       setUploading(false);
     }
-  }, [user?.id, pending, uploading, recordingKind]);
+  }, [user, pending, uploading, recordingKind, t]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault();
       void sendMessage();
     }
@@ -360,39 +395,26 @@ const LiveSupportMessageInput: React.FC = () => {
 
   const handlePaste = (e: React.ClipboardEvent<HTMLElement>) => {
     if (!user?.id || uploading || recordingKind) return;
-    const files = filesFromClipboard(e.clipboardData);
-    if (!files.length) return;
-    e.preventDefault();
-    addFiles(files);
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLElement>) => {
-    if (!user?.id || uploading || recordingKind) return;
-    const files = filesFromClipboard(e.dataTransfer);
-    if (!files.length) return;
-    e.preventDefault();
-    e.stopPropagation();
-    addFiles(files);
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLElement>) => {
-    if (!user?.id || uploading || recordingKind) return;
-    if (e.dataTransfer?.types?.includes("Files")) {
+    const files = filesFromTransfer(e.clipboardData);
+    if (files.length) {
       e.preventDefault();
-      e.dataTransfer.dropEffect = "copy";
+      addFiles(files);
+      return;
+    }
+    // Paste as plain text so formatting from other pages doesn't leak into the box
+    const text = e.clipboardData.getData("text/plain");
+    if (text) {
+      e.preventDefault();
+      document.execCommand("insertText", false, text);
+      syncHasText();
     }
   };
 
-  const sendDisabled = !user?.id || uploading || !!recordingKind;
-  const canSend = !sendDisabled && (hasText || pending.length > 0);
+  const busy = !user?.id || uploading;
+  const canSend = !busy && !recordingKind && (hasText || pending.length > 0);
 
   return (
-    <div
-      className={styles.composer}
-      onPaste={handlePaste}
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
-    >
+    <div className={styles.composer}>
       {pending.length > 0 && (
         <div className={styles.pendingRow}>
           {pending.map((p) => (
@@ -403,144 +425,147 @@ const LiveSupportMessageInput: React.FC = () => {
                 <video src={p.previewUrl} muted />
               ) : (
                 <div className={styles.pendingLabel}>
-                  {isAudioFile(p.file) ? "Voice" : p.file.name.slice(0, 18)}
+                  {isAudioFile(p.file) ? <AudioLines size={18} /> : <FileText size={18} />}
+                  <span>{isAudioFile(p.file) ? t("voice_note") : p.file.name}</span>
                 </div>
               )}
               <button
                 type="button"
-                aria-label="Remove attachment"
+                aria-label={t("remove")}
+                title={t("remove")}
                 className={styles.pendingRemove}
                 onClick={() => removePending(p.id)}
                 disabled={uploading}
               >
-                <MdClose size={14} />
+                <X size={12} strokeWidth={3} />
               </button>
             </div>
           ))}
         </div>
       )}
 
-      {error && <div className={styles.hint}>{error}</div>}
-
-      {recordingKind && (
-        <div className={styles.recordingHint}>
-          <MdFiberManualRecord className="text-red-500 animate-pulse" />
-          {recordingKind === "voice" ? "Recording voice…" : "Recording screen…"}
-          <button type="button" onClick={stopRecording}>
-            Stop
-          </button>
+      {error && (
+        <div className={styles.composerError} role="alert">
+          {error}
         </div>
       )}
 
-      <div className={styles.composerRow}>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept={ACCEPT_ALL}
-          multiple
-          className="hidden"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const input = e.currentTarget;
-            if (input.files?.length) addFiles(input.files);
-            input.value = "";
-          }}
-        />
-        <input
-          ref={photoInputRef}
-          type="file"
-          accept={ACCEPT_PHOTO}
-          multiple
-          className="hidden"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const input = e.currentTarget;
-            if (input.files?.length) addFiles(input.files);
-            input.value = "";
-          }}
-        />
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept={ACCEPT_ALL}
+        multiple
+        className="hidden"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          const input = e.currentTarget;
+          if (input.files?.length) addFiles(input.files);
+          input.value = "";
+        }}
+      />
+      <input
+        ref={photoInputRef}
+        type="file"
+        accept={ACCEPT_PHOTO}
+        multiple
+        className="hidden"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          const input = e.currentTarget;
+          if (input.files?.length) addFiles(input.files);
+          input.value = "";
+        }}
+      />
 
-        <button
-          type="button"
-          title="Attach photo"
-          disabled={!user?.id || uploading || !!recordingKind}
-          className={styles.toolBtn}
-          onClick={() => photoInputRef.current?.click()}
-        >
-          <MdPhotoCamera size={22} />
-        </button>
+      {recordingKind ? (
+        <div className={styles.recordingCard} role="status">
+          <span className={styles.recordingDot} />
+          <span className={styles.recordingText}>
+            {recordingKind === "voice" ? t("recording_voice") : t("recording_screen")}
+          </span>
+          <span className={styles.recordingTime}>{formatElapsed(elapsed)}</span>
+          <button type="button" className={styles.recordingStop} onClick={stopRecording}>
+            <Square size={12} fill="currentColor" />
+            {t("stop")}
+          </button>
+        </div>
+      ) : null}
 
-        <button
-          type="button"
-          title="Attach file"
-          disabled={!user?.id || uploading || !!recordingKind}
-          className={styles.toolBtn}
-          onClick={() => fileInputRef.current?.click()}
-        >
-          <MdAttachFile size={22} />
-        </button>
-
+      {/* Stays mounted while recording (just hidden) so typed text isn't lost */}
+      <div className={styles.composerCard} hidden={!!recordingKind}>
         <div
           id="live-support-message-input"
+          dir={hasText ? "auto" : undefined}
+          role="textbox"
+          aria-multiline="true"
+          aria-label={t("placeholder")}
           tabIndex={0}
           ref={divRef}
           onKeyDown={handleKeyDown}
           onInput={syncHasText}
           onPaste={handlePaste}
-          contentEditable={!!user?.id && !uploading}
-          data-placeholder="Message"
+          contentEditable={!busy}
+          suppressContentEditableWarning
+          data-placeholder={t("placeholder")}
           className={styles.inputBox}
         />
-
-        <button
-          type="button"
-          title={recordingKind === "screen" ? "Stop screen" : "Record screen"}
-          disabled={!user?.id || uploading || recordingKind === "voice"}
-          className={`${styles.toolBtn} ${
-            recordingKind === "screen" ? styles.active : ""
-          }`}
-          onClick={() =>
-            recordingKind === "screen"
-              ? stopRecording()
-              : void startRecording("screen")
-          }
-        >
-          <MdScreenShare size={20} />
-        </button>
-
-        {canSend || recordingKind === "voice" ? (
-          recordingKind === "voice" ? (
+        <div className={styles.toolbar}>
+          <div className={styles.tools}>
             <button
               type="button"
-              title="Stop voice"
-              className={`${styles.toolBtn} ${styles.active}`}
-              onClick={stopRecording}
+              title={t("attach_photo")}
+              aria-label={t("attach_photo")}
+              disabled={busy}
+              className={styles.toolBtn}
+              onClick={() => photoInputRef.current?.click()}
             >
-              <MdStop size={22} />
+              <ImagePlus size={18} />
             </button>
-          ) : (
             <button
               type="button"
-              className={styles.sendBtn}
-              disabled={sendDisabled}
-              aria-label="Send message"
-              onClick={() => void sendMessage()}
+              title={t("attach_file")}
+              aria-label={t("attach_file")}
+              disabled={busy}
+              className={styles.toolBtn}
+              onClick={() => fileInputRef.current?.click()}
             >
-              <MdSend size={18} />
+              <Paperclip size={18} />
             </button>
-          )
-        ) : (
+            <button
+              type="button"
+              title={t("record_voice")}
+              aria-label={t("record_voice")}
+              disabled={busy}
+              className={styles.toolBtn}
+              onClick={() => void startRecording("voice")}
+            >
+              <Mic size={18} />
+            </button>
+            <button
+              type="button"
+              title={t("record_screen")}
+              aria-label={t("record_screen")}
+              disabled={busy}
+              className={`${styles.toolBtn} ${styles.hideOnTouch}`}
+              onClick={() => void startRecording("screen")}
+            >
+              <MonitorUp size={18} />
+            </button>
+          </div>
           <button
             type="button"
-            title="Record voice"
-            disabled={!user?.id || uploading}
-            className={styles.toolBtn}
-            onClick={() => void startRecording("voice")}
+            className={styles.sendBtn}
+            disabled={!canSend}
+            onClick={() => void sendMessage()}
           >
-            <MdMic size={22} />
+            {uploading ? <span className={styles.sendingSpinner} aria-hidden /> : null}
+            <span>{t("send")}</span>
+            <SendHorizontal size={16} strokeWidth={2.4} className={styles.sendIcon} />
           </button>
-        )}
+        </div>
       </div>
+
+      <p className={styles.enterHint}>{t("enter_hint")}</p>
     </div>
   );
-};
+});
 
 export default LiveSupportMessageInput;
